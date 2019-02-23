@@ -1,0 +1,356 @@
+1
+00:00:00,690 --> 00:00:05,610
+In the last section we spoke a little bit about some problems around making sure that only authenticated
+
+2
+00:00:05,610 --> 00:00:08,760
+users could see our dashboard component.
+
+3
+00:00:08,760 --> 00:00:10,680
+Now we haven't created the dashboard yet at all.
+
+4
+00:00:10,680 --> 00:00:12,730
+It's something that we still have to get around to.
+
+5
+00:00:12,780 --> 00:00:15,200
+But we definitely will in just a couple of moments.
+
+6
+00:00:15,330 --> 00:00:21,900
+We had said that in a perfect world after a user logged in we would refreshed the current user then
+
+7
+00:00:21,900 --> 00:00:27,390
+redirect the user over to the dashboard and the dashboard itself could make sure that the user was authenticated
+
+8
+00:00:27,800 --> 00:00:30,540
+and if they weren't authenticated kick them out.
+
+9
+00:00:30,540 --> 00:00:38,010
+However as we discussed we found that the reality of the situation is that the log in user mutation
+
+10
+00:00:38,130 --> 00:00:44,760
+after after it completes running we instantly redirect over to the dashboard and simultaneously kick
+
+11
+00:00:44,760 --> 00:00:48,570
+off this long running request to refresh the current user.
+
+12
+00:00:48,600 --> 00:00:53,010
+And so the result was that we instantly get redirected over to the dashboard.
+
+13
+00:00:53,220 --> 00:00:56,010
+The dashboard says hey you're not signed in yet.
+
+14
+00:00:56,010 --> 00:01:02,070
+You don't have a current user assigned and then it would kick us out back to the logon screen and then
+
+15
+00:01:02,100 --> 00:01:08,630
+only some number of milliseconds later with the query to refresh the current user actually be refreshed.
+
+16
+00:01:08,640 --> 00:01:10,730
+So we had to figure out a workaround to this.
+
+17
+00:01:10,740 --> 00:01:15,410
+And I'm going to show you my suggestion of how we're going to deal with this case.
+
+18
+00:01:15,750 --> 00:01:21,570
+The first thing I want to do is remind you or at least make something very crystal clear about how our
+
+19
+00:01:21,570 --> 00:01:27,990
+components in our queries interact with each other up to this point we've been associating queries with
+
+20
+00:01:27,990 --> 00:01:36,930
+components and to be 100 percent crystal clear whenever we rerun a query.
+
+21
+00:01:36,930 --> 00:01:42,780
+All of the components that are associated with that query inside of our application are automatically
+
+22
+00:01:42,780 --> 00:01:45,910
+going to update with the results from the query.
+
+23
+00:01:46,290 --> 00:01:53,910
+So if we consider the one query that we have right now the current user query we can associate this
+
+24
+00:01:53,910 --> 00:01:57,450
+with 100 different components inside of our application.
+
+25
+00:01:57,600 --> 00:02:05,030
+And if any one of those components decides to rerun this query right here all 100 components will Re-Read
+
+26
+00:02:05,030 --> 00:02:06,900
+or with the updated data.
+
+27
+00:02:06,960 --> 00:02:11,670
+And so that's something that's very important to keep in mind when we're thinking about rerunning queries
+
+28
+00:02:11,670 --> 00:02:13,380
+inside of our application.
+
+29
+00:02:13,410 --> 00:02:18,990
+So if we've got a query that fetches a singular result just like this one does the instant we fetch
+
+30
+00:02:18,990 --> 00:02:24,030
+it boom and type re-act application or at least whichever components make use of the query is going
+
+31
+00:02:24,030 --> 00:02:25,300
+to re render.
+
+32
+00:02:25,860 --> 00:02:32,790
+So with that in mind we can probably figure out a way to trick our log in form and sign up form into
+
+33
+00:02:32,790 --> 00:02:37,020
+being a little bit more aware of the user's authentication state.
+
+34
+00:02:37,020 --> 00:02:40,170
+So here's what we're going to do to look at.
+
+35
+00:02:40,230 --> 00:02:44,850
+So this is why I refer to as the finalized offload this is what we're going to do in practice to make
+
+36
+00:02:44,850 --> 00:02:46,750
+our project actually work.
+
+37
+00:02:46,800 --> 00:02:53,310
+The first thing we're going to do is associate our form with the current user Querrey and I say form
+
+38
+00:02:53,360 --> 00:02:56,550
+I'm talking about the logon form and the Sign-Up forms.
+
+39
+00:02:56,610 --> 00:02:58,110
+Both of them.
+
+40
+00:02:58,110 --> 00:03:05,410
+So the idea here is that after we associate the form with the current user query we will allow the user
+
+41
+00:03:05,410 --> 00:03:07,590
+to enter in some sign of information.
+
+42
+00:03:07,630 --> 00:03:12,810
+So they're going to enter in their e-mail and password that's going to run the mutation and then re
+
+43
+00:03:12,810 --> 00:03:14,440
+fetch the current user.
+
+44
+00:03:14,440 --> 00:03:14,950
+So that's good.
+
+45
+00:03:14,950 --> 00:03:19,120
+So when I say prefetch the current user right here I am talking about the refence queries stuff that
+
+46
+00:03:19,120 --> 00:03:21,080
+we have inside the logon form right now.
+
+47
+00:03:21,280 --> 00:03:22,320
+So this step right here.
+
+48
+00:03:22,330 --> 00:03:29,800
+So refresh queries now as we just discussed whenever we rerun the query after the query resolves it
+
+49
+00:03:29,800 --> 00:03:35,160
+will force every component that uses that query to automatically re render.
+
+50
+00:03:35,350 --> 00:03:39,800
+And so if we associate this current user query with the logon form.
+
+51
+00:03:39,940 --> 00:03:45,740
+Then after we refreshed this query the log in form will automatically render as well.
+
+52
+00:03:45,790 --> 00:03:51,770
+So the log in form will render with the knowledge that there is now a current user.
+
+53
+00:03:52,060 --> 00:03:57,880
+So we can exploit that fact right there to get a little bit of a hook of at least some understanding
+
+54
+00:03:57,880 --> 00:04:00,920
+of hey my company is about to update.
+
+55
+00:04:00,970 --> 00:04:07,300
+There was not a current user before but it appears that there now is and we'll take that little change
+
+56
+00:04:07,390 --> 00:04:11,590
+in the state of that current user Querrey we'll take the fact that there was not a current user but
+
+57
+00:04:11,590 --> 00:04:16,440
+that now is as a sign that the user must have just successfully logged in.
+
+58
+00:04:16,540 --> 00:04:20,830
+And so the instant the log in form he renders and we detect that there was no current user.
+
+59
+00:04:20,850 --> 00:04:26,530
+But now there is we will take that as the sign that we need to redirect the user over to the dashboard
+
+60
+00:04:27,300 --> 00:04:32,200
+than the dashboard can look at the current user property the current user has already been fetched.
+
+61
+00:04:32,200 --> 00:04:37,540
+We let the thing finish and we let it finish all the way to the point of allowing it to rerun the log
+
+62
+00:04:37,530 --> 00:04:38,240
+in form.
+
+63
+00:04:38,410 --> 00:04:43,060
+So of course from the dashboard it actually looks at the user's authentication state.
+
+64
+00:04:43,060 --> 00:04:45,850
+It's going to say oh yeah looks like they're authenticated.
+
+65
+00:04:45,850 --> 00:04:48,060
+They can continue looking at the dashboard.
+
+66
+00:04:48,490 --> 00:04:52,870
+So again the entire linchpin I should say I think that's a good term for that.
+
+67
+00:04:52,870 --> 00:04:58,390
+The entire linchpin of this process right here is our ability to watch the components update process
+
+68
+00:04:58,870 --> 00:05:05,290
+and watch the piece of user or current user or state that has returned from the query and the instant
+
+69
+00:05:05,320 --> 00:05:10,690
+we see that little piece of data change from not authenticated to authenticated we're going to take
+
+70
+00:05:10,690 --> 00:05:15,520
+that as a sign that we need to take the user over to our dashboard component.
+
+71
+00:05:16,150 --> 00:05:17,140
+So that's our plan.
+
+72
+00:05:17,620 --> 00:05:21,540
+That's going to be the the way in which we handle this in practice.
+
+73
+00:05:21,560 --> 00:05:27,760
+I to see that this is not going to be very challenging to code up at least this phase right here this
+
+74
+00:05:27,760 --> 00:05:29,040
+first half right here.
+
+75
+00:05:29,080 --> 00:05:31,240
+It's going to be pretty darn straightforward.
+
+76
+00:05:31,240 --> 00:05:37,840
+The downside to this approach is solely the fact the fact that it's not super clear what's going on
+
+77
+00:05:37,840 --> 00:05:38,580
+with this thing.
+
+78
+00:05:38,650 --> 00:05:43,240
+It's just not it just feels kind of nasty where it really feels like there should be a better way to
+
+79
+00:05:43,240 --> 00:05:48,430
+do it and the less we're going to give it our best shot and hopefully everything comes together the
+
+80
+00:05:48,430 --> 00:05:49,650
+way we expect.
+
+81
+00:05:49,990 --> 00:05:51,360
+So let's take a quick break.
+
+82
+00:05:51,490 --> 00:05:52,770
+We're going to come back.
+
+83
+00:05:52,780 --> 00:05:58,870
+We'll start by associating our form the long form with the current user query and then we'll talk exactly
+
+84
+00:05:58,870 --> 00:06:01,840
+about how we watch for this rerun step right here.
+
+85
+00:06:01,840 --> 00:06:06,250
+When the query is going to get resolved with the current user when we add in the code for the step right
+
+86
+00:06:06,250 --> 00:06:10,960
+here I really think you're going to say oh yeah that's totally obvious of course that's going to work
+
+87
+00:06:10,960 --> 00:06:11,340
+out.
+
+88
+00:06:11,530 --> 00:06:17,240
+But it's kind of getting to that step of kind of figuring out what to do there can be a little bit challenging.
+
+89
+00:06:17,500 --> 00:06:21,740
+So let's take care of this finalized authentication flow in the next section.
+

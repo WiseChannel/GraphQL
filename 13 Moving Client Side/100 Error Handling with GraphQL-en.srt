@@ -1,0 +1,464 @@
+1
+00:00:00,750 --> 00:00:03,110
+Let's continue working on our long form.
+
+2
+00:00:03,270 --> 00:00:06,550
+Right now it's currently up to the hetter as we would expect.
+
+3
+00:00:06,600 --> 00:00:11,160
+But one other issue that we noticed with it was that whenever we submitted the form with an invalid
+
+4
+00:00:11,190 --> 00:00:12,560
+e-mail or password.
+
+5
+00:00:12,720 --> 00:00:15,100
+Nothing really appears to happen.
+
+6
+00:00:15,120 --> 00:00:20,910
+We do get a little bit of an error message in our console log over here and in my network request tab.
+
+7
+00:00:20,940 --> 00:00:27,540
+I can also see that the response that comes back contains an error message that says Invalid credentials.
+
+8
+00:00:27,540 --> 00:00:33,210
+So we need to somehow take this error message that says Invalid credentials and make sure that it somehow
+
+9
+00:00:33,270 --> 00:00:35,220
+gets displayed on our form.
+
+10
+00:00:35,220 --> 00:00:37,560
+So that's going to be what are big challenges.
+
+11
+00:00:37,620 --> 00:00:42,660
+I'm going to start by flipping over to my blog and form component and finding the mutation that we're
+
+12
+00:00:42,660 --> 00:00:43,980
+currently calling.
+
+13
+00:00:44,250 --> 00:00:49,370
+Remember that all the mutations that we write inside of here are all promises.
+
+14
+00:00:49,380 --> 00:00:54,810
+So they return a promise that gets resolved after the mutation has been completed.
+
+15
+00:00:55,020 --> 00:01:03,290
+We can make use of that fact by changing on a dot tetch statement like so to the promise itself.
+
+16
+00:01:03,330 --> 00:01:09,630
+So if we pass a function into this catch statement that function will be called if the promise resolves
+
+17
+00:01:09,690 --> 00:01:10,430
+in an error.
+
+18
+00:01:10,470 --> 00:01:16,830
+So if the request fails on our back end if we pass a function in here it will be called with the response
+
+19
+00:01:16,860 --> 00:01:17,640
+object.
+
+20
+00:01:17,850 --> 00:01:22,320
+And then inside of that function we can do a little bit of error handling to make sure that we can show
+
+21
+00:01:22,320 --> 00:01:27,390
+these errors on the UI to our users so they can go ahead and resolve them.
+
+22
+00:01:27,420 --> 00:01:32,820
+So the first thing we have to do is take a look at the air object that gets passed to catch right here
+
+23
+00:01:33,120 --> 00:01:36,110
+and figure out exactly how we're going to deal with it.
+
+24
+00:01:36,120 --> 00:01:43,380
+I want to start by first just placing a little arrow function in here so I can say RAZ And I'm going
+
+25
+00:01:43,380 --> 00:01:44,990
+to place a debugger statement.
+
+26
+00:01:45,060 --> 00:01:50,340
+So I'm going to pause the execution of our code with this debugger statement and that will allow us
+
+27
+00:01:50,340 --> 00:01:56,040
+to look at this response object right here and figure out exactly how to gleem all the different error
+
+28
+00:01:56,040 --> 00:01:57,480
+messages out of it.
+
+29
+00:01:58,870 --> 00:02:06,010
+So going to save this and then I will refresh my page and we will submit the form without any input
+
+30
+00:02:06,010 --> 00:02:10,750
+whatsoever and we'll wait for that debugger to catch and then we can look at the different properties
+
+31
+00:02:10,750 --> 00:02:13,410
+that are available on the rez object.
+
+32
+00:02:13,450 --> 00:02:15,080
+So I'm going to submit it.
+
+33
+00:02:15,320 --> 00:02:17,160
+I'd get kicked to the debugger.
+
+34
+00:02:17,350 --> 00:02:23,290
+So I'm paused in javascript execution inside of my tetch statement and make this just a little bit bigger
+
+35
+00:02:23,290 --> 00:02:25,030
+to make sure it's nice and legible.
+
+36
+00:02:28,070 --> 00:02:28,430
+OK.
+
+37
+00:02:28,470 --> 00:02:29,380
+There we go.
+
+38
+00:02:29,790 --> 00:02:34,300
+So now we can make use of the JavaScript console down here to inspect the read statement.
+
+39
+00:02:34,470 --> 00:02:39,420
+And by the way if you don't see the consul down here you can press the escape key to open close the
+
+40
+00:02:39,420 --> 00:02:41,760
+console.
+
+41
+00:02:41,760 --> 00:02:45,710
+So first we'll start off by printing the value of the Rez argument.
+
+42
+00:02:46,110 --> 00:02:49,970
+I'll say rez and it looks like it's a air object.
+
+43
+00:02:50,130 --> 00:02:54,450
+So says air graph Cuil error invalid credentials.
+
+44
+00:02:54,450 --> 00:02:59,250
+Now clearly I don't want to show this entire string right here to my user.
+
+45
+00:02:59,280 --> 00:03:00,740
+First off it says Graff.
+
+46
+00:03:00,740 --> 00:03:05,210
+Q Well err my user asking is going to have no idea what that really means.
+
+47
+00:03:05,520 --> 00:03:11,040
+I don't really want to show just the text right there because it's not really nice if I show the form
+
+48
+00:03:11,040 --> 00:03:13,200
+and read and show a message of any kind.
+
+49
+00:03:13,200 --> 00:03:17,320
+The user is probably going to understand that yes something bad just happened.
+
+50
+00:03:17,490 --> 00:03:21,110
+So all I really care about out of this object is the string right here.
+
+51
+00:03:21,270 --> 00:03:22,460
+Invalid credentials.
+
+52
+00:03:22,470 --> 00:03:24,940
+That's what I really want to get access to.
+
+53
+00:03:24,960 --> 00:03:31,350
+So we need to figure out how to plumb through this rez object right here to get access to that message
+
+54
+00:03:31,590 --> 00:03:33,270
+invalid credentials.
+
+55
+00:03:33,750 --> 00:03:41,190
+So we're going to we can definitely cut through this thing by looking at the rez Daut graph Cuil errors
+
+56
+00:03:41,190 --> 00:03:44,010
+property on the response object.
+
+57
+00:03:44,220 --> 00:03:50,460
+So the graph tool is property rights here is populated automatically by Appollo for us and it contains
+
+58
+00:03:50,520 --> 00:03:54,880
+all the different eras that were that occurred during the request phase.
+
+59
+00:03:55,380 --> 00:04:02,460
+So if we expand this it has it is an array that has one object inside of it and then that object contains
+
+60
+00:04:02,550 --> 00:04:08,940
+a message property that has the plain text error message that I would want to show to my user.
+
+61
+00:04:08,970 --> 00:04:14,700
+So in other words the error message I want to show to my user is available on rez.
+
+62
+00:04:14,730 --> 00:04:16,170
+Graph Cuil heir's
+
+63
+00:04:19,410 --> 00:04:25,470
+at zero never go Dot message like so invalid credentials.
+
+64
+00:04:25,470 --> 00:04:31,260
+Now of course I do want to write my code in such a way that assumes that I might have multiple air messages
+
+65
+00:04:31,260 --> 00:04:32,940
+coming from the back end.
+
+66
+00:04:32,940 --> 00:04:38,760
+Case in point grad school airs right here returns an array so I might have several different issues
+
+67
+00:04:38,930 --> 00:04:43,290
+with the requests that I just made and I want to make sure I write my code in such a fashion.
+
+68
+00:04:43,350 --> 00:04:49,860
+They will always show all the different messages to my user so to handle that we can use the match function
+
+69
+00:04:50,240 --> 00:04:55,590
+that's included with javascript on arrays to capture all the different error message all the different
+
+70
+00:04:55,620 --> 00:04:59,340
+errors that are included in the graphical errors array.
+
+71
+00:04:59,340 --> 00:05:04,710
+So we're gonna use a little bit of the map function to do just kind of collect all the different message
+
+72
+00:05:04,710 --> 00:05:05,640
+properties.
+
+73
+00:05:05,850 --> 00:05:06,980
+Let's see what it looks like.
+
+74
+00:05:07,140 --> 00:05:12,050
+I'll say red dot QOL errors dot map.
+
+75
+00:05:12,060 --> 00:05:19,690
+And then for every air object all return air dot message and the auto complete there kind of ruined
+
+76
+00:05:19,710 --> 00:05:22,030
+that surprise.
+
+77
+00:05:22,050 --> 00:05:29,070
+I assume you get the idea so we can run this and that returns in array with all the different air messages
+
+78
+00:05:29,300 --> 00:05:35,130
+that that exist inside of my array or to me on different error messages that exist inside the graphical
+
+79
+00:05:35,160 --> 00:05:36,780
+errors array.
+
+80
+00:05:36,780 --> 00:05:41,400
+So this will probably pretty much future proof my code right here.
+
+81
+00:05:41,400 --> 00:05:47,160
+It'll assume that if I ever have a case from returning multiple heirs for any reason taking this map
+
+82
+00:05:47,160 --> 00:05:53,560
+approach right here we'll handle that appropriately which would definitely be a nice thing to have.
+
+83
+00:05:53,580 --> 00:05:57,870
+So let's flip on over back toward code base and figure out how we're going to make use of this little
+
+84
+00:05:57,870 --> 00:06:04,220
+trick right here to get all the error messages that we might have down into our actual off form.
+
+85
+00:06:04,910 --> 00:06:05,460
+OK.
+
+86
+00:06:05,640 --> 00:06:09,430
+So I'm going to flip back over to my code base here we are right here.
+
+87
+00:06:09,480 --> 00:06:15,210
+I'm still inside of my catch statement which gets called with a list of all the different errors that
+
+88
+00:06:15,210 --> 00:06:17,160
+came back from the server.
+
+89
+00:06:17,160 --> 00:06:22,060
+So let's first collect a list of all the different errors and put it into a single array.
+
+90
+00:06:22,410 --> 00:06:27,630
+I'm going to first put a new line in here just give myself a little bit of space to work with like so
+
+91
+00:06:28,770 --> 00:06:36,930
+Snell's say Konst ears is Rez dot graph is digraph Cuil errors.
+
+92
+00:06:36,960 --> 00:06:40,920
+Let's check the capitalization on that because that's an easy one to get wrong.
+
+93
+00:06:40,920 --> 00:06:45,510
+So it is lowercase g capital Q L E.
+
+94
+00:06:46,220 --> 00:06:49,120
+We are going to map over that object.
+
+95
+00:06:49,280 --> 00:06:58,250
+And for every error that exists will pull off air dot message like so OK.
+
+96
+00:06:58,470 --> 00:07:03,750
+So this line right here is going to get an array of all the different errors that are contained inside
+
+97
+00:07:03,750 --> 00:07:05,310
+the response object.
+
+98
+00:07:05,640 --> 00:07:13,350
+So now it becomes a question of well how in the world how in the world do I communicate that down to
+
+99
+00:07:13,350 --> 00:07:14,660
+my auth form down here.
+
+100
+00:07:14,700 --> 00:07:16,040
+How do I get that down.
+
+101
+00:07:16,350 --> 00:07:21,340
+Well this is a perfect use case again for component level States.
+
+102
+00:07:21,600 --> 00:07:30,030
+I can define a piece of component level state inside of my log and form we'll call it errors will defaulted
+
+103
+00:07:30,060 --> 00:07:34,650
+to be an empty array which means no errors exist whatsoever.
+
+104
+00:07:34,800 --> 00:07:39,460
+And then I'll pass that piece of state down into the art form.
+
+105
+00:07:39,460 --> 00:07:45,390
+Then after we color mutation if there's any errors associated with the request we will update or piece
+
+106
+00:07:45,390 --> 00:07:51,960
+of state that will cause the entire component to re render the new piece of error state or the new list
+
+107
+00:07:51,960 --> 00:07:52,490
+of errors.
+
+108
+00:07:52,500 --> 00:07:57,870
+The array of errors we passed down to the art form and then it will be up to the author form to make
+
+109
+00:07:57,870 --> 00:08:01,980
+sure that that list of errors ends up on the actual form.
+
+110
+00:08:01,980 --> 00:08:05,030
+So I think that's going be a pretty good way to move forward.
+
+111
+00:08:05,040 --> 00:08:10,200
+We'll have our piece of component level state called errors and it will get its data from this air object
+
+112
+00:08:10,200 --> 00:08:13,560
+or this is a raid that we just put together.
+
+113
+00:08:13,560 --> 00:08:15,150
+So it's definitely a pretty good amount of work.
+
+114
+00:08:15,180 --> 00:08:20,380
+And the section has already ran on a little bit long as my sections do tend to run.
+
+115
+00:08:20,700 --> 00:08:26,790
+So let's take a quick break come back and we'll take care of making sure that this is array gets down
+
+116
+00:08:26,820 --> 00:08:28,350
+to our off form component.
+

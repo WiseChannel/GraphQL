@@ -1,0 +1,360 @@
+1
+00:00:00,870 --> 00:00:06,600
+Na ltima seo, adicionamos algum cdigo ao nosso tipo de empresa, mas depois vi uma grande mensagem de erro
+
+2
+00:00:06,600 --> 00:00:12,990
+vermelho no terminal que o tipo de usurio no est definido aqui e parece que  um erro que vem da
+
+3
+00:00:12,990 --> 00:00:15,860
+linha 18 dentro do nosso arquivo de esquema .
+
+4
+00:00:15,930 --> 00:00:20,150
+Ento, na linha 18, vamos encontrar isso.
+
+5
+00:00:20,160 --> 00:00:21,480
+Ento, aqui est o meu arquivo de esquema.
+
+6
+00:00:21,510 --> 00:00:25,190
+Tenho linha 18 novos grficos que voc lista o tipo de usurio.
+
+7
+00:00:25,190 --> 00:00:25,490
+Tudo bem.
+
+8
+00:00:25,500 --> 00:00:28,080
+Ento, este  definitivamente o que est jogando esse erro aqui.
+
+9
+00:00:28,080 --> 00:00:35,750
+Ento, o que pode estar errado aqui  a referncia de tipo de usurio e abaixo abaixo  nossa definio de tipo de usurio.
+
+10
+00:00:36,150 --> 00:00:38,260
+Ento erro de javascript clssico.
+
+11
+00:00:38,280 --> 00:00:45,660
+Estamos tentando fazer uso de uma varivel antes de realmente ter sido definida dentro de nossa aplicao.
+
+12
+00:00:45,660 --> 00:00:52,140
+Ns temos a referncia de tipo de usurio aqui, mas apenas depois, ns realmente definimos o tipo de usurio.
+
+13
+00:00:52,140 --> 00:00:55,620
+Agora voc pode estar pensando Bem, Stephen, esse no  um grande problema.
+
+14
+00:00:55,620 --> 00:00:56,850
+Eu vou colapsar todo o meu cdigo aqui.
+
+15
+00:00:56,850 --> 00:01:02,610
+Voc pode estar pensando seman porque no primeiro definimos o tipo de usurio e ento podemos definir o tipo
+
+16
+00:01:02,610 --> 00:01:03,260
+de empresa.
+
+17
+00:01:03,260 --> 00:01:08,220
+Dessa forma, a empresa pode fazer referncia livremente ao usurio.
+
+18
+00:01:08,550 --> 00:01:09,900
+Bem, isso certamente seria bom.
+
+19
+00:01:09,900 --> 00:01:13,250
+Isso definitivamente me servir legal, mas, infelizmente, isso no vai funcionar bem.
+
+20
+00:01:13,380 --> 00:01:14,440
+Aqui est o porqu.
+
+21
+00:01:14,760 --> 00:01:17,680
+Aqui est o tipo da minha empresa.
+
+22
+00:01:17,810 --> 00:01:20,130
+Eu tenho minha referncia de tipo de usurio aqui.
+
+23
+00:01:20,210 --> 00:01:21,770
+Mais tarde, fao referncia a isso.
+
+24
+00:01:21,800 --> 00:01:24,680
+Vamos ver o tipo de usurio do tipo de usurio.
+
+25
+00:01:24,680 --> 00:01:26,820
+Tambm faz referncia  empresa.
+
+26
+00:01:26,900 --> 00:01:31,640
+Ento, temos uma referncia circular entre os dois tipos.
+
+27
+00:01:31,640 --> 00:01:36,040
+O usurio depende da empresa, mas a empresa tambm depende do usurio.
+
+28
+00:01:36,140 --> 00:01:38,210
+Aqui est a empresa, dependendo do usurio.
+
+29
+00:01:38,210 --> 00:01:42,100
+Ento, temos essencialmente um problema de ordem de operaes aqui.
+
+30
+00:01:42,530 --> 00:01:47,930
+Felizmente, os criadores do grfico Q L perceberam que isso seria um grande problema para sempre que possamos
+
+31
+00:01:47,930 --> 00:01:49,510
+um tipo confiando em outro.
+
+32
+00:01:49,550 --> 00:01:50,510
+Ento eles inventaram.
+
+33
+00:01:50,540 --> 00:01:53,230
+Eles encontraram um pouco de trabalho para contorn-lo.
+
+34
+00:01:53,460 --> 00:01:56,450
+Tudo o que voc precisa fazer  encontrar nosso objeto de campos.
+
+35
+00:01:56,450 --> 00:02:02,540
+Aqui vou pegar meu objeto de campos e vou envolv-lo com uma funo de seta.
+
+36
+00:02:02,720 --> 00:02:11,300
+Ento eu colocarei o parens arrow um presente de abertura e, em seguida, fora da cinta de curvatura de fechamento para o objeto
+
+37
+00:02:11,300 --> 00:02:11,870
+de campos.
+
+38
+00:02:11,870 --> 00:02:12,970
+Bem vindo aqui.
+
+39
+00:02:13,040 --> 00:02:15,770
+Eu vou colocar outros parnteses.
+
+40
+00:02:15,950 --> 00:02:22,610
+que tenha as chaves ID nome descrio usurios finais com a forma como os encerramentos dentro do javascript funcionam.
+
+41
+00:02:22,910 --> 00:02:30,970
+Ento, isso transforma os campos de objeto aqui so os campos de propriedade dos campos de valor em uma funo de seta
+
+42
+00:02:30,980 --> 00:02:32,510
+que retornar um objeto
+
+43
+00:02:32,540 --> 00:02:39,530
+Isso significa que esta funo  definida, mas no  executada at que este arquivo inteiro
+
+44
+00:02:39,530 --> 00:02:40,630
+tenha sido executado.
+
+45
+00:02:40,910 --> 00:02:43,520
+Ento todo o arquivo ser executado.
+
+46
+00:02:43,520 --> 00:02:51,920
+Isso ir definir o tipo de empresa e o tipo de usurio, ento, graficado bem internamente, executar essa funo e diremos que sim,
+
+47
+00:02:52,040 --> 00:02:57,950
+como vamos resolver todos os tipos, o tipo de usurio agora est dentro do escopo de
+
+48
+00:02:57,950 --> 00:03:01,940
+encerramento desta funo de encerramento ou esta funo annima direita Aqui.
+
+49
+00:03:01,970 --> 00:03:05,810
+Isso significa que tudo ser corretamente definido como seria de esperar.
+
+50
+00:03:05,840 --> 00:03:08,680
+Em suma, esta no  realmente uma questo de enxerto.
+
+51
+00:03:08,690 --> 00:03:13,420
+Este  realmente um tipo de coisa javascript que lida com fechamentos e escopos de fechamento.
+
+52
+00:03:13,460 --> 00:03:18,920
+Ento, se voc j passou por cursos bsicos de javascript e ouviu sobre os escopos de
+
+53
+00:03:18,920 --> 00:03:21,610
+fechamento, isso  muito mais prximo 101 aqui.
+
+54
+00:03:21,680 --> 00:03:23,990
+Vamos fazer o mesmo para o tipo de usurio tambm.
+
+55
+00:03:23,990 --> 00:03:30,090
+Eu vou encontrar o objeto de campos e vamos envolv-lo com uma funo de seta tambm.
+
+56
+00:03:30,170 --> 00:03:34,640
+Ento eu vou colocar a funo de seta aberta e depois fech-la aqui tambm.
+
+57
+00:03:34,670 --> 00:03:39,480
+Com os parnteses de encerramento, boa aparncia  boa.
+
+58
+00:03:39,480 --> 00:03:42,810
+Eu vou verificar o meu terminal apenas para garantir que os erros resultem.
+
+59
+00:03:42,960 --> 00:03:44,460
+Sim parece problemas resolvidos.
+
+60
+00:03:44,460 --> 00:03:46,340
+Eu tenho a mensagem de ouvir agradvel aqui.
+
+61
+00:03:46,650 --> 00:03:52,170
+Ento, eu acho que agora podemos virar para o nosso navegador, v para a nossa interface grfica e acho
+
+62
+00:03:52,170 --> 00:03:54,560
+que agora estamos prontos para obter essa consulta.
+
+63
+00:03:54,720 --> 00:03:56,320
+Ento eu vou atualizar.
+
+64
+00:03:56,460 --> 00:03:58,950
+E agora recuperamos nossa lista de usurios.
+
+65
+00:03:59,130 --> 00:04:04,390
+Ento, este  o nico usurio que atualmente tenho associado  identificao da empresa.
+
+66
+00:04:04,800 --> 00:04:09,900
+Eu tambm posso consultar o ID da empresa e eu vou receber meus dois usurios que esto associados com esse tambm.
+
+67
+00:04:09,900 --> 00:04:17,650
+Ento, Alex e Nick, eu tambm posso olhar para o eu. D. E vamos puxar a idade tambm.
+
+68
+00:04:17,840 --> 00:04:19,330
+Bom parece ser bom.
+
+69
+00:04:20,070 --> 00:04:28,560
+Agora que temos um relacionamento que vai de usurios para empresas e da empresa para o usurio, podemos comear a
+
+70
+00:04:28,560 --> 00:04:31,770
+fazer coisas realmente estranhas no mundo grfico.
+
+71
+00:04:31,770 --> 00:04:39,120
+Ento, o que aconteceria se tomarmos o nosso objeto de usurio aqui e pedimos ao usurio que nos conte um pouco
+
+72
+00:04:39,180 --> 00:04:43,830
+sobre a empresa para que possamos dizer o usurio de que tipo voc pertence.
+
+73
+00:04:43,830 --> 00:04:46,740
+Ento, note que j buscamos a empresa aqui.
+
+74
+00:04:46,830 --> 00:04:50,340
+Ento, ns conseguimos a empresa que dissemos que me d os usurios associados.
+
+75
+00:04:50,340 --> 00:04:52,200
+E, em seguida, para cada usurio.
+
+76
+00:04:52,200 --> 00:04:55,090
+Conte-me sobre a empresa com quem voc est associado.
+
+77
+00:04:55,200 --> 00:04:59,760
+Ento, somos realmente uma espcie de equipe de ninhos alguns dados dentro da estrutura da empresa.
+
+78
+00:04:59,790 --> 00:05:04,430
+ o mesmo dado realmente recebendo uma cpia colada dentro de si mesma.
+
+79
+00:05:04,650 --> 00:05:11,580
+de relaes circulares to profundas quanto queremos para que possamos apenas continuar pedindo dados aninhados
+
+80
+00:05:11,580 --> 00:05:12,180
+assim.
+
+81
+00:05:15,010 --> 00:05:16,810
+Podemos configurar este tipo
+
+82
+00:05:17,080 --> 00:05:18,760
+Ops, eu fiz um erro de digitao aqui.
+
+83
+00:05:18,790 --> 00:05:22,400
+Ento, os usurios tm um nome.
+
+84
+00:05:22,770 --> 00:05:24,530
+Eu claramente fui superar aqui.
+
+85
+00:05:24,700 --> 00:05:29,470
+Vamos apenas com o seu primeiro nome, no nomeie o meu erro.
+
+86
+00:05:29,910 --> 00:05:34,970
+Ento, voc pode ver que podemos realmente aninhar arbitrariamente com este tipo de estrutura recursiva.
+
+87
+00:05:34,980 --> 00:05:37,500
+ muito raro que voc realmente faa isso.
+
+88
+00:05:37,500 --> 00:05:42,770
+ apenas uma espcie de estranha sobre o grfico Cuil com o qual voc pode fugir se assim o escolheu.
+
+89
+00:05:43,410 --> 00:05:48,340
+Ento, temos um grfico totalmente conectado entre nossos usurios e empresas.
+
+90
+00:05:48,510 --> 00:05:51,060
+Vamos continuar na prxima seo.
+

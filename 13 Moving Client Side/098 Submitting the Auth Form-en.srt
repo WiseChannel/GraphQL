@@ -1,0 +1,424 @@
+1
+00:00:00,780 --> 00:00:07,730
+Are log in form now has access to the log in nutation remember that whenever we call the log and mutation
+
+2
+00:00:07,730 --> 00:00:15,080
+from within the component we call it as this process does mutate and this mutation in particular expects
+
+3
+00:00:15,080 --> 00:00:19,500
+both an email and a password as query variables to be provided.
+
+4
+00:00:19,520 --> 00:00:25,610
+So we have to somehow get our component level state from the OT form and move it on up into the log
+
+5
+00:00:25,610 --> 00:00:26,940
+in form.
+
+6
+00:00:26,990 --> 00:00:30,280
+In practice this is going to end up as being a simple callback.
+
+7
+00:00:30,440 --> 00:00:36,560
+So I'm going to define a callback inside of the log in form and then I'll pass that down down to the
+
+8
+00:00:36,560 --> 00:00:41,590
+auth form and it should be called whenever the form inside out then gets submitted.
+
+9
+00:00:42,440 --> 00:00:49,460
+So I will first define my callback we'll say call it something simple We'll just keep it on submit and
+
+10
+00:00:49,470 --> 00:00:55,240
+then assume that it's going to be called with an object containing both the email and password
+
+11
+00:00:57,870 --> 00:01:00,850
+then inside this thing we'll call our nutation.
+
+12
+00:01:00,870 --> 00:01:08,880
+So this prop's mutate and we need to make sure that we pass along our query variables as well as the
+
+13
+00:01:08,940 --> 00:01:16,230
+variables object the two variables that are required are both the email and password so we can just
+
+14
+00:01:16,240 --> 00:01:18,690
+pass them straight on through.
+
+15
+00:01:18,700 --> 00:01:19,340
+How do you know this.
+
+16
+00:01:19,350 --> 00:01:23,650
+I'm using a lot of yes 20:15 syntax here on both destructuring.
+
+17
+00:01:23,650 --> 00:01:28,900
+Out of the arguments object and I'm making use of a shortcut for the query variables object as well.
+
+18
+00:01:29,110 --> 00:01:34,600
+So whenever we call on submit we need to make sure that we call it with an object to the contains a
+
+19
+00:01:34,600 --> 00:01:38,080
+property email and a property password as well.
+
+20
+00:01:39,780 --> 00:01:40,110
+OK.
+
+21
+00:01:40,120 --> 00:01:42,170
+Now that on submit is put together.
+
+22
+00:01:42,370 --> 00:01:48,400
+Let's pass it down on to the art form and make sure that the form calls it whenever the form itself
+
+23
+00:01:48,430 --> 00:01:49,720
+is submitted.
+
+24
+00:01:49,720 --> 00:01:53,080
+So we'll say on Samit call the function.
+
+25
+00:01:53,080 --> 00:01:58,210
+This dot on submit to find this.
+
+26
+00:01:58,230 --> 00:02:01,500
+So now inside about form whenever the forms get submitted.
+
+27
+00:02:01,500 --> 00:02:07,560
+Make sure that we call on submit and pass in both the email and password that the user is trying to
+
+28
+00:02:07,800 --> 00:02:09,780
+authenticate with.
+
+29
+00:02:09,780 --> 00:02:12,750
+So a change is an overt form.
+
+30
+00:02:13,000 --> 00:02:17,070
+I'm going to first add an event handler to the form tag itself.
+
+31
+00:02:17,200 --> 00:02:19,040
+So on submit.
+
+32
+00:02:19,210 --> 00:02:21,390
+Call this dot on submit.
+
+33
+00:02:21,580 --> 00:02:23,290
+Bind this.
+
+34
+00:02:23,410 --> 00:02:26,680
+Now do note that did do something just a little bit confusing here.
+
+35
+00:02:26,830 --> 00:02:28,960
+I'm calling this on submit.
+
+36
+00:02:28,990 --> 00:02:34,290
+This is a prop that I'm passing off to form and I'm saying whenever the form gets submitted.
+
+37
+00:02:34,400 --> 00:02:41,800
+Call a helper function inside of Auth. form called on submit this callback right here and this property
+
+38
+00:02:41,800 --> 00:02:48,280
+name right here are 100 percent completely different completely separate from the on submit that we
+
+39
+00:02:48,280 --> 00:02:55,750
+just defined inside the log and form so on summit here is going to be a property or a prop that is passed
+
+40
+00:02:55,750 --> 00:02:57,740
+on down to the art form.
+
+41
+00:02:57,760 --> 00:03:04,380
+So if this function is available inside of my off form as this props start on submit.
+
+42
+00:03:04,540 --> 00:03:06,420
+So I have all the name here.
+
+43
+00:03:06,450 --> 00:03:09,990
+It's I know it sounds like very very similar.
+
+44
+00:03:10,000 --> 00:03:16,390
+All over the place but in practice I really like to keep property names as similar as possible because
+
+45
+00:03:16,390 --> 00:03:21,640
+to me it really allows me to not worry about having to artificially change property names over time
+
+46
+00:03:21,940 --> 00:03:25,180
+just to kind of arbitrarily distinguish between them.
+
+47
+00:03:25,180 --> 00:03:30,370
+I find that it's a little bit easier to just keep it straight in my head that this on Samit is talking
+
+48
+00:03:30,370 --> 00:03:36,280
+about a helper defined inside of the form rather than try and change this to the like something completely
+
+49
+00:03:36,280 --> 00:03:38,770
+different for some arbitrary reason.
+
+50
+00:03:39,370 --> 00:03:42,510
+So we'll define on Sumida in here.
+
+51
+00:03:42,520 --> 00:03:48,100
+Remember that whenever we submit a form the event handler gets called with an event object and we need
+
+52
+00:03:48,100 --> 00:03:51,140
+to make sure that we prevent default on the event object.
+
+53
+00:03:51,190 --> 00:03:58,980
+So the form does not attempt to submit itself so we'll call it event not prevent default like so.
+
+54
+00:03:59,500 --> 00:04:07,210
+OK so now here's the spot where we want to call the prop this Doug prop's dot on submit and pass in
+
+55
+00:04:07,600 --> 00:04:12,010
+the email and the password as an object.
+
+56
+00:04:12,010 --> 00:04:19,090
+So we'll call this stop prop's dot on submit and we'll pass in the e-mail and the password as an object
+
+57
+00:04:19,900 --> 00:04:25,870
+because our state object has the email and password and pretty much nothing else we can freely just
+
+58
+00:04:25,870 --> 00:04:28,110
+pass in this state.
+
+59
+00:04:29,660 --> 00:04:35,480
+Now something to be really clear over next year the event handler on Summit is not going to attempt
+
+60
+00:04:35,480 --> 00:04:38,870
+to mutate the state object in any way shape or form.
+
+61
+00:04:38,990 --> 00:04:45,390
+That's a very critical requirement here is going back a little bit to the fundamentals of react to do.
+
+62
+00:04:45,410 --> 00:04:50,810
+Really if I was writing production code here I might consider destructuring that email and password
+
+63
+00:04:50,810 --> 00:04:58,730
+properties off like Konst email and password is coming from this dot States and then passing the two
+
+64
+00:04:58,730 --> 00:05:02,920
+of them in like so.
+
+65
+00:05:03,150 --> 00:05:07,770
+And that's just going to make sure that I never accidentally mutate my state object inside of the on
+
+66
+00:05:07,770 --> 00:05:08,890
+Samit handler.
+
+67
+00:05:08,940 --> 00:05:15,600
+But in this case I really feel totally fine about just passing in the entire state object just under
+
+68
+00:05:15,600 --> 00:05:20,570
+the assumption that I know I'm never going to mutate the object inside the callback itself.
+
+69
+00:05:22,630 --> 00:05:29,170
+OK so now that our callback is being called successfully with the e-mail and the password and inside
+
+70
+00:05:29,170 --> 00:05:31,850
+of an Smidt year we are calling our mutation.
+
+71
+00:05:31,870 --> 00:05:35,820
+I think that we're just about ready to call this inside the browser.
+
+72
+00:05:35,830 --> 00:05:40,820
+There's just one last little update I want to do inside of the forum itself.
+
+73
+00:05:40,900 --> 00:05:46,910
+So here's the form I want make a little bit of a change to how we put together the forms the form itself.
+
+74
+00:05:47,080 --> 00:05:49,530
+I don't want to show the label inside of here.
+
+75
+00:05:49,540 --> 00:05:51,180
+You'll see why in just a second.
+
+76
+00:05:51,350 --> 00:05:55,330
+I to take the label off on both the email and password fields.
+
+77
+00:05:55,520 --> 00:06:01,230
+Now I'm going to instead use the placeholder prop just to make it a little bit nicer.
+
+78
+00:06:01,480 --> 00:06:03,130
+You X experience.
+
+79
+00:06:03,280 --> 00:06:10,750
+So a placeholder password and to make sure that the password that the user enters is not visible as
+
+80
+00:06:10,750 --> 00:06:11,640
+plain text.
+
+81
+00:06:11,800 --> 00:06:15,760
+I'll specify a type of password on just that input as well.
+
+82
+00:06:15,940 --> 00:06:20,570
+That's going to make sure that my password shows up as dots as opposed to the actual characters.
+
+83
+00:06:22,360 --> 00:06:22,650
+All right.
+
+84
+00:06:22,660 --> 00:06:24,090
+I think we're about ready for a test.
+
+85
+00:06:24,130 --> 00:06:31,070
+So I'm going to save this file on and change on over to Chrome I'm going to pull up my console just
+
+86
+00:06:31,070 --> 00:06:35,440
+in case I get any errors of course and then I'll refresh my form.
+
+87
+00:06:35,870 --> 00:06:37,590
+Everything is still displaying pretty well.
+
+88
+00:06:37,610 --> 00:06:38,510
+Looks good.
+
+89
+00:06:38,720 --> 00:06:44,030
+So I'll put in my email test at test dot com and password.
+
+90
+00:06:44,030 --> 00:06:49,310
+I'm going to flip over to the Network tab inside of my chrome inspector so I can see the nutation go
+
+91
+00:06:49,310 --> 00:06:50,400
+out.
+
+92
+00:06:50,480 --> 00:06:51,620
+We'll do this summit.
+
+93
+00:06:51,770 --> 00:06:57,770
+It looks like the mutation was successfully submitted and it looks like I was successfully logged in
+
+94
+00:06:57,860 --> 00:06:59,960
+as test at test dot com.
+
+95
+00:06:59,990 --> 00:07:00,680
+Fantastic.
+
+96
+00:07:00,770 --> 00:07:02,690
+So this is definitely working the way we expect.
+
+97
+00:07:02,930 --> 00:07:05,300
+And you'll also notice that it looks like the.
+
+98
+00:07:05,360 --> 00:07:07,400
+I'm not sure if the heater is working properly.
+
+99
+00:07:07,400 --> 00:07:08,430
+I wasn't quite looking at it.
+
+100
+00:07:08,450 --> 00:07:14,110
+Let's first sign out and make sure I'm 100 percent signed out and I'm going to submit again.
+
+101
+00:07:14,410 --> 00:07:14,770
+OK.
+
+102
+00:07:14,780 --> 00:07:18,850
+So that's a little bit more the way I expect so I am successfully signing in here.
+
+103
+00:07:18,950 --> 00:07:24,590
+But again you'll notice I am not successfully updating the header in this case so my application state
+
+104
+00:07:24,590 --> 00:07:29,780
+is not quite reflecting the fact that my user is now signed into the application.
+
+105
+00:07:29,780 --> 00:07:35,190
+So this is going to be another instance where we want to think about using the research queries helper.
+
+106
+00:07:35,360 --> 00:07:39,940
+So let's think about how we're going to implement that inside of our application in the next section.
+

@@ -1,0 +1,372 @@
+1
+00:00:01,010 --> 00:00:05,130
+Na ltima seo, comeamos a fazer um pouco de trabalho em nossa mutao de inscrio.
+
+2
+00:00:05,340 --> 00:00:10,410
+Ns definimos a funo de resultado e tambm falamos um pouco sobre o terceiro argumento de
+
+3
+00:00:10,410 --> 00:00:15,810
+que nunca falamos sobre o resultado que  a funo dos pedidos recebidos do nosso servidor expresso.
+
+4
+00:00:15,810 --> 00:00:20,700
+O servio de autenticao que j foi includo no projeto iniciante depende muito deste
+
+5
+00:00:20,700 --> 00:00:22,290
+objeto de solicitao aqui.
+
+6
+00:00:22,410 --> 00:00:26,760
+Portanto,  definitivamente importante que possamos manter esse objeto de solicitao e ns o transferimos para o servio
+
+7
+00:00:26,760 --> 00:00:28,590
+e tentamos se inscrever para uma conta.
+
+8
+00:00:28,890 --> 00:00:34,320
+e descobrir exatamente como nos inscrevemos para uma nova conta, dado algum e-mail e senha.
+
+9
+00:00:34,320 --> 00:00:38,380
+Falando sobre o que vamos ver o servio de auto muito rpido
+
+10
+00:00:38,610 --> 00:00:45,660
+Ento eu vou abrir minha pasta de servios dentro do diretrio do servidor e encontrar o arquivo
+
+11
+00:00:45,660 --> 00:00:47,510
+off js e abri-lo.
+
+12
+00:00:47,580 --> 00:00:52,730
+OK, ento ns olhamos esse arquivo um par de vezes agora e eu apenas fiz um
+
+13
+00:00:52,730 --> 00:00:58,220
+pouco de onda e disse que sim h algumas coisas aqui para lidar com registro ou autenticao
+
+14
+00:00:58,220 --> 00:01:00,330
+em geral e vamos fazer use novamente.
+
+15
+00:01:00,370 --> 00:01:04,610
+H muitos comentrios aqui, ento, se voc quiser pausar o vdeo e ler alguns comentrios e
+
+16
+00:01:04,610 --> 00:01:07,170
+ter uma idia melhor do que est acontecendo aqui.
+
+17
+00:01:07,370 --> 00:01:08,750
+Definitivamente, sinta-se livre para faz-lo.
+
+18
+00:01:08,750 --> 00:01:13,220
+Isso ir ajud-lo a entender exatamente o que est acontecendo dentro de cada uma dessas funes.
+
+19
+00:01:13,220 --> 00:01:21,120
+O grande takeaway daqui, no entanto,  que existe uma inscrio e uma funo de logon definida dentro deste arquivo agora,
+
+20
+00:01:21,140 --> 00:01:27,800
+como voc pode imaginar, ns realmente nos preocupamos com a funo de inscrio se chamarmos a funo de
+
+21
+00:01:27,800 --> 00:01:32,120
+inscrio com um e-mail com uma senha e um objeto de solicitao.
+
+22
+00:01:32,120 --> 00:01:37,340
+Este sendo o objeto de solicitao do lado Express do nosso aplicativo, ele
+
+23
+00:01:37,340 --> 00:01:44,500
+tentar automaticamente registrar um novo usurio para nosso aplicativo e, em seguida, salv-los e log-los em nosso aplicativo.
+
+24
+00:01:44,540 --> 00:01:51,380
+ao solicitar essa funo de resultado, presumivelmente que criar nosso novo usurio e registrar automaticamente o usurio.
+
+25
+00:01:51,380 --> 00:01:57,140
+Ento, se importarmos esta funo diretamente no nosso arquivo de mutaes e chamamos a funo
+
+26
+00:01:57,200 --> 00:01:59,740
+de registro com a senha do e-mail
+
+27
+00:01:59,750 --> 00:02:01,610
+Ento vamos dar uma chance.
+
+28
+00:02:01,610 --> 00:02:04,900
+Eu sei que voc disse que mencionou isso algumas vezes nas ltimas duas sees.
+
+29
+00:02:04,910 --> 00:02:10,070
+Eu sei que  um pouco doloroso fazer uso desta funo sem ter construdo ns mesmos.
+
+30
+00:02:10,220 --> 00:02:15,720
+Novamente h algum tipo de coisas desagradveis aqui fazendo que o passaporte funcione bem com o enxerto.
+
+31
+00:02:15,770 --> 00:02:21,920
+Bem, realmente o que est acontecendo  que o enxerto espera receber uma promessa para o dia para
+
+32
+00:02:21,920 --> 00:02:26,490
+lidar com qualquer cdigo assncrono, mas o passaporte no tem suporte construdo para promessas.
+
+33
+00:02:26,510 --> 00:02:30,640
+E assim  tipo de onde h uma incompatibilidade na API esperada aqui.
+
+34
+00:02:31,130 --> 00:02:37,790
+E  por isso que voc v esse tipo de afirmao de promessa de aparncia desagradvel dentro do sinal de funo.
+
+35
+00:02:37,910 --> 00:02:43,300
+OK, ento vamos importar a funo de inscrio em nosso arquivo de mutaes e ento vamos
+
+36
+00:02:43,300 --> 00:02:44,840
+chamar a funo de Inscrio.
+
+37
+00:02:44,980 --> 00:02:51,490
+Ento, vou voltar ao meu arquivo de mutaes se entrarmos no topo e eu vou importar ou
+
+38
+00:02:51,490 --> 00:02:56,730
+exigir o servio de autenticao, ento eu vou importar tudo para fora desse arquivo.
+
+39
+00:02:59,330 --> 00:03:03,110
+Agora estou dentro do arquivo de mutaes no diretrio do esquema.
+
+40
+00:03:03,110 --> 00:03:10,400
+Ento eu preciso subir de um nvel para um nvel e, em seguida, em servios e ento vou receber o arquivo de autenticao.
+
+41
+00:03:10,860 --> 00:03:14,340
+Ento, agora, o servio aqui tem duas funes atribudas.
+
+42
+00:03:14,420 --> 00:03:17,750
+O registro e as funes de logon.
+
+43
+00:03:17,840 --> 00:03:25,230
+Ento, dentro da minha funo de resoluo, aqui vamos chamar de inscrio no servio.
+
+44
+00:03:25,610 --> 00:03:32,870
+Eu vou passar no e-mail da senha e no objeto de solicitao, o e-mail da senha vir
+
+45
+00:03:32,870 --> 00:03:34,790
+do objeto args aqui.
+
+46
+00:03:34,790 --> 00:03:39,190
+O argumento args e o objeto de solicitao so como j mencionamos vrias vezes.
+
+47
+00:03:39,190 --> 00:03:46,190
+Agora, o terceiro argumento para o resultado funciona o objeto args aqui tem uma propriedade de e-mail e senha,
+
+48
+00:03:46,190 --> 00:03:50,260
+em vez de dizer args dot email e ARGs nossa senha.
+
+49
+00:03:50,260 --> 00:03:55,630
+Vamos usar um pouco de 60 estruturando aqui para simplesmente retirar o email e a senha.
+
+50
+00:03:56,000 --> 00:04:01,340
+Ao fazer isso, podemos simplesmente dizer passar um e-mail e uma senha.
+
+51
+00:04:01,340 --> 00:04:06,860
+Lembre-se de que, porque eu s estou fornecendo o nome da varivel aqui, ele ser
+
+52
+00:04:06,860 --> 00:04:13,350
+expandido automaticamente para ser o par de valores-chave e ento eu tambm vou passar no pedido como.
+
+53
+00:04:13,880 --> 00:04:18,680
+Quando voc comea a olhar para isso no entanto e talvez ter solicitaes, como a solicitao de palavras completas,
+
+54
+00:04:18,680 --> 00:04:19,740
+ um pouco redundante.
+
+55
+00:04:20,030 --> 00:04:24,350
+Eu acho que isso pode fazer um pouco mais de sentido apenas abreviar isso para destruir e ento
+
+56
+00:04:24,350 --> 00:04:25,190
+poderamos condens-lo para parecer.
+
+57
+00:04:25,190 --> 00:04:32,660
+Ento, dentro de expressar  definitivamente uma conveno, em vez de chamar o objeto de solicitao, a conveno de solicitao de
+
+58
+00:04:32,680 --> 00:04:36,840
+palavras completas  apenas cham-lo de Reyk, que  curto para solicitar.
+
+59
+00:04:37,100 --> 00:04:42,770
+Ento, no total, podemos encurtar essa chamada inteira para apenas enviar uma senha de e-mail e Rec certificar-se de
+
+60
+00:04:42,770 --> 00:04:45,730
+que temos as chaves em torno do lado de fora.
+
+61
+00:04:45,740 --> 00:04:51,720
+Agora, lembre-se de assinar um novo usurio ter que interagir com o banco de dados de alguma forma.
+
+62
+00:04:51,770 --> 00:04:54,910
+No s temos que garantir que o e-mail no esteja em uso.
+
+63
+00:04:54,950 --> 00:04:59,570
+Ento, vamos ter que examinar nossa lista completa de e-mails e nossa coleo de usurios, mas tambm
+
+64
+00:04:59,570 --> 00:05:02,480
+teremos que salvar um novo usurio no banco de dados.
+
+65
+00:05:02,510 --> 00:05:08,410
+Ento, isso  um monte de chamadas assncronas, o que significa que o servio automtico de ponto scient funciona
+
+66
+00:05:08,450 --> 00:05:14,180
+logo retorna uma promessa e sempre que devolvemos uma promessa de nossa funo de resoluo, precisamos ter certeza de
+
+67
+00:05:14,180 --> 00:05:15,170
+que a devolvemos.
+
+68
+00:05:15,230 --> 00:05:20,570
+Ento, esse grfico CULE sabe olhar para a promessa que  devolvida aqui e dizer tudo
+
+69
+00:05:20,570 --> 00:05:25,790
+bem, eu vou aguentar por um segundo e aguardo que essa operao seja resolvida antes de
+
+70
+00:05:25,790 --> 00:05:28,270
+tentar retornar qualquer valor ao meu front end.
+
+71
+00:05:28,280 --> 00:05:35,150
+OK, ento isso parece bastante razovel novamente, eu quero apontar aqui se pensarmos em um dos diagramas que
+
+72
+00:05:35,150 --> 00:05:37,870
+voc est apenas olhando para isso aqui.
+
+73
+00:05:37,940 --> 00:05:42,560
+Portanto, nossa funo de resoluo de inscrio no momento  incrivelmente pequena.
+
+74
+00:05:42,560 --> 00:05:48,440
+ exatamente uma linha de cdigo e, em vez de colocar toda a lgica na funo de resoluo para
+
+75
+00:05:48,440 --> 00:05:54,710
+realmente assinar um usurio. Estamos colocando toda essa lgica e todo esse tipo de lgica de negcios  o que
+
+76
+00:05:54,710 --> 00:05:58,580
+eu realmente quero cham-lo dentro de uma funo auxiliar ou um objeto auxiliar.
+
+77
+00:05:58,760 --> 00:06:04,210
+Portanto, o lado do enxerto das coisas realmente no sabe muito sobre a implementao especfica de assinar
+
+78
+00:06:04,210 --> 00:06:05,030
+o usurio.
+
+79
+00:06:05,060 --> 00:06:10,650
+Sabe simplesmente chamar esse tipo de servio externo, que  novamente realmente a idia por trs do enxerto.
+
+80
+00:06:10,680 --> 00:06:17,920
+Bem, usamos isso como uma camada de abstrao muito fina sobre a lgica comercial real da nossa aplicao.
+
+81
+00:06:17,930 --> 00:06:21,730
+Ento, aqui  uma mutao muito bonita.
+
+82
+00:06:21,740 --> 00:06:24,360
+Apenas diz que, eu realmente no sei o que est acontecendo aqui.
+
+83
+00:06:24,380 --> 00:06:29,790
+Eu apenas vou delegar completamente o tratamento de todo esse negcio de Inscrio para este cdigo externo.
+
+84
+00:06:31,600 --> 00:06:36,430
+Ento, eu acho que estamos prontos para dar um pouco de teste e ver se podemos apenas registrar um
+
+85
+00:06:36,430 --> 00:06:43,060
+novo usurio dentro do grfico e, em seguida, verificar o nosso banco de dados de laboratrio para que possamos ir ao laboratrio e olhar para a
+
+86
+00:06:43,060 --> 00:06:46,450
+nossa coleo de usurios e certifique-se de que um novo usurio foi criado.
+
+87
+00:06:46,450 --> 00:06:51,850
+H um pouco de configurao que temos que fazer dentro do nosso projeto primeiro, notavelmente, o arquivo
+
+88
+00:06:51,850 --> 00:06:55,770
+de mutaes que acabamos de criar no est conectado ao nosso esquema ainda.
+
+89
+00:06:56,020 --> 00:06:58,970
+Ento vamos dar uma rpida pausa na prxima seo.
+
+90
+00:06:58,990 --> 00:07:02,920
+Vamos fazer um pouco de fiao de algumas das diferentes partes desta aplicao
+
+91
+00:07:02,920 --> 00:07:05,500
+e ento poderemos testar isso dentro do navegador.
+
+92
+00:07:05,560 --> 00:07:08,170
+Ento faa uma pausa rpida e volte e cuide disso.
+
+93
+00:07:08,170 --> 00:07:09,670
+Vejo voc em apenas um segundo.
+

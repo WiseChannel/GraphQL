@@ -1,0 +1,536 @@
+1
+00:00:00,810 --> 00:00:03,080
+Ns temos nosso formulrio de login na tela agora.
+
+2
+00:00:03,210 --> 00:00:08,910
+Eu quero certificar-se de que temos um componente separado chamado formulrio que vai renderizar o formulrio
+
+3
+00:00:08,910 --> 00:00:12,130
+real ao qual o usurio ir digitar sua entrada.
+
+4
+00:00:12,150 --> 00:00:17,700
+Quero comear por criar um novo componente dentro do diretrio dos meus componentes e recebo um
+
+5
+00:00:18,390 --> 00:00:19,840
+chamado deste formulrio off.
+
+6
+00:00:22,730 --> 00:00:23,090
+EST BEM.
+
+7
+00:00:23,120 --> 00:00:25,640
+Ento, novamente isso seria um componente bastante direto.
+
+8
+00:00:25,670 --> 00:00:32,470
+Ele abrir um formulrio simples que ir mostrar alguns detalhes ou entradas associadas ao usurio.
+
+9
+00:00:32,630 --> 00:00:39,800
+Comeamos importando reagir e a classe Component da biblioteca de re-atuao e
+
+10
+00:00:39,800 --> 00:00:42,580
+ento definiremos o formulrio real.
+
+11
+00:00:42,590 --> 00:00:47,380
+Assim, o componente de extenso de forma de arte ir definir novamente o mtodo de renderizao.
+
+12
+00:00:47,380 --> 00:00:50,200
+Gee que est ficando muito familiar no  isso.
+
+13
+00:00:50,510 --> 00:00:56,520
+E, em seguida, dentro de l, ir colocar a etiqueta de retorno e um pouco de GSX padro para agora.
+
+14
+00:00:56,520 --> 00:01:03,140
+Ento, eu s quero mostrar uma etiqueta de formulrio e, no fundo, exploraremos a Autenticao padro. Formato.
+
+15
+00:01:03,440 --> 00:01:05,000
+OK, ento isso parece muito bom.
+
+16
+00:01:05,220 --> 00:01:08,720
+Agora vamos pensar sobre o que vai acontecer dentro deste formulrio.
+
+17
+00:01:08,720 --> 00:01:14,470
+Precisamos colocar um rtulo e uma entrada para os campos de e-mail e senha.
+
+18
+00:01:15,050 --> 00:01:20,390
+Agora, como um usurio digita dentro de cada um desses campos, no vamos chamar instantaneamente a
+
+19
+00:01:20,420 --> 00:01:22,680
+mutao ou qualquer consulta ou algo assim.
+
+20
+00:01:22,760 --> 00:01:28,880
+Vamos usar os nveis dos componentes para acompanhar as entradas que o usurio est modificando.
+
+21
+00:01:28,880 --> 00:01:33,800
+Agora, se voc no est familiarizado com o formulrio redux ou redux, voc pode estar pensando Bem Stephen no 
+
+22
+00:01:33,800 --> 00:01:36,100
+este um bom caso de uso para usar o redux.
+
+23
+00:01:36,360 --> 00:01:39,030
+Bem, voc sabe que estamos fazendo uma forma muito simples aqui.
+
+24
+00:01:39,140 --> 00:01:45,350
+precisa fazer uso do contedo deste formulrio alm do pai para ele, que  o log in form.
+
+25
+00:01:45,350 --> 00:01:46,750
+Nenhum outro componente realmente
+
+26
+00:01:46,790 --> 00:01:50,140
+Ento eu realmente no acho que este  um bom caso de uso para usar o redux.
+
+27
+00:01:50,150 --> 00:01:56,760
+Eu acho que isso  inteiramente um caso de uso para reagir e reagir de nvel para os Estados de nvel de componente.
+
+28
+00:01:57,320 --> 00:02:00,590
+Ento, vamos ter dois pedaos de estado dentro desse componente.
+
+29
+00:02:00,590 --> 00:02:02,440
+O e-mail e a senha.
+
+30
+00:02:02,660 --> 00:02:08,180
+E  medida que o usurio atualiza cada entrada individual que vamos mostrar aqui, atualizaremos essas duas
+
+31
+00:02:08,180 --> 00:02:09,120
+partes de estado.
+
+32
+00:02:09,470 --> 00:02:18,140
+Ento, vamos primeiro definir o nosso estado de nvel de componente e, em seguida, juntaremos o formulrio real.
+
+33
+00:02:18,680 --> 00:02:26,210
+Ento, no construtor, receberemos o objeto do nosso suporte e inicializaremos nosso estado primeiro puxando
+
+34
+00:02:26,210 --> 00:02:27,470
+super com adereos.
+
+35
+00:02:27,620 --> 00:02:33,530
+E, em seguida, a inicializao do estado real deste estado de ponto e vamos ter um estado
+
+36
+00:02:33,680 --> 00:02:38,450
+inicial de um e-mail de string vazio e uma senha de string vazia, assim,
+
+37
+00:02:41,780 --> 00:02:44,410
+agora podemos comear a trabalhar no prprio formulrio.
+
+38
+00:02:44,430 --> 00:02:49,580
+Ento, na forma em que vamos usar apenas um pouco de estilo, materializado.
+
+39
+00:02:49,630 --> 00:02:53,980
+SS Eu vou primeiro embrulh-lo com uma div
+
+40
+00:02:58,190 --> 00:03:02,050
+que tenha um nome de classe de linha.
+
+41
+00:03:02,330 --> 00:03:08,780
+E, novamente, isso  um pouco de usar o estilo da estrutura CSSA materializada no prprio formulrio,
+
+42
+00:03:08,870 --> 00:03:12,450
+permitiu um nome de chamada e S para a classe.
+
+43
+00:03:12,830 --> 00:03:18,290
+Ento, entre as div que acabei de adicionar e o nome da classe com chamada e quanto a isso vai
+
+44
+00:03:18,290 --> 00:03:19,770
+limitar a largura do prprio formulrio.
+
+45
+00:03:19,790 --> 00:03:23,720
+Ento, o formulrio no vai tentar gastar toda a largura da pgina inteira.
+
+46
+00:03:23,780 --> 00:03:26,480
+Ser apenas uma subseo menor da pgina.
+
+47
+00:03:26,480 --> 00:03:31,330
+Ento, novamente isso  realmente apenas para lidar com um pouco de layout do formulrio.
+
+48
+00:03:31,790 --> 00:03:40,610
+entrada, o campo de entrada o nome da classe  como materializado o SS manipula muito o estilo em torno dos prprios elementos de formulrio.
+
+49
+00:03:40,670 --> 00:03:45,840
+Ento, dentro do formulrio declarar um div com um nome de classe do campo de
+
+50
+00:03:46,040 --> 00:03:52,210
+Ento, se colocarmos um rtulo dentro da div e uma etiqueta de entrada dentro do dispositivo,
+
+51
+00:03:52,220 --> 00:04:01,730
+usar ambos os estilos muito bem para que possamos adicionar no rtulo, o primeiro rtulo mostrar o campo de e-mail e mostraremos uma tag
+
+52
+00:04:01,730 --> 00:04:02,510
+de entrada.
+
+53
+00:04:02,870 --> 00:04:07,380
+Vamos voltar para a entrada em apenas um segundo e conect-lo ao nosso nvel de nvel de componente.
+
+54
+00:04:07,460 --> 00:04:13,400
+Pois agora, deixamos isso como uma tag de entrada e nos preocupamos com os manipuladores do onchange em apenas um momento.
+
+55
+00:04:13,400 --> 00:04:19,860
+Em primeiro lugar, nos cuidaremos tambm da entrada da senha, para que possamos fazer os dois ao mesmo tempo.
+
+56
+00:04:19,970 --> 00:04:20,250
+EST BEM.
+
+57
+00:04:20,270 --> 00:04:24,430
+Ento teremos um nome de classe e aqui novamente do campo de entrada.
+
+58
+00:04:27,080 --> 00:04:28,370
+E, em
+
+59
+00:04:30,980 --> 00:04:36,940
+seguida, um rtulo para a senha e uma entrada sobre esse tambm.
+
+60
+00:04:37,520 --> 00:04:37,810
+EST BEM.
+
+61
+00:04:37,820 --> 00:04:43,790
+Ento, em ambos os casos, precisamos ter certeza de que a entrada est recebendo seu valor
+
+62
+00:04:43,790 --> 00:04:44,880
+do respectivo estado.
+
+63
+00:04:45,020 --> 00:04:49,580
+E ento, sempre que um usurio muda a entrada individual, precisamos ter certeza de que adicionamos um manipulador
+
+64
+00:04:49,580 --> 00:04:50,360
+de eventos tambm.
+
+65
+00:04:50,630 --> 00:04:55,640
+Ento, vamos cuidar da entrada de e-mail primeiro e ento faremos a mesma coisa
+
+66
+00:04:55,640 --> 00:04:57,290
+exatamente para a senha.
+
+67
+00:04:57,290 --> 00:05:02,920
+Ento, primeiro, vamos dizer a entrada que precisa obter o seu valor a partir deste e-mail DOT do estado.
+
+68
+00:05:03,350 --> 00:05:08,570
+E sempre que algum faz uma mudana para isso, no acho que realmente precisamos de um manipulador de
+
+69
+00:05:08,570 --> 00:05:12,590
+eventos separado ou de uma funo auxiliar separada para lidar com a atualizao.
+
+70
+00:05:12,590 --> 00:05:17,870
+Eu acho que podemos simplesmente colocar uma funo auxiliar como uma funo de seta diretamente aqui e isso
+
+71
+00:05:17,870 --> 00:05:19,460
+compacta nosso cdigo apenas um pouco.
+
+72
+00:05:19,550 --> 00:05:24,900
+Ento, vamos receber um objeto de evento que vai representar como letra e.
+
+73
+00:05:25,580 --> 00:05:33,830
+E sempre que algum altera a entrada, iremos chamar esses estados estabelecidos e dizer que o
+
+74
+00:05:34,310 --> 00:05:38,190
+novo e-mail ser o valor alvo assim.
+
+75
+00:05:38,750 --> 00:05:41,970
+Assim, como tipos de usurios, chamamos de estado definido.
+
+76
+00:05:41,990 --> 00:05:47,720
+Atualizamos o email que faz com que o componente atinja a renderizao e a entrada ser atualizada com
+
+77
+00:05:47,720 --> 00:05:49,520
+o novo valor dessa exploso.
+
+78
+00:05:49,550 --> 00:05:57,190
+Email geg, agora podemos repetir a mesma coisa exata com nossa entrada de senha tambm.
+
+79
+00:05:57,260 --> 00:06:05,270
+Ento, eu recebo um valor desta senha DOT do estado do ponto desta vez e sempre que algum muda,
+
+80
+00:06:05,270 --> 00:06:12,730
+isso levar o evento, ns chamaremos o estado definido e atualizaremos a senha com um valor de destino.
+
+81
+00:06:14,650 --> 00:06:15,230
+EST BEM.
+
+82
+00:06:15,520 --> 00:06:17,410
+Isso parece muito bom para mim.
+
+83
+00:06:17,440 --> 00:06:21,730
+A ltima coisa que eu acho que precisamos  um boto no fundo que apenas
+
+84
+00:06:21,730 --> 00:06:24,250
+vai instruir o usurio a enviar o formulrio atual.
+
+85
+00:06:24,500 --> 00:06:35,230
+Tudo  permitido em uma etiqueta de boto com o nome da classe de entre e isso dar ao texto
+
+86
+00:06:35,230 --> 00:06:36,400
+enviar assim.
+
+87
+00:06:37,360 --> 00:06:37,740
+EST BEM.
+
+88
+00:06:37,750 --> 00:06:40,910
+Eu acho que isso parece muito bom at agora.
+
+89
+00:06:40,930 --> 00:06:45,520
+A ltima coisa que voc precisa fazer  pensar sobre como ns vamos interceptar o formulrio que est sendo enviado.
+
+90
+00:06:45,760 --> 00:06:50,730
+Vamos primeiro colocar isso no formulrio dentro do log e do formulrio e ento podemos pensar em adicionar
+
+91
+00:06:50,740 --> 00:06:54,160
+um manipulador de retorno de chamada para o evento de envio real.
+
+92
+00:06:54,160 --> 00:07:00,550
+Ento, eu vou virar para o log e o formulrio que eu quero importar o formulrio que acabamos de criar e
+
+93
+00:07:00,550 --> 00:07:07,030
+mostr-lo dentro do formulrio de log e ento passaremos um par de adereos para ele para personalizar o que o Faa o
+
+94
+00:07:07,030 --> 00:07:11,550
+login para me desculpar o que o formulrio de arte faz sempre que  enviado.
+
+95
+00:07:11,560 --> 00:07:19,830
+Ento, no topo, vamos importar nosso formulrio da Auth. forma e, em seguida, mostraremos que dentro
+
+96
+00:07:23,050 --> 00:07:25,880
+do formulrio de logon assim.
+
+97
+00:07:25,920 --> 00:07:30,510
+Agora, uma ltima coisa que eu quero fazer apenas um pouco de registro mantendo um
+
+98
+00:07:30,510 --> 00:07:35,640
+pouco de configurao para usar CSSA materializado corretamente dentro do formulrio off em que estamos apenas trabalhando.
+
+99
+00:07:35,670 --> 00:07:38,870
+Utilizei os nomes das classes de linha e coluna.
+
+100
+00:07:39,090 --> 00:07:45,150
+Sempre que fazemos uso desses nomes de classe de linha e coluna, o CSSA materializado assume que existe um componente
+
+101
+00:07:45,180 --> 00:07:50,970
+dentro de nossa hierarquia ou devo dizer em cada elemento de equipe com um nome de classe de continer.
+
+102
+00:07:51,210 --> 00:07:55,620
+Ento, apenas para se certificar de que o DSS materializado  realmente feliz com todos
+
+103
+00:07:55,620 --> 00:08:01,110
+os nomes de classes diferentes que configuramos aqui vou abordar o componente do aplicativo, que lembra,  sempre o
+
+104
+00:08:01,140 --> 00:08:03,750
+componente pai de cada componente dentro de nossa aplicao.
+
+105
+00:08:04,050 --> 00:08:09,320
+E no interior daqui muito em um nome de classe de recipiente.
+
+106
+00:08:09,360 --> 00:08:16,880
+Mais uma vez, isso est ajudando a ajudar o DSS materializado a funcionar bem com os formatadores de linha e coluna
+
+107
+00:08:18,040 --> 00:08:18,580
+OK.
+
+108
+00:08:18,800 --> 00:08:23,920
+Voltemos para a nossa aplicao e faremos um bom refresco e veremos o que estamos fazendo.
+
+109
+00:08:24,620 --> 00:08:24,950
+Tudo bem.
+
+110
+00:08:24,950 --> 00:08:27,660
+Ento eu tenho meus campos de e-mail e senha aqui.
+
+111
+00:08:27,680 --> 00:08:31,730
+Voc notar que meu formulrio parece ter sido compactado, mas isso  s porque eu realmente estou
+
+112
+00:08:31,730 --> 00:08:32,310
+ampliado no momento.
+
+113
+00:08:32,480 --> 00:08:39,470
+Se eu diminuir o zoom todo o caminho e, em seguida, fechar o console, tudo comea a ficar um pouco mais agradvel, atribudo
+
+114
+00:08:39,560 --> 00:08:43,520
+a ele, se eu quiser que o formulrio seja um pouco mais amplo.
+
+115
+00:08:43,520 --> 00:08:47,480
+Eu sempre tenho a opo de mudar o campo S para o campo aqui.
+
+116
+00:08:47,500 --> 00:08:54,710
+Ento, para mim, um pouco mais largo, eu poderia dizer bem a 6 dentro do formulrio off e, se
+
+117
+00:08:54,740 --> 00:08:58,960
+eu atualizar agora, deveria esticar uma metade completa do cabealho interno.
+
+118
+00:08:59,540 --> 00:09:01,170
+Ento temos o email e a senha.
+
+119
+00:09:01,220 --> 00:09:02,670
+Estes dois ficam muito bons.
+
+120
+00:09:02,720 --> 00:09:07,270
+garantir que tenhamos um pequeno cabealho aqui para dizer que voc est prestes a entrar no aplicativo.
+
+121
+00:09:07,280 --> 00:09:09,250
+Eu acho que isso faria muito sentido para
+
+122
+00:09:09,410 --> 00:09:15,770
+Ento, eu vou para o registro e formulrio, lembre-se do registro e do formulrio  uma espcie de customizar o
+
+123
+00:09:15,800 --> 00:09:17,860
+formulrio para o log de propsito.
+
+124
+00:09:17,870 --> 00:09:26,800
+Ento eu acho que este seria um bom lugar para adicionar talvez um H-3 rpido que diga simplesmente fazer o login.
+
+125
+00:09:26,930 --> 00:09:28,400
+Agora, se atualizarmos a pgina.
+
+126
+00:09:28,510 --> 00:09:28,850
+EST BEM.
+
+127
+00:09:28,970 --> 00:09:30,290
+Isso parece muito razovel para mim.
+
+128
+00:09:30,290 --> 00:09:32,140
+Eu acho que isso  totalmente razovel.
+
+129
+00:09:32,150 --> 00:09:37,110
+Ento, presumivelmente, nosso usurio pode inserir um e-mail em uma senha e depois envi-lo.
+
+130
+00:09:37,130 --> 00:09:39,840
+Ento eu acho que o capataz fez um bom lugar agora.
+
+131
+00:09:40,010 --> 00:09:41,180
+Vamos dar uma pausa rpida.
+
+132
+00:09:41,180 --> 00:09:47,130
+Vamos voltar na prxima seo, junte nossa mutao ao formulrio de login e verifique se o formulrio de autenticao
+
+133
+00:09:47,150 --> 00:09:49,640
+sabe o que fazer sempre que for enviado.
+
+134
+00:09:49,850 --> 00:09:52,180
+Ento vamos cuidar de tudo isso na prxima seo.
+

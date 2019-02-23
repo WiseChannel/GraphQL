@@ -1,0 +1,232 @@
+1
+00:00:00,870 --> 00:00:05,350
+In the last section we put together our mutation to like an individual lyric.
+
+2
+00:00:05,640 --> 00:00:10,650
+We now need to make sure that we sandwich the mutation together with our component and we also need
+
+3
+00:00:10,650 --> 00:00:14,850
+to import the GQ well and graph the helpers at the top.
+
+4
+00:00:14,900 --> 00:00:20,040
+So let's first do our import statements and then come back to the bottom of the file or scroll all the
+
+5
+00:00:20,040 --> 00:00:21,820
+way up to the top of this component.
+
+6
+00:00:25,070 --> 00:00:27,630
+And I'll place my two in-court statements.
+
+7
+00:00:27,680 --> 00:00:38,330
+So we need to get the graph Cuil helper from re-act Apollo and GQ L from graft UL tag.
+
+8
+00:00:38,900 --> 00:00:40,770
+So now we'll go back down to the very bottom
+
+9
+00:00:45,380 --> 00:00:48,000
+and I can place my GRATHWOHL helper.
+
+10
+00:00:48,530 --> 00:00:53,990
+We're going to take in the mutation and then the second set of parentheses are going to wrap the component
+
+11
+00:00:54,080 --> 00:00:55,040
+like so.
+
+12
+00:00:55,520 --> 00:00:55,820
+OK.
+
+13
+00:00:55,820 --> 00:00:57,180
+So this is looking pretty good.
+
+14
+00:00:57,230 --> 00:01:00,350
+I think we're about ready to do a test inside the browser.
+
+15
+00:01:00,350 --> 00:01:05,360
+The last step that we have to do is make sure that we actually call the mutation inside of our component
+
+16
+00:01:05,780 --> 00:01:12,290
+so I'm going to scroll back up a little bit all the way to our event handler as the event handler right
+
+17
+00:01:12,290 --> 00:01:12,890
+here.
+
+18
+00:01:12,960 --> 00:01:18,100
+We're going to make sure that we call the mutation and when we call the mutation we need to pass in
+
+19
+00:01:18,110 --> 00:01:22,340
+the ID of the lyric that we're trying to actually like.
+
+20
+00:01:22,400 --> 00:01:25,090
+So I'll say this not Propst not mutate.
+
+21
+00:01:25,100 --> 00:01:30,980
+Remember that is exactly how we invoke or call one of our mutations we call does not prop's not mutate
+
+22
+00:01:32,500 --> 00:01:37,250
+and then we will pass in a set of queery variables to the mutation.
+
+23
+00:01:37,370 --> 00:01:44,560
+So variables is going to be the ID which is going to come from the argument of ID.
+
+24
+00:01:44,690 --> 00:01:49,270
+So we are again in a situation where we have a key and value that are identical.
+
+25
+00:01:49,520 --> 00:01:52,750
+We're going to condense it down to just be Id like so.
+
+26
+00:01:53,240 --> 00:01:54,850
+And this is such a short statement.
+
+27
+00:01:54,860 --> 00:01:59,180
+You know what I can do a little bit of clean up here and just put the entire thing on a single line
+
+28
+00:01:59,180 --> 00:02:00,120
+of code.
+
+29
+00:02:00,580 --> 00:02:00,940
+OK.
+
+30
+00:02:00,980 --> 00:02:02,060
+That looks much better.
+
+31
+00:02:03,960 --> 00:02:06,540
+Now I think we're ready to give this a shot in the browser.
+
+32
+00:02:06,540 --> 00:02:08,960
+So let's run it and see how we're doing.
+
+33
+00:02:10,950 --> 00:02:12,920
+I'm going to flip back over.
+
+34
+00:02:12,920 --> 00:02:14,260
+Here we go.
+
+35
+00:02:14,340 --> 00:02:20,970
+I'm going to refresh Now you'll notice that right now we are not showing the total number of likes inside
+
+36
+00:02:20,970 --> 00:02:23,400
+of the lyric row right now.
+
+37
+00:02:23,400 --> 00:02:28,170
+So right now we're just going to click the button and ensure that the mutation is actually executed
+
+38
+00:02:28,500 --> 00:02:33,710
+then we will very shortly come back and show the number of likes on every single lyric.
+
+39
+00:02:33,930 --> 00:02:41,280
+So I clicked the button to like it and it looks like we're issuing the mutation and we get back the
+
+40
+00:02:41,340 --> 00:02:45,200
+updated lyric there is the ID and the number of likes that it has.
+
+41
+00:02:45,420 --> 00:02:47,280
+So that's definitely looking good.
+
+42
+00:02:47,280 --> 00:02:51,090
+Let's make sure that we place the number of likes on each lyric.
+
+43
+00:02:52,320 --> 00:02:58,010
+You flip back over to my code editor and then find the render lyrics helper method.
+
+44
+00:02:58,290 --> 00:03:03,210
+So this is where we are rendering out each individual lyric which of course makes it a great place for
+
+45
+00:03:03,210 --> 00:03:12,450
+us to add in the number of likes that the thing has the argument to this function is the lyric itself
+
+46
+00:03:12,690 --> 00:03:15,630
+and the lyric has a likes property.
+
+47
+00:03:15,630 --> 00:03:20,730
+We know this just because we've looked at our graph to l documentation which said yeah you're going
+
+48
+00:03:20,730 --> 00:03:27,970
+to get a number of likes whenever you fetch this thing so I'll add in my likes from the structure statement.
+
+49
+00:03:30,250 --> 00:03:41,290
+And then inside of the ally itself right after the icon plays the number of Wykes gone I think we're
+
+50
+00:03:41,290 --> 00:03:42,830
+ready to do a test again.
+
+51
+00:03:42,880 --> 00:03:45,000
+I'm going to flip back over to my browser.
+
+52
+00:03:46,900 --> 00:03:49,040
+And that's interesting.
+
+53
+00:03:49,060 --> 00:03:51,750
+Nothing is actually showing up on the screen yet.
+
+54
+00:03:51,850 --> 00:03:53,740
+So that's interesting.
+
+55
+00:03:53,740 --> 00:03:55,600
+Let's click on something.
+
+56
+00:03:56,170 --> 00:03:57,610
+Yeah still not doing anything here.
+
+57
+00:03:57,640 --> 00:03:59,920
+So clearly we've got a little bit of an issue.
+
+58
+00:04:00,100 --> 00:04:04,020
+Let's figure out exactly what's going on inside the next section.
+

@@ -1,0 +1,712 @@
+1
+00:00:00,840 --> 00:00:06,370
+Na ltima seo, falamos sobre como lidaremos com esse tipo de espinho no nosso lado em torno
+
+2
+00:00:06,400 --> 00:00:11,080
+de manipulao de autenticao com ambos os Apollo e reagir dentro de nossa aplicao.
+
+3
+00:00:11,200 --> 00:00:15,770
+No final do dia, dissemos que associaramos o formulrio  nossa consulta atual do usurio.
+
+4
+00:00:16,090 --> 00:00:21,730
+E ento, assim que Cleary seja atualizado pela nossa prvia da consulta, descobriramos alguma maneira de
+
+5
+00:00:21,730 --> 00:00:28,360
+detectar o fato de que o componente agora tem acesso a um usurio atual ou que o usurio agora
+
+6
+00:00:28,360 --> 00:00:33,910
+est autenticado e ns usamos isso de alguma forma chutar o usurio para o nosso painel.
+
+7
+00:00:33,910 --> 00:00:38,500
+Ento, vamos falar sobre exatamente como vamos implementar este passo aqui onde detectamos
+
+8
+00:00:38,500 --> 00:00:44,620
+que o usurio agora  autenticado quando no foram autenticados antes e redirecion-los para o painel de controle.
+
+9
+00:00:44,950 --> 00:00:47,890
+Alguns praticam um pouco mais estrito do que voc pensa.
+
+10
+00:00:47,950 --> 00:00:49,630
+Ento,  assim que vai funcionar.
+
+11
+00:00:49,630 --> 00:00:53,370
+Quando nossas repeties divertidas e recebemos uma resposta do servidor.
+
+12
+00:00:53,410 --> 00:00:55,210
+A consulta ser atualizada.
+
+13
+00:00:55,210 --> 00:00:58,910
+Isso far com que nosso log e componente estrangeiro sejam renderizados.
+
+14
+00:00:59,110 --> 00:01:02,880
+E nesse momento, no tempo, mtodos do ciclo de vida todo o caminho.
+
+15
+00:01:02,980 --> 00:01:09,130
+Ento, o componente ser atualizado, qual  um dos nossos mtodos do ciclo de vida para o componente
+
+16
+00:01:09,130 --> 00:01:12,500
+re-agir, ser automaticamente chamado com nossos adereos novos e antigos.
+
+17
+00:01:12,610 --> 00:01:18,880
+E, portanto, dentro do componente de atualizao do componente ir atualizar, desculpe-me, podemos examinar o antigo e o
+
+18
+00:01:18,880 --> 00:01:23,700
+novo conjunto de adereos e dizer ok se o usurio no foi autenticado.
+
+19
+00:01:23,770 --> 00:01:27,800
+Mas agora eles so ento eles devem ter logado com sucesso.
+
+20
+00:01:27,850 --> 00:01:30,520
+Eles provavelmente no deveriam estar procurando o formulrio de registro mais.
+
+21
+00:01:30,610 --> 00:01:33,960
+Vamos pression-los forosamente para o painel de instrumentos.
+
+22
+00:01:34,570 --> 00:01:36,000
+Ento, esse deve ser nosso plano.
+
+23
+00:01:36,360 --> 00:01:43,000
+Mais uma vez, na prtica, acaba sendo um cdigo muito pequeno, mas entender por que estamos fazendo isso 
+
+24
+00:01:43,000 --> 00:01:44,750
+um grande salto de f.
+
+25
+00:01:44,890 --> 00:01:46,420
+Ento vamos juntar isso.
+
+26
+00:01:47,050 --> 00:01:50,470
+Eu vou virar para o nosso log e componente estrangeiro agora.
+
+27
+00:01:50,500 --> 00:01:52,930
+Eu j tenho a consulta importada aqui.
+
+28
+00:01:52,960 --> 00:01:58,260
+Lembre-se de que tnhamos importado a consulta para conectar-se  declarao de consulta reafirmada em primeiro lugar.
+
+29
+00:01:59,400 --> 00:02:05,060
+Portanto, precisamos primeiro associar a consulta com o prprio componente atravs do uso do auxiliar da ferramenta
+
+30
+00:02:05,080 --> 00:02:06,890
+de grfico depois de fazer isso.
+
+31
+00:02:06,900 --> 00:02:10,470
+Podemos ento adicionar esse componente atualizar o mtodo do ciclo de vida.
+
+32
+00:02:10,680 --> 00:02:15,630
+o desconhecimento de alguns valores dentro dessa coisa e descobriremos exatamente como implement-lo.
+
+33
+00:02:15,630 --> 00:02:17,380
+E primeiro, vamos cancelar
+
+34
+00:02:17,400 --> 00:02:22,750
+Ento, vamos primeiro associar a consulta com o componente com o auxiliar grfico na parte inferior do arquivo.
+
+35
+00:02:23,620 --> 00:02:28,300
+Eu vou percorrer todo o caminho at a parte inferior e falamos algumas
+
+36
+00:02:28,330 --> 00:02:33,740
+vezes sobre como associar mltiplas mutaes nas consultas com a primeira linha do componente, a existente.
+
+37
+00:02:33,940 --> 00:02:36,520
+Eu vou cortar o ponto-e-vrgula do fim.
+
+38
+00:02:36,520 --> 00:02:40,330
+Certifique-se de que no se esquea desse ponto-ponto, ento chamaremos de enxerto.
+
+39
+00:02:40,340 --> 00:02:47,110
+Bem, ns passaremos na consulta que busca o nosso usurio atual e vamos adicionar o
+
+40
+00:02:47,110 --> 00:02:49,190
+segundo conjunto de parnteses.
+
+41
+00:02:49,310 --> 00:02:52,610
+OK, ento a consulta agora est associada ao componente.
+
+42
+00:02:52,890 --> 00:02:59,260
+Assim que a consulta for atualizada de qualquer forma ou formulrio, esse componente ser atualizado, ele ser processado
+
+43
+00:02:59,270 --> 00:03:05,460
+com um conjunto de adereos sobre esses dados de estoque de suporte que descrevero o resultado desta
+
+44
+00:03:05,460 --> 00:03:06,170
+consulta aqui.
+
+45
+00:03:06,600 --> 00:03:12,610
+Ento, com isso em mente, vamos rolar de volta para o topo e agora, se o formulrio de logon
+
+46
+00:03:12,610 --> 00:03:21,200
+que eu vou definir o nosso componente do mtodo do ciclo de vida ser montado, ento um componente agora ir novamente o mtodo do ciclo de vida.
+
+47
+00:03:21,210 --> 00:03:27,690
+da API padro de reao sempre que o nosso componente est prximo ou no me desculpe. O Capone ir
+
+48
+00:03:27,690 --> 00:03:33,660
+montar o componente ir atualizar desculpa sempre que um componente est prestes a ser pr-processado por qualquer motivo.
+
+49
+00:03:33,660 --> 00:03:34,600
+ uma parte
+
+50
+00:03:34,740 --> 00:03:37,590
+Esta funo aqui ser automaticamente chamada.
+
+51
+00:03:37,840 --> 00:03:46,360
+Agora, a magia por trs dessa funo  o primeiro argumento para o qual, por conveno, chamamos os prximos prompts.
+
+52
+00:03:46,380 --> 00:03:53,720
+Ento, este  o mgico prximo prop  o objeto do prop que ser colocado em nosso componente.
+
+53
+00:03:53,730 --> 00:03:58,920
+Na prxima vez que renderizar ou como est prestes a atualizar.
+
+54
+00:03:58,950 --> 00:04:11,370
+Ento, na prtica, podemos dizer que este co aproveita o antigo conjunto atual de adereos e, em seguida, o prximo suporte  o prximo
+
+55
+00:04:11,700 --> 00:04:22,750
+conjunto de adereos que estar no lugar quando o reafecatrio dos componentes o renderizar, pode ser uma boa idia deixar esses
+
+56
+00:04:22,750 --> 00:04:23,660
+comentrios aqui.
+
+57
+00:04:23,680 --> 00:04:28,720
+Esta  uma nota para si mesmo para que voc sempre possa se referir a ela e entender o mtodo do ciclo de vida.
+
+58
+00:04:28,720 --> 00:04:32,560
+Se voc j usou este mtodo de ciclo de vida no passado, ento voc provavelmente tem uma boa idia do
+
+59
+00:04:32,560 --> 00:04:33,320
+que est acontecendo aqui.
+
+60
+00:04:33,340 --> 00:04:37,710
+Mas eu quero ter certeza de que, no entanto,  claro para todos exatamente o que est acontecendo aqui.
+
+61
+00:04:38,230 --> 00:04:44,020
+OK, ento agora  hora de primeiro inspecionar esses dois objetos, cancelando-os.
+
+62
+00:04:44,050 --> 00:04:48,790
+Podemos compar-los um pouco e certificar-se de que isso est indo, o que funcionou da maneira que esperamos.
+
+63
+00:04:49,040 --> 00:04:55,600
+Ento, eu vou registrar logs destock e prximos adereos na mesma declarao.
+
+64
+00:04:55,600 --> 00:04:58,080
+Ento, agora vou ao navegador.
+
+65
+00:04:58,180 --> 00:05:02,230
+Vamos atualizar a pgina e passaremos pelo processo de
+
+66
+00:05:02,230 --> 00:05:04,630
+autenticao e examinaremos esses dois objetos.
+
+67
+00:05:06,080 --> 00:05:06,460
+EST BEM.
+
+68
+00:05:06,470 --> 00:05:13,980
+Ento, de volta ao log e ao formulrio, atualizar a pgina e logo dentro do console.
+
+69
+00:05:13,990 --> 00:05:15,520
+Eu tenho alguns logs aqui.
+
+70
+00:05:15,520 --> 00:05:17,750
+Ento estes so os projetos iniciais.
+
+71
+00:05:17,750 --> 00:05:20,560
+Assim como um componente  renderizado.
+
+72
+00:05:20,560 --> 00:05:28,670
+Agora, se eu expandir o objeto do primeiro prop, que  o conjunto atual de adereos, entendemos isso.
+
+73
+00:05:28,680 --> 00:05:33,100
+OK, isto  o primeiro,  quando o componente primeiro rende.
+
+74
+00:05:33,330 --> 00:05:37,670
+E, em seguida, no mesmo registro do console, obtemos a prxima instruo rpida.
+
+75
+00:05:37,740 --> 00:05:41,510
+E podemos ver que o queerie terminou de carregar.
+
+76
+00:05:41,730 --> 00:05:47,430
+Ento comeamos com o carregamento verdadeiro com o primeiro log do console ou no primeiro objeto do prop.
+
+77
+00:05:47,610 --> 00:05:51,330
+E ento no objeto do segundo suporte aqui est a consulta sendo resolvida.
+
+78
+00:05:51,330 --> 00:05:55,950
+Ento, j vimos a consulta que forou nosso componente a renderizar.
+
+79
+00:05:55,950 --> 00:05:59,040
+ exatamente por isso que conseguimos esse log de console aqui.
+
+80
+00:05:59,040 --> 00:06:05,670
+como um componente  inicialmente processado. Conhecimento correto  que ele est associado a esta consulta aqui.
+
+81
+00:06:05,700 --> 00:06:12,860
+Nosso componente renderiza na tela uma vez inicialmente para que o componente de renderizao inicial seja atualizado no
+
+82
+00:06:12,860 --> 00:06:13,820
+ chamado
+
+83
+00:06:13,880 --> 00:06:15,920
+Ento, essa consulta  feita no backend.
+
+84
+00:06:16,130 --> 00:06:17,080
+A consulta  obtida.
+
+85
+00:06:17,090 --> 00:06:18,050
+Est resolvido.
+
+86
+00:06:18,200 --> 00:06:22,520
+E ento, a atualizao ou o resultado da consulta so aplicados a este componente.
+
+87
+00:06:22,520 --> 00:06:28,340
+falando nos primeiros cinco segundos da aparncia na tela, j temos um log de console onde inicialmente
+
+88
+00:06:28,730 --> 00:06:32,900
+esta parada solicita a consulta ou o usurio atual no estava disponvel.
+
+89
+00:06:32,900 --> 00:06:39,580
+Ento, assim que essa atualizao para a consulta vier com essa apenas renderizao muito inicial do nosso aplicativo, estamos
+
+90
+00:06:39,620 --> 00:06:44,980
+E ento,  medida que o componente foi atualizado, todo o usurio atual de um boom sbito est disponvel.
+
+91
+00:06:44,980 --> 00:06:47,860
+Ento, vamos fazer login e ver o que recebemos ento.
+
+92
+00:06:47,910 --> 00:06:52,240
+Ento, vou limpar meu log e colocarei algumas informaes vlidas.
+
+93
+00:06:53,280 --> 00:06:56,360
+Assim, no posso.
+
+94
+00:06:56,640 --> 00:06:57,750
+Ento eu o enviei.
+
+95
+00:06:57,750 --> 00:07:02,180
+Eu vi minha mudana de cabealho, o que significa que OK, tudo provavelmente est funcionando do jeito que eu espero.
+
+96
+00:07:02,230 --> 00:07:04,030
+E agora, se voc olhar para este objeto.
+
+97
+00:07:04,310 --> 00:07:10,890
+Ento, lembre-se que o registro do consul presentemente est descrevendo a mudana ou o delta entre os objetos dos dois prop.
+
+98
+00:07:10,890 --> 00:07:16,410
+Ento, inicialmente, tnhamos dados de inicializao do prop dot user of no.
+
+99
+00:07:16,560 --> 00:07:19,050
+Ento foi quando no iniciamos sesso.
+
+100
+00:07:19,170 --> 00:07:22,780
+E ento, quando o componente Riera entrou quando a consulta foi concluda.
+
+101
+00:07:22,860 --> 00:07:29,400
+Agora, temos o usurio de dados do prop com uma propriedade de usurio preenchida.
+
+102
+00:07:29,400 --> 00:07:34,830
+Para que seja exatamente exatamente o que vamos descobrir dentro do nosso componente,
+
+103
+00:07:34,830 --> 00:07:37,940
+o usurio no iniciou sesso, mas agora .
+
+104
+00:07:37,950 --> 00:07:42,740
+Ento vamos adicionar uma afirmao if if para verificar essa alterao.
+
+105
+00:07:43,350 --> 00:07:51,090
+Ento, vamos dizer se, ao lado disso, est em ordem, vamos dizer se o estoque armazena um ponto de dados dot user.
+
+106
+00:07:51,120 --> 00:07:55,320
+Ento, esta  a verso antiga do prop  isso antes de iniciar sesso.
+
+107
+00:07:55,470 --> 00:07:57,270
+Se isso no existir.
+
+108
+00:07:57,300 --> 00:08:04,580
+Ento, se no houvesse um usurio l e o prximo usurio de dados do prop existe.
+
+109
+00:08:04,590 --> 00:08:07,780
+Ento, se o usurio no existisse antes, mas agora o fazem.
+
+110
+00:08:08,150 --> 00:08:15,100
+Bem, cachorro-quente Isso parece ser um caso para ns redirecionar para o painel bem aqui.
+
+111
+00:08:15,490 --> 00:08:15,860
+EST BEM.
+
+112
+00:08:15,880 --> 00:08:17,980
+Eu sei que h muita conversa ali.
+
+113
+00:08:18,010 --> 00:08:26,020
+Muita da minha parte e sobre o que  um tipo de linha de cdigo simples e simples, mas este  um grande e
+
+114
+00:08:26,020 --> 00:08:31,420
+real exemplo de como a autenticao est funcionando dentro de nossa aplicao e entender como o
+
+115
+00:08:31,420 --> 00:08:33,300
+Appollo tambm est trabalhando nos bastidores.
+
+116
+00:08:33,310 --> 00:08:39,540
+Ento eu realmente quero apenas ter certeza de que esta parte  agradvel e clara para voc.
+
+117
+00:08:39,650 --> 00:08:46,630
+Ento, agora dentro desta declarao, podemos adicionar um pouco de lgica para redirecionar o usurio para uma
+
+118
+00:08:46,630 --> 00:08:49,210
+rota diferente dentro de nossa aplicao.
+
+119
+00:08:49,260 --> 00:08:54,640
+Eu s espero que essa afirmao esteja pronta aqui para desencadear no caso de o
+
+120
+00:08:54,640 --> 00:08:57,390
+usurio no ter iniciado sesso, mas agora .
+
+121
+00:08:57,670 --> 00:09:03,670
+Ento, se o usurio no iniciou sesso, mas agora  que me parece um tempo muito razovel para redirecionar
+
+122
+00:09:03,670 --> 00:09:06,820
+o usurio para um ponto diferente dentro do nosso aplicativo.
+
+123
+00:09:06,820 --> 00:09:13,350
+Eu realmente no espero esta declarao aqui mesmo para simplesmente ativar magicamente sem motivo algum.
+
+124
+00:09:13,360 --> 00:09:19,030
+Realmente s deveria ser acionado quando os usurios autenticarem com sucesso.
+
+125
+00:09:19,700 --> 00:09:22,840
+Ento, agora precisamos realmente redirecionar o usurio para o painel de controle.
+
+126
+00:09:22,850 --> 00:09:27,800
+Vamos levar isso muito rpido e ento vamos dar uma pausa rpida e depois terminar com
+
+127
+00:09:27,800 --> 00:09:29,030
+as coisas de autenticao.
+
+128
+00:09:29,030 --> 00:09:34,280
+de reativao e, em seguida, usar esse objeto de histrico de hash para atualizar a atual voc  l.
+
+129
+00:09:34,310 --> 00:09:40,130
+Ento, para fazer um redirecionamento de curso, fizemos isso uma vez antes de dentro deste curso, vamos importar o objeto de
+
+130
+00:09:40,130 --> 00:09:41,130
+histrico hash do roteador
+
+131
+00:09:41,510 --> 00:09:53,420
+Ento, no topo, vou importar o histrico hash do roteador re-agir e, em seguida, dentro da declarao, vamos chamar
+
+132
+00:09:53,420 --> 00:10:01,790
+o histrico hash push e vou enviar meu usurio para o painel de controle.
+
+133
+00:10:01,900 --> 00:10:06,970
+Eu quero mencionar que vamos repetir exatamente o mesmo processo sobre o formulrio de inscrio,
+
+134
+00:10:06,970 --> 00:10:12,730
+porque eu realmente espero ter a mesma experincia tanto com o formulrio de inscrio quanto com o
+
+135
+00:10:12,740 --> 00:10:17,500
+formulrio de log in como depois de mudarmos o estado de autenticao do usurio.
+
+136
+00:10:17,530 --> 00:10:20,100
+Quero redirecionar o usurio para o painel de controle.
+
+137
+00:10:20,290 --> 00:10:22,450
+Ento vamos repetir o mesmo por a.
+
+138
+00:10:22,570 --> 00:10:27,340
+Mas antes de ns, vamos testar isso dentro do navegador OK.
+
+139
+00:10:27,370 --> 00:10:28,990
+Ento vou atualizar a pgina.
+
+140
+00:10:29,230 --> 00:10:32,750
+Voc lembra que ainda no temos uma rota do painel.
+
+141
+00:10:33,100 --> 00:10:38,290
+Tudo bem, ns no temos um painel aqui e ento, no instante em que atualizo a pgina, eu j recebo
+
+142
+00:10:38,410 --> 00:10:42,720
+uma mensagem de aviso aqui que diz que voc no possui nenhuma rota chamada de painel.
+
+143
+00:10:42,790 --> 00:10:46,920
+Recebi o erro aqui porque j estou autenticado.
+
+144
+00:10:46,960 --> 00:10:53,010
+est funcionando imediatamente da maneira que eu espero se um usurio chegar ao formulrio de login quando eles j esto autenticados.
+
+145
+00:10:53,010 --> 00:10:55,170
+E ento, realmente, o formulrio de logon
+
+146
+00:10:55,360 --> 00:11:00,610
+Eu definitivamente quero apenas chutar o usurio para o painel imediatamente sem que eles pensem que eles
+
+147
+00:11:00,610 --> 00:11:02,440
+devem fazer login por qualquer motivo.
+
+148
+00:11:02,740 --> 00:11:04,000
+Ento  muito difcil cantar.
+
+149
+00:11:04,000 --> 00:11:08,280
+Ns realmente precisamos primeiro sair e clicar em log-out l primeiro.
+
+150
+00:11:08,290 --> 00:11:13,470
+Vou atualizar a pgina novamente e ter certeza de voltar para a minha rota domstica.
+
+151
+00:11:13,590 --> 00:11:14,600
+Clique no meio no logon.
+
+152
+00:11:14,680 --> 00:11:15,000
+EST BEM.
+
+153
+00:11:15,040 --> 00:11:17,040
+Ento, aqui estamos em atualizao.
+
+154
+00:11:17,040 --> 00:11:19,280
+Mais uma vez para que todo o ar se afaste.
+
+155
+00:11:19,840 --> 00:11:23,980
+Ento, essencialmente, desculpe, eu estava clicando nela muito rapidamente.
+
+156
+00:11:23,980 --> 00:11:29,220
+Mas o que eu realmente quero fazer  apenas garantir que no tenha iniciado sesso e
+
+157
+00:11:29,230 --> 00:11:38,290
+tambm garantir que eu esteja na rota de registro, ento agora  hora de testar isso e vamos testar o ponto de teste com e minha senha.
+
+158
+00:11:38,290 --> 00:11:39,650
+Agora vou clicar em enviar.
+
+159
+00:11:39,700 --> 00:11:42,770
+Espero ver a mensagem de erro sobre o painel.
+
+160
+00:11:43,030 --> 00:11:48,430
+quero ver o fato de que o formulrio est tentando me navegar para outro lugar no aplicativo.
+
+161
+00:11:48,430 --> 00:11:49,830
+Mas, pelo menos, eu s
+
+162
+00:11:49,990 --> 00:11:50,950
+Ento, clique em enviar.
+
+163
+00:11:50,980 --> 00:11:58,300
+E, graas a Deus, obtemos um redirecionamento forado para o painel, exatamente o que
+
+164
+00:11:58,300 --> 00:12:00,040
+queremos ver acontecer.
+
+165
+00:12:00,100 --> 00:12:05,530
+Ento, meu aplicativo agora me considera logado e agora podemos criar nosso componente de painel e adicionar alguma
+
+166
+00:12:05,800 --> 00:12:11,770
+lgica para garantir que o painel de controle somente permita que voc olhe para voc quando voc est autenticado.
+
+167
+00:12:12,010 --> 00:12:18,250
+E, claro, como ns somos redirecionados pelo log e, por enquanto, s estamos sendo redirecionados depois de
+
+168
+00:12:18,250 --> 00:12:24,910
+termos sido autenticados com sucesso e nossa loja local de dados da Apollo sabe que tambm estamos autenticados.
+
+169
+00:12:24,910 --> 00:12:30,430
+Portanto, o painel de instrumentos provavelmente no deve lanar quaisquer falsos positivos tentando nos devolver o
+
+170
+00:12:30,430 --> 00:12:31,770
+formulrio de login aqui.
+
+171
+00:12:32,400 --> 00:12:32,950
+EST BEM.
+
+172
+00:12:33,160 --> 00:12:37,130
+Ento eu sei que as ltimas duas sees foram bastante loucas.
+
+173
+00:12:37,240 --> 00:12:38,470
+Tipo de coisas dolorosas.
+
+174
+00:12:38,470 --> 00:12:44,840
+Muitos tpicos confusos falando sobre coisas profundamente profundas no lado de Apollo e no lado de Riak.
+
+175
+00:12:44,950 --> 00:12:48,730
+Ento, precisamos fazer um pouco mais dessa coisa dolorosa.
+
+176
+00:12:48,730 --> 00:12:54,850
+inscrio tambm, e ento poderemos comear no nosso componente de painel de bordo e chegar ao encerramento do nosso projeto.
+
+177
+00:12:54,850 --> 00:12:59,530
+Ns vamos mudar alguns desses cdigos ou duplicados. Devo dizer sobre o nosso formulrio de
+
+178
+00:12:59,530 --> 00:13:02,190
+Ento vamos continuar sobre isso na prxima seo.
+

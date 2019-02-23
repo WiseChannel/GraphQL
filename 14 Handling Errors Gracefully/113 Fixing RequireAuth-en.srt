@@ -1,0 +1,372 @@
+1
+00:00:00,790 --> 00:00:03,950
+The section we've got our required component wired up.
+
+2
+00:00:04,020 --> 00:00:07,320
+But it definitely didn't not work the way I expected.
+
+3
+00:00:07,560 --> 00:00:12,690
+In particular we tested out inside the browser and we saw that we were still able to see the dashboard
+
+4
+00:00:12,690 --> 00:00:15,900
+page even if the user was not authenticated.
+
+5
+00:00:15,900 --> 00:00:20,190
+So we need to understand a little bit more about what's going on internally with this thing before we
+
+6
+00:00:20,190 --> 00:00:21,730
+can actually get it working.
+
+7
+00:00:22,110 --> 00:00:28,630
+I think that a good first step would be to add in a console log to our component did mt life cycle method.
+
+8
+00:00:28,770 --> 00:00:33,500
+And inside there we can cancel log out the value of loading and user.
+
+9
+00:00:33,510 --> 00:00:39,000
+And that will give us a better idea of when this component in is getting called and how we can tweak
+
+10
+00:00:39,000 --> 00:00:42,220
+this little bit to make sure that it's working the way we expect.
+
+11
+00:00:42,660 --> 00:00:49,680
+So I'm going to add on a console log and we'll look at the values of this Propst dot data loading and
+
+12
+00:00:49,680 --> 00:00:52,810
+this dot prob start data dot user as well.
+
+13
+00:00:52,890 --> 00:00:54,720
+So let's just look at these two values.
+
+14
+00:00:54,840 --> 00:01:01,170
+Remember if they are both falsie values that would result in a user being redirected over to the log
+
+15
+00:01:01,170 --> 00:01:03,150
+in screen.
+
+16
+00:01:03,210 --> 00:01:05,090
+So let's refresh the page now.
+
+17
+00:01:05,310 --> 00:01:06,380
+I'm going to sign back in.
+
+18
+00:01:06,390 --> 00:01:10,670
+You'll notice I've signed out since last video.
+
+19
+00:01:10,980 --> 00:01:13,430
+Test that test dot com and password.
+
+20
+00:01:13,680 --> 00:01:16,800
+Now when I click Submit I get false.
+
+21
+00:01:16,800 --> 00:01:20,380
+That means that the query is not loading anymore.
+
+22
+00:01:20,910 --> 00:01:26,390
+And the second logged statement looks to be the user that I've loaded up so that is my current user.
+
+23
+00:01:26,400 --> 00:01:29,440
+So right now I'm definitely logged into my application.
+
+24
+00:01:29,490 --> 00:01:33,010
+I would not expect to be redirected at this point in time.
+
+25
+00:01:33,120 --> 00:01:38,390
+I would only expect to get redirected after I click the log out button right here.
+
+26
+00:01:38,670 --> 00:01:40,950
+So let's click log out and see what happens.
+
+27
+00:01:41,230 --> 00:01:41,760
+Oops.
+
+28
+00:01:41,870 --> 00:01:44,590
+I was about click OK so I click log out.
+
+29
+00:01:44,610 --> 00:01:50,000
+I'm no longer signed in but you'll notice that I do not have a console log statement here.
+
+30
+00:01:50,010 --> 00:01:51,550
+I did not get another one.
+
+31
+00:01:51,570 --> 00:01:52,620
+So why is that.
+
+32
+00:01:52,980 --> 00:01:56,280
+Well it comes down to how the life cycle method works.
+
+33
+00:01:56,460 --> 00:02:03,160
+Remember component did mount is only called when it component is first rendered to the screen.
+
+34
+00:02:03,450 --> 00:02:09,720
+When I clicked on the button to sign out up here it did not cause the dashboard component to be rendered
+
+35
+00:02:09,870 --> 00:02:11,320
+in any way shape or form.
+
+36
+00:02:11,340 --> 00:02:17,580
+I shouldn't say that it did not cause the dashboard component to have the component did mt life cycle
+
+37
+00:02:17,580 --> 00:02:18,900
+method calls again.
+
+38
+00:02:18,900 --> 00:02:23,560
+Because the dashboard was not unmounted and remounted it was just updated.
+
+39
+00:02:23,910 --> 00:02:31,500
+So right now placing all this authentication logic inside of only component did mount is not a good
+
+40
+00:02:31,500 --> 00:02:40,740
+location for handling the updates to my current state to correctly handle that will instead use a different
+
+41
+00:02:40,920 --> 00:02:41,700
+lifecycle method.
+
+42
+00:02:41,700 --> 00:02:43,310
+Sorry I didn't put the answers there.
+
+43
+00:02:43,350 --> 00:02:46,920
+We'll use a different lifecycle method of component.
+
+44
+00:02:46,980 --> 00:02:50,810
+Will update so that component will update.
+
+45
+00:02:50,850 --> 00:02:57,170
+We're going to get this thing called every single time that the query updates and state in any fashion.
+
+46
+00:02:57,210 --> 00:03:03,330
+So maybe the query goes from not loading to loading or loading to not loading or we now have a current
+
+47
+00:03:03,330 --> 00:03:06,780
+user assigned or the current user doesn't exist anymore.
+
+48
+00:03:06,840 --> 00:03:13,230
+Every single time that our query updates in any way shape or form the component will update will be
+
+49
+00:03:13,230 --> 00:03:18,330
+called again and we can inspect the new set of props that are coming in to decide whether or not the
+
+50
+00:03:18,330 --> 00:03:24,560
+user is being or whether or not we need to redirect the user over to the log in form excuse me.
+
+51
+00:03:25,110 --> 00:03:27,850
+So let's kill the console log that's in here right now.
+
+52
+00:03:27,960 --> 00:03:34,020
+Remember that component will update is called with the new set of props that the compiler is about to
+
+53
+00:03:34,020 --> 00:03:35,230
+be rendered with.
+
+54
+00:03:35,490 --> 00:03:41,730
+So we are not going to refer to this props inside of your Instead we're for to the next props that the
+
+55
+00:03:41,730 --> 00:03:45,040
+component is about to be rendered with.
+
+56
+00:03:45,120 --> 00:03:55,650
+So on the next prop's object we want to look at next prop's dot data dot loading and next prop's dot
+
+57
+00:03:55,650 --> 00:04:01,260
+data dot user to make sure that you still got the exclamation marks in here because we want to capture
+
+58
+00:04:01,260 --> 00:04:08,460
+the case in which the updated query is not loading and the updated query does not have a defined user.
+
+59
+00:04:08,670 --> 00:04:09,610
+If that's the case.
+
+60
+00:04:09,630 --> 00:04:09,980
+Great.
+
+61
+00:04:09,990 --> 00:04:13,140
+Let's redirect the user over to the log in screen.
+
+62
+00:04:13,530 --> 00:04:13,880
+OK.
+
+63
+00:04:13,890 --> 00:04:15,200
+So let's give this a shot now.
+
+64
+00:04:15,340 --> 00:04:16,420
+I'm going to refresh.
+
+65
+00:04:16,440 --> 00:04:22,230
+Are going to save this file then will refresh the page over here and you'll notice that the instant
+
+66
+00:04:22,230 --> 00:04:26,070
+I refresh the page for a second there I was looking at the dashboard component.
+
+67
+00:04:26,250 --> 00:04:31,710
+But as soon as the queery finished loading our application realized that there is no current user and
+
+68
+00:04:31,710 --> 00:04:34,330
+it dumped us back at the log in screen.
+
+69
+00:04:34,330 --> 00:04:38,900
+So now let's log in again let's test the whole flow here.
+
+70
+00:04:39,270 --> 00:04:43,150
+So do test at test a common password or sign back in.
+
+71
+00:04:43,200 --> 00:04:43,640
+OK.
+
+72
+00:04:43,680 --> 00:04:48,760
+Well now at this point in time our query has finished loading and a current user does exist.
+
+73
+00:04:48,810 --> 00:04:54,510
+So we do not need to do any redirect here but you'll notice at the instant I click log out the query
+
+74
+00:04:54,510 --> 00:04:58,560
+reruns it recognizes that there is no longer a current user.
+
+75
+00:04:58,560 --> 00:05:04,680
+And we get kicked back to the log in screen and this should also work if we tried to manually go directly
+
+76
+00:05:04,680 --> 00:05:06,400
+to the dashboard as well.
+
+77
+00:05:06,570 --> 00:05:13,800
+So see if I go to dashboard manually it's kicking me back over to log in screen which is definitely
+
+78
+00:05:13,800 --> 00:05:15,500
+the behavior we want.
+
+79
+00:05:16,140 --> 00:05:16,780
+OK.
+
+80
+00:05:16,950 --> 00:05:20,050
+So I think that's pretty much it for authentication side of the set.
+
+81
+00:05:20,070 --> 00:05:22,830
+We've now got a really solid log in flow.
+
+82
+00:05:23,040 --> 00:05:28,400
+We have the ability to sign the user and we have the ability to sign the user up and we also have an
+
+83
+00:05:28,440 --> 00:05:32,420
+authentication a higher order component here that is going to help us.
+
+84
+00:05:32,720 --> 00:05:36,720
+Well it's really just going to give us a helper to decide whether or not the user needs to go sign in
+
+85
+00:05:36,930 --> 00:05:39,870
+before they progress any further into our application.
+
+86
+00:05:40,170 --> 00:05:44,300
+So just to be really clear if we added in other routes to our application.
+
+87
+00:05:44,340 --> 00:05:51,240
+So if we had not only the dashboard but we also had say a profile page or a account settings page all
+
+88
+00:05:51,240 --> 00:05:54,870
+of which would in theory require the user to be authenticated.
+
+89
+00:05:54,870 --> 00:06:00,300
+We can wrap each of those components inside of the required auth higher order component right here.
+
+90
+00:06:00,420 --> 00:06:05,490
+And that would require the user to be signed in if they want to access that route.
+
+91
+00:06:06,230 --> 00:06:06,670
+OK.
+
+92
+00:06:06,690 --> 00:06:11,220
+So I think that's just about it for authentication inside this application.
+
+93
+00:06:11,220 --> 00:06:13,830
+I hope you enjoyed putting it together.
+

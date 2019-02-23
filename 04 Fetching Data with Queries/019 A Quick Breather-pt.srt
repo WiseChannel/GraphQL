@@ -1,0 +1,232 @@
+1
+00:00:00,780 --> 00:00:04,290
+Temos a nossa primeira associao real entre os registros que funcionam.
+
+2
+00:00:04,380 --> 00:00:07,330
+Mas h muito contedo com o qual fomos criticados.
+
+3
+00:00:07,440 --> 00:00:11,370
+Ento vamos dar um segundo para realmente estudar o Querrey com o qual estamos trabalhando.
+
+4
+00:00:11,430 --> 00:00:16,320
+Vou apresentar-lhe dois conjuntos de diagramas para ajudar a esclarecer exatamente o que est acontecendo
+
+5
+00:00:16,320 --> 00:00:21,010
+com nosso esquema agora e nos ajudar a entender como nosso pedido est sendo resolvido.
+
+6
+00:00:21,410 --> 00:00:24,020
+Ento, vamos dar uma olhada no primeiro conjunto de diagramas.
+
+7
+00:00:24,600 --> 00:00:29,150
+ assim que a propriedade de nossos dados se parece em um lugar e eu gosto de chamar terra da realidade.
+
+8
+00:00:29,190 --> 00:00:36,070
+Por terra de realidade eu estou falando sobre os dados reais que esto sentados em nosso dispositivo, como em nosso banco de dados.
+
+9
+00:00:36,150 --> 00:00:43,260
+Voc conhece nosso servidor Jason Divi, mas, essencialmente, os dados reais com os quais estamos trabalhando na realidade
+
+10
+00:00:43,260 --> 00:00:43,800
+terra.
+
+11
+00:00:43,890 --> 00:00:50,160
+Ns adquirimos a identidade ID primeiro nome e identidade da empresa e ento temos a empresa tambm.
+
+12
+00:00:50,160 --> 00:00:56,160
+Do outro lado da moeda  enxertar a terra de Cuil ou a terra do enxerto, seja qual
+
+13
+00:00:56,160 --> 00:01:03,390
+for o que voc quer chamar, onde tratamos todos os nossos dados como se fosse um grfico neste mundo, entramos em nossa
+
+14
+00:01:03,390 --> 00:01:10,770
+estrutura de dados atravs da raiz Querrey que nos indica o tipo de usurio e depois nos indica um tipo de empresa.
+
+15
+00:01:10,770 --> 00:01:15,820
+Agora, todas essas associaes esto configuradas em uma direo.
+
+16
+00:01:15,840 --> 00:01:19,830
+Com isso quero dizer que s podemos ir de um usurio para uma empresa.
+
+17
+00:01:19,830 --> 00:01:25,480
+Ns ainda no podemos fazer a pergunta, por isso deu uma empresa que eu quero encontrar todos os usurios que pertencem a ela.
+
+18
+00:01:25,500 --> 00:01:30,360
+Ento, agora, nosso grfico inteiro  de natureza unidirecional.
+
+19
+00:01:30,450 --> 00:01:34,810
+Vamos falar agora sobre um pouco sobre o que acontece quando fazemos uma consulta.
+
+20
+00:01:34,910 --> 00:01:41,220
+Ento, diz o processo que passamos quando fazemos uma consulta e ela  enviada para o nosso
+
+21
+00:01:41,220 --> 00:01:50,850
+servidor quando fazemos nossa consulta inicial para o usurio com Say Id 23, a consulta vai para a nossa consulta raiz dentro do objeto args que
+
+22
+00:01:50,910 --> 00:01:54,770
+contm um ID de 23 porque  isso que precisamos.
+
+23
+00:01:54,790 --> 00:01:56,280
+ o que passamos na consulta.
+
+24
+00:01:56,280 --> 00:02:00,180
+Ns dissemos que eu quero encontrar o usurio com um ID de 23.
+
+25
+00:02:00,180 --> 00:02:06,760
+A consulta de raiz ento nos mostra ao usurio uma ID de 23 coisas para a funo de resoluo.
+
+26
+00:02:06,810 --> 00:02:12,900
+Ento podemos pensar nessas funes resolvidas como nos levando de um lugar em nosso grfico para outro
+
+27
+00:02:12,900 --> 00:02:14,060
+local no grfico.
+
+28
+00:02:14,070 --> 00:02:21,420
+Ento, graas  funo de resoluo na consulta, viajamos para o usurio, ento a consulta diz que voc sabe que tambm
+
+29
+00:02:21,420 --> 00:02:24,090
+precisamos conhecer um pouco sobre a empresa tambm.
+
+30
+00:02:24,090 --> 00:02:31,200
+Diga-me mais sobre a empresa nesse ponto que a funo de resoluo de usurios  chamada esse
+
+31
+00:02:31,200 --> 00:02:37,230
+tempo com um primeiro argumento do valor original, que  o n no grfico
+
+32
+00:02:37,230 --> 00:02:40,370
+da qual a consulta vem do usurio 23.
+
+33
+00:02:40,620 --> 00:02:44,150
+As artes no passaram por essa cadeia desde o incio.
+
+34
+00:02:44,160 --> 00:02:47,040
+Voc sabe que no recebemos os args da ID 23 aqui.
+
+35
+00:02:47,100 --> 00:02:54,410
+Acabamos de obter o usurio 23 passado para esta segunda funo de resultado ao longo do caminho para resolver o objeto, depois l a funo de
+
+36
+00:02:54,900 --> 00:02:59,460
+resultado, em seguida, retorna uma promessa que eventualmente nos d a empresa que estamos procurando e
+
+37
+00:02:59,820 --> 00:03:03,180
+toda a estrutura de dados  enviada de volta ao nosso usurio.
+
+38
+00:03:03,180 --> 00:03:08,820
+Portanto, a melhor maneira de pensar sobre todas essas coisas de esquema no est realmente sendo to envolvido no trabalho com
+
+39
+00:03:08,820 --> 00:03:12,100
+tipos de usurios ou tipos de empresas ou o que quer que seja.
+
+40
+00:03:12,330 --> 00:03:19,740
+em nosso grfico para que possamos pensar em cada uma das bordas do nosso grfico como sendo como uma funo de resultado.
+
+41
+00:03:19,740 --> 00:03:25,710
+Em vez disso,  melhor pensar em nosso esquema ou nossos dados como um conjunto de funes
+
+42
+00:03:25,710 --> 00:03:27,870
+que retornam referncias a outros objetos
+
+43
+00:03:27,870 --> 00:03:32,540
+Outra maneira de pensar nisso  como se estivssemos realmente trabalhando com um grfico.
+
+44
+00:03:32,550 --> 00:03:36,050
+Ento eu sei que este diagrama aqui  bastante louco, mas apenas tenha comigo.
+
+45
+00:03:36,390 --> 00:03:42,420
+Cada n em nosso grfico irritante cada ponta em nosso grfico pode realmente ser pensado como sendo uma funo de resultado.
+
+46
+00:03:42,420 --> 00:03:48,610
+Ento, estamos trabalhando a partir de um n que  uma pea de dados real e ento, se dissermos, v encontrar-me.
+
+47
+00:03:48,640 --> 00:03:52,410
+Voc sabe se eu sou esse usurio, encontre-me a empresa com quem estou associado.
+
+48
+00:03:52,410 --> 00:03:58,050
+para a funo de resoluo que nos indica a outra empresa com a qual estamos trabalhando neste diagrama.
+
+49
+00:03:58,050 --> 00:03:58,580
+Ns vamos
+
+50
+00:03:58,590 --> 00:04:01,570
+Eu codificava todas as diferentes empresas como sendo azul.
+
+51
+00:04:01,740 --> 00:04:04,340
+E ento todos os usurios como sendo um tipo de preto e branco.
+
+52
+00:04:04,510 --> 00:04:10,390
+Voc notar que cada um deles est relacionado um com o outro pela presena de uma funo de resultado.
+
+53
+00:04:10,410 --> 00:04:15,030
+Esta  a minha maneira preferida pessoal de pensar sobre todas essas coisas de enxerto, porque
+
+54
+00:04:15,030 --> 00:04:21,010
+realmente ajuda voc a entender o que essa funo de resultado est fazendo quando retorna uma referncia a outro dado.
+
+55
+00:04:21,090 --> 00:04:21,430
+EST BEM.
+
+56
+00:04:21,450 --> 00:04:26,190
+a ferramenta grfica funciona e tentar saber continuamente esse tipo de imagem grfica em nossa cabea.
+
+57
+00:04:26,190 --> 00:04:29,250
+Agora, tivemos um pouco mais de tempo para pensar sobre como
+
+58
+00:04:29,250 --> 00:04:32,530
+Voltemos a trabalhar no nosso exemplo na prxima seo.
+

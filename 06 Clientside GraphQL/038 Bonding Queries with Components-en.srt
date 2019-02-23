@@ -1,0 +1,476 @@
+1
+00:00:00,820 --> 00:00:07,410
+Unless section when completed steps 1 and 2 of our four step process for getting data from our to server
+
+2
+00:00:07,710 --> 00:00:14,010
+into an individual component we identified the data that we needed inside the component and then we
+
+3
+00:00:14,010 --> 00:00:20,280
+wrote a query both in graphical and inside of our component file to fetch that actual data.
+
+4
+00:00:20,280 --> 00:00:24,930
+One thing that I want to point out about the queery that we placed inside of the actual component right
+
+5
+00:00:24,930 --> 00:00:31,410
+here is that the GQ Well library right here this GQ will help her along with the query that we are associated
+
+6
+00:00:31,410 --> 00:00:35,800
+with it in some fashion right here is not actually executing the query.
+
+7
+00:00:35,870 --> 00:00:38,870
+It is only defining a query for us.
+
+8
+00:00:39,090 --> 00:00:42,850
+So just writing out the query and assigning it to this query object right here.
+
+9
+00:00:42,990 --> 00:00:45,310
+Nothing is being executed against the server.
+
+10
+00:00:45,330 --> 00:00:48,730
+There are no network requests being executed right now.
+
+11
+00:00:48,810 --> 00:00:54,800
+It is just forming up the idea of a query that can be executed at some point in the future.
+
+12
+00:00:56,110 --> 00:01:01,110
+So let's continue now with steps three and four of our four step process.
+
+13
+00:01:01,270 --> 00:01:06,670
+We're first going to bond the queery and the component together and then we will somehow access our
+
+14
+00:01:06,670 --> 00:01:09,170
+data inside of the actual component.
+
+15
+00:01:09,580 --> 00:01:15,670
+So for September 3 to bond our equerry in our component together we're going to import another helper
+
+16
+00:01:15,670 --> 00:01:19,770
+library inport at the top graph.
+
+17
+00:01:19,780 --> 00:01:24,730
+Q Well from re-act Apollo like so.
+
+18
+00:01:25,290 --> 00:01:31,180
+So this is the same helper library that we got the graphic you all are seeing in the Apollo provider
+
+19
+00:01:31,210 --> 00:01:33,770
+inside of our index J.S. file.
+
+20
+00:01:33,910 --> 00:01:39,610
+Remember that the Apollo provider that we were looking at over here we had said that the Apollo provider
+
+21
+00:01:39,790 --> 00:01:47,260
+was what bonded our graph fuel server with the re-act side of our application so we can really imagine
+
+22
+00:01:47,260 --> 00:01:53,530
+that the re-act Apollo library that were making use of is the glue layer between react and the Apollo
+
+23
+00:01:53,530 --> 00:01:54,700
+Data Source.
+
+24
+00:01:54,730 --> 00:01:58,310
+So its really no surprise that were going to use something from the graph.
+
+25
+00:01:58,320 --> 00:02:04,690
+Q Well it something from the re-act Apollo library to help us bond a component with an actual query
+
+26
+00:02:04,840 --> 00:02:07,000
+to execute against the server's data.
+
+27
+00:02:08,180 --> 00:02:09,710
+So now we've got this helper right here.
+
+28
+00:02:09,740 --> 00:02:16,160
+We'll make use of it to take the query and take the component and join them together in some fashion.
+
+29
+00:02:16,160 --> 00:02:21,230
+I'm going to go down to the export default statement at the bottom of this file and we're going to say
+
+30
+00:02:21,290 --> 00:02:26,050
+with a little bit of weird syntax I can tell you that right now is just a little bit strange.
+
+31
+00:02:26,210 --> 00:02:26,940
+We'll say graph.
+
+32
+00:02:27,020 --> 00:02:33,740
+Well I'm going to set one set of parentheses and we're going to pass in the query and then we're going
+
+33
+00:02:33,740 --> 00:02:38,080
+to wrap the song list with a second set of parentheses like so.
+
+34
+00:02:38,600 --> 00:02:43,640
+So make sure you've got one set of parentheses around Querrey and then a second set around songless
+
+35
+00:02:44,660 --> 00:02:48,460
+this syntax that we have right here might look very familiar to you.
+
+36
+00:02:48,470 --> 00:02:54,140
+If you have any previous experience with redux if you don't have experience with redox again no big
+
+37
+00:02:54,140 --> 00:02:54,600
+deal.
+
+38
+00:02:54,620 --> 00:02:59,060
+I just want to point out that there is some similarity between the two libraries here.
+
+39
+00:02:59,150 --> 00:03:03,700
+This is valid javascript code that we're looking at the graph Cuil call.
+
+40
+00:03:03,740 --> 00:03:05,910
+So there's a little statement right here.
+
+41
+00:03:06,020 --> 00:03:12,530
+It returns a function which is then immediately indicated or immediately called by the second set of
+
+42
+00:03:12,530 --> 00:03:14,270
+parentheses right here.
+
+43
+00:03:14,270 --> 00:03:19,190
+So the first part returns a function and we are immediately indicating that function with the second
+
+44
+00:03:19,190 --> 00:03:21,310
+set of parentheses.
+
+45
+00:03:21,920 --> 00:03:28,370
+This bonding step between the graph between the graph Kulick query that we defined and the actual component
+
+46
+00:03:28,370 --> 00:03:32,080
+that we defined is what will actually execute the query.
+
+47
+00:03:32,150 --> 00:03:35,060
+When our component gets rendered to the screen.
+
+48
+00:03:35,060 --> 00:03:40,010
+So let's kind of expand on that part a little bit to get a better idea of when our data is actually
+
+49
+00:03:40,010 --> 00:03:42,380
+getting fetched from the server.
+
+50
+00:03:42,380 --> 00:03:46,260
+So I got a little diagram here and that's going to help us out just a little bit.
+
+51
+00:03:46,310 --> 00:03:52,760
+The idea behind bonding the query and the component together works like so when we first render our
+
+52
+00:03:52,760 --> 00:03:59,080
+component to the screen the query that we wrote will be automatically sent to our back end server.
+
+53
+00:03:59,100 --> 00:04:04,580
+And so I said to your query issued by Corey issued I really mean the query was executed or the query
+
+54
+00:04:04,580 --> 00:04:12,140
+got sent to the backend server to fetch some data for us fetching some data from the server is an asynchronous
+
+55
+00:04:12,140 --> 00:04:12,790
+process.
+
+56
+00:04:12,790 --> 00:04:15,440
+It is something that takes some amount of time.
+
+57
+00:04:15,500 --> 00:04:23,250
+So when the component gets rendered it will show up on the screen temporarily without any data whatsoever.
+
+58
+00:04:23,270 --> 00:04:28,190
+Then after some amount of time when the query is complete the component will be automatically rendered
+
+59
+00:04:28,280 --> 00:04:30,960
+with the data that was fetched from the query.
+
+60
+00:04:31,310 --> 00:04:36,520
+So now the real question we need to answer is where does this data appear.
+
+61
+00:04:36,560 --> 00:04:42,680
+Inside the component like OK the query was executed and the query was resolved by the server.
+
+62
+00:04:42,830 --> 00:04:45,000
+How do we actually make use of the data.
+
+63
+00:04:45,010 --> 00:04:51,320
+So that's the last big thing that we need to figure out the data that we that it gets returned from
+
+64
+00:04:51,320 --> 00:04:51,730
+the graph.
+
+65
+00:04:51,740 --> 00:04:59,420
+Your query is returned and placed inside of our components prop's object member the props object is
+
+66
+00:04:59,420 --> 00:05:05,540
+used inside of re-act for communicating some outside data into the component itself.
+
+67
+00:05:05,540 --> 00:05:12,110
+So we can add in reference to this props inside of our component to try to get access to the data that
+
+68
+00:05:12,110 --> 00:05:14,010
+was retrieved by our equerry.
+
+69
+00:05:14,150 --> 00:05:19,850
+Right now I think it probably be a good idea to just place a console log statement and we'll just cancel
+
+70
+00:05:19,850 --> 00:05:20,410
+log out.
+
+71
+00:05:20,420 --> 00:05:25,670
+This dock props and we'll look at how the data is showing up inside the component when it gets returned
+
+72
+00:05:25,670 --> 00:05:26,720
+from the server.
+
+73
+00:05:26,720 --> 00:05:31,950
+And that will hopefully give us a better idea of how to work with that data inside of this actual component.
+
+74
+00:05:32,480 --> 00:05:37,850
+Now before we execute that in the browser I just want to remind you one more time that when we run the
+
+75
+00:05:37,850 --> 00:05:42,370
+query it takes some amount of time for the query to actually be completed.
+
+76
+00:05:42,410 --> 00:05:47,790
+So our component is going to be rendered two times one time without any data.
+
+77
+00:05:48,110 --> 00:05:51,950
+And then a second time after the data has been returned from the server.
+
+78
+00:05:52,360 --> 00:05:55,140
+Ok let's make sure and make sure his file is saved.
+
+79
+00:05:55,200 --> 00:06:01,880
+Yep it is going to flip over to the browser and we're going to refresh the page and see what this looks
+
+80
+00:06:01,880 --> 00:06:03,990
+like with the console log.
+
+81
+00:06:04,640 --> 00:06:07,870
+OK so I can refresh the page and I see my two console logs here.
+
+82
+00:06:07,880 --> 00:06:08,950
+Fantastic.
+
+83
+00:06:09,020 --> 00:06:10,560
+If you see any error messages.
+
+84
+00:06:10,580 --> 00:06:15,830
+Remember to check your terminal and make sure that you don't have any typos or anything like that that
+
+85
+00:06:15,830 --> 00:06:17,460
+are reported by the terminal.
+
+86
+00:06:19,190 --> 00:06:21,930
+So let's look at the first console log here.
+
+87
+00:06:21,930 --> 00:06:23,710
+You know expand the subject.
+
+88
+00:06:23,910 --> 00:06:27,300
+So remember this is our prop's object that we're working with right here.
+
+89
+00:06:27,380 --> 00:06:31,840
+So looks like the props object has a single property assigned to it called data.
+
+90
+00:06:32,090 --> 00:06:33,420
+And if we expand data.
+
+91
+00:06:33,710 --> 00:06:34,020
+OK.
+
+92
+00:06:34,040 --> 00:06:37,120
+Well looks like there is a bunch of interesting things in here.
+
+93
+00:06:37,120 --> 00:06:39,280
+I see air which is undefined.
+
+94
+00:06:39,290 --> 00:06:40,640
+That's probably good.
+
+95
+00:06:40,670 --> 00:06:42,750
+It says that loading is true.
+
+96
+00:06:42,770 --> 00:06:45,660
+So presumably that means that the query is still in progress.
+
+97
+00:06:45,680 --> 00:06:48,250
+So no data has yet been fetched.
+
+98
+00:06:48,260 --> 00:06:53,330
+Let's take a look at the second tons of log and see if there's anything interesting on that one.
+
+99
+00:06:53,960 --> 00:06:57,850
+So on the second log I see loading of false.
+
+100
+00:06:57,950 --> 00:07:01,440
+So presumably the query has completed successfully.
+
+101
+00:07:01,640 --> 00:07:06,480
+If we look a little bit lower you'll notice that we've got a song's property on here.
+
+102
+00:07:06,740 --> 00:07:12,740
+If I expand songs out it's an array with one object inside of it and I can see the title of the song
+
+103
+00:07:12,740 --> 00:07:14,260
+that I actually fetched.
+
+104
+00:07:14,510 --> 00:07:15,320
+So this is it.
+
+105
+00:07:15,320 --> 00:07:18,830
+This is how we get access to our data inside of a graph.
+
+106
+00:07:18,830 --> 00:07:25,580
+Q El enabled component we look at this stuff props start data and then the property that we fetched
+
+107
+00:07:25,670 --> 00:07:27,250
+from the graph you all query.
+
+108
+00:07:27,410 --> 00:07:30,030
+In this case songs.
+
+109
+00:07:30,050 --> 00:07:34,640
+One thing that's really important that I want to point out to you is that you'll notice in the initial
+
+110
+00:07:34,640 --> 00:07:43,190
+console log we do not have a property called Songs so songs is only available after the query has been
+
+111
+00:07:43,190 --> 00:07:44,360
+completed.
+
+112
+00:07:44,390 --> 00:07:49,820
+This is really important because if our component always assumes that songs are being passed to it we
+
+113
+00:07:49,820 --> 00:07:54,360
+might run into some type of error where maybe the songs have not been fetched yet.
+
+114
+00:07:54,410 --> 00:07:58,120
+And I kind of suspect we just might run into that issue.
+
+115
+00:07:58,140 --> 00:08:01,080
+We start to try to work with this data.
+
+116
+00:08:01,100 --> 00:08:05,900
+So speaking of which you know speaking of working with this data let's take a quick break.
+
+117
+00:08:06,020 --> 00:08:11,780
+Let's come back and then we're going to enhance our song list component and make sure that we can render
+
+118
+00:08:11,870 --> 00:08:16,280
+one song out to smell and inside of our actual document.
+
+119
+00:08:16,310 --> 00:08:18,240
+So let's take care of that in the next section.
+

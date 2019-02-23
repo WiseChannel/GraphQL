@@ -1,0 +1,508 @@
+1
+00:00:00,840 --> 00:00:05,280
+Na ltima seo, terminamos trabalhando em nosso blog e componente de formulrio e dissemos
+
+2
+00:00:05,280 --> 00:00:10,140
+que precisamos comear a trabalhar no nosso formulrio de inscrio e tambm certificar-se de cuidar do
+
+3
+00:00:10,140 --> 00:00:16,830
+caso em que um usurio autenticado com sucesso com a nossa aplicao agora para lidar com o caso em um usurio
+
+4
+00:00:16,830 --> 00:00:18,270
+que tenha logado com sucesso.
+
+5
+00:00:18,300 --> 00:00:23,870
+Ns vamos navegar para algum componente do painel imaginrio que ainda no criamos.
+
+6
+00:00:23,880 --> 00:00:29,220
+Ento, se voc lembrar, dissemos que, uma vez que um usurio efetuou o login, mostraramos algo chamado como
+
+7
+00:00:29,510 --> 00:00:33,470
+o Painel teria uma mensagem que diz bem-vinda ou algo parecido com isso.
+
+8
+00:00:34,020 --> 00:00:37,370
+Nosso sinal de formulrio tambm ir navegar para o mesmo componente.
+
+9
+00:00:37,410 --> 00:00:43,170
+Ento, estou pensando que primeiro juntaremos o nosso formulrio de inscrio aqui e depois nos
+
+10
+00:00:43,170 --> 00:00:48,690
+preocuparemos em juntar o componente do painel e atualizar o logon e os formulrios de
+
+11
+00:00:48,750 --> 00:00:53,970
+inscrio para navegar at o painel de bordo aps o usurio autenticar com sucesso.
+
+12
+00:00:53,970 --> 00:00:59,220
+Ento, vamos comear com o nosso formulrio de inscrio que deve ser bastante rpido para passar e
+
+13
+00:00:59,220 --> 00:01:01,340
+ento vamos comear a trabalhar no painel.
+
+14
+00:01:02,430 --> 00:01:04,120
+Ento temos uma tonelada de arquivos abertos agora.
+
+15
+00:01:04,140 --> 00:01:07,320
+Vou fechar alguns deles.
+
+16
+00:01:07,560 --> 00:01:07,880
+EST BEM.
+
+17
+00:01:07,920 --> 00:01:10,250
+Eu me sinto muito melhor.
+
+18
+00:01:10,800 --> 00:01:12,210
+Ento vamos comear.
+
+19
+00:01:12,210 --> 00:01:18,000
+Ns temos um formulrio de login, vamos fazer um formulrio de inscrio e, na prtica, ficar
+
+20
+00:01:18,000 --> 00:01:20,690
+quase idntico a este no formulrio de login.
+
+21
+00:01:20,850 --> 00:01:24,750
+Ento, eu vou fazer um novo componente chamado formulrio de inscrio.
+
+22
+00:01:24,890 --> 00:01:26,470
+Sim.
+
+23
+00:01:27,060 --> 00:01:29,660
+Uma coisa que eu quero mencionar sobre a nomenclatura aqui.
+
+24
+00:01:29,790 --> 00:01:32,400
+Eu tenho registro com a minscula voc.
+
+25
+00:01:32,580 --> 00:01:37,260
+Algumas pessoas gostam de usar UPPER CASE YOU PARA o que quer que voc faa.
+
+26
+00:01:37,260 --> 00:01:42,150
+Apenas certifique-se de ficar consistente e voc no tem alguns em alguns lugares, tenha Kapolei voc
+
+27
+00:01:42,150 --> 00:01:46,070
+e, em outros casos, minsculas, voc apenas garante que voc permanea consistente.
+
+28
+00:01:46,090 --> 00:01:46,340
+EST BEM.
+
+29
+00:01:46,350 --> 00:01:52,420
+Ento, o prprio formulrio para assinar um usurio ser muito parecido com o log e a forma
+
+30
+00:01:52,420 --> 00:01:53,750
+em que estvamos trabalhando.
+
+31
+00:01:53,790 --> 00:01:58,680
+Ento, vamos montar um componente baseado em classe.
+
+32
+00:01:58,680 --> 00:02:03,540
+Ns vamos ter um pedao de estado de Erros para rastrear todos os ouvidos com a assinatura do usurio.
+
+33
+00:02:03,630 --> 00:02:10,170
+Vamos mostrar o nosso formulrio, que  o nosso cdigo reutilizvel que manuseamos e que nos certificaremos de que,
+
+34
+00:02:10,170 --> 00:02:15,130
+sempre que o formulrio off for enviado, ele tenha um retorno de chamada para
+
+35
+00:02:15,130 --> 00:02:19,710
+invocar para executar a nutao de registro para criar um novo usurio e autentic-los.
+
+36
+00:02:19,710 --> 00:02:23,580
+Ento, temos uma boa quantidade de digitao  nossa frente e acho que tambm
+
+37
+00:02:23,580 --> 00:02:24,600
+temos uma boa direo.
+
+38
+00:02:24,930 --> 00:02:27,450
+Ento vamos comear a super-lo.
+
+39
+00:02:27,510 --> 00:02:36,150
+Comearemos por importar reagir e a classe base do componente e ento vamos colocar nossa placa de
+
+40
+00:02:36,760 --> 00:02:40,490
+caldeira para o prprio formulrio de inscrio.
+
+41
+00:02:40,880 --> 00:02:42,680
+Ns voltaremos a fazer o nosso mtodo de renderizao.
+
+42
+00:02:42,680 --> 00:02:49,280
+Eu acho que agora podemos comear com uma div simples, que vamos substituir no tempo ou adicionar
+
+43
+00:02:49,280 --> 00:02:54,770
+no tempo com o formulrio e talvez tambm um cabealho de 3 anos no topo.
+
+44
+00:02:54,860 --> 00:02:57,650
+Ento, na parte inferior, iremos exportar o padro.
+
+45
+00:02:58,040 --> 00:03:02,530
+Assine o cdigo do formulrio.
+
+46
+00:03:02,990 --> 00:03:08,130
+Eu acho que talvez um bom lugar para comear ser importar o formulrio de autenticao e mostr-lo dentro desse mtodo
+
+47
+00:03:08,130 --> 00:03:09,240
+de renderizao de coisas.
+
+48
+00:03:09,570 --> 00:03:19,270
+Ento, vamos importar o Auth. Forme do formulrio e certifique-se de que o mostramos dentro da coisa assim.
+
+49
+00:03:19,410 --> 00:03:19,810
+EST BEM.
+
+50
+00:03:19,830 --> 00:03:20,640
+Esse  um bom comeo.
+
+51
+00:03:20,640 --> 00:03:21,930
+Isso  fcil.
+
+52
+00:03:22,050 --> 00:03:26,700
+Podemos adicionar e 3 tambm para permitir que o usurio saiba que esse formulrio que eles esto
+
+53
+00:03:26,700 --> 00:03:28,470
+procurando  tudo sobre se inscrever.
+
+54
+00:03:28,590 --> 00:03:35,700
+ tudo colocado no H-3 com inscrio l e talvez antes de fazer qualquer outra coisa, devemos comear a nos
+
+55
+00:03:35,700 --> 00:03:40,870
+preocupar com a mutao que precisamos escrever para assinar um usurio at nossa aplicao.
+
+56
+00:03:40,890 --> 00:03:45,890
+caso em que j escrevemos a mutao, mas no a escrevemos em um tipo de mutao de nome.
+
+57
+00:03:46,090 --> 00:03:47,100
+Ento, este  outro
+
+58
+00:03:47,100 --> 00:03:52,170
+Portanto, precisamos ter certeza de que ns escrevemos a mutao do nome que, exceto um certo nmero de variveis
+
+59
+00:03:52,170 --> 00:03:58,650
+de consulta, a adicionaremos a um arquivo de nutation em nossa pasta de mutaes e depois a adicionaremos ao componente de formulrio de inscrio.
+
+60
+00:03:59,010 --> 00:04:08,150
+Ento, vamos mudar para o navegador de insider grfico e atualizaremos esta mutao para criar um novo usurio como
+
+61
+00:04:08,150 --> 00:04:08,600
+de
+
+62
+00:04:11,530 --> 00:04:12,160
+costume.
+
+63
+00:04:12,160 --> 00:04:18,110
+Gostaria muito de dar uma olhada no nosso painel docs e olhar para o nosso objeto de nutao aqui.
+
+64
+00:04:18,250 --> 00:04:22,190
+E lembre-se de que voc sabe que  chamado de inscrio, esse  o nosso nome de mutao.
+
+65
+00:04:22,270 --> 00:04:26,330
+Aceita um e-mail e uma senha para autenticar nosso usurio.
+
+66
+00:04:26,650 --> 00:04:31,290
+Ento, vamos comear definindo so duas variveis.
+
+67
+00:04:31,500 --> 00:04:38,140
+Vou fazer um e-mail e aviso que vou dar um e-mail diferente do que eu
+
+68
+00:04:38,140 --> 00:04:45,570
+usei anteriormente, porque eu quero garantir que isso seja bem sucedido pela primeira vez com a senha
+
+69
+00:04:45,750 --> 00:04:46,390
+da senha.
+
+70
+00:04:47,740 --> 00:04:53,850
+Veja como podemos fazer a nossa chamada mutao de inscrio, vamos especificar que espera consultar
+
+71
+00:04:54,130 --> 00:04:58,600
+as variveis do e-mail e da senha, e ambas sero cordas.
+
+72
+00:04:58,900 --> 00:05:06,990
+Ento, todos aceitamos e-mail, o que seria uma string e senha que seria uma string.
+
+73
+00:05:07,290 --> 00:05:09,600
+Ento, podemos definir a prpria mutao real.
+
+74
+00:05:09,690 --> 00:05:11,620
+Ento, inscreva-se.
+
+75
+00:05:11,640 --> 00:05:15,150
+Vai receber uma varivel de consulta de e-mail.
+
+76
+00:05:15,150 --> 00:05:21,720
+Vindo da varivel de consulta de e-mail, assim como, e tambm vai receber uma varivel de senha
+
+77
+00:05:21,720 --> 00:05:22,700
+proveniente da senha.
+
+78
+00:05:22,860 --> 00:05:23,980
+Varivel.
+
+79
+00:05:24,660 --> 00:05:32,110
+E, novamente, pediremos o ID e o email do usurio que criou.
+
+80
+00:05:32,500 --> 00:05:38,310
+na primeira vez que eu executei porque eu tenho um novo endereo de e-mail aqui que eu nunca usei antes.
+
+81
+00:05:38,310 --> 00:05:42,320
+OK, ento eu acho que eu realmente espero que isso seja executado com sucesso
+
+82
+00:05:42,540 --> 00:05:49,640
+Ento eu vou executar esta mutao e eu retornarei com sucesso para a ID e o email desse novo usurio.
+
+83
+00:05:49,860 --> 00:05:51,230
+Ento, isso parece muito bom.
+
+84
+00:05:51,480 --> 00:05:57,000
+Eu acho que podemos mover essa mutao para um novo arquivo de mutao e, em seguida, importante e
+
+85
+00:05:57,000 --> 00:05:58,660
+conectado a um de nossos componentes.
+
+86
+00:05:58,740 --> 00:06:06,010
+Ento, vou uma cpia da mutao, vou criar meu novo arquivo de mutao
+
+87
+00:06:06,010 --> 00:06:17,330
+que eu vou chamar de inscrio. J. S. importar o GQ El helper da etiqueta UL do enxerto e, em seguida, exportar os padres.
+
+88
+00:06:17,350 --> 00:06:24,880
+tticas e eu liguei com sucesso tix esta vez no string de consulta que  simplesmente fantstico.
+
+89
+00:06:24,880 --> 00:06:26,570
+GQ bem com nossas
+
+90
+00:06:27,040 --> 00:06:27,560
+EST BEM.
+
+91
+00:06:27,670 --> 00:06:33,100
+Ento, estamos importando o enxerto que voc etiquetou ajudante, o que nos permite definir mutaes
+
+92
+00:06:33,100 --> 00:06:34,930
+nas consultas nos nossos arquivos.
+
+93
+00:06:34,930 --> 00:06:39,270
+Chamamos um auxiliar de ferramentas e estamos definindo isso com uma consulta.
+
+94
+00:06:39,550 --> 00:06:43,910
+Gostaria apenas de configur-lo com uma volta para 6 cordas.
+
+95
+00:06:44,680 --> 00:06:47,620
+No sei se voc viu consultas fazendo o que for.
+
+96
+00:06:47,800 --> 00:06:50,710
+E ento colocamos a prpria mutao dentro daqui.
+
+97
+00:06:51,760 --> 00:06:55,570
+Ento eu acho que estamos prontos para importar isto para o formulrio de inscrio.
+
+98
+00:06:55,780 --> 00:07:00,430
+Ns vamos conect-lo ao formulrio de inscrio e ento eu acho que  um bom momento para fazer
+
+99
+00:07:00,430 --> 00:07:01,740
+uma pausa rpida depois disso.
+
+100
+00:07:01,780 --> 00:07:07,720
+Ento eu preciso voltar para o formulrio de inscrio, precisamos importar tanto a mutao quanto o grfico
+
+101
+00:07:07,750 --> 00:07:10,010
+Kule helper da reabilitao da biblioteca Apollo.
+
+102
+00:07:10,330 --> 00:07:11,520
+Ento importe grficos.
+
+103
+00:07:11,590 --> 00:07:22,390
+Bem, reative o Apollo e importaremos a nutation do diretrio de mutaes e eu
+
+104
+00:07:22,450 --> 00:07:26,690
+quero inscrever a mutao em particular.
+
+105
+00:07:26,700 --> 00:07:34,020
+Tudo bem, ltimo passo, teremos certeza de que, no fundo, chamamos o assistente grfico que passa
+
+106
+00:07:34,020 --> 00:07:35,130
+a mutao.
+
+107
+00:07:35,520 --> 00:07:39,340
+Segundo conjunto de parnteses para o formulrio de inscrio.
+
+108
+00:07:39,480 --> 00:07:40,450
+EST BEM.
+
+109
+00:07:40,650 --> 00:07:43,780
+Ento, isso parece que estamos indo no caminho certo aqui.
+
+110
+00:07:43,830 --> 00:07:48,720
+Voc sabe que tenho que lhe dizer que s posso imaginar que, enquanto seguimos fazendo esses mesmos passos exatos repetidamente,
+
+111
+00:07:48,720 --> 00:07:52,350
+voc provavelmente est pensando, oh, meu Deus, descrever voc, todas as coisas so to chatas.
+
+112
+00:07:52,650 --> 00:07:57,030
+mutaes e conectando-os a componentes que apenas continuamos fazendo uma e outra vez.
+
+113
+00:07:57,030 --> 00:07:57,940
+Ns continuamos escrevendo
+
+114
+00:07:58,260 --> 00:08:01,630
+Bem, eu posso te dizer o que  como uma das melhores coisas sobre o enxerto.
+
+115
+00:08:01,680 --> 00:08:07,800
+Bem, estamos fazendo a mesma coisa exata uma e outra e no precisamos nos preocupar com todos esses casos
+
+116
+00:08:07,830 --> 00:08:13,710
+de fora de borda que s vezes temos que fazer com outras estruturas l fora com o enxerto.
+
+117
+00:08:13,720 --> 00:08:18,840
+Bem, estamos fazendo a mesma srie exata de etapas uma e outra vez, o que, de verdade,
+
+118
+00:08:18,870 --> 00:08:24,690
+ realmente fantstico, porque nos permite montar esses componentes nessas aplicaes muito mais rpido do que se tivssemos de
+
+119
+00:08:24,690 --> 00:08:28,750
+nos preocupar com cada ltimo caso de como Ns vamos lidar com essas coisas.
+
+120
+00:08:29,010 --> 00:08:31,410
+Ento, minha opinio,  uma coisa boa.
+
+121
+00:08:31,410 --> 00:08:33,980
+Eu acho que  uma coisa boa.
+
+122
+00:08:34,470 --> 00:08:37,740
+Ento, nossa mutao foi conectada ao sinal da forma.
+
+123
+00:08:37,740 --> 00:08:40,370
+Vamos dar uma pausa rpida e depois voltaremos.
+
+124
+00:08:40,500 --> 00:08:43,650
+Definiremos um retorno de chamada para passar no formulrio.
+
+125
+00:08:43,770 --> 00:08:47,610
+Ns tambm vamos cuidar de um pouco de tratamento de erros e ento vamos testar esse
+
+126
+00:08:47,610 --> 00:08:48,470
+assunto dentro do navegador.
+
+127
+00:08:48,480 --> 00:08:50,440
+SOSIA em apenas um segundo.
+

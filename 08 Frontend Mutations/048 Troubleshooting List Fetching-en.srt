@@ -1,0 +1,480 @@
+1
+00:00:00,840 --> 00:00:07,620
+In the last section we finished up our first full flow of going from a song list and be able to click
+
+2
+00:00:07,620 --> 00:00:13,000
+over to create a new song creating one and then automatically going back and seeing appear on the screen
+
+3
+00:00:13,750 --> 00:00:15,710
+and that definitely worked the way we expected.
+
+4
+00:00:15,810 --> 00:00:19,470
+But I want to show you a little oddity to the process.
+
+5
+00:00:19,470 --> 00:00:24,280
+I'm sure you are a little odd piece of how our application is currently working.
+
+6
+00:00:24,540 --> 00:00:26,530
+It's going to be a little bit frustrating to see.
+
+7
+00:00:26,550 --> 00:00:31,500
+But once we get through it I think that we'll have a much better understanding of what Apollo is doing
+
+8
+00:00:31,500 --> 00:00:36,690
+behind the scenes especially how it's interacting with the react side of our application.
+
+9
+00:00:36,690 --> 00:00:37,670
+So let's give this a shot.
+
+10
+00:00:37,770 --> 00:00:41,970
+I'm going to show you first we're going to we're going to first go through the flow that works really
+
+11
+00:00:41,970 --> 00:00:42,430
+well.
+
+12
+00:00:42,450 --> 00:00:44,860
+And the one that we know behaves the way we expect.
+
+13
+00:00:44,880 --> 00:00:49,710
+And then we're going to go through a slightly different flow where maybe the result we get is not quite
+
+14
+00:00:49,710 --> 00:00:51,050
+what we expect.
+
+15
+00:00:51,480 --> 00:00:53,010
+So here's the exact flow.
+
+16
+00:00:53,030 --> 00:00:56,260
+And you saw a very specific set of directions here.
+
+17
+00:00:56,340 --> 00:01:01,640
+I'm going to start off on the song creation form and I'm going to refresh the page.
+
+18
+00:01:01,650 --> 00:01:02,610
+Now that's very important.
+
+19
+00:01:02,610 --> 00:01:05,010
+I just refreshed the page.
+
+20
+00:01:05,010 --> 00:01:14,820
+Now I'll create a new song which I'll call water Boogie will submit it and fantastic new song appears
+
+21
+00:01:14,880 --> 00:01:17,300
+on the page exactly as I would expect.
+
+22
+00:01:17,310 --> 00:01:20,080
+Definitely worked the way I expected it would work there.
+
+23
+00:01:20,090 --> 00:01:23,850
+Now I'm going to refresh the page to refresh the page.
+
+24
+00:01:23,850 --> 00:01:26,020
+I'm still on the song list.
+
+25
+00:01:26,040 --> 00:01:31,290
+I'm on the song list right now and I'm going to click ADD and I'm going to create a new song.
+
+26
+00:01:31,320 --> 00:01:35,330
+We'll call this one coffee couple.
+
+27
+00:01:35,700 --> 00:01:41,110
+Now my expectation is when I hit enter a mutation should be sent to the server.
+
+28
+00:01:41,460 --> 00:01:43,870
+The server will create a new song.
+
+29
+00:01:44,100 --> 00:01:50,340
+I will then be forcibly redirected over to the song list and I should see the song list appear on the
+
+30
+00:01:50,340 --> 00:01:54,080
+screen along with my brand new song coffee couple.
+
+31
+00:01:54,090 --> 00:01:55,470
+So that is my expectation.
+
+32
+00:01:55,470 --> 00:01:57,810
+That is what I want to see happen right here.
+
+33
+00:01:57,990 --> 00:02:02,060
+So I need to press enter and hum.
+
+34
+00:02:02,190 --> 00:02:07,850
+It appears that coffee couple did not appear on the screen for some reason.
+
+35
+00:02:08,190 --> 00:02:10,950
+Well let's refresh the page and see what happens.
+
+36
+00:02:11,310 --> 00:02:12,730
+So when I refresh the page.
+
+37
+00:02:12,810 --> 00:02:18,750
+Well I definitely got the song appearing on the screen so it appears that the mutation worked correctly
+
+38
+00:02:18,990 --> 00:02:21,650
+in that the record was created at my back end.
+
+39
+00:02:21,900 --> 00:02:27,570
+But when I went back over to this page the data did not automatically appear on the screen.
+
+40
+00:02:27,870 --> 00:02:31,520
+So what in the world could have happened right there.
+
+41
+00:02:31,510 --> 00:02:37,770
+Hmm well let's take a look at a diagram that will maybe help us understand a little bit more about how
+
+42
+00:02:38,010 --> 00:02:41,510
+Apollo works with the re-act side of our application.
+
+43
+00:02:42,180 --> 00:02:47,100
+OK so we're going to walk through this flow right here and we're going to walk through two different
+
+44
+00:02:47,100 --> 00:02:49,890
+scenarios the two scenarios that we just went through.
+
+45
+00:02:49,890 --> 00:02:54,300
+So the left hand side I've got cold cash right hand side is warm cash.
+
+46
+00:02:54,420 --> 00:02:57,870
+Now do note that I'm kind of abusing the terms cold and warm.
+
+47
+00:02:57,870 --> 00:03:02,700
+Cashier we should more think of this as just being the left hand side is the flow.
+
+48
+00:03:02,700 --> 00:03:09,000
+Where I refreshed the page on the Create song form and the right hand side is when I go first to the
+
+49
+00:03:09,000 --> 00:03:13,130
+song list and then navigate over to the Create song and go through that flow.
+
+50
+00:03:13,140 --> 00:03:18,540
+So the right hand side is the side where things appear to not be working as I expect the left hand side
+
+51
+00:03:18,600 --> 00:03:21,620
+is the good flow where everything went how we would want it to.
+
+52
+00:03:21,720 --> 00:03:25,040
+So let's walk through these two flows on the cold cash.
+
+53
+00:03:25,050 --> 00:03:29,700
+We currently are creating a new song that sends off mutation.
+
+54
+00:03:29,700 --> 00:03:35,850
+The mutation runs successfully and then we get automatically redirected to the song list.
+
+55
+00:03:35,850 --> 00:03:42,390
+As soon as we start to render the song list on the screen our query is automatically executed for us
+
+56
+00:03:42,750 --> 00:03:48,030
+some number of songs are fetched in our component automatically read renders when the query is complete
+
+57
+00:03:48,180 --> 00:03:52,290
+to show the list of songs on the screen exactly the way we would hope.
+
+58
+00:03:52,290 --> 00:03:55,020
+Exactly how we would expect.
+
+59
+00:03:55,080 --> 00:03:58,300
+Now let's walk through this alternate situation over here.
+
+60
+00:03:58,380 --> 00:04:04,110
+The case in which I first go to the song list component and then go create a new song and come back
+
+61
+00:04:04,110 --> 00:04:05,750
+to song list.
+
+62
+00:04:05,760 --> 00:04:11,790
+So in this flow I'd go and fetch my list of songs we run that query we say give me all my songs I want
+
+63
+00:04:11,790 --> 00:04:17,200
+to hear about them and we get back a list of songs we'll just imagine that we can call them songs 2
+
+64
+00:04:17,210 --> 00:04:17,910
+3 and 4.
+
+65
+00:04:17,940 --> 00:04:21,300
+So we'll say songs 2 3 and 4 have been fetched.
+
+66
+00:04:21,360 --> 00:04:24,540
+They are now sitting on the client side.
+
+67
+00:04:25,020 --> 00:04:30,630
+Then we go to the Create song form and we create a new song called Number Five.
+
+68
+00:04:30,720 --> 00:04:36,900
+My expectation my hope would be that song number 5 would show up on the song list component.
+
+69
+00:04:37,140 --> 00:04:45,930
+However when we are forcibly redirected back to the song list graphed you else says or I should say
+
+70
+00:04:45,930 --> 00:04:51,060
+Appollo says you know what the song list queery I already fetched that thing.
+
+71
+00:04:51,090 --> 00:04:53,150
+Like we just ran that.
+
+72
+00:04:53,250 --> 00:04:56,490
+I do not need to run that query again.
+
+73
+00:04:56,520 --> 00:04:57,700
+I could but you know what.
+
+74
+00:04:57,720 --> 00:05:06,600
+No thanks I'm not going to so the result is that we only read render that form or see that list we render
+
+75
+00:05:06,600 --> 00:05:15,030
+that list only with songs 2 3 and 4 because we do not reflash to get Song number 5 on our client side
+
+76
+00:05:15,030 --> 00:05:18,530
+store or on our client side store of songs.
+
+77
+00:05:18,900 --> 00:05:25,500
+So the big problem here is that our query right now to fetch our list of songs is only been executed
+
+78
+00:05:25,500 --> 00:05:27,620
+one time.
+
+79
+00:05:27,630 --> 00:05:31,990
+Now this is a very common problem throughout the entire Appollo world.
+
+80
+00:05:32,190 --> 00:05:39,510
+Whenever you're working with a list of records if you go to insert a new record into that list you very
+
+81
+00:05:39,510 --> 00:05:45,240
+frequently are going to have a little bit of trouble in making Appollo realize that you just created
+
+82
+00:05:45,300 --> 00:05:48,510
+a new record that belongs in that list of data.
+
+83
+00:05:48,630 --> 00:05:53,160
+Apolo is not going to assume oh hey you know what they just created a new song.
+
+84
+00:05:53,160 --> 00:06:00,480
+Surely every other or every list of songs I've already fetched wants to get want to see this new song
+
+85
+00:06:00,510 --> 00:06:01,530
+added to it.
+
+86
+00:06:01,530 --> 00:06:04,590
+Apolo does not make that assumption for you.
+
+87
+00:06:04,590 --> 00:06:12,210
+We can kind of imagine what's going on inside of the Apollo client or Apollo store as being something
+
+88
+00:06:12,210 --> 00:06:13,430
+like this.
+
+89
+00:06:13,470 --> 00:06:16,960
+It's kind of saying OK Will the first time I go and fetch your data.
+
+90
+00:06:17,010 --> 00:06:19,000
+I'm going to grab song 2 3 and 4.
+
+91
+00:06:19,020 --> 00:06:21,990
+And those are tied to the song list component.
+
+92
+00:06:22,200 --> 00:06:25,680
+They're tied to this query that we just executed.
+
+93
+00:06:25,920 --> 00:06:29,250
+When we then go and create song number five.
+
+94
+00:06:29,460 --> 00:06:31,450
+Apollo says oh you know what.
+
+95
+00:06:31,500 --> 00:06:33,770
+I know the song number five exists.
+
+96
+00:06:33,780 --> 00:06:41,040
+I know that it's there but I'm not going to try and go back and insert it into any existing lists or
+
+97
+00:06:41,040 --> 00:06:43,860
+collections of data that you've already fetched.
+
+98
+00:06:43,860 --> 00:06:49,050
+I'm going to assume that all those collections you've already fetched are sitting off in their own nice
+
+99
+00:06:49,050 --> 00:06:54,000
+little buckets in their own little containers and they don't really need to get this new song that we
+
+100
+00:06:54,000 --> 00:06:56,260
+just created added into them.
+
+101
+00:06:56,310 --> 00:07:04,650
+So our job what we need to do to make this thing work the way we expect is to completely rerun the query
+
+102
+00:07:04,890 --> 00:07:09,110
+that fetches our list of songs after the mutation has been executed.
+
+103
+00:07:09,150 --> 00:07:15,650
+If we rerun the entire queery then when Apollo gets the response back it will say Ah I see.
+
+104
+00:07:15,690 --> 00:07:21,720
+OK son number five is a part of these songs that I should be showing inside of the songless component
+
+105
+00:07:21,720 --> 00:07:23,580
+that totally makes sense.
+
+106
+00:07:23,580 --> 00:07:30,810
+So our job is to instruct Apollo that when after we create this new song we do wanted to rerun the query
+
+107
+00:07:30,810 --> 00:07:37,200
+that it's already executed and understand that song number five should be a part of the song list or
+
+108
+00:07:37,200 --> 00:07:41,630
+the list of songs that we want to show on the song list component.
+
+109
+00:07:42,180 --> 00:07:42,680
+All right.
+
+110
+00:07:42,720 --> 00:07:48,930
+So quite a lot of talking and for understanding what is inherently you know something that hopefully
+
+111
+00:07:49,290 --> 00:07:50,980
+kind of helps us out in the long run.
+
+112
+00:07:51,000 --> 00:07:57,290
+You know in these very simple applications that we might make it's really easy to say this is crazy
+
+113
+00:07:57,300 --> 00:08:00,280
+of course song 5 should be added into my list.
+
+114
+00:08:00,510 --> 00:08:06,660
+But as you know as you start to work on more complex applications it might be the case where you do
+
+115
+00:08:06,660 --> 00:08:12,690
+not want to automatically just have one big old bucket of songs and just keep on appending records into
+
+116
+00:08:12,690 --> 00:08:14,390
+that automatically.
+
+117
+00:08:14,760 --> 00:08:19,740
+Anyways let's take a quick break and then we're going to come back and figure out how to do a little
+
+118
+00:08:19,740 --> 00:08:26,430
+bit of refactoring to tell Appollo that after we run our mutation it should automatically refresh the
+
+119
+00:08:26,430 --> 00:08:28,490
+query to get our list of songs.
+
+120
+00:08:28,620 --> 00:08:30,670
+So let's take care of that in the next section.
+

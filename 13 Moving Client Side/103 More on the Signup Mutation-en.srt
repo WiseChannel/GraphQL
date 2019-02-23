@@ -1,0 +1,360 @@
+1
+00:00:00,700 --> 00:00:06,110
+Now that are sign up form has access to the sign up nutation and they've been wired together with a
+
+2
+00:00:06,120 --> 00:00:12,430
+graph help or we can have a callback function to the sign up form itself and then pass that down into
+
+3
+00:00:12,430 --> 00:00:13,800
+the auth form.
+
+4
+00:00:13,810 --> 00:00:20,530
+So let's first create that callback and then pass it down into the form I'm going to add on the callback
+
+5
+00:00:20,530 --> 00:00:23,710
+function which will be on submit.
+
+6
+00:00:23,830 --> 00:00:29,890
+We expect that this is going to be called with the email and password that the user entered into the
+
+7
+00:00:29,890 --> 00:00:39,730
+form that will immediately pass it on to our form as on some it will specify on submit and we'll make
+
+8
+00:00:39,730 --> 00:00:42,530
+sure to bind the context to that function as well.
+
+9
+00:00:42,580 --> 00:00:46,750
+So we're doing exactly the same thing that we were doing with the log in form as well.
+
+10
+00:00:46,810 --> 00:00:53,470
+Remember that the auth form component expects to be provided in on submit function if it is provided
+
+11
+00:00:53,470 --> 00:00:58,300
+that function it will call it with the email and password in an object.
+
+12
+00:00:58,300 --> 00:01:05,900
+So then inside of on submit we can freely call or mutation and in that email and password as query variables.
+
+13
+00:01:05,900 --> 00:01:07,400
+So let's do that right now.
+
+14
+00:01:07,450 --> 00:01:15,590
+We'll call this doc prob stot mutate and we'll specify the variables that we want to pass in there.
+
+15
+00:01:15,610 --> 00:01:20,710
+So these are the query variables of email and password that should be that e-mail and password used
+
+16
+00:01:20,710 --> 00:01:22,550
+to create the new account.
+
+17
+00:01:23,230 --> 00:01:24,330
+So this is looking pretty good.
+
+18
+00:01:24,340 --> 00:01:27,490
+I think there were just about ready for a test inside the browser.
+
+19
+00:01:27,640 --> 00:01:32,650
+There's just one little gotcha that you might run into if you try to test this inside the browser right
+
+20
+00:01:32,650 --> 00:01:33,800
+now.
+
+21
+00:01:33,820 --> 00:01:38,740
+Recall that inside the art form and as matter of fact Lissa's pull the form up right now so we can look
+
+22
+00:01:38,740 --> 00:01:40,560
+at the code for it.
+
+23
+00:01:40,570 --> 00:01:42,360
+So here's my offer for.
+
+24
+00:01:42,670 --> 00:01:44,460
+I'm down inside of the render function.
+
+25
+00:01:44,470 --> 00:01:45,970
+So it is rendered right here.
+
+26
+00:01:46,090 --> 00:01:51,480
+And I scroll down just a little bit more to the air helper that we put inside of here.
+
+27
+00:01:51,550 --> 00:01:55,220
+So about nine thirty six or so we've got this props.
+
+28
+00:01:55,270 --> 00:01:57,020
+There's a map.
+
+29
+00:01:57,040 --> 00:02:03,340
+So right now our form is assuming that we are always passing in an array of errors.
+
+30
+00:02:03,400 --> 00:02:09,670
+Now that array might be completely empty that's fine but if we do not pass in a prop called errors that
+
+31
+00:02:09,670 --> 00:02:16,060
+is an array we'll immediately get an error message as we try to map over undefined or knoll or whatever
+
+32
+00:02:16,210 --> 00:02:17,910
+the value of errors might be.
+
+33
+00:02:18,190 --> 00:02:23,300
+So before we try to test this out inside the browser we do need to make sure that inside of our Sign-Up
+
+34
+00:02:23,320 --> 00:02:26,200
+form we find that Auth. form tag.
+
+35
+00:02:26,380 --> 00:02:31,760
+And we at least pass in an empty list of errors.
+
+36
+00:02:32,160 --> 00:02:37,120
+So I'm going to do this just very temporarily until we add in some error handling code to our actual
+
+37
+00:02:37,120 --> 00:02:43,040
+mutation to make sure that when the auth form attempts to render when it calls this start prop's dot
+
+38
+00:02:43,960 --> 00:02:46,780
+dot map we will not get an error message.
+
+39
+00:02:46,800 --> 00:02:53,920
+So by just providing an empty array here we can safely map over the empty array and fantastically no
+
+40
+00:02:53,920 --> 00:02:55,160
+error message.
+
+41
+00:02:55,690 --> 00:02:55,920
+OK.
+
+42
+00:02:55,930 --> 00:02:58,060
+So the sign of form should be ready to go.
+
+43
+00:02:58,060 --> 00:03:03,100
+Now the last thing you have to do is make sure that it is wired up as a route inside of our re-act rudder
+
+44
+00:03:03,100 --> 00:03:04,060
+application.
+
+45
+00:03:04,240 --> 00:03:07,170
+So we have not yet assigned it to any route inside of our app.
+
+46
+00:03:07,210 --> 00:03:14,040
+Let's do that right now inside of our top level client directory will find the index not js file.
+
+47
+00:03:14,060 --> 00:03:20,020
+So this is where we put all of our re-act router configuration will import the sign up form at the top
+
+48
+00:03:21,820 --> 00:03:29,360
+from components sign up form and then we can add a route inside of our root component.
+
+49
+00:03:29,740 --> 00:03:37,270
+So here's our route component a little bit lower and we'll add another route to the path sign up that
+
+50
+00:03:37,270 --> 00:03:46,310
+will show our sign up form do you recall that we added a link inside of our Hetter.
+
+51
+00:03:46,390 --> 00:03:50,220
+That assumes that the path to the sign up form was going to be Sign-Up.
+
+52
+00:03:50,290 --> 00:03:53,530
+So there is a very good reason on coloring the sign up at least.
+
+53
+00:03:53,650 --> 00:03:57,800
+I should say we already made the assumption it was going to be called Sign up.
+
+54
+00:03:57,820 --> 00:04:02,380
+So if you change it to anything else right here do make sure that you update the link inside the header
+
+55
+00:04:02,410 --> 00:04:03,540
+as well.
+
+56
+00:04:04,050 --> 00:04:04,330
+OK.
+
+57
+00:04:04,330 --> 00:04:06,630
+So I think we're just about ready for a test here.
+
+58
+00:04:06,640 --> 00:04:10,140
+My expectation is that we should be able to go to the sign up form.
+
+59
+00:04:10,270 --> 00:04:14,760
+We should be able to enter a email and password and create a brand new account.
+
+60
+00:04:14,890 --> 00:04:18,400
+So I'm going to flip on over to the browser or refresh the page
+
+61
+00:04:21,700 --> 00:04:26,050
+and I'm going to make sure that I'm logged out and only log out first and then I'll be able to click
+
+62
+00:04:26,050 --> 00:04:26,990
+on the sign up link.
+
+63
+00:04:27,070 --> 00:04:28,400
+OK that's much better.
+
+64
+00:04:28,650 --> 00:04:30,700
+So here's my Sign-Up up link right here.
+
+65
+00:04:30,700 --> 00:04:33,820
+I clicked on sign up and I can see the form successfully.
+
+66
+00:04:33,820 --> 00:04:39,310
+Now I want to do just clear up my request log here really really quickly notice I am on the network
+
+67
+00:04:39,310 --> 00:04:41,500
+tab of my chrome console.
+
+68
+00:04:41,590 --> 00:04:42,750
+Again as usual.
+
+69
+00:04:42,760 --> 00:04:48,640
+I want to see the nutation going off to our back end and just verify that it is being handled appropriately
+
+70
+00:04:48,830 --> 00:04:51,560
+and actually creating a new account.
+
+71
+00:04:51,560 --> 00:04:57,790
+So entering a new e-mail to sign up with now I need to make sure that it's e-mail that I've never used
+
+72
+00:04:57,790 --> 00:05:04,480
+before because we do have the restriction that all the different e-mails we use must not be or they
+
+73
+00:05:04,480 --> 00:05:10,500
+must all be unique inside of our users collection sorry.
+
+74
+00:05:10,940 --> 00:05:14,790
+Test 5 6 7 at test dot com and we'll use a password of password.
+
+75
+00:05:14,980 --> 00:05:19,820
+So when I submit this I get my nutation going off to the back end.
+
+76
+00:05:20,150 --> 00:05:27,010
+And it looks like my new user has been successfully created and presumably I am now authenticated with
+
+77
+00:05:27,010 --> 00:05:28,650
+the application.
+
+78
+00:05:28,660 --> 00:05:33,050
+Now there are two lingering issues that we probably have to take care of.
+
+79
+00:05:33,070 --> 00:05:35,300
+Many of them I should say three.
+
+80
+00:05:35,320 --> 00:05:38,190
+First off we do have to still take care of some error handling.
+
+81
+00:05:38,260 --> 00:05:45,730
+So notice if I try to submit this again and then look at the new mutation request that was issued.
+
+82
+00:05:45,760 --> 00:05:51,430
+I now have a error message on Ayres property with the message of e-mail in use.
+
+83
+00:05:51,460 --> 00:05:56,160
+So do have to make sure that I take care of showing the errors on the form itself.
+
+84
+00:05:56,170 --> 00:06:02,380
+In addition you'll also notice that my header is not updating appropriately so I do have to run the
+
+85
+00:06:02,410 --> 00:06:05,770
+query or refresh the query to get the current user.
+
+86
+00:06:05,770 --> 00:06:10,900
+And then finally and this is still a lingering issue with our sign up form or it's in our log in form
+
+87
+00:06:10,900 --> 00:06:17,040
+as well we do need to make sure that after successfully logging in we navigate away from this page automatically.
+
+88
+00:06:17,050 --> 00:06:18,900
+So still a few things to take care of.
+
+89
+00:06:19,120 --> 00:06:25,150
+Let's take a quick break and then take care of the air messaging and prefetching the current user query
+
+90
+00:06:25,210 --> 00:06:26,500
+inside the next section.
+

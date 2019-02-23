@@ -1,0 +1,412 @@
+1
+00:00:00,720 --> 00:00:06,470
+In the last section we put together the vast majority of our form where a user can create a new song.
+
+2
+00:00:06,780 --> 00:00:11,790
+The last thing that we need to think about with regards to the form is intercepting the form submittal
+
+3
+00:00:11,820 --> 00:00:12,750
+event.
+
+4
+00:00:12,840 --> 00:00:18,090
+So presumably whenever a user enters some text here and then presses Enter that's probably the point
+
+5
+00:00:18,090 --> 00:00:23,940
+in time at which we're going to want to somehow reach out to our back and graph all server and add this
+
+6
+00:00:23,940 --> 00:00:31,920
+song to our list of songs to do so we'll add a on Summit event handler to the forum tag itself.
+
+7
+00:00:31,920 --> 00:00:39,980
+So will say whenever someone tries to submit this form I want to call this dot on submit behind this.
+
+8
+00:00:40,040 --> 00:00:44,520
+So make an event handler called on Samit inside of this component.
+
+9
+00:00:44,520 --> 00:00:51,450
+And don't forget to have the bind this on here as well to bind the context to that callback inside of
+
+10
+00:00:51,460 --> 00:00:56,260
+your will define on submit Whenever on submit is called.
+
+11
+00:00:56,280 --> 00:01:03,100
+It gets called with an event object that represents the submittal event remember that by default each
+
+12
+00:01:03,130 --> 00:01:09,060
+team forms inside the browser attempt to submit themselves to the backend server which is some behavior
+
+13
+00:01:09,060 --> 00:01:14,310
+that we really don't want to have happen automatically because we're going to take care of handling
+
+14
+00:01:14,310 --> 00:01:18,900
+the forms submittal ourselves to keep that from happening will pass.
+
+15
+00:01:18,910 --> 00:01:24,280
+Or it would call event prevent default on the event object.
+
+16
+00:01:24,390 --> 00:01:28,770
+So this keeps the farm from attempting to summit itself.
+
+17
+00:01:29,120 --> 00:01:36,320
+OK so presumably with this summit event handler right here this is the point of time like this right
+
+18
+00:01:36,320 --> 00:01:41,780
+here this line right here is when we are going to want to reach out to our back end server and attempt
+
+19
+00:01:41,840 --> 00:01:45,210
+to add a new song to our collection of songs.
+
+20
+00:01:45,560 --> 00:01:51,860
+Remember that whenever we talk about editing or modifying or creating new records on our back and server
+
+21
+00:01:52,130 --> 00:01:55,360
+we are immediately thinking mutation in our head.
+
+22
+00:01:55,550 --> 00:02:02,100
+So we're really thinking how am I going to use a mutation to update the data on my back and server we
+
+23
+00:02:02,180 --> 00:02:07,340
+previously on the last component we worked on we previously worked on a component that made use of a
+
+24
+00:02:07,340 --> 00:02:11,270
+query we were where we were fetching some data from the back end server.
+
+25
+00:02:11,450 --> 00:02:16,600
+So this time is give me a little bit different but we're still going to follow some pretty similar rules.
+
+26
+00:02:16,640 --> 00:02:22,430
+We're going to first test out a mutation inside of graphical to make sure that we're totally on the
+
+27
+00:02:22,430 --> 00:02:26,570
+same page about what mutation we're making use of and how we're going to call it.
+
+28
+00:02:27,020 --> 00:02:33,800
+We'll then define the mutation inside of this file at the very bottom and then we will merge the mutation
+
+29
+00:02:33,890 --> 00:02:40,560
+and the component together by using the graph Cuil helper off of the re-act Apollo library.
+
+30
+00:02:40,760 --> 00:02:42,580
+So a couple of steps on here.
+
+31
+00:02:42,830 --> 00:02:45,160
+Let's get to it.
+
+32
+00:02:45,200 --> 00:02:51,740
+Step 1 is to flip over to graphical and use the mutation make sure that we are in the exact same page
+
+33
+00:02:51,770 --> 00:02:53,380
+on how to call it.
+
+34
+00:02:53,930 --> 00:02:55,510
+So here's graphical.
+
+35
+00:02:55,590 --> 00:03:02,540
+We've covered mutations previously remember that the syntax is slightly different than making a query.
+
+36
+00:03:02,570 --> 00:03:09,080
+We first write out the mutation keyword and then the mutation that we actually want to call we've made
+
+37
+00:03:09,170 --> 00:03:11,940
+use of the mutation that we're going to make use of here previously.
+
+38
+00:03:11,960 --> 00:03:16,760
+But I want to just review it really quick by looking at the documentation and side of graphical.
+
+39
+00:03:16,970 --> 00:03:24,280
+So I'm going to expand the docs section going to find our mutation right down here.
+
+40
+00:03:24,280 --> 00:03:32,020
+And if you recall we had said that there was the ADD song mutation we can call it with a title the title
+
+41
+00:03:32,020 --> 00:03:38,560
+being the title of the new song and then we get back a song type that we can ask some questions about.
+
+42
+00:03:38,560 --> 00:03:45,470
+So let's add in some code to a mutation here called the ADD song mutation and we'll pass in a title.
+
+43
+00:03:46,170 --> 00:03:46,740
+OK.
+
+44
+00:03:47,110 --> 00:03:52,390
+We'll say add song I'll give it a title of our dog call.
+
+45
+00:03:52,450 --> 00:03:57,830
+I'm a very bad songwriter I suppose because that sounds like an awful song.
+
+46
+00:03:58,000 --> 00:03:59,920
+No matter.
+
+47
+00:03:59,920 --> 00:04:05,740
+And then on the song that gets returned from this mutation I'm going to ask for the ID and the title
+
+48
+00:04:05,740 --> 00:04:06,730
+of the song.
+
+49
+00:04:07,010 --> 00:04:07,320
+OK.
+
+50
+00:04:07,360 --> 00:04:12,630
+So this looks like a very reasonable mutation that we have right now so let's run this thing and.
+
+51
+00:04:12,670 --> 00:04:13,080
+OK.
+
+52
+00:04:13,120 --> 00:04:14,530
+Yeah this looks reasonable.
+
+53
+00:04:14,530 --> 00:04:18,540
+I see an ID that got returned and a title for the song as well.
+
+54
+00:04:18,550 --> 00:04:20,700
+So I feel pretty confident about this.
+
+55
+00:04:20,710 --> 00:04:24,960
+I'm pretty happy that the mutation is going to work the way we expect.
+
+56
+00:04:25,210 --> 00:04:30,070
+So let's take this mutation and we're going to move it over to our component file now.
+
+57
+00:04:30,890 --> 00:04:33,430
+I'm going to go back over to the component file.
+
+58
+00:04:33,430 --> 00:04:36,580
+We will import the GQ El helper at the top.
+
+59
+00:04:36,580 --> 00:04:43,180
+Remember we use that to write queries and mutations inside of our re-act component files because javascript
+
+60
+00:04:43,180 --> 00:04:51,790
+does not natively understand the syntax of graph Cuil queries and mutations will import GQ L from graph
+
+61
+00:04:51,820 --> 00:04:55,280
+Cuil tag like so and then we'll go.
+
+62
+00:04:55,400 --> 00:05:00,060
+Go down to the bottom of our file and write out that mutation.
+
+63
+00:05:00,190 --> 00:05:04,850
+So say conc mutation this time we previously called it query.
+
+64
+00:05:04,930 --> 00:05:07,810
+This time we're going to call it mutation because that's really what it is.
+
+65
+00:05:07,840 --> 00:05:12,130
+The name that we call this thing it really doesn't matter because remember all we're going to do is
+
+66
+00:05:12,130 --> 00:05:15,910
+pass it to the graph Q helper down here at the bottom.
+
+67
+00:05:16,570 --> 00:05:22,100
+So we'll say GQ l we'll place our back ticks.
+
+68
+00:05:22,150 --> 00:05:26,620
+So opening back Tich closing tactic again I can't stress it enough.
+
+69
+00:05:26,620 --> 00:05:29,160
+Make sure that's a tactic and not a double quote.
+
+70
+00:05:29,170 --> 00:05:31,690
+Not a single quote.
+
+71
+00:05:31,750 --> 00:05:34,270
+Then we will define our mutation inside of here.
+
+72
+00:05:34,270 --> 00:05:39,540
+So we use mutation keyword say add song title is going to be.
+
+73
+00:05:39,970 --> 00:05:47,280
+Hey wait a minute we have to provide the title inside of this thing.
+
+74
+00:05:47,590 --> 00:05:55,480
+We have to provide the title inside of the mutation itself but we only know the title of the song inside
+
+75
+00:05:55,480 --> 00:05:58,490
+of the form or inside the component.
+
+76
+00:05:58,510 --> 00:06:05,230
+How are we going to communicate some data from the re-act component to the mutation itself.
+
+77
+00:06:06,030 --> 00:06:12,140
+Ha let let me let's rewind here just for a second to make sure we're on the exact same page on this
+
+78
+00:06:12,140 --> 00:06:14,460
+little issue that we just ran into.
+
+79
+00:06:14,660 --> 00:06:21,080
+We've been saying all this time that whenever we call a mutation we pass the data for the mutation directly
+
+80
+00:06:21,080 --> 00:06:21,710
+into it.
+
+81
+00:06:21,710 --> 00:06:23,530
+So I had said add songs.
+
+82
+00:06:23,540 --> 00:06:25,110
+Here's the title dog.
+
+83
+00:06:25,130 --> 00:06:25,420
+Boom.
+
+84
+00:06:25,430 --> 00:06:26,460
+There it is.
+
+85
+00:06:26,930 --> 00:06:35,260
+But now all of a sudden I'm defining a mutation outside of the component class.
+
+86
+00:06:35,300 --> 00:06:41,000
+How do I get data from the component class like specifically the state object on the component class
+
+87
+00:06:41,270 --> 00:06:47,780
+back into this nutation that is defined completely outside of the component class.
+
+88
+00:06:47,810 --> 00:06:52,220
+You might be thinking Well can't we do like this dot state DOT title.
+
+89
+00:06:52,280 --> 00:06:53,510
+No not at all.
+
+90
+00:06:53,540 --> 00:06:56,750
+Remember how state works inside of javascript.
+
+91
+00:06:56,750 --> 00:07:02,230
+This dot state DOT title can only be used from inside of the component instance.
+
+92
+00:07:02,240 --> 00:07:07,330
+This is a variable that is being declared outside of the component class.
+
+93
+00:07:07,340 --> 00:07:08,000
+We're going to have.
+
+94
+00:07:08,000 --> 00:07:13,790
+In theory we can have many different copies of the song create component floating around so there's
+
+95
+00:07:13,820 --> 00:07:20,540
+no way in which we can very easily intrinsically tie this song create class right here to the mutation
+
+96
+00:07:20,540 --> 00:07:22,050
+that we're writing down here.
+
+97
+00:07:22,250 --> 00:07:27,890
+So clearly there is still a little bit of figuring out exactly how to make these things work together
+
+98
+00:07:27,890 --> 00:07:34,530
+that we have to do before we can actually call this mutation from inside of the component itself.
+
+99
+00:07:34,640 --> 00:07:37,050
+Take that line off before we forget about it.
+
+100
+00:07:37,640 --> 00:07:43,130
+Let's take a quick break and then do a little bit of digging into mutations and figure out exactly how
+
+101
+00:07:43,130 --> 00:07:49,250
+we can communicate some data from the component back to the mutation to make sure that we can get the
+
+102
+00:07:49,250 --> 00:07:52,660
+title from the form inside of the mutation right here.
+
+103
+00:07:52,670 --> 00:07:55,330
+So let's take care of that in the next section.
+

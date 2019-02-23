@@ -1,0 +1,184 @@
+1
+00:00:00,840 --> 00:00:05,870
+Let's take a quick break from the graph Cuil and Appollo side of our application by addressing these
+
+2
+00:00:06,480 --> 00:00:08,040
+issues that we have in here.
+
+3
+00:00:08,280 --> 00:00:13,560
+So I want to make sure that the icon itself moves over to the far right hand side of every single row
+
+4
+00:00:13,980 --> 00:00:19,620
+and then I would also really like it if instead of this kind of text cursor that I did while hovering
+
+5
+00:00:19,620 --> 00:00:25,590
+over an icon I'd be really happy if I could have a nice kind of pointer finger there instead just make
+
+6
+00:00:25,590 --> 00:00:30,020
+sure that users are clear that they can click on this icon to do something.
+
+7
+00:00:30,450 --> 00:00:34,990
+So let's add a little bit of CSSA to address this inside of my code editor.
+
+8
+00:00:35,100 --> 00:00:40,340
+I'm going to find this style folder inside of the client directory and then open up the style Dotsie
+
+9
+00:00:40,350 --> 00:00:47,430
+SS file inside if you're going to add two selectors and just a handful of rules the first selector that
+
+10
+00:00:47,430 --> 00:00:51,720
+will add is collection item with the class name.
+
+11
+00:00:51,710 --> 00:00:53,450
+So use a dot in front of it.
+
+12
+00:00:53,760 --> 00:00:57,250
+So this is the individual row for each song.
+
+13
+00:00:57,360 --> 00:01:00,410
+I'm going to tell the row that it should use a display of flaks.
+
+14
+00:01:00,420 --> 00:01:08,340
+So this is enabling the flex box system and then I will also assign the justified content property and
+
+15
+00:01:08,340 --> 00:01:15,390
+assign it space between the space between ruler right here is going to make sure that all of the content
+
+16
+00:01:15,420 --> 00:01:20,490
+inside of the collection item maximizes the space between each item.
+
+17
+00:01:20,490 --> 00:01:24,160
+So I've got currently the song title and the icon.
+
+18
+00:01:24,260 --> 00:01:25,010
+Just take a look.
+
+19
+00:01:25,050 --> 00:01:26,930
+The song title and the icon.
+
+20
+00:01:27,180 --> 00:01:32,340
+So the space between rule is going to make sure that there is the maximum amount of distance between
+
+21
+00:01:32,340 --> 00:01:33,880
+those two items.
+
+22
+00:01:33,900 --> 00:01:36,520
+Let's refresh the page and see what it looks like.
+
+23
+00:01:36,790 --> 00:01:37,830
+Oh one step.
+
+24
+00:01:37,860 --> 00:01:39,380
+We've got one quick step.
+
+25
+00:01:39,510 --> 00:01:41,580
+The last one quick step I forgot.
+
+26
+00:01:41,580 --> 00:01:46,480
+We need to make sure that we import the style that CSSA file somewhere into our project.
+
+27
+00:01:46,560 --> 00:01:52,560
+I'm going to open up my index file and we will import the CSSA file.
+
+28
+00:01:52,560 --> 00:01:57,540
+At the very top so we can just say import and we don't have to name the import we don't have to assign
+
+29
+00:01:57,540 --> 00:02:02,160
+it to a variable so we can just pass it the path to the file directly.
+
+30
+00:02:02,400 --> 00:02:06,330
+So we'll say go into the style file and then find style dots.
+
+31
+00:02:06,470 --> 00:02:07,590
+SS OK.
+
+32
+00:02:07,610 --> 00:02:12,010
+Now we can do that really fresh and see it update on the screen.
+
+33
+00:02:12,000 --> 00:02:14,170
+So now all refresh and.
+
+34
+00:02:14,190 --> 00:02:14,600
+OK.
+
+35
+00:02:14,610 --> 00:02:16,860
+That looks way better.
+
+36
+00:02:16,860 --> 00:02:21,390
+Now the other thing I want to take care of is making sure we get the nice cursor icon.
+
+37
+00:02:21,980 --> 00:02:30,180
+So back inside of the style sheet file I will add on the rule or the selector excuse me material icons
+
+38
+00:02:30,960 --> 00:02:36,660
+and then to get the nighest kind of finger pointer of course your cursor and say cursor with a property
+
+39
+00:02:36,750 --> 00:02:38,630
+of pointer like so.
+
+40
+00:02:40,220 --> 00:02:42,330
+So now let's refresh this again.
+
+41
+00:02:43,100 --> 00:02:48,560
+And whenever I mouseover I get that nice kind of finger look in point thing that makes it really clear
+
+42
+00:02:48,560 --> 00:02:55,490
+that a user can click on the trash can to delete an individual song soldierly yoga Express and Dog Night
+
+43
+00:02:55,900 --> 00:02:56,600
+and OK.
+
+44
+00:02:56,630 --> 00:02:59,940
+Yeah that's definitely work in just the way we expect.
+
+45
+00:03:00,170 --> 00:03:01,230
+This is working pretty well.
+
+46
+00:03:01,280 --> 00:03:06,520
+Let's get back to the react engraft you will side of things in the next section.
+

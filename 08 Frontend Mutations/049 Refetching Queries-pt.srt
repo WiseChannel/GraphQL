@@ -1,0 +1,484 @@
+1
+00:00:00,810 --> 00:00:07,140
+Na ltima seo, descobrimos um grande problema ao longo do caminho que o Appollo busca dados para nossa aplicao.
+
+2
+00:00:07,140 --> 00:00:12,990
+Descobrimos que, se fosse diretamente para a lista de msicas, buscamos a lista de msicas e
+
+3
+00:00:12,990 --> 00:00:20,120
+depois fomos criar uma nova msica, a msica recm-criada no apareceria na lista porque a consulta no seria executada.
+
+4
+00:00:20,180 --> 00:00:25,500
+Nas palavras, Apollo no voltou ao servidor e disse que me d essa grande lista de dados novamente,
+
+5
+00:00:25,500 --> 00:00:27,090
+quero saber mais sobre isso.
+
+6
+00:00:27,150 --> 00:00:30,830
+Ento, nesta seo, vamos descobrir como resolver isso.
+
+7
+00:00:30,900 --> 00:00:32,850
+Agora, a equipe Apollo no est louca.
+
+8
+00:00:32,850 --> 00:00:36,140
+Eles sabem absolutamente que isso  excelente.
+
+9
+00:00:36,270 --> 00:00:38,530
+No sei o que dizer problema de bugger.
+
+10
+00:00:38,820 --> 00:00:44,340
+Devo dizer que eles sabem que isso  algo que as pessoas querem consertar dentro de
+
+11
+00:00:44,640 --> 00:00:52,100
+suas aplicaes e, portanto, eles criaram uma ferramenta muito fcil para nos permitir recuperar uma consulta aps ter executado uma mutao.
+
+12
+00:00:52,200 --> 00:00:55,050
+Ento eu estou dentro da minha msica criar arquivo agora.
+
+13
+00:00:55,140 --> 00:01:01,530
+Eu no sou o manipulador consumado e eu tenho minha nutao aqui mesmo, a mutao.
+
+14
+00:01:01,530 --> 00:01:05,160
+No momento, passamos uma nica propriedade de variveis.
+
+15
+00:01:05,190 --> 00:01:10,010
+E se voc se lembra que esta  uma varivel para injetar a consulta real para personalizar.
+
+16
+00:01:10,150 --> 00:01:16,230
+consultas diferentes que certamente ir executar novamente automaticamente aps a mutao ser executada com sucesso.
+
+17
+00:01:16,230 --> 00:01:26,580
+Ou devo dizer que a mutao para personalizar a maneira pela qual a mutao executa esse objeto de consulta que estamos passando para a funo de
+
+18
+00:01:26,580 --> 00:01:33,540
+mutao leva outra propriedade que chamamos de consultas de obteno de rief, a propriedade de reaquecimento de
+
+19
+00:01:33,530 --> 00:01:38,960
+propriedades levar uma srie de consultas para que possamos passar  uma lista de
+
+20
+00:01:39,120 --> 00:01:44,940
+Ento, podemos passar a consulta que desejamos executar diretamente nessa coisa aqui e a
+
+21
+00:01:44,970 --> 00:01:52,210
+consulta poof ser executada automaticamente aps este arquivo ou zoom depois que a mutao for completada com sucesso.
+
+22
+00:01:52,590 --> 00:01:54,060
+Ento,  praticamente o que vamos fazer.
+
+23
+00:01:54,060 --> 00:01:59,570
+Ns vamos dizer depois de ter executado com sucesso a consulta para buscar a lista de msicas.
+
+24
+00:01:59,910 --> 00:02:05,850
+passando na consulta real, como o grfico atual QOL ou grfico, voc antigo tag Querrey.
+
+25
+00:02:05,850 --> 00:02:13,920
+Agora, o nico tipo de parte interessante sobre isso  que, quando estamos passando em uma consulta especfica aqui estamos
+
+26
+00:02:13,950 --> 00:02:16,680
+Ento, este pouco aqui.
+
+27
+00:02:17,040 --> 00:02:23,010
+Ento, devemos passar nesta consulta exata para essa nova funo de fita para nos informar exatamente
+
+28
+00:02:23,010 --> 00:02:25,040
+o que precisa para executar novamente.
+
+29
+00:02:25,080 --> 00:02:29,820
+Ento, na prtica, geralmente no duplicamos as consultas em toda a nossa base de cdigo.
+
+30
+00:02:29,850 --> 00:02:35,460
+Ento, se eu escrever uma consulta dentro do meu componente de listas de msicas de amor, escreva aqui para buscar minha lista de msicas. Eu
+
+31
+00:02:35,460 --> 00:02:38,130
+no quero ser uma cpia de colar isso em todo o lugar.
+
+32
+00:02:38,160 --> 00:02:43,290
+tempo e depois ter que me referir a isso em diferentes locais da minha base de cdigo.
+
+33
+00:02:43,290 --> 00:02:44,880
+Quero escrever apenas ao mesmo
+
+34
+00:02:44,910 --> 00:02:50,820
+Ento, uma conveno muito comum que voc ver no grfico de aplicativos CULE  puxar consultas assim como
+
+35
+00:02:50,820 --> 00:02:57,210
+este aqui mesmo em um arquivo separado e, em seguida, import-lo sempre que precisarmos acessar essa consulta e essa 
+
+36
+00:02:57,450 --> 00:02:59,710
+exatamente a abordagem que vamos tomar .
+
+37
+00:02:59,820 --> 00:03:04,120
+Ns vamos declarar esta consulta aqui dentro de um arquivo separado e depois iremos.
+
+38
+00:03:04,350 --> 00:03:10,100
+Importado para o componente da lista de msicas e us-lo aqui e vamos import-lo para o componente
+
+39
+00:03:10,110 --> 00:03:12,590
+de criao de msicas e us-lo aqui tambm.
+
+40
+00:03:12,840 --> 00:03:14,790
+Ento vamos fazer isso.
+
+41
+00:03:14,820 --> 00:03:21,210
+Eu gosto de manter todas as diferentes consultas que eu escrevo em uma nica pasta chamada como
+
+42
+00:03:21,690 --> 00:03:23,320
+voc pode esperar consultas.
+
+43
+00:03:23,320 --> 00:03:29,040
+Ento, vou fazer uma pequena pasta de consultas dentro do meu diretrio do cliente e, em seguida,
+
+44
+00:03:29,040 --> 00:03:33,590
+dentro de l, vou fazer um novo arquivo de consulta chamado buscar msicas.
+
+45
+00:03:33,700 --> 00:03:34,350
+Sim.
+
+46
+00:03:34,380 --> 00:03:36,730
+Ento, ser um arquivo do javascript.
+
+47
+00:03:37,290 --> 00:03:46,440
+Ento, dentro daqui, podemos importar a biblioteca GQ l do grfico Cuil e, em seguida, podemos exportar
+
+48
+00:03:46,470 --> 00:03:49,890
+imediatamente a consulta de corao padro.
+
+49
+00:03:50,160 --> 00:03:51,900
+Ento vamos ligar para o GQ.
+
+50
+00:03:51,990 --> 00:03:55,970
+Ns vamos atribuir a string de consulta ou me desculparam uma string de modelo.
+
+51
+00:03:55,980 --> 00:04:00,110
+Lembre-se de que voc precisa usar os tiques de volta aqui e ento vamos definir nossa consulta.
+
+52
+00:04:00,120 --> 00:04:04,680
+Ento, diremos as msicas com ID e ttulo assim.
+
+53
+00:04:05,080 --> 00:04:11,100
+Ento, agora posso importar este arquivo em qualquer lugar no meu projeto e sempre estar usando a mesma
+
+54
+00:04:11,340 --> 00:04:15,300
+consulta sem ter que reescrev-lo ou copiar col-lo por todo o lado.
+
+55
+00:04:15,600 --> 00:04:20,580
+Ento, vamos import-lo para ambos os arquivos que agora queremos us-lo e certifique-se de que
+
+56
+00:04:20,580 --> 00:04:25,860
+voc est usando o arquivo de consulta separado em oposio ao inline que atualmente temos.
+
+57
+00:04:25,920 --> 00:04:27,210
+Ento vamos comear primeiro.
+
+58
+00:04:27,210 --> 00:04:31,710
+Vamos comear primeiro dentro da lista de msicas e fazer isso funcionar primeiro.
+
+59
+00:04:31,820 --> 00:04:39,570
+Ento, eu vou at o topo e vou importar Querrey de um nico diretrio.
+
+60
+00:04:39,690 --> 00:04:50,100
+Ento, as buscas de ponto slash buscam msicas e, em seguida, na parte inferior, eu vou deslizar para baixo, eu vou
+
+61
+00:04:50,240 --> 00:04:54,500
+limpar a consulta inline existente que temos aqui agora.
+
+62
+00:04:55,860 --> 00:05:01,770
+E eu no preciso modificar nada aqui porque eu tambm nomeei a consulta de importao.
+
+63
+00:05:01,770 --> 00:05:06,860
+Pode ser um pouco melhor mudar o nome para a consulta de busca de msicas ou algo assim.
+
+64
+00:05:06,900 --> 00:05:11,730
+futuro, mas agora estou totalmente legal apenas chamando Querrey, isso vai salvar este arquivo.
+
+65
+00:05:11,730 --> 00:05:15,870
+Talvez essa seja a abordagem que vamos tomar em algum momento do
+
+66
+00:05:15,930 --> 00:05:21,720
+Feche-o e ento tambm faremos um pouco de refator dentro da msica criar.
+
+67
+00:05:21,720 --> 00:05:28,050
+Ento, dentro da msica, criaremos que iremos de um nico diretrio.
+
+68
+00:05:28,080 --> 00:05:32,440
+Ento, ponto ponto slash Aquarius lote msicas.
+
+69
+00:05:35,920 --> 00:05:40,570
+Agora, a ltima coisa a fazer  informar a matriz de consultas da fecche.
+
+70
+00:05:40,890 --> 00:05:43,460
+Vamos dizer que Querrey  estranho.
+
+71
+00:05:43,780 --> 00:05:52,020
+Ento, os objetos que passamos aqui levam duas propriedades a propriedade de consulta e a propriedade de uma varivel.
+
+72
+00:05:52,090 --> 00:05:57,570
+fazendo anteriormente dentro da mutao, tem muitas variveis aqui literalmente, uma linha acima do que estamos fazendo agora.
+
+73
+00:05:58,960 --> 00:06:02,420
+Ento, as variveis aqui so exatamente a mesma coisa que estvamos
+
+74
+00:06:02,470 --> 00:06:04,470
+ exatamente o mesmo propsito.
+
+75
+00:06:04,480 --> 00:06:09,940
+Ento, se esta consulta que estamos executando aqui tivesse algum nmero de variveis que precisava
+
+76
+00:06:10,180 --> 00:06:12,520
+executar, poderamos tambm passar diretamente aqui.
+
+77
+00:06:12,700 --> 00:06:17,200
+Mas, neste caso, nossa busca de msicas de busca no possui nenhuma varivel associada.
+
+78
+00:06:17,320 --> 00:06:23,560
+Portanto, no precisamos passar em nenhuma varivel, a prpria consulta precisa ser atribuda  propriedade da consulta.
+
+79
+00:06:23,560 --> 00:06:28,690
+E neste caso, por isso,  muito bom chamar a importao apenas de consulta porque
+
+80
+00:06:28,690 --> 00:06:34,570
+podemos usar um pouco de E-6 para diminuir isso porque a chave e o valor so idnticos.
+
+81
+00:06:34,570 --> 00:06:39,020
+Podemos condensar isso apenas para a consulta.
+
+82
+00:06:39,100 --> 00:06:43,960
+Ento, agora nossa ordem de operaes  aquela quando emitimos a mutao.
+
+83
+00:06:43,960 --> 00:06:45,680
+A mutao vai correr.
+
+84
+00:06:45,890 --> 00:06:52,540
+Vamos tentar imediatamente recuperar a consulta de msicas fecche e, em seguida, nosso usurio
+
+85
+00:06:52,540 --> 00:06:57,670
+ser redirecionado  fora para a rota de nossa aplicao.
+
+86
+00:06:57,670 --> 00:07:04,030
+Agora, a ltima coisa sobre a qual voc pode estar curioso  se a nossa consulta ser ou
+
+87
+00:07:04,030 --> 00:07:06,390
+no tentada ser buscada duas vezes.
+
+88
+00:07:06,390 --> 00:07:11,400
+Ento, note que estamos dizendo OK depois que as corridas de mutao vamos executar novamente esta consulta.
+
+89
+00:07:11,500 --> 00:07:16,900
+Mas tambm estabelecemos que quando nosso componente aparece na tela, ele executa a consulta que est
+
+90
+00:07:16,900 --> 00:07:17,790
+anexada a ele.
+
+91
+00:07:17,800 --> 00:07:23,190
+Portanto, a lista de msicas tentar buscar a lista de msicas usando essa mesma consulta tambm.
+
+92
+00:07:23,320 --> 00:07:27,600
+Obviamente, no seria ideal executar a mesma consulta em paralelo.
+
+93
+00:07:27,600 --> 00:07:29,860
+Seria apenas um desperdcio total de recursos.
+
+94
+00:07:30,070 --> 00:07:36,160
+Felizmente, o grfico Q L ou devo dizer que o Apollo identifica corretamente que ele j est executando essa
+
+95
+00:07:36,190 --> 00:07:41,380
+consulta e, portanto, no tentar emitir a mesma consulta exata duas vezes seguidas, o que 
+
+96
+00:07:41,380 --> 00:07:43,060
+exatamente o que esperamos que acontecesse.
+
+97
+00:07:43,580 --> 00:07:48,600
+Ok, acho que estamos prontos para um pouco de teste aqui, ento vou abrir.
+
+98
+00:07:49,050 --> 00:07:52,990
+Vamos primeiro abrir nosso Turnell e ter certeza de que no temos erros de digitao ou algo
+
+99
+00:07:52,990 --> 00:07:53,550
+assim naqui.
+
+100
+00:07:53,680 --> 00:07:56,140
+Ento, tudo aqui parece ser bom para mim.
+
+101
+00:07:56,140 --> 00:08:00,220
+Depois, voltarei ao meu aplicativo e atualizarei a pgina.
+
+102
+00:08:00,220 --> 00:08:06,750
+Voc notar que a consulta foi executada com sucesso na minha guia de rede do Croman
+
+103
+00:08:06,760 --> 00:08:13,420
+Spectre agora e parece que emitimos uma solicitao ao grfico QL de volta e ento irei
+
+104
+00:08:13,420 --> 00:08:21,250
+e criei uma nova msica e ns daremos essa O ttulo de lab rock, seja o que for.
+
+105
+00:08:21,510 --> 00:08:22,710
+Ns o enviaremos.
+
+106
+00:08:22,710 --> 00:08:26,930
+Ns imediatamente vemos a nova msica aparecer na tela, que  fantstica.
+
+107
+00:08:27,090 --> 00:08:33,480
+E voc tambm notar que ns apenas emitimos dois pedidos para nossos grficos, o que  o
+
+108
+00:08:33,480 --> 00:08:37,600
+mnimo absoluto para fazer esta operao funcionar da maneira que esperamos.
+
+109
+00:08:37,860 --> 00:08:43,380
+O primeiro pedido direto aqui foi o que inicialmente fizemos quando carregamos nosso aplicativo,
+
+110
+00:08:43,380 --> 00:08:51,130
+ento buscou uma lista de msicas, como existia antes de adicionar a msica de lab rock, ento mutao aleatria.
+
+111
+00:08:51,180 --> 00:08:52,620
+Ento aqui est a mutao aqui.
+
+112
+00:08:52,620 --> 00:08:56,630
+Podemos ver a mutao  chamada de msica e depois enxertar.
+
+113
+00:08:56,670 --> 00:09:03,130
+Bem, devo dizer novamente que o Apollo atualizou ou reinicia automaticamente a consulta para obter nossa lista de msicas.
+
+114
+00:09:03,330 --> 00:09:10,710
+E aqui podemos ver facilmente que obtivemos a resposta no lab rock e, o mais importante, a consulta
+
+115
+00:09:10,710 --> 00:09:14,550
+foi emitida somente para nossas costas e exatamente uma vez.
+
+116
+00:09:15,070 --> 00:09:15,900
+EST BEM.
+
+117
+00:09:16,260 --> 00:09:21,420
+Ento, isso  muito bom com listas de manipulao e listas de remodelao depois que as modificamos.
+
+118
+00:09:21,420 --> 00:09:27,720
+Mais uma vez, o lembrete  que precisamos ter certeza de que, sempre que inserimos um
+
+119
+00:09:27,720 --> 00:09:33,790
+novo registro em uma lista de dados, possamos ter que recomear a consulta associada ao contrrio.
+
+120
+00:09:34,290 --> 00:09:40,540
+Caso contrrio, Paulo vai decidir dentro e buscar essa consulta, eu no tenho que fazer mais trabalho.
+
+121
+00:09:41,200 --> 00:09:44,880
+OK, vamos continuar e continuar na prxima seo.
+

@@ -1,0 +1,484 @@
+1
+00:00:00,710 --> 00:00:05,900
+In the last section we started up a separate server that serves raw Jaison data.
+
+2
+00:00:06,210 --> 00:00:12,390
+The idea here was to get some experience where a QOL application pulls in data from an outside server
+
+3
+00:00:12,840 --> 00:00:18,420
+rather than using the static data that we are currently using which is the hard coded list of users
+
+4
+00:00:18,450 --> 00:00:21,920
+inside of our schema file.
+
+5
+00:00:22,120 --> 00:00:27,280
+The two things I want to point out to you just be really clear about the case on server is that if we
+
+6
+00:00:27,280 --> 00:00:35,440
+go to localhost Colan 3000 slash users we get a list of all our users and if we go to slash 23 that
+
+7
+00:00:35,440 --> 00:00:38,130
+will give me the user with idea of 23.
+
+8
+00:00:38,350 --> 00:00:46,390
+I could also go to 40 and there's my user ID 14 Do note as well that this is running on a completely
+
+9
+00:00:46,390 --> 00:00:50,680
+separate port from our graph queue instance or from our graphical instance.
+
+10
+00:00:50,680 --> 00:00:56,310
+The other one is running on localhost 4000 server that we just started up as localhost 3000.
+
+11
+00:00:56,320 --> 00:01:03,000
+So to completely separate disconnected servers completely separate.
+
+12
+00:01:03,070 --> 00:01:08,920
+All right with all the stuff in mind let's open our code editor and check out our schema file.
+
+13
+00:01:08,920 --> 00:01:09,900
+So here schema.
+
+14
+00:01:09,920 --> 00:01:10,930
+J Yes.
+
+15
+00:01:12,230 --> 00:01:16,790
+In our schema file I'm going to scroll down to our root query towards the bottom.
+
+16
+00:01:19,020 --> 00:01:25,000
+Inside of here we are still making use of low dash to search through the local list of users we have.
+
+17
+00:01:25,020 --> 00:01:31,870
+Remember the purpose of resolve and must return the data that represents a user object.
+
+18
+00:01:31,890 --> 00:01:37,440
+Right now it is returning the user directly in a very synchronous fashion.
+
+19
+00:01:37,440 --> 00:01:44,890
+So when resolve gets called Boom we instantly return a user the result function.
+
+20
+00:01:44,900 --> 00:01:51,930
+However can also work by returning a promise so it can work in asynchronous fashion.
+
+21
+00:01:51,930 --> 00:01:58,780
+If we return a promise from the resolved function graph Q L will automatically detect that we returned
+
+22
+00:01:58,790 --> 00:01:59,820
+a promise.
+
+23
+00:01:59,820 --> 00:02:05,220
+Wait for the promise to resolve and then once it does grab the data that it resolved with and send the
+
+24
+00:02:05,220 --> 00:02:07,200
+response back to the user.
+
+25
+00:02:07,200 --> 00:02:14,060
+So in practice once we make a request or a query from our graphical interface it's going to go to graph
+
+26
+00:02:14,070 --> 00:02:22,140
+Cuil graph I was going to reach out to our Jason server and say hey I'm looking for user 2003 and that
+
+27
+00:02:22,140 --> 00:02:28,940
+is of course an asynchronous request is in HTP request to go out and reach out to this other server.
+
+28
+00:02:29,160 --> 00:02:35,760
+The Sun server will then respond and say hey here you go here's the user 23 graph Q L is going to wait
+
+29
+00:02:35,760 --> 00:02:41,700
+for the request to resolve and then it's going to get the user back and send it back to the response
+
+30
+00:02:41,760 --> 00:02:43,890
+to the graphical client.
+
+31
+00:02:44,250 --> 00:02:48,400
+So that's what we're going to do inside of this resolve function.
+
+32
+00:02:48,540 --> 00:02:54,750
+Nearly all data fetching that we're ever going to do inside of a node application is asynchronous in
+
+33
+00:02:54,750 --> 00:03:01,250
+nature so we nearly always end up having to return a promise from this resolve function right here.
+
+34
+00:03:03,070 --> 00:03:05,360
+OK so I think we've got a plan to move forward on.
+
+35
+00:03:05,400 --> 00:03:12,360
+We need to make and H TTP request inside of this resolve function right here and return the promise
+
+36
+00:03:12,360 --> 00:03:15,320
+that it generates to do so.
+
+37
+00:03:15,330 --> 00:03:23,000
+We can either use the native fetch function or we can use the library X-ers and member fetch and X use
+
+38
+00:03:23,010 --> 00:03:26,530
+or both to use for making HTP requests.
+
+39
+00:03:26,580 --> 00:03:30,830
+If you've taken any of my courses before you'll know that I'm a huge fan of X-posts.
+
+40
+00:03:30,840 --> 00:03:32,410
+I am not a fan of fetch.
+
+41
+00:03:32,490 --> 00:03:34,730
+So we're going to go with axis.
+
+42
+00:03:34,750 --> 00:03:36,540
+Let's get to it.
+
+43
+00:03:36,540 --> 00:03:38,550
+Actually this is a third party library.
+
+44
+00:03:38,580 --> 00:03:44,910
+So we are going to flip back over to our server and make sure that we install it as a dependency.
+
+45
+00:03:44,910 --> 00:03:52,830
+So inside of my server directory I'll run NPM install dash dash save Axel's like so it's a really small
+
+46
+00:03:52,830 --> 00:04:00,370
+library so it should only take a second to install the real now back inside of my scheme of file I'm
+
+47
+00:04:00,370 --> 00:04:06,220
+going to import x Diosa at the top we don't need load ASH anymore because we're not going to be going
+
+48
+00:04:06,220 --> 00:04:08,150
+through that static list of users.
+
+49
+00:04:08,380 --> 00:04:15,850
+So I'm going to replace the low dash import with a required statement for X-posts instead.
+
+50
+00:04:17,350 --> 00:04:19,650
+We're not going to use the static list of users anymore.
+
+51
+00:04:19,670 --> 00:04:23,110
+So I'm going to delete the static list of users that can go as well.
+
+52
+00:04:23,680 --> 00:04:26,920
+And then we'll go on down to the result function.
+
+53
+00:04:26,920 --> 00:04:31,450
+I'm going to take out the existing statement that's in there and we're going to replace this with a
+
+54
+00:04:31,450 --> 00:04:41,500
+request over to our Sun server so inside of here we'll say return X-post don't get and then we want
+
+55
+00:04:41,500 --> 00:04:48,440
+to make a request over to local host 3000 slash users slash ID.
+
+56
+00:04:48,460 --> 00:04:53,670
+Or the idea of the record we're trying to find to do so we're going to use a six template string.
+
+57
+00:04:53,680 --> 00:05:02,660
+So I'll put a back tick down HTP local host Colin 4000 or Susie 3000.
+
+58
+00:05:02,770 --> 00:05:04,820
+Let's make sure we get that right.
+
+59
+00:05:04,840 --> 00:05:16,380
+Slash users slash dollar sign curly braces are stock Id like so again this is a six template string
+
+60
+00:05:16,390 --> 00:05:19,840
+so do make sure that you have back ticks right here on either side.
+
+61
+00:05:20,290 --> 00:05:26,140
+And we are making reference to our stock Id remember the ID is coming in from the query when the query
+
+62
+00:05:26,140 --> 00:05:29,350
+is made our.
+
+63
+00:05:29,550 --> 00:05:31,080
+This is looking pretty good right here.
+
+64
+00:05:31,080 --> 00:05:34,220
+We make the request and then we return it.
+
+65
+00:05:34,230 --> 00:05:39,420
+So X-posts or sees me graft well is going to wait for the promise that is generated by this request
+
+66
+00:05:39,420 --> 00:05:41,610
+to resolve once that resolves.
+
+67
+00:05:41,610 --> 00:05:46,930
+Its going to take the data and send it back on down as a response to the Querrey.
+
+68
+00:05:46,980 --> 00:05:55,650
+Now there is one little gotcha in here OK one little gotcha and this is kind of an oddity of X us working
+
+69
+00:05:55,650 --> 00:05:56,200
+with graft.
+
+70
+00:05:56,280 --> 00:06:04,790
+Well when X-post is promised results so we put on like a dot then and we take the response and we can
+
+71
+00:06:04,790 --> 00:06:15,220
+still log the response like so we get back something looks like this data first name of Bill.
+
+72
+00:06:15,360 --> 00:06:22,580
+So the response object that X returns has the actual response data nested on this data property right
+
+73
+00:06:22,580 --> 00:06:23,310
+here.
+
+74
+00:06:23,550 --> 00:06:30,210
+It is nested on it and that is just how Axel's chooses to respond from HTP requests Nesse the data on
+
+75
+00:06:30,210 --> 00:06:31,710
+this data property.
+
+76
+00:06:31,710 --> 00:06:37,830
+Now the bad news is that graph Q L does not know that it does not know that the data is nested on his
+
+77
+00:06:37,840 --> 00:06:39,280
+DOD data property.
+
+78
+00:06:39,570 --> 00:06:42,700
+So just make Axelson graph Cuil work together.
+
+79
+00:06:42,960 --> 00:06:49,270
+We're going to do just a little bit of fun mingling with the response before it goes on to graft.
+
+80
+00:06:49,340 --> 00:06:57,410
+Well sorry to say recip dot data like so so what this does is it says make the request.
+
+81
+00:06:57,500 --> 00:07:02,960
+And then before anything else happens with the problem it's like before any other function gets tacked
+
+82
+00:07:02,960 --> 00:07:04,820
+on to the promised to be resolved.
+
+83
+00:07:05,090 --> 00:07:09,500
+Take the response return only response to dot data.
+
+84
+00:07:09,590 --> 00:07:15,890
+So anyone else who chains on this promise like with another dot then they would only see the data that
+
+85
+00:07:15,890 --> 00:07:17,320
+came back from the response.
+
+86
+00:07:17,450 --> 00:07:22,640
+So in other words we're just paring down the response like an object that comes back from axioms.
+
+87
+00:07:22,670 --> 00:07:26,640
+I know this probably seems a little bit confusing a little bit arbitrary it's a little bit painful.
+
+88
+00:07:26,810 --> 00:07:27,720
+Yes I agree.
+
+89
+00:07:27,730 --> 00:07:31,160
+But it's all we have to do to make Axel's work nicely with graphs.
+
+90
+00:07:31,160 --> 00:07:38,990
+Well in the future we will wrap X-posts with a nice old request handler and so we won't have to deal
+
+91
+00:07:38,990 --> 00:07:42,160
+with this all the time but will take care of that in the future.
+
+92
+00:07:42,930 --> 00:07:47,490
+OK I think we're ready for a test now so I'm going to go back over to my terminal.
+
+93
+00:07:47,510 --> 00:07:54,470
+I'm going to start my server back up with node server G-S I get the listening message which is good
+
+94
+00:07:54,950 --> 00:08:00,020
+and it appears that my son server is still running as well so everything is looking pretty good at this
+
+95
+00:08:00,020 --> 00:08:01,620
+point in time.
+
+96
+00:08:01,670 --> 00:08:03,480
+Let's go back over to graphical.
+
+97
+00:08:03,560 --> 00:08:05,810
+So I'm on localhost Kolin 4000.
+
+98
+00:08:05,810 --> 00:08:06,970
+Slash graph.
+
+99
+00:08:06,980 --> 00:08:12,730
+Well and will make the same query for user 23.
+
+100
+00:08:12,840 --> 00:08:14,210
+We run it and we get back.
+
+101
+00:08:14,210 --> 00:08:14,770
+Bill.
+
+102
+00:08:14,900 --> 00:08:16,130
+OK that's great.
+
+103
+00:08:16,130 --> 00:08:18,330
+Let's look for user 40.
+
+104
+00:08:18,380 --> 00:08:23,240
+Remember for me I had made a user 40 inside of that DVD case on file.
+
+105
+00:08:23,240 --> 00:08:27,260
+So inside of DVD Jaison Here's a user with ID 40.
+
+106
+00:08:27,260 --> 00:08:31,790
+If you used any different IDs you'll see a different ID here instead.
+
+107
+00:08:31,910 --> 00:08:35,720
+And you'll want to use a different idea as the argument to the query.
+
+108
+00:08:35,720 --> 00:08:38,080
+So I'll look for a user id 40 again.
+
+109
+00:08:38,120 --> 00:08:40,100
+Yup that looks great.
+
+110
+00:08:40,100 --> 00:08:45,380
+We can check out our terminal and inside if you'll also notice that we see the request logs from our
+
+111
+00:08:45,430 --> 00:08:52,240
+graphical server reaching out to the separate JS on server to fetch these these independent records.
+
+112
+00:08:53,040 --> 00:08:56,630
+OK so not too bad not too bad.
+
+113
+00:08:57,620 --> 00:08:58,880
+I really like how this is going.
+
+114
+00:08:58,880 --> 00:09:05,930
+We've split off our resolve function to reach out for some data from some third party service.
+
+115
+00:09:05,930 --> 00:09:11,000
+The key thing to keep in mind about resolver here is that because it can handle a promise we can really
+
+116
+00:09:11,000 --> 00:09:15,460
+fetch data from anywhere you can possibly imagine.
+
+117
+00:09:15,540 --> 00:09:17,410
+You know this can be a third party server.
+
+118
+00:09:17,420 --> 00:09:20,210
+This could be reading a file off the hard drive.
+
+119
+00:09:20,210 --> 00:09:26,390
+It can be a database and anything we want to do resolve is really our playground for just fetching any
+
+120
+00:09:26,390 --> 00:09:30,140
+piece of data in any fashion that we can possibly imagine.
+
+121
+00:09:30,810 --> 00:09:36,260
+OK let's move onto the next section and start putting a bit more logic into our queries.
+

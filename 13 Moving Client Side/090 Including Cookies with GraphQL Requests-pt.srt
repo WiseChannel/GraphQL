@@ -1,0 +1,512 @@
+1
+00:00:00,780 --> 00:00:07,050
+Na ltima seo, adicionamos uma pequena consulta para descobrir se o usurio est atualmente autenticado ou no.
+
+2
+00:00:07,110 --> 00:00:12,180
+Agora, estou 100% claro. Eu atualmente estou autenticado com o servidor back-end.
+
+3
+00:00:12,360 --> 00:00:17,510
+Ento, quando estou sentado em grfico e executo a consulta para buscar o usurio atual, eu recebo uma resposta de volta.
+
+4
+00:00:17,520 --> 00:00:24,240
+Ento, eu definitivamente estou autenticado de acordo com o grfico, mas dentro do meu aplicativo quando eu executar a mesma consulta
+
+5
+00:00:24,240 --> 00:00:27,690
+para buscar o usurio atual, eu recebo uma resposta do No.
+
+6
+00:00:27,870 --> 00:00:33,960
+Ento, claramente, qualquer coisa em grfico ou dentro do meu aplicativo no est funcionando da maneira que espero,
+
+7
+00:00:34,350 --> 00:00:38,140
+porque h uma grande diferena na resposta que recebo de cada consulta.
+
+8
+00:00:38,340 --> 00:00:40,620
+Mesmo que a consulta seja idntica.
+
+9
+00:00:40,860 --> 00:00:45,430
+Ento, esta  uma das maiores conquistas do mundo em torno do Appollo.
+
+10
+00:00:45,450 --> 00:00:47,380
+Uma das maiores conquistas.
+
+11
+00:00:47,430 --> 00:00:51,870
+Vejamos um diagrama que nos ajudar a entender exatamente o que est acontecendo e o
+
+12
+00:00:51,870 --> 00:00:54,040
+que est acontecendo com a nossa aplicao.
+
+13
+00:00:54,700 --> 00:00:55,290
+EST BEM.
+
+14
+00:00:55,650 --> 00:00:59,290
+Ento, este  um diagrama da abordagem acoplada para configurar o enxerto.
+
+15
+00:00:59,310 --> 00:01:06,990
+Bem, lembre-se de que, com essa abordagem acoplada, permitimos que a mutao manipule todas as diferentes operaes de
+
+16
+00:01:07,020 --> 00:01:08,480
+autenticao que possamos.
+
+17
+00:01:08,700 --> 00:01:15,080
+Ento, confiamos em uma mutao para descobrir ou para atribuir um pecado para desconectar todo esse tipo de coisas boas.
+
+18
+00:01:15,080 --> 00:01:16,090
+E aqui est a captura.
+
+19
+00:01:16,140 --> 00:01:21,000
+Eu s vou conseguir uma linha direta diretamente porque  uma pequena
+
+20
+00:01:21,000 --> 00:01:25,730
+e pequena coisa que realmente no merece ser demais para falar demais.
+
+21
+00:01:25,920 --> 00:01:26,760
+Aqui est a coisa.
+
+22
+00:01:27,030 --> 00:01:31,070
+Sempre que realizamos pedidos para o nosso back-end usando enxerto.
+
+23
+00:01:31,110 --> 00:01:38,700
+Bem, sempre que executamos uma consulta sempre que executamos uma mutao por padro, o grfico Cuil no
+
+24
+00:01:38,700 --> 00:01:41,970
+tenta anexar nenhum dos nossos cookies  solicitao.
+
+25
+00:01:41,970 --> 00:01:48,330
+O que isso significa  quando uma solicitao vai do nosso navegador para nossa fila de grfico de back-end, ele
+
+26
+00:01:48,420 --> 00:01:52,610
+no anexa nenhuma das informaes que nos identifica no nosso servidor de back-end.
+
+27
+00:01:52,620 --> 00:02:02,540
+Ento, dentro do grfico, quando executamos essa consulta grfica, por padro, anexa consultas  solicitao.
+
+28
+00:02:02,670 --> 00:02:05,270
+Ento eu corro isso atravs desta consulta aqui.
+
+29
+00:02:05,340 --> 00:02:09,520
+Minha consulta  emitida para o servidor backend e meu cookie tambm  enviado.
+
+30
+00:02:09,540 --> 00:02:14,580
+Isso me identifica para o servidor back-end, o servidor back-end olha para o cookie.
+
+31
+00:02:14,580 --> 00:02:18,360
+Ele me identifica como teste de usurio no ponto de teste com.
+
+32
+00:02:18,360 --> 00:02:23,760
+Ele envia a resposta de volta que contm o usurio atual dentro da minha aplicao.
+
+33
+00:02:23,760 --> 00:02:30,780
+No entanto, quando minha solicitao  feita para identificar o usurio atual por padro meus cookies no esto
+
+34
+00:02:30,780 --> 00:02:32,130
+includos com essa solicitao.
+
+35
+00:02:32,150 --> 00:02:37,280
+E ento, quando o servidor examina o pedido para descobrir o que eu estou tentando fazer aqui.
+
+36
+00:02:37,500 --> 00:02:40,630
+O passaporte no  capaz de identificar o usurio atual.
+
+37
+00:02:40,650 --> 00:02:46,370
+E ento, quando tentamos retornar o usurio atual, o servidor diz que no passaram nenhum tipo de cookies.
+
+38
+00:02:46,380 --> 00:02:48,220
+Eu acho que  apenas uma pessoa annima.
+
+39
+00:02:48,240 --> 00:02:50,940
+No vou fazer nenhum pressuposto sobre quem eles so.
+
+40
+00:02:51,240 --> 00:02:57,510
+grfico padro CULE no envia cookies que tendem a quebrar a autenticao apenas fora da caixa.
+
+41
+00:02:57,510 --> 00:02:58,850
+Ento, em resumo, o
+
+42
+00:02:58,920 --> 00:03:02,760
+Se voc estiver dependendo de cookies para manipulao de autenticao.
+
+43
+00:03:03,540 --> 00:03:09,030
+Ento, o que realmente temos que fazer aqui  fazer um pouco de configurao para o U Graft
+
+44
+00:03:09,030 --> 00:03:12,480
+para instruir que ele precisa enviar nossos cookies com cada pedido.
+
+45
+00:03:12,630 --> 00:03:17,600
+E ento devemos ser capazes de executar a mesma consulta e voltar para o usurio atual
+
+46
+00:03:17,670 --> 00:03:19,740
+do nosso back-end como seria de esperar.
+
+47
+00:03:19,740 --> 00:03:25,320
+Ento, novamente, realmente ser um pouco de configurao com nosso cliente GRATHWOHL indo virar para a pasta do meu
+
+48
+00:03:25,320 --> 00:03:31,700
+cliente e encontrar o ndice no J. S. Arquivo.
+
+49
+00:03:31,770 --> 00:03:33,820
+Ento  o cliente Apollo aqui.
+
+50
+00:03:33,840 --> 00:03:38,680
+Lembre-se  o cliente Apollo que est fazendo solicitaes reais para o servidor back-end.
+
+51
+00:03:39,060 --> 00:03:45,360
+Podemos personalizar a maneira como esses pedidos esto sendo feitos especificando outra opo dentro deste objeto
+
+52
+00:03:45,360 --> 00:03:51,780
+de opes chamado interface de rede, a interface de rede  um pequeno pedao de cdigo dentro
+
+53
+00:03:51,810 --> 00:03:57,630
+do cliente Apollo que  responsvel por fazer pedidos de rede reais para nossas costas
+
+54
+00:03:57,630 --> 00:03:58,440
+e servidor.
+
+55
+00:03:58,710 --> 00:04:04,680
+Ento, o que vamos fazer  criar nossa prpria interface de rede personalizada e ns vamos dizer isso, sempre que
+
+56
+00:04:04,740 --> 00:04:06,710
+voc fizer uma solicitao para o back-end.
+
+57
+00:04:06,780 --> 00:04:10,180
+Certifique-se de enviar alguns cookies junto com o pedido.
+
+58
+00:04:10,330 --> 00:04:15,100
+Ento, vamos pegar essa interface de rede e pass-la para este cliente do Appollo.
+
+59
+00:04:15,180 --> 00:04:17,580
+Ento, se isso parece confuso, tenho boas notcias.
+
+60
+00:04:17,580 --> 00:04:20,760
+Na prtica,  realmente apenas um pouco de cdigo de referncia.
+
+61
+00:04:20,760 --> 00:04:25,830
+Voc tambm pode encontrar o mesmo cdigo de cdigo dentro da documentao oficial do Appollo.
+
+62
+00:04:25,830 --> 00:04:30,990
+Ento, realmente, esse  apenas um desses tipos de questes de perigo, onde voc sabe ou
+
+63
+00:04:30,990 --> 00:04:32,560
+sabe o que no .
+
+64
+00:04:33,290 --> 00:04:33,620
+EST BEM.
+
+65
+00:04:33,660 --> 00:04:35,190
+Ento vamos fazer isso.
+
+66
+00:04:35,220 --> 00:04:40,430
+A primeira coisa que vamos fazer  importar um ajudante da biblioteca do cliente Apollo.
+
+67
+00:04:40,650 --> 00:04:47,010
+Ento, vamos adicionar em uma vrgula um conjunto de chaves curly, porque ns
+
+68
+00:04:47,010 --> 00:04:53,910
+vamos tirar essa funo auxiliar chamada criar interface de rede, logo acima do cliente.
+
+69
+00:04:53,930 --> 00:04:59,690
+Vamos criar uma nova interface de rede personalizada para nossa aplicao.
+
+70
+00:04:59,820 --> 00:05:09,050
+Ento, quero dizer que a interface de rede da Konst ser criar uma interface de rede e
+
+71
+00:05:09,110 --> 00:05:12,170
+tambm vamos passar algumas opes.
+
+72
+00:05:12,170 --> 00:05:14,440
+Ento, vamos passar duas opes diferentes aqui.
+
+73
+00:05:14,450 --> 00:05:17,310
+O primeiro  para voc um chamado Voc  eu.
+
+74
+00:05:17,660 --> 00:05:23,810
+Ento, se voc lembrar, eu disse vrias vezes que o cliente Apollo assume que o seu cliente
+
+75
+00:05:23,810 --> 00:05:27,650
+grfico no lado Express est ouvindo no enxerto de barra diagonal.
+
+76
+00:05:27,710 --> 00:05:34,340
+Bem, lembre-se de configurar isso como mencionado em algumas das configuraes dentro do nosso servidor J. S. Arquivo.
+
+77
+00:05:34,400 --> 00:05:41,390
+Ento, se eu me deslocar para baixo dentro daqui quando configuramos a exibio de grfico no servidor, dissemos que
+
+78
+00:05:41,390 --> 00:05:47,730
+escute no grfico de barras Cuil aqui mesmo para que voc ou a opo aqui aqui estivemos especificando.
+
+79
+00:05:47,740 --> 00:05:49,970
+Sim, voc ainda vai usar o grfico.
+
+80
+00:05:49,970 --> 00:05:57,580
+se o cliente Apollo assume que o servidor est escutando o grfico de rota. Bem, por que estamos redefinindo isso aqui.
+
+81
+00:05:57,580 --> 00:06:01,340
+Q Bem, voc pode estar pensando que bem, hey Stephen,
+
+82
+00:06:01,360 --> 00:06:06,430
+E a resposta  que sempre que voc cria sua prpria Susan padro sempre que voc cria sua
+
+83
+00:06:06,430 --> 00:06:12,340
+prpria interface de rede, ela no faz mais a suposio de que o seu ponto final est hospedado no slash greffe.
+
+84
+00:06:12,350 --> 00:06:15,870
+Bem, ento estamos apenas dizendo diretamente, sim, ainda  o mesmo ponto final.
+
+85
+00:06:15,870 --> 00:06:20,290
+No se preocupe, voc ainda vai usar o mesmo ponto final do que antes.
+
+86
+00:06:21,190 --> 00:06:27,280
+Agora, a parte que realmente interessa  que o OP  curto para propriedades de opes.
+
+87
+00:06:27,310 --> 00:06:32,650
+Ns vamos passar para a AAPS algo chamado de credenciais e vamos passar na string.
+
+88
+00:06:32,680 --> 00:06:36,200
+A mesma origem  assim.
+
+89
+00:06:36,930 --> 00:06:37,750
+Ento isso  praticamente isso.
+
+90
+00:06:37,750 --> 00:06:40,390
+Esta  a linha mgica aqui.
+
+91
+00:06:40,390 --> 00:06:48,460
+As credenciais so a chave da mesma origem, significa que voc est fazendo solicitaes para a mesma origem que o navegador est
+
+92
+00:06:48,460 --> 00:06:54,670
+atualmente no prazo de curto prazo  que isso diz que  seguro tentar enviar os cookies
+
+93
+00:06:54,670 --> 00:06:56,770
+com a solicitao de sada.
+
+94
+00:06:56,780 --> 00:07:02,080
+E, portanto, esta linha  o que diz ao cliente Apollo que deve enviar consultas sempre
+
+95
+00:07:02,080 --> 00:07:03,560
+que faz uma jogada arriscada.
+
+96
+00:07:03,700 --> 00:07:09,130
+Ele deve enviar cookies sempre que faz uma consulta para o servidor backend.
+
+97
+00:07:09,440 --> 00:07:14,860
+Ento, agora vamos levar essa interface de rede e pass-la para o cliente Apollo.
+
+98
+00:07:14,990 --> 00:07:21,960
+Ento, vamos especific-lo como uma opo para passar para o cliente Apollo assim.
+
+99
+00:07:22,410 --> 00:07:27,490
+Ento, agora, o cliente Apollo no est usando a interface de rede padro que supe que voc
+
+100
+00:07:27,490 --> 00:07:28,070
+deseja usar.
+
+101
+00:07:28,180 --> 00:07:30,540
+Vai usar este personalizado aqui.
+
+102
+00:07:32,560 --> 00:07:33,040
+EST BEM.
+
+103
+00:07:33,140 --> 00:07:38,000
+Ento, isso  muito bom para conseguir que o Appollo envie cookies juntamente com cada consulta que
+
+104
+00:07:38,000 --> 00:07:39,270
+ele faz para o backend.
+
+105
+00:07:39,470 --> 00:07:42,710
+Ento agora, em teoria, quando.
+
+106
+00:07:43,070 --> 00:07:49,460
+Bonito Quando a Apollo tende a fazer um pedido para a fila de grficos, todo o servidor
+
+107
+00:07:49,460 --> 00:07:56,660
+ir incluir cookies com o pedido quando a solicitao atingir o nosso Express Express Express preencher automaticamente o campo de
+
+108
+00:07:56,660 --> 00:07:58,160
+solicitao do usurio Daut.
+
+109
+00:07:58,370 --> 00:08:03,730
+E ento, nosso servidor grfico CULE vai entender quem  o usurio atual da nossa aplicao.
+
+110
+00:08:04,070 --> 00:08:07,050
+Ento, d uma chance na nossa cabea por mais uma vez.
+
+111
+00:08:07,290 --> 00:08:13,840
+Voc sabe virar para o navegador ir atualizar a pgina e ento vamos examinar os dois pedidos.
+
+112
+00:08:13,850 --> 00:08:16,800
+Isso nos permite olhar para o segundo, porque isso  tudo o que realmente importa.
+
+113
+00:08:17,150 --> 00:08:23,270
+Ento, agora, se eu olhar para a propriedade do usurio aqui,  preenchido corretamente com o
+
+114
+00:08:23,360 --> 00:08:27,690
+e-mail e o ID do usurio atualmente autenticado, como eu esperava.
+
+115
+00:08:27,860 --> 00:08:33,680
+Agora, se voc ainda no v no usurio, lembre-se de que voc precisa ser autenticado com
+
+116
+00:08:33,740 --> 00:08:36,510
+nosso servidor para retornar ao usurio dessa consulta.
+
+117
+00:08:36,530 --> 00:08:43,070
+Ento, se voc no iniciou o login no servidor agora, pode virar para arquivar bem ou grfico e
+
+118
+00:08:43,070 --> 00:08:49,820
+executar a nutao para se conectar como usurio uma vez que voc gosta de voc e, como usurio, voc
+
+119
+00:08:49,820 --> 00:08:50,790
+poder retornar aqui.
+
+120
+00:08:50,990 --> 00:08:57,960
+Atualize novamente a pgina e verifique se o campo do usurio est preenchido corretamente com seu usurio atual.
+
+121
+00:08:58,640 --> 00:08:59,370
+EST BEM.
+
+122
+00:08:59,630 --> 00:09:05,120
+Ento,  praticamente isso para fazer autenticao funcionar como seria de esperar dentro do navegador.
+
+123
+00:09:05,420 --> 00:09:12,740
+Agora que entendemos que devemos estar olhando a bandeira de carregamento e a bandeira do usurio no objeto
+
+124
+00:09:12,740 --> 00:09:14,570
+de resposta dentro do cabealho.
+
+125
+00:09:14,570 --> 00:09:19,430
+Podemos juntar o cabealho e certificar-se de que mostramos um conjunto de botes aqui que indicam corretamente
+
+126
+00:09:19,430 --> 00:09:22,840
+ao usurio se eles esto ou no registrados ou a nossa aplicao.
+
+127
+00:09:22,850 --> 00:09:24,200
+Ento vamos cuidar dessa tarefa.
+
+128
+00:09:24,230 --> 00:09:25,340
+Dentro da prxima seo.
+

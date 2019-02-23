@@ -1,0 +1,464 @@
+1
+00:00:00,870 --> 00:00:05,730
+We've now got some of our boilerplate together for starting up our Appollo client which means we can
+
+2
+00:00:05,730 --> 00:00:09,780
+start moving over to the re-act router side of our application.
+
+3
+00:00:09,780 --> 00:00:14,680
+So in this section we're going to import the re-act router library and then do a little bit of default
+
+4
+00:00:14,680 --> 00:00:18,030
+set up inside of our root component right here.
+
+5
+00:00:18,030 --> 00:00:22,710
+One thing I want to add into our discussion about all the different components we'll have is that just
+
+6
+00:00:22,710 --> 00:00:29,400
+to make re-act router work nicely we will have a top level app component which will be responsible for
+
+7
+00:00:29,460 --> 00:00:35,120
+always showing the header on the screen all the re-act router configuration that we're going to have
+
+8
+00:00:35,340 --> 00:00:39,460
+will be around deciding what to show on the body of the app component.
+
+9
+00:00:39,660 --> 00:00:41,240
+So it's really the body right here.
+
+10
+00:00:41,280 --> 00:00:44,280
+Everything besides the header that we're going to be slow.
+
+11
+00:00:44,760 --> 00:00:47,040
+It's going to swapping out with different routes.
+
+12
+00:00:47,090 --> 00:00:51,500
+So going from the landing form to the sign up form et cetera.
+
+13
+00:00:51,540 --> 00:00:57,540
+So we will first set up re-act router will create our app component and wired up to be the root component
+
+14
+00:00:57,570 --> 00:01:03,030
+of our application and then we'll create the header and make sure that it is always displayed inside
+
+15
+00:01:03,030 --> 00:01:03,830
+the app.
+
+16
+00:01:04,050 --> 00:01:08,400
+Then we can start working on the header and make sure that the header has some logic to figure out what
+
+17
+00:01:08,400 --> 00:01:10,790
+set of buttons it needs to show on the screen.
+
+18
+00:01:11,190 --> 00:01:12,450
+So let's get started.
+
+19
+00:01:12,930 --> 00:01:20,250
+I'm going to flip on over to my index dot J.S. file and we'll start off first by importing the re-act
+
+20
+00:01:20,250 --> 00:01:24,060
+router library and a couple of different properties from it.
+
+21
+00:01:24,060 --> 00:01:34,500
+So at the top we'll grab our router object the hash history object route and index routes and all this
+
+22
+00:01:34,560 --> 00:01:40,740
+is coming from re-act router.
+
+23
+00:01:40,790 --> 00:01:44,740
+Now we can get rid of the div that is currently being rendered in here.
+
+24
+00:01:44,750 --> 00:01:47,390
+So we don't really need to always show the div.
+
+25
+00:01:47,540 --> 00:01:55,130
+Instead we'll set up our re-act router instance we'll first create our router and we'll tell it that
+
+26
+00:01:55,130 --> 00:01:58,590
+we want to use cache history.
+
+27
+00:01:59,120 --> 00:02:03,500
+Again we've had a little bit of a discussion about the use of hash history here as opposed to browser
+
+28
+00:02:03,500 --> 00:02:04,270
+history.
+
+29
+00:02:04,490 --> 00:02:09,200
+We're using hash history as opposed to browser history just because it's a lot more flexible when you
+
+30
+00:02:09,200 --> 00:02:13,700
+want to move the hosting environment here or making use of hash history.
+
+31
+00:02:13,700 --> 00:02:19,700
+We don't really have to worry quite so much about the proper or correct set up inside of the Express
+
+32
+00:02:19,700 --> 00:02:24,140
+side of our application our starter project is set up to use browser history.
+
+33
+00:02:24,140 --> 00:02:26,920
+So you should be able to say about browser history here.
+
+34
+00:02:27,020 --> 00:02:31,580
+If you really care about what your you are it looks like again if you're not familiar with re-act router
+
+35
+00:02:31,620 --> 00:02:37,020
+don't sweat it you can just make use of hash history without any issue.
+
+36
+00:02:37,040 --> 00:02:37,970
+It's now inside of here.
+
+37
+00:02:37,970 --> 00:02:44,690
+I want my root component which is what's always going to be displayed on the screen at all times to
+
+38
+00:02:44,690 --> 00:02:48,730
+be something that we're going to call the app component.
+
+39
+00:02:49,160 --> 00:02:54,710
+So again the app component is always going to show the header and then it will show any nested component
+
+40
+00:02:54,740 --> 00:02:56,290
+inside of it as well.
+
+41
+00:02:56,510 --> 00:03:00,260
+So we'll come back in here in just a little bit and add in a couple of different routes.
+
+42
+00:03:00,260 --> 00:03:05,300
+But right now let's define this app component and make sure that it always shows a header component
+
+43
+00:03:05,360 --> 00:03:08,230
+which we also need to define.
+
+44
+00:03:08,420 --> 00:03:11,240
+We have not yet made the app but we will very shortly.
+
+45
+00:03:11,240 --> 00:03:17,040
+So I'm just going to go ahead and assume that it exists and import it up here as well.
+
+46
+00:03:17,630 --> 00:03:22,040
+And I'm going to assume that I'm going to place it inside of a directory called component's
+
+47
+00:03:24,780 --> 00:03:25,590
+OK.
+
+48
+00:03:25,680 --> 00:03:27,310
+That looks pretty good.
+
+49
+00:03:27,310 --> 00:03:32,420
+So now we can create the components directory and then make the app component.
+
+50
+00:03:32,420 --> 00:03:39,680
+So inside the client directory I'll make my components folder and then make my app component so after
+
+51
+00:03:39,750 --> 00:03:40,410
+Jesus
+
+52
+00:03:47,260 --> 00:03:52,920
+so ends here we'll start off by importing re-act from react.
+
+53
+00:03:53,560 --> 00:03:57,080
+Then we will define our app component.
+
+54
+00:03:57,250 --> 00:04:05,020
+I'm going to make it a functional component since we really just expect it to show the header and the
+
+55
+00:04:05,020 --> 00:04:07,000
+child view and really nothing else.
+
+56
+00:04:07,000 --> 00:04:10,270
+So I feel pretty comfortable just making it a functional component.
+
+57
+00:04:10,270 --> 00:04:14,980
+I really don't expect it to have to make use of any component level state so I don't really need to
+
+58
+00:04:14,980 --> 00:04:16,730
+make it a class based component.
+
+59
+00:04:18,730 --> 00:04:24,970
+Insight if you're going to return a top level Div I do expect to come back to this and add on a little
+
+60
+00:04:24,970 --> 00:04:26,530
+bit of styling maybe.
+
+61
+00:04:26,530 --> 00:04:31,300
+But right now we'll just leave it as a top level div and then inside if you remember we want to show
+
+62
+00:04:31,540 --> 00:04:38,470
+both a head or component at all times and then if the app also gets passed any children component to
+
+63
+00:04:38,470 --> 00:04:43,070
+display by re-act router we want to make sure that we display those as well.
+
+64
+00:04:43,480 --> 00:04:49,690
+So first we'll look at the props object and say if re-act router is trying to get us show anything we'll
+
+65
+00:04:49,690 --> 00:04:56,530
+make sure we take care of that and we do so by placing Propst children inside of our GSX that we return.
+
+66
+00:04:56,890 --> 00:05:01,760
+And we also want to make sure that we always render something called our head or component.
+
+67
+00:05:01,780 --> 00:05:06,820
+Again we've not created this thing just yet but we will in just a second.
+
+68
+00:05:07,420 --> 00:05:13,150
+At the very bottom we'll also make sure to export the app component by default like so.
+
+69
+00:05:13,990 --> 00:05:15,780
+OK so this is looking pretty good.
+
+70
+00:05:15,780 --> 00:05:18,960
+The last thing we have to do is create the header component.
+
+71
+00:05:19,150 --> 00:05:21,600
+Make sure we import it inside of the app right here.
+
+72
+00:05:21,610 --> 00:05:26,590
+So it shows up correctly and then we can get back to worrying about the graphics side of things where
+
+73
+00:05:26,590 --> 00:05:32,410
+are we going to make sure that the header has some buttons to allow the user to log in log out all that
+
+74
+00:05:32,410 --> 00:05:34,270
+kind of good stuff.
+
+75
+00:05:34,330 --> 00:05:39,560
+So we need to first create the header component and imported into this APTA J.S. file.
+
+76
+00:05:39,940 --> 00:05:41,840
+So let's just do the inport first
+
+77
+00:05:45,040 --> 00:05:52,030
+and use capitals for all of our component names so we'll create the component inside of here as well.
+
+78
+00:05:52,100 --> 00:05:52,660
+Go ahead or not.
+
+79
+00:05:52,690 --> 00:05:53,240
+J.S.
+
+80
+00:05:56,360 --> 00:05:57,480
+inside of head or not.
+
+81
+00:05:57,570 --> 00:06:02,790
+Yes and yes I know this is a lot of typing but that's what you get when you try to cover both graphs.
+
+82
+00:06:02,790 --> 00:06:09,070
+Q Well and it's client side uses in one course and we do have to get through a lot of the re-act application
+
+83
+00:06:09,070 --> 00:06:09,890
+set up as well.
+
+84
+00:06:09,890 --> 00:06:15,980
+So I do apologize for the typing but it is good practice now inside of the head or component.
+
+85
+00:06:15,980 --> 00:06:18,830
+For right now we're just going to make a div and return it.
+
+86
+00:06:18,830 --> 00:06:24,230
+We're not going to worry about worrying about any fancy authentication stuff or any queries anything
+
+87
+00:06:24,230 --> 00:06:26,130
+like that for right now.
+
+88
+00:06:26,210 --> 00:06:29,960
+So inside if you're going to make a class based component called hatter
+
+89
+00:06:32,990 --> 00:06:37,610
+and we're going to extend the component base class so let's make sure that we import that from the re-act
+
+90
+00:06:37,610 --> 00:06:41,750
+library as well inside of here.
+
+91
+00:06:42,300 --> 00:06:51,120
+We'll put on our render method with just a little bit of placeholder GSX help make it say better for
+
+92
+00:06:51,180 --> 00:06:52,190
+right now.
+
+93
+00:06:52,820 --> 00:06:57,440
+And at the very bottom we'll export the header component like so.
+
+94
+00:06:58,110 --> 00:06:58,780
+OK.
+
+95
+00:06:59,090 --> 00:07:03,120
+So a lot of typing in the section we put together our component.
+
+96
+00:07:03,530 --> 00:07:09,140
+We made sure that it's always displayed as the root component of our reactor application.
+
+97
+00:07:09,650 --> 00:07:16,310
+The component in turn shows both the header and any other children components that are being provided
+
+98
+00:07:16,310 --> 00:07:17,600
+by re-act router.
+
+99
+00:07:17,870 --> 00:07:23,660
+So as we navigate around different routes the header will always be visible but prop stock shields right
+
+100
+00:07:23,660 --> 00:07:28,070
+here is going to make sure that the body of our page is getting swapped out as we visit all these different
+
+101
+00:07:28,070 --> 00:07:29,060
+routes.
+
+102
+00:07:29,300 --> 00:07:33,420
+And the head or component right now is only showing the text header.
+
+103
+00:07:33,470 --> 00:07:38,720
+But we will come back to this and add on a little bit more logic to make it more aware of the authentication
+
+104
+00:07:38,720 --> 00:07:43,370
+state of our user and decide whether or not we need to show some buttons in here that allow the user
+
+105
+00:07:43,370 --> 00:07:48,590
+to sign in or sign out or create a new account inside of our application.
+
+106
+00:07:48,590 --> 00:07:53,150
+So I think really quickly let's do a test inside of our browser just to make sure that we can see the
+
+107
+00:07:53,150 --> 00:07:56,560
+header appear on the screen and make sure that we don't have any errors.
+
+108
+00:07:56,600 --> 00:08:04,380
+So you know flip back over to the browser and refresh the page now looks like I do have a little bit
+
+109
+00:08:04,380 --> 00:08:07,500
+of an error message here around importing re-act router.
+
+110
+00:08:07,500 --> 00:08:11,910
+I assume that I probably made a typo or neglected to install the module.
+
+111
+00:08:11,940 --> 00:08:13,110
+So let's take a quick break.
+
+112
+00:08:13,110 --> 00:08:14,460
+I'm going to get this fixed up.
+
+113
+00:08:14,520 --> 00:08:18,990
+I'm going to assume that your code is probably working the way expected the way that we expect.
+
+114
+00:08:18,990 --> 00:08:25,200
+And I probably neglected to install reactor rodder myself so I suspect your code probably works mine
+
+115
+00:08:25,200 --> 00:08:26,070
+probably doesn't.
+
+116
+00:08:26,220 --> 00:08:29,450
+Let's take a quick break and get this fixed up and then come back in the next section.
+

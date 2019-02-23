@@ -1,0 +1,460 @@
+1
+00:00:00,660 --> 00:00:05,700
+Ns acabamos de falar um pouco sobre a criao do componente requisito de ordem superior,
+
+2
+00:00:05,700 --> 00:00:11,820
+onde  onde vamos centralizar muita lgica em torno de verificar se o usurio est ou no autenticado.
+
+3
+00:00:11,820 --> 00:00:15,340
+Agora, se voc no est familiarizado com componentes de ordem superior, tudo bem.
+
+4
+00:00:15,360 --> 00:00:19,150
+A prxima parte que comeamos a codificar isso parecer um pouco estranha.
+
+5
+00:00:19,350 --> 00:00:23,610
+Eu no quero passar muito tempo falando sobre componentes de alta ordem porque novamente este  um curso
+
+6
+00:00:23,610 --> 00:00:24,250
+sobre o enxerto.
+
+7
+00:00:24,260 --> 00:00:29,550
+Bem e eu quero ficar um pouco focado nisso, mas apenas um pouco sobre componentes de ordem superior,
+
+8
+00:00:30,300 --> 00:00:36,100
+um componente de ordem superior  como conseguimos uma certa quantidade de reutilizao de cdigo no mundo G-S de reao.
+
+9
+00:00:36,450 --> 00:00:41,970
+Tomamos um componente padro como esse tipo de componente que criamos durante todo este curso.
+
+10
+00:00:42,120 --> 00:00:45,510
+Pode ser um componente baseado em classe ou funcional.
+
+11
+00:00:45,540 --> 00:00:52,170
+Tomamos esse componente que o compomos junto com um componente de ordem superior e que adiciona alguma
+
+12
+00:00:52,170 --> 00:00:54,660
+quantidade de funcionalidade ao nosso componente original.
+
+13
+00:00:54,660 --> 00:01:00,120
+Ento, este original por aqui recebe uma quantidade de funcionalidades adicionais adicionadas a ele.
+
+14
+00:01:00,150 --> 00:01:03,100
+Graas ao componente de ordem superior que acabamos de adicionar.
+
+15
+00:01:03,480 --> 00:01:09,930
+Costumamos referir-se a estes como componentes aprimorados ou compostos porque tomamos um ou mais componentes de ordem
+
+16
+00:01:09,930 --> 00:01:14,970
+superior e combinamos isso com o componente original com o qual estvamos trabalhando.
+
+17
+00:01:14,970 --> 00:01:19,650
+Ento, de novo, eu tenho certeza se voc no trabalhou com componentes de ordem superior antes que isso
+
+18
+00:01:19,650 --> 00:01:20,650
+seja um pouco estranho.
+
+19
+00:01:20,760 --> 00:01:22,530
+Basta conviver comigo enquanto passamos por isso.
+
+20
+00:01:22,560 --> 00:01:26,620
+E eu acho que isso acabar fazendo uma boa quantidade de sentido.
+
+21
+00:01:26,700 --> 00:01:28,600
+Ento vamos comear com isso.
+
+22
+00:01:29,190 --> 00:01:32,760
+Outra coisa que eu quero mencionar sobre componentes de ordem superior, por sinal, se
+
+23
+00:01:32,760 --> 00:01:34,470
+quiser aprender apenas uma tonelada sobre eles.
+
+24
+00:01:34,560 --> 00:01:37,460
+Voc pode verificar meu curso avanado de reduxo de reao.
+
+25
+00:01:37,620 --> 00:01:42,690
+H vrias horas, acho que valeu o contedo por componentes de ordem superior, de modo que voc sempre
+
+26
+00:01:42,690 --> 00:01:46,190
+pode obter um domnio total sobre eles se voc verificar esse curso.
+
+27
+00:01:46,500 --> 00:01:47,060
+EST BEM.
+
+28
+00:01:47,160 --> 00:01:51,280
+Ento, vamos criar nosso componente de ordem superior dentro do meu diretrio de componentes.
+
+29
+00:01:51,300 --> 00:01:54,910
+Eu vou fazer um novo arquivo chamado exigir.
+
+30
+00:01:55,000 --> 00:01:55,950
+Sim.
+
+31
+00:01:55,980 --> 00:02:00,940
+Agora, voc notar que usei uma minscula, aqui tradicionalmente, com componentes de ordem superior.
+
+32
+00:02:00,960 --> 00:02:05,340
+Usamos um caractere minsculo para a primeira letra dentro do nome.
+
+33
+00:02:05,340 --> 00:02:10,440
+Isso ocorre porque um componente de ordem superior  realmente uma funo e, tradicionalmente, as
+
+34
+00:02:10,440 --> 00:02:11,970
+funes no so maisculas.
+
+35
+00:02:12,560 --> 00:02:13,200
+EST BEM.
+
+36
+00:02:13,710 --> 00:02:22,290
+Ento, vou comear por importar reagir e a classe Component da biblioteca re-act.
+
+37
+00:02:22,290 --> 00:02:27,030
+Agora eu quero lembrar com um componente de ordem superior suspeito especificamente aquele
+
+38
+00:02:27,030 --> 00:02:32,970
+que estamos criando aqui mesmo, a inteno inteira  ver se o usurio est ou no autenticado.
+
+39
+00:02:33,150 --> 00:02:39,600
+Se eles no estiverem autenticados, queremos redirecionar o usurio para o nosso log na rota e praticamente dizer que voc no est
+
+40
+00:02:39,600 --> 00:02:42,750
+conectado aqui v assinar e esse  o seu trabalho agora.
+
+41
+00:02:42,750 --> 00:02:48,360
+Basta iniciar sesso antes de iniciar sesso antes de ver qualquer outra coisa a ter com este pedido.
+
+42
+00:02:48,420 --> 00:02:54,270
+Ento, sem se preocupar muito com qualquer coisa relacionada a componentes de ordem superior, vamos apenas
+
+43
+00:02:54,270 --> 00:03:00,510
+imaginar como ns fariamos um componente que somente ir verificar se o usurio est ou no conectado
+
+44
+00:03:00,510 --> 00:03:06,140
+e se eles no esto logados eu quero redirecione-os para o log na rota e
+
+45
+00:03:06,150 --> 00:03:07,580
+nossa aplicao pode.
+
+46
+00:03:07,650 --> 00:03:08,580
+ o que eu quero fazer agora.
+
+47
+00:03:08,580 --> 00:03:11,460
+Eu no quero me preocupar muito com componentes de ordem superior.
+
+48
+00:03:11,460 --> 00:03:17,510
+Eu s quero criar um componente que veja se o usurio est atualmente autenticado.
+
+49
+00:03:17,550 --> 00:03:22,090
+Ento, vamos ver o que meu cdigo poderia escrever se quisermos fazer isso.
+
+50
+00:03:22,260 --> 00:03:29,780
+Digamos que faremos um componente chamado require auth e vamos estender a classe base do componente.
+
+51
+00:03:29,970 --> 00:03:37,670
+Agora, sempre que este componente est prestes a ser renderizado para a tela, ento ns diremos que componentes fizeram montar ou
+
+52
+00:03:37,680 --> 00:03:43,020
+me desculpar, devo dizer sempre que esse componente foi processado na tela, eu quero
+
+53
+00:03:43,020 --> 00:03:47,100
+verificar se o usurio est ou no assinado no momento dentro.
+
+54
+00:03:47,130 --> 00:03:51,420
+Ento, como verificamos se os usurios j assinaram ou no fizeram isso vrias
+
+55
+00:03:51,430 --> 00:03:53,100
+vezes antes do nosso aplicativo.
+
+56
+00:03:53,280 --> 00:03:56,370
+Utilizamos essa consulta de usurio atual.
+
+57
+00:03:56,580 --> 00:03:59,180
+Ns dissemos que executem esta consulta aqui.
+
+58
+00:03:59,370 --> 00:04:03,330
+Se um usurio for retornado, eles devem estar logados.
+
+59
+00:04:03,630 --> 00:04:09,060
+Mas se um usurio no for retornado, eles no so autenticados e precisamos lev-los para
+
+60
+00:04:09,060 --> 00:04:10,690
+outro lugar em nosso aplicativo.
+
+61
+00:04:10,890 --> 00:04:14,930
+E  exatamente isso que vamos fazer dentro deste componente em Mt.
+
+62
+00:04:14,940 --> 00:04:21,080
+Podemos executar essa consulta a consulta atual do usurio e, ento, podemos ver isso iniciar dados Propst.
+
+63
+00:04:21,150 --> 00:04:23,840
+Usurio se esse usurio existir.
+
+64
+00:04:23,850 --> 00:04:24,280
+timo.
+
+65
+00:04:24,300 --> 00:04:25,520
+Eles devem estar logados.
+
+66
+00:04:25,560 --> 00:04:30,600
+Se eles no estiverem se essa propriedade no existir, eles no so autenticados e precisamos redirecion-los
+
+67
+00:04:30,600 --> 00:04:32,830
+para outro lugar dentro de nossa aplicao.
+
+68
+00:04:33,150 --> 00:04:36,330
+Ento, vamos conectar essa consulta a esse componente.
+
+69
+00:04:36,390 --> 00:04:43,380
+Ento, dentro do componente, a MT pode inspecionar este problema para iniciar o usurio dos dados e decidir o que fazer
+
+70
+00:04:43,560 --> 00:04:46,710
+com o usurio o que fazer com o nosso usurio.
+
+71
+00:04:47,250 --> 00:04:51,640
+Por isso, precisamos primeiro acessar o grfico para El helper de Re-Act Apollo.
+
+72
+00:04:51,870 --> 00:04:55,460
+E tambm precisamos importar essa consulta de usurio atual.
+
+73
+00:04:55,850 --> 00:05:06,140
+Ento, importe o grfico Cuil do Reator Appollo e ns tambm importaremos a consulta, ns a chamaremos de consulta.
+
+74
+00:05:06,140 --> 00:05:10,600
+O usurio atual apenas se certifica de que  realmente claro o que .
+
+75
+00:05:10,980 --> 00:05:17,390
+Ento, vou subir de um diretrio para consultas e, em seguida, usurios atuais assim.
+
+76
+00:05:18,080 --> 00:05:18,430
+EST BEM.
+
+77
+00:05:18,470 --> 00:05:24,200
+Em seguida, traremos essa consulta at o prprio componente usando o auxiliar de ferramenta de grfico.
+
+78
+00:05:24,200 --> 00:05:28,260
+Ento, diremos agora que no vou exportar nada ainda.
+
+79
+00:05:28,730 --> 00:05:31,040
+Agora vou escrever o grfico.
+
+80
+00:05:31,040 --> 00:05:34,940
+Q Ajude a funo a ativar e ligar o componente.
+
+81
+00:05:34,940 --> 00:05:36,800
+Eu ainda no vou exportar nada.
+
+82
+00:05:36,800 --> 00:05:42,560
+Voc ver por que em apenas um pouco que se transforma em um contrato real ou um componente.
+
+83
+00:05:42,860 --> 00:05:43,670
+Ento pegue o enxerto.
+
+84
+00:05:43,670 --> 00:05:50,840
+Bem, ns levamos a nossa consulta de usurio atual e, em seguida, vamos conect-la ao componente exigir off.
+
+85
+00:05:51,230 --> 00:05:57,800
+Ento, agora dentro daqui, podemos ver se isso parou o usurio de dados DOD.
+
+86
+00:05:57,830 --> 00:06:03,650
+Ento, se o usurio existe aqui, ento, eles podem ser autorizados a avanar, como no h problema.
+
+87
+00:06:03,650 --> 00:06:05,410
+No precisamos redirecion-los.
+
+88
+00:06:05,510 --> 00:06:07,820
+Eles so assinados e isso  totalmente bom.
+
+89
+00:06:07,820 --> 00:06:13,580
+No entanto, se o usurio no existir,  realmente o caso que voc deseja descobrir aqui,  o
+
+90
+00:06:13,580 --> 00:06:20,660
+caso que voc quer considerar se o usurio ainda no existir, ento eu quero redirecionar de alguma forma o usurio de volta
+
+91
+00:06:20,660 --> 00:06:22,470
+para a tela de logon.
+
+92
+00:06:22,730 --> 00:06:26,000
+E j fizemos redirecionamentos vrias vezes dentro desta aplicao.
+
+93
+00:06:26,000 --> 00:06:35,540
+Podemos importar o helper do histrico hash do roteador re-agir e, em seguida, dentro da instruo if, o histrico
+
+94
+00:06:35,540 --> 00:06:40,660
+hash ir envi-los de volta para a tela de logon.
+
+95
+00:06:40,670 --> 00:06:47,660
+No  suposto usar o aplicativo ou o componente Su para envi-los de volta para a tela de logon.
+
+96
+00:06:47,660 --> 00:06:53,390
+caso, eu quero que considere aqui o caso em que nossa consulta ainda no foi resolvida pelo servidor.
+
+97
+00:06:53,390 --> 00:06:54,720
+Agora, h um outro
+
+98
+00:06:54,830 --> 00:06:58,300
+Ento, o caso em que a consulta ainda est sendo carregada.
+
+99
+00:06:58,430 --> 00:07:02,710
+Ento, se a consulta ainda est carregando, no sabemos se existe ou no um usurio ainda.
+
+100
+00:07:02,900 --> 00:07:08,630
+E ento, no queremos redirecionar prematuramente o usurio para a tela de login onde voc sabe que
+
+101
+00:07:08,630 --> 00:07:14,300
+ainda estamos executando a consulta, ainda estamos carregando a coisa quando a consulta est sendo executada, um
+
+102
+00:07:14,300 --> 00:07:15,490
+usurio ser indefinido.
+
+103
+00:07:15,560 --> 00:07:21,080
+E por isso, podemos redirecionar o usurio acidentalmente antes de a consulta ter terminado de funcionar.
+
+104
+00:07:21,320 --> 00:07:30,870
+para fazer o carregamento da consulta e no h nenhum usurio presente, ento ns provavelmente devemos redirecionar o usurio para a tela de logon .
+
+105
+00:07:30,920 --> 00:07:38,270
+Ento, tambm vamos olhar para o carregamento de dados de partida do banco de parada, vamos dizer se este
+
+106
+00:07:38,270 --> 00:07:40,240
+no est sendo carregado, ento,
+
+107
+00:07:42,240 --> 00:07:42,580
+EST BEM.
+
+108
+00:07:42,600 --> 00:07:49,140
+Ento, neste ponto, temos um componente aqui onde tudo o que faz depois que ele  processado para a tela, ele
+
+109
+00:07:49,140 --> 00:07:54,670
+vai olhar para a consulta e dizer que esta pessoa iniciou sesso e a consulta foi concluda.
+
+110
+00:07:54,960 --> 00:08:01,320
+Se a consulta tiver terminado de carregar e o usurio no estiver logado, vamos entrar na tela de login.
+
+111
+00:08:01,380 --> 00:08:03,460
+Ento, isso parece muito bom como o comeo aqui.
+
+112
+00:08:03,720 --> 00:08:06,420
+Vamos dar uma pausa rpida e ento vamos voltar.
+
+113
+00:08:06,420 --> 00:08:11,880
+Vamos falar sobre um par de problemas laterais interessantes e transformaremos esse assunto em um componente de
+
+114
+00:08:11,880 --> 00:08:14,590
+ordem superior real e test-lo dentro do navegador.
+
+115
+00:08:14,730 --> 00:08:17,120
+Ento eu vou pegar voc em apenas um segundo.
+

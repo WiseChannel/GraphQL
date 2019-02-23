@@ -1,0 +1,380 @@
+1
+00:00:00,840 --> 00:00:04,810
+M.S. we spoke a little bit about the next app that we're going to be working on.
+
+2
+00:00:05,010 --> 00:00:10,640
+Let's now pivot just a little bit and talk about some of the big challenges of this application.
+
+3
+00:00:10,710 --> 00:00:15,780
+So I took my best stab at thinking about what some of the big issues with this application were is going
+
+4
+00:00:15,780 --> 00:00:18,040
+to be on the left hand side.
+
+5
+00:00:18,040 --> 00:00:22,200
+I've got a list of big issues or problems that we're going to need to tackle.
+
+6
+00:00:22,230 --> 00:00:27,780
+And on the right hand side some proposed solutions and in some cases I don't really necessarily know
+
+7
+00:00:27,780 --> 00:00:32,670
+what the best solution is so we do a little bit of a deep dive to figure out how to approach each of
+
+8
+00:00:32,670 --> 00:00:33,400
+those.
+
+9
+00:00:33,680 --> 00:00:35,550
+So let's walk through each of these.
+
+10
+00:00:35,550 --> 00:00:40,440
+First off we know that we need to show multiple pages to the user based on what we just saw inside of
+
+11
+00:00:40,440 --> 00:00:41,500
+our mockups.
+
+12
+00:00:41,550 --> 00:00:47,940
+We've got a landing page a log in a sign up page and then a landing page or a dashboard of sorts that
+
+13
+00:00:47,940 --> 00:00:54,180
+a user should see once they are successfully authenticated for all that hey that's the re-act side of
+
+14
+00:00:54,180 --> 00:00:56,280
+things and we know how to deal with react.
+
+15
+00:00:56,280 --> 00:01:01,600
+We can make use of react and react router to navigate a user to all of these different pages.
+
+16
+00:01:01,830 --> 00:01:08,520
+So in terms of figuring out how to show information to the user that's still the job of react and react
+
+17
+00:01:08,520 --> 00:01:14,250
+router next since we need to store some amount of user data.
+
+18
+00:01:14,250 --> 00:01:19,680
+We use to store accounts or email addresses passwords all that kind of stuff that's all worth that it's
+
+19
+00:01:19,680 --> 00:01:22,050
+still going to be handled by Mongo DVH.
+
+20
+00:01:22,290 --> 00:01:28,020
+So we're going to take user e-mails take their passwords and store them in some fashion inside of our
+
+21
+00:01:28,020 --> 00:01:30,560
+database.
+
+22
+00:01:30,600 --> 00:01:34,700
+Now here's where things start to get a little bit interesting when we think about gaffed.
+
+23
+00:01:34,710 --> 00:01:40,530
+Well we've been talking about how all of our data sits inside of a graph of sorts and users should be
+
+24
+00:01:40,530 --> 00:01:44,340
+able to excuse me once we have all of our data inside a graph.
+
+25
+00:01:44,340 --> 00:01:49,770
+We should be able to travel from one node or one record to all the other different records inside of
+
+26
+00:01:49,770 --> 00:01:51,060
+our application.
+
+27
+00:01:51,090 --> 00:01:56,960
+Now that starts to get really interesting once we start to bring in the idea of authentication.
+
+28
+00:01:57,030 --> 00:02:02,760
+For example let's say that every single one of our users has a list of private messages.
+
+29
+00:02:02,940 --> 00:02:05,580
+But the key word there being private.
+
+30
+00:02:05,850 --> 00:02:12,570
+How do we effectively make sure that a user can log in and not have the ability to see private messages
+
+31
+00:02:12,570 --> 00:02:18,720
+that belong to other users inside of a traditional application like using restful endpoints.
+
+32
+00:02:18,770 --> 00:02:22,260
+It starts to get kind of obvious how we implement that type of restriction.
+
+33
+00:02:22,320 --> 00:02:27,900
+But in the graft world where we're saying that all of our data is inherently connected how do we make
+
+34
+00:02:27,900 --> 00:02:34,530
+sure that users can't arbitrarily craft queries to kind of sneak into our back end and extract information
+
+35
+00:02:34,530 --> 00:02:36,160
+that we don't want them to see.
+
+36
+00:02:36,420 --> 00:02:40,650
+So we're gonna have to figure out some solution to this and I don't really have necessarily a great
+
+37
+00:02:40,650 --> 00:02:47,300
+idea right now so I have to talk about a little bit and figure out exactly how to approach that next.
+
+38
+00:02:47,340 --> 00:02:49,970
+We need the ability to validate inputs.
+
+39
+00:02:49,990 --> 00:02:55,740
+And that's something that we just spoke about when a user enters an e-mail and a password whenever they're
+
+40
+00:02:55,740 --> 00:02:56,740
+trying to sign up.
+
+41
+00:02:56,760 --> 00:03:01,920
+We need to validate the e-mail and make sure that someone does not already have that e-mail address
+
+42
+00:03:02,010 --> 00:03:04,560
+in use inside of our application.
+
+43
+00:03:04,560 --> 00:03:09,760
+Likewise when a user tries to log in we need to make sure that that e-mail does exist already.
+
+44
+00:03:09,840 --> 00:03:14,880
+We need to make sure that the e-mail has the associated correct password with it.
+
+45
+00:03:14,880 --> 00:03:18,730
+So there is a lot of validation of these inputs that we need to make sure that we take care of.
+
+46
+00:03:18,810 --> 00:03:22,770
+And that's something else that we have not really addressed inside the graft real world just yet.
+
+47
+00:03:22,890 --> 00:03:27,930
+So we need to kind of figure out a way to handle that in an elegant fashion.
+
+48
+00:03:28,450 --> 00:03:33,690
+Next we're talking all about authenticating users and getting them to log in sign up all these kind
+
+49
+00:03:33,690 --> 00:03:34,710
+of great stuff.
+
+50
+00:03:34,770 --> 00:03:38,740
+We need some method or means of authenticating our users.
+
+51
+00:03:38,940 --> 00:03:44,280
+So when they first sign up for our application we need to authenticate them and consumed now be logged
+
+52
+00:03:44,280 --> 00:03:50,640
+in and when they come back to our application and try to sign in in some fashion we need to make sure
+
+53
+00:03:50,640 --> 00:03:56,500
+that they can actually enter an email and password and then be considered to be authenticated.
+
+54
+00:03:56,520 --> 00:04:04,050
+Now for all this we're going to making use of passport G-S passport G-S is a node library that is frequently
+
+55
+00:04:04,050 --> 00:04:06,400
+used for handling user authentication.
+
+56
+00:04:06,690 --> 00:04:14,250
+But the flip side to that is that this passport library which is bar none the absolute de facto solution
+
+57
+00:04:14,280 --> 00:04:15,900
+for authentication with node.
+
+58
+00:04:16,170 --> 00:04:19,090
+It is not designed with graft in mind.
+
+59
+00:04:19,320 --> 00:04:25,440
+So passport really doesn't have any good idea or good tie in for authenticating users when we're making
+
+60
+00:04:25,440 --> 00:04:26,100
+you Siggraph.
+
+61
+00:04:26,200 --> 00:04:33,270
+Well so we're going to have to think of some way to get passport engraft to to work together nicely.
+
+62
+00:04:33,270 --> 00:04:37,650
+And again this is going to be a big point where we are going to do a little bit of a deep dive there
+
+63
+00:04:37,680 --> 00:04:42,990
+and try to figure out some of the best practices and how we might approach that with a somewhat elegant
+
+64
+00:04:42,990 --> 00:04:47,980
+solution with all three of these questionmark areas right here.
+
+65
+00:04:48,330 --> 00:04:53,280
+There are issues where maybe you know we do have a reasonable way of figuring out how to do that but
+
+66
+00:04:53,310 --> 00:04:59,490
+I don't specifically think about how to handle each of these in the graft you Elway or in an elegant
+
+67
+00:04:59,690 --> 00:05:04,820
+with Graph Cuil some way where it feels like we're not really kind of monkey patching the heck out of
+
+68
+00:05:04,820 --> 00:05:08,230
+the libraries that we're making use of.
+
+69
+00:05:08,240 --> 00:05:12,020
+So these are the big challenges that we're going to take care of during the section.
+
+70
+00:05:12,060 --> 00:05:17,240
+Last thing I want to talk about just a little bit is a little bit of the full stack approach that we're
+
+71
+00:05:17,240 --> 00:05:21,480
+taking here in all the different technologies that we're going to be making use of.
+
+72
+00:05:21,500 --> 00:05:24,630
+So it's still going to look very similar to what we've been doing in the past.
+
+73
+00:05:24,710 --> 00:05:27,350
+No big changes here per se.
+
+74
+00:05:27,410 --> 00:05:32,220
+We're still going to have a mongo DB database that is hosted by Mago lab.
+
+75
+00:05:32,300 --> 00:05:37,730
+Again recall that we're making use of Mago lab just so that we do not have to set up a local Mongo DB
+
+76
+00:05:37,730 --> 00:05:38,610
+database.
+
+77
+00:05:38,720 --> 00:05:42,200
+And that also makes life a little bit easier when we migrate over to production.
+
+78
+00:05:42,350 --> 00:05:47,660
+So we don't have to worry about big differences in our database solution between production and our
+
+79
+00:05:47,660 --> 00:05:53,540
+local environment the server the web server that we're going to be making use of it's still going to
+
+80
+00:05:53,540 --> 00:05:59,450
+be an express express is going to be hosting a graph Cuil instance and we're also still going to making
+
+81
+00:05:59,450 --> 00:06:06,620
+use of Web pack for developing all of our client side assets and web PAC engraft Cuil are going to be
+
+82
+00:06:06,620 --> 00:06:12,050
+the main points of interface with our user inside the web browser where we're going to have our reactivates
+
+83
+00:06:12,230 --> 00:06:13,580
+application.
+
+84
+00:06:14,160 --> 00:06:14,760
+Okay.
+
+85
+00:06:14,960 --> 00:06:22,040
+So that's the kind of a 30000 foot overview of the big issues the big challenges and the general architecture
+
+86
+00:06:22,040 --> 00:06:24,350
+of the application that we're going to work on.
+
+87
+00:06:24,590 --> 00:06:30,830
+Again the real thing that I want to communicate here is how do we really effectively detail with user
+
+88
+00:06:30,830 --> 00:06:36,590
+authentication and make sure that users have some level of authorization and the data that they're trying
+
+89
+00:06:36,590 --> 00:06:37,810
+to access.
+
+90
+00:06:37,880 --> 00:06:43,010
+Again everything that we've been talking about with graft 2L has all revolved around all of our data
+
+91
+00:06:43,010 --> 00:06:49,670
+is connected and from any single point of data we can access all the other points of data in our application.
+
+92
+00:06:49,880 --> 00:06:55,130
+So I really want to hammer that in and figure out what an effective way might be to limit the scope
+
+93
+00:06:55,130 --> 00:06:58,720
+of what a user cannot access inside of our app.
+
+94
+00:06:59,390 --> 00:07:00,450
+So that's a big overview.
+
+95
+00:07:00,530 --> 00:07:05,070
+Let's continue in the next section and get started with this application.
+

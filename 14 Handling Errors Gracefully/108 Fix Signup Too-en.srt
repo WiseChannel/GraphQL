@@ -1,0 +1,292 @@
+1
+00:00:00,660 --> 00:00:05,550
+In the last section we finished up our work around for detecting whether or not a user has successfully
+
+2
+00:00:05,550 --> 00:00:06,710
+logged in.
+
+3
+00:00:06,780 --> 00:00:08,880
+We use a little bit of a hack here.
+
+4
+00:00:08,880 --> 00:00:14,190
+I would definitely call Zach in that we were detecting whether or not the user's authentication state
+
+5
+00:00:14,190 --> 00:00:20,550
+has changed inside of the logon form to decide whether or not we need to push that user over to the
+
+6
+00:00:20,550 --> 00:00:21,440
+dashboard.
+
+7
+00:00:21,690 --> 00:00:27,470
+So again I would say this is really not ideal but it's the best that we've got to work with right now.
+
+8
+00:00:27,540 --> 00:00:33,390
+So long as that promise that is returned by the mutation gets resolved before the refreshed queries
+
+9
+00:00:33,390 --> 00:00:34,500
+runs.
+
+10
+00:00:34,890 --> 00:00:40,650
+So now that we've got this refurbishing and redirecting process all wired up we're going to take the
+
+11
+00:00:40,650 --> 00:00:46,580
+logic that we just added to the log in form and duplicated over to the Sign-Up form as well.
+
+12
+00:00:46,590 --> 00:00:50,440
+So let's move on over to the sign up form in Rio.
+
+13
+00:00:50,550 --> 00:00:56,850
+So we're going to add in our lifecycle method we're going to wire up our Querrey and whenever that user
+
+14
+00:00:56,910 --> 00:01:02,640
+object changes well we probably need to redirect the user over to the dashboard page.
+
+15
+00:01:03,150 --> 00:01:07,620
+So the first thing that we're going to do in here is make sure that we import the hash history object
+
+16
+00:01:07,620 --> 00:01:12,490
+from re-act router so that we can successfully redirect our user.
+
+17
+00:01:12,610 --> 00:01:17,610
+So we'll import hash history from re-act router.
+
+18
+00:01:18,000 --> 00:01:21,890
+Next we'll wire up the lifecycle method component will mount.
+
+19
+00:01:22,320 --> 00:01:29,370
+So inside of the component say component will or as I said component will again excuse me component
+
+20
+00:01:29,370 --> 00:01:32,560
+will update receiving a new set of props here.
+
+21
+00:01:33,030 --> 00:01:38,580
+We'll take the next set of props and then again we get to compare the current set of props with the
+
+22
+00:01:38,580 --> 00:01:45,210
+previous set of props and say okay if there was not a user currently but there is one now or there will
+
+23
+00:01:45,210 --> 00:01:47,140
+be one with this next set of props.
+
+24
+00:01:47,250 --> 00:01:52,800
+Then chances are the user just logged in and we need to redirect them over to the dashboard.
+
+25
+00:01:52,950 --> 00:01:56,650
+So if next Propst data on user.
+
+26
+00:01:56,670 --> 00:02:05,420
+So if the incoming set of props has a user and the previous set of props did not have one.
+
+27
+00:02:05,640 --> 00:02:07,710
+Well user must have just logged in.
+
+28
+00:02:07,710 --> 00:02:11,090
+So lets redirect the user over to the dashboard page.
+
+29
+00:02:11,440 --> 00:02:19,110
+So will say Housh history push will send them on over to the dashboard.
+
+30
+00:02:19,270 --> 00:02:21,580
+Thats looking good for component will update.
+
+31
+00:02:21,580 --> 00:02:28,080
+Now we need to make sure that we wire up the current user query to this component.
+
+32
+00:02:28,090 --> 00:02:32,630
+Right now we only have it imported to make sure that we attempt to retest that query.
+
+33
+00:02:32,740 --> 00:02:37,660
+We do have to make sure that we wired up to the component itself so the component knows about the current
+
+34
+00:02:37,720 --> 00:02:39,590
+user object.
+
+35
+00:02:39,790 --> 00:02:45,070
+So we'll scroll all the way down to the bottom of this file and we're going to wire it up with the existing
+
+36
+00:02:45,070 --> 00:02:47,860
+graph to have mutation that we've already gotten here.
+
+37
+00:02:47,890 --> 00:02:50,330
+Now we've done this little refactor several times now.
+
+38
+00:02:50,550 --> 00:02:56,500
+So remember going a new line the existing query is going to make darn sure that remove the semi-colon
+
+39
+00:02:56,530 --> 00:03:04,570
+at the end and then I'll wire up the query and then I'll open up a set of parentheses and close it around
+
+40
+00:03:04,570 --> 00:03:06,460
+the existing one.
+
+41
+00:03:06,460 --> 00:03:11,500
+One thing that I want to be really clear about with stacking up queries and mutations like this is that
+
+42
+00:03:11,500 --> 00:03:16,000
+we can add in the queries and mutations in any order that we wish.
+
+43
+00:03:16,030 --> 00:03:18,410
+So it doesn't have to be Querrey and then mutation.
+
+44
+00:03:18,430 --> 00:03:21,010
+It could be mutation and then Querrey.
+
+45
+00:03:21,010 --> 00:03:22,210
+It's totally up to us.
+
+46
+00:03:22,210 --> 00:03:23,210
+The order in which it goes.
+
+47
+00:03:23,230 --> 00:03:28,160
+And it has absolutely no impact on the internals of how everything is working.
+
+48
+00:03:30,110 --> 00:03:35,590
+All right I think we're about ready to do a little test here so I'll save this file.
+
+49
+00:03:35,800 --> 00:03:37,990
+We'll flip back over to our browser.
+
+50
+00:03:38,250 --> 00:03:41,200
+I'm going to first go back to our route route
+
+51
+00:03:44,860 --> 00:03:47,300
+and when to refresh the page.
+
+52
+00:03:47,310 --> 00:03:50,020
+Make sure I get all the new code in here.
+
+53
+00:03:50,340 --> 00:03:52,440
+I'm going to ensure that I'm logged out.
+
+54
+00:03:52,440 --> 00:03:57,010
+So I click the log out button and OK now I think we're ready to do a little test.
+
+55
+00:03:57,300 --> 00:04:02,860
+So I'm going to click on the sign up button will enter in an e-mail that we've never used before.
+
+56
+00:04:02,970 --> 00:04:05,640
+So I'll say 000.
+
+57
+00:04:05,650 --> 00:04:13,260
+Test test dot com whatever password you want to use and it looks the Smidt button.
+
+58
+00:04:13,260 --> 00:04:19,410
+So remember when we click Submit I'm going to expect to see an immediate network request that's going
+
+59
+00:04:19,410 --> 00:04:25,440
+to be the mutation that is creating the new user and then expect to see a second request representing
+
+60
+00:04:25,560 --> 00:04:27,730
+the refection of our current user.
+
+61
+00:04:27,780 --> 00:04:34,230
+And then after that second request completes I expect to get redirected over to the dashboard page and
+
+62
+00:04:34,230 --> 00:04:39,600
+again because we don't yet have a dashboard set up I do expect to see a nice error message in the console
+
+63
+00:04:39,600 --> 00:04:40,680
+as well.
+
+64
+00:04:40,680 --> 00:04:41,840
+So let's give this a shot.
+
+65
+00:04:41,880 --> 00:04:47,880
+We'll submit there's a mutation there is the follow up query for the current user and we can see the
+
+66
+00:04:47,880 --> 00:04:49,140
+user in there.
+
+67
+00:04:49,560 --> 00:04:52,490
+And of course Yup we've got our nice error message.
+
+68
+00:04:52,500 --> 00:04:57,720
+This is one of the few times I'm going to say nice error message by the way saying that we successfully
+
+69
+00:04:57,720 --> 00:05:00,610
+logged in we got the redirect over to the dashboard.
+
+70
+00:05:00,630 --> 00:05:02,730
+But we don't have a dashboard route.
+
+71
+00:05:03,260 --> 00:05:03,910
+Cool.
+
+72
+00:05:03,930 --> 00:05:05,460
+This looks like it's working pretty well.
+
+73
+00:05:05,520 --> 00:05:07,310
+Let's continue in the next section.
+

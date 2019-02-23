@@ -1,0 +1,352 @@
+1
+00:00:00,810 --> 00:00:07,100
+Na ltima seo, juntamos nosso boto de logout e ns o associamos com nossa mutao de logout.
+
+2
+00:00:07,320 --> 00:00:12,810
+Mas eu havia dito que, sempre que clicamos neste boto, a expectativa  que este componente
+
+3
+00:00:12,810 --> 00:00:18,750
+aqui deveria atualizar automaticamente e refletir o fato de que o usurio no est mais logado, certificando-se
+
+4
+00:00:18,750 --> 00:00:22,060
+de que vemos os botes de inscrio e de login.
+
+5
+00:00:23,360 --> 00:00:27,800
+Ento, h claramente um pouco de pensar que temos que fazer aqui para garantir
+
+6
+00:00:27,800 --> 00:00:31,880
+que depois que esta mutao seja concluda, de alguma forma, atualizaremos o componente.
+
+7
+00:00:31,890 --> 00:00:37,710
+passado, usando essas consultas de pr-busca auxiliares que passamos para o ano de taxa de mutao, lembre-se de
+
+8
+00:00:37,710 --> 00:00:44,250
+que as ajudas de consultas de referncia podem passar uma lista de consultas para executar novamente aps a mutao estar completa.
+
+9
+00:00:44,250 --> 00:00:46,310
+Agora, ns lidamos com isso no
+
+10
+00:00:46,320 --> 00:00:48,570
+Ento eu acho que esse pode ser o plano de ao aqui.
+
+11
+00:00:48,690 --> 00:00:50,460
+Vamos dar um pouco de pensamento.
+
+12
+00:00:51,530 --> 00:00:53,210
+Ento, aqui est o plano.
+
+13
+00:00:53,210 --> 00:00:58,710
+Quando o carregador quando o cabealho primeiro carregar, pediremos o estado de autenticao atual.
+
+14
+00:00:58,910 --> 00:01:02,400
+Se o usurio estiver conectado, mostrar o boto de logout.
+
+15
+00:01:02,480 --> 00:01:08,210
+Agora, quando o usurio clicar nesse boto, vamos rerunar toda a consulta para obter o estado
+
+16
+00:01:08,210 --> 00:01:09,380
+de autenticao atual.
+
+17
+00:01:09,380 --> 00:01:16,010
+Agora, assim que voltar ou nos desculpar, assim que voltarmos a ser estranho, o nosso componente que est
+
+18
+00:01:16,010 --> 00:01:22,330
+associado  consulta ir renderizar automaticamente e quando ele renderizar o componente, veremos oh, a consulta foi
+
+19
+00:01:22,410 --> 00:01:25,470
+executada e o usurio no est mais logado. .
+
+20
+00:01:25,520 --> 00:01:31,220
+Nesse caso, vou mostrar os botes que permitem ao usurio se inscrever ou fazer login no aplicativo.
+
+21
+00:01:31,220 --> 00:01:36,510
+Ento, na prtica, isso realmente acaba por ser outro exerccio de usar as consultas atualizadas ajudando
+
+22
+00:01:36,760 --> 00:01:38,910
+ou com uma de nossas mutaes.
+
+23
+00:01:39,380 --> 00:01:45,650
+Lembre-se, em geral, que  um dos melhores ajudantes que temos para lidar com as atualizaes nos nossos dados
+
+24
+00:01:45,710 --> 00:01:47,870
+facilmente depois de ter executado uma mutao.
+
+25
+00:01:47,870 --> 00:01:53,300
+Podemos apenas reexaminar todas as consultas diferentes que pensamos que a mutao  afetada
+
+26
+00:01:53,300 --> 00:01:59,240
+e, em seguida, todos os componentes associados  determinada consulta atualizaro automaticamente dentro da nossa aplicao.
+
+27
+00:01:59,300 --> 00:02:06,710
+Ento, depois de executarmos a mutao, diremos que queremos graficar bem automaticamente para obter essa lista de consultas e
+
+28
+00:02:06,710 --> 00:02:13,340
+eu digo essa lista. Ns realmente temos uma consulta que queremos executar, mas vamos passar uma matriz
+
+29
+00:02:13,340 --> 00:02:16,940
+aqui porque  isso que O ajudante espera que faamos.
+
+30
+00:02:17,270 --> 00:02:23,090
+Novamente, se tivssemos vrias consultas que queramos para Refshauge, poderamos passar cada uma delas por sua vez.
+
+31
+00:02:23,690 --> 00:02:29,540
+nica consulta que eu quero reertar,  a consulta atual do usurio que importamos como
+
+32
+00:02:29,540 --> 00:02:39,870
+consulta, ento a consulta  consulta como, ento, novamente, o nome da chave de nomes de variveis idnticos para que possamos condensar apenas a consulta assim.
+
+33
+00:02:39,870 --> 00:02:42,380
+Ento, eu acabei de obter uma
+
+34
+00:02:42,530 --> 00:02:49,310
+OK, ento est ficando muito bom depois que as corridas de mutao so executadas novamente e fazem com que qualquer componente esteja associado
+
+35
+00:02:49,310 --> 00:02:50,130
+a essa consulta.
+
+36
+00:02:50,210 --> 00:02:54,570
+E espero ver o cabealho atualizar automaticamente na tela.
+
+37
+00:02:54,650 --> 00:02:57,960
+Ento, eu acho que estamos prontos para obter um pouco de teste dentro do navegador.
+
+38
+00:02:58,280 --> 00:03:01,140
+Preciso de uma mudana para a nossa aplicao.
+
+39
+00:03:01,140 --> 00:03:03,020
+Preciso atualizar a pgina.
+
+40
+00:03:03,020 --> 00:03:08,450
+aplicativo e no temos nenhuma maneira de fazer login no aplicativo ainda fora do grfico.
+
+41
+00:03:08,450 --> 00:03:11,750
+Agora voc notar que atualmente no estou conectado ao
+
+42
+00:03:11,810 --> 00:03:17,880
+Ento, eu primeiro vou passar para grfico e executar minha mutao de log para iniciar uma sesso com meu servidor.
+
+43
+00:03:18,020 --> 00:03:22,880
+Ento eu poderia ser capaz de atualizar esta pgina e ver tudo funcionou da maneira que esperamos.
+
+44
+00:03:22,880 --> 00:03:24,770
+Ento eu vou passar por uma localizao geogrfica.
+
+45
+00:03:24,950 --> 00:03:27,640
+Eu vou escrever minha mutao para fazer login.
+
+46
+00:03:27,970 --> 00:03:35,160
+Ento, diga o login de mutao. Eu tenho que passar no e-mail e senha para uma conta de usurio vlida.
+
+47
+00:03:35,650 --> 00:03:41,510
+Ento, diremos um e-mail de teste no ponto de teste com a senha da senha e depois do usurio que recebe retorno. Ei,
+
+48
+00:03:45,390 --> 00:03:49,140
+apenas me d o eu. D. ou alguma coisa.
+
+49
+00:03:50,520 --> 00:03:50,860
+EST BEM.
+
+50
+00:03:50,890 --> 00:03:51,640
+Parece bom.
+
+51
+00:03:51,670 --> 00:03:56,380
+Ento, eu deveria ter uma sesso em execuo com o servidor, o que significa que eu
+
+52
+00:03:56,380 --> 00:04:03,010
+deveria ser capaz de retornar  atualizao do meu aplicativo na pgina que eu vejo que desconheo aparecer na tela e perceber como
+
+53
+00:04:03,010 --> 00:04:04,010
+rapidamente o logon aparece.
+
+54
+00:04:04,030 --> 00:04:06,840
+Apenas aparece quase instantaneamente na tela.
+
+55
+00:04:06,880 --> 00:04:09,870
+E uma coisa que eu quero dizer  que voc sabe que estamos funcionando localmente.
+
+56
+00:04:10,030 --> 00:04:10,620
+Okay, certo.
+
+57
+00:04:10,630 --> 00:04:15,780
+Voc sabe, claro, que estamos executando este aplicativo localmente, mas queremos lembr-lo de que nosso banco de
+
+58
+00:04:15,790 --> 00:04:18,430
+dados divi Mongo est hospedado de forma remota.
+
+59
+00:04:18,430 --> 00:04:25,840
+Ento, mesmo que nosso prprio aplicativo seja hospedado localmente, os dados que buscamos so de algum
+
+60
+00:04:25,840 --> 00:04:26,570
+servidor remoto.
+
+61
+00:04:26,620 --> 00:04:32,320
+Portanto, a velocidade com a qual este boto no lado direito superior  bastante representativa de
+
+62
+00:04:32,380 --> 00:04:36,670
+como eu esperaria que isso fizesse dentro de um ambiente de produo.
+
+63
+00:04:36,670 --> 00:04:39,500
+Ento,  muito rpido, eu definitivamente estou satisfeito com isso.
+
+64
+00:04:39,790 --> 00:04:41,790
+Ok, ento agora  o momento da verdade.
+
+65
+00:04:41,950 --> 00:04:43,190
+Vamos clicar neste boto.
+
+66
+00:04:43,360 --> 00:04:50,000
+Ns devemos ver uma consulta imediata do Earthsea, uma mutao automaticamente disparada para o nosso backend.
+
+67
+00:04:50,230 --> 00:04:55,840
+Ento, quando eu trago meu log de solicitao de rede aqui, todos os tipos de especialistas so pedidos para ver todos
+
+68
+00:04:55,840 --> 00:04:57,630
+os pedidos de rede para o back-end.
+
+69
+00:04:57,910 --> 00:05:02,800
+Ento, quando eu clicar no boto, eu deveria ver uma solicitao que ir sair da mutao.
+
+70
+00:05:02,800 --> 00:05:07,930
+Ento, isso significa que nos logaremos para fora do aplicativo e que vai representar a mutao
+
+71
+00:05:07,930 --> 00:05:12,820
+que est indo para a parte de trs assim que recebermos a resposta a essa mutao.
+
+72
+00:05:12,820 --> 00:05:18,190
+automaticamente uma consulta adicional para solicitar o estado de autenticao atual do usurio.
+
+73
+00:05:18,190 --> 00:05:19,640
+Nosso cliente deve acompanhar
+
+74
+00:05:19,870 --> 00:05:25,120
+E naquele momento, quando recebermos uma resposta, devemos ver os dois botes aparecem para
+
+75
+00:05:25,120 --> 00:05:28,270
+sair ou me ver entrar ou se inscrever.
+
+76
+00:05:28,270 --> 00:05:30,580
+Ento, clique em sair.
+
+77
+00:05:30,580 --> 00:05:32,020
+Recebo o primeiro pedido.
+
+78
+00:05:32,110 --> 00:05:33,590
+Essa  uma mutao ali mesmo.
+
+79
+00:05:33,740 --> 00:05:36,220
+Ento, parece que ns desconectamos com sucesso.
+
+80
+00:05:36,220 --> 00:05:41,050
+e ento seguimos imediatamente isso com outro pedido para dizer Hey, quem  o usurio atual.
+
+81
+00:05:41,050 --> 00:05:44,190
+Aqui est o e-mail e a idia do usurio que desconectou-se
+
+82
+00:05:44,380 --> 00:05:50,680
+Bem, agora no h usurio atual, ento no  um componente de campo automaticamente e ns conseguimos inscrever-se e
+
+83
+00:05:50,680 --> 00:05:53,040
+registrar os desconexes que aparecem na tela.
+
+84
+00:05:53,350 --> 00:05:56,200
+Perfeita exatamente como esperamos.
+
+85
+00:05:56,200 --> 00:05:59,710
+Parece que nosso cabealho est em muito boa forma agora.
+
+86
+00:05:59,740 --> 00:06:04,720
+Eu acho que a prxima coisa que queremos fazer  comear a trabalhar no registro e
+
+87
+00:06:04,720 --> 00:06:06,730
+entrar nos formulrios para a nossa aplicao.
+
+88
+00:06:06,730 --> 00:06:09,700
+Ento vamos comear a trabalhar nessas duas peas na prxima seo.
+

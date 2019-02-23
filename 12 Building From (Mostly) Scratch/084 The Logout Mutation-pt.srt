@@ -1,0 +1,372 @@
+1
+00:00:00,870 --> 00:00:06,480
+Agora que obtemos a nossa matrcula de inscrio, podemos pensar em como sair de um usurio uma vez
+
+2
+00:00:06,480 --> 00:00:08,690
+que eles foram autenticados com nossa aplicao.
+
+3
+00:00:08,880 --> 00:00:13,410
+Ento, logueando como o usurio vai ser outro tipo de mutao que juntamos.
+
+4
+00:00:13,590 --> 00:00:19,200
+Ou outra mutao que colocamos no objeto deste campo aqui mesmo, a mutao de sada provavelmente ficar bem
+
+5
+00:00:19,200 --> 00:00:24,880
+parecida com a de se inscrever aqui, j que ter um tipo de tipo de retorno do usurio.
+
+6
+00:00:24,880 --> 00:00:31,230
+Ento, devolva o usurio que se desconectou, mas eu realmente no espero que haja nenhum args associado  assinatura
+
+7
+00:00:31,230 --> 00:00:32,360
+de um usurio.
+
+8
+00:00:32,580 --> 00:00:36,690
+Ento, no vamos dizer pegar o e-mail do usurio. Estamos tentando sair.
+
+9
+00:00:36,690 --> 00:00:39,210
+Ns apenas vamos assinar o usurio.
+
+10
+00:00:39,210 --> 00:00:44,550
+Lembre-se de que toda a parte de autenticao do aplicativo est delegando no passaporte.
+
+11
+00:00:44,670 --> 00:00:49,650
+Ento,  realmente um passaporte que vai lidar com realmente a excluso de um usurio. Toda a
+
+12
+00:00:49,650 --> 00:00:55,830
+mutao que estamos escrevendo aqui vai fazer  certificar-se de instruir o passaporte para sair do usurio apenas para garantir que
+
+13
+00:00:55,830 --> 00:00:58,470
+entendamos como o site como o passaporte faz aquele.
+
+14
+00:00:58,470 --> 00:01:02,940
+Eu tomei a liberdade de retirar documentao de passaporte.
+
+15
+00:01:02,940 --> 00:01:06,670
+Ento eu estou no passaporte apenas dobras de barraca de artefatos.
+
+16
+00:01:06,690 --> 00:01:11,100
+Voc pode navegar at aqui e verificar a documentao se desejar.
+
+17
+00:01:11,340 --> 00:01:14,200
+Eu j peguei a documentao relevante na tela.
+
+18
+00:01:14,280 --> 00:01:14,940
+Oups.
+
+19
+00:01:15,360 --> 00:01:18,720
+Ok, vamos fazer o login do usurio.
+
+20
+00:01:18,750 --> 00:01:21,750
+ quase to simples quanto  possvel.
+
+21
+00:01:21,750 --> 00:01:24,090
+Tomaramos o objeto de solicitao recebida.
+
+22
+00:01:24,210 --> 00:01:29,630
+Esse nmero  o terceiro argumento para a nossa funo de resoluo e ns chamamos de desconect-lo.
+
+23
+00:01:29,910 --> 00:01:32,640
+E isso ir remover o usurio.
+
+24
+00:01:32,670 --> 00:01:37,950
+nossa aplicao, ele ir preencher automaticamente a propriedade do usurio Rec dot com o modelo do usurio.
+
+25
+00:01:37,950 --> 00:01:43,160
+Uma coisa a ter em mente  que sempre que o passaporte est sendo usado dentro de
+
+26
+00:01:43,350 --> 00:01:48,540
+Ento, este usurio rebitado  realmente o que queremos retornar da nossa funo de resoluo.
+
+27
+00:01:48,540 --> 00:01:52,340
+Portanto, no precisamos dizer que v buscar no banco de dados para encontrar o usurio.
+
+28
+00:01:52,350 --> 00:01:57,420
+Novamente, no precisamos adotar nenhum argumento para descobrir qual usurio estamos tentando sair
+
+29
+00:01:57,420 --> 00:01:58,450
+ou algo assim.
+
+30
+00:01:58,560 --> 00:02:04,350
+Ns podemos apenas olhar o usurio Record para descobrir qual usurio est tentando sair e retornar isso da
+
+31
+00:02:04,350 --> 00:02:05,460
+nossa funo de resoluo.
+
+32
+00:02:05,460 --> 00:02:12,770
+frase est bem aqui e eu sei que o texto provavelmente  pequeno, mas se eu ampliar em tudo  realmente difcil de ler.
+
+33
+00:02:12,770 --> 00:02:19,370
+Uma vez que nossa funo de resoluo  esperada para retornar um usurio, vejamos que eu quero mencionar  que, se voc
+
+34
+00:02:19,370 --> 00:02:22,470
+parece um pouco lido muito de perto na lei, esta
+
+35
+00:02:23,890 --> 00:02:24,320
+Oh garoto.
+
+36
+00:02:24,340 --> 00:02:25,510
+Agora eu perdi.
+
+37
+00:02:27,620 --> 00:02:28,080
+EST BEM.
+
+38
+00:02:28,190 --> 00:02:33,800
+Se voc ler a frase com muita rapidez, ele diz que quando voc efetuar o login, ele remover a
+
+39
+00:02:33,800 --> 00:02:37,010
+propriedade do usurio Rec dot e limpar a sesso de login.
+
+40
+00:02:37,010 --> 00:02:42,290
+Ento, uma coisa que precisamos garantir que faamos  salvar primeiro uma referncia ao usurio.
+
+41
+00:02:42,440 --> 00:02:45,430
+Em seguida, vamos registrar o usurio e depois retornar o usurio.
+
+42
+00:02:45,700 --> 00:02:51,830
+Se tentssemos primeiro para registrar o usurio e, em seguida, acessar registro de registros de usurios, o usurio surgiria como
+
+43
+00:02:51,860 --> 00:02:54,790
+indefinido, o que definitivamente no  o que esperamos.
+
+44
+00:02:56,240 --> 00:02:56,800
+EST BEM.
+
+45
+00:02:56,860 --> 00:02:58,090
+Ento, vamos dar o sinal de sada.
+
+46
+00:02:58,080 --> 00:03:02,890
+Mutao um tiro se parece um pouco intimidante ou parece um pouco louco.
+
+47
+00:03:02,890 --> 00:03:07,730
+Confie em mim, na verdade, vai acabar sendo muito mais simples e direto do que voc poderia esperar.
+
+48
+00:03:07,750 --> 00:03:14,380
+si, levar o valor principal args e rech, que  o objeto de solicitao.
+
+49
+00:03:14,380 --> 00:03:23,960
+Ento, vamos descobrir muito para encontrar a mutao de logon, vamos retornar um usurio a partir da funo de resultado, definiremos
+
+50
+00:03:23,960 --> 00:03:26,040
+a funo de resultado em
+
+51
+00:03:26,120 --> 00:03:32,810
+Agora, vamos salvar uma referncia de referncia para o usurio no objeto de solicitao, de modo que possamos
+
+52
+00:03:32,810 --> 00:03:36,260
+logar o usurio chamando o registro de log de ract.
+
+53
+00:03:36,260 --> 00:03:38,300
+E, finalmente, devolvemos o usurio.
+
+54
+00:03:38,570 --> 00:03:43,460
+Ento, novamente,  apenas uma coisa muito pequena de operaes aqui quando chamamos recked e no desconecte.
+
+55
+00:03:43,460 --> 00:03:47,060
+Ele remove a propriedade do usurio fora do objeto de solicitao.
+
+56
+00:03:47,060 --> 00:03:53,890
+Ento, primeiro salvamos uma referncia para a propriedade do usurio, ento ns registamos o usurio e depois devolvemos o usurio.
+
+57
+00:03:53,900 --> 00:03:59,240
+Ento, este  outro bom exemplo de como estamos passando o passaporte para enxertar Cuil para um pouco de malha juntos.
+
+58
+00:03:59,270 --> 00:04:05,080
+Voc notar que tenho mais lgica aqui do que provavelmente o que eu realmente gostaria de ter.
+
+59
+00:04:05,690 --> 00:04:12,410
+Por exemplo, aqui no registro ou parece registrar a nutao, temos um forro muito pequeno e
+
+60
+00:04:12,410 --> 00:04:13,310
+muito pequeno.
+
+61
+00:04:13,580 --> 00:04:19,040
+Ento, voc poderia definitivamente fazer um caso aqui para dizer que talvez precisemos fazer outra funo
+
+62
+00:04:19,040 --> 00:04:25,640
+no servio chamado de logout, o que levaria apenas o objeto de solicitao e devemos basicamente fazer toda essa
+
+63
+00:04:25,640 --> 00:04:26,490
+lgica dentro dele.
+
+64
+00:04:26,660 --> 00:04:32,390
+vez que  apenas trs linhas sem muita lgica ligada a ela, eu me sinto OK, colocando a lgica aqui.
+
+65
+00:04:32,390 --> 00:04:33,160
+No entanto, uma
+
+66
+00:04:33,170 --> 00:04:38,900
+Mas certamente, se voc quiser, voc definitivamente pode adicionar outra funo ao servio off auto e
+
+67
+00:04:38,900 --> 00:04:40,960
+mover essa lgica diretamente para ela.
+
+68
+00:04:41,030 --> 00:04:47,210
+Voc s quer se certificar de que voc ainda retornar o usurio daquela funo de logon OK.
+
+69
+00:04:47,220 --> 00:04:50,040
+Eu acho que estamos prontos para dar um teste agora.
+
+70
+00:04:50,040 --> 00:04:55,920
+Mais uma vez, ainda no temos a capacidade de descobrir se o nosso usurio est realmente
+
+71
+00:04:55,920 --> 00:04:56,820
+autenticado ou no.
+
+72
+00:04:56,820 --> 00:05:00,570
+Ento, eu realmente no sei, podemos testar isso e garantir que no receba um erro.
+
+73
+00:05:00,630 --> 00:05:06,460
+Mas, novamente, ns realmente no temos a habilidade de dizer, agora estou inscrito ou pronto loguei. Estou autenticado
+
+74
+00:05:06,750 --> 00:05:10,940
+e agora vou chamar a mutao de login e agora no estou autenticado.
+
+75
+00:05:11,190 --> 00:05:15,930
+Ento, agora, eu quero dar um pouco de chance ou um pequeno teste, mas provavelmente teremos
+
+76
+00:05:15,930 --> 00:05:21,060
+que voltar e apenas ter certeza de que todas as partes de autenticao so peas de autenticao
+
+77
+00:05:21,060 --> 00:05:22,720
+esto trabalhando da maneira que esperamos.
+
+78
+00:05:23,030 --> 00:05:28,860
+OK vamos voltar de novo para o navegador ir abrir grfico.
+
+79
+00:05:28,860 --> 00:05:34,110
+Eu vou atualizar grficos apenas para garantir que obtenhamos os dados em torno da nova mutao
+
+80
+00:05:34,110 --> 00:05:35,450
+que acabamos de escrever.
+
+81
+00:05:36,210 --> 00:05:42,090
+Eu vou tirar a mutao existente vai adicionar no nosso novo e desta vez vamos
+
+82
+00:05:42,090 --> 00:05:48,530
+ligar para sair e eu s quero ouvir sobre o e-mail do usurio que acabou de sair.
+
+83
+00:05:48,990 --> 00:05:51,810
+Ento vamos executar esta coisa e OK.
+
+84
+00:05:51,900 --> 00:05:58,800
+Voltamos ao e-mail, presumivelmente, o usurio agora est desconectado e j no somos
+
+85
+00:05:58,800 --> 00:06:02,100
+autenticados com o nosso pedido expresso.
+
+86
+00:06:02,280 --> 00:06:06,630
+Mais uma vez, ainda precisamos de algum meio de testar realmente a pea de autenticao, mas
+
+87
+00:06:06,660 --> 00:06:08,420
+ns vamos cuidar disso no devido tempo.
+
+88
+00:06:08,460 --> 00:06:09,330
+Ento vamos dar uma pausa.
+
+89
+00:06:09,330 --> 00:06:13,740
+Vamos voltar e cuidar da ltima mutao que precisamos para a verdadeira
+
+90
+00:06:13,740 --> 00:06:14,310
+trifecta aqui.
+
+91
+00:06:14,460 --> 00:06:20,430
+Ns nos registamos, ns conseguimos sair da ltima mutao que precisamos  fazer o login.
+
+92
+00:06:20,460 --> 00:06:24,650
+Ento, quando o usurio retorna ao nosso aplicativo e eles querem fazer o login novamente.
+
+93
+00:06:24,690 --> 00:06:27,370
+Ento, vamos cuidar dessa mutao na prxima seo.
+

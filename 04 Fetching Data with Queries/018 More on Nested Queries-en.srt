@@ -1,0 +1,452 @@
+1
+00:00:00,670 --> 00:00:04,710
+We were just working on relating companies with users.
+
+2
+00:00:04,770 --> 00:00:11,480
+We created a new company field on the user type and we told it that it would be of type company.
+
+3
+00:00:11,490 --> 00:00:15,600
+Our next step is going to be to find a result function on this property.
+
+4
+00:00:15,660 --> 00:00:21,630
+So graphed who knows how to find the company that is associated with a given user.
+
+5
+00:00:21,630 --> 00:00:25,470
+The big thing they want you to keep in mind right now like all of this kind of headache that we're going
+
+6
+00:00:25,470 --> 00:00:31,920
+through in the last section and this one is all about teaching graft well how to take a user like a
+
+7
+00:00:31,920 --> 00:00:38,220
+user with ID 23 and find their associated company and that is that is what we're trying to do here.
+
+8
+00:00:38,220 --> 00:00:43,930
+We want to teach Kraft well how to walk from a user over to a company.
+
+9
+00:00:44,070 --> 00:00:47,730
+So keep that in mind and let's continue on.
+
+10
+00:00:47,790 --> 00:00:52,080
+There is one thing that I want to tell you about before we start writing out the result function however
+
+11
+00:00:52,560 --> 00:00:57,570
+notice that on the user type we call this field company.
+
+12
+00:00:57,780 --> 00:01:03,040
+It's kind of interesting if we go back and look at one of the diagrams we are just working with.
+
+13
+00:01:03,040 --> 00:01:04,380
+It is right here.
+
+14
+00:01:04,380 --> 00:01:10,530
+We had said that every user had an ID first name age and company Heidi.
+
+15
+00:01:10,950 --> 00:01:17,970
+So all the other property names on our user type remain the same but the company ID we seem to kind
+
+16
+00:01:17,970 --> 00:01:21,790
+of arbitrarily change from company ID to just company.
+
+17
+00:01:21,900 --> 00:01:23,690
+Why were we able to get away with that.
+
+18
+00:01:23,890 --> 00:01:25,980
+You know I mean were we do we have to do something else.
+
+19
+00:01:25,980 --> 00:01:28,310
+Why were we able to drop the idea.
+
+20
+00:01:28,320 --> 00:01:33,200
+Like I kind of would have expected to have to put company ID here but instead we said a company.
+
+21
+00:01:33,630 --> 00:01:36,960
+So let's talk a little bit about why we can get away with that.
+
+22
+00:01:37,710 --> 00:01:43,010
+In this diagram We've got two sites left side right side on the left hand side.
+
+23
+00:01:43,080 --> 00:01:44,650
+We have the user model.
+
+24
+00:01:44,670 --> 00:01:48,260
+So this represents the data that is coming from our Sun server.
+
+25
+00:01:48,270 --> 00:01:56,130
+It is our very real data that is presumably coming from an API or our database on the right hand side
+
+26
+00:01:56,190 --> 00:02:01,390
+is our user type the user type is what we define inside of our schema file.
+
+27
+00:02:01,830 --> 00:02:06,330
+And I say from the arrows and this in the middle here you can kind of guess where I'm going with this
+
+28
+00:02:06,900 --> 00:02:12,540
+when the data that is coming from our database or the user model has an identically named property to
+
+29
+00:02:12,540 --> 00:02:13,560
+the user type.
+
+30
+00:02:13,560 --> 00:02:16,420
+We don't have to do any work whatsoever.
+
+31
+00:02:16,480 --> 00:02:21,760
+Graft Well it's just going to say OK the incoming data has an ID I'm supposed to have an ID.
+
+32
+00:02:21,810 --> 00:02:24,110
+I guess that's the ideal use.
+
+33
+00:02:24,600 --> 00:02:26,470
+The incoming data has a first name.
+
+34
+00:02:26,580 --> 00:02:29,640
+I have a first name I'll use their first names same with the age.
+
+35
+00:02:29,640 --> 00:02:37,230
+However when it comes to the company ID the user type inside of our schema is the graph Q L side of
+
+36
+00:02:37,230 --> 00:02:39,010
+things over here on the right hand side.
+
+37
+00:02:39,330 --> 00:02:45,990
+It says OK I've got a company but the incoming data doesn't have a company record or doesn't have a
+
+38
+00:02:45,990 --> 00:02:47,640
+company property.
+
+39
+00:02:47,640 --> 00:02:54,750
+So where am I supposed to get my data from to teach Kraft well how to get some data to populate this
+
+40
+00:02:54,750 --> 00:02:56,310
+company property with.
+
+41
+00:02:56,460 --> 00:02:59,230
+We define the resolve function.
+
+42
+00:02:59,280 --> 00:03:05,130
+So keep in mind the result functions purpose is like the name of it even is very well served like this
+
+43
+00:03:05,130 --> 00:03:12,120
+resolves differences between the incoming Jaison or the incoming data model and the actual data type
+
+44
+00:03:12,120 --> 00:03:13,810
+that we're trying to use here.
+
+45
+00:03:14,280 --> 00:03:21,210
+So we're going to use the result function to populate this company property right here at the end of
+
+46
+00:03:21,210 --> 00:03:21,770
+the day.
+
+47
+00:03:21,840 --> 00:03:26,100
+We're really doing is just trying to fetch the company from our based on server.
+
+48
+00:03:26,190 --> 00:03:31,140
+But again I just wanted you to keep in mind exactly why we were able to get away with renaming this
+
+49
+00:03:31,140 --> 00:03:32,920
+company property.
+
+50
+00:03:33,420 --> 00:03:35,580
+So it's out on our result function.
+
+51
+00:03:35,670 --> 00:03:39,680
+We're going to take our parent value and args.
+
+52
+00:03:39,990 --> 00:03:42,270
+And again I know I've said it like three times now.
+
+53
+00:03:42,270 --> 00:03:49,880
+Our job is to somehow return the company associated with the given user from this result function.
+
+54
+00:03:49,890 --> 00:03:54,680
+Now I don't know about you but that kind of seems like an impossible task.
+
+55
+00:03:54,750 --> 00:03:57,370
+I don't know how to do that so I'll tell you what here's what we'll do.
+
+56
+00:03:57,600 --> 00:04:01,490
+Let's add in the console lock statement let's look at parent value in ARX.
+
+57
+00:04:01,530 --> 00:04:07,500
+Let's just look at those values and see if there's anything on those are objects on these arguments
+
+58
+00:04:07,500 --> 00:04:11,420
+that can help us fetch the company associated with the given user.
+
+59
+00:04:11,820 --> 00:04:16,620
+So going to say this file I'm going to check my terminal to make sure I don't have any typos.
+
+60
+00:04:16,620 --> 00:04:18,330
+Looks like I don't I'm good.
+
+61
+00:04:18,870 --> 00:04:22,770
+I'm going to go back over to graphical and I'm just going to run the query.
+
+62
+00:04:22,920 --> 00:04:23,420
+OK.
+
+63
+00:04:23,520 --> 00:04:24,030
+Looks good.
+
+64
+00:04:24,030 --> 00:04:25,340
+First name Bill.
+
+65
+00:04:25,350 --> 00:04:30,870
+One quick thing if you see a message over here that says something like cannot find property of Noal
+
+66
+00:04:30,900 --> 00:04:32,130
+or something like that.
+
+67
+00:04:32,370 --> 00:04:40,650
+All you have to do is delete first name read type first name and rerun the query and it should resolve
+
+68
+00:04:40,650 --> 00:04:41,070
+for you.
+
+69
+00:04:41,070 --> 00:04:45,840
+So if you see an error over here and we like something about null just read type first name.
+
+70
+00:04:45,870 --> 00:04:48,000
+It is a little bug with graphical.
+
+71
+00:04:48,000 --> 00:04:49,610
+Don't sweat it anyways.
+
+72
+00:04:50,310 --> 00:04:56,820
+We can now run that resolve function by asking for the company and specifically for the idea of the
+
+73
+00:04:56,820 --> 00:04:57,300
+company.
+
+74
+00:04:57,330 --> 00:05:01,540
+So we have not yet wired this thing up right here so I don't expect it to really work.
+
+75
+00:05:01,540 --> 00:05:08,380
+All I want to do is somehow trigger that resolve function that we just wrote by asking a question about
+
+76
+00:05:08,380 --> 00:05:14,950
+the company subgraph QOL will not try to find or resolve this company field if we don't ask for it.
+
+77
+00:05:14,950 --> 00:05:20,320
+That's why we're just asking for it here inside the query that will make the resolve function run so
+
+78
+00:05:20,320 --> 00:05:21,280
+we can run this.
+
+79
+00:05:21,410 --> 00:05:22,720
+Ok we get a company of null.
+
+80
+00:05:22,750 --> 00:05:28,750
+That is what I expected and the console log that we added into that resolve function should pop up inside
+
+81
+00:05:28,750 --> 00:05:30,040
+of our terminal.
+
+82
+00:05:30,040 --> 00:05:38,870
+So here's the council slug looks like the first argument which is parent value is the user that we just
+
+83
+00:05:38,930 --> 00:05:44,300
+fetched and the user has a property company ID of one.
+
+84
+00:05:44,420 --> 00:05:44,970
+So that's it.
+
+85
+00:05:44,990 --> 00:05:48,670
+That's how we're going to get the company that is associated with a given user.
+
+86
+00:05:48,710 --> 00:05:52,020
+We can look at parent value dog company ID.
+
+87
+00:05:52,190 --> 00:05:56,420
+That's the idea of the company we're trying to fetch and we can reach out to our Geass on server and
+
+88
+00:05:56,420 --> 00:06:01,370
+fetch that company via an Ajax request or a network request.
+
+89
+00:06:01,370 --> 00:06:03,570
+So let's take out the console log.
+
+90
+00:06:03,890 --> 00:06:12,950
+Instead we will do another network request Axel's type get we'll go to our local hosts 3000 which is
+
+91
+00:06:12,950 --> 00:06:20,880
+our J-Zone server and we were just looking at how to fetch a particular company off of the Sun server.
+
+92
+00:06:21,020 --> 00:06:26,840
+We can say slash companies slash and then the idea of the company that we want to fetch which will be
+
+93
+00:06:26,840 --> 00:06:30,830
+parent value dot company Id like so.
+
+94
+00:06:31,430 --> 00:06:37,160
+Now two quick things do remember we have to return this request so I can put my return statement in
+
+95
+00:06:37,160 --> 00:06:45,590
+there and then just because of a little bit of mismatch between ASIO's and what graphed expects to get
+
+96
+00:06:45,590 --> 00:06:54,180
+as a response we're going to chain on that rez with rez dot data like so OK let's give this a shot.
+
+97
+00:06:54,610 --> 00:06:59,630
+I going to change back over to graphical or rerun the query and hot dog.
+
+98
+00:06:59,710 --> 00:07:01,570
+We got the idea of the company.
+
+99
+00:07:01,630 --> 00:07:07,620
+We should also now used to ask for the name and the description as well.
+
+100
+00:07:08,150 --> 00:07:10,220
+And we get apple an iPhone.
+
+101
+00:07:10,430 --> 00:07:16,480
+Now I should also be able to say look up user 40 and get Google and their descriptions search.
+
+102
+00:07:16,490 --> 00:07:20,390
+And then I've also got an idea of 41 that's my nic user.
+
+103
+00:07:20,420 --> 00:07:25,190
+Do keep in mind that if you gave your users different IDs you'll need to put in the IDs you used here
+
+104
+00:07:25,190 --> 00:07:26,210
+instead.
+
+105
+00:07:26,720 --> 00:07:27,640
+So it looks good.
+
+106
+00:07:27,640 --> 00:07:33,950
+It looks like we have correctly associated to our user together with our company.
+
+107
+00:07:34,940 --> 00:07:40,760
+So we have covered a lot of material in the last few sections and I feel like right now in particular
+
+108
+00:07:41,210 --> 00:07:46,280
+kind of understanding how we were able to associate the user type with the company was probably a little
+
+109
+00:07:46,280 --> 00:07:47,720
+bit intense.
+
+110
+00:07:47,750 --> 00:07:53,180
+So let's go into the next section we're going to take a quick breather and we're going to review all
+
+111
+00:07:53,180 --> 00:07:56,840
+the different concepts that we've been working with inside the next section.
+
+112
+00:07:57,160 --> 00:07:59,910
+So we'll do a quick review and we'll continue on after that.
+
+113
+00:08:00,020 --> 00:08:01,440
+So we'll see in just a moment.
+

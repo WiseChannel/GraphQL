@@ -1,0 +1,372 @@
+1
+00:00:01,320 --> 00:00:06,450
+Agora que temos uma idia melhor sobre algumas das propriedades que ficam sentadas nos dados da Propst
+
+2
+00:00:06,450 --> 00:00:11,520
+Data, incluindo a bandeira do usurio e a propriedade do usurio, podemos editar o cabealho apenas um
+
+3
+00:00:11,520 --> 00:00:16,860
+pouco para garantir que estamos sempre mostrando o contedo correto na mo direita lado direito ou direito do
+
+4
+00:00:17,100 --> 00:00:20,580
+cabealho, dependendo se o usurio est ou no conectado ou no.
+
+5
+00:00:20,580 --> 00:00:23,300
+Ento, aqui est a estratgia que vamos levar aqui.
+
+6
+00:00:23,400 --> 00:00:27,660
+Primeiro, vamos atualizar o GSX que  retornado por esta coisa.
+
+7
+00:00:27,750 --> 00:00:30,590
+Apenas para tornar o cabealho um pouco mais parecido com um cabealho.
+
+8
+00:00:30,630 --> 00:00:34,620
+mtodo auxiliar que determinar o conjunto de botes que devemos mostrar na tela.
+
+9
+00:00:34,860 --> 00:00:39,960
+Ento, vamos adicionar alguns nomes de classe que lhe daro um pouco de cor e alguns
+
+10
+00:00:39,960 --> 00:00:42,310
+na posio correta e depois adicionaremos qualquer
+
+11
+00:00:42,310 --> 00:00:43,870
+Ento vamos fazer isso.
+
+12
+00:00:43,920 --> 00:00:48,240
+Vou comear com a remoo da declarao de log do console, porque
+
+13
+00:00:48,270 --> 00:00:56,010
+ns realmente no precisamos mais do registro e vou substituir todos os macros GSX que tenho dentro daqui com algumas tags
+
+14
+00:00:56,460 --> 00:01:00,590
+que esto indo para faa uso deles materializar a biblioteca CSSA.
+
+15
+00:01:00,600 --> 00:01:05,610
+Ento, novamente, o VSS materializado j est conectado ao nosso projeto inicial, ento eu vou usar
+
+16
+00:01:05,610 --> 00:01:12,380
+um par de nomes de classe que puxam diretamente desse quadro CSX apenas para tornar o nosso projeto um pouco mais agradvel.
+
+17
+00:01:12,390 --> 00:01:21,240
+Primeiro eu vou colocar uma etiqueta de navegao e, em seguida, dentro de tudo, coloque uma div com um nome
+
+18
+00:01:21,390 --> 00:01:26,080
+de classe do wrapper do NAV assim, ento, dentro do seu.
+
+19
+00:01:26,510 --> 00:01:30,810
+Aqui  onde eu vou querer descobrir o conjunto de botes que eu deveria estar mostrando na tela.
+
+20
+00:01:31,070 --> 00:01:34,710
+No vou colocar a lgica para isso diretamente nesse mtodo de renderizao.
+
+21
+00:01:34,850 --> 00:01:42,070
+Em vez disso, vou fazer um mtodo auxiliar chamado botes de renderizao de pontos e ns vamos chamar isso.
+
+22
+00:01:42,140 --> 00:01:46,210
+E os botes Rentner podem descobrir exatamente o que estamos tentando mostrar na tela.
+
+23
+00:01:47,850 --> 00:01:53,950
+Ento, dentro dos botes renderizados, teremos que fazer algumas coisas diferentes aqui.
+
+24
+00:01:54,060 --> 00:01:58,640
+Primeiro, se o usurio me irritar se a consulta ainda no estiver completa.
+
+25
+00:01:58,680 --> 00:02:04,550
+Ento, se ainda no terminamos de executar esta consulta, provavelmente no quero mostrar nada ainda.
+
+26
+00:02:04,560 --> 00:02:10,020
+Provavelmente no quero mostrar nenhum boto, porque eu ainda no sei se devo ou no mostrar o conjunto
+
+27
+00:02:10,020 --> 00:02:14,220
+de botes para que um usurio faa o login ou faa o login.
+
+28
+00:02:14,490 --> 00:02:17,580
+Ento, a primeira coisa que vai fazer  olhar para a consulta.
+
+29
+00:02:17,580 --> 00:02:25,410
+Ento, este doc prod inicia o carregamento de dados e se a consulta ainda est em progresso, eu apenas vou retornar
+
+30
+00:02:25,410 --> 00:02:30,510
+uma div vazia. Ento eu definitivamente poderia retornar uma div que diz carregar aqui.
+
+31
+00:02:30,510 --> 00:02:33,380
+Ns fizemos isso em uma seo anterior como vimos.
+
+32
+00:02:33,370 --> 00:02:39,420
+e, por isso, ter esse grande flash de carregamento de luz na tela especialmente para um elemento to pequeno.
+
+33
+00:02:39,420 --> 00:02:42,240
+No entanto, a consulta geralmente  resolvida muito rapidamente
+
+34
+00:02:42,240 --> 00:02:45,060
+Eu acho que provavelmente no  a coisa mais til do mundo.
+
+35
+00:02:45,150 --> 00:02:51,840
+Ento eu me sinto OK no mostrando nada no lado superior direito da barra de navegao at que decidimos se
+
+36
+00:02:51,840 --> 00:02:53,870
+o usurio est ou no autenticado.
+
+37
+00:02:57,010 --> 00:03:03,880
+Em seguida, decidiremos se precisamos ou no mostrar o conjunto de botes para permitir que o usurio
+
+38
+00:03:04,150 --> 00:03:05,610
+faa logon ou desconecte-se.
+
+39
+00:03:05,650 --> 00:03:11,290
+Ento, se conseguimos superar este cheque aqui, isso significa que a consulta foi concluda e agora precisamos
+
+40
+00:03:11,290 --> 00:03:16,960
+examinar a propriedade do usurio no objeto de dados para decidir o conjunto de botes que precisamos.
+
+41
+00:03:16,960 --> 00:03:22,470
+Agora eu estou pensando que, uma vez que ns estaremos acessando a propriedade de dados aqui algumas
+
+42
+00:03:22,470 --> 00:03:27,310
+vezes, talvez voc seja, seria uma compensao para fazer um pouco de desestruturao antes do
+
+43
+00:03:27,310 --> 00:03:32,320
+tempo, ento far um pouco de desestruturao aqui para tirar algumas das diferentes propriedades que
+
+44
+00:03:32,320 --> 00:03:38,830
+precisamos ao invs de nos referir a este material Propst nossos dados vrias vezes dentro desta funo, ento eu vou
+
+45
+00:03:38,920 --> 00:03:41,670
+tirar a propriedade de carregamento e usurio desse material.
+
+46
+00:03:41,770 --> 00:03:43,450
+Dados de estoque.
+
+47
+00:03:43,490 --> 00:03:49,300
+Ento, agora dentro da primeira afirmao, podemos simplesmente dizer se o recarregamento retorna div vazio.
+
+48
+00:03:49,300 --> 00:03:57,320
+No tente fazer qualquer outra coisa em seguida, podemos lidar com o caso em que um usurio existe.
+
+49
+00:03:57,400 --> 00:04:00,210
+Ento, este  o caso em que existe um usurio.
+
+50
+00:04:00,220 --> 00:04:06,100
+Portanto, h um usurio atualmente autenticado e, portanto, queremos mostrar um boto na tela
+
+51
+00:04:06,100 --> 00:04:10,470
+que permita ao usurio efetuar o logout de nossa aplicao primeiro.
+
+52
+00:04:10,480 --> 00:04:16,210
+Agora, eu realmente no tenho preferncias ou realmente no quero pensar muito sobre o que faremos
+
+53
+00:04:16,210 --> 00:04:19,120
+quando queremos que o usurio faa o desconto.
+
+54
+00:04:19,120 --> 00:04:25,900
+Ento, agora mesmo vou retornar uma div que diz sair.
+
+55
+00:04:26,170 --> 00:04:30,250
+Ento, vamos voltar a adicionar um pouco mais de funcionalidade para isso.
+
+56
+00:04:30,310 --> 00:04:33,040
+Mas agora mesmo quero um pouco de espao reservado.
+
+57
+00:04:35,520 --> 00:04:37,680
+Agora, se um usurio no existir.
+
+58
+00:04:37,690 --> 00:04:42,130
+Portanto, se o usurio no estiver autenticado atualmente com seu aplicativo, definitivamente precisaremos
+
+59
+00:04:42,130 --> 00:04:47,410
+mostrar um conjunto de botes que permitem ao usurio navegar at um local onde eles
+
+60
+00:04:47,410 --> 00:04:49,000
+podem entrar em nosso aplicativo.
+
+61
+00:04:49,000 --> 00:04:51,810
+Ento, eu acho que a partir daqui eu vou
+
+62
+00:04:54,490 --> 00:05:00,800
+retornar em troca uma UL que vai conter dois links separados ou a transparncia retornar uma div agora mesmo.
+
+63
+00:05:00,920 --> 00:05:04,070
+Deixe-o ser simples, vamos fazer o mnimo.
+
+64
+00:05:04,070 --> 00:05:08,990
+os links de navegao reais para se inscrever ou fazer login em nosso aplicativo.
+
+65
+00:05:08,990 --> 00:05:11,720
+Vamos, naturalmente, adicionar mais funcionalidades para mostrar
+
+66
+00:05:11,720 --> 00:05:16,550
+Mas, no momento, diremos que voc no iniciou sesso.
+
+67
+00:05:16,610 --> 00:05:17,830
+Mantenha-o agradvel e simples.
+
+68
+00:05:19,380 --> 00:05:19,910
+EST BEM.
+
+69
+00:05:20,220 --> 00:05:21,610
+Ento isso parece muito bom.
+
+70
+00:05:21,930 --> 00:05:24,940
+Eu acho que estamos prontos para fazer isso um teste dentro do navegador.
+
+71
+00:05:25,080 --> 00:05:33,030
+E assim poderemos ver corretamente se ns estamos ou no logados ou no em nosso aplicativo.
+
+72
+00:05:33,750 --> 00:05:35,960
+Ento eu preciso voltar para o navegador.
+
+73
+00:05:36,390 --> 00:05:42,080
+Vou atualizar a pgina e vejo que o login aparece na tela.
+
+74
+00:05:42,110 --> 00:05:44,040
+Agora,  definitivamente o que eu esperaria ver.
+
+75
+00:05:44,060 --> 00:05:49,370
+Por mais uma vez, eu estou atualmente iniciado no meu aplicativo se eu quiser testar o que
+
+76
+00:05:49,370 --> 00:05:55,860
+isso parece quando estou desconectado, ento eu posso virar para grfico e posso executar minha mutao para sair do meu aplicativo.
+
+77
+00:05:56,120 --> 00:06:00,640
+Ento faa isso agora apenas para garantir que esse componente Hetter esteja funcionando do jeito que eu espero.
+
+78
+00:06:00,640 --> 00:06:09,470
+Ento eu executo minha mutao chamada sair e permite a identificao do usurio que acabou de se fechar.
+
+79
+00:06:09,470 --> 00:06:10,500
+Ento vamos executar isso.
+
+80
+00:06:10,610 --> 00:06:16,130
+a pgina. Agora vou ver o texto em que voc no iniciou sesso, como seria de esperar.
+
+81
+00:06:16,190 --> 00:06:22,670
+Agora devo estar desconectado do meu aplicativo, ento no estou mais logado e se eu voltar ao meu aplicativo, atualize
+
+82
+00:06:22,670 --> 00:06:23,190
+EST BEM.
+
+83
+00:06:23,360 --> 00:06:24,410
+Ento isso parece ser bom.
+
+84
+00:06:24,400 --> 00:06:25,990
+Definitivamente fizemos algum progresso.
+
+85
+00:06:26,000 --> 00:06:31,360
+O cabealho definitivamente tem alguma lgica para descobrir se eu estou ou no conectado ao aplicativo.
+
+86
+00:06:31,610 --> 00:06:37,760
+Ento, a prxima coisa que precisamos fazer  certificar-se de que uma vez que estamos aqui agora que descobrimos se estamos ou
+
+87
+00:06:37,760 --> 00:06:42,770
+no iniciados ou no, precisamos ter certeza de que o usurio tenha a capacidade de realmente sair ou
+
+88
+00:06:42,770 --> 00:06:47,100
+na verdade, v para um formulrio para se inscrever ou se inscrever no nosso aplicativo.
+
+89
+00:06:47,540 --> 00:06:53,600
+Idealmente, provavelmente tambm gostaramos de mostrar um pouco de texto dentro daqui ou algo do lado direito
+
+90
+00:06:53,600 --> 00:06:59,000
+do cabealho que permita ao usurio desejar clicar e voltar para a pgina inicial da
+
+91
+00:06:59,000 --> 00:07:00,090
+nossa aplicao tambm.
+
+92
+00:07:00,110 --> 00:07:04,120
+Ento, um pouco de uma nova informao de marca no lado superior esquerdo.
+
+93
+00:07:04,410 --> 00:07:07,200
+Ento, vamos cuidar de tudo que funciona dentro da prxima seo.
+

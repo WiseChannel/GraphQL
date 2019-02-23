@@ -1,0 +1,288 @@
+1
+00:00:00,720 --> 00:00:03,120
+Our header is at a pretty good spot right now.
+
+2
+00:00:03,180 --> 00:00:08,670
+So I think that we're about ready to move on over to our authentication forms for both signing up and
+
+3
+00:00:08,670 --> 00:00:12,020
+sign in to our application as a quick reminder.
+
+4
+00:00:12,060 --> 00:00:16,690
+Let's check out our wireframe Zarar mockups for these two forms that we have to make.
+
+5
+00:00:17,010 --> 00:00:22,320
+So we've got both the page to sign up a new user and to sign an existing user in.
+
+6
+00:00:22,370 --> 00:00:25,720
+Now I had previously said that these are two separate components.
+
+7
+00:00:25,830 --> 00:00:31,860
+But when we look at them closely they both have the email and password fields on them and the submit
+
+8
+00:00:31,860 --> 00:00:32,330
+button.
+
+9
+00:00:32,400 --> 00:00:35,930
+So looks like there is really not too much difference between these two forms.
+
+10
+00:00:36,060 --> 00:00:39,080
+So maybe there's a little bit of code sharing that we can do in here.
+
+11
+00:00:39,390 --> 00:00:45,180
+Of course once we enter that email and password we're going to call a dramatically different mutation
+
+12
+00:00:45,390 --> 00:00:47,660
+depending on which form are displayed on the screen.
+
+13
+00:00:47,670 --> 00:00:51,090
+So there does still have to be a little bit of customization there.
+
+14
+00:00:51,270 --> 00:00:55,860
+With that in mind I think I've got a plan on how we can get a little bit of code reuse going here.
+
+15
+00:00:57,120 --> 00:00:58,350
+So this is what I'm thinking.
+
+16
+00:00:58,620 --> 00:01:04,650
+I'm thinking that we'll make a log in form component and a sign up form component but they will both
+
+17
+00:01:04,650 --> 00:01:09,680
+make use of a common component called the auth form the auth form right here.
+
+18
+00:01:09,690 --> 00:01:15,900
+Will it contain the actual form element with the labels the inputs and the buttons that we want to show
+
+19
+00:01:15,900 --> 00:01:17,140
+on the form itself.
+
+20
+00:01:17,340 --> 00:01:23,940
+But as soon as the user clicks submit to submit the form will pass us and we will call a callback that
+
+21
+00:01:23,940 --> 00:01:27,650
+is passed from the parent down into the form.
+
+22
+00:01:28,050 --> 00:01:34,500
+By doing that we can have all the common logic around rendering the form itself inside of the form but
+
+23
+00:01:34,500 --> 00:01:40,710
+for handling the very customized logic around which mutation we call to actually log in or sign up the
+
+24
+00:01:40,710 --> 00:01:44,710
+user we can to find that mutation inside of the parent component.
+
+25
+00:01:45,060 --> 00:01:50,430
+So basically the plan is to parent components will display each them on two different routes inside
+
+26
+00:01:50,430 --> 00:01:56,550
+of the reactor configuration and then each them will show an instance of the form itself.
+
+27
+00:01:57,680 --> 00:02:00,040
+So I think that's probably a good plan to move forward on.
+
+28
+00:02:00,350 --> 00:02:04,490
+Well first start off with the log in form since you already have a user account.
+
+29
+00:02:04,520 --> 00:02:08,200
+And I think that's going to be maybe a very slightly easier of the two.
+
+30
+00:02:08,510 --> 00:02:13,700
+So we'll make the log and form component then we'll make the form component and define the actual form
+
+31
+00:02:13,700 --> 00:02:14,660
+inside of it.
+
+32
+00:02:14,660 --> 00:02:16,110
+So let's get started.
+
+33
+00:02:18,130 --> 00:02:24,610
+Inside of my components directory I'm going to make a new file called loggin form.
+
+34
+00:02:24,800 --> 00:02:25,740
+Yes.
+
+35
+00:02:26,140 --> 00:02:30,850
+Now inside if you're all we really have to do right now is define some scaffolding for the component
+
+36
+00:02:31,290 --> 00:02:35,350
+import this imaginary Auth. form that we're talking about.
+
+37
+00:02:35,350 --> 00:02:40,440
+So the components that's going to show the actual form and then show that inside of this one.
+
+38
+00:02:40,540 --> 00:02:44,860
+So just a little bit of work to get started and then we'll come back and customize it a little bit with
+
+39
+00:02:44,860 --> 00:02:46,800
+the actual mutation.
+
+40
+00:02:46,870 --> 00:02:53,140
+So we'll start off by importing react and the Component class from react.
+
+41
+00:02:53,310 --> 00:03:02,790
+Scuse me lowercase r then we'll define our class log in form which will extend the component class all
+
+42
+00:03:02,790 --> 00:03:03,740
+the fine.
+
+43
+00:03:03,940 --> 00:03:06,620
+Just a little bit of boilerplate inside of the render method.
+
+44
+00:03:06,630 --> 00:03:13,810
+Right now it's a meal that is placed in div for good measure and at the very bottom will export default
+
+45
+00:03:14,620 --> 00:03:16,370
+log in form like so.
+
+46
+00:03:16,870 --> 00:03:17,110
+OK.
+
+47
+00:03:17,140 --> 00:03:18,740
+So it seems like a reasonable start.
+
+48
+00:03:18,790 --> 00:03:23,230
+I now want to associate this with the re-act router and make sure that it's working with one of our
+
+49
+00:03:23,230 --> 00:03:24,540
+existing routes.
+
+50
+00:03:24,820 --> 00:03:30,220
+So I'm going to open up my index file where I've got all the configuration for re-act router.
+
+51
+00:03:30,550 --> 00:03:39,460
+I'm going to import the component I just created as log in form from components log and form like so
+
+52
+00:03:40,710 --> 00:03:46,520
+and I'm going to generate a new route that's going to show the log in form so scroll down a little bit
+
+53
+00:03:47,280 --> 00:03:54,890
+of find my overall route help right here and I'm going to make sure that whenever a user goes to the
+
+54
+00:03:54,890 --> 00:03:55,550
+path
+
+55
+00:03:58,070 --> 00:04:04,920
+log in I'm going to show the component loggin form OK.
+
+56
+00:04:04,980 --> 00:04:06,880
+So looks like a good place to get started.
+
+57
+00:04:06,930 --> 00:04:12,060
+So we should now at least feel to go do slash log in and see the log in form component appear on the
+
+58
+00:04:12,060 --> 00:04:12,770
+screen.
+
+59
+00:04:13,020 --> 00:04:17,060
+Let's do a quick test right now just to make sure everything's working the way we expect.
+
+60
+00:04:17,100 --> 00:04:21,090
+So I'll flip back over to my app or refresh the page.
+
+61
+00:04:21,090 --> 00:04:25,620
+And then we've set up this logon button over here so I shouldn't have to actually type the route in
+
+62
+00:04:25,680 --> 00:04:29,900
+Asheville or just click log in and see it log and foreign appear on the screen.
+
+63
+00:04:30,150 --> 00:04:34,450
+Now looks like we don't immediately get the form on the screen so we might have a small typo somewhere.
+
+64
+00:04:34,650 --> 00:04:38,360
+Let's double check our actual component of log in form.
+
+65
+00:04:39,000 --> 00:04:42,120
+Yes we haven't actually add anything to the div just yet.
+
+66
+00:04:42,210 --> 00:04:47,330
+So it's just out in a little bit of dummy text in there of log in form.
+
+67
+00:04:47,870 --> 00:04:51,750
+And now we can refresh the page and see that text appear on the screen.
+
+68
+00:04:51,890 --> 00:04:52,220
+OK.
+
+69
+00:04:52,220 --> 00:04:53,400
+So that's looking good.
+
+70
+00:04:53,690 --> 00:04:54,740
+Let's take a quick break.
+
+71
+00:04:54,740 --> 00:04:58,550
+We're going to come back and then we're going to start working on this off form which is going to show
+
+72
+00:04:58,550 --> 00:05:01,860
+the actual form that the user is going to type their input into.
+

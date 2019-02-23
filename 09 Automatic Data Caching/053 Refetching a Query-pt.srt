@@ -1,0 +1,312 @@
+1
+00:00:00,690 --> 00:00:05,810
+Agora, nossa lista de msicas est visvel na tela e podemos excluir registros com sucesso.
+
+2
+00:00:05,910 --> 00:00:09,930
+Mas quando exclumos uma msica, ela realmente no a remove da UI.
+
+3
+00:00:10,140 --> 00:00:14,880
+Ento, nesta seo, vamos nos certificar de que sempre que exclumos uma msica, a UI
+
+4
+00:00:14,880 --> 00:00:17,430
+com xito  atualizada da maneira que esperamos.
+
+5
+00:00:18,210 --> 00:00:21,800
+E somente quando atualizamos, a msica realmente desaparece.
+
+6
+00:00:21,810 --> 00:00:23,880
+Ento vamos comear.
+
+7
+00:00:23,880 --> 00:00:28,950
+J vimos anteriormente como atualizar o equerry dentro do componente de criao de msicas.
+
+8
+00:00:29,160 --> 00:00:30,560
+Ento, dentro da msica, crie.
+
+9
+00:00:30,570 --> 00:00:36,900
+Aqui est o manipulador de envio e usamos essa opo de consulta de referncia aqui para reertificar a
+
+10
+00:00:36,900 --> 00:00:39,450
+consulta para buscar nossa lista de msicas.
+
+11
+00:00:39,450 --> 00:00:42,900
+Desta vez, no precisamos usar esse mesmo mtodo.
+
+12
+00:00:42,930 --> 00:00:48,520
+E eu quero mostrar-lhe uma maneira ligeiramente diferente para prefetar nossa lista de msicas do back-end e
+
+13
+00:00:49,390 --> 00:00:54,900
+ento falaremos por que no podemos usar essa abordagem dentro da funo de criao de msica.
+
+14
+00:00:54,960 --> 00:01:01,110
+Ento, vou comear por adicionar apenas um pouco de cdigo para assumir essa abordagem alternativa para
+
+15
+00:01:01,110 --> 00:01:02,950
+pr-busca dos dados do back-end.
+
+16
+00:01:03,000 --> 00:01:09,690
+podemos mudar em um ponto e uma declarao que ser executada aps a mutao ter sido concluda com sucesso.
+
+17
+00:01:09,750 --> 00:01:15,680
+Lembre-se de que, sempre que colorimos a mutao, ela retorna uma promessa, o que significa que
+
+18
+00:01:16,110 --> 00:01:23,700
+Ento, o mtodo alternativo de chamada ou, de alguma forma, obtendo nossa lista de msicas atualizadas 
+
+19
+00:01:23,700 --> 00:01:29,610
+chamando esses dados de dados de dublagem. Ento, o Datt realmente  Thach.
+
+20
+00:01:30,330 --> 00:01:36,670
+Ento, primeiro, lembre-se de que esta escura suporta que os dados so adicionados ao nosso componente automaticamente
+
+21
+00:01:36,690 --> 00:01:39,790
+pelo grfico da etiqueta cupla da biblioteca Apollo reativada.
+
+22
+00:01:39,810 --> 00:01:45,510
+Ento, essa  uma parte do objeto do nosso prop que  gerido pela multido pela reabilitao da biblioteca
+
+23
+00:01:45,510 --> 00:01:46,530
+Apollo para ns.
+
+24
+00:01:46,530 --> 00:01:53,340
+funo de referncia ir automaticamente executar todas as consultas associadas a este componente sem msicas.
+
+25
+00:01:53,340 --> 00:01:58,800
+Uma das funes disponveis existe a funo de busca do recife, a
+
+26
+00:01:59,100 --> 00:02:05,370
+Neste caso, esta consulta ou este componente tem exatamente uma consulta associada a ela, que 
+
+27
+00:02:05,580 --> 00:02:07,600
+a consulta da msica obtida.
+
+28
+00:02:08,310 --> 00:02:13,950
+Ento eu quero certificar-me de que, sempre que exclumos a msica, ela realmente obtm
+
+29
+00:02:13,950 --> 00:02:16,470
+os dados associados a essa consulta.
+
+30
+00:02:16,470 --> 00:02:19,810
+Ento, para relanar isso ou vamos executar isso no navegador e depois falaremos.
+
+31
+00:02:19,820 --> 00:02:24,390
+Ns saberemos ver se funciona ou no e depois conversaremos um pouco sobre o motivo pelo qual podemos
+
+32
+00:02:24,390 --> 00:02:25,530
+usar essa abordagem aqui.
+
+33
+00:02:25,710 --> 00:02:29,890
+Sobre o que tnhamos visto anteriormente, usando consultas de re-ofensa aqui.
+
+34
+00:02:30,090 --> 00:02:30,420
+OK.
+
+35
+00:02:30,420 --> 00:02:37,200
+Ento, vamos ao tiro e altere o Everts no navegador, atualize a pgina para obter esse cdigo
+
+36
+00:02:37,200 --> 00:02:43,870
+atualizado e depois vou excluir a Cano da Noite do Co para exclu-la e a msica desaparecer.
+
+37
+00:02:44,190 --> 00:02:45,240
+Vocs foram atualizados.
+
+38
+00:02:45,330 --> 00:02:46,810
+S queremos ter acontecido.
+
+39
+00:02:46,830 --> 00:02:48,720
+Ento, isso parece muito bom.
+
+40
+00:02:49,500 --> 00:02:52,500
+Ento, sua pergunta agora pode ser.
+
+41
+00:02:52,520 --> 00:02:58,590
+Bem Stephen, isso est tudo bem, mas por que usamos essa coisa re buscada aqui em oposio 
+
+42
+00:02:58,590 --> 00:03:01,850
+opo de consultas de referncia que tnhamos visto anteriormente.
+
+43
+00:03:02,130 --> 00:03:06,090
+E a resposta realmente se resume bem, isso depende.
+
+44
+00:03:06,090 --> 00:03:07,380
+Desculpe pelo pergaminho l.
+
+45
+00:03:07,380 --> 00:03:13,980
+Realmente depende exatamente de como voc est tentando atualizar sua consulta associada a qual componente
+
+46
+00:03:14,040 --> 00:03:15,260
+em sua hierarquia.
+
+47
+00:03:15,600 --> 00:03:19,190
+Ento, no caso, a msica cria um componente.
+
+48
+00:03:19,200 --> 00:03:26,460
+ao componente de criao de msica que estava associada a um componente totalmente diferente em nosso aplicativo.
+
+49
+00:03:26,460 --> 00:03:30,770
+Por aqui, queramos atualizar uma consulta que no estava associada
+
+50
+00:03:30,780 --> 00:03:38,010
+Ento, neste caso, eu no poderia ter chamado o prefetch de dados do presente estoque porque a consulta que
+
+51
+00:03:38,010 --> 00:03:41,590
+eu queria atualizar no estava associada a este componente direito.
+
+52
+00:03:41,600 --> 00:03:51,060
+Seu filho cria no faz ideia de que a consulta ou a lista de msicas ou a consulta de busca de msicas existam
+
+53
+00:03:51,060 --> 00:03:53,750
+como vinculadas com seu componente aqui.
+
+54
+00:03:53,780 --> 00:03:59,410
+No entanto, o componente da lista de msicas recebeu essa consulta dentro do objeto do suporte.
+
+55
+00:03:59,580 --> 00:04:05,570
+Ento, desde que entrou como uma artefata de suporte Bem, absolutamente sabe que essa consulta existe.
+
+56
+00:04:05,610 --> 00:04:11,820
+referncia aqui para garantir que sempre que a chamemos, atualizar a consulta associada ao componente.
+
+57
+00:04:11,820 --> 00:04:18,530
+Ele sabe que est associado  lista de msicas e, portanto, vai modificar esta funo de
+
+58
+00:04:18,540 --> 00:04:24,270
+Ento, novamente, isso realmente se resume a como a consulta est associada ao componente para decidir se
+
+59
+00:04:24,270 --> 00:04:27,910
+podemos ou no chamar revanche. Agora, no me interpretem mal.
+
+60
+00:04:27,940 --> 00:04:35,080
+Poderamos definitivamente substituir esta declarao de prefetch aqui e usar a sintaxe alternativa que poderamos usar remete as
+
+61
+00:04:35,080 --> 00:04:40,480
+consultas por a tambm, ento podemos certamente usar consultas de referncia dentro dessa mutao,
+
+62
+00:04:40,510 --> 00:04:42,050
+se assim o escolhemos.
+
+63
+00:04:42,220 --> 00:04:47,110
+Essa pode ser uma abordagem muito boa para tomar apenas para ter um meio muito consistente de pr-busca de
+
+64
+00:04:47,110 --> 00:04:47,690
+seus dados.
+
+65
+00:04:47,830 --> 00:04:52,060
+Mas, novamente, realmente se resume ao seu gosto pessoal.
+
+66
+00:04:52,060 --> 00:04:58,330
+A ltima coisa que eu quero dizer sobre o Rifat  que  realmente a maneira mais simples e direta
+
+67
+00:04:58,330 --> 00:04:59,600
+de rever uma consulta.
+
+68
+00:04:59,620 --> 00:05:02,790
+Fora a consulta a executar novamente no servidor.
+
+69
+00:05:02,920 --> 00:05:08,520
+E assim vai afastar todos os dados de busca existentes que voc tenha que renderizar o seu componente.
+
+70
+00:05:08,680 --> 00:05:15,460
+Em geral, se voc deseja atualizar os dados associados a um componente muito especfico, apenas uma coluna de busca de
+
+71
+00:05:15,490 --> 00:05:18,740
+users por dia e voc ser um campista feliz.
+
+72
+00:05:19,350 --> 00:05:20,100
+EST BEM.
+
+73
+00:05:20,260 --> 00:05:24,250
+Ento eu acho que estamos muito bem em excluir msicas neste momento.
+
+74
+00:05:24,250 --> 00:05:27,720
+Ns tambm somos muito bons na criao de msicas.
+
+75
+00:05:28,120 --> 00:05:32,680
+A ltima coisa que temos a fazer  cuidar de um pouco de sucesso e
+
+76
+00:05:32,740 --> 00:05:36,290
+ento podemos comear a trabalhar em associar msicas com letras individuais.
+
+77
+00:05:36,310 --> 00:05:41,350
+Ento, vamos cuidar da CSSA na prxima seo muito rapidamente e ento continuaremos conversando um
+
+78
+00:05:41,350 --> 00:05:43,900
+pouco mais sobre como lidar com as letras.
+

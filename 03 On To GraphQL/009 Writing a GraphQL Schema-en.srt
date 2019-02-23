@@ -1,0 +1,380 @@
+1
+00:00:01,020 --> 00:00:06,730
+In the last section we started talking about the presence of a schema in our graph QOL application.
+
+2
+00:00:06,750 --> 00:00:13,320
+So remember this schema is what tells graph Well exactly what our data looks like in this section.
+
+3
+00:00:13,320 --> 00:00:17,690
+We're going to start writing out the schema for application before we get started.
+
+4
+00:00:18,000 --> 00:00:21,810
+I want to first tell you something I want to tell you a lot of the code that we're going to write here
+
+5
+00:00:21,870 --> 00:00:26,350
+is going to look kind of crazy and really tough to reproduce in the future.
+
+6
+00:00:26,370 --> 00:00:27,720
+That's the bad news.
+
+7
+00:00:27,990 --> 00:00:33,280
+The good news is that all the schema stuff that we're doing here is mostly repetitive.
+
+8
+00:00:33,480 --> 00:00:34,820
+So the first time you see it.
+
+9
+00:00:34,830 --> 00:00:35,220
+Yeah.
+
+10
+00:00:35,250 --> 00:00:40,800
+It's going to look crazy crazy stuff but as we continue working throughout graft Well it's going to
+
+11
+00:00:40,800 --> 00:00:45,160
+look like it's just more and more of the same stuff over time.
+
+12
+00:00:45,240 --> 00:00:46,620
+So just keep that in mind.
+
+13
+00:00:46,660 --> 00:00:47,670
+It looks crazy now.
+
+14
+00:00:47,670 --> 00:00:53,780
+Don't worry we're just going to literally be copy pasting this stuff over and over again on future projects.
+
+15
+00:00:54,940 --> 00:01:01,580
+So inside of our schema file the first thing we're going to do is import the graphical library so graph
+
+16
+00:01:01,680 --> 00:01:04,390
+well require graphs.
+
+17
+00:01:04,390 --> 00:01:10,460
+You will note that we're actually playing in the graph to a library this time not the Express graphics
+
+18
+00:01:10,490 --> 00:01:16,300
+Well one for this object we're going to end up destructuring a lot of different properties from this
+
+19
+00:01:16,300 --> 00:01:16,720
+thing.
+
+20
+00:01:16,720 --> 00:01:20,190
+So this is going to end up being a pretty long list.
+
+21
+00:01:20,200 --> 00:01:25,960
+So what kind of multiline it like so now the first property that we're going to structure off of it
+
+22
+00:01:26,320 --> 00:01:31,620
+is graph Cuil object type.
+
+23
+00:01:32,470 --> 00:01:32,860
+OK.
+
+24
+00:01:32,890 --> 00:01:36,220
+So crazy stuff again like that's a crazy variable right there.
+
+25
+00:01:36,220 --> 00:01:41,300
+At least I think so anyways do double check to make sure you've got the correct capitalization.
+
+26
+00:01:41,320 --> 00:01:44,290
+I can't tell you enough throughout this entire course.
+
+27
+00:01:44,290 --> 00:01:46,370
+Capitalization is extremely important.
+
+28
+00:01:46,370 --> 00:01:50,360
+So capital Tuaolo capital T on time.
+
+29
+00:01:50,410 --> 00:01:52,990
+Make sure you got them all.
+
+30
+00:01:53,050 --> 00:01:59,800
+So we're going to use this graph Q object type right here to instruction graphed well about the presence
+
+31
+00:01:59,860 --> 00:02:02,560
+of a user in our application.
+
+32
+00:02:02,560 --> 00:02:09,190
+Like the idea of a user or a user that has an ID and has a first name property as well.
+
+33
+00:02:09,310 --> 00:02:19,660
+So do this by creating a new object that will call user type like so now will be a new graph QOL object
+
+34
+00:02:20,020 --> 00:02:22,380
+type.
+
+35
+00:02:22,880 --> 00:02:28,370
+Remember the entire purpose of the schema file is to instruct graphically well about what type of data
+
+36
+00:02:28,400 --> 00:02:30,140
+we have in our application.
+
+37
+00:02:30,140 --> 00:02:36,980
+So when you see the word user type right here you can think this object instructs craft well about what
+
+38
+00:02:37,070 --> 00:02:42,520
+a user object looks like like what properties as opposed to have.
+
+39
+00:02:42,520 --> 00:02:47,960
+So the user type that we're going to define in here or these objects are as objects are going to pass
+
+40
+00:02:47,960 --> 00:02:51,230
+in here as two required properties.
+
+41
+00:02:51,230 --> 00:02:59,210
+The first one is name the name property will always be a string that describes the type that we are
+
+42
+00:02:59,210 --> 00:03:00,680
+defining.
+
+43
+00:03:00,680 --> 00:03:05,140
+In practice this is usually going to be equal to whatever you call this type.
+
+44
+00:03:05,330 --> 00:03:13,280
+So for us like user type usually means that we're going to have a name of user do note that by convention
+
+45
+00:03:13,280 --> 00:03:18,230
+we capitalize the name of the zoomy the actual name string here.
+
+46
+00:03:18,230 --> 00:03:21,350
+So it is capital-T you user.
+
+47
+00:03:21,520 --> 00:03:29,960
+The second require property inside of this object is the Fields property and it is an object.
+
+48
+00:03:30,010 --> 00:03:32,440
+This is the most important property here.
+
+49
+00:03:32,440 --> 00:03:39,990
+It is what tells graph well about all the different properties that a user has the keys of this subject
+
+50
+00:03:40,440 --> 00:03:43,280
+are the names of the properties that the user has.
+
+51
+00:03:43,440 --> 00:03:52,170
+So I'll say that my user is supposed to have an ID a first name and we'll use it let's say that also
+
+52
+00:03:52,170 --> 00:03:54,090
+has an age as well.
+
+53
+00:03:54,090 --> 00:03:58,080
+And do note that I'm putting the commas in here because we're going to fill in some values like this
+
+54
+00:03:58,080 --> 00:03:59,820
+is not some new mystery syntax.
+
+55
+00:03:59,820 --> 00:04:01,140
+I just invented.
+
+56
+00:04:01,140 --> 00:04:03,740
+I'm just putting out all the keys first.
+
+57
+00:04:04,260 --> 00:04:12,300
+So by passing in the fields object with ID first name an age we have instructed graphed well that every
+
+58
+00:04:12,300 --> 00:04:15,780
+single user will have an ID a first name and an H.
+
+59
+00:04:15,810 --> 00:04:16,470
+That's it.
+
+60
+00:04:18,090 --> 00:04:21,740
+Now here's where things start to get a little bit interesting.
+
+61
+00:04:21,810 --> 00:04:25,930
+We have telegraphed well about what type of data.
+
+62
+00:04:26,010 --> 00:04:27,980
+Each of these fields are.
+
+63
+00:04:28,110 --> 00:04:31,650
+And when I say type I mean like is the idea a string.
+
+64
+00:04:31,650 --> 00:04:34,550
+Is it a numbers an array isn't an object.
+
+65
+00:04:34,980 --> 00:04:43,870
+We do so by setting the value of each of these properties to an object and then defining a type property.
+
+66
+00:04:43,920 --> 00:04:49,740
+So let's just fill in that kinda next step on each of these so each of them is going to get a type property.
+
+67
+00:04:49,740 --> 00:04:51,840
+Again I'm going to leave off the value on each of them.
+
+68
+00:04:51,840 --> 00:04:55,910
+Right now we're going to fill it in just a second.
+
+69
+00:04:56,130 --> 00:05:01,890
+So it is up to us as developers to decide what an appropriate type for each one of these properties
+
+70
+00:05:01,890 --> 00:05:02,660
+is.
+
+71
+00:05:03,030 --> 00:05:06,770
+Personally I think that the idea should probably be a String theory that makes sense.
+
+72
+00:05:06,840 --> 00:05:11,880
+I think the first name should definitely be a string and the age should probably be an integer.
+
+73
+00:05:11,880 --> 00:05:14,240
+So like how many years old am I.
+
+74
+00:05:14,240 --> 00:05:22,440
+With just a whole number in an integer to communicate this digraph Well we are going to use some built
+
+75
+00:05:22,530 --> 00:05:24,970
+in types to communicate this.
+
+76
+00:05:24,990 --> 00:05:27,940
+OK so again this is where things start to get all that weird.
+
+77
+00:05:27,960 --> 00:05:38,890
+We're going to say graph Cuil string graph QOL string and graph Cuil it.
+
+78
+00:05:39,330 --> 00:05:43,830
+So I know I've said this probably three or four times now but this communicates to graph quite well
+
+79
+00:05:44,010 --> 00:05:48,180
+that every user is going to have an ID that will be a string.
+
+80
+00:05:48,180 --> 00:05:50,930
+Every user is going to have a first name that is a string.
+
+81
+00:05:51,060 --> 00:05:55,080
+Every user is going to have an age that is an integer.
+
+82
+00:05:55,080 --> 00:05:58,020
+Now we make use of graph Q All string and end.
+
+83
+00:05:58,050 --> 00:06:02,470
+We need to make sure that we import them from the graph to a library up here as well.
+
+84
+00:06:02,700 --> 00:06:04,150
+So I'll grab them as.
+
+85
+00:06:04,160 --> 00:06:09,990
+Q L string and graph Cuil it like so ok.
+
+86
+00:06:10,950 --> 00:06:12,100
+Good progress so far.
+
+87
+00:06:12,150 --> 00:06:17,100
+Let's take a second look just a second to review where we're at in this section.
+
+88
+00:06:17,100 --> 00:06:23,520
+We started working on our schema file the schema file communicates all the different types of data in
+
+89
+00:06:23,520 --> 00:06:25,170
+our application over the graph.
+
+90
+00:06:25,180 --> 00:06:30,840
+Q Well and also tells graphically well how they are all related and we haven't taken part as we haven't
+
+91
+00:06:30,840 --> 00:06:32,560
+done that second part just yet.
+
+92
+00:06:33,060 --> 00:06:39,340
+We started by crazy creating a user type which is meant to represent a user and we're told graph Cuil
+
+93
+00:06:39,360 --> 00:06:45,280
+that every user has three properties and ID a first name and an age.
+
+94
+00:06:45,720 --> 00:06:50,580
+So let's meditate on this for just a moment and then continue the next section and figure out where
+
+95
+00:06:50,580 --> 00:06:51,840
+to go from here.
+

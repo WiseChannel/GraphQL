@@ -1,0 +1,508 @@
+1
+00:00:00,820 --> 00:00:07,190
+In the last section and we finished up our first mutation to create a new user over on our Jason server
+
+2
+00:00:07,970 --> 00:00:12,560
+in this section we're going to kick off the next mutation so we're going to work on another mutation
+
+3
+00:00:12,980 --> 00:00:20,470
+after this add user 1 and we're going to call this one delete user this delete news user.
+
+4
+00:00:20,510 --> 00:00:24,580
+Mutation will be another field on the mutation object.
+
+5
+00:00:24,580 --> 00:00:29,810
+So remember all the different mutations that we have however many we might have will end up on this
+
+6
+00:00:29,840 --> 00:00:33,540
+Field's property of the mutation object.
+
+7
+00:00:33,760 --> 00:00:37,330
+This mutation as you put together it's just a little bit different.
+
+8
+00:00:37,370 --> 00:00:45,120
+And here's how I would like you to take a shot at this next mutation on your own.
+
+9
+00:00:45,200 --> 00:00:51,290
+You can use the user as a sort of template to follow a sort of guide the code that we're going to end
+
+10
+00:00:51,290 --> 00:00:54,400
+up putting inside of delete user is going to look awfully similar.
+
+11
+00:00:54,410 --> 00:00:59,180
+Is this going to be a little bit different in a couple of places.
+
+12
+00:00:59,390 --> 00:01:05,090
+Now the one tip I do want to give you is around the X-Post request that you'll make to actually delete
+
+13
+00:01:05,090 --> 00:01:05,920
+the user.
+
+14
+00:01:06,110 --> 00:01:09,240
+You'll end up with something that looks like X used dot deletes
+
+15
+00:01:12,620 --> 00:01:20,320
+and then localhost three thousand users and then the idea of the user that you want to delete however
+
+16
+00:01:20,360 --> 00:01:23,180
+you get this idea you'll need to figure out where that part comes from.
+
+17
+00:01:23,180 --> 00:01:27,560
+So just a little bit of a tip there if you want to give this a shot.
+
+18
+00:01:27,590 --> 00:01:32,570
+Go ahead feel free to go through the implementation and then test it out inside of graphical.
+
+19
+00:01:32,570 --> 00:01:37,340
+If you end up getting a response back that says something like No that is good.
+
+20
+00:01:37,370 --> 00:01:39,560
+We want to see a response of No.
+
+21
+00:01:39,560 --> 00:01:41,340
+Or something like that.
+
+22
+00:01:41,450 --> 00:01:43,700
+So feel free to pause the video right now.
+
+23
+00:01:43,820 --> 00:01:45,700
+When you're all done just unpause.
+
+24
+00:01:45,740 --> 00:01:50,330
+And I'm going to continue in just like two seconds in the same video going through the solution.
+
+25
+00:01:50,360 --> 00:01:51,630
+So feel free to pause now.
+
+26
+00:01:51,650 --> 00:01:52,590
+Give it a shot.
+
+27
+00:01:54,810 --> 00:01:55,220
+OK.
+
+28
+00:01:55,230 --> 00:01:58,560
+So if you gave it a shot yourself I hope you had some good luck.
+
+29
+00:01:58,560 --> 00:02:00,390
+Let's walk through the solution together.
+
+30
+00:02:00,390 --> 00:02:06,180
+So we're going to go through the solution for deleting a user inside of the remainder of this section
+
+31
+00:02:07,260 --> 00:02:10,760
+before we get started on it kind of planned this out ahead of time.
+
+32
+00:02:10,790 --> 00:02:15,930
+Saw there's a couple of considerations I want to take into account before we add in this.
+
+33
+00:02:15,930 --> 00:02:18,480
+Delete user mutation first.
+
+34
+00:02:18,510 --> 00:02:20,860
+Where do we put the code for this mutation.
+
+35
+00:02:21,150 --> 00:02:27,550
+Well the code for this mutation is going to be again just another field on the fields object.
+
+36
+00:02:27,600 --> 00:02:29,580
+So it's a sibling to add user.
+
+37
+00:02:29,580 --> 00:02:32,970
+We're going to have another field called Delete user.
+
+38
+00:02:33,120 --> 00:02:40,560
+The second consideration is going to be around the args object so that the add user mutation we have
+
+39
+00:02:40,560 --> 00:02:44,950
+this args object that had all the different properties for creating a user.
+
+40
+00:02:45,270 --> 00:02:51,710
+This time around as we're deleting a user we don't really need to know the first name or age or company
+
+41
+00:02:51,720 --> 00:02:57,400
+idea of a user We just need to know the id of the user that we want to delete.
+
+42
+00:02:57,450 --> 00:03:00,360
+Finally that type of request that we're going to make.
+
+43
+00:03:00,600 --> 00:03:06,340
+So as I showed you just a moment ago is a little hint we'll make a delete type request over to the JS
+
+44
+00:03:06,340 --> 00:03:11,570
+on server the server is already wired up for all these restful conventions.
+
+45
+00:03:11,580 --> 00:03:19,080
+So as long as we make a delete request to slash users slash ID whatever the idea of the user is it will
+
+46
+00:03:19,110 --> 00:03:23,390
+automatically delete the user for us and burn must take care of everything.
+
+47
+00:03:24,120 --> 00:03:25,540
+So let's give this a shot.
+
+48
+00:03:25,620 --> 00:03:27,840
+We've got to delete user ickier right here.
+
+49
+00:03:27,840 --> 00:03:30,370
+We'll start by adding on a type to it.
+
+50
+00:03:30,450 --> 00:03:36,760
+So what we expect to be returned by that mutations result function I would expect to see back probably
+
+51
+00:03:36,780 --> 00:03:38,490
+user type.
+
+52
+00:03:38,490 --> 00:03:41,150
+Next the args object.
+
+53
+00:03:41,580 --> 00:03:47,280
+So last time around we had provided the first name age and company ID of the user that we were creating
+
+54
+00:03:47,570 --> 00:03:48,110
+again.
+
+55
+00:03:48,150 --> 00:03:54,000
+This time all we really need as an input is the ID of the record that we're trying to delete.
+
+56
+00:03:54,000 --> 00:03:59,490
+So for the args object I'm going to expect that whenever the nutation gets called it should be called
+
+57
+00:03:59,490 --> 00:04:05,700
+with the ID of the user we want to get tossed in a type of new graph.
+
+58
+00:04:05,700 --> 00:04:08,650
+Q Well non null.
+
+59
+00:04:09,010 --> 00:04:18,600
+And then inside graph Q L string again we're treating graph Kule non-null as a sort of validation step
+
+60
+00:04:18,600 --> 00:04:24,600
+of sorts where we're saying hey if you're going to call this mutation don't even bother calling it if
+
+61
+00:04:24,600 --> 00:04:27,580
+you don't know the id of the user that you want to delete.
+
+62
+00:04:27,750 --> 00:04:31,770
+If you don't know the user the idea that you want to delete then don't call the mutation.
+
+63
+00:04:31,860 --> 00:04:39,380
+And we're enforcing that rule by saying non-null you have to provide a non no value as the ID argument
+
+64
+00:04:41,310 --> 00:04:47,790
+finally the resolve function so little does find the result function with parent value.
+
+65
+00:04:48,060 --> 00:04:55,050
+Because we defined in ARBs object containing the property ID I'm going to expect my second value to
+
+66
+00:04:55,050 --> 00:04:56,040
+contain the ID.
+
+67
+00:04:56,070 --> 00:05:03,080
+So I'll use a little bit of argument destructuring from ESX to pull the ID property directly off than
+
+68
+00:05:03,120 --> 00:05:03,910
+inside of here.
+
+69
+00:05:03,930 --> 00:05:12,500
+We can make a delete type request to HTP localhost three thousand users.
+
+70
+00:05:13,060 --> 00:05:17,810
+Id again using a template string here or a string interpolation.
+
+71
+00:05:17,940 --> 00:05:25,690
+So ensuring that I have back to on either side of the string not single quotes finally will do that
+
+72
+00:05:25,720 --> 00:05:30,030
+compatibility layer again between X-posts and graphics.
+
+73
+00:05:30,030 --> 00:05:33,630
+Well I will say red dot data and don't worry in the future.
+
+74
+00:05:33,640 --> 00:05:38,570
+These red dot data statements that we have all over the place they're definitely going to go away.
+
+75
+00:05:38,710 --> 00:05:42,330
+Don't worry we'll fix that stuff up will make it look a little bit nicer than how it does right now.
+
+76
+00:05:42,330 --> 00:05:45,960
+On the next application we work on OK.
+
+77
+00:05:45,970 --> 00:05:48,640
+I think we're ready to give us a shot inside the browser.
+
+78
+00:05:48,700 --> 00:05:54,670
+I'm going to save the file I'm going to change on over to my terminal and make sure I don't have any
+
+79
+00:05:54,670 --> 00:05:55,240
+errors.
+
+80
+00:05:55,240 --> 00:05:56,740
+Looks good over here.
+
+81
+00:05:57,430 --> 00:06:01,470
+So I'll pull up my browser and I'm going to create the new mutation.
+
+82
+00:06:01,470 --> 00:06:06,740
+So remember the annotation to me the syntax for mutation we say mutation.
+
+83
+00:06:06,960 --> 00:06:09,230
+Then the name of the mutation.
+
+84
+00:06:09,270 --> 00:06:15,010
+This is going to be delete user and I'm going to delete my user with an ID of 23.
+
+85
+00:06:15,010 --> 00:06:18,060
+I'm also going to double check inside my Jaison file.
+
+86
+00:06:18,070 --> 00:06:18,520
+Real quick.
+
+87
+00:06:18,520 --> 00:06:24,330
+My DVD is on file and make sure that I still have a user with ID of 23.
+
+88
+00:06:24,430 --> 00:06:25,450
+So looks like I do.
+
+89
+00:06:25,450 --> 00:06:27,180
+I saw an idea of 23.
+
+90
+00:06:27,190 --> 00:06:31,230
+If you do not have a user with an ID of 23 make sure you do have one here.
+
+91
+00:06:31,330 --> 00:06:36,400
+If you don't have any users left at all you can always use the mutation we already wrote to create a
+
+92
+00:06:36,400 --> 00:06:43,620
+new one or manually add a new user into the DB JS on file.
+
+93
+00:06:43,670 --> 00:06:44,940
+All right so then last step.
+
+94
+00:06:44,940 --> 00:06:50,970
+Remember when ever we call a mutation it is required that we place say like hey I want some property
+
+95
+00:06:50,970 --> 00:06:52,130
+off of here.
+
+96
+00:06:52,590 --> 00:06:54,570
+So let's run this and.
+
+97
+00:06:54,600 --> 00:06:56,440
+OK well we don't get an error.
+
+98
+00:06:56,460 --> 00:07:01,110
+But as I mentioned we got an idea back of no one.
+
+99
+00:07:01,860 --> 00:07:05,040
+Well let's look at our D-B Jason File.
+
+100
+00:07:05,640 --> 00:07:09,900
+OK inside the DVD Jason file you can clearly see that that user is now deleted.
+
+101
+00:07:09,900 --> 00:07:17,910
+I don't have an idea of 23 here anymore so it looks like the user was deleted but why did graph 12 fail
+
+102
+00:07:17,940 --> 00:07:21,140
+to return the ID of the user who was deleted.
+
+103
+00:07:21,480 --> 00:07:26,150
+Well this is going into the details of how the Sun server works just a little bit.
+
+104
+00:07:26,700 --> 00:07:27,890
+So here's what's going on.
+
+105
+00:07:28,340 --> 00:07:34,800
+Graph Q L is successfully making the request over to the Sun server to delete the user but when the
+
+106
+00:07:34,800 --> 00:07:41,370
+user is deleted the Giese on server does not actually respond with any of the details about the record
+
+107
+00:07:41,370 --> 00:07:42,580
+that was deleted.
+
+108
+00:07:42,960 --> 00:07:45,320
+This is how the server behaves by default.
+
+109
+00:07:45,360 --> 00:07:51,810
+It just does not return the user that was deleted because it doesn't return the user that was deleted.
+
+110
+00:07:51,810 --> 00:07:55,400
+Graph Cuil is left holding an empty bag of sorts.
+
+111
+00:07:55,500 --> 00:08:02,130
+It doesn't have a user to return any details from and so that's why we see an idea of no inside the
+
+112
+00:08:02,130 --> 00:08:03,550
+response here.
+
+113
+00:08:03,660 --> 00:08:06,450
+So this is a little bit of an awkward part of graft.
+
+114
+00:08:06,450 --> 00:08:13,770
+Well in my opinion it really expects to always get back some useful data from that result function but
+
+115
+00:08:13,860 --> 00:08:15,920
+in this case our hands are really tied.
+
+116
+00:08:15,970 --> 00:08:22,050
+Like we really don't have any data to hand it back over to graft well so that it can tell us a little
+
+117
+00:08:22,050 --> 00:08:27,600
+bit about the ID of the user that was deleted or for example the first name or whatever else we might
+
+118
+00:08:27,600 --> 00:08:28,420
+be.
+
+119
+00:08:29,250 --> 00:08:31,470
+So it would be really nice if we construct a graph.
+
+120
+00:08:31,500 --> 00:08:34,900
+Well that it should not expect to have anything come back.
+
+121
+00:08:35,070 --> 00:08:38,340
+But we don't really have the ability to do that with graft.
+
+122
+00:08:38,340 --> 00:08:45,110
+Well we always have to assert that there is some type coming back inside of our schema right here.
+
+123
+00:08:45,300 --> 00:08:50,640
+So if be really nice to say instead of getting back a type of user type from the resolver request and
+
+124
+00:08:50,640 --> 00:08:53,820
+you're really nice to say hey expect nothing back.
+
+125
+00:08:53,820 --> 00:08:56,790
+Again that's not something we really have the ability to do with graphs.
+
+126
+00:08:56,800 --> 00:09:03,620
+Well OK in the section we walk through the implementation of a delete user nutation.
+
+127
+00:09:03,900 --> 00:09:08,970
+So let's continue in the next section and we're going to work with one last little mutation.
+

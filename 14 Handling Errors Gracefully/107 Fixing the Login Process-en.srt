@@ -1,0 +1,712 @@
+1
+00:00:00,840 --> 00:00:06,370
+In the last section we spoke about how we would deal with this kind of a thorn in our side around handling
+
+2
+00:00:06,400 --> 00:00:11,080
+authentication with both Apollo and react inside of our application.
+
+3
+00:00:11,200 --> 00:00:15,770
+At the end of the day we had said that we would associate the form with our current user query.
+
+4
+00:00:16,090 --> 00:00:21,730
+And then as soon as that Cleary gets updated by our prefetching of the query we would figure out some
+
+5
+00:00:21,730 --> 00:00:28,360
+way to detect the fact that the component now has the access to a current user or that the user is now
+
+6
+00:00:28,360 --> 00:00:33,910
+authenticated and we would make use of that to somehow kick the user over to our dashboard.
+
+7
+00:00:33,910 --> 00:00:38,500
+So let's talk about exactly how we're going to implement this step right here where we detect that the
+
+8
+00:00:38,500 --> 00:00:44,620
+user is now authenticated when they were not authenticated before and redirect them over to the dashboard.
+
+9
+00:00:44,950 --> 00:00:47,890
+Some practice a little bit more strict for than you might think.
+
+10
+00:00:47,950 --> 00:00:49,630
+So here's how it's going to work.
+
+11
+00:00:49,630 --> 00:00:53,370
+When our queery reruns and we get a response back from the server.
+
+12
+00:00:53,410 --> 00:00:55,210
+The query will be updated.
+
+13
+00:00:55,210 --> 00:00:58,910
+That's going to cause our log and foreign component to be re rendered.
+
+14
+00:00:59,110 --> 00:01:02,880
+And at that point in time life cycle methods all the way.
+
+15
+00:01:02,980 --> 00:01:09,130
+So component will update which is one of our lifecycle methods for re-act component will be automatically
+
+16
+00:01:09,130 --> 00:01:12,500
+called with our new and old props.
+
+17
+00:01:12,610 --> 00:01:18,880
+And so inside of component update component will update excuse me we can examine both the Old and new
+
+18
+00:01:18,880 --> 00:01:23,700
+set of props and say okay if the user was not authenticated.
+
+19
+00:01:23,770 --> 00:01:27,800
+But now they are then they must have just successfully logged in.
+
+20
+00:01:27,850 --> 00:01:30,520
+They probably shouldn't be looking at the log in form anymore.
+
+21
+00:01:30,610 --> 00:01:33,960
+Let's forcibly push them over to the dashboard.
+
+22
+00:01:34,570 --> 00:01:36,000
+So that's got to be our plan.
+
+23
+00:01:36,360 --> 00:01:43,000
+Again in practice ends up being very little code but understanding why we are doing it is kind of a
+
+24
+00:01:43,000 --> 00:01:44,750
+big leap of faith there.
+
+25
+00:01:44,890 --> 00:01:46,420
+So let's put this together.
+
+26
+00:01:47,050 --> 00:01:50,470
+I'm going to flip on over to our log and foreign component now.
+
+27
+00:01:50,500 --> 00:01:52,930
+I've already got the query imported in here.
+
+28
+00:01:52,960 --> 00:01:58,260
+Remember we had imported the query to wired up to the refits query statement in the first place.
+
+29
+00:01:59,400 --> 00:02:05,060
+So we need to first associate the query with the component itself through the use of the graph tool
+
+30
+00:02:05,080 --> 00:02:06,890
+helper after we do that.
+
+31
+00:02:06,900 --> 00:02:10,470
+We can then add on that component will update lifecycle method.
+
+32
+00:02:10,680 --> 00:02:15,630
+And first we'll just cancel log out some the values inside that thing and we'll figure out exactly how
+
+33
+00:02:15,630 --> 00:02:17,380
+to implement it.
+
+34
+00:02:17,400 --> 00:02:22,750
+So let's first associate the query with the component with the graphic helper at the bottom of the file.
+
+35
+00:02:23,620 --> 00:02:28,300
+I'll scroll all the way down to the bottom and we've spoken a couple of times about how to associate
+
+36
+00:02:28,330 --> 00:02:33,740
+multiple mutations in queries with the component first newline the existing one.
+
+37
+00:02:33,940 --> 00:02:36,520
+I'm going to trim the semi-colon off the end.
+
+38
+00:02:36,520 --> 00:02:40,330
+Make sure you do not forget that semi colon then we'll call graft.
+
+39
+00:02:40,340 --> 00:02:47,110
+Well we'll pass in the query that fetches our current user and we'll add on the second set of parentheses
+
+40
+00:02:47,110 --> 00:02:49,190
+like so.
+
+41
+00:02:49,310 --> 00:02:52,610
+OK so the query is now associated with the component.
+
+42
+00:02:52,890 --> 00:02:59,260
+As soon as the query gets updated in any way shape or form that component will be updated it will be
+
+43
+00:02:59,270 --> 00:03:05,460
+rendered with a set of props on this prop stock data that will describe the result of this query right
+
+44
+00:03:05,460 --> 00:03:06,170
+here.
+
+45
+00:03:06,600 --> 00:03:12,610
+So with that in mind let's scroll back up towards the top and right now if the log in form I'm going
+
+46
+00:03:12,610 --> 00:03:21,200
+to define our lifecycle method component will mount so a component will now again lifecycle method.
+
+47
+00:03:21,210 --> 00:03:27,690
+It is a part of the re-act standard API whenever our component is about or excuse me not Capone will
+
+48
+00:03:27,690 --> 00:03:33,660
+mount component will update sorry whenever a component is about to be pre-rendered due to any reason
+
+49
+00:03:33,660 --> 00:03:34,600
+whatsoever.
+
+50
+00:03:34,740 --> 00:03:37,590
+This function right here will be automatically called.
+
+51
+00:03:37,840 --> 00:03:46,360
+Now the magic behind this function is the first argument to it which by convention we call next prompts.
+
+52
+00:03:46,380 --> 00:03:53,720
+So this is the magic next prop's is the prop's object that will be placed on our component.
+
+53
+00:03:53,730 --> 00:03:58,920
+The next time that it renders or as it's just about to update.
+
+54
+00:03:58,950 --> 00:04:11,370
+So in practice we can say this dog props the old current set of props and then next prop's is the next
+
+55
+00:04:11,700 --> 00:04:22,750
+set of props that will be in place when the component reave renders it might be a good idea to leave
+
+56
+00:04:22,750 --> 00:04:23,660
+these comments in here.
+
+57
+00:04:23,680 --> 00:04:28,720
+This is a note to yourself so you can always refer back to it and understand the life cycle method.
+
+58
+00:04:28,720 --> 00:04:32,560
+If you've already used this life cycle method in the past well then you probably have a good idea of
+
+59
+00:04:32,560 --> 00:04:33,320
+what's going on here.
+
+60
+00:04:33,340 --> 00:04:37,710
+But I want to make sure that nonetheless it's clear for everybody exactly what's going on here.
+
+61
+00:04:38,230 --> 00:04:44,020
+OK so now it's time let's first inspect both these prop objects by canceling them out.
+
+62
+00:04:44,050 --> 00:04:48,790
+We can compare them a little bit and make sure that this is going away that worked in the way we expect.
+
+63
+00:04:49,040 --> 00:04:55,600
+So I'm going to log destock props and next props in the same statement.
+
+64
+00:04:55,600 --> 00:04:58,080
+So now I'm going to go over to the browser.
+
+65
+00:04:58,180 --> 00:05:02,230
+We're going to refresh the page and we're going to go through the authentication process and we're going
+
+66
+00:05:02,230 --> 00:05:04,630
+to examine both of these objects.
+
+67
+00:05:06,080 --> 00:05:06,460
+OK.
+
+68
+00:05:06,470 --> 00:05:13,980
+So back over to the log and form will refresh the page and then immediately inside the console.
+
+69
+00:05:13,990 --> 00:05:15,520
+I get some logs here.
+
+70
+00:05:15,520 --> 00:05:17,750
+So these are the initial projects.
+
+71
+00:05:17,750 --> 00:05:20,560
+Just as a component is rendered.
+
+72
+00:05:20,560 --> 00:05:28,670
+Now if I expand the first prop's object which is the current set of props we understand that.
+
+73
+00:05:28,680 --> 00:05:33,100
+OK this is the very first this is when the component first renders.
+
+74
+00:05:33,330 --> 00:05:37,670
+And then in the same console log we get the next prompt statement.
+
+75
+00:05:37,740 --> 00:05:41,510
+And we can see that the queery has finished loading.
+
+76
+00:05:41,730 --> 00:05:47,430
+So we start off with loading true with the first console log or in with the first prop's object.
+
+77
+00:05:47,610 --> 00:05:51,330
+And then in the second prop's object here is the query being resolved.
+
+78
+00:05:51,330 --> 00:05:55,950
+So we've kind of already seen the query forcing our component to re render.
+
+79
+00:05:55,950 --> 00:05:59,040
+That's exactly why we got this console log right here.
+
+80
+00:05:59,040 --> 00:06:05,670
+Our component renders on the screen one time initially for that initial render component will update
+
+81
+00:06:05,700 --> 00:06:12,860
+is not called as a component is initially rendered it right connives is that it's associated with this
+
+82
+00:06:12,860 --> 00:06:13,820
+query right here.
+
+83
+00:06:13,880 --> 00:06:15,920
+So this query is made to the backend.
+
+84
+00:06:16,130 --> 00:06:17,080
+The query is fetched.
+
+85
+00:06:17,090 --> 00:06:18,050
+It's resolved.
+
+86
+00:06:18,200 --> 00:06:22,520
+And then the update or the result of the query is applied to this component.
+
+87
+00:06:22,520 --> 00:06:28,340
+So as soon as that update to the query comes in with that just very initial render of our application
+
+88
+00:06:28,730 --> 00:06:32,900
+we're talking about in the first five seconds of the thing appearing on the screen we already get one
+
+89
+00:06:32,900 --> 00:06:39,580
+console log where initially this stop prompts the query or the current user was not available.
+
+90
+00:06:39,620 --> 00:06:44,980
+And then as the component was updated all of a sudden boom current user is available.
+
+91
+00:06:44,980 --> 00:06:47,860
+So now let's log in and see what we get then.
+
+92
+00:06:47,910 --> 00:06:52,240
+So going to clear up my log and I'll put in some valid information.
+
+93
+00:06:53,280 --> 00:06:56,360
+Like so I can't.
+
+94
+00:06:56,640 --> 00:06:57,750
+So I submitted it.
+
+95
+00:06:57,750 --> 00:07:02,180
+I saw my header change which means OK everything is probably working the way I expect.
+
+96
+00:07:02,230 --> 00:07:04,030
+And now if you look at this object.
+
+97
+00:07:04,310 --> 00:07:10,890
+So remember the consul log here is describing the change or the delta between the two prop's objects.
+
+98
+00:07:10,890 --> 00:07:16,410
+So initially we had prop's start data dot user of no.
+
+99
+00:07:16,560 --> 00:07:19,050
+So that's when we were not signed in.
+
+100
+00:07:19,170 --> 00:07:22,780
+And then when the component Riera entered as the query was completed.
+
+101
+00:07:22,860 --> 00:07:29,400
+Now we have prop's data user with a populated user property.
+
+102
+00:07:29,400 --> 00:07:34,830
+So that right there is exactly how we're going to figure out inside of our component that the user was
+
+103
+00:07:34,830 --> 00:07:37,940
+not signed in but now is.
+
+104
+00:07:37,950 --> 00:07:42,740
+So let's add on a little if statement to check for that change.
+
+105
+00:07:43,350 --> 00:07:51,090
+So we're going to say if next to this is in order we'll say if this stock props dot data dot user.
+
+106
+00:07:51,120 --> 00:07:55,320
+So this is the old version of prop's this is prior to signing in.
+
+107
+00:07:55,470 --> 00:07:57,270
+If this thing does not exist.
+
+108
+00:07:57,300 --> 00:08:04,580
+So if there was not a user there and next prop's data user does exist.
+
+109
+00:08:04,590 --> 00:08:07,780
+So if the user did not exist before but now they do.
+
+110
+00:08:08,150 --> 00:08:15,100
+Well hotdog That sounds like a case for us to redirect to dashboard right here.
+
+111
+00:08:15,490 --> 00:08:15,860
+OK.
+
+112
+00:08:15,880 --> 00:08:17,980
+I know that's a lot of talking right there.
+
+113
+00:08:18,010 --> 00:08:26,020
+A lot of me going on and on about what is kind of a simpler straightforward line of code but this is
+
+114
+00:08:26,020 --> 00:08:31,420
+a real big linchpin in how authentication is working inside of our application and understanding how
+
+115
+00:08:31,420 --> 00:08:33,300
+Appollo is working behind the scenes as well.
+
+116
+00:08:33,310 --> 00:08:39,540
+So I really just want to make sure that this part is nice and clear for you.
+
+117
+00:08:39,650 --> 00:08:46,630
+So now inside of this statement we can add in a little bit of logic to redirect the user over to a different
+
+118
+00:08:46,630 --> 00:08:49,210
+route inside of our application.
+
+119
+00:08:49,260 --> 00:08:54,640
+I'm only ever going to expect this if statement right here to trigger in the case that the user was
+
+120
+00:08:54,640 --> 00:08:57,390
+not signed in but now is.
+
+121
+00:08:57,670 --> 00:09:03,670
+So if the user was not signed in but now is that seems to me like a very reasonable time to redirect
+
+122
+00:09:03,670 --> 00:09:06,820
+the user over to a different point inside of our application.
+
+123
+00:09:06,820 --> 00:09:13,350
+I really don't expect this statement right here to just magically trigger for no reason whatsoever.
+
+124
+00:09:13,360 --> 00:09:19,030
+It really should only ever be triggered when the users successfully authenticates.
+
+125
+00:09:19,700 --> 00:09:22,840
+So now we need to actually redirect the user over to the dashboard.
+
+126
+00:09:22,850 --> 00:09:27,800
+Let's take this really quick and then we'll take a quick break and then finish up with the authentication
+
+127
+00:09:27,800 --> 00:09:29,030
+stuff.
+
+128
+00:09:29,030 --> 00:09:34,280
+So to do a course redirect we've done this one time before inside this course we're going to import
+
+129
+00:09:34,310 --> 00:09:40,130
+the hash history object from re-act router and then use that hash history object to update the current
+
+130
+00:09:40,130 --> 00:09:41,130
+you are l.
+
+131
+00:09:41,510 --> 00:09:53,420
+So at the top I will import hash history from re-act router and then inside of the statement we'll call
+
+132
+00:09:53,420 --> 00:10:01,790
+hash history push and I'm going to send my user over to the dashboard.
+
+133
+00:10:01,900 --> 00:10:06,970
+I do want to mention that we're going to repeat this exact same process over on the sign up form as
+
+134
+00:10:06,970 --> 00:10:12,730
+well because I really do expect to have the same experience with both the sign up form and the log in
+
+135
+00:10:12,740 --> 00:10:17,500
+form as in after we change the user's authentication state.
+
+136
+00:10:17,530 --> 00:10:20,100
+I want to redirect the user over to the dashboard.
+
+137
+00:10:20,290 --> 00:10:22,450
+So we're going to repeat the same thing over there.
+
+138
+00:10:22,570 --> 00:10:27,340
+But before we do let's test this out inside the browser OK.
+
+139
+00:10:27,370 --> 00:10:28,990
+So I'm going to refresh the page.
+
+140
+00:10:29,230 --> 00:10:32,750
+Do you recall that we do not yet have a dashboard route.
+
+141
+00:10:33,100 --> 00:10:38,290
+All right we don't have a dashboard right here and so the instant I refresh the page I already get a
+
+142
+00:10:38,410 --> 00:10:42,720
+warning message here that says hey you don't have any route called dashboard.
+
+143
+00:10:42,790 --> 00:10:46,920
+I got the error right here because I already am authenticated.
+
+144
+00:10:46,960 --> 00:10:53,010
+And so really the logon form is immediately working in the way I expect if a user comes to the log in
+
+145
+00:10:53,010 --> 00:10:55,170
+form when they're already authenticated.
+
+146
+00:10:55,360 --> 00:11:00,610
+I definitely want to just kick the user over to the dashboard immediately without them thinking that
+
+147
+00:11:00,610 --> 00:11:02,440
+they have to log in for any reason.
+
+148
+00:11:02,740 --> 00:11:04,000
+So it's really tough to sing out.
+
+149
+00:11:04,000 --> 00:11:08,280
+We really have to first log out and click log out up there first.
+
+150
+00:11:08,290 --> 00:11:13,470
+I'm going to refresh the page again and make sure I go back to my home route.
+
+151
+00:11:13,590 --> 00:11:14,600
+Middle click on logon.
+
+152
+00:11:14,680 --> 00:11:15,000
+OK.
+
+153
+00:11:15,040 --> 00:11:17,040
+So here we are on refresh.
+
+154
+00:11:17,040 --> 00:11:19,280
+One more time to get all the air to go away.
+
+155
+00:11:19,840 --> 00:11:23,980
+So essentially I'm sorry I was clicking there pretty quickly.
+
+156
+00:11:23,980 --> 00:11:29,220
+But what I really want to do is just ensure that I'm not signed in and also ensure that I'm on the logging
+
+157
+00:11:29,230 --> 00:11:38,290
+route like so so now it's time to test this and we're going to go to test out test dot com and my password.
+
+158
+00:11:38,290 --> 00:11:39,650
+Now I'm going to click submit.
+
+159
+00:11:39,700 --> 00:11:42,770
+I will expect to see the error message about the dashboard.
+
+160
+00:11:43,030 --> 00:11:48,430
+But at least I just want to see the fact that the form is attempting to navigate me to somewhere else
+
+161
+00:11:48,430 --> 00:11:49,830
+in the application.
+
+162
+00:11:49,990 --> 00:11:50,950
+So I click submit.
+
+163
+00:11:50,980 --> 00:11:58,300
+And thank goodness we do in fact get a forceable redirect over to the dashboard which is exactly what
+
+164
+00:11:58,300 --> 00:12:00,040
+we want to see happen.
+
+165
+00:12:00,100 --> 00:12:05,530
+So my application now considers me to be logged in and so we can now create our dashboard component
+
+166
+00:12:05,800 --> 00:12:11,770
+and add some logic to it to make sure that the dashboard will only let you look at it when you are authenticated.
+
+167
+00:12:12,010 --> 00:12:18,250
+And of course as we get redirected by the log and for now we're only getting redirected after we have
+
+168
+00:12:18,250 --> 00:12:24,910
+been successfully authenticated and our local Apollo Data Store knows that we are authenticated as well.
+
+169
+00:12:24,910 --> 00:12:30,430
+So the dashboard should probably not throw any false positives trying to kick us back to the log in
+
+170
+00:12:30,430 --> 00:12:31,770
+form over here.
+
+171
+00:12:32,400 --> 00:12:32,950
+OK.
+
+172
+00:12:33,160 --> 00:12:37,130
+So I know the last couple sections have been pretty crazy.
+
+173
+00:12:37,240 --> 00:12:38,470
+Kind of painful stuff.
+
+174
+00:12:38,470 --> 00:12:44,840
+Lot of confusing topics talking about really in-depth stuff on the Apollo side and the Riak side.
+
+175
+00:12:44,950 --> 00:12:48,730
+So we just need to do a little bit more of this painful stuff.
+
+176
+00:12:48,730 --> 00:12:54,850
+We're going to move some of this code or duplicated I should say over to our sign up form as well and
+
+177
+00:12:54,850 --> 00:12:59,530
+then we'll be able to start on our dashboard component and get towards wrapping up our project.
+
+178
+00:12:59,530 --> 00:13:02,190
+So let's continue on this in the next section.
+

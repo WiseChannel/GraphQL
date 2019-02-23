@@ -1,0 +1,372 @@
+1
+00:00:00,870 --> 00:00:06,480
+Now that we've got our sign up nutation put together we can think about how to log out a user once they've
+
+2
+00:00:06,480 --> 00:00:08,690
+been authenticated with our application.
+
+3
+00:00:08,880 --> 00:00:13,410
+So logging how the user is going to be another type of mutation that we put together.
+
+4
+00:00:13,590 --> 00:00:19,200
+Or another mutation that we put on this Field's object right here the log out mutation is probably going
+
+5
+00:00:19,200 --> 00:00:24,880
+to look pretty darn similar to sign up right here in that it's going to have a return type of user type.
+
+6
+00:00:24,880 --> 00:00:31,230
+So return the user who gets signed out but I don't really expect there to be any args associated with
+
+7
+00:00:31,230 --> 00:00:32,360
+signing out a user.
+
+8
+00:00:32,580 --> 00:00:36,690
+So we're not going to say take the e-mail of the user We're trying to sign out.
+
+9
+00:00:36,690 --> 00:00:39,210
+We're just going to sign the user out.
+
+10
+00:00:39,210 --> 00:00:44,550
+Remember that all the authentication portion of the application is all delegating to passport.
+
+11
+00:00:44,670 --> 00:00:49,650
+So it's really a passport that's going to handle really signing out a user all the mutation that we're
+
+12
+00:00:49,650 --> 00:00:55,830
+writing here is going to do is make sure to instruct passport to sign out the user just to make sure
+
+13
+00:00:55,830 --> 00:00:58,470
+that we understand how site how passport does that.
+
+14
+00:00:58,470 --> 00:01:02,940
+I did take the liberty of pulling up some passport documentation.
+
+15
+00:01:02,940 --> 00:01:06,670
+So I'm at passport just artwork slash docks.
+
+16
+00:01:06,690 --> 00:01:11,100
+You absolutely can navigate over here and check out the documentation if you wish.
+
+17
+00:01:11,340 --> 00:01:14,200
+I've already pulled up the relevant documentation on the screen.
+
+18
+00:01:14,280 --> 00:01:14,940
+Whoops.
+
+19
+00:01:15,360 --> 00:01:18,720
+OK there we go to log out the user.
+
+20
+00:01:18,750 --> 00:01:21,750
+It's just about as simple as it gets.
+
+21
+00:01:21,750 --> 00:01:24,090
+We'd take the incoming request object.
+
+22
+00:01:24,210 --> 00:01:29,630
+That number is the third argument to our resolve function and we call log out on it.
+
+23
+00:01:29,910 --> 00:01:32,640
+And that will remove the user.
+
+24
+00:01:32,670 --> 00:01:37,950
+One thing to keep in mind is that whenever passport is being used inside of our application it will
+
+25
+00:01:37,950 --> 00:01:43,160
+automatically populate the Rec dot user property with the user model.
+
+26
+00:01:43,350 --> 00:01:48,540
+So this recked user is really the thing that we want to return from our resolve function.
+
+27
+00:01:48,540 --> 00:01:52,340
+So we don't need to say go hunt through the database to find the user.
+
+28
+00:01:52,350 --> 00:01:57,420
+Again we don't need to take in any arguments to figure out which user we're attempting to log out or
+
+29
+00:01:57,420 --> 00:01:58,450
+anything like that.
+
+30
+00:01:58,560 --> 00:02:04,350
+We can just look at Record user to figure out which user is attempting to log out and return that from
+
+31
+00:02:04,350 --> 00:02:05,460
+our resolve function.
+
+32
+00:02:05,460 --> 00:02:12,770
+Since our resolve function is expected to return a user the let's see I want to mention is that if you
+
+33
+00:02:12,770 --> 00:02:19,370
+look kind of read very closely at the law this sentence right here and I know the text is probably kind
+
+34
+00:02:19,370 --> 00:02:22,470
+of small but if I zoom in at all it gets really hard to read.
+
+35
+00:02:23,890 --> 00:02:24,320
+Oh boy.
+
+36
+00:02:24,340 --> 00:02:25,510
+Now I lost it.
+
+37
+00:02:27,620 --> 00:02:28,080
+OK.
+
+38
+00:02:28,190 --> 00:02:33,800
+If you read the sentence very quickly it says when you call log out it will remove the Rec dot user
+
+39
+00:02:33,800 --> 00:02:37,010
+property and clear the log in session.
+
+40
+00:02:37,010 --> 00:02:42,290
+So one thing that we do need to make sure that we do is first save a reference to the user.
+
+41
+00:02:42,440 --> 00:02:45,430
+Then we'll log the user out and then return the user.
+
+42
+00:02:45,700 --> 00:02:51,830
+If we first tried to log the user out and then access record user records user would come up as being
+
+43
+00:02:51,860 --> 00:02:54,790
+undefined which is definitely not what we expect.
+
+44
+00:02:56,240 --> 00:02:56,800
+OK.
+
+45
+00:02:56,860 --> 00:02:58,090
+So let's give the sign out.
+
+46
+00:02:58,080 --> 00:03:02,890
+Mutation a shot if it sounds a little bit intimidating or sounds a little bit crazy.
+
+47
+00:03:02,890 --> 00:03:07,730
+Trust me it's actually going to end up being much more simple and straightforward than you might expect.
+
+48
+00:03:07,750 --> 00:03:14,380
+So we're going to find out a lot to find the log out mutation we're going to return a user from the
+
+49
+00:03:14,380 --> 00:03:23,960
+result function will define the result function it itself will take parent value args and rech which
+
+50
+00:03:23,960 --> 00:03:26,040
+is the request object.
+
+51
+00:03:26,120 --> 00:03:32,810
+Now first we'll save a reference reference to the user on the request object like so then we can log
+
+52
+00:03:32,810 --> 00:03:36,260
+the user out by calling ract log out.
+
+53
+00:03:36,260 --> 00:03:38,300
+And then finally we return the user.
+
+54
+00:03:38,570 --> 00:03:43,460
+So again it is just a very small order of operations thing here when we call recked not log out.
+
+55
+00:03:43,460 --> 00:03:47,060
+It removes the user property off the request object.
+
+56
+00:03:47,060 --> 00:03:53,890
+So we first save a reference to the user property then we log the user out and then we return the user.
+
+57
+00:03:53,900 --> 00:03:59,240
+So this is another good example of how we're getting passport engraft Cuil to kind of mesh together.
+
+58
+00:03:59,270 --> 00:04:05,080
+You will notice that I've got more logic in here than probably what I would really like to have.
+
+59
+00:04:05,690 --> 00:04:12,410
+Just for example up here in the sign up or seeming to sign up nutation we've got a very clean very small
+
+60
+00:04:12,410 --> 00:04:13,310
+one liner.
+
+61
+00:04:13,580 --> 00:04:19,040
+So you could definitely make a case here to say maybe we need to make another function on the service
+
+62
+00:04:19,040 --> 00:04:25,640
+called log out which would take just the request object and we should basically do all of this logic
+
+63
+00:04:25,640 --> 00:04:26,490
+inside of it.
+
+64
+00:04:26,660 --> 00:04:32,390
+However since it's just three lines without a lot of logic tied to it I kind of feel OK placing the
+
+65
+00:04:32,390 --> 00:04:33,160
+logic here.
+
+66
+00:04:33,170 --> 00:04:38,900
+But certainly if you want to you could definitely add another function to the off auto service and move
+
+67
+00:04:38,900 --> 00:04:40,960
+this logic right into it.
+
+68
+00:04:41,030 --> 00:04:47,210
+You'll just want to make sure that you still return the user from that log out function OK.
+
+69
+00:04:47,220 --> 00:04:50,040
+I think we're about ready to give this a test now.
+
+70
+00:04:50,040 --> 00:04:55,920
+Again we still don't really have any ability to figure out whether or not our user is really authenticated
+
+71
+00:04:55,920 --> 00:04:56,820
+or not.
+
+72
+00:04:56,820 --> 00:05:00,570
+So I don't really you know we can test this thing and make sure we don't get an error.
+
+73
+00:05:00,630 --> 00:05:06,460
+But again we don't really have the ability to say oh I'm now signed up or done logged in I'm authenticated
+
+74
+00:05:06,750 --> 00:05:10,940
+and now I'm going to call the log out mutation and now oh I'm not authenticated anymore.
+
+75
+00:05:11,190 --> 00:05:15,930
+So right now I want to give this a little shot or a little test but we will probably have to come back
+
+76
+00:05:15,930 --> 00:05:21,060
+and just make sure that all the authentication parts are authentication pieces are working the way we
+
+77
+00:05:21,060 --> 00:05:22,720
+expect.
+
+78
+00:05:23,030 --> 00:05:28,860
+OK let's flip back over to the browser will pop open graphical.
+
+79
+00:05:28,860 --> 00:05:34,110
+I'm going to refresh graphical just to make sure that we get the data around the new mutation that we
+
+80
+00:05:34,110 --> 00:05:35,450
+just wrote.
+
+81
+00:05:36,210 --> 00:05:42,090
+I'm going to take out the existing mutation will add in our new one and this time around we're going
+
+82
+00:05:42,090 --> 00:05:48,530
+to call log out and I just want to hear about the e-mail of the user who just got logged out.
+
+83
+00:05:48,990 --> 00:05:51,810
+So we'll run this thing and OK.
+
+84
+00:05:51,900 --> 00:05:58,800
+We got back to e-mail so presumably the user is now logged out and we are no longer authenticated with
+
+85
+00:05:58,800 --> 00:06:02,100
+the with our express application.
+
+86
+00:06:02,280 --> 00:06:06,630
+Again we still need some means of really testing the authentication piece but we'll take care of that
+
+87
+00:06:06,660 --> 00:06:08,420
+in due time.
+
+88
+00:06:08,460 --> 00:06:09,330
+So let's take a break.
+
+89
+00:06:09,330 --> 00:06:13,740
+We're going to come back and take care of the very last mutation that we need for the real trifecta
+
+90
+00:06:13,740 --> 00:06:14,310
+here.
+
+91
+00:06:14,460 --> 00:06:20,430
+We've got sign up we've got log out the very last mutation that we need is to log in.
+
+92
+00:06:20,460 --> 00:06:24,650
+So when the user comes back to our application and they want to log in again.
+
+93
+00:06:24,690 --> 00:06:27,370
+So let's take care of that mutation in the next section.
+

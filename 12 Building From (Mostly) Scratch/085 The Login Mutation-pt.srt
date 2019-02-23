@@ -1,0 +1,360 @@
+1
+00:00:00,810 --> 00:00:06,750
+A mutao Gless em que vamos trabalhar  a mutao de logs, a mutao
+
+2
+00:00:06,750 --> 00:00:10,270
+lenta funcionalmente vai parecer exatamente idntica para se inscrever.
+
+3
+00:00:10,410 --> 00:00:12,540
+Ainda iremos retornar o tipo de usurio.
+
+4
+00:00:12,570 --> 00:00:15,330
+Vamos ter argumentos de e-mail e senha.
+
+5
+00:00:15,420 --> 00:00:19,100
+Vai ser o e-mail e a senha com a qual o usurio est tentando fazer o login.
+
+6
+00:00:19,320 --> 00:00:24,960
+E ento, ainda vamos fazer uso dos membros do nosso servio dentro do arquivo de autenticao.
+
+7
+00:00:24,960 --> 00:00:31,890
+Ento, nos servios, destruio J Sim, uma das funes que est aqui, percorrendo todo o caminho at a parte inferior,
+
+8
+00:00:32,910 --> 00:00:40,520
+ uma funo para fazer login no nosso usurio, esta funo de logon leva a senha do e-mail e o objeto de solicitao.
+
+9
+00:00:40,620 --> 00:00:43,440
+E ento ele tende a autenticar esse usurio.
+
+10
+00:00:43,530 --> 00:00:48,510
+E novamente voc pode ver que h um pouco de cdigo de cola aqui para fazer
+
+11
+00:00:49,020 --> 00:00:53,130
+o passaporte funcionar bem com o enxerto. Boa expectativa de retornar uma promessa.
+
+12
+00:00:53,160 --> 00:00:54,280
+Ento vamos nos dar uma chance.
+
+13
+00:00:55,400 --> 00:00:59,790
+Voc sabe virar de volta para meu arquivo de mutaes, deslizando para baixo at a parte inferior.
+
+14
+00:00:59,830 --> 00:01:05,620
+Vamos adicionar esta ltima mutao do loggin.
+
+15
+00:01:05,640 --> 00:01:12,090
+Ns forneceremos alguns argumentos de um e-mail que ser um grfico Cuil string
+
+16
+00:01:12,090 --> 00:01:21,360
+e uma senha que ser uma grfica Seqncia, ento, a funo de resultado ter o nosso valor original.
+
+17
+00:01:23,370 --> 00:01:34,110
+Ento, novamente, teremos algo que parece muito parecido com a mutao de registro, a mutao de registro retornar um tipo de usurio
+
+18
+00:01:34,360 --> 00:01:35,890
+Pegue o objeto args.
+
+19
+00:01:35,890 --> 00:01:41,380
+E, claro, no sabia que realmente ouvi falar sobre as propriedades de e-mail e senha desse
+
+20
+00:01:41,440 --> 00:01:42,260
+objeto args.
+
+21
+00:01:42,340 --> 00:01:48,250
+Ento, eu vou imediatamente reestrutur-los e-mail e senha e, em seguida, eu tambm quero obter
+
+22
+00:01:48,250 --> 00:01:54,510
+o objeto de solicitao tambm, porque esse ajudante de servio espera ter acesso ao pedido.
+
+23
+00:01:54,530 --> 00:02:04,290
+Ento, agora podemos ligar e retornar o nosso servio de login e passar a senha do e-mail e solicitar o objeto se isso 
+
+24
+00:02:07,000 --> 00:02:11,860
+um sentimento de repetio repetida em como estamos colocando essas mutaes juntas.
+
+25
+00:02:11,860 --> 00:02:12,670
+Isso  uma coisa boa.
+
+26
+00:02:12,670 --> 00:02:13,930
+Isso  muito bom.
+
+27
+00:02:13,930 --> 00:02:19,120
+Queremos que nossas mutaes se sintam repetitivas porque queremos que elas sejam to simples e
+
+28
+00:02:19,120 --> 00:02:20,040
+diretas quanto possvel.
+
+29
+00:02:20,290 --> 00:02:26,740
+Eu me sinto como este arquivo aqui  um fantstico exemplo de como estamos delegando a alguns auxiliares externos para
+
+30
+00:02:26,950 --> 00:02:29,830
+lidar com toda a nossa complicada lgica de negcios.
+
+31
+00:02:30,250 --> 00:02:37,120
+ uma coisa simples, mas no estamos envolvendo todo esse cdigo complicado com nosso esquema grfico, estamos resgatando tudo
+
+32
+00:02:37,150 --> 00:02:43,660
+isso para este objeto Helper, onde esta funo do ano certo vai cuidar de toda essa complexidade.
+
+33
+00:02:44,020 --> 00:02:48,280
+Como voc sabe muito bem a autenticao em um aplicativo expresso, no
+
+34
+00:02:48,280 --> 00:02:51,570
+Mas o esquema do grfico CULE em si s vai dizer bem, sim.
+
+35
+00:02:51,730 --> 00:02:54,380
+Ah, voc est tentando fazer logon e usurio, voc acaba de sair e fazer isso.
+
+36
+00:02:54,400 --> 00:02:56,710
+No tenho ideia do quo complicado .
+
+37
+00:02:56,800 --> 00:02:58,430
+Provavelmente  complicado por no se preocupe.
+
+38
+00:02:58,450 --> 00:03:00,490
+Acabei de chamar essa funo.
+
+39
+00:03:00,730 --> 00:03:05,470
+E ento, qualquer outro engenheiro que olhe para esta mutao logo no futuro, poder
+
+40
+00:03:05,470 --> 00:03:11,810
+ver isso e entender muito rapidamente. OK aqui  o que retorna. Aqui est o que espera ter.
+
+41
+00:03:11,950 --> 00:03:14,310
+E aqui est o que a prpria mutao faz.
+
+42
+00:03:14,500 --> 00:03:16,160
+Ou, pelo menos, o que ele chama.
+
+43
+00:03:16,480 --> 00:03:21,340
+Se eu quiser descobrir o que realmente realmente faz a mutao, eu preciso olhar
+
+44
+00:03:21,340 --> 00:03:22,260
+este servio externo.
+
+45
+00:03:22,570 --> 00:03:27,760
+Mas se algum engenheiro alguma vez quiser mudar a forma como o login no usurio funciona, eles no precisam
+
+46
+00:03:27,760 --> 00:03:31,370
+se preocupar em mexer com o grfico para o esquema Elum de qualquer forma.
+
+47
+00:03:31,480 --> 00:03:34,730
+Eles s precisam ir e olhar para a funo de logon em si.
+
+48
+00:03:36,650 --> 00:03:39,620
+OK, acho que estamos preparados para nos dar um teste.
+
+49
+00:03:39,770 --> 00:03:42,290
+Voltarei novamente ao nosso navegador.
+
+50
+00:03:44,610 --> 00:03:47,300
+Eu vou mudar minha nutao.
+
+51
+00:03:47,760 --> 00:03:54,710
+Ento, desta vez, vamos tentar fazer login e o usurio esperar receber um e-mail e
+
+52
+00:03:54,710 --> 00:03:55,720
+uma senha.
+
+53
+00:03:55,730 --> 00:04:01,100
+Agora vou me certificar de que use o mesmo e-mail e senha do que eu usei anteriormente para registrar
+
+54
+00:04:01,100 --> 00:04:02,470
+um usurio pela primeira vez.
+
+55
+00:04:02,480 --> 00:04:09,650
+Ento, se voc se lembrar quando eu inscrevi um usurio pela primeira vez, usei um e-mail de teste no ponto de teste com
+
+56
+00:04:09,650 --> 00:04:10,960
+uma senha de senha.
+
+57
+00:04:11,240 --> 00:04:18,340
+Ento eu vou fornecer essa mesma informao de logon para uma senha de senha.
+
+58
+00:04:18,950 --> 00:04:20,780
+E ento, recuperamos um usurio disso.
+
+59
+00:04:20,780 --> 00:04:23,930
+Algum pediu o e-mail desse usurio.
+
+60
+00:04:24,500 --> 00:04:26,400
+OK, vamos dar uma chance.
+
+61
+00:04:26,840 --> 00:04:30,730
+E recebo com sucesso um e-mail de teste no ponto de teste com.
+
+62
+00:04:31,040 --> 00:04:37,970
+Ento, no s estou recebendo o e-mail do usurio que eu, em teoria, agora estou, mas tambm
+
+63
+00:04:37,970 --> 00:04:40,670
+estou autenticado com nosso aplicativo back-end.
+
+64
+00:04:40,670 --> 00:04:45,800
+em particular  como lidar com um pouco de tratamento de erros dentro do nosso aplicativo.
+
+65
+00:04:45,800 --> 00:04:47,510
+Uma coisa que eu quero indicar
+
+66
+00:04:47,540 --> 00:04:53,690
+Ento, o que acontece se dissermos colocar uma senha incorreta aqui ou um e-mail incorreto talvez um
+
+67
+00:04:53,690 --> 00:04:55,600
+e-mail que ainda no existe.
+
+68
+00:04:55,670 --> 00:04:56,870
+Vamos tentar isso muito rpido.
+
+69
+00:04:56,870 --> 00:05:00,550
+Ento eu coloquei no teste um dois trs no ponto de teste com.
+
+70
+00:05:00,890 --> 00:05:05,860
+Recebo o objeto do legtimo herdeiro com uma mensagem de credenciais invlidas.
+
+71
+00:05:06,170 --> 00:05:10,850
+Vamos voltar ao tratamento de erros em grande medida, uma vez que comeamos a trabalhar no nosso front-end e
+
+72
+00:05:10,850 --> 00:05:15,010
+comeamos a nos preocupar com o tratamento de erros e mostrar alguns comentrios ao nosso usurio.
+
+73
+00:05:15,080 --> 00:05:19,730
+Mas eu apenas quero rapidamente apontar para voc que sempre que colocamos algumas informaes de registro invlidas, ns a
+
+74
+00:05:20,030 --> 00:05:20,390
+conseguimos.
+
+75
+00:05:20,390 --> 00:05:25,160
+A Ns, de fato, recebemos uma boa mensagem de erro aqui que diz que, eu entendo, voc
+
+76
+00:05:25,160 --> 00:05:28,880
+est tentando se inscrever, mas acho que voc provavelmente colocou algumas credenciais invlidas.
+
+77
+00:05:28,880 --> 00:05:34,420
+Ento, ele usar esta mensagem de erro logo depois, agora mesmo.
+
+78
+00:05:34,480 --> 00:05:39,410
+Eu vou mudar isso de volta s nossas credenciais vlidas.
+
+79
+00:05:39,790 --> 00:05:43,970
+E apenas certifique-se de poder fazer login novamente e, no entanto, parece que estamos fazendo isso de forma correta.
+
+80
+00:05:45,340 --> 00:05:45,790
+EST BEM.
+
+81
+00:05:45,860 --> 00:05:50,840
+Ento,  praticamente isso para nossas trs mutaes em torno da autenticao.
+
+82
+00:05:50,840 --> 00:05:56,660
+Possumos a capacidade de assinar um usurio desconectar um usurio e registrar um tambm.
+
+83
+00:05:56,750 --> 00:06:04,060
+Mais uma vez, ainda no temos a capacidade de verificar se eu sou verdadeiramente autenticado de qualquer forma.
+
+84
+00:06:04,070 --> 00:06:09,500
+Voc sabe, mesmo que eu esteja me autenticando, no est realmente fazendo nada para mim, como no
+
+85
+00:06:09,500 --> 00:06:12,600
+h idia de nenhum recurso protegido dentro da minha aplicao.
+
+86
+00:06:13,330 --> 00:06:15,510
+Ento, vamos para a prxima seo.
+
+87
+00:06:15,550 --> 00:06:20,950
+Vamos comear a pensar sobre como agora podemos usar este estado autenticado para impor algumas regras
+
+88
+00:06:21,010 --> 00:06:22,550
+interessantes em torno do enxerto.
+
+89
+00:06:22,610 --> 00:06:26,520
+Bem e ns tambm vamos comear a trabalhar na frente do nosso aplicativo tambm.
+
+90
+00:06:26,760 --> 00:06:29,420
+Ento, faa uma pausa rpida e eu vou pegar voc na prxima seo.
+

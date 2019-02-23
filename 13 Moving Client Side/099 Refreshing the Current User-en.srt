@@ -1,0 +1,232 @@
+1
+00:00:00,780 --> 00:00:06,480
+In the last section we finished up our log in form and we were able to see the mutation successfully
+
+2
+00:00:06,480 --> 00:00:08,300
+the issue to our back end.
+
+3
+00:00:08,340 --> 00:00:12,440
+However after we ran the mutation nothing really happened on the page.
+
+4
+00:00:12,540 --> 00:00:17,050
+So we didn't see the header update and we didn't get automatically navigated anywhere.
+
+5
+00:00:17,100 --> 00:00:22,390
+And in both cases I really would expect something to happen after my user successfully logs in.
+
+6
+00:00:22,530 --> 00:00:24,630
+And there's one other thing I want to point out as well.
+
+7
+00:00:24,840 --> 00:00:31,930
+If I change the password out here and say put in some random string of characters and submit.
+
+8
+00:00:32,460 --> 00:00:36,960
+I can look at the mutation that's returned and I definitely get an error object in here.
+
+9
+00:00:37,050 --> 00:00:43,110
+But I'm giving absolutely no feedback to my user or to tell them how you entered in some bad information.
+
+10
+00:00:43,140 --> 00:00:47,550
+So we still have a pretty good amount of work to do on this log in form so let's get to it.
+
+11
+00:00:47,610 --> 00:00:51,480
+The first thing I'd like to take care of is make sure that we're maintaining the header in the correct
+
+12
+00:00:51,480 --> 00:00:52,380
+fashion.
+
+13
+00:00:52,470 --> 00:00:58,410
+So after we make our mutation requests to log the user in I want to make sure that I attempt to fetch
+
+14
+00:00:58,410 --> 00:01:03,780
+the current user by running the current user query as we saw previously inside the header.
+
+15
+00:01:03,810 --> 00:01:09,870
+When we were logging a user out if we just rerun the current user query the headers should automatically
+
+16
+00:01:09,870 --> 00:01:13,410
+update with the new data that is being fetched from the backend.
+
+17
+00:01:14,100 --> 00:01:20,280
+So I'm going to first work on that by changing on over to my log in form where we're currently calling
+
+18
+00:01:20,280 --> 00:01:21,250
+our mutation.
+
+19
+00:01:21,250 --> 00:01:24,950
+So here is the mutation as this start Propst mutate.
+
+20
+00:01:24,990 --> 00:01:31,490
+Now to add in the ability to refresh the current user it's going to be exactly the same as we saw inside
+
+21
+00:01:31,500 --> 00:01:32,140
+our head.
+
+22
+00:01:32,400 --> 00:01:40,140
+So after the mutation runs we will execute that other query by defining the prefetch queries property
+
+23
+00:01:40,140 --> 00:01:41,850
+inside of here.
+
+24
+00:01:41,850 --> 00:01:47,070
+Now before I forget do make sure do be sure to make sure we put on the comma at the end of the variables
+
+25
+00:01:47,070 --> 00:01:48,590
+line over here as well.
+
+26
+00:01:49,080 --> 00:01:56,490
+So then after the mutation is finished we will rerun the current user query or the query to get the
+
+27
+00:01:56,490 --> 00:01:58,190
+current user.
+
+28
+00:01:58,530 --> 00:02:01,620
+Do remember that we have to import that into this file as well.
+
+29
+00:02:01,770 --> 00:02:08,480
+So at the top add an import statement for query from queries.
+
+30
+00:02:08,820 --> 00:02:09,880
+Current User.
+
+31
+00:02:10,230 --> 00:02:15,250
+And of course don't forget to put the double dot to indicate that we're going up one directory into
+
+32
+00:02:15,250 --> 00:02:17,980
+the client folder and then down into queries.
+
+33
+00:02:18,550 --> 00:02:20,060
+OK so this one was kind of a guinea.
+
+34
+00:02:20,100 --> 00:02:22,250
+I think this was a easy fix here.
+
+35
+00:02:22,290 --> 00:02:25,890
+I definitely would expect the application will work the way we expect at this point so let's do a little
+
+36
+00:02:25,890 --> 00:02:28,690
+test and make sure that's the case.
+
+37
+00:02:29,340 --> 00:02:34,440
+I'm going to flip back over to your application and I'll first refresh the page and make sure that I'm
+
+38
+00:02:34,440 --> 00:02:35,190
+logged out.
+
+39
+00:02:35,220 --> 00:02:37,370
+So going to click on log out right here and.
+
+40
+00:02:37,380 --> 00:02:37,680
+OK.
+
+41
+00:02:37,740 --> 00:02:43,110
+I feel reasonably assured at this point that I am logged out of the application.
+
+42
+00:02:43,320 --> 00:02:47,990
+So now I'm going to enter in a valid e-mail and password combination.
+
+43
+00:02:48,060 --> 00:02:53,720
+And after we submit it to log in I expect to see the header get updated.
+
+44
+00:02:53,820 --> 00:03:03,240
+So enter test at test dot com and a password of password isn't it this my mutation is successfully issued.
+
+45
+00:03:03,300 --> 00:03:05,740
+So I am now logged into my application.
+
+46
+00:03:06,030 --> 00:03:11,160
+Then the follow up request is made to get the current user or the application when the response comes
+
+47
+00:03:11,160 --> 00:03:17,370
+back that query response goes to every single component that is making use of that current user query
+
+48
+00:03:17,730 --> 00:03:19,150
+and that includes the header.
+
+49
+00:03:19,320 --> 00:03:24,570
+So the header automatically renders with the new data that has been fetched and it goes over to just
+
+50
+00:03:24,570 --> 00:03:26,720
+showing the log out button.
+
+51
+00:03:26,820 --> 00:03:30,820
+So that's challenge number one that we've successfully taken care of.
+
+52
+00:03:30,990 --> 00:03:35,160
+So let's take a quick break and we're going to move on to challenge number two which is to make sure
+
+53
+00:03:35,160 --> 00:03:40,830
+that whenever a user enters some invalid input into the form we show some validation message to let
+
+54
+00:03:40,830 --> 00:03:44,540
+them know that hey you maybe didn't put in the correct information here.
+
+55
+00:03:44,610 --> 00:03:46,020
+Please try again.
+
+56
+00:03:46,030 --> 00:03:47,640
+So let's take a quick break come back.
+
+57
+00:03:47,640 --> 00:03:48,150
+Take care.
+
+58
+00:03:48,150 --> 00:03:48,800
+Validation.
+

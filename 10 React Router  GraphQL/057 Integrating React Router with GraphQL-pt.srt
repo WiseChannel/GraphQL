@@ -1,0 +1,924 @@
+1
+00:00:00,660 --> 00:00:05,970
+Agora que temos o nosso Querrey montado,  hora de levar a consulta para pegar o componente
+
+2
+00:00:05,970 --> 00:00:11,100
+e encaix-los juntos para garantir que a consulta realmente executa e pegue algumas informaes sobre a
+
+3
+00:00:11,100 --> 00:00:15,320
+msica atualmente exibida cantada volte para o componente de detalhes da minha msica.
+
+4
+00:00:15,330 --> 00:00:16,020
+Aqui vamos ns.
+
+5
+00:00:16,240 --> 00:00:21,640
+E no topo, eu vou comear por importar a funo de auxiliar do enxerto de reativar o Apollo
+
+6
+00:00:21,640 --> 00:00:24,910
+e depois tambm importar a consulta que acabamos de escrever tambm.
+
+7
+00:00:25,260 --> 00:00:32,400
+reativar o Apollo, lembre-se que este  o ajudante que usamos para fazer
+
+8
+00:00:32,400 --> 00:00:44,850
+uma consulta e reajam o componente e tambm vamos importar a msica fecche dessa msica de um diretrio que questiona essa msica.
+
+9
+00:00:45,210 --> 00:00:48,300
+Ento, importa o enxerto bem de
+
+10
+00:00:48,420 --> 00:00:53,880
+E para se certificar de que voc tem uma msica fecche singular Ns s estamos buscando uma msica aqui,
+
+11
+00:00:53,880 --> 00:00:55,450
+ns no estamos buscando msicas
+
+12
+00:00:58,150 --> 00:01:00,640
+mltiplas, agora temos o ajudante que temos a consulta.
+
+13
+00:01:00,670 --> 00:01:06,220
+A ltima coisa em que temos que pensar  como obtemos o ID da msica atual que o
+
+14
+00:01:06,220 --> 00:01:07,110
+usurio quer ver.
+
+15
+00:01:07,480 --> 00:01:13,270
+Ento, como lembrana, declaramos dentro da nossa aplicao de roteador re-act o lado do roteador do reator de
+
+16
+00:01:13,270 --> 00:01:13,730
+coisas.
+
+17
+00:01:13,750 --> 00:01:16,150
+Ento eu estou dentro do ndice no J. S. Agora mesmo.
+
+18
+00:01:16,450 --> 00:01:18,060
+Aqui est o arquivo do roteador.
+
+19
+00:01:18,250 --> 00:01:25,420
+Aqui esto as nossas rotas e dissemos que sempre que um usurio vai para msicas, corte algo que queremos
+
+20
+00:01:25,600 --> 00:01:26,590
+mostrar essa msica.
+
+21
+00:01:26,620 --> 00:01:28,480
+A idia desta msica est aqui.
+
+22
+00:01:28,480 --> 00:01:33,770
+Ento eu esperava ter voc ou outra onda de Flury de algo como canes, uma ou uma cano, tais
+
+23
+00:01:33,790 --> 00:01:35,910
+duas, trs e quatro e assim por diante.
+
+24
+00:01:36,670 --> 00:01:39,480
+Ento, isso  um pouco sobre a reao ao lado das coisas.
+
+25
+00:01:39,550 --> 00:01:44,620
+Eu s quero ter certeza de que  realmente claro como conseguimos esse dado em nosso componente e
+
+26
+00:01:44,890 --> 00:01:46,720
+para garantir que isso seja realmente claro.
+
+27
+00:01:46,750 --> 00:01:52,680
+Quero voltar para o detalhe da msica e colocar um log de console aqui neste processo de doca.
+
+28
+00:01:52,870 --> 00:01:58,030
+Em apenas um segundo, ser realmente importante que entendamos de onde  a
+
+29
+00:01:58,030 --> 00:01:59,290
+idia da msica.
+
+30
+00:01:59,290 --> 00:02:04,970
+Ento, novamente, eu s quero ter certeza de que  claro como estamos conseguindo acesso a essa ID da msica.
+
+31
+00:02:05,350 --> 00:02:12,490
+Ento eu tenho que fazer login aqui e vou voltar e atualizar a atualizao do componente
+
+32
+00:02:12,490 --> 00:02:13,140
+da pgina.
+
+33
+00:02:13,250 --> 00:02:13,490
+EST BEM.
+
+34
+00:02:13,510 --> 00:02:15,520
+Ento, aqui est o nosso registro de console.
+
+35
+00:02:15,610 --> 00:02:18,440
+Este  o conselho que registra todo o objeto do suporte.
+
+36
+00:02:18,460 --> 00:02:23,350
+E voc notar que j temos uma srie de adereos disponveis aqui, como um lembrete, esses so
+
+37
+00:02:23,350 --> 00:02:28,520
+todos os adereos normais que eu esperaria ver de um componente que foi processado pelo roteador de reativao.
+
+38
+00:02:28,690 --> 00:02:32,710
+Ento, estes so todos adereos que esto associados ao roteador re-agir.
+
+39
+00:02:32,710 --> 00:02:37,700
+O suporte mais importante de que nos preocupamos  o objeto Harams aqui.
+
+40
+00:02:38,050 --> 00:02:42,180
+Ento, diz Paramo com um ID de um.
+
+41
+00:02:42,730 --> 00:02:47,900
+Isso  ID especificamente porque uma definio R U R L ou R que ns dissemos sim.
+
+42
+00:02:47,920 --> 00:02:52,350
+Pegue este ltimo pedao do que voc est aqui e ns dissemos Colin ID.
+
+43
+00:02:52,510 --> 00:02:59,470
+Ento, porque dissemos que o ID de Colin leva ID e o adiciona como um por Parama ao objeto de nossos programas ou a uma
+
+44
+00:02:59,470 --> 00:03:01,410
+propriedade para o nosso objeto de programas.
+
+45
+00:03:02,110 --> 00:03:08,270
+Ento, novamente, eu s quero me certificar de que  realmente claro exatamente de onde esse dado est vindo.
+
+46
+00:03:08,290 --> 00:03:12,670
+Agora, a ltima coisa que eu quero fazer antes de conectar nossa consulta  que eu quero
+
+47
+00:03:12,700 --> 00:03:15,840
+ter certeza de que estamos usando uma ID real para aparecer assim, cano.
+
+48
+00:03:15,910 --> 00:03:22,420
+uma msica real que  salva no nosso banco de dados, para que possamos obter uma ID real voltando para o grfico.
+
+49
+00:03:22,420 --> 00:03:23,440
+Ou a idia de
+
+50
+00:03:23,680 --> 00:03:29,230
+Lembre-se de que apenas tivemos uma consulta aqui onde buscamos a idia de um registro que j havia sido salvo em
+
+51
+00:03:29,230 --> 00:03:30,160
+nosso banco de dados.
+
+52
+00:03:30,310 --> 00:03:36,190
+Ento, eu quero usar essa ID aqui mesmo, para que, quando realmente fizermos nossa consulta, recebemos alguns dados reais de
+
+53
+00:03:36,190 --> 00:03:37,370
+volta do nosso servidor.
+
+54
+00:03:37,570 --> 00:03:44,940
+Se executarmos nossa consulta agora com o ID falso das msicas 1, no temos nenhuma msica com ideia de uma.
+
+55
+00:03:44,950 --> 00:03:47,490
+E assim retornaria um ar da nossa extremidade traseira.
+
+56
+00:03:47,680 --> 00:03:52,840
+Ento, novamente eu s quero usar uma ID muito real, ento eu tomo essa idia aqui.
+
+57
+00:03:52,840 --> 00:03:55,390
+No vou fazer as citaes duplas em torno disso.
+
+58
+00:03:55,540 --> 00:03:59,940
+Vou copi-lo e voltar para o URL.
+
+59
+00:04:00,000 --> 00:04:01,490
+Eu vou tirar esse.
+
+60
+00:04:01,660 --> 00:04:09,730
+Ento,  uma barra de barras e, em seguida, a idia da msica que eu quero, tenta encontrar e, novamente, anotar que
+
+61
+00:04:09,730 --> 00:04:13,120
+eu no tenho aspas duplas aqui ou algo assim.
+
+62
+00:04:13,600 --> 00:04:17,530
+Ento, agora eu visitei isso, eu recebo outro log de console.
+
+63
+00:04:17,890 --> 00:04:21,930
+E neste eu posso ver a identificao de bl bl bl bl bl.
+
+64
+00:04:22,150 --> 00:04:25,080
+Ento essa  a idia da msica que estamos tentando buscar.
+
+65
+00:04:25,680 --> 00:04:26,000
+EST BEM.
+
+66
+00:04:26,020 --> 00:04:28,080
+Ento eu me sinto muito bem neste ano.
+
+67
+00:04:28,090 --> 00:04:34,360
+Penso que temos uma ideia bastante clara de como o seu L est mapeando alguns dados que esto
+
+68
+00:04:34,360 --> 00:04:35,560
+sentados dentro do componente.
+
+69
+00:04:35,560 --> 00:04:41,710
+Ento, novamente, este  um link realmente importante na cadeia, especialmente para a prxima coisa em
+
+70
+00:04:41,710 --> 00:04:43,700
+que estamos prestes a tropear.
+
+71
+00:04:44,380 --> 00:04:48,040
+Ento, eu quero levar o grfico Cuil ajuda por enquanto.
+
+72
+00:04:48,340 --> 00:04:53,700
+Quero pegar a consulta e quero Sandwich com o detalhe da msica.
+
+73
+00:04:53,770 --> 00:04:54,780
+Ento vamos dar uma chance.
+
+74
+00:04:54,850 --> 00:05:01,330
+Ns passamos por este processo muitas vezes, mas desta vez as coisas podem ser um pouco diferentes.
+
+75
+00:05:01,960 --> 00:05:07,530
+Ento, indo para enxertar, voc no vai passar pela busca.
+
+76
+00:05:07,630 --> 00:05:11,630
+E eu tenho o meu segundo conjunto de parnteses para o componente de detalhes da msica.
+
+77
+00:05:11,630 --> 00:05:11,910
+EST BEM.
+
+78
+00:05:11,920 --> 00:05:12,910
+Ento, isso est bem, certo.
+
+79
+00:05:12,910 --> 00:05:16,930
+Como totalmente, parece razovel, eu estou feliz com a aparncia deste.
+
+80
+00:05:16,930 --> 00:05:20,290
+Parece exatamente as consultas que juntamos anteriormente.
+
+81
+00:05:20,590 --> 00:05:28,240
+H apenas um pequeno detalhe que um pouco conseguiu aqui. Eu quero voltar para o grfico de maneira muito
+
+82
+00:05:28,240 --> 00:05:32,710
+rpida e dar uma olhada na consulta com a qual trabalhamos.
+
+83
+00:05:32,710 --> 00:05:36,150
+Ento, esta  a consulta aqui que estamos tentando executar.
+
+84
+00:05:36,160 --> 00:05:42,160
+Houve alguma parte desta consulta em que dissemos que precisa de dados
+
+85
+00:05:42,160 --> 00:05:43,860
+muito especiais, como talvez.
+
+86
+00:05:43,990 --> 00:05:46,510
+Ah, eu no conheo uma ID.
+
+87
+00:05:46,870 --> 00:05:53,520
+Sim, dissemos que sempre que executamos essa consulta, uma ID deve ser fornecida.
+
+88
+00:05:53,660 --> 00:05:57,210
+Devemos colocar uma ID dentro da rvore.
+
+89
+00:05:57,460 --> 00:06:05,290
+Ento, temos algum motivo para suspeitar que o roteador re-agir vai simplesmente pegar o ID daquele
+
+90
+00:06:05,290 --> 00:06:09,040
+objeto Parama e enfi-lo nesta consulta aqui.
+
+91
+00:06:09,130 --> 00:06:10,480
+No, na verdade, no.
+
+92
+00:06:10,660 --> 00:06:17,670
+Ento, a idia que est no URL no ser automaticamente ou mgicamente empurrado para baixo na busca de msica de
+
+93
+00:06:17,820 --> 00:06:18,520
+busca aqui.
+
+94
+00:06:18,520 --> 00:06:20,520
+No h magia alguma.
+
+95
+00:06:20,860 --> 00:06:28,100
+essa consulta com a ID da varivel de consulta, temos que garantir manualmente que ns telegrafamos bem, esperamos que ele
+
+96
+00:06:28,220 --> 00:06:35,290
+tire a idia do Eurail ou dos nossos adereos, comece o objeto dos programas e execute a consulta com isso.
+
+97
+00:06:35,290 --> 00:06:36,540
+Se quisermos executar
+
+98
+00:06:36,550 --> 00:06:38,350
+Ento,  uma interface muito manual.
+
+99
+00:06:38,350 --> 00:06:41,970
+No h nada automtico acontecendo l para ns.
+
+100
+00:06:41,970 --> 00:06:43,930
+Ento, voc sabe que isso parece razovel.
+
+101
+00:06:43,930 --> 00:06:47,810
+Temos de nos certificar de que recebemos a identificao para o inqurito.
+
+102
+00:06:47,830 --> 00:06:50,020
+H apenas um ltimo pequeno problema.
+
+103
+00:06:50,020 --> 00:06:51,800
+Um ltimo pequeno problema.
+
+104
+00:06:52,420 --> 00:06:57,840
+voc pense de volta ao componente de criao de msica que estamos trabalhando em todo o grupo dentro do sol criar.
+
+105
+00:06:57,850 --> 00:06:58,680
+Eu quero que
+
+106
+00:06:58,720 --> 00:07:00,400
+Ento, aqui est o meu excelente componente de msica.
+
+107
+00:07:00,700 --> 00:07:06,910
+Ns tnhamos a funo de mutao e dissemos que sempre que chamamos de mutao geralmente queremos passar por
+
+108
+00:07:06,910 --> 00:07:11,320
+algumas variveis de consulta exatamente como a idia de que estamos falando agora.
+
+109
+00:07:11,530 --> 00:07:17,440
+E ns dissemos que passamos as variveis de consulta chamando a funo de mutao e
+
+110
+00:07:17,440 --> 00:07:19,940
+depois passando o objeto de variveis assim.
+
+111
+00:07:20,380 --> 00:07:28,330
+das mutaes em que chamamos este Propst up mutate, h um ponto muito claro no tempo dentro do nosso componente onde poderamos
+
+112
+00:07:28,330 --> 00:07:33,880
+passar facilmente na lista de variveis de consulta com as quais queremos executar a mutao.
+
+113
+00:07:33,880 --> 00:07:35,090
+Ento, no mundo
+
+114
+00:07:35,110 --> 00:07:44,920
+Entretanto, no entanto, no detalhe da msica aqui com uma consulta, como j vimos essas consultas so executadas manualmente e no h
+
+115
+00:07:45,190 --> 00:07:50,380
+tempo dentro do componente onde podemos interceptar e dizer como aguentar.
+
+116
+00:07:50,380 --> 00:07:51,500
+No faa essa consulta.
+
+117
+00:07:51,640 --> 00:07:55,180
+Deixe-me cham-lo manualmente e passar por essas variveis de consulta.
+
+118
+00:07:55,510 --> 00:08:01,960
+Ento, eles visualizam a ordem em que chamamos de mutao e passamos por algumas variveis de consulta so muito diferentes
+
+119
+00:08:01,960 --> 00:08:06,750
+da maneira pela qual chamamos uma consulta e passamos por algumas variveis de consulta.
+
+120
+00:08:06,790 --> 00:08:13,440
+Mais uma vez, toda a idia de todo o problema  que as consultas so executadas automaticamente para ns biogrficos.
+
+121
+00:08:13,530 --> 00:08:18,310
+Bem, mas as mutaes so chamadas manualmente por voc e por mim.
+
+122
+00:08:18,370 --> 00:08:23,830
+Ento, com a mutao, temos um local muito claro onde passamos essas variveis de Querrey
+
+123
+00:08:23,830 --> 00:08:24,580
+com equer.
+
+124
+00:08:24,640 --> 00:08:29,210
+No temos um local muito claro onde podemos avaliar as variveis de consulta PP-ASEL.
+
+125
+00:08:29,230 --> 00:08:30,900
+Ento esse  o grande desafio aqui.
+
+126
+00:08:31,090 --> 00:08:37,150
+O grande desafio aqui  entender como tomamos algumas variveis de consulta e coloquemos-as nesta consulta.
+
+127
+00:08:37,180 --> 00:08:43,210
+Quando  feito, eu adoro falar muita conversa.
+
+128
+00:08:43,230 --> 00:08:47,960
+Felizmente, claro, a equipe da Apollo prev que isso seja um problema.
+
+129
+00:08:48,000 --> 00:08:48,960
+Eles reconhecem isso.
+
+130
+00:08:48,960 --> 00:08:49,430
+EST BEM.
+
+131
+00:08:49,590 --> 00:08:54,180
+Sim, entendemos que voc provavelmente quer fazer essa consulta aqui com algumas variveis
+
+132
+00:08:54,180 --> 00:08:54,980
+do Querrey.
+
+133
+00:08:55,080 --> 00:09:00,960
+Ento eles forneceram uma interface para que possamos tirar alguns dados do nosso componente e execut-lo
+
+134
+00:09:00,960 --> 00:09:02,250
+com essa consulta.
+
+135
+00:09:02,250 --> 00:09:06,600
+Ento, vamos adicionar um pouco de cdigo para que isso acontea e depois falaremos exatamente
+
+136
+00:09:06,600 --> 00:09:07,920
+sobre o que est acontecendo.
+
+137
+00:09:07,920 --> 00:09:10,210
+Ento, o prximo pouco, um pouco estranho.
+
+138
+00:09:10,320 --> 00:09:13,930
+Ns vamos fazer todo o cdigo para isso e ento vamos falar sobre como ele est funcionando.
+
+139
+00:09:14,460 --> 00:09:19,980
+Ento, depois da msica fecche, vou passar num segundo argumento de um objeto.
+
+140
+00:09:19,980 --> 00:09:24,070
+Eu vou colocar uma nova linha aqui s para me conseguir um pouco de espao para trabalhar.
+
+141
+00:09:24,450 --> 00:09:33,050
+E eu vou definir uma propriedade de opes, a propriedade de opes vai levar o argumento de um prop.
+
+142
+00:09:33,530 --> 00:09:35,880
+E novamente vamos falar sobre o que est acontecendo aqui.
+
+143
+00:09:36,080 --> 00:09:46,790
+E vou retornar o objeto de uma varivel que possui outro objeto de ID e seu valor
+
+144
+00:09:46,790 --> 00:09:48,380
+vir de adereos.
+
+145
+00:09:48,410 --> 00:09:51,640
+A Id de Priam  assim.
+
+146
+00:09:52,600 --> 00:09:53,130
+EST BEM.
+
+147
+00:09:53,180 --> 00:09:56,320
+Ento, faa check triplicar se voc obteve o cdigo certo aqui.
+
+148
+00:09:56,430 --> 00:10:00,020
+H uma sintaxe muito louca aqui com um monte de chaves curly.
+
+149
+00:10:00,080 --> 00:10:05,270
+Ento, voc deve ver trs aparas curly fechando no lado direito e, em seguida, tambm uma quarta
+
+150
+00:10:05,270 --> 00:10:06,620
+para fechar o objeto geral.
+
+151
+00:10:06,640 --> 00:10:08,640
+Ento, certifique-se de que voc tenha todas as coisas certas l.
+
+152
+00:10:10,450 --> 00:10:16,570
+Eu vou virar para um diagrama que nos ajudar esperanosamente nos ajudar a entender o que est acontecendo aqui um pouco melhor.
+
+153
+00:10:16,570 --> 00:10:21,280
+Ok, ento vamos conversar sobre o que est acontecendo aqui e o que esse tipo de objeto
+
+154
+00:10:21,280 --> 00:10:22,260
+de adereos aqui est.
+
+155
+00:10:23,140 --> 00:10:23,940
+EST BEM.
+
+156
+00:10:24,560 --> 00:10:28,550
+Ento, este  um diagrama da nossa hierarquia de componentes atual.
+
+157
+00:10:28,550 --> 00:10:35,030
+Temos um reator no topo porque o roteador de resposta est decidindo qual o conjunto de componentes a renderizar para ns.
+
+158
+00:10:35,250 --> 00:10:38,110
+Re-act roteador olha para o u r l.
+
+159
+00:10:38,150 --> 00:10:39,120
+Diz OK.
+
+160
+00:10:39,140 --> 00:10:42,050
+Eles esto tentando olhar para o componente de detalhes da msica.
+
+161
+00:10:42,290 --> 00:10:49,030
+Ele tambm analisa o ou L e puxa o ID para fora dele e passa esse Id para baixo na Terra.
+
+162
+00:10:49,040 --> 00:10:53,600
+Me deixa passar a idia atravs do objeto do prop.
+
+163
+00:10:53,630 --> 00:10:59,450
+Agora voc notar que dentro do nosso arquivo de componente quando temos essa declarao
+
+164
+00:10:59,450 --> 00:11:07,760
+padro de exportao que no estamos dizendo, apenas exporte os detalhes da msica padro, estamos dizendo exportar o preenchimento padro.
+
+165
+00:11:07,760 --> 00:11:15,340
+Ento, na realidade, somos uma espcie de renderizao de um componente que est sendo envolvido por esse assistente grfico.
+
+166
+00:11:15,410 --> 00:11:22,390
+Ento, o grfico Cuil helper conhece o conjunto de adereos que esto chegando  msica detalhando um componente.
+
+167
+00:11:22,550 --> 00:11:28,760
+Possui a capacidade de intercept-los e ler alguns adereos destinados a descer os detalhes
+
+168
+00:11:28,760 --> 00:11:29,740
+da msica.
+
+169
+00:11:29,840 --> 00:11:34,560
+Ento voc pode ter tido a expectativa de que os adereos fossem assim.
+
+170
+00:11:34,700 --> 00:11:39,860
+Ento voc pode ter uma expectativa de que o reator fora ou juntar todos os seus adereos especiais e,
+
+171
+00:11:39,860 --> 00:11:42,290
+em seguida, pass-los diretamente para o detalhe da msica.
+
+172
+00:11:42,290 --> 00:11:44,400
+E estou dizendo que no  realmente o caso.
+
+173
+00:11:44,420 --> 00:11:51,230
+Os adereos primeiro entram no auxiliar de artesanato e, em seguida, o ajudante de enxerto os passa ao componente de
+
+174
+00:11:51,230 --> 00:11:52,290
+detalhes da msica.
+
+175
+00:11:52,310 --> 00:11:58,880
+que estou tentando dizer aqui  que o auxiliar do enxerto est 100 por cento ciente de todos os adereos que
+
+176
+00:11:58,880 --> 00:12:04,760
+esto indo para o seu componente e assim  o que estamos aproveitando dentro deste objeto de opes aqui.
+
+177
+00:12:04,760 --> 00:12:05,740
+Ento, tudo o
+
+178
+00:12:05,840 --> 00:12:11,300
+Dizemos Ok, pegue os adereos que tinham como objetivo ir aos detalhes da msica.
+
+179
+00:12:11,300 --> 00:12:19,610
+Ento, isso ganhou adereos e adereos aqui mesmo so 100 por cento iguais, 100 por cento iguais  exatamente o mesmo
+
+180
+00:12:20,630 --> 00:12:26,600
+objeto, ento o objeto que devolvamos dessa funo aqui ser fornecido para a consulta quando
+
+181
+00:12:26,600 --> 00:12:27,180
+feito.
+
+182
+00:12:27,350 --> 00:12:34,010
+Ento estamos dizendo tudo certo. Eu quero fornecer algumas variveis diferentes para a consulta, ento formamos o objeto de uma
+
+183
+00:12:34,010 --> 00:12:39,160
+varivel e dizemos que voc provavelmente precisa saber sobre uma ID que possui essa ID.
+
+184
+00:12:39,160 --> 00:12:41,830
+E ns estamos levando a identificao de adereos.
+
+185
+00:12:41,960 --> 00:12:44,730
+Harams dot ID.
+
+186
+00:12:44,850 --> 00:12:45,520
+Tudo bem.
+
+187
+00:12:45,530 --> 00:12:47,230
+Outro respiro.
+
+188
+00:12:47,630 --> 00:12:49,970
+Sim, h muitas coisas acontecendo aqui.
+
+189
+00:12:49,970 --> 00:12:55,490
+ bastante louco, mas espero que seja pelo menos um pouco evidente como os dados esto fluindo
+
+190
+00:12:55,490 --> 00:12:56,690
+atravs desse pequeno cdigo.
+
+191
+00:12:56,720 --> 00:13:03,350
+interior. Os componentes so um grfico de objetos idnticos. Cuil intercepta o objeto desse prop e
+
+192
+00:13:03,410 --> 00:13:09,830
+est permitindo que voc trabalhe com ele antes de passar para o classe de componente real.
+
+193
+00:13:09,830 --> 00:13:17,830
+Mais uma vez, o fato importante de entender  que o argumento do prop aqui no  adereos dentro do
+
+194
+00:13:17,860 --> 00:13:18,640
+Tudo bem.
+
+195
+00:13:18,710 --> 00:13:20,000
+Isso parece muito bom.
+
+196
+00:13:20,000 --> 00:13:23,910
+Eu quero executar isso dentro do navegador, certifique-se de que tudo est funcionando da maneira que esperamos.
+
+197
+00:13:24,080 --> 00:13:25,990
+E ento iremos daqui.
+
+198
+00:13:26,300 --> 00:13:32,240
+Ento, volto para o navegador no meu aplicativo neste momento,  absolutamente fundamental que voc tenha certeza de
+
+199
+00:13:32,240 --> 00:13:37,550
+que voc possui uma ID vlida e legtima dentro do seu, voc est l agora mesmo.
+
+200
+00:13:37,700 --> 00:13:44,540
+executou o grfico Q Bem, so extremamente grficos e obteve um ID para um registro vlido que est sentado dentro de seu banco de dados.
+
+201
+00:13:44,630 --> 00:13:47,090
+Ento voc tem que se certificar de que voc
+
+202
+00:13:47,090 --> 00:13:52,460
+Caso contrrio, esta consulta ir falhar porque o back-end no vai encontrar uma msica
+
+203
+00:13:52,460 --> 00:13:54,100
+com o ID fornecido.
+
+204
+00:13:54,110 --> 00:14:00,040
+Ento, vamos dar uma olhada no log do conselho e ver o que acontece.
+
+205
+00:14:00,200 --> 00:14:02,960
+Ns recebemos duas declaraes de log do conselho aqui, o que  bom.
+
+206
+00:14:03,110 --> 00:14:09,470
+Ns conseguimos cancelar os logs porque o componente faz uma vez enquanto a consulta ainda est em execuo e aps a
+
+207
+00:14:09,470 --> 00:14:10,650
+consulta ter sido resolvida.
+
+208
+00:14:10,670 --> 00:14:15,550
+Ele  processado uma segunda vez e o resultado da consulta  fornecido no objeto do suporte.
+
+209
+00:14:15,770 --> 00:14:21,650
+Ento, veremos o segundo log de console aqui e depois abriremos o objeto de dados e dentro de aqui voc
+
+210
+00:14:21,650 --> 00:14:23,090
+ver uma propriedade de msica.
+
+211
+00:14:23,420 --> 00:14:24,890
+E ns vamos l.
+
+212
+00:14:24,890 --> 00:14:30,010
+Existe a minha msica Id of 5 8 9 que termina em 8 a 100.
+
+213
+00:14:30,050 --> 00:14:30,740
+Desculpe.
+
+214
+00:14:30,740 --> 00:14:32,480
+Ento, 5 8 9 e 200.
+
+215
+00:14:32,480 --> 00:14:33,320
+Isso parece bom.
+
+216
+00:14:33,440 --> 00:14:37,360
+E eu tenho meu ttulo de caf perfeito.
+
+217
+00:14:37,730 --> 00:14:40,430
+Ento, isso est funcionando do jeito que eu esperaria.
+
+218
+00:14:41,970 --> 00:14:46,380
+Incluindo neste tpico, a ltima coisa que eu quero mencionar  que esse padro
+
+219
+00:14:46,380 --> 00:14:50,480
+aqui mesmo que voc est vendo  100% reprodutvel para seus prprios projetos.
+
+220
+00:14:50,640 --> 00:14:56,340
+E eu realmente espero que voc use este mesmo padro exatamente aqui sempre que quiser fazer uma
+
+221
+00:14:56,340 --> 00:15:01,800
+consulta para um registro especfico que seja assumir que voc faz uma consulta que est tentando buscar
+
+222
+00:15:01,800 --> 00:15:04,650
+um registro muito particular usando algumas informaes do URL.
+
+223
+00:15:04,650 --> 00:15:10,830
+Ento, isso  algo que, definitivamente, espero que voc saiba que poderemos copiar colar em seu projeto
+
+224
+00:15:10,830 --> 00:15:11,800
+um no futuro.
+
+225
+00:15:11,850 --> 00:15:13,200
+Ento, se parece louco.
+
+226
+00:15:13,290 --> 00:15:18,270
+Lembre-se de voltar a este telefone aqui e voc ter uma referncia realmente
+
+227
+00:15:18,270 --> 00:15:20,460
+slida a ser observada no futuro.
+
+228
+00:15:20,640 --> 00:15:22,590
+A seo definitivamente foi longa o suficiente.
+
+229
+00:15:22,710 --> 00:15:29,400
+Ento vamos fazer uma pausa rpida e depois voltaremos a usar nossa nova msica dentro
+
+230
+00:15:29,400 --> 00:15:32,520
+deste componente aqui e continuaremos trabalhando nisso.
+
+231
+00:15:32,520 --> 00:15:34,060
+Sosia em apenas um segundo.
+

@@ -1,0 +1,376 @@
+1
+00:00:01,290 --> 00:00:07,140
+Our list of songs keeps on growing and growing and while we have the ability to manually delete them
+
+2
+00:00:07,230 --> 00:00:13,110
+using the Lango lab interface over here it would be really nice if our users could see little X off
+
+3
+00:00:13,110 --> 00:00:17,560
+to the right hand side that they could click to delete an individual song.
+
+4
+00:00:17,940 --> 00:00:22,950
+Hopefully that would delete the song and any additional associated lyrics with it.
+
+5
+00:00:23,460 --> 00:00:27,940
+Let's plan out how we're going to tackle this feature inside of this section.
+
+6
+00:00:27,960 --> 00:00:32,540
+So at present I'm going to mention two big things I expect to change about the application.
+
+7
+00:00:32,790 --> 00:00:37,860
+I want to see some type of button on the right hand side that a user can click and whenever they click
+
+8
+00:00:37,860 --> 00:00:44,010
+it the data source should automatically be updated by deleting that individual song.
+
+9
+00:00:44,280 --> 00:00:49,010
+So in my mind I'm kind of thinking of two different pieces of code that we're going to have to add.
+
+10
+00:00:49,290 --> 00:00:55,830
+One piece of code on the react side that will delete the existing Orosius me that will show an icon
+
+11
+00:00:55,830 --> 00:01:01,140
+over here that the user can click to delete the song and the will also have to add an event handler
+
+12
+00:01:01,380 --> 00:01:07,360
+that will probably call a mutation to make sure that the song actually gets deleted.
+
+13
+00:01:07,890 --> 00:01:13,770
+Remember any time that we're talking about editing creating or deleting a record in our data source
+
+14
+00:01:13,980 --> 00:01:17,300
+we automatically want to be thinking about mutations.
+
+15
+00:01:17,600 --> 00:01:22,200
+So we're going to approach this mutation the exact same way we've approached all of the other queries
+
+16
+00:01:22,200 --> 00:01:23,060
+and mutations.
+
+17
+00:01:23,100 --> 00:01:27,560
+Well all the other two I should say that we've worked on so far.
+
+18
+00:01:27,750 --> 00:01:33,480
+We're going to do this by first starting inside of graphical and writing mutation out by hand and then
+
+19
+00:01:33,480 --> 00:01:37,860
+migrating that mutation over to live inside of one of our components.
+
+20
+00:01:37,860 --> 00:01:42,150
+So let's flip over to graphical and we're going to give this a shot.
+
+21
+00:01:42,150 --> 00:01:48,340
+The first thing I'm going to do is run our query to printout our entire list of songs.
+
+22
+00:01:48,570 --> 00:01:54,030
+So I'm going to place my opening query we're going to look at our list of songs and I'm going to say
+
+23
+00:01:54,060 --> 00:02:00,750
+give me the ID for each individual song so we can clearly see that we've got several ideas for each
+
+24
+00:02:00,750 --> 00:02:06,330
+of the songs in here getting the ideas relevant because when we tried to delete a song we're going to
+
+25
+00:02:06,330 --> 00:02:10,720
+have to tell our back end exactly which song we want to delete.
+
+26
+00:02:10,740 --> 00:02:17,150
+So presumably we're going to add in the ID of the song we want to delete as a type of Querrey variable.
+
+27
+00:02:17,170 --> 00:02:23,370
+Remember these are here to learn a little bit more about the mutation itself and how it's going to work.
+
+28
+00:02:23,370 --> 00:02:26,540
+We can open up the docs panel on the top right hand side.
+
+29
+00:02:26,820 --> 00:02:32,550
+So I've got my mutation section open and you'll see that one of the mutations we have available is delete
+
+30
+00:02:32,550 --> 00:02:36,150
+song and the purpose of this is to delete a song.
+
+31
+00:02:36,300 --> 00:02:37,620
+Totally reasonable.
+
+32
+00:02:38,220 --> 00:02:38,770
+OK.
+
+33
+00:02:38,880 --> 00:02:40,100
+So let's give this a shot.
+
+34
+00:02:40,140 --> 00:02:44,430
+We're going to write the mutation out here and run it just to make sure we can delete an individual
+
+35
+00:02:44,430 --> 00:02:46,090
+song first.
+
+36
+00:02:46,100 --> 00:02:51,510
+I'm going to start by modifying our Querrey just a little bit to see the not name but the title of a
+
+37
+00:02:51,510 --> 00:02:52,120
+song.
+
+38
+00:02:52,320 --> 00:02:58,660
+So we'll say that I want to delete the first song and my list which is called Night to deleted I would
+
+39
+00:02:58,720 --> 00:03:05,070
+to make sure that I copy the ID over here the entire thing because I'm going to need to reference that
+
+40
+00:03:05,130 --> 00:03:08,950
+very specific ID when I write out my mutation.
+
+41
+00:03:09,450 --> 00:03:09,770
+OK.
+
+42
+00:03:09,780 --> 00:03:11,770
+So let's write her mutation out.
+
+43
+00:03:11,970 --> 00:03:17,460
+So we're going to start off by writing a named mutation and I'm going to make it a named imitation because
+
+44
+00:03:17,460 --> 00:03:22,690
+I want to use a query variable to use to pass in the various specific ID.
+
+45
+00:03:22,980 --> 00:03:27,040
+So let's start off by doing the query variable first.
+
+46
+00:03:27,390 --> 00:03:34,710
+I'm going to say that I want to pass in an ID as a parameter and the ID of the record I want to delete.
+
+47
+00:03:34,920 --> 00:03:36,850
+Is that right there.
+
+48
+00:03:36,900 --> 00:03:43,260
+So the 5 8 9 5 8 9 ending in 3 5 7 and 9 and 3 5 7.
+
+49
+00:03:43,350 --> 00:03:43,610
+OK.
+
+50
+00:03:43,620 --> 00:03:45,290
+So this part looks good down here.
+
+51
+00:03:45,570 --> 00:03:47,980
+You'll notice I got a red squiggly around ID.
+
+52
+00:03:48,000 --> 00:03:52,830
+Meaning there's an error here and the error is just saying hey you haven't actually used this query
+
+53
+00:03:52,830 --> 00:03:54,070
+variable anywhere.
+
+54
+00:03:54,090 --> 00:03:58,280
+So if you define a query variable graphical wants to see you actually make use of it.
+
+55
+00:03:58,290 --> 00:04:02,580
+Otherwise it's going to think that you're probably making a mistake somewhere.
+
+56
+00:04:02,580 --> 00:04:09,300
+So now we can work on the named mutation flew right out the mutation keyword and then we will apply
+
+57
+00:04:09,300 --> 00:04:14,050
+a name to the mutation and then remember the order of arguments here.
+
+58
+00:04:14,220 --> 00:04:20,550
+We treat this naming mutation like a sort of function that we're going to pass the idea into.
+
+59
+00:04:20,550 --> 00:04:26,040
+So we do dollar sign type then name dollar sign.
+
+60
+00:04:26,040 --> 00:04:30,230
+So we'll do ID that's going to be the name of this parameter.
+
+61
+00:04:30,360 --> 00:04:32,140
+It's going to be of type string.
+
+62
+00:04:34,070 --> 00:04:41,330
+Then we delete song and then we're going to do the name of the parameter which is ID and the source
+
+63
+00:04:41,330 --> 00:04:48,010
+of that value or that value is going to come from the variable Id like so then we need to make sure
+
+64
+00:04:48,010 --> 00:04:52,450
+that we ask for at least one thing in return the back end will say Just give me the idea of the record
+
+65
+00:04:52,450 --> 00:04:53,630
+that was deleted.
+
+66
+00:04:54,010 --> 00:04:59,230
+Now you'll notice that the we've got a little bit of a red highlight here and it says that we are using
+
+67
+00:04:59,230 --> 00:05:03,880
+an idea of type string when type ID was expected.
+
+68
+00:05:03,880 --> 00:05:08,800
+So the back end that I've put together has a little bit different assumption about the IDs that we're
+
+69
+00:05:08,800 --> 00:05:13,930
+passing around here in the past application that we worked on we were saying that the IDs were always
+
+70
+00:05:13,930 --> 00:05:15,290
+of type string.
+
+71
+00:05:15,340 --> 00:05:18,810
+This time around I change their type to be of type ID.
+
+72
+00:05:18,820 --> 00:05:23,270
+We'll talk about exactly why we do that in the next application that we work in.
+
+73
+00:05:23,380 --> 00:05:24,870
+We can view this idea right here.
+
+74
+00:05:24,880 --> 00:05:31,450
+It is just another type just like the string type just like the integer types that we've used previously.
+
+75
+00:05:31,460 --> 00:05:37,070
+It is just another primitive type available to us in our graphical schema.
+
+76
+00:05:37,180 --> 00:05:38,550
+So this is looking pretty good now.
+
+77
+00:05:38,740 --> 00:05:44,890
+I'm going to run the query run the mutation I get back to the ID of the record that was deleted and
+
+78
+00:05:44,890 --> 00:05:51,370
+now I'm going to rerun my mutation in my query to get my big list of songs.
+
+79
+00:05:51,370 --> 00:05:54,370
+I'm going to expect that first song to be missing now.
+
+80
+00:05:54,370 --> 00:05:59,890
+I don't want to delete the mutation so I'm going to comment it out by pressing command forward slash
+
+81
+00:05:59,980 --> 00:06:01,030
+to comment it out.
+
+82
+00:06:02,100 --> 00:06:07,920
+And you do same thing for the query variables Well actually I can't comment that some is going to delete
+
+83
+00:06:07,920 --> 00:06:08,320
+it.
+
+84
+00:06:09,260 --> 00:06:13,910
+Now we're going to write out the mutation how I keep saying mutation excuse me the queery to get our
+
+85
+00:06:13,910 --> 00:06:15,110
+list of songs.
+
+86
+00:06:15,320 --> 00:06:19,110
+So say give me my list of songs and I want to know the title.
+
+87
+00:06:19,460 --> 00:06:21,930
+And let's do that ideas well for each of them.
+
+88
+00:06:23,120 --> 00:06:28,940
+So now you'll notice that the very first song that I was working with is no longer here specifically
+
+89
+00:06:28,940 --> 00:06:32,660
+the one that had the ending idea of three five seven.
+
+90
+00:06:32,660 --> 00:06:37,210
+So looks like that mutation definitely worked the way I expect it to work.
+
+91
+00:06:37,400 --> 00:06:40,390
+So I think that we're in a pretty good place to move forward.
+
+92
+00:06:40,640 --> 00:06:46,520
+We're going to take a quick break and then come back and move this nutation into our song list component
+
+93
+00:06:46,870 --> 00:06:50,200
+and wire it up to our component using the graphical helper.
+
+94
+00:06:50,220 --> 00:06:51,990
+So let's take care of that in the next section.
+

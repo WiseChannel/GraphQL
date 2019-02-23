@@ -1,0 +1,204 @@
+1
+00:00:00,690 --> 00:00:05,670
+Agora que nosso usurio tem a capacidade de adicionar letras para uma msica, precisamos comear a pensar em
+
+2
+00:00:05,670 --> 00:00:09,550
+mostrar uma lista de todas as letras diferentes que esto associadas  msica aqui.
+
+3
+00:00:09,840 --> 00:00:16,020
+Ento, como lembrete, basicamente, queremos mostrar um tipo de interface como este aqui mesmo, onde um usurio deve
+
+4
+00:00:16,020 --> 00:00:19,210
+poder ver uma lista de todas as letras diferentes.
+
+5
+00:00:19,440 --> 00:00:24,390
+Eles devem ver o contedo da letra no lado esquerdo e, em seguida, um boto semelhante no
+
+6
+00:00:24,390 --> 00:00:25,010
+lado direito.
+
+7
+00:00:25,050 --> 00:00:30,630
+Que as pessoas podem clicar para gostar dessa msica dada e isso tudo vai estar contido no
+
+8
+00:00:30,720 --> 00:00:32,220
+componente da lista de letras.
+
+9
+00:00:32,610 --> 00:00:37,590
+Ento voc pode estar olhando para isso aqui e pensando em Steven Oh, meu Deus, voc est brincando comigo.
+
+10
+00:00:37,680 --> 00:00:42,410
+Realmente acabamos de fazer essa lista de coisas de construo e ndice de msicas.
+
+11
+00:00:42,410 --> 00:00:48,440
+O que possvel, coisas novas, possamos aprender dentro da construo de outra lista como essa.
+
+12
+00:00:48,750 --> 00:00:51,590
+Bem, basta segurar, ainda existe l.
+
+13
+00:00:51,630 --> 00:00:57,810
+Voc ficaria muito surpreso, mas vamos encontrar vrios problemas muito importantes em torno do grande edifcio desta
+
+14
+00:00:57,810 --> 00:00:58,590
+lista aqui.
+
+15
+00:00:58,590 --> 00:01:03,660
+Ento, mesmo que parea quase idntico ao que j fiz, garanto-lhe que haver
+
+16
+00:01:03,660 --> 00:01:09,520
+algumas tentativas realmente interessantes e desafiadoras que surgiram em torno da construo desta lista.
+
+17
+00:01:09,540 --> 00:01:10,670
+Ento fique por perto.
+
+18
+00:01:10,680 --> 00:01:14,610
+Vamos construir essa lista e vamos abordar cada um desses desafios.
+
+19
+00:01:15,930 --> 00:01:21,120
+Vamos comear trabalhando no componente da lista de letras e apenas fazendo alguns andaimes da
+
+20
+00:01:21,180 --> 00:01:23,160
+coisa como um componente de reao.
+
+21
+00:01:23,400 --> 00:01:29,130
+Ento vamos comear abrindo nosso editor de cdigo e criando um novo componente
+
+22
+00:01:29,130 --> 00:01:37,520
+dentro do diretrio de nossos componentes, chamado de lista de letras e dentro daqui eu vou importar reagir.
+
+23
+00:01:37,530 --> 00:01:42,600
+Eu vou fazer deste um componente baseado em classe porque ser um pouco mais
+
+24
+00:01:42,600 --> 00:01:49,170
+complicado e vai ser muito bom ter alguns mtodos auxiliares disponveis ao invs de usar um componente funcional.
+
+25
+00:01:49,410 --> 00:01:52,090
+Ento, importa isso de reage assim.
+
+26
+00:01:52,410 --> 00:01:54,890
+E faremos nossa lista de letras.
+
+27
+00:01:55,290 --> 00:02:02,280
+Vai estender o componente de colocar no meu mtodo de renderizao agora.
+
+28
+00:02:02,590 --> 00:02:06,690
+E eu espero que essa coisa realmente esteja mostrando uma lista de itens.
+
+29
+00:02:06,700 --> 00:02:10,230
+Ento, eu vou colocar uma UL aqui por agora.
+
+30
+00:02:10,240 --> 00:02:14,080
+Eu direi sim me d uma UL ou d-lhe a lista de letras do texto.
+
+31
+00:02:14,080 --> 00:02:21,850
+Basta colocar algo na tela e, no final, voc conhece a lista literria padro de exportao
+
+32
+00:02:22,000 --> 00:02:22,720
+clssica literria.
+
+33
+00:02:22,900 --> 00:02:23,310
+EST BEM.
+
+34
+00:02:23,470 --> 00:02:25,320
+Ento, isso parece muito razovel agora.
+
+35
+00:02:25,390 --> 00:02:32,560
+Eu quero ligar essa coisa ao componente pai do detalhe da msica, ento alguns detalhes so o continer geral para
+
+36
+00:02:32,830 --> 00:02:35,740
+a lista de letras e para a letra.
+
+37
+00:02:36,070 --> 00:02:42,110
+Ento, vamos voltar para o nosso componente de detalhes da msica, vamos importar a lista de letras que
+
+38
+00:02:42,110 --> 00:02:42,830
+acabamos de
+
+39
+00:02:46,150 --> 00:02:48,730
+criar a importao da lista de letras assim.
+
+40
+00:02:49,060 --> 00:02:54,530
+E vamos fazer uma lista ou me desculpar, vou usar a lista de letras dentro desse cara aqui.
+
+41
+00:02:54,760 --> 00:02:56,500
+Ento nos desviamos um pouco.
+
+42
+00:02:56,500 --> 00:03:02,170
+E eu acho que logo abaixo dos trs anos de idade, mas acima do formulrio de criao de letras  provavelmente
+
+43
+00:03:02,170 --> 00:03:04,030
+um local muito apropriado para esse elemento.
+
+44
+00:03:04,420 --> 00:03:08,290
+Ento, exibiremos a lista de letras aqui.
+
+45
+00:03:08,910 --> 00:03:09,480
+EST BEM.
+
+46
+00:03:09,670 --> 00:03:11,510
+Ento, parece bem, parece razovel.
+
+47
+00:03:11,650 --> 00:03:15,270
+Vamos atualizar nossa pgina e ter certeza de que tudo est funcionando da maneira que esperamos.
+
+48
+00:03:15,630 --> 00:03:17,780
+Voc conhece Larry CList muito bom.
+
+49
+00:03:18,240 --> 00:03:18,840
+EST BEM.
+
+50
+00:03:19,090 --> 00:03:23,140
+Vamos dar uma pausa rpida e depois voltar e comear a olhar para alguns dos diferentes desafios
+
+51
+00:03:23,140 --> 00:03:25,620
+que vamos ter com este componente da lista de letras.
+

@@ -1,0 +1,160 @@
+1
+00:00:00,660 --> 00:00:02,560
+Ol e bem-vindo.
+
+2
+00:00:02,610 --> 00:00:08,940
+Meu nome  Stephen Greider e estou aqui para ensinar-lhe tudo o que sei sobre o enxerto Cuil e reagir
+
+3
+00:00:09,600 --> 00:00:11,370
+antes de comear com qualquer cdigo.
+
+4
+00:00:11,400 --> 00:00:16,410
+Quero abordar algumas perguntas frequentes sobre este curso e dar-lhe uma
+
+5
+00:00:16,410 --> 00:00:18,920
+ideia melhor de como est estruturado.
+
+6
+00:00:18,930 --> 00:00:24,230
+Primeiro, quero contar um pouco mais sobre o que vamos cobrir nas prximas sees.
+
+7
+00:00:24,240 --> 00:00:28,250
+Em primeiro lugar, estaremos discutindo por que o Graf QOL existe.
+
+8
+00:00:28,490 --> 00:00:34,500
+interessante de ser uma tecnologia onde  muito importante entender o problema que pretende resolver.
+
+9
+00:00:34,530 --> 00:00:37,120
+O QSL gruffed tem a distino
+
+10
+00:00:37,170 --> 00:00:43,230
+Depois de entender o enxerto de todas as tentativas de resolver a compreenso, ele comea a se tornar muito
+
+11
+00:00:43,260 --> 00:00:48,540
+mais fcil porque voc  capaz de enquadrar todos os diferentes desafios da estrutura para entender por
+
+12
+00:00:48,540 --> 00:00:50,680
+que estamos usando isso em primeiro lugar.
+
+13
+00:00:51,120 --> 00:00:55,550
+Depois de falar um pouco sobre o grfico que me irrita por que o grfico existe.
+
+14
+00:00:55,620 --> 00:00:58,570
+Falaremos um pouco sobre exatamente o que .
+
+15
+00:00:58,710 --> 00:00:59,780
+Ento, o que  grfico.
+
+16
+00:00:59,780 --> 00:01:04,790
+Q Bem, se for necessrio resolver alguns problemas existentes, como ele vai resolver.
+
+17
+00:01:04,830 --> 00:01:07,650
+O que realmente faz para ns.
+
+18
+00:01:07,650 --> 00:01:10,510
+Finalmente, vamos falar sobre como usamos Cuil de artesanato.
+
+19
+00:01:10,650 --> 00:01:12,380
+Ento, como fazemos uso de grficos.
+
+20
+00:01:12,400 --> 00:01:18,540
+Bem em nossas aplicaes de back-end e como  que, na verdade, transmitimos isso at o nosso front-end de reagem.
+
+21
+00:01:18,600 --> 00:01:23,730
+Ento, este ltimo passo, claro, pode ser a seo mais longa do curso e
+
+22
+00:01:23,730 --> 00:01:26,790
+ser a maior parte de tudo o que cobrimos.
+
+23
+00:01:26,790 --> 00:01:31,890
+Agora, antes de comear qualquer outra coisa, apenas um ltimo slide rpido, um par de perguntas
+
+24
+00:01:31,890 --> 00:01:35,670
+freqentes e respostas que eu obtenho em todos os meus cursos diferentes.
+
+25
+00:01:35,670 --> 00:01:40,970
+Primeiro eu uso maquetes balsmicas para criar todos os diagramas diferentes que voc estar olhando
+
+26
+00:01:40,980 --> 00:01:42,560
+dentro deste curso l.
+
+27
+00:01:42,570 --> 00:01:45,690
+Eu usei muitos tipos diferentes de ferramentas de diagrama.
+
+28
+00:01:45,720 --> 00:01:52,740
+Eu achei que o balsmico tem a melhor combinao de ser fcil de usar e rpido para colocar diagramas juntos, mas
+
+29
+00:01:52,740 --> 00:01:58,100
+os diagramas que so gerados tambm se parecem muito agradveis, o que  um pequeno benefcio.
+
+30
+00:01:58,140 --> 00:02:01,160
+Em seguida, uso ATOM para o meu editor de cdigo.
+
+31
+00:02:01,200 --> 00:02:04,530
+Voc  livre para usar absolutamente qualquer editor de cdigo que voc gosta.
+
+32
+00:02:04,530 --> 00:02:07,000
+No h absolutamente nenhuma exigncia para usar Adam.
+
+33
+00:02:07,110 --> 00:02:13,470
+Voc pode usar a sublime web storm textedit qualquer coisa que voc quiser totalmente para voc.
+
+34
+00:02:13,560 --> 00:02:17,460
+Finalmente, para o meu terminal, uso o termo I com o shell Z.
+
+35
+00:02:17,460 --> 00:02:22,590
+Ento, se voc quiser obter o mesmo prompt de comando que eu fao, voc pode pegar, eu termino e o shell Z
+
+36
+00:02:22,590 --> 00:02:24,300
+e voc receber algo fora da caixa.
+
+37
+00:02:24,300 --> 00:02:26,970
+Parece muito idntico ao que eu uso.
+
+38
+00:02:28,590 --> 00:02:28,950
+EST BEM.
+
+39
+00:02:28,960 --> 00:02:30,960
+Ento  isso com perguntas frequentes.
+
+40
+00:02:31,120 --> 00:02:35,260
+Vamos comear com o contedo realmente interessante na prxima seo.
+

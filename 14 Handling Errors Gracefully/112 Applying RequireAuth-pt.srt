@@ -1,0 +1,288 @@
+1
+00:00:00,780 --> 00:00:05,550
+Na ltima seo, comeamos a trabalhar em nosso componente exigido de ordem superior.
+
+2
+00:00:05,730 --> 00:00:12,120
+Neste momento, temos apenas um componente regular e verifica se o usurio est
+
+3
+00:00:12,120 --> 00:00:13,590
+ou no conectado.
+
+4
+00:00:13,770 --> 00:00:19,210
+Se eles atualmente no estiverem autenticados, enviamos-os para a rota de login.
+
+5
+00:00:19,290 --> 00:00:21,560
+Neste ponto novamente  apenas um componente.
+
+6
+00:00:21,570 --> 00:00:24,810
+Ainda temos que transform-lo em um componente de ordem superior.
+
+7
+00:00:25,020 --> 00:00:29,670
+Ento,  aqui que parte da magia por trs de componentes de ordem superior vai entrar em jogo.
+
+8
+00:00:29,700 --> 00:00:32,880
+No vou falar muito sobre o que est acontecendo com componentes superiores aqui.
+
+9
+00:00:32,880 --> 00:00:38,640
+Novamente, se voc quiser aprender apenas uma tonelada sobre eles, voc pode verificar o curso re-act redux, o
+
+10
+00:00:38,640 --> 00:00:44,610
+avanado ou voc, claro, sempre pode verificar toneladas de tutoriais on-line que lhe contaro muito sobre componentes de
+
+11
+00:00:44,610 --> 00:00:46,800
+ordem superior e como eles funcionam .
+
+12
+00:00:46,890 --> 00:00:51,100
+Ento no estou tentando conectar meu curso aqui de propsito ou algo assim.
+
+13
+00:00:51,240 --> 00:00:55,890
+Eu sei que, se voc tomar o curso, voc aprende sobre componentes de ordem superior, mas
+
+14
+00:00:55,890 --> 00:01:00,320
+certamente h uma tonelada de recursos l fora para ajud-lo a entender exatamente como eles funcionam.
+
+15
+00:01:00,330 --> 00:01:05,110
+Ento, a prxima parte vai ser um pouco arcana Voc sabe, mas oi, vamos passar por isso.
+
+16
+00:01:05,190 --> 00:01:15,080
+assim, ento vamos envolver o componente que acabamos de criar com a funo que acabamos de definir na parte inferior.
+
+17
+00:01:15,080 --> 00:01:21,630
+Ns vamos transformar o nosso componente em uma funo que leva um componente embrulhado,
+
+18
+00:01:21,650 --> 00:01:27,120
+Ns devolveremos a verso qualificada do grfico do componente off desejado.
+
+19
+00:01:27,350 --> 00:01:31,970
+Ento eu estou me certificando de que eu tenho a declarao de
+
+20
+00:01:31,970 --> 00:01:43,860
+retorno aqui e, ento, a ltima coisa que precisamos fazer  adicionar nosso mtodo de renderizao e ter certeza de que devemos retornar o componente de representante junto com todos os
+
+21
+00:01:43,860 --> 00:01:47,270
+adereos que o componente de ordem superior foi passado.
+
+22
+00:01:47,580 --> 00:01:48,170
+EST BEM.
+
+23
+00:01:48,260 --> 00:01:53,030
+Ento, novamente voc no est familiarizado com o que eu sei, disse isso quatro vezes agora, se voc no 
+
+24
+00:01:53,030 --> 00:01:56,150
+de componentes superiores, tudo o que acabamos de fazer ser um pouco misterioso.
+
+25
+00:01:56,270 --> 00:01:58,620
+Eu realmente recomendo que voc tome cinco 10 minutos.
+
+26
+00:01:58,610 --> 00:02:02,260
+V verificar um tutorial sobre componentes de ordem superior se voc no estiver familiarizado com eles.
+
+27
+00:02:02,360 --> 00:02:05,040
+Aposto que voc vai pegar o que est acontecendo com eles muito rapidamente.
+
+28
+00:02:05,150 --> 00:02:08,050
+Se voc chegou at aqui a este rascunho,  claro.
+
+29
+00:02:08,620 --> 00:02:14,060
+OK, ento acho que temos apenas um cdigo suficiente na tela para nos dar um teste no navegador.
+
+30
+00:02:14,240 --> 00:02:17,400
+Eu realmente espero que isso no funcione da maneira que esperamos.
+
+31
+00:02:17,420 --> 00:02:22,040
+Eu vou dizer que agora mesmo no espero que funcione do jeito que esperamos,
+
+32
+00:02:22,040 --> 00:02:25,100
+mas eu quero apenas test-lo e ver como estamos fazendo.
+
+33
+00:02:25,310 --> 00:02:31,760
+Ento, a primeira coisa que temos a fazer  realmente aplicar a Autenticao requerida. componentes de ordem superior em algum lugar
+
+34
+00:02:31,760 --> 00:02:33,410
+dentro de nossa aplicao.
+
+35
+00:02:33,710 --> 00:02:38,690
+Ento, a nica localizao dentro de nossa aplicao agora, onde eu gostaria de usar essa
+
+36
+00:02:38,690 --> 00:02:41,800
+coisa,  no componente do painel que acabamos de criar.
+
+37
+00:02:41,870 --> 00:02:48,480
+Ento, eu vou virar para o lado do roteador do ndice no apenas arquivar o seu e comear o G-S.
+
+38
+00:02:48,620 --> 00:02:54,170
+Vamos importar o componente requisito de ordem superior e ento vamos aplic-lo ao
+
+39
+00:02:54,170 --> 00:02:56,960
+componente do painel que acabamos de criar.
+
+40
+00:02:56,960 --> 00:03:06,560
+sejam desativados, e eu quero aplic-lo ao componente do painel sempre que o componente do painel de controle  usado.
+
+41
+00:03:06,560 --> 00:03:09,950
+Portanto, a importao exige que os componentes
+
+42
+00:03:10,130 --> 00:03:15,370
+Portanto, a melhor localizao para fazer isso est dentro da nossa definio de rota para o painel.
+
+43
+00:03:15,470 --> 00:03:17,610
+Ento nos desviamos um pouco.
+
+44
+00:03:17,670 --> 00:03:20,360
+Encontraremos a rota para o componente do painel.
+
+45
+00:03:20,360 --> 00:03:21,650
+Aqui est.
+
+46
+00:03:21,650 --> 00:03:28,930
+E eu vou aplicar o componente de ordem superior ao painel.
+
+47
+00:03:29,120 --> 00:03:30,390
+Ento, tomamos o painel.
+
+48
+00:03:30,620 --> 00:03:33,440
+Passamos para a funo necessria.
+
+49
+00:03:33,470 --> 00:03:36,010
+Ento, vamos virar para exigir o arquivo off.
+
+50
+00:03:36,020 --> 00:03:37,170
+Aqui est, bem aqui.
+
+51
+00:03:37,490 --> 00:03:42,370
+Ento, o painel de instrumentos est entrando como o componente envolvido.
+
+52
+00:03:43,070 --> 00:03:45,380
+Criamos nossos novos componentes necessrios.
+
+53
+00:03:45,380 --> 00:03:49,680
+Vai fazer alguma lgica extravagante para descobrir se o usurio est ou no autenticado.
+
+54
+00:03:49,790 --> 00:03:54,620
+E ento ele acabar mostrando o painel to envolvido que a computao aqui  o painel de controle.
+
+55
+00:03:54,620 --> 00:03:59,550
+E, novamente, isso se resume a um pouco sobre a forma como os componentes de ordem superior funcionam.
+
+56
+00:03:59,660 --> 00:04:02,780
+Ento eu acho que temos cdigo suficiente para testar isso dentro do navegador.
+
+57
+00:04:02,780 --> 00:04:05,020
+Vamos virar e ver como estamos fazendo.
+
+58
+00:04:05,540 --> 00:04:06,620
+Vai acabar.
+
+59
+00:04:06,650 --> 00:04:12,880
+Vamos atualizar a pgina e ainda estou vendo que voc est logado agora.
+
+60
+00:04:13,040 --> 00:04:13,560
+EST BEM.
+
+61
+00:04:13,700 --> 00:04:17,060
+Bem, isso definitivamente no parece da maneira que esperamos.
+
+62
+00:04:17,060 --> 00:04:22,580
+Ento, vamos tentar entrar e ver se talvez esse processo seja um pouco melhor.
+
+63
+00:04:22,580 --> 00:04:30,710
+Ento, faa o login com o teste no ponto de teste com a senha e deixe-me enviar. Estou agora logado.
+
+64
+00:04:30,790 --> 00:04:32,470
+O que acontece se eu sair.
+
+65
+00:04:32,770 --> 00:04:33,140
+EST BEM.
+
+66
+00:04:33,160 --> 00:04:38,160
+Ento parece que nosso componente de ordem superior no est funcionando da maneira que esperamos agora.
+
+67
+00:04:38,170 --> 00:04:42,130
+Vamos dar uma pausa rpida e vamos fazer um pouco de resoluo de
+
+68
+00:04:42,130 --> 00:04:46,840
+problemas e descobrir exatamente por que esse fato no est fazendo, remotamente, o que queremos fazer.
+
+69
+00:04:46,840 --> 00:04:51,610
+E vai chegar a entender um pouco mais sobre como as consultas grficas so executadas e
+
+70
+00:04:51,940 --> 00:04:56,140
+como um par de diferentes mtodos do ciclo de vida dentro da reao funcionam.
+
+71
+00:04:56,140 --> 00:05:00,100
+Ento, ser uma boa oportunidade de aprendizagem para o Graf reagir.
+
+72
+00:05:00,160 --> 00:05:01,810
+Portanto, cuidado com isso na prxima seo.
+

@@ -1,0 +1,352 @@
+1
+00:00:00,920 --> 00:00:04,370
+Are sign up form appears to be running the mutation correctly.
+
+2
+00:00:04,380 --> 00:00:06,970
+But we still have to take care of a couple odds and.
+
+3
+00:00:07,530 --> 00:00:11,910
+Notably we have to make sure that we handle any errors that result from the mutation.
+
+4
+00:00:11,910 --> 00:00:16,870
+We need to make sure that we rerun our current user query after this mutation is complete.
+
+5
+00:00:17,100 --> 00:00:22,530
+And then finally we need to make sure that after the mutation runs we forcibly navigate the user over
+
+6
+00:00:22,530 --> 00:00:25,440
+to our dashboard component which we still have to create.
+
+7
+00:00:25,470 --> 00:00:26,580
+To be fair.
+
+8
+00:00:26,820 --> 00:00:31,440
+So I think that the best place to start will be around the error handling so error handling is going
+
+9
+00:00:31,440 --> 00:00:36,690
+to be absolutely identical to that error handling that we used inside of the log in form.
+
+10
+00:00:36,780 --> 00:00:43,530
+We'll define a constructor initialize a empty array has our heir's piece of state then we'll add on
+
+11
+00:00:43,560 --> 00:00:45,480
+a catch case to the mutation.
+
+12
+00:00:45,480 --> 00:00:50,760
+And if there's any errors in the response that comes back we will grab a list of all the errors and
+
+13
+00:00:50,820 --> 00:00:53,130
+update our components state with it.
+
+14
+00:00:53,130 --> 00:00:57,810
+And then finally we'll make sure that we pass that list of errors down into the form where they can
+
+15
+00:00:57,810 --> 00:01:00,510
+be shown on the screen to the user.
+
+16
+00:01:00,510 --> 00:01:01,870
+So let's get started.
+
+17
+00:01:01,890 --> 00:01:07,950
+We will first start off by initializing our component level state inside the constructor constructor.
+
+18
+00:01:07,950 --> 00:01:08,590
+There we go.
+
+19
+00:01:10,910 --> 00:01:18,440
+Call super with props and then call or see me initialize our state with errors being set to an empty
+
+20
+00:01:18,440 --> 00:01:20,480
+array.
+
+21
+00:01:20,480 --> 00:01:24,950
+Next we'll add on a ketch case to our mutations statement.
+
+22
+00:01:25,050 --> 00:01:31,080
+So don't take off the semi-colon and add on a dot catch We're going to take the response that comes
+
+23
+00:01:31,080 --> 00:01:32,460
+back from the server.
+
+24
+00:01:32,460 --> 00:01:37,260
+And remember that in the catch case rate here the understanding is that tach is always going to be called
+
+25
+00:01:37,290 --> 00:01:44,070
+if the request fails for any reason so ketches only get called if there are some list of errors and
+
+26
+00:01:44,070 --> 00:01:48,330
+won't be called if the mutation is executed successfully.
+
+27
+00:01:48,330 --> 00:01:57,600
+So we'll look at the errors object rez dot graph QOL errors we'll map over the thing which is an array
+
+28
+00:01:58,110 --> 00:02:05,000
+and then for every air object will pluck off the air dot message property.
+
+29
+00:02:05,010 --> 00:02:09,950
+There we go do make sure that you've got capital Q L E on graph.
+
+30
+00:02:09,950 --> 00:02:11,280
+Q All air is on here.
+
+31
+00:02:11,280 --> 00:02:17,100
+If you make a typo on this term right here you'll definitely get an error message about MAP being undefined.
+
+32
+00:02:18,830 --> 00:02:21,470
+So now we've got the array of error messages.
+
+33
+00:02:21,540 --> 00:02:26,170
+We can update our component level states with errors like.
+
+34
+00:02:26,190 --> 00:02:29,190
+So it looks pretty good.
+
+35
+00:02:29,280 --> 00:02:35,160
+Now we'll just make sure that our form is not showing this empty array at all times and instead it will
+
+36
+00:02:35,160 --> 00:02:38,380
+show this state as like so.
+
+37
+00:02:38,980 --> 00:02:44,520
+So now when the component first renders as is going to be an empty array if the user makes a mistake
+
+38
+00:02:44,520 --> 00:02:50,310
+while attempting to sign up we'll update the errors list the author will render and the user will get
+
+39
+00:02:50,310 --> 00:02:57,330
+a face full of all the associated error messages so I think you know it's time for it's time for another
+
+40
+00:02:57,330 --> 00:02:58,570
+test in the browser.
+
+41
+00:02:58,770 --> 00:03:00,220
+Let's flip on over.
+
+42
+00:03:00,520 --> 00:03:01,680
+Well refresh this thing
+
+43
+00:03:04,170 --> 00:03:09,770
+and you know one ear That would expect to be nicely handled is if the user attempts to submit the form
+
+44
+00:03:09,860 --> 00:03:11,300
+without e-mail or password.
+
+45
+00:03:11,300 --> 00:03:13,190
+So maybe if we do that.
+
+46
+00:03:13,280 --> 00:03:13,700
+OK.
+
+47
+00:03:13,700 --> 00:03:19,340
+Very nice so if we attempt to submit the form without an e-mail or password we mean we get back some
+
+48
+00:03:19,340 --> 00:03:25,400
+validation that says hey you got to give us an email let's be realistic here right.
+
+49
+00:03:25,570 --> 00:03:27,850
+And if we look at the mutation that was executed.
+
+50
+00:03:27,850 --> 00:03:30,790
+Yup we get back that single error message like so.
+
+51
+00:03:32,640 --> 00:03:35,660
+So that error handling is definitely running the way we expect.
+
+52
+00:03:35,880 --> 00:03:40,680
+So the very last thing that we have to do is make sure that we really fetch the current user to make
+
+53
+00:03:40,680 --> 00:03:45,860
+sure that the header gets updated after a user successfully authenticates.
+
+54
+00:03:45,960 --> 00:03:52,290
+So I'm going to find the on Samit handler inside of my sign up form.
+
+55
+00:03:52,290 --> 00:03:57,090
+Don't forget that we do have to import the fetch current user query at the top as well.
+
+56
+00:03:57,090 --> 00:04:04,600
+So I will out on an import statement for a query from DOT DOT queries.
+
+57
+00:04:04,740 --> 00:04:06,760
+Current User like so.
+
+58
+00:04:07,150 --> 00:04:11,320
+So I'm going to get the current user query out of the queries folder.
+
+59
+00:04:11,370 --> 00:04:16,030
+Now we do have to add this to our mutation.
+
+60
+00:04:16,050 --> 00:04:21,780
+So here is on Samit we're going to make sure that it knows that after the mutation is issued it needs
+
+61
+00:04:21,780 --> 00:04:32,250
+to re fetch this single query to get the new current user.
+
+62
+00:04:32,250 --> 00:04:35,980
+All right I think we're ready for the last test to make sure that everything is working.
+
+63
+00:04:36,150 --> 00:04:38,260
+I'm going to flip back over to the browser.
+
+64
+00:04:38,260 --> 00:04:42,100
+All refresh and then we're going to create one last user.
+
+65
+00:04:42,260 --> 00:04:47,880
+Do you make sure again that you get a very unique e-mail in here if you use a unique e-mail that's already
+
+66
+00:04:47,880 --> 00:04:50,810
+been in use then of course you're going to get an error message again.
+
+67
+00:04:51,120 --> 00:04:53,000
+So I'll just do something like that.
+
+68
+00:04:53,010 --> 00:04:54,670
+I think that'll work.
+
+69
+00:04:56,550 --> 00:04:58,790
+And I'll give it another password of password.
+
+70
+00:04:58,830 --> 00:05:04,600
+So now I really oh you know what I'm looking at this thing and we're still currently authenticated.
+
+71
+00:05:04,620 --> 00:05:08,490
+We do need to make sure that we are not authenticated when we attempt to sign up.
+
+72
+00:05:08,520 --> 00:05:13,440
+It is also worth noting that we need to make sure that if we are currently authenticated we need to
+
+73
+00:05:13,440 --> 00:05:17,430
+somehow make sure that we navigate away from this page.
+
+74
+00:05:17,580 --> 00:05:22,290
+So a user really shouldn't be able to see the sign up page if they are currently signed in.
+
+75
+00:05:22,320 --> 00:05:26,260
+And that's another little to do that we should tack on to our list of items.
+
+76
+00:05:26,520 --> 00:05:28,120
+So I mean to make sure that I log out.
+
+77
+00:05:28,390 --> 00:05:28,740
+OK.
+
+78
+00:05:28,740 --> 00:05:29,920
+So that's better.
+
+79
+00:05:29,940 --> 00:05:35,100
+So now I can submit this form and I will expect to see the header update as I become authenticated with
+
+80
+00:05:35,100 --> 00:05:36,440
+the new user.
+
+81
+00:05:36,860 --> 00:05:40,230
+So I'll submit I create the new user.
+
+82
+00:05:40,260 --> 00:05:46,820
+Here's the mutation and then I immediately rerun the beauty of the query to fetch the current user and
+
+83
+00:05:46,820 --> 00:05:49,990
+you will see that the header updates as I expect.
+
+84
+00:05:50,310 --> 00:05:50,640
+OK.
+
+85
+00:05:50,670 --> 00:05:59,610
+So I think that we're pretty good on both signing up and signing in to our application with the exception
+
+86
+00:05:59,640 --> 00:06:05,160
+of the fact that we are not currently redirecting the user away from the form once they are successfully
+
+87
+00:06:05,160 --> 00:06:06,530
+authenticated.
+
+88
+00:06:06,540 --> 00:06:10,560
+So let's think about how we're going to accomplish that inside the next section.
+

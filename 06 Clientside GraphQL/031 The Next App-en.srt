@@ -1,0 +1,196 @@
+1
+00:00:00,820 --> 00:00:06,160
+Now that we've got a better idea of all these different technologies and the graphical space let's get
+
+2
+00:00:06,160 --> 00:00:11,410
+started on our next project where we're going to start to venture into the front end and build out a
+
+3
+00:00:11,410 --> 00:00:13,590
+real web application.
+
+4
+00:00:13,660 --> 00:00:18,670
+Now before we get started on any project materials I want to give you a brief overview of where we are
+
+5
+00:00:18,700 --> 00:00:20,510
+in this course right now.
+
+6
+00:00:20,560 --> 00:00:24,080
+So in this diagram we were spending everywhere from the front end.
+
+7
+00:00:24,160 --> 00:00:30,760
+So using re-act using Appollo client all this kind of stuff all the way to the back end where we've
+
+8
+00:00:30,760 --> 00:00:38,890
+got Express and node and our database so far in our back and side loops so far and our back and side
+
+9
+00:00:39,010 --> 00:00:41,310
+that's what we just covered in the section we just went through.
+
+10
+00:00:41,320 --> 00:00:47,320
+So we saw how to use graph Cuil on the server side to put together a graphical application that was
+
+11
+00:00:47,320 --> 00:00:48,480
+Section 1.
+
+12
+00:00:48,880 --> 00:00:54,020
+Now in section 2 we're going to start to concentrate a lot more on the front end instead.
+
+13
+00:00:54,280 --> 00:00:58,430
+And for this application we are not going to do any work on the backend.
+
+14
+00:00:58,540 --> 00:01:03,430
+So I already have a server put together that we're going to clone down and make use of inside of this
+
+15
+00:01:03,430 --> 00:01:04,980
+next application.
+
+16
+00:01:05,070 --> 00:01:11,840
+Do you hear the idea here is that I want you to just focus 100 percent on the front end of our application.
+
+17
+00:01:12,100 --> 00:01:17,770
+All of the code in the startup project I already put together is following the exact same conventions
+
+18
+00:01:17,800 --> 00:01:19,100
+of what we just went through.
+
+19
+00:01:19,230 --> 00:01:24,310
+Again I just want you to be able to focus on the front end of this next step we're going to work on
+
+20
+00:01:25,690 --> 00:01:28,480
+after we are complete with this next application.
+
+21
+00:01:28,480 --> 00:01:34,270
+We're going to do our last out which will be the entire spectrum the full stack so everything from the
+
+22
+00:01:34,660 --> 00:01:39,250
+re-act front end all the way to our database on the back end using graph.
+
+23
+00:01:39,250 --> 00:01:42,390
+Q Well in all associated technologies.
+
+24
+00:01:42,490 --> 00:01:46,750
+So again I just wanted to give you a little bit of a preview into what we're going to work around for
+
+25
+00:01:46,750 --> 00:01:49,630
+the remainder of this course.
+
+26
+00:01:49,660 --> 00:01:56,190
+So with that in mind our next step is going to be to pull down all the code for the starter projects
+
+27
+00:01:56,200 --> 00:01:59,130
+that I have already put together for Section 2.
+
+28
+00:01:59,230 --> 00:02:02,770
+Let's do that right now and then we're going to talk a little bit about exactly what we're going to
+
+29
+00:02:02,770 --> 00:02:05,110
+build in section 2.
+
+30
+00:02:05,250 --> 00:02:07,730
+So I'm going to first open up my code editor.
+
+31
+00:02:07,770 --> 00:02:12,840
+We're going to go to get hub and clone that code for the starter package.
+
+32
+00:02:13,020 --> 00:02:23,460
+We're going to go to get hub dot com slash Stephen Grider slash lyrical lyrical dash graph.
+
+33
+00:02:23,460 --> 00:02:25,700
+Q Well I can't take this link right here.
+
+34
+00:02:25,700 --> 00:02:30,560
+I mean I copy it just really quick so that you can definitely see it on the screen.
+
+35
+00:02:30,690 --> 00:02:37,210
+So just to make sure you get the right spelling Dubcek lyrical dash graphical.
+
+36
+00:02:37,270 --> 00:02:44,950
+So I'm going to go directly there and we can download all these project files one of two ways we can
+
+37
+00:02:44,950 --> 00:02:51,730
+either download it as a full zip file and then extract the contents of the directory or we can clone
+
+38
+00:02:51,730 --> 00:02:53,070
+it by using get.
+
+39
+00:02:53,350 --> 00:02:58,840
+I'm going to go ahead and download it using good song and copy the link right here and then go back
+
+40
+00:02:58,840 --> 00:03:01,540
+over to my working project directory.
+
+41
+00:03:01,810 --> 00:03:06,850
+So do notice that I'm not inside of the directory that we were using previously and not inside of that
+
+42
+00:03:06,850 --> 00:03:09,520
+user's directory that we had previously created.
+
+43
+00:03:09,520 --> 00:03:13,000
+This is a completely new directory that we're getting working in.
+
+44
+00:03:13,180 --> 00:03:17,940
+So you'll get to clone the package and grab that link one more time.
+
+45
+00:03:20,150 --> 00:03:26,330
+And then once we're down done cloning it I will change into that folder and we will install or dependencies
+
+46
+00:03:26,420 --> 00:03:29,590
+with NPM install.
+
+47
+00:03:29,870 --> 00:03:32,980
+So this will take just a moment or two to finish up while it's running.
+
+48
+00:03:33,020 --> 00:03:38,650
+Let's continue in the next section and we'll talk a lot more about exactly what we're going to be building
+
+49
+00:03:38,690 --> 00:03:40,520
+in this next application.
+

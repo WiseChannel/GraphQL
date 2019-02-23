@@ -1,0 +1,416 @@
+1
+00:00:00,780 --> 00:00:07,470
+Nearly every graphical tutorial or resource you'll find out there is obsessed with writing queries to
+
+2
+00:00:07,470 --> 00:00:09,800
+read data from our graphical server.
+
+3
+00:00:09,990 --> 00:00:16,080
+Even in this course we've now spend probably 30 seconds or so just figuring out how to set up the ability
+
+4
+00:00:16,080 --> 00:00:19,230
+to read data from our graphical server.
+
+5
+00:00:19,500 --> 00:00:25,230
+We haven't touched the process of manipulating our data in the smallest bit.
+
+6
+00:00:25,230 --> 00:00:30,540
+In this section we're going to start to look at how to use graph Cuil to modify the data stored on our
+
+7
+00:00:30,540 --> 00:00:36,180
+server in some fashion by using a system called mutations.
+
+8
+00:00:36,180 --> 00:00:40,250
+Mutations are used to change our data in some fashion.
+
+9
+00:00:40,260 --> 00:00:45,650
+Mutations can be used to delete records update them or even create new records.
+
+10
+00:00:45,660 --> 00:00:51,840
+Mutations are somewhat notorious and graphically well for being quite challenging to work with but I'm
+
+11
+00:00:51,840 --> 00:00:57,060
+pretty confident that we can walk through that process and figure out exactly how they work.
+
+12
+00:00:57,060 --> 00:00:58,740
+So let's get started.
+
+13
+00:00:58,740 --> 00:01:04,620
+First I want to mention to you that the Jason server that we set up earlier has support for editing
+
+14
+00:01:04,620 --> 00:01:08,940
+records that follows the restful conventions that we spoke about much earlier.
+
+15
+00:01:09,240 --> 00:01:16,530
+So we have on our graph all servers simiar Jaison server our collection of users in our collection of
+
+16
+00:01:16,530 --> 00:01:19,540
+companies following restful conventions.
+
+17
+00:01:19,560 --> 00:01:27,540
+If we post some data to slash companies that will add a new record to our company's collection.
+
+18
+00:01:27,540 --> 00:01:29,000
+Same thing for users.
+
+19
+00:01:29,160 --> 00:01:36,320
+We can make a delete request to slash users slash 23 to delete some particular user.
+
+20
+00:01:36,540 --> 00:01:41,310
+So all I'm trying to say here is that we really don't have to worry about the JS on server setup at
+
+21
+00:01:41,310 --> 00:01:42,150
+all.
+
+22
+00:01:42,150 --> 00:01:46,680
+Everything that we're going to do is can be focused around the graphical side of things.
+
+23
+00:01:46,680 --> 00:01:52,020
+And of course later on in the course when we put together our own database ourselves we will do all
+
+24
+00:01:52,020 --> 00:01:55,740
+of these mutations and manipulate the database directly.
+
+25
+00:01:55,740 --> 00:02:01,590
+But again right now we're most focused on making sure that this schema works together with these mutations
+
+26
+00:02:01,590 --> 00:02:02,700
+nicely.
+
+27
+00:02:03,330 --> 00:02:04,900
+Okay with that quick aside done.
+
+28
+00:02:05,040 --> 00:02:08,650
+Let's talk about a little little bit how mutations are set up.
+
+29
+00:02:09,030 --> 00:02:14,070
+Right now our graphical schema consists of a single root query.
+
+30
+00:02:14,100 --> 00:02:20,610
+So here's our root query and the root query gives us access to the user type and the company type we
+
+31
+00:02:20,610 --> 00:02:28,230
+are going to set up our mutations in a somewhat similar fashion where we make a nutation type sort of
+
+32
+00:02:28,230 --> 00:02:28,750
+thing.
+
+33
+00:02:28,890 --> 00:02:35,970
+And then we add more or less fields to it do some very particular operation to manipulate our collection
+
+34
+00:02:35,970 --> 00:02:36,670
+of data.
+
+35
+00:02:36,960 --> 00:02:43,260
+So we will have a mutation that might add a user to our collection of users you might have a mutation
+
+36
+00:02:43,260 --> 00:02:48,420
+that deletes a user or any other similar operation.
+
+37
+00:02:48,420 --> 00:02:52,740
+All of these operations will be tied to this mutations object.
+
+38
+00:02:52,890 --> 00:02:58,020
+So none of this data manipulation is going to be associated with the actual types that we've defined
+
+39
+00:02:58,020 --> 00:02:58,730
+already.
+
+40
+00:02:58,950 --> 00:03:04,620
+So all I mean to say by that is if we look at our schema file we have our company typewrite here and
+
+41
+00:03:04,620 --> 00:03:07,040
+right beneath that we've got our user type.
+
+42
+00:03:07,630 --> 00:03:14,120
+We're not going to we're not going to put any logic around editing these records or these types inside
+
+43
+00:03:14,130 --> 00:03:15,220
+of the actual type.
+
+44
+00:03:15,450 --> 00:03:21,360
+Instead we're going to make a completely separate object and teach that object on how to manipulate
+
+45
+00:03:21,360 --> 00:03:23,480
+some of the data in our application.
+
+46
+00:03:24,030 --> 00:03:24,430
+OK.
+
+47
+00:03:24,450 --> 00:03:25,620
+Enough lecturing.
+
+48
+00:03:25,620 --> 00:03:27,270
+Let's see what this really looks like.
+
+49
+00:03:27,270 --> 00:03:29,040
+Honestly it is not that bad.
+
+50
+00:03:29,040 --> 00:03:34,070
+It's something that I'm really confident you're going to get right a hold up very quickly.
+
+51
+00:03:34,230 --> 00:03:39,390
+We're going to scroll down to the very bottom of our file here you find the module export statement
+
+52
+00:03:39,640 --> 00:03:39,860
+here.
+
+53
+00:03:39,870 --> 00:03:42,050
+It's now right above it.
+
+54
+00:03:42,060 --> 00:03:46,860
+We're going to start by defining our root mutation and an.
+
+55
+00:03:46,890 --> 00:03:49,280
+Mutation equals new graph.
+
+56
+00:03:49,290 --> 00:04:01,200
+Q Well object type and I'm going to give it a name of mutation and it's going to have a field's property.
+
+57
+00:04:01,200 --> 00:04:06,440
+So so already so far everything that we've written so far really looks like we're just defining another
+
+58
+00:04:06,440 --> 00:04:07,310
+type.
+
+59
+00:04:07,310 --> 00:04:12,320
+The only part time are the only place where things start to be a little bit different is what we actually
+
+60
+00:04:12,320 --> 00:04:14,650
+do inside of the resolve function.
+
+61
+00:04:14,930 --> 00:04:16,980
+So we're still going to have a field object.
+
+62
+00:04:17,030 --> 00:04:19,910
+We're going to have some number of fields inside of it.
+
+63
+00:04:19,940 --> 00:04:23,390
+Those fields are going to have types args resolve function blah blah.
+
+64
+00:04:23,390 --> 00:04:26,090
+All very similar stuff.
+
+65
+00:04:26,090 --> 00:04:31,490
+The first mutation that we're going to work on will be to add user to our collection of users.
+
+66
+00:04:31,610 --> 00:04:36,420
+So I'm going to name this nutation AD user like so.
+
+67
+00:04:36,890 --> 00:04:39,050
+So notice that the field that I'm adding here.
+
+68
+00:04:39,050 --> 00:04:45,590
+It doesn't have a similar field name like all the other properties we had where we had ID and name first
+
+69
+00:04:45,590 --> 00:04:46,600
+name description.
+
+70
+00:04:46,610 --> 00:04:47,950
+All that kind of stuff.
+
+71
+00:04:48,020 --> 00:04:53,800
+Instead the fields of the mutation describe the operation that this mutation is going to undertake.
+
+72
+00:04:53,810 --> 00:04:58,370
+So this mutation right here I would expect this to add a user to my user's collection.
+
+73
+00:04:58,370 --> 00:05:02,600
+And so I mean it adds user makes sense.
+
+74
+00:05:02,600 --> 00:05:04,360
+This will have a type.
+
+75
+00:05:04,580 --> 00:05:09,890
+I'm going to put down all the keys first and we'll come back and fill out the values we'll have args
+
+76
+00:05:09,950 --> 00:05:12,740
+again and the result function again.
+
+77
+00:05:12,830 --> 00:05:15,110
+So again very similar things so far.
+
+78
+00:05:16,750 --> 00:05:19,140
+So let's first start with the type field.
+
+79
+00:05:19,240 --> 00:05:26,350
+Now the type field here is just a little bit challenging that type refers to the type of data that we
+
+80
+00:05:26,350 --> 00:05:29,830
+are going to eventually return from the result function.
+
+81
+00:05:29,830 --> 00:05:34,150
+Now that might sound like exactly what we've been using the type for previously.
+
+82
+00:05:34,150 --> 00:05:34,420
+Right.
+
+83
+00:05:34,420 --> 00:05:37,310
+Like it that really was what we're used before.
+
+84
+00:05:37,330 --> 00:05:43,060
+The difference is that sometimes when you have a mutation what you were the collection of data that
+
+85
+00:05:43,060 --> 00:05:48,100
+you're operating on and the type that you return might not always be the same.
+
+86
+00:05:48,270 --> 00:05:53,590
+And we'll actually see an example of that in the next application that we work in where the type that
+
+87
+00:05:53,620 --> 00:05:59,560
+we are kind of like you we're presumably working with users here but we might not actually be returning
+
+88
+00:05:59,560 --> 00:06:04,930
+a user however vast majority the time we can definitely make the assumption that that is what we're
+
+89
+00:06:04,930 --> 00:06:05,960
+going to be returning.
+
+90
+00:06:06,100 --> 00:06:10,600
+I just want to kind of throw it out there and prep you let you know that we're not always going to be
+
+91
+00:06:10,600 --> 00:06:14,450
+returning the same type as what we're working on now.
+
+92
+00:06:14,470 --> 00:06:17,960
+Ours is going to have very similar functionality here as well.
+
+93
+00:06:17,980 --> 00:06:26,050
+It's going to be some arguments or data that we're going to pass into this resolved function whenever
+
+94
+00:06:26,050 --> 00:06:28,270
+we make a new user.
+
+95
+00:06:28,300 --> 00:06:34,480
+I would expect that user to need a first name and age and a company ID because we would want to associate
+
+96
+00:06:34,480 --> 00:06:38,600
+with the company and we would also want to make sure that they have a first name and an age.
+
+97
+00:06:38,650 --> 00:06:44,890
+So I'm going to make the assumption that whenever someone calls this ad using mutation to add a new
+
+98
+00:06:44,890 --> 00:06:51,280
+user to our collection of users they should probably pass along a first name which is going to be a
+
+99
+00:06:51,280 --> 00:06:59,110
+string they're probably going to need to provide an age which will be a graph.
+
+100
+00:06:59,110 --> 00:07:08,260
+Q Well and and they're probably going to need to provide a company ID as well which will be a draft.
+
+101
+00:07:08,330 --> 00:07:10,220
+Well strength as well.
+
+102
+00:07:12,980 --> 00:07:17,390
+Let's take a quick break and then we're going to come back and tackle this resolved function and then
+
+103
+00:07:17,390 --> 00:07:22,050
+work on testing this thing out inside of our graphical interface in the browser.
+
+104
+00:07:22,070 --> 00:07:23,630
+So C-A in just a second.
+

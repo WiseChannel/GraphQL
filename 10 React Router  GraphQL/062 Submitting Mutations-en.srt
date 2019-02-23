@@ -1,0 +1,552 @@
+1
+00:00:00,920 --> 00:00:05,490
+In the last section we finished up the lyric create mutation and we test it out.
+
+2
+00:00:05,490 --> 00:00:10,080
+Tested it out inside of graphical definitely seems to be working appropriately.
+
+3
+00:00:10,170 --> 00:00:15,300
+So the last thing we have to do around this mutation is make sure that we import the GQ helper and then
+
+4
+00:00:15,330 --> 00:00:19,370
+also associate the mutation with our component class.
+
+5
+00:00:19,440 --> 00:00:23,130
+First start off by importing our helpers up at the top of this file.
+
+6
+00:00:23,760 --> 00:00:26,690
+So if that up at the top we will add on.
+
+7
+00:00:26,700 --> 00:00:30,560
+GQ well from graph Cuil tag.
+
+8
+00:00:30,900 --> 00:00:32,760
+And then the graph Cuil helper
+
+9
+00:00:38,400 --> 00:00:43,890
+again I can't mention it enough just because it really pays to be cognisant of all the different libraries
+
+10
+00:00:43,890 --> 00:00:49,020
+that we're working with and the graph to help or right here is what allows us to take a query and Sandwich's
+
+11
+00:00:49,020 --> 00:00:54,960
+it together with a component and the GQ helper is what allows us to write graphical queries directly
+
+12
+00:00:54,960 --> 00:00:56,800
+into our Javascript code.
+
+13
+00:00:57,240 --> 00:00:59,230
+So we'll now make use of both of.
+
+14
+00:00:59,700 --> 00:01:01,960
+Well to be honest we very made of GQ right here.
+
+15
+00:01:01,980 --> 00:01:06,520
+So all we have to do is associate mutation with the component down at the bottom.
+
+16
+00:01:06,710 --> 00:01:07,600
+So we'll graph.
+
+17
+00:01:07,690 --> 00:01:17,350
+Well we'll use that funky syntax and then we'll pass in the mutation like so.
+
+18
+00:01:17,580 --> 00:01:18,010
+All right.
+
+19
+00:01:18,030 --> 00:01:19,580
+So this is definitely working out.
+
+20
+00:01:19,620 --> 00:01:20,880
+Just one last step.
+
+21
+00:01:20,910 --> 00:01:24,860
+We need to make sure that whenever a user submits the form.
+
+22
+00:01:24,870 --> 00:01:29,340
+So here is our on submit event handler right here whenever user submits the form.
+
+23
+00:01:29,340 --> 00:01:34,320
+I want to make sure that I call the mutation that we just associated with this component.
+
+24
+00:01:34,680 --> 00:01:39,860
+So inside of here we'll use the same syntax that we've used previously to Callard mutation.
+
+25
+00:01:39,910 --> 00:01:46,050
+Remember whenever we associate a mutation with the component as we've done down here we get access to
+
+26
+00:01:46,260 --> 00:01:52,530
+this process mutate and if we call that it will run this mutation right here.
+
+27
+00:01:52,600 --> 00:01:57,990
+So inside the form we'll call this prop's dot mutate.
+
+28
+00:01:58,580 --> 00:02:04,280
+The mutation expects to separate query variables which we just were experimenting around with inside
+
+29
+00:02:04,290 --> 00:02:05,640
+of graphical.
+
+30
+00:02:05,640 --> 00:02:08,460
+So we're going to define the variables object.
+
+31
+00:02:08,670 --> 00:02:15,030
+We're going to say we have to give this thing some amount of content and this song ID as well.
+
+32
+00:02:15,030 --> 00:02:18,430
+So we have to fill in both these blanks so the content is easy.
+
+33
+00:02:18,480 --> 00:02:23,780
+The content lives inside this component on this state of content.
+
+34
+00:02:23,850 --> 00:02:29,850
+We are actively managing that piece of state inside this component so we can put in this dot state DOT
+
+35
+00:02:29,850 --> 00:02:32,550
+content and then don't forget the comma in there.
+
+36
+00:02:32,950 --> 00:02:34,870
+OK that looks pretty reasonable.
+
+37
+00:02:34,920 --> 00:02:38,280
+Now it's a little bit more challenging is the song idea.
+
+38
+00:02:38,400 --> 00:02:40,620
+We have to somehow tell this mutation.
+
+39
+00:02:40,740 --> 00:02:46,930
+Yeah when you make this lyric make sure that it gets associated with this particular song.
+
+40
+00:02:47,160 --> 00:02:50,510
+Now you might be thinking oh well no problem we can just look at that.
+
+41
+00:02:50,530 --> 00:02:55,380
+This props start programs object again and get the idea the song that we're looking at.
+
+42
+00:02:55,650 --> 00:02:57,160
+Well not quite that easy.
+
+43
+00:02:57,180 --> 00:03:02,760
+This goes into a little bit of knowledge about re-act router and how it works re-act router only passes
+
+44
+00:03:02,760 --> 00:03:07,280
+down those route parameters to the first component that it renders.
+
+45
+00:03:07,440 --> 00:03:13,830
+So Llyr create is being Riette rendered not by re-act router it is being rendered by the song detail
+
+46
+00:03:13,830 --> 00:03:15,060
+component.
+
+47
+00:03:15,060 --> 00:03:22,470
+So to make sure that the lyric creation component right here knows how to associate this content with
+
+48
+00:03:22,470 --> 00:03:23,780
+this given song right here.
+
+49
+00:03:23,850 --> 00:03:29,420
+We need to make sure that we pass down the ID of the song that we're working with from the song the
+
+50
+00:03:29,550 --> 00:03:35,200
+component down into lyric create once we pass it down as a prop book.
+
+51
+00:03:35,220 --> 00:03:38,050
+We have access to it on song ID.
+
+52
+00:03:38,610 --> 00:03:43,530
+So let's flip over to our song detail component and we'll make sure that we pass down the song Id as
+
+53
+00:03:43,530 --> 00:03:46,560
+a prop so we can plug it right in here.
+
+54
+00:03:46,970 --> 00:03:49,040
+So going to flip back over song detail.
+
+55
+00:03:49,050 --> 00:03:50,690
+Here we go.
+
+56
+00:03:51,100 --> 00:03:59,370
+I'm going to make sure that I pass in the song Id that I'm working with to create a song Id is going
+
+57
+00:03:59,370 --> 00:04:00,810
+to come from this stuff.
+
+58
+00:04:00,820 --> 00:04:04,680
+Props Start programs dot Id like so.
+
+59
+00:04:04,710 --> 00:04:11,430
+So take the ID out of the parameters or out of the you or El Paso down into lyric create as the property
+
+60
+00:04:11,430 --> 00:04:20,340
+called Song ID and then we can flip back over the song create and access that with this props song Id
+
+61
+00:04:20,430 --> 00:04:21,810
+like so.
+
+62
+00:04:22,770 --> 00:04:23,580
+All right.
+
+63
+00:04:23,910 --> 00:04:26,330
+Thats pretty much it.
+
+64
+00:04:26,340 --> 00:04:31,790
+So I think we're about ready to give us a little test just to make sure that we can submit something.
+
+65
+00:04:31,980 --> 00:04:35,740
+We don't really have any way of showing all these different lyrics on the screen right now.
+
+66
+00:04:35,790 --> 00:04:40,380
+You know we don't have a component to fetch the list of lyrics and display to the user but we can at
+
+67
+00:04:40,380 --> 00:04:43,890
+least look at our network request log and just verify that.
+
+68
+00:04:43,980 --> 00:04:44,320
+OK.
+
+69
+00:04:44,340 --> 00:04:44,630
+Yeah.
+
+70
+00:04:44,640 --> 00:04:48,430
+A mutation has been sent off and it appears to not be failing.
+
+71
+00:04:48,540 --> 00:04:51,860
+So will at least be able to test it in that fashion.
+
+72
+00:04:51,960 --> 00:04:54,060
+I'm going to flip back over to my code editor.
+
+73
+00:04:54,060 --> 00:04:55,770
+I'll open up my application.
+
+74
+00:04:55,800 --> 00:04:57,460
+Here it is.
+
+75
+00:04:57,660 --> 00:05:04,080
+I've got my chrome developer Townsell open with the network request to have open and filtering by SH
+
+76
+00:05:04,080 --> 00:05:05,550
+are requests.
+
+77
+00:05:05,550 --> 00:05:06,530
+So refresh the page.
+
+78
+00:05:06,540 --> 00:05:10,120
+Now we get the very first draft request.
+
+79
+00:05:10,140 --> 00:05:15,040
+The purpose of this one right here is to get just the song title to appear on the screen.
+
+80
+00:05:15,270 --> 00:05:16,780
+Just make sure everything is really clear.
+
+81
+00:05:16,800 --> 00:05:23,040
+I'm going to clear the log out like so and then I'll put on my lyric which will be
+
+82
+00:05:29,400 --> 00:05:30,910
+a good night.
+
+83
+00:05:31,260 --> 00:05:33,520
+It was whatever.
+
+84
+00:05:33,900 --> 00:05:34,360
+All right.
+
+85
+00:05:34,460 --> 00:05:37,410
+I hit Enter will submit it.
+
+86
+00:05:37,410 --> 00:05:39,740
+I get my graph Kubler Quest popping up.
+
+87
+00:05:39,750 --> 00:05:41,050
+We can click on it.
+
+88
+00:05:41,760 --> 00:05:47,340
+If I click on the headers tab I can scroll down to the bottom and I'll see the query right here.
+
+89
+00:05:47,340 --> 00:05:49,020
+So here's the query.
+
+90
+00:05:49,740 --> 00:05:50,350
+All right.
+
+91
+00:05:50,400 --> 00:05:51,120
+Check it all out.
+
+92
+00:05:51,120 --> 00:05:52,530
+Blah blah blah.
+
+93
+00:05:52,980 --> 00:05:53,970
+Yeah it looks reasonable.
+
+94
+00:05:53,970 --> 00:05:54,950
+That's equerry itself.
+
+95
+00:05:54,960 --> 00:06:00,270
+And then the variables that are being sent along are in the queer skimming are in the variables object
+
+96
+00:06:00,270 --> 00:06:00,850
+right here.
+
+97
+00:06:00,990 --> 00:06:04,640
+So the content and the Sardi are being properly sent along.
+
+98
+00:06:04,680 --> 00:06:09,330
+This is a fantastic tool down here by the way to do some trouble shooting around your mutations and
+
+99
+00:06:09,330 --> 00:06:12,560
+make sure that you're sending the correct data to your server.
+
+100
+00:06:12,570 --> 00:06:15,750
+So always a good idea to check the variables object in here.
+
+101
+00:06:15,920 --> 00:06:19,670
+Make sure your re-act application is sending across the right content.
+
+102
+00:06:19,730 --> 00:06:22,430
+So looks like the request is being issued properly.
+
+103
+00:06:22,430 --> 00:06:28,010
+And then if we look at the preview we definitely get back a very good response here.
+
+104
+00:06:28,220 --> 00:06:33,340
+So I said a good it was I'm going to say a good night.
+
+105
+00:06:34,140 --> 00:06:37,500
+I'm not a songwriter.
+
+106
+00:06:37,620 --> 00:06:38,590
+All right.
+
+107
+00:06:38,820 --> 00:06:40,890
+Well the lawyer definitely got associated with it.
+
+108
+00:06:40,890 --> 00:06:41,860
+This definitely works.
+
+109
+00:06:41,880 --> 00:06:43,020
+I'm happy with it.
+
+110
+00:06:43,020 --> 00:06:47,820
+The last thing I want to point out is that I kind of really expect that after we submit the form right
+
+111
+00:06:47,820 --> 00:06:50,370
+here the form should definitely clear out.
+
+112
+00:06:50,370 --> 00:06:53,930
+So I really would expect the text to go away like that.
+
+113
+00:06:54,000 --> 00:06:58,410
+We can do so by adding a little set state call inside of our component.
+
+114
+00:06:58,530 --> 00:07:04,800
+So if I flip back over to my event handler right here remember that my mutation returns a promise.
+
+115
+00:07:04,800 --> 00:07:13,020
+So if we chain on a dot then statement and pass it a function dysfunctional be executed after the mutation
+
+116
+00:07:13,020 --> 00:07:14,920
+successfully executes.
+
+117
+00:07:14,940 --> 00:07:22,740
+So inside of here I can say this not set state and set my content to be an empty string like so.
+
+118
+00:07:22,940 --> 00:07:28,200
+And that means that after the mutation successfully completes the input will automatically clear out
+
+119
+00:07:28,350 --> 00:07:30,150
+and it will be very obvious to the user.
+
+120
+00:07:30,180 --> 00:07:32,640
+OK it looks like this got submitted properly.
+
+121
+00:07:33,150 --> 00:07:35,170
+So let's do a test one more time.
+
+122
+00:07:35,460 --> 00:07:39,990
+I'm going to refresh the browser all think up another very clever lyric.
+
+123
+00:07:40,200 --> 00:07:44,380
+The moon was bright while Smidt it.
+
+124
+00:07:44,460 --> 00:07:47,130
+The mutation was successful.
+
+125
+00:07:47,150 --> 00:07:52,590
+And so my input automatically goes away which is probably exactly what our users would expect.
+
+126
+00:07:52,590 --> 00:07:58,020
+One other thing that just want out there since submitting the mutation does take a non-zero amount of
+
+127
+00:07:58,020 --> 00:07:58,550
+time.
+
+128
+00:07:58,560 --> 00:08:01,100
+You know it takes some amount of time for that thing to complete.
+
+129
+00:08:01,100 --> 00:08:06,210
+You know might be a little bit annoying for your users to have to wait that like fraction of a second
+
+130
+00:08:06,210 --> 00:08:07,730
+to see that text go away.
+
+131
+00:08:07,890 --> 00:08:11,270
+So if you want to instantly clear that thing out that's totally fine.
+
+132
+00:08:11,280 --> 00:08:17,160
+Just take the set state color right here just this part right here and you can just move it directly
+
+133
+00:08:17,220 --> 00:08:19,340
+out of the mutation promise.
+
+134
+00:08:19,470 --> 00:08:24,510
+So if you do this right here that's going to make sure that the text input automatically just instantly
+
+135
+00:08:24,510 --> 00:08:28,960
+clears out which might be a little bit more predictable behavior for your users.
+
+136
+00:08:30,530 --> 00:08:30,920
+OK.
+
+137
+00:08:30,980 --> 00:08:36,230
+So I think that's just about it on this nutation Let's get started on showing a list of lyrics to our
+
+138
+00:08:36,230 --> 00:08:37,830
+user in the next section.
+

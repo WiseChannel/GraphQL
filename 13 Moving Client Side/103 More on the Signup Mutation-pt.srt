@@ -1,0 +1,360 @@
+1
+00:00:00,700 --> 00:00:06,110
+Agora, o formulrio de inscrio tem acesso  nutao de inscrio e eles foram conectados junto com uma ajuda
+
+2
+00:00:06,120 --> 00:00:12,430
+de grfico ou podemos ter uma funo de retorno de chamada para o formulrio de inscrio em si e, em seguida, pass-lo para
+
+3
+00:00:12,430 --> 00:00:13,800
+baixo na forma de autenticao.
+
+4
+00:00:13,810 --> 00:00:20,530
+Ento, vamos primeiro criar esse retorno de chamada e depois pass-lo para baixo no formulrio que vou adicionar na
+
+5
+00:00:20,530 --> 00:00:23,710
+funo de retorno de chamada que ser no envio.
+
+6
+00:00:23,830 --> 00:00:29,890
+Esperamos que isso seja chamado com o e-mail e a senha que o usurio entrou
+
+7
+00:00:29,890 --> 00:00:39,730
+no formulrio que o passar imediatamente para o nosso formulrio, como em alguns que ele ir especificar no envio e ns iremos assegurar-se de
+
+8
+00:00:39,730 --> 00:00:42,530
+vincular o contexto a isso Funcione tambm.
+
+9
+00:00:42,580 --> 00:00:46,750
+Ento, estamos fazendo exatamente o mesmo que estvamos fazendo com o formulrio de login tambm.
+
+10
+00:00:46,810 --> 00:00:53,470
+Lembre-se de que o componente de formulrio de autenticao espera ser fornecido na funo de envio se for fornecido
+
+11
+00:00:53,470 --> 00:00:58,300
+essa funo, ele o chamar com o e-mail e a senha em um objeto.
+
+12
+00:00:58,300 --> 00:01:05,900
+Ento, dentro de on submit podemos chamar livremente ou mutao e nesse e-mail e senha como variveis de consulta.
+
+13
+00:01:05,900 --> 00:01:07,400
+Ento vamos fazer isso agora.
+
+14
+00:01:07,450 --> 00:01:15,590
+Vamos chamar este doc prob stot mutate e especificaremos as variveis que queremos passar l.
+
+15
+00:01:15,610 --> 00:01:20,710
+Portanto, estas so as variveis de consulta de e-mail e senha que devem ser esse e-mail e senha
+
+16
+00:01:20,710 --> 00:01:22,550
+usados para criar a nova conta.
+
+17
+00:01:23,230 --> 00:01:24,330
+Ento, isso parece muito bom.
+
+18
+00:01:24,340 --> 00:01:27,490
+Eu acho que havia quase pronto para um teste dentro do navegador.
+
+19
+00:01:27,640 --> 00:01:32,650
+H apenas um pouco que voc pode encontrar se voc tentar testar isso dentro
+
+20
+00:01:32,650 --> 00:01:33,800
+do navegador agora.
+
+21
+00:01:33,820 --> 00:01:38,740
+Lembre-se de que dentro da forma de arte e, de fato, Lissa puxa o formulrio agora mesmo,
+
+22
+00:01:38,740 --> 00:01:40,560
+para que possamos observar o cdigo.
+
+23
+00:01:40,570 --> 00:01:42,360
+Ento, aqui est a minha oferta para.
+
+24
+00:01:42,670 --> 00:01:44,460
+Estou dentro da funo de renderizao.
+
+25
+00:01:44,470 --> 00:01:45,970
+Ento  traduzido aqui.
+
+26
+00:01:46,090 --> 00:01:51,480
+E eu rolo para baixo apenas um pouco mais para o ajudante de ar que colocamos dentro daqui.
+
+27
+00:01:51,550 --> 00:01:55,220
+Ento, cerca de nove e trinta e seis, temos esses adereos.
+
+28
+00:01:55,270 --> 00:01:57,020
+H um mapa.
+
+29
+00:01:57,040 --> 00:02:03,340
+Ento, agora, nossa forma  assumir que estamos sempre passando em uma srie de erros.
+
+30
+00:02:03,400 --> 00:02:09,670
+Agora, essa matriz pode estar completamente vazia, tudo bem, mas se no passarmos um suporte chamado erros que
+
+31
+00:02:09,670 --> 00:02:16,060
+ uma matriz, imediatamente receberemos uma mensagem de erro, pois tentamos mapear sobre indefinido ou knoll ou qualquer que
+
+32
+00:02:16,210 --> 00:02:17,910
+seja o valor dos erros.
+
+33
+00:02:18,190 --> 00:02:23,300
+Ento, antes de tentar testar isso dentro do navegador, precisamos certificar-se de que dentro do nosso
+
+34
+00:02:23,320 --> 00:02:26,200
+formulrio de inscrio encontremos Auth. etiqueta de formulrio.
+
+35
+00:02:26,380 --> 00:02:31,760
+E pelo menos, passamos uma lista vazia de erros.
+
+36
+00:02:32,160 --> 00:02:37,120
+Ento, eu vou fazer isso apenas muito temporariamente at que adicionemos algum cdigo de manipulao de erro para
+
+37
+00:02:37,120 --> 00:02:43,040
+nossa mutao real para garantir que, quando o formulrio de autenticao tentar renderizar quando ele chama esse mapa de ponto dot do
+
+38
+00:02:43,960 --> 00:02:46,780
+ponto de partida, no receberemos uma mensagem de erro .
+
+39
+00:02:46,800 --> 00:02:53,920
+Ento, ao fornecer uma matriz vazia aqui, podemos mapear com segurana a matriz vazia e fantasticamente nenhuma
+
+40
+00:02:53,920 --> 00:02:55,160
+mensagem de erro.
+
+41
+00:02:55,690 --> 00:02:55,920
+EST BEM.
+
+42
+00:02:55,930 --> 00:02:58,060
+Ento, o sinal de formulrio deve estar pronto para ir.
+
+43
+00:02:58,060 --> 00:03:03,100
+Agora, a ltima coisa que voc precisa fazer  certificar-se de que ele  conectado como uma rota dentro do nosso
+
+44
+00:03:03,100 --> 00:03:04,060
+aplicativo de leme re-act.
+
+45
+00:03:04,240 --> 00:03:07,170
+Portanto, ainda no o designamos para qualquer rota dentro do nosso aplicativo.
+
+46
+00:03:07,210 --> 00:03:14,040
+Vamos fazer isso agora, dentro do nosso diretrio de cliente de nvel superior, encontraremos o ndice no o arquivo js.
+
+47
+00:03:14,060 --> 00:03:20,020
+Ento,  aqui que colocamos toda a nossa configurao do roteador de reao que ir importar o formulrio
+
+48
+00:03:21,820 --> 00:03:29,360
+de inscrio no topo do formulrio de inscrio de componentes e, em seguida, podemos adicionar uma rota dentro do nosso componente raiz.
+
+49
+00:03:29,740 --> 00:03:37,270
+Ento, aqui est o nosso componente de rota um pouco mais baixo e adicionaremos outra rota para o
+
+50
+00:03:37,270 --> 00:03:46,310
+registro do caminho que mostrar o nosso formulrio de inscrio, voc se lembra de que adicionamos um link dentro do nosso Hetter.
+
+51
+00:03:46,390 --> 00:03:50,220
+Isso pressupe que o caminho para o formulrio de inscrio seria o Registro.
+
+52
+00:03:50,290 --> 00:03:53,530
+Portanto, h uma razo muito boa para colorir o registro pelo menos.
+
+53
+00:03:53,650 --> 00:03:57,800
+Devo dizer que j fizemos o pressuposto de que seria chamado de Inscrio.
+
+54
+00:03:57,820 --> 00:04:02,380
+Ento, se voc mudar isso para qualquer outra coisa, certifique-se de atualizar o link
+
+55
+00:04:02,410 --> 00:04:03,540
+dentro do cabealho tambm.
+
+56
+00:04:04,050 --> 00:04:04,330
+EST BEM.
+
+57
+00:04:04,330 --> 00:04:06,630
+Ento eu acho que estamos prontos para um teste aqui.
+
+58
+00:04:06,640 --> 00:04:10,140
+Minha expectativa  que devamos poder acessar o formulrio de inscrio.
+
+59
+00:04:10,270 --> 00:04:14,760
+Devemos ser capazes de inserir um e-mail e senha e criar uma nova conta.
+
+60
+00:04:14,890 --> 00:04:18,400
+Ento vou voltar para o navegador ou atualizar a pgina e vou
+
+61
+00:04:21,700 --> 00:04:26,050
+me certificar de que estou desconectado e s sair primeiro e ento poderei clicar no
+
+62
+00:04:26,050 --> 00:04:26,990
+link de inscrio.
+
+63
+00:04:27,070 --> 00:04:28,400
+OK, isso  muito melhor.
+
+64
+00:04:28,650 --> 00:04:30,700
+Ento aqui est o meu link de inscrio at aqui.
+
+65
+00:04:30,700 --> 00:04:33,820
+Eu cliquei no registro e eu posso ver o formulrio com sucesso.
+
+66
+00:04:33,820 --> 00:04:39,310
+Agora eu quero fazer apenas esclarecer meu registro de solicitao aqui realmente realmente aviso rpido, eu estou na
+
+67
+00:04:39,310 --> 00:04:41,500
+guia de rede do meu console Chrome.
+
+68
+00:04:41,590 --> 00:04:42,750
+Mais uma vez, como de costume.
+
+69
+00:04:42,760 --> 00:04:48,640
+Eu quero ver a nutao sair para o nosso fim de trs e apenas verificar se ele est
+
+70
+00:04:48,830 --> 00:04:51,560
+sendo tratado adequadamente e realmente criar uma nova conta.
+
+71
+00:04:51,560 --> 00:04:57,790
+ um e-mail que nunca usei antes porque temos a restrio de que todos os diferentes
+
+72
+00:04:57,790 --> 00:05:04,480
+e-mails que usamos no devem ser ou devem Todos so nicos dentro da coleo de nossos usurios.
+
+73
+00:05:04,480 --> 00:05:10,500
+Ento, entrando em um novo e-mail para se inscrever agora, preciso ter certeza de que
+
+74
+00:05:10,940 --> 00:05:14,790
+Teste 5 6 7 no ponto de teste com e usamos uma senha de senha.
+
+75
+00:05:14,980 --> 00:05:19,820
+Ento, quando eu envio isso, eu obtenho minha nutao para o back-end.
+
+76
+00:05:20,150 --> 00:05:27,010
+E parece que meu novo usurio foi criado com sucesso e presumivelmente agora estou autenticado
+
+77
+00:05:27,010 --> 00:05:28,650
+com o aplicativo.
+
+78
+00:05:28,660 --> 00:05:33,050
+Agora, h dois problemas persistentes que provavelmente devemos cuidar.
+
+79
+00:05:33,070 --> 00:05:35,300
+Muitos devo dizer trs.
+
+80
+00:05:35,320 --> 00:05:38,190
+Em primeiro lugar, ainda precisamos cuidar de algum tratamento de erros.
+
+81
+00:05:38,260 --> 00:05:45,730
+Ento, observe se eu tentar enviar isso novamente e depois olhar para o novo pedido de mutao que foi emitido.
+
+82
+00:05:45,760 --> 00:05:51,430
+Agora recebo uma mensagem de erro na propriedade Ayres com a mensagem de e-mail em uso.
+
+83
+00:05:51,460 --> 00:05:56,160
+Ento, tenho que me certificar de que eu cuido mostrar os erros no prprio formulrio.
+
+84
+00:05:56,170 --> 00:06:02,380
+Alm disso, voc tambm notar que meu cabealho no est atualizando adequadamente, ento eu tenho que executar a
+
+85
+00:06:02,410 --> 00:06:05,770
+consulta ou atualizar a consulta para obter o usurio atual.
+
+86
+00:06:05,770 --> 00:06:10,900
+E, finalmente, e este ainda  um problema persistente com o nosso formulrio de inscrio ou est no nosso
+
+87
+00:06:10,900 --> 00:06:17,040
+formulrio de logon tambm, precisamos ter certeza de que, aps o incio de sesso com sucesso, ns navegaremos afastado desta pgina automaticamente.
+
+88
+00:06:17,050 --> 00:06:18,900
+Ento, ainda algumas coisas para cuidar.
+
+89
+00:06:19,120 --> 00:06:25,150
+Vamos dar uma pausa rpida e, em seguida, cuidar da mensagem de ar e preparar a consulta de usurio atual
+
+90
+00:06:25,210 --> 00:06:26,500
+dentro da prxima seo.
+

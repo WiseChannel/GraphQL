@@ -1,0 +1,244 @@
+1
+00:00:00,790 --> 00:00:06,640
+Acabamos de terminar um pouco de discusso, eu diria com o enxerto bem para buscar a msica
+
+2
+00:00:06,640 --> 00:00:12,610
+em particular que se reflete no ID do nosso aplicativo ou veja-me o URL do nosso aplicativo.
+
+3
+00:00:12,880 --> 00:00:18,250
+Ns somos sobre o uso de raid da msica que foi buscada agora dentro do componente detalhado de nossa msica.
+
+4
+00:00:18,250 --> 00:00:23,950
+Eu no acho que temos que fazer muito com uma msica que, na maioria das vezes, precisamos mostrar o
+
+5
+00:00:23,950 --> 00:00:26,530
+ttulo da msica como um cabealho para o componente.
+
+6
+00:00:26,530 --> 00:00:30,300
+Podemos encontrar o ttulo dessas msicas na propriedade do ttulo da msica.
+
+7
+00:00:30,310 --> 00:00:33,690
+Ento eu acho que provavelmente temos uma boa direo para avanar.
+
+8
+00:00:33,700 --> 00:00:38,200
+Eu vou voltar para o meu editor de cdigo e encontrar o meu componente de detalhes da msica.
+
+9
+00:00:38,640 --> 00:00:41,680
+E eu realmente no preciso mais do log do console aqui.
+
+10
+00:00:41,710 --> 00:00:44,110
+Ento eu posso fazer um pouco de limpeza.
+
+11
+00:00:44,590 --> 00:00:50,470
+Agora, antes de apenas mergulhar diretamente em fazer uso da msica nesse objeto prop eu quero lembrar que
+
+12
+00:00:50,470 --> 00:00:51,590
+ muito comum.
+
+13
+00:00:51,640 --> 00:00:58,030
+Bem, eu devo dizer sempre comum para o nosso componente aqui mesmo para tentar mostrar dados antes que qualquer dado
+
+14
+00:00:58,030 --> 00:00:59,120
+tenha sido buscado.
+
+15
+00:00:59,290 --> 00:01:04,930
+Portanto, sempre devemos nos lembrar de lidar com o caso em que a msica ainda no foi buscada
+
+16
+00:01:06,250 --> 00:01:13,260
+por nossa consulta para que possamos adicionar uma pequena verificao para ver se a msica existe ainda no objeto do nosso suporte.
+
+17
+00:01:13,300 --> 00:01:18,820
+Quero dizer, primeiro estrutura a msica do nosso objeto de dados de inicializao, porque espero que
+
+18
+00:01:18,820 --> 00:01:23,130
+fiquemos fazendo referncia  msica vrias vezes ao longo desta funo de renderizao.
+
+19
+00:01:23,200 --> 00:01:32,100
+Ento, vou dizer que busque a propriedade da msica que deve vir desses acessorios e dados, ento podemos dizer
+
+20
+00:01:32,100 --> 00:01:37,520
+se ainda no existe msica, ento a msica ainda deve estar carregando.
+
+21
+00:01:37,530 --> 00:01:43,400
+Note que tambm poderamos olhar os adereos Dodd est carregando uma propriedade como fizemos anteriormente.
+
+22
+00:01:43,650 --> 00:01:48,490
+Lembre-se de que o pedido diz que o EHRSSON no est carregando, mas apenas est carregando a propriedade.
+
+23
+00:01:48,510 --> 00:01:49,720
+Ns fizemos isso anteriormente.
+
+24
+00:01:49,740 --> 00:01:53,100
+Ns olhamos para carregar para dizer que OK  que esta solicitao ainda est pendente.
+
+25
+00:01:53,130 --> 00:01:58,540
+Ns absolutamente podemos olhar para a propriedade de carregamento ou apenas olhar para a propriedade da msica diretamente.
+
+26
+00:01:58,560 --> 00:02:03,610
+ realmente at voc o caminho que deseja ir, se voc estiver obtendo mltiplos registros.
+
+27
+00:02:03,750 --> 00:02:06,200
+Talvez faa sentido ir com o carregamento um pouco mais.
+
+28
+00:02:06,220 --> 00:02:07,070
+Voc sabe que eu no sei.
+
+29
+00:02:07,110 --> 00:02:09,260
+ realmente sua prpria chamada pessoal.
+
+30
+00:02:09,300 --> 00:02:14,580
+Em geral, se eu fizer referncia aos dados que eu procuro, provavelmente s vou
+
+31
+00:02:14,580 --> 00:02:20,340
+me certificar de que essa coisa existe e us-la como um fator decisivo sobre se quero
+
+32
+00:02:20,340 --> 00:02:22,570
+ou no mostrar algum carregamento texto.
+
+33
+00:02:22,740 --> 00:02:28,380
+Ento, vou dizer que, se ainda no houver uma msica disponvel, ento a consulta ainda
+
+34
+00:02:28,410 --> 00:02:33,920
+est pendente. Eu retornarei com antecedncia da funo de renderizao e mostrar o carregamento.
+
+35
+00:02:33,970 --> 00:02:39,770
+Assim como, esta  uma tima oportunidade aqui mesmo, a propsito, talvez mostre um spinner na tela.
+
+36
+00:02:39,780 --> 00:02:41,310
+Esse  um timo caso de uso.
+
+37
+00:02:41,310 --> 00:02:46,440
+Voc tambm pode decidir que no deseja mostrar nada ao usurio porque, se o processo de
+
+38
+00:02:46,470 --> 00:02:52,470
+carregamento for muito rpido, como certamente  para ns, esse texto de carregamento aqui mesmo s vai aparecer
+
+39
+00:02:52,470 --> 00:02:57,260
+na tela, como uma frao de segundo que  um pouco desconcertante para um usurio.
+
+40
+00:02:57,420 --> 00:03:02,880
+quisesse, voc sempre poderia simplesmente colocar uma diviso vazia l fora, e no se preocupar em mostrar qualquer texto.
+
+41
+00:03:02,880 --> 00:03:03,780
+Ento, se voc
+
+42
+00:03:03,810 --> 00:03:05,910
+Mas eu quero ter certeza de que voc sabe como mostrar algo.
+
+43
+00:03:05,910 --> 00:03:08,300
+Se voc quiser.
+
+44
+00:03:08,610 --> 00:03:12,100
+OK, ento agora podemos nos concentrar no prprio H-3.
+
+45
+00:03:12,300 --> 00:03:18,600
+Eu quero mostrar o ttulo da msica que buscamos msica que remove o texto l e ento
+
+46
+00:03:18,600 --> 00:03:20,680
+substitua-a pela msica como esse.
+
+47
+00:03:20,680 --> 00:03:26,190
+Ento, acho que isso provavelmente  muito bom para que o ttulo aparea na tela.
+
+48
+00:03:26,340 --> 00:03:30,360
+Vamos fazer um teste rpido para garantir que tudo esteja funcionando da maneira que esperamos.
+
+49
+00:03:30,750 --> 00:03:38,060
+Ento, atualize a pgina e obtenho o ttulo da msica na tela e voc notar que sim, o carregamento
+
+50
+00:03:38,070 --> 00:03:43,110
+est aparecendo l para como uma frao de segundo. s vezes, voc pode
+
+51
+00:03:43,140 --> 00:03:46,540
+apenas v-lo porque o tempo de carregamento  extremamente rpido.
+
+52
+00:03:46,560 --> 00:03:50,560
+ realmente importante para voc se voc no deseja mostrar nenhum texto aqui.
+
+53
+00:03:50,580 --> 00:03:56,250
+Se eu estivesse trabalhando nisso como meu prprio projeto pessoal, definitivamente no estaria mostrando nenhum texto aqui porque realmente acho
+
+54
+00:03:56,280 --> 00:04:00,740
+que  mais irritante para o usurio ver esse flash do que qualquer outra coisa.
+
+55
+00:04:00,750 --> 00:04:04,760
+Mas realmente novamente at sua preferncia pessoal.
+
+56
+00:04:05,030 --> 00:04:06,180
+Ento, isso parece muito bom.
+
+57
+00:04:06,180 --> 00:04:09,910
+H uma ltima pea de contabilidade que eu quero cuidar de dentro daqui.
+
+58
+00:04:10,050 --> 00:04:16,160
+Gostaria realmente de ter certeza de que o usurio tenha a capacidade de clicar, como um boto de trs, parece
+
+59
+00:04:16,230 --> 00:04:22,260
+voltar para a lista de msicas e eu tambm gostaria de garantir que nosso componente de lista de msicas d
+
+60
+00:04:22,260 --> 00:04:28,370
+aos nossos usurios a possibilidade de navegar at uma pgina de detalhes da msica para cada msica que foi buscada.
+
+61
+00:04:28,410 --> 00:04:32,400
+Ento, vamos cuidar desses dois desafios de navegao na prxima seo.
+

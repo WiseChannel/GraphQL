@@ -1,0 +1,544 @@
+1
+00:00:00,810 --> 00:00:05,320
+In the last section we finish wiring up re-act router inside of our application.
+
+2
+00:00:05,520 --> 00:00:10,080
+Now that we've got reactor rudder in place we can start working on some of the different pages or different
+
+3
+00:00:10,080 --> 00:00:13,380
+views that we expect to have inside of our application.
+
+4
+00:00:13,410 --> 00:00:19,260
+And so the real immediate use of this is going to be to make a new page or a new component that we'll
+
+5
+00:00:19,260 --> 00:00:21,530
+use to create a new song.
+
+6
+00:00:22,110 --> 00:00:28,530
+Whenever I start to mention the words create or edit or destroy We want to get in our heads that we're
+
+7
+00:00:28,530 --> 00:00:30,860
+talking about mutations with graft.
+
+8
+00:00:30,900 --> 00:00:35,370
+Well because that's the only way that we modify the data that is sitting in our back and server.
+
+9
+00:00:35,370 --> 00:00:38,790
+We use mutations for mutation.
+
+10
+00:00:38,790 --> 00:00:42,460
+We're going to treat them generally the same way as we do queries.
+
+11
+00:00:42,720 --> 00:00:50,370
+So just a moment ago I was talking to you about how whenever we create a query here it is whenever we
+
+12
+00:00:50,700 --> 00:00:56,360
+create a query we want to co-located with the component that makes use of the data from that query.
+
+13
+00:00:56,580 --> 00:01:02,880
+So in our case when we were making the song list component we wrote a query to fetch a list of songs
+
+14
+00:01:03,060 --> 00:01:08,930
+and so it made a lot of sense to put that query in the same location as the song list.
+
+15
+00:01:09,180 --> 00:01:12,740
+The same thing is going to apply for mutations as well.
+
+16
+00:01:12,780 --> 00:01:18,540
+This creates song component that we're about to make is going to eventually have to call a mutation
+
+17
+00:01:18,600 --> 00:01:21,760
+to create a new song in our back end database.
+
+18
+00:01:21,930 --> 00:01:27,720
+And so my expectation is going to be that after we create the component we will then add in a mutation
+
+19
+00:01:27,760 --> 00:01:34,270
+set inside of that same file to actually create the new song on our back and database.
+
+20
+00:01:34,290 --> 00:01:35,150
+So let's get started.
+
+21
+00:01:35,220 --> 00:01:35,840
+The other thing.
+
+22
+00:01:35,850 --> 00:01:40,230
+Just one last thing actually real quick that we need to keep in mind is that we need to have some amount
+
+23
+00:01:40,230 --> 00:01:42,930
+of navigation between these two pages.
+
+24
+00:01:42,960 --> 00:01:48,690
+So I should be able to clip this red ad button down here and go to the Create song page over here.
+
+25
+00:01:48,840 --> 00:01:53,280
+So I expect that we're also going to have to make a little bit of use of re-act router to wire up the
+
+26
+00:01:53,370 --> 00:01:55,450
+navigation between the two as well.
+
+27
+00:01:55,750 --> 00:01:56,060
+OK.
+
+28
+00:01:56,100 --> 00:01:57,030
+Now let's get started.
+
+29
+00:01:57,030 --> 00:01:58,090
+Let's get to it.
+
+30
+00:01:58,150 --> 00:02:01,850
+Give me a lot of fun inside of my code editor.
+
+31
+00:02:01,860 --> 00:02:05,420
+We'll first make the song create component.
+
+32
+00:02:05,610 --> 00:02:11,970
+So I'm going to find my components directory and I'll make a new file in there called Song create.
+
+33
+00:02:12,240 --> 00:02:13,050
+Yes.
+
+34
+00:02:13,380 --> 00:02:18,240
+So this component they we're about to make is going to show the form for creating and submitting a new
+
+35
+00:02:18,240 --> 00:02:19,210
+song.
+
+36
+00:02:19,620 --> 00:02:24,390
+We'll first put together the entire form itself and make sure that users can edit it and all that kind
+
+37
+00:02:24,390 --> 00:02:30,240
+of good stuff will then wire up the navigation with re-act router and then we'll come back and hook
+
+38
+00:02:30,240 --> 00:02:31,140
+up the mutation.
+
+39
+00:02:31,200 --> 00:02:35,780
+So it's going to be a three step process going through this at the top.
+
+40
+00:02:35,820 --> 00:02:44,220
+We will import react and component from react because we are creating a form here where a user can input
+
+41
+00:02:44,220 --> 00:02:45,360
+some amount of text.
+
+42
+00:02:45,390 --> 00:02:46,320
+I'm going to be.
+
+43
+00:02:46,380 --> 00:02:52,230
+I'm going to expect that we're going to make use of component level state to record the input inside
+
+44
+00:02:52,230 --> 00:02:56,250
+of that text input to make use of component level state.
+
+45
+00:02:56,250 --> 00:02:59,130
+We're going to use a class based component.
+
+46
+00:02:59,490 --> 00:03:05,730
+We haven't spoken too much about the use of state with graft well and I'm sure one of the burning questions
+
+47
+00:03:05,730 --> 00:03:08,820
+you have in your head is how do I use redux with graft.
+
+48
+00:03:08,830 --> 00:03:12,290
+Well that's all stuff that will certainly get around to in time.
+
+49
+00:03:12,300 --> 00:03:15,240
+For right now again we're kind of just focused on the graph.
+
+50
+00:03:15,240 --> 00:03:16,620
+Q L side of things.
+
+51
+00:03:17,960 --> 00:03:21,100
+So let's make our song create components.
+
+52
+00:03:21,200 --> 00:03:29,270
+It's going to extend the component base class and that will immediately make a render method inside
+
+53
+00:03:29,270 --> 00:03:35,560
+of here and I'm going remember my return statement this time unlike that previous time and inside of
+
+54
+00:03:35,570 --> 00:03:41,840
+your for a little bit of boiler plate right now I think we will just add a div put a form inside of
+
+55
+00:03:41,840 --> 00:03:45,470
+it and just kind of leave it like that for right now.
+
+56
+00:03:46,460 --> 00:03:52,100
+I will then export default song create at the bottom of this file.
+
+57
+00:03:52,580 --> 00:03:56,420
+So remember I had mentioned that we would probably locate the mutation inside of here.
+
+58
+00:03:56,450 --> 00:04:01,070
+So presumably we will write the mutation directly inside of your as well.
+
+59
+00:04:01,070 --> 00:04:04,710
+But we're going to come back to that much later on in the process.
+
+60
+00:04:06,770 --> 00:04:07,300
+OK.
+
+61
+00:04:07,390 --> 00:04:11,950
+So I think that the next I know that I said we would kind of get the form working and then come back
+
+62
+00:04:11,950 --> 00:04:16,750
+and wire up re-act router but maybe it would be best to make sure we can navigate to this thing and
+
+63
+00:04:16,750 --> 00:04:19,010
+test it out a little bit on the screen first.
+
+64
+00:04:19,270 --> 00:04:24,910
+So let's get something on the screen wire up re-act router and then start filling out the details for
+
+65
+00:04:24,910 --> 00:04:28,760
+the form just to get something to show up on the on the screen.
+
+66
+00:04:28,810 --> 00:04:33,650
+I'm going to place an age three and say create a new song.
+
+67
+00:04:33,940 --> 00:04:40,100
+Just look and see a nice header give some direction to the user on what we expect them to do.
+
+68
+00:04:40,750 --> 00:04:46,300
+Now to make sure that we can navigate to this component we need to import it into our index not js file
+
+69
+00:04:46,330 --> 00:04:48,700
+and hook it up to react router.
+
+70
+00:04:48,700 --> 00:04:51,510
+So we're going to go back over to index dot J.S..
+
+71
+00:04:51,610 --> 00:04:52,960
+I'm going to import it.
+
+72
+00:04:53,060 --> 00:04:57,340
+I'm going to place the import statement for it next to all the other imports our components that we've
+
+73
+00:04:57,340 --> 00:04:58,450
+already created.
+
+74
+00:04:58,810 --> 00:05:08,110
+So import song creates from components song create like so and they'll add a new route inside of our
+
+75
+00:05:08,110 --> 00:05:12,580
+router configuration to make sure that the user can navigate to that component.
+
+76
+00:05:12,640 --> 00:05:14,950
+So I'll say I'm going to have a new route.
+
+77
+00:05:15,310 --> 00:05:19,240
+I want users to see it when they go to the path song.
+
+78
+00:05:19,240 --> 00:05:27,440
+Slash create doing a song creator song new to us just now in studio.
+
+79
+00:05:27,490 --> 00:05:35,110
+Let's stick with convention and whenever a user goes there we will show the song create component like
+
+80
+00:05:35,120 --> 00:05:41,220
+some Ok I think that this is probably a good place to do a little bit of a test.
+
+81
+00:05:41,310 --> 00:05:44,680
+I'm going to check my terminal really quick to make sure that I don't have any typos.
+
+82
+00:05:44,710 --> 00:05:48,780
+Remember always want to be watching for those typos because they always sneak up on you.
+
+83
+00:05:49,260 --> 00:05:53,620
+And then we'll flip back over to our application all refreshed the page.
+
+84
+00:05:54,150 --> 00:05:54,520
+OK.
+
+85
+00:05:54,540 --> 00:05:57,200
+Looks like this songless still works as I expect.
+
+86
+00:05:57,270 --> 00:06:00,250
+And now go to song slash new.
+
+87
+00:06:00,450 --> 00:06:05,590
+So local host 4000 pound slash song slash new.
+
+88
+00:06:06,240 --> 00:06:12,340
+And I get my nice gigantic H-3 up on the screen that is all I'm zoomed in.
+
+89
+00:06:12,420 --> 00:06:12,650
+OK.
+
+90
+00:06:12,660 --> 00:06:15,150
+Hopefully yours is a little bit more reasonably sized.
+
+91
+00:06:15,510 --> 00:06:19,270
+That's a little bit more appropriate right there.
+
+92
+00:06:19,270 --> 00:06:23,970
+So now that we've got this component showing up on the screen we can start worrying a little bit about
+
+93
+00:06:23,970 --> 00:06:27,000
+the details of the form inside of here.
+
+94
+00:06:27,000 --> 00:06:31,690
+So here's the form we need to add in a text input and a label.
+
+95
+00:06:31,710 --> 00:06:36,490
+So the user knows what the what we kind of expect them to do with this form right here.
+
+96
+00:06:37,260 --> 00:06:40,720
+Let's add in the label and the text input first.
+
+97
+00:06:41,070 --> 00:06:46,650
+Here's my label will tell a user and her song title.
+
+98
+00:06:46,650 --> 00:06:54,000
+And then we will give them an input to add the in to add the text or the song title into.
+
+99
+00:06:54,000 --> 00:06:59,130
+Now again to make use of the data that is coming out of this form we're going to make use of component
+
+100
+00:06:59,130 --> 00:07:00,140
+level state.
+
+101
+00:07:00,300 --> 00:07:05,520
+So this is going back to a little bit of the basics of react and how we handle text inputs.
+
+102
+00:07:05,640 --> 00:07:12,120
+We're going to make this input right here a controlled input or a controlled form component which means
+
+103
+00:07:12,120 --> 00:07:17,550
+we're going to watch for a change event on the input whenever a user typed something in there.
+
+104
+00:07:17,670 --> 00:07:25,600
+We will update our component level state and then push the new updated value back into the input itself.
+
+105
+00:07:25,650 --> 00:07:31,170
+So whenever we're making use of component level state we do have to initialize it inside of our constructor
+
+106
+00:07:31,170 --> 00:07:38,880
+function allowed in my constructor which receives some props.
+
+107
+00:07:38,880 --> 00:07:44,160
+We'll make sure that we call super with prop's which is a little bit of the default set up of class
+
+108
+00:07:44,160 --> 00:07:45,630
+based components.
+
+109
+00:07:45,630 --> 00:07:52,090
+And then we'll initialize our state with this state is title and empty string.
+
+110
+00:07:52,470 --> 00:07:56,550
+So I'm going to assume that we're going to be working with a piece of state called Title and that will
+
+111
+00:07:56,550 --> 00:08:02,730
+initialize it to the empty string because I expect that a user is going to be typing in and adding new
+
+112
+00:08:02,730 --> 00:08:06,900
+data to this title piece of state over time.
+
+113
+00:08:06,960 --> 00:08:12,750
+So then the last step in here is to make sure that whenever a user types inside this thing.
+
+114
+00:08:12,840 --> 00:08:14,850
+So on change
+
+115
+00:08:17,660 --> 00:08:22,580
+we're going to pass a callback function where we take the event that was issued by the change event
+
+116
+00:08:23,150 --> 00:08:25,250
+and we'll update our state.
+
+117
+00:08:25,250 --> 00:08:33,710
+So this does set States take the title and assign it event target value and I'll zoom out for just a
+
+118
+00:08:33,710 --> 00:08:36,370
+second so you can see the whole line.
+
+119
+00:08:36,530 --> 00:08:43,820
+Then whenever the user updates the state and we call set state we'll then push that value back into
+
+120
+00:08:43,820 --> 00:08:44,300
+the input.
+
+121
+00:08:44,300 --> 00:08:54,250
+With this state title like so OK I know that we're kind of speeding through the re-act side of things
+
+122
+00:08:54,250 --> 00:08:59,770
+here but I'm kind of making the assumption that the re-act side of things is probably not that interesting
+
+123
+00:08:59,770 --> 00:09:05,040
+to you in the in the context of this course in what you really care about is the graph you all stuff.
+
+124
+00:09:05,050 --> 00:09:07,770
+So that's why we're kind of going through the re-access pretty quickly here.
+
+125
+00:09:07,960 --> 00:09:13,000
+Mostly just so we can give back over to the really interesting graphical stuff which in my opinion is
+
+126
+00:09:13,000 --> 00:09:15,040
+very fun and very entertaining.
+
+127
+00:09:15,040 --> 00:09:17,650
+I hope you find it the same way.
+
+128
+00:09:17,710 --> 00:09:22,990
+Let's do one last quick test just to make sure it's working the way we expect and I get my form on the
+
+129
+00:09:22,990 --> 00:09:24,600
+screen with the text input.
+
+130
+00:09:24,700 --> 00:09:26,480
+So this looks very good.
+
+131
+00:09:26,500 --> 00:09:28,450
+Definitely come in along pretty well.
+
+132
+00:09:28,450 --> 00:09:31,710
+We've got the label on there as well as we would expect.
+
+133
+00:09:32,140 --> 00:09:36,280
+So let's take a quick break and then we're going to come back and start to think about how we're going
+
+134
+00:09:36,280 --> 00:09:42,640
+to wire up the form that we've created to somehow call a mutation that we still have to add to this
+
+135
+00:09:42,640 --> 00:09:44,140
+component file.
+
+136
+00:09:44,140 --> 00:09:46,710
+So let's take care of that nutation inside the next section.
+

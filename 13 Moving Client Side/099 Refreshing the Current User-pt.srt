@@ -1,0 +1,232 @@
+1
+00:00:00,780 --> 00:00:06,480
+Na ltima seo, terminamos nosso formulrio de login e pudemos ver a mutao com sucesso
+
+2
+00:00:06,480 --> 00:00:08,300
+o problema no nosso back-end.
+
+3
+00:00:08,340 --> 00:00:12,440
+No entanto, depois de executar a mutao, nada realmente aconteceu na pgina.
+
+4
+00:00:12,540 --> 00:00:17,050
+Ento, no vimos a atualizao do cabealho e no fomos navegados automaticamente em qualquer lugar.
+
+5
+00:00:17,100 --> 00:00:22,390
+E, em ambos os casos, eu realmente esperaria que algo acontecesse depois que meu usurio logar com sucesso.
+
+6
+00:00:22,530 --> 00:00:24,630
+E h uma outra coisa que eu quero salientar tambm.
+
+7
+00:00:24,840 --> 00:00:31,930
+Se eu mudar a senha aqui e dizer colocar algumas seqncias de caracteres aleatrias e enviar.
+
+8
+00:00:32,460 --> 00:00:36,960
+Eu posso olhar para a mutao que retornou e eu definitivamente recebo um objeto de erro aqui.
+
+9
+00:00:37,050 --> 00:00:43,110
+Mas no estou dando absolutamente nenhum comentrio ao meu usurio ou para dizer-lhes como voc entrou em alguma informao ruim.
+
+10
+00:00:43,140 --> 00:00:47,550
+Ento, ainda temos uma boa quantidade de trabalho a fazer neste formulrio de login, ento vamos chegar a ele.
+
+11
+00:00:47,610 --> 00:00:51,480
+A primeira coisa que eu gostaria de cuidar  ter certeza de que estamos mantendo o
+
+12
+00:00:51,480 --> 00:00:52,380
+cabealho da maneira correta.
+
+13
+00:00:52,470 --> 00:00:58,410
+Ento, depois de fazer nossos pedidos de mutao para registrar o usurio, eu quero garantir que eu tente
+
+14
+00:00:58,410 --> 00:01:03,780
+obter o usurio atual executando a consulta de usurio atual como vimos anteriormente dentro do cabealho.
+
+15
+00:01:03,810 --> 00:01:09,870
+Quando estivssemos logando um usurio se ns apenas rerunar a consulta atual do usurio, os cabealhos devem atualizar
+
+16
+00:01:09,870 --> 00:01:13,410
+automaticamente com os novos dados que esto sendo buscados no backend.
+
+17
+00:01:14,100 --> 00:01:20,280
+Ento, eu vou primeiro a trabalhar com isso mudando para o meu formulrio de log em que atualmente estamos
+
+18
+00:01:20,280 --> 00:01:21,250
+chamando nossa mutao.
+
+19
+00:01:21,250 --> 00:01:24,950
+Ento, aqui est a mutao, pois isso inicia o Propst mutate.
+
+20
+00:01:24,990 --> 00:01:31,490
+Agora, para adicionar a capacidade de atualizar o usurio atual, ser exatamente o mesmo que vimos dentro da
+
+21
+00:01:31,500 --> 00:01:32,140
+nossa cabea.
+
+22
+00:01:32,400 --> 00:01:40,140
+Ento, aps a execuo da mutao, vamos executar essa outra consulta, definindo a propriedade de consultas
+
+23
+00:01:40,140 --> 00:01:41,850
+de pr-busca dentro daqui.
+
+24
+00:01:41,850 --> 00:01:47,070
+certifique-se de ter certeza de colocar a vrgula no final da linha de variveis aqui tambm.
+
+25
+00:01:47,070 --> 00:01:48,590
+Agora, antes de me esquecer,
+
+26
+00:01:49,080 --> 00:01:56,490
+Ento, depois que a mutao for concluda, vamos rerunar a consulta atual do usurio ou a consulta para
+
+27
+00:01:56,490 --> 00:01:58,190
+obter o usurio atual.
+
+28
+00:01:58,530 --> 00:02:01,620
+Lembre-se de que temos que importar isso para este arquivo tambm.
+
+29
+00:02:01,770 --> 00:02:08,480
+Ento, no topo, adicione uma declarao de importao para consulta de consultas.
+
+30
+00:02:08,820 --> 00:02:09,880
+Usurio atual.
+
+31
+00:02:10,230 --> 00:02:15,250
+E, claro, no se esquea de colocar o ponto duplo para indicar que vamos subir um diretrio para
+
+32
+00:02:15,250 --> 00:02:17,980
+a pasta do cliente e depois para baixo em consultas.
+
+33
+00:02:18,550 --> 00:02:20,060
+Ok, ento essa era uma espcie de guin.
+
+34
+00:02:20,100 --> 00:02:22,250
+Acho que isso foi uma soluo fcil aqui.
+
+35
+00:02:22,290 --> 00:02:25,890
+Eu definitivamente esperaria que o aplicativo funcione da maneira que esperamos neste momento, ento vamos fazer
+
+36
+00:02:25,890 --> 00:02:28,690
+um pequeno teste e ter certeza de que esse  o caso.
+
+37
+00:02:29,340 --> 00:02:34,440
+Eu vou voltar para sua aplicao e primeiro vou atualizar a pgina e ter certeza de que
+
+38
+00:02:34,440 --> 00:02:35,190
+estou desconectado.
+
+39
+00:02:35,220 --> 00:02:37,370
+Ento, clique em sair logo e logo.
+
+40
+00:02:37,380 --> 00:02:37,680
+EST BEM.
+
+41
+00:02:37,740 --> 00:02:43,110
+Eu me sinto razoavelmente seguro neste momento que eu estou desconectado do aplicativo.
+
+42
+00:02:43,320 --> 00:02:47,990
+Ento, agora vou entrar em uma combinao vlida de e-mail e senha.
+
+43
+00:02:48,060 --> 00:02:53,720
+E depois de envi-lo para entrar, espero ver o cabealho ser atualizado.
+
+44
+00:02:53,820 --> 00:03:03,240
+Ento, insira o teste no ponto de teste e com uma senha de senha, no  isso, minha mutao foi emitida com sucesso.
+
+45
+00:03:03,300 --> 00:03:05,740
+Ento eu estou logado no meu aplicativo.
+
+46
+00:03:06,030 --> 00:03:11,160
+Em seguida, o pedido de acompanhamento  feito para obter o usurio atual ou o aplicativo quando
+
+47
+00:03:11,160 --> 00:03:17,370
+a resposta retorna, a resposta da consulta  feita para cada componente que est fazendo uso dessa consulta de usurio atual
+
+48
+00:03:17,730 --> 00:03:19,150
+e que inclui o cabealho.
+
+49
+00:03:19,320 --> 00:03:24,570
+Assim, o cabealho  processado automaticamente com os novos dados que foram buscados e passa a
+
+50
+00:03:24,570 --> 00:03:26,720
+apenas mostrar o boto de logout.
+
+51
+00:03:26,820 --> 00:03:30,820
+Ento, esse  o desafio nmero um que ns cuidamos com sucesso.
+
+52
+00:03:30,990 --> 00:03:35,160
+Ento, vamos dar uma pausa rpida e vamos passar para desafiar o nmero dois, que
+
+53
+00:03:35,160 --> 00:03:40,830
+ garantir que sempre que um usurio insira alguma entrada invlida no formulrio, mostramos alguma mensagem de validao para que
+
+54
+00:03:40,830 --> 00:03:44,540
+saibam que oi voc talvez no tenha feito coloque as informaes corretas aqui.
+
+55
+00:03:44,610 --> 00:03:46,020
+Por favor, tente novamente.
+
+56
+00:03:46,030 --> 00:03:47,640
+Ento vamos fazer uma pausa rpida voltar.
+
+57
+00:03:47,640 --> 00:03:48,150
+Cuidar.
+
+58
+00:03:48,150 --> 00:03:48,800
+Validao.
+

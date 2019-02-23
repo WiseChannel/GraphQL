@@ -1,0 +1,464 @@
+1
+00:00:00,750 --> 00:00:03,110
+Continuemos trabalhando em nossa forma longa.
+
+2
+00:00:03,270 --> 00:00:06,550
+Agora, atualmente, est atualizado como esperamos.
+
+3
+00:00:06,600 --> 00:00:11,160
+Mas um outro problema que percebemos foi que sempre que enviamos o formulrio com um
+
+4
+00:00:11,190 --> 00:00:12,560
+e-mail ou senha invlidos.
+
+5
+00:00:12,720 --> 00:00:15,100
+Nada parece realmente acontecer.
+
+6
+00:00:15,120 --> 00:00:20,910
+Ns recebemos um pouco de uma mensagem de erro no nosso log da consola aqui e na guia da minha solicitao de rede.
+
+7
+00:00:20,940 --> 00:00:27,540
+Tambm posso ver que a resposta que retorna contm uma mensagem de erro que diz credenciais invlidas.
+
+8
+00:00:27,540 --> 00:00:33,210
+mensagem de erro que diz credenciais invlidas e certifique-se de que de alguma forma seja exibida em nosso formulrio.
+
+9
+00:00:33,270 --> 00:00:35,220
+Ento, precisamos de alguma forma ter esta
+
+10
+00:00:35,220 --> 00:00:37,560
+Ento, isso ser o que so grandes desafios.
+
+11
+00:00:37,620 --> 00:00:42,660
+Eu vou comear por folhear meu blog e formar um componente e encontrar a mutao
+
+12
+00:00:42,660 --> 00:00:43,980
+que estamos chamando atualmente.
+
+13
+00:00:44,250 --> 00:00:49,370
+Lembre-se de que todas as mutaes que escrevemos aqui so todas promessas.
+
+14
+00:00:49,380 --> 00:00:54,810
+Ento eles retornam uma promessa que fica resolvida aps a mutao ter sido concluda.
+
+15
+00:00:55,020 --> 00:01:03,290
+Podemos fazer uso desse fato ao mudar uma declarao de ponto tetch da mesma maneira que a promessa em si.
+
+16
+00:01:03,330 --> 00:01:09,630
+passarmos uma funo nesta declarao de captura, essa funo ser chamada se a promessa for resolvida em um erro.
+
+17
+00:01:09,690 --> 00:01:10,430
+Ento, se
+
+18
+00:01:10,470 --> 00:01:16,830
+Ento, se a solicitao falhar na nossa extremidade traseira se passarmos uma funo aqui, ela ser chamada com o objeto
+
+19
+00:01:16,860 --> 00:01:17,640
+de resposta.
+
+20
+00:01:17,850 --> 00:01:22,320
+E, em seguida, dentro dessa funo, podemos fazer um pouco de tratamento de erros para
+
+21
+00:01:22,320 --> 00:01:27,390
+garantir que possamos mostrar esses erros na UI aos nossos usurios para que eles possam avanar e resolv-los.
+
+22
+00:01:27,420 --> 00:01:32,820
+Ento, a primeira coisa que temos a fazer  dar uma olhada no objeto areo que passa para
+
+23
+00:01:33,120 --> 00:01:36,110
+pegar aqui e descobrir exatamente como vamos lidar com isso.
+
+24
+00:01:36,120 --> 00:01:43,380
+uma pequena funo de flecha aqui para que eu possa dizer RAZ E vou colocar uma declarao de depurador.
+
+25
+00:01:43,380 --> 00:01:44,990
+Quero comear primeiro colocando
+
+26
+00:01:45,060 --> 00:01:50,340
+Ento eu vou pausar a execuo do nosso cdigo com esta declarao do depurador e
+
+27
+00:01:50,340 --> 00:01:56,040
+isso nos permitir olhar para este objeto de resposta aqui e descobrir exatamente como extrair todas as
+
+28
+00:01:56,040 --> 00:01:57,480
+diferentes mensagens de erro.
+
+29
+00:01:58,870 --> 00:02:06,010
+Ento, vou salvar isso e depois vou atualizar minha pgina e enviaremos o formulrio sem qualquer tipo de
+
+30
+00:02:06,010 --> 00:02:10,750
+insumos e aguardamos que esse depurador capture e ento podemos observar as
+
+31
+00:02:10,750 --> 00:02:13,410
+diferentes propriedades disponveis no objeto rez.
+
+32
+00:02:13,450 --> 00:02:15,080
+Ento vou envi-lo.
+
+33
+00:02:15,320 --> 00:02:17,160
+Eu seria chutado para o depurador.
+
+34
+00:02:17,350 --> 00:02:23,290
+Ento fiquei pausada na execuo do javascript dentro da minha declarao tetch e faa isso um pouco maior para
+
+35
+00:02:23,290 --> 00:02:25,030
+garantir que seja legal e legvel.
+
+36
+00:02:28,070 --> 00:02:28,430
+EST BEM.
+
+37
+00:02:28,470 --> 00:02:29,380
+Aqui vamos ns.
+
+38
+00:02:29,790 --> 00:02:34,300
+Ento, agora, podemos usar o console de JavaScript aqui embaixo para verificar a declarao de leitura.
+
+39
+00:02:34,470 --> 00:02:39,420
+E, por sinal, se voc no v o embaixador aqui, pode pressionar a tecla
+
+40
+00:02:39,420 --> 00:02:41,760
+de escape para abrir fechar o console.
+
+41
+00:02:41,760 --> 00:02:45,710
+Ento primeiro comearemos imprimindo o valor do argumento Rez.
+
+42
+00:02:46,110 --> 00:02:49,970
+Eu direi rez e parece que  um objeto areo.
+
+43
+00:02:50,130 --> 00:02:54,450
+Ento, diz o grfico de ar, as falhas de erro de erro Cuil.
+
+44
+00:02:54,450 --> 00:02:59,250
+Agora, claro, no quero mostrar esta cadeia inteira aqui mesmo para o meu usurio.
+
+45
+00:02:59,280 --> 00:03:00,740
+Primeiro, diz Graff.
+
+46
+00:03:00,740 --> 00:03:05,210
+Q Bem errado, o meu usurio perguntando no vai ter idia do que isso realmente significa.
+
+47
+00:03:05,520 --> 00:03:11,040
+Eu realmente no quero mostrar apenas o texto, porque no  muito bom se eu mostre o formulrio e
+
+48
+00:03:11,040 --> 00:03:13,200
+leio e mostre uma mensagem de qualquer tipo.
+
+49
+00:03:13,200 --> 00:03:17,320
+O usurio provavelmente vai entender que sim, algo ruim acabou de acontecer.
+
+50
+00:03:17,490 --> 00:03:21,110
+Ento, tudo o que eu realmente me importo com esse objeto  a string aqui.
+
+51
+00:03:21,270 --> 00:03:22,460
+Credenciais invlidas.
+
+52
+00:03:22,470 --> 00:03:24,940
+ para isso que eu realmente quero acessar.
+
+53
+00:03:24,960 --> 00:03:31,350
+Por isso, precisamos descobrir como encurralar neste objeto rez aqui para obter acesso a essa
+
+54
+00:03:31,590 --> 00:03:33,270
+mensagem de credenciais invlidas.
+
+55
+00:03:33,750 --> 00:03:41,190
+Ento, estamos indo para ns, definitivamente, podemos cortar essa coisa ao olhar para a propriedade de erros de Cuil do
+
+56
+00:03:41,190 --> 00:03:44,010
+grfico Reaut Daut no objeto de resposta.
+
+57
+00:03:44,220 --> 00:03:50,460
+Portanto, a ferramenta de grfico  direitos de propriedade aqui  preenchida automaticamente pelo Appollo para ns e
+
+58
+00:03:50,520 --> 00:03:54,880
+contm todas as eras diferentes que ocorreram durante a fase de solicitao.
+
+59
+00:03:55,380 --> 00:04:02,460
+Ento, se expandimos isso,  uma matriz que tem um objeto dentro dele e esse objeto contm uma propriedade de
+
+60
+00:04:02,550 --> 00:04:08,940
+mensagem que possui a mensagem de erro de texto simples que eu gostaria de mostrar ao meu usurio.
+
+61
+00:04:08,970 --> 00:04:14,700
+Ento, em outras palavras, a mensagem de erro que quero mostrar ao meu usurio est disponvel no rez.
+
+62
+00:04:14,730 --> 00:04:16,170
+Grfico de herdeiro
+
+63
+00:04:19,410 --> 00:04:25,470
+de Cuil em zero nunca v mensagem de ponto como credenciais invlidas.
+
+64
+00:04:25,470 --> 00:04:31,260
+o meu cdigo de tal forma que pressupe que eu possa ter vrias mensagens de ar provenientes do back-end.
+
+65
+00:04:31,260 --> 00:04:32,940
+Agora,  claro, eu quero escrever
+
+66
+00:04:32,940 --> 00:04:38,760
+Caso em questo, os arcos da escola de graduao aqui retornam uma matriz para que eu possa ter vrios problemas diferentes com
+
+67
+00:04:38,930 --> 00:04:43,290
+os pedidos que acabei de fazer e quero garantir que eu escreva meu cdigo dessa maneira.
+
+68
+00:04:43,350 --> 00:04:49,860
+Eles sempre mostraro todas as mensagens diferentes para o meu usurio, para lidar com isso, podemos usar a funo
+
+69
+00:04:50,240 --> 00:04:55,590
+de correspondncia que est includa no javascript em matrizes para capturar todos os diferentes erros de
+
+70
+00:04:55,620 --> 00:04:59,340
+todos os erros que esto includos na matriz de erros grficos.
+
+71
+00:04:59,340 --> 00:05:04,710
+Ento, vamos usar um pouco da funo do mapa para fazer apenas um tipo de coletar todas as propriedades
+
+72
+00:05:04,710 --> 00:05:05,640
+de mensagens diferentes.
+
+73
+00:05:05,850 --> 00:05:06,980
+Vamos ver o que parece.
+
+74
+00:05:07,140 --> 00:05:12,050
+Eu direi um mapa de ponto de erros de ponto vermelho QOL.
+
+75
+00:05:12,060 --> 00:05:19,690
+E, em seguida, para cada objeto areo, todos retornam a mensagem de ponto de ar e o auto
+
+76
+00:05:19,710 --> 00:05:22,030
+completo, tipo de arruinado, que surpreende.
+
+77
+00:05:22,050 --> 00:05:29,070
+Eu suponho que voc tenha a idia para que possamos executar isso e que retorna em matriz com todas as diferentes mensagens
+
+78
+00:05:29,300 --> 00:05:35,130
+de ar que existem dentro da minha matriz ou para mim em diferentes mensagens de erro que existem dentro
+
+79
+00:05:35,160 --> 00:05:36,780
+da matriz de erros grficos.
+
+80
+00:05:36,780 --> 00:05:41,400
+Ento, isso provavelmente ser prova do futuro do meu cdigo aqui.
+
+81
+00:05:41,400 --> 00:05:47,160
+Assumir que, se eu tiver um caso de devolver vrios herdeiros por qualquer motivo, levando
+
+82
+00:05:47,160 --> 00:05:53,560
+essa abordagem de mapa aqui, lidaremos com isso de forma adequada, o que certamente seria bom.
+
+83
+00:05:53,580 --> 00:05:57,870
+Ento, vamos virar de volta para a base do cdigo e descobrir como
+
+84
+00:05:57,870 --> 00:06:04,220
+vamos usar este pequeno truque aqui para obter todas as mensagens de erro que possamos ter na nossa forma real.
+
+85
+00:06:04,910 --> 00:06:05,460
+EST BEM.
+
+86
+00:06:05,640 --> 00:06:09,430
+Ento eu vou voltar para a base de cdigo aqui, estamos aqui.
+
+87
+00:06:09,480 --> 00:06:15,210
+Ainda estou dentro da minha declarao de captura que  chamada com uma lista de todos os
+
+88
+00:06:15,210 --> 00:06:17,160
+diferentes erros que retornaram do servidor.
+
+89
+00:06:17,160 --> 00:06:22,060
+Ento, vamos primeiro coletar uma lista de todos os erros diferentes e coloc-lo em uma nica matriz.
+
+90
+00:06:22,410 --> 00:06:27,630
+Eu vou primeiro colocar uma nova linha aqui, apenas me d um pouco de espao
+
+91
+00:06:28,770 --> 00:06:36,930
+para trabalhar, de modo que Snell diga que as orelhas de Konst so o grfico de pontos Rez  digraph os erros de Cuil.
+
+92
+00:06:36,960 --> 00:06:40,920
+Vamos verificar a capitalizao sobre isso, porque isso  fcil de se errar.
+
+93
+00:06:40,920 --> 00:06:45,510
+Portanto,  minsculo g capital Q L E.
+
+94
+00:06:46,220 --> 00:06:49,120
+Vamos abordar esse objeto.
+
+95
+00:06:49,280 --> 00:06:58,250
+E, para cada erro que existe, ir retirar a mensagem de ponto de ar como OK.
+
+96
+00:06:58,470 --> 00:07:03,750
+obter uma srie de todos os erros diferentes que esto contidos dentro do objeto de resposta.
+
+97
+00:07:03,750 --> 00:07:05,310
+Ento, esta linha aqui vai
+
+98
+00:07:05,640 --> 00:07:13,350
+Ento, agora se torna uma questo de bem como no mundo como no mundo eu comunico isso at a minha forma
+
+99
+00:07:13,350 --> 00:07:14,660
+de autenticao aqui embaixo.
+
+100
+00:07:14,700 --> 00:07:16,040
+Como fao isso?
+
+101
+00:07:16,350 --> 00:07:21,340
+Bem, este  um caso de uso perfeito novamente para os Estados de nvel de componente.
+
+102
+00:07:21,600 --> 00:07:30,030
+Posso definir um pedao de nvel de nvel de componente dentro do meu log e o formulrio que chamaremos de erro ser inadimplente
+
+103
+00:07:30,060 --> 00:07:34,650
+para ser uma matriz vazia, o que significa que no existem erros.
+
+104
+00:07:34,800 --> 00:07:39,460
+E ento eu passarei aquele pedao de estado para dentro da forma de arte.
+
+105
+00:07:39,460 --> 00:07:45,390
+Ento, depois de colorir a mutao se houver algum erro associado  solicitao, atualizaremos ou um pedao
+
+106
+00:07:45,390 --> 00:07:51,960
+de estado que far com que todo o componente reaa o novo estado de erro ou a nova lista
+
+107
+00:07:51,960 --> 00:07:52,490
+de erros.
+
+108
+00:07:52,500 --> 00:07:57,870
+A srie de erros que passamos para o formulrio de arte e, em seguida, depender do formulrio
+
+109
+00:07:57,870 --> 00:08:01,980
+do autor para garantir que essa lista de erros acabe no formulrio real.
+
+110
+00:08:01,980 --> 00:08:05,030
+Ento, acho que essa ser uma boa maneira de avanar.
+
+111
+00:08:05,040 --> 00:08:10,200
+Teremos o nosso estado de nvel de componente denominado erros e obter os dados desse objeto
+
+112
+00:08:10,200 --> 00:08:13,560
+areo ou isso  uma invaso que acabamos de juntar.
+
+113
+00:08:13,560 --> 00:08:15,150
+Ento  definitivamente uma boa quantidade de trabalho.
+
+114
+00:08:15,180 --> 00:08:20,380
+E a seo j funcionou um pouco enquanto minhas sees tendem a ser executadas.
+
+115
+00:08:20,700 --> 00:08:26,790
+Ento vamos dar uma pausa rpida para voltar e ns vamos cuidar de garantir que esta seja uma matriz para
+
+116
+00:08:26,820 --> 00:08:28,350
+nosso componente fora do formulrio.
+

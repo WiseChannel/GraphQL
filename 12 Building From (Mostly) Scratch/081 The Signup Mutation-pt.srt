@@ -1,0 +1,484 @@
+1
+00:00:00,780 --> 00:00:04,920
+Agora que temos o nosso tipo de usurio juntos, podemos comear a pensar nas diferentes mutaes
+
+2
+00:00:04,920 --> 00:00:06,270
+com as quais vamos trabalhar.
+
+3
+00:00:06,450 --> 00:00:12,810
+O que de novo ser o login e logue-se as mutaes antes de comear a trabalhar
+
+4
+00:00:12,810 --> 00:00:13,140
+nelas.
+
+5
+00:00:13,140 --> 00:00:17,010
+Eu quero colocar pelo menos um pouco de planejamento em cada um.
+
+6
+00:00:17,290 --> 00:00:19,680
+Ento, olhe um diagrama antes do tempo.
+
+7
+00:00:19,720 --> 00:00:20,120
+EST BEM.
+
+8
+00:00:20,160 --> 00:00:26,850
+Este  um diagrama muito simples que se destina a transmitir um conceito bastante simples.
+
+9
+00:00:26,850 --> 00:00:31,620
+Quando comeamos a pensar em inscrever-se para fazer login em todas essas coisas diferentes.
+
+10
+00:00:31,710 --> 00:00:37,500
+Minha cabea Pessoalmente, imediatamente comecei a pensar em verificar a senha do usurio e ler os usurios do
+
+11
+00:00:37,500 --> 00:00:43,860
+banco de dados e certificando-se de que o e-mail de um usurio no est em uso e a senha
+
+12
+00:00:43,860 --> 00:00:50,220
+existe e blah blah blah todas essas etapas diferentes que esto todas associadas  assinatura um usurio em e
+
+13
+00:00:50,220 --> 00:00:51,280
+apenas autenticao em geral.
+
+14
+00:00:51,570 --> 00:00:58,020
+Ento, a questo rapidamente se torna onde colocamos toda essa lgica e onde colocamos toda a lgica
+
+15
+00:00:58,020 --> 00:01:04,100
+para comparar a senha de um usurio ou certificando-se de que um e-mail vlido foi fornecido.
+
+16
+00:01:04,140 --> 00:01:08,190
+Fazemos tudo isso na funo de resoluo para cada mutao.
+
+17
+00:01:08,190 --> 00:01:11,170
+A resposta  inequivocamente no.
+
+18
+00:01:11,550 --> 00:01:13,000
+No, no .
+
+19
+00:01:13,290 --> 00:01:20,670
+Para cada mutao que escrevemos, queremos garantir que a menor lgica possvel esteja
+
+20
+00:01:20,670 --> 00:01:22,820
+localizada na prpria mutao.
+
+21
+00:01:22,830 --> 00:01:27,370
+Ento, para cada uma dessas mutaes, vamos trabalhar com Registro log in log out.
+
+22
+00:01:27,510 --> 00:01:34,560
+Ns vamos ter um com trs linhas de lgica no mximo dentro de cada funo resolvida em vez de
+
+23
+00:01:34,560 --> 00:01:39,150
+colocar toda a lgica primeiro dizendo criar um novo usurio dentro da mutao.
+
+24
+00:01:39,150 --> 00:01:45,390
+uma funo auxiliar externa ou um Helper Object ou um servio auxiliar de alguns tipos.
+
+25
+00:01:45,420 --> 00:01:47,750
+Ns sempre amos delegar a
+
+26
+00:01:47,760 --> 00:01:53,100
+Lembre-se de que a idia por trs do grfico QOL  que  uma espcie de camada de
+
+27
+00:01:53,100 --> 00:01:59,910
+abstrao entre nosso front-end e nosso verdadeiro back-end que pode consistir em muitos servios diferentes que funcionam em nosso plano de fundo.
+
+28
+00:02:00,030 --> 00:02:05,230
+Em teoria, qualquer um desses servios pode mudar de forma muito fundamental a qualquer momento.
+
+29
+00:02:05,310 --> 00:02:10,890
+E  importante que nos garantismos que no acoplamos, estamos de volta ao servio com nosso
+
+30
+00:02:10,890 --> 00:02:16,470
+cdigo grfico, o que  realmente apenas para ser uma camada de apresentao de todos os
+
+31
+00:02:16,470 --> 00:02:18,210
+dados diferentes em nosso aplicativo.
+
+32
+00:02:18,600 --> 00:02:24,750
+autenticao dentro das mutaes em si, vamos fazer uso de funes auxiliares externas e objetos externos.
+
+33
+00:02:24,750 --> 00:02:31,110
+Ento, em vez de preencher todos os autnticos, todos os Scuse me toda a lgica de
+
+34
+00:02:31,110 --> 00:02:36,870
+Agora, novamente, falamos sobre isso nas ltimas sees para o projeto que estamos trabalhando para tornar o passaporte
+
+35
+00:02:36,870 --> 00:02:41,130
+e o grfico funcionando bem  um pouco de dor na parte traseira.
+
+36
+00:02:41,220 --> 00:02:46,020
+Ento, tomei a liberdade de escrever algumas dessas funes auxiliares para ns, mas certamente
+
+37
+00:02:46,020 --> 00:02:51,030
+voltaremos ao cdigo e damos uma olhada nela e dizemos olhamos todas as coisas
+
+38
+00:02:51,030 --> 00:02:53,120
+que no colocamos dentro da mutao.
+
+39
+00:02:53,580 --> 00:02:57,770
+Ento, com isso em mente, vamos comear com nossas diferentes mutaes.
+
+40
+00:02:58,410 --> 00:03:03,080
+Eu vou fazer um nico arquivo para abrigar todas as diferentes mutaes do meu projeto.
+
+41
+00:03:03,090 --> 00:03:08,940
+Agora, novamente, eu poderia certamente fazer uma espcie de pasta e colocar um monte de mutaes diferentes
+
+42
+00:03:08,940 --> 00:03:12,930
+nessa pasta e, em seguida, referi-la de outro lugar para esse tempo.
+
+43
+00:03:12,930 --> 00:03:17,100
+Eu vou fazer um nico arquivo porque, como voc vai ver
+
+44
+00:03:17,400 --> 00:03:21,080
+nossas mutaes, acabar por ser muito pequeno e muito compacto.
+
+45
+00:03:21,300 --> 00:03:28,320
+Ento, dentro do meu diretrio de esquema, vou fazer um novo arquivo chamado mutaes, ponto G-S e, em seguida, dentro
+
+46
+00:03:28,320 --> 00:03:33,160
+de aqui, colocaremos alguns dos nossos cdigos de cdigo para trabalhar com mutaes.
+
+47
+00:03:33,240 --> 00:03:34,740
+Importar o enxerto tudo no
+
+48
+00:03:37,550 --> 00:03:42,600
+topo e acho que provavelmente precisamos dois objetos aqui dois objetos do grfico para uma biblioteca.
+
+49
+00:03:42,810 --> 00:03:48,780
+Eu quero o tipo de objeto grfico Cuil para definir a mutao global e, em seguida, com base
+
+50
+00:03:48,780 --> 00:03:54,930
+nos fatos que estamos lendo em e-mails e senhas que eu realmente espero ser cordas, tambm indicar graphed Well
+
+51
+00:03:55,590 --> 00:03:56,270
+string tambm.
+
+52
+00:04:00,530 --> 00:04:05,660
+Finalmente, porque estamos trabalhando com usurios e as chances so de que muitas dessas
+
+53
+00:04:05,660 --> 00:04:08,680
+mutaes diferentes que vamos criar sero usurios que retornam.
+
+54
+00:04:08,800 --> 00:04:11,740
+Eu tambm gosto de importar meu tipo de usurio.
+
+55
+00:04:11,780 --> 00:04:21,650
+de criar, ento vou dizer que o tipo de usurio do Konst vai ser do diretrio de tipos que eu quero do tipo de
+
+56
+00:04:21,650 --> 00:04:23,110
+chamada do usurio.
+
+57
+00:04:26,380 --> 00:04:27,890
+O usurio que acabamos
+
+58
+00:04:28,380 --> 00:04:31,450
+Em seguida, criaremos a mutao global.
+
+59
+00:04:31,450 --> 00:04:36,030
+Ento, passamos por este passo vrias vezes antes de parecer exatamente com o tipo que acabamos de criar.
+
+60
+00:04:36,060 --> 00:04:46,310
+Fazemos o nosso novo grfico Bem tipo de objeto, certificando-se de que temos Q L e O todos em maisculas e
+
+61
+00:04:46,310 --> 00:04:48,460
+d-lhe o nome da mutao.
+
+62
+00:04:48,950 --> 00:04:52,030
+Vamos dar uma propriedade de um campo.
+
+63
+00:04:52,580 --> 00:04:57,360
+E ento, no fundo, podemos exportar o objeto de mutao que acabamos de criar.
+
+64
+00:04:57,560 --> 00:05:05,520
+ um mdulo que exporta a nutao Ok, parece um comeo razovel.
+
+65
+00:05:05,550 --> 00:05:10,830
+Em seguida, vamos preencher algumas propriedades dentro do objeto de campos aqui.
+
+66
+00:05:11,010 --> 00:05:15,870
+Ento, precisamos pensar imediatamente sobre as trs mutaes diferentes que
+
+67
+00:05:16,050 --> 00:05:20,310
+espervamos fazer, que sero o Registro, logue-se e feche-se.
+
+68
+00:05:20,370 --> 00:05:25,530
+Agora, na verdade, no faz sentido tentar iniciar sesso ou sair sem ter nenhum usurio disponvel.
+
+69
+00:05:25,530 --> 00:05:30,070
+Ento, acho que uma primeira escolha muito clara ser trabalhar na mutao de inscrio.
+
+70
+00:05:30,360 --> 00:05:33,280
+Ento, vamos fazer uma nova mutao chamada Assinar.
+
+71
+00:05:33,450 --> 00:05:38,820
+Eu acho que o Sign-Up definitivamente faz sentido esperar que ns vamos receber um e-mail e uma
+
+72
+00:05:38,820 --> 00:05:39,810
+senha para isso.
+
+73
+00:05:39,990 --> 00:05:43,950
+E, em seguida, retornando dele, devolveremos o usurio que foi criado.
+
+74
+00:05:43,980 --> 00:05:50,550
+Ento, se algum do nosso amigo fizer uma chamada para esta mutao de Registro, eles retornaro o modelo de usurio
+
+75
+00:05:50,550 --> 00:05:56,100
+que foi criado que agora como discutimos  realmente apenas vai conter a idia do usurio
+
+76
+00:05:56,100 --> 00:05:58,780
+e do e-mail que eles foram criados com.
+
+77
+00:05:58,770 --> 00:06:04,050
+Mas se o cliente, o front-end quer saber sobre o ID ou o e-mail, eles tero
+
+78
+00:06:04,050 --> 00:06:05,380
+definitivamente acesso a ele.
+
+79
+00:06:06,030 --> 00:06:15,740
+Ento, dentro de nossa mutao, vamos adicionar no novo campo de Inscrio, ns atribuiremos o tipo de args e ento vamos
+
+80
+00:06:15,740 --> 00:06:18,700
+configurar a funo de resoluo tambm.
+
+81
+00:06:19,010 --> 00:06:20,410
+Ento, vamos fazer o nosso tipo.
+
+82
+00:06:20,720 --> 00:06:27,860
+Espero que ele retorne o usurio que  criado para retornar um tipo de usurio.
+
+83
+00:06:28,110 --> 00:06:30,700
+Ns precisaremos cham-lo com alguns argumentos.
+
+84
+00:06:30,740 --> 00:06:37,490
+Ento, este ser o e-mail e a senha usada para se inscrever, o usurio receber um e-mail que ser
+
+85
+00:06:37,490 --> 00:06:43,190
+um tipo de grfico que voc estabelecer, certifique-se de que voc no tenha um T principal
+
+86
+00:06:43,190 --> 00:06:48,020
+porque eu preciso desse tipo de tempo e eles so tipo de senha Magrath.
+
+87
+00:06:48,040 --> 00:06:50,520
+Q Ento, corda.
+
+88
+00:06:50,750 --> 00:06:56,000
+tradicionalmente sempre que voc assina ou um usurio, voc sempre obtm como uma confirmao de senha na UI.
+
+89
+00:06:56,000 --> 00:06:58,730
+Agora voc notar que quando eu assinar um usurio
+
+90
+00:06:58,850 --> 00:07:03,890
+Ento, a UI vai dizer que, digite sua senha, digite novamente para que possamos garantir que
+
+91
+00:07:03,890 --> 00:07:05,820
+voc digite a senha que pretende.
+
+92
+00:07:05,900 --> 00:07:12,340
+Ns podemos fazer essa comparao saber se ns, se decidimos fazer a confirmao de senha, podemos fazer essa
+
+93
+00:07:12,350 --> 00:07:13,430
+comparao no front-end.
+
+94
+00:07:13,460 --> 00:07:19,360
+Ento, ns realmente no precisamos enviar uma senha e uma senha de confirmao para o backend.
+
+95
+00:07:19,430 --> 00:07:24,320
+Ento, se nos importarmos fazer esse passo de confirmao, ns cuidaramos disso inteiramente no
+
+96
+00:07:24,320 --> 00:07:25,510
+front-end da nossa aplicao.
+
+97
+00:07:27,530 --> 00:07:30,330
+E, finalmente, vamos definir a nossa funo de resoluo.
+
+98
+00:07:30,470 --> 00:07:36,900
+Portanto, resolva e adicionaremos nossos args de valor aparente.
+
+99
+00:07:37,190 --> 00:07:43,880
+E ento h um terceiro argumento que vai comear a comear a tornar-se extremamente importante para
+
+100
+00:07:43,910 --> 00:07:45,880
+ns dentro de nossa aplicao.
+
+101
+00:07:45,950 --> 00:07:48,350
+Apenas extremamente importante.
+
+102
+00:07:48,350 --> 00:07:55,280
+O terceiro argumento aqui que realmente nos interessa  algo chamado pedido e voc tambm vai ver isso
+
+103
+00:07:55,280 --> 00:07:59,160
+em alguns outros locais e alguma documentao que devo dizer.
+
+104
+00:07:59,210 --> 00:08:01,380
+Voc ver isso chamado contexto.
+
+105
+00:08:01,490 --> 00:08:08,690
+Mas o pedido de Alex Kilat, porque, por padro,  o que  pedido aqui, representa
+
+106
+00:08:08,750 --> 00:08:11,770
+o objeto de solicitao proveniente do Express.
+
+107
+00:08:11,810 --> 00:08:20,240
+Ento lembre-se de que, quando fazemos uma solicitao H TTP para a nossa extremidade traseira de qualquer tipo B, ela  proveniente
+
+108
+00:08:20,240 --> 00:08:27,980
+de graft UL ou de consulta G ou da cadeira Fed ou seja o que for, ele entra em nosso
+
+109
+00:08:27,980 --> 00:08:30,050
+pedido expresso como um pedido.
+
+110
+00:08:30,050 --> 00:08:33,410
+Ento, o terceiro argumento que est sendo passado para essa funo resolvida.
+
+111
+00:08:33,410 --> 00:08:35,140
+Ns no usamos at agora.
+
+112
+00:08:35,210 --> 00:08:36,960
+Ns realmente no temos nenhum motivo para.
+
+113
+00:08:37,070 --> 00:08:44,840
+ esse objeto de solicitao que o objeto de solicitao tem um monte de detalhes sobre a solicitao recebida, como a rota em que
+
+114
+00:08:44,840 --> 00:08:48,940
+eles estavam tentando acessar algumas das seqncias de caracteres de consulta se houver.
+
+115
+00:08:48,980 --> 00:08:55,010
+O corpo da solicitao se existe e outras propriedades associadas para ns ser muito til porque vamos
+
+116
+00:08:55,040 --> 00:09:00,110
+usar o objeto de solicitao para ajudar com o lado de autenticao das coisas
+
+117
+00:09:00,110 --> 00:09:01,980
+como veremos em apenas um momento.
+
+118
+00:09:02,660 --> 00:09:03,250
+OK.
+
+119
+00:09:03,410 --> 00:09:06,390
+Isso parece um comeo razovel para nossa mutao de inscrio.
+
+120
+00:09:06,400 --> 00:09:10,790
+e vamos voltar e descobrir a carne real da mutao, que  a funo de resoluo.
+
+121
+00:09:11,030 --> 00:09:12,740
+Ento vamos dar uma pausa rpida
+

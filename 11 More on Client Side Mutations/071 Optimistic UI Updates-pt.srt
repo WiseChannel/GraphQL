@@ -1,0 +1,264 @@
+1
+00:00:00,730 --> 00:00:06,890
+Na ltima seo, terminamos a funcionalidade para permitir que um usurio gosta de uma letra individual.
+
+2
+00:00:06,890 --> 00:00:12,780
+No entanto, percebemos que sempre que voc clica no boto "Like", h como uma demora
+
+3
+00:00:12,850 --> 00:00:17,400
+de um segundo atraso, o que  um pouco irritante para ver.
+
+4
+00:00:17,410 --> 00:00:22,960
+Voc tambm notar que este  um atraso que  minimizado quando estamos executando isso em nossa mquina local.
+
+5
+00:00:22,960 --> 00:00:28,480
+E eu suspeito que, se implementarmos isso em um aplicativo de estilo de produo real, voc pode ver ainda
+
+6
+00:00:28,510 --> 00:00:32,230
+mais latncia ou mesmo mais atraso, pois esperamos que esse nmero seja atualizado.
+
+7
+00:00:32,230 --> 00:00:38,860
+Ento, eu quero propor que talvez se descobrirmos uma soluo para fazer parecer que a atualizao
+
+8
+00:00:38,950 --> 00:00:42,170
+ instantnea, tanto quanto nosso usurio est preocupado.
+
+9
+00:00:42,490 --> 00:00:48,610
+Felizmente, o Apollo tem suporte fantstico para isso diretamente fora da caixa atravs de um
+
+10
+00:00:48,880 --> 00:00:52,850
+sistema que ele chama de atualizaes otimistas ou respostas otimistas.
+
+11
+00:00:53,190 --> 00:00:57,160
+Ento, vamos dar uma olhada no diagrama e tentar entender um pouco sobre como ele funciona.
+
+12
+00:00:58,500 --> 00:00:59,310
+EST BEM.
+
+13
+00:00:59,770 --> 00:01:02,010
+Ento, vamos descer a tempo aqui.
+
+14
+00:01:02,020 --> 00:01:07,810
+Ento, na direo vertical ou eixo vertical, estamos comeando no incio no topo e ento o
+
+15
+00:01:07,810 --> 00:01:10,030
+tempo est passando enquanto ns descemos.
+
+16
+00:01:10,030 --> 00:01:16,240
+Ento, aqui est a ordem das operaes sempre que quisermos usar uma resposta otimista.
+
+17
+00:01:16,240 --> 00:01:23,050
+Ns vamos chamar de mutao e quando corrompermos mutao vamos passar por um pequeno objeto que vai dizer
+
+18
+00:01:23,050 --> 00:01:30,550
+oi quando voc chama essa nutao. Eu aposto voc qualquer coisa que ns vamos conseguir uma resposta que se
+
+19
+00:01:30,550 --> 00:01:36,270
+parece com algo que ns "vai adivinhar o que a resposta  quando ela volta.
+
+20
+00:01:36,550 --> 00:01:42,220
+A Apollo vai adivinhar o que pensamos que a resposta ser e ser aplic-la
+
+21
+00:01:42,220 --> 00:01:45,060
+aos dados dentro da sua loja interna.
+
+22
+00:01:45,310 --> 00:01:52,230
+Vai renderizar instantaneamente o nosso aplicativo de reao com este novo adivinho sobre o que nossos dados deveriam ser.
+
+23
+00:01:52,240 --> 00:01:58,360
+Portanto, no que diz respeito ao nosso usurio, a UI vai aparecer instantaneamente para atualizar.
+
+24
+00:01:58,570 --> 00:02:03,850
+Agora, simultaneamente, a mutao ser emitida para as nossas costas e como uma solicitao de rede.
+
+25
+00:02:04,060 --> 00:02:10,600
+E ento essa solicitao est pendente por aquele quarto ou meio de segundo que j estamos aguardando.
+
+26
+00:02:10,750 --> 00:02:17,620
+Quando a nutao resolva e a resposta retorna, o Appollo aceitar essa resposta e depois atualizar sua
+
+27
+00:02:17,650 --> 00:02:22,980
+cpia local de dados para corresponder o que a resposta realmente  dita.
+
+28
+00:02:23,110 --> 00:02:29,200
+E ento ele atualizar nossa UI com o que os dados reais so do servidor backend.
+
+29
+00:02:29,200 --> 00:02:35,050
+Ento, novamente, a idia aqui  que vamos adivinhar a resposta que esperamos ver se uma
+
+30
+00:02:35,470 --> 00:02:37,600
+mutao a UI ir atualizar instantaneamente.
+
+31
+00:02:37,750 --> 00:02:42,730
+E ento, quando realmente recebemos a resposta do servidor, vocs voltaro a atualizar com
+
+32
+00:02:42,730 --> 00:02:45,120
+qualquer informao que realmente tenha retornado.
+
+33
+00:02:45,130 --> 00:02:51,340
+Agora,  claro, ns realmente esperamos que o palpite de nossa resposta seja o mesmo que a resposta real,
+
+34
+00:02:51,370 --> 00:02:57,130
+pois, de outra forma, o usurio vai ver um pouco isso como uma mudana rpida de dados
+
+35
+00:02:57,130 --> 00:03:03,220
+e, definitivamente, ser um tipo de ngulo de Wolfen com a nossa resposta ou a resposta dos nossos
+
+36
+00:03:03,220 --> 00:03:03,850
+clientes aqui.
+
+37
+00:03:03,910 --> 00:03:08,650
+Ento, voc pode ver isso em ao, voc precisa ter um melhor senso de onde esse tipo pode
+
+38
+00:03:08,650 --> 00:03:12,650
+parecer um pouco engraado para o usurio se as coisas no forem bem como ns esperamos.
+
+39
+00:03:13,630 --> 00:03:15,420
+Ento vamos dar uma chance.
+
+40
+00:03:15,460 --> 00:03:21,670
+ou algum componente da minha lista de letras e eu vou encontrar uma mutao que definimos dentro de l.
+
+41
+00:03:21,670 --> 00:03:23,190
+Eu vou abrir minha serra
+
+42
+00:03:23,470 --> 00:03:31,800
+Ento, aqui est a mutao em que gostaramos que uma letra individual dizendo a Appollo que use uma resposta
+
+43
+00:03:31,800 --> 00:03:35,730
+otimista  realmente um pouco direta em alguns aspectos.
+
+44
+00:03:35,760 --> 00:03:40,030
+O verdadeiro desafio  decidir qual ser a resposta.
+
+45
+00:03:40,080 --> 00:03:46,650
+Ento, comecemos por primeiro analisando a resposta tpica que recebemos sempre que essa mutao  executada.
+
+46
+00:03:46,740 --> 00:03:48,820
+Ento, voltei para o meu navegador.
+
+47
+00:03:49,260 --> 00:03:55,050
+Eu vou expandir a guia de solicitao de rede dentro do meu console e eu vou olhar para
+
+48
+00:03:55,050 --> 00:03:56,330
+qualquer uma dessas mutaes.
+
+49
+00:03:56,370 --> 00:04:00,050
+Voc notar que ao clicar nos botes, eu recebo mais solicitaes aqui.
+
+50
+00:04:00,270 --> 00:04:02,800
+Eu vou escolher um ao acaso e dar uma olhada nisso.
+
+51
+00:04:04,580 --> 00:04:05,260
+EST BEM.
+
+52
+00:04:05,630 --> 00:04:07,320
+Ento aqui est aqui.
+
+53
+00:04:07,400 --> 00:04:12,320
+Voc notar que voltamos como a letra.
+
+54
+00:04:12,320 --> 00:04:18,500
+Ns temos o nome do tipo da letra e depois temos a ID e o nmero de gostos que esto
+
+55
+00:04:18,500 --> 00:04:19,570
+associados a ela.
+
+56
+00:04:19,580 --> 00:04:25,880
+dizer ao Appollo que deveria esperar recuperar algum tipo de mutao chamada como letra.
+
+57
+00:04:25,880 --> 00:04:29,370
+Ento, o que vamos fazer  que vamos
+
+58
+00:04:29,630 --> 00:04:32,210
+Ele ter essa ID aqui.
+
+59
+00:04:32,210 --> 00:04:39,420
+Ele ter um tipo de nome de tipo de letra e, em seguida, o nmero de Wykes ser, no entanto, muitos esperamos que
+
+60
+00:04:39,420 --> 00:04:39,980
+ele seja.
+
+61
+00:04:39,980 --> 00:04:45,080
+Ento, vamos ter que fazer um pouco de footwork em adivinhar o que o nmero atual de gostos deveria
+
+62
+00:04:45,080 --> 00:04:45,430
+ser.
+
+63
+00:04:45,470 --> 00:04:47,780
+Depois de executar a mutao.
+
+64
+00:04:47,810 --> 00:04:48,110
+EST BEM.
+
+65
+00:04:48,140 --> 00:04:49,100
+Ento esse  o nosso plano.
+
+66
+00:04:49,100 --> 00:04:54,450
+Vamos dar uma pausa rpida e depois voltar na prxima seo e implementar esta atualizao otimista.
+

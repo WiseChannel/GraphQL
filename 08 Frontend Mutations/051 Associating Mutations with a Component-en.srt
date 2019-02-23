@@ -1,0 +1,276 @@
+1
+00:00:00,670 --> 00:00:06,120
+In the last section when you finish experimenting with the delete song mutation inside of graphical.
+
+2
+00:00:06,220 --> 00:00:10,470
+So now afraid to move it over to our song list component and wire it up.
+
+3
+00:00:10,540 --> 00:00:16,480
+I'm going to copy the entire mutation and I'm going to pull open my code editor and open up the song
+
+4
+00:00:16,570 --> 00:00:18,180
+list file.
+
+5
+00:00:18,250 --> 00:00:24,430
+So I want to use the song list file to host my mutation cause I expect that every single song that I
+
+6
+00:00:24,430 --> 00:00:29,830
+render inside of the render songs help or right here is going to get like a big X next to it or a big
+
+7
+00:00:29,830 --> 00:00:34,730
+trash can or something like that that a user can click on to delete that particular song.
+
+8
+00:00:34,930 --> 00:00:40,620
+So it definitely makes sense to locate this mutation to delete a song in the same location where we're
+
+9
+00:00:40,630 --> 00:00:43,810
+going to have that thing to render a button to delete the song.
+
+10
+00:00:43,810 --> 00:00:44,900
+Definitely makes sense.
+
+11
+00:00:45,740 --> 00:00:46,220
+OK.
+
+12
+00:00:46,440 --> 00:00:51,030
+So we're going to paste the mutation in here at the very bottom of the file.
+
+13
+00:00:51,030 --> 00:00:55,130
+We absolutely could create a separate file to put this mutation in.
+
+14
+00:00:55,170 --> 00:01:01,380
+Just as we did with that fecche song previously that song Querrey previously but because I don't really
+
+15
+00:01:01,380 --> 00:01:06,840
+expect to use this quite this mutation anywhere else in my codebase I really feel pretty comfortable
+
+16
+00:01:06,870 --> 00:01:09,380
+just place inside of this component file.
+
+17
+00:01:09,630 --> 00:01:15,690
+If I had any expectation that I would call this query or this mutation from anywhere else yes then I
+
+18
+00:01:15,690 --> 00:01:20,310
+would definitely expect to be placing it inside of a helper file or something like that.
+
+19
+00:01:20,310 --> 00:01:25,200
+Of course if you feel like you really want to keep everything modularized absolutely feel free to make
+
+20
+00:01:25,200 --> 00:01:27,500
+a separate file to houses Querrey.
+
+21
+00:01:28,090 --> 00:01:28,520
+OK.
+
+22
+00:01:28,710 --> 00:01:34,780
+So we're going to go down beneath this component and we will define the nutation down here.
+
+23
+00:01:34,800 --> 00:01:37,320
+So Konst mutation is going to be graphed.
+
+24
+00:01:37,380 --> 00:01:43,950
+Well we're going to use our back ticks again and we're going to paste in the mutation there is our mutation
+
+25
+00:01:43,950 --> 00:01:45,280
+right there.
+
+26
+00:01:45,360 --> 00:01:52,380
+So now we need to take this mutation and sandwich it or put it together with a song list component.
+
+27
+00:01:52,380 --> 00:01:58,830
+You'll notice however that we are already making use of the graft help her with our existing fetch songs
+
+28
+00:01:58,830 --> 00:01:59,610
+queer.
+
+29
+00:01:59,850 --> 00:02:02,520
+So we've now got two separate pieces of graft.
+
+30
+00:02:02,600 --> 00:02:08,460
+Well mark up or graft to old code that we want to somehow integrate with the song list component.
+
+31
+00:02:08,460 --> 00:02:10,880
+And you might be thinking well no problem.
+
+32
+00:02:10,910 --> 00:02:11,640
+Graf kewl.
+
+33
+00:02:11,690 --> 00:02:11,910
+Yeah.
+
+34
+00:02:11,940 --> 00:02:13,830
+GRATHWOHL guys have this figured out.
+
+35
+00:02:13,830 --> 00:02:18,020
+Surely we can just you know passing the mutation is a second argument.
+
+36
+00:02:18,390 --> 00:02:22,610
+Well unfortunately that's not really the case here.
+
+37
+00:02:22,620 --> 00:02:28,860
+The graphical library the graph of function right here is not set up to take multiple queries for multiple
+
+38
+00:02:28,860 --> 00:02:30,000
+mutations.
+
+39
+00:02:30,000 --> 00:02:31,770
+It is strictly one query.
+
+40
+00:02:31,770 --> 00:02:33,460
+One mutation at a time.
+
+41
+00:02:33,870 --> 00:02:38,340
+We can kind of get around that using a little trick around mutations that we will probably look at at
+
+42
+00:02:38,340 --> 00:02:43,970
+some point in the future but with queries now we really can't double up.
+
+43
+00:02:44,310 --> 00:02:50,630
+So to get graphed Cuil to play nicely we're going to have to use multiple instances of this graph to
+
+44
+00:02:50,670 --> 00:02:51,680
+as helper.
+
+45
+00:02:51,960 --> 00:02:58,170
+So I can tell you right now this is not going to look super pretty but you'll make it work.
+
+46
+00:02:58,680 --> 00:03:02,380
+So what we're going to do is call this graph tool helper.
+
+47
+00:03:02,520 --> 00:03:04,850
+Two times two separate times.
+
+48
+00:03:05,130 --> 00:03:08,550
+So here's what's going to look like this syntax is going to look a little bit weird.
+
+49
+00:03:08,550 --> 00:03:12,110
+First and then move the graph to a line to a newline.
+
+50
+00:03:12,180 --> 00:03:17,050
+You're not going to intent indent at one step then I'm going to call graph.
+
+51
+00:03:17,050 --> 00:03:24,330
+Q All right above it and pass in the mutation and I'm going to open up a set of parents and then close
+
+52
+00:03:24,330 --> 00:03:28,090
+it underneath the graph to a line with the query like so.
+
+53
+00:03:28,440 --> 00:03:32,930
+So this says make a helper using graph tool function.
+
+54
+00:03:32,940 --> 00:03:41,950
+And this mutation and then immediately invoke it with the result of this other helper and the song list.
+
+55
+00:03:42,000 --> 00:03:46,980
+So the syntax right here yeah it's really messy would be really nice if the graph to a library had a
+
+56
+00:03:46,980 --> 00:03:49,770
+built in helper for simplifying this little bit.
+
+57
+00:03:49,920 --> 00:03:52,830
+But right now there's nothing of that sort.
+
+58
+00:03:52,830 --> 00:03:58,380
+There are some other third party solutions for this that could pretty up the syntax a little bit but
+
+59
+00:03:58,380 --> 00:04:02,210
+essentially we are still stuck with making multiple function calls like this.
+
+60
+00:04:02,210 --> 00:04:04,560
+So it's kind of a rough spot right now.
+
+61
+00:04:04,560 --> 00:04:09,990
+But as we've seen the Apollo Data has a couple of areas where hopefully we're going to get some improvements
+
+62
+00:04:09,990 --> 00:04:11,490
+in the future.
+
+63
+00:04:11,490 --> 00:04:17,040
+Keep in mind we're absolutely on the cutting edge of web technology here so you know difficult parts
+
+64
+00:04:17,040 --> 00:04:19,180
+like this is just par for the course.
+
+65
+00:04:19,230 --> 00:04:20,990
+It's just something we've got to deal with.
+
+66
+00:04:21,920 --> 00:04:22,430
+OK.
+
+67
+00:04:22,610 --> 00:04:24,420
+Our mutation is all wired up.
+
+68
+00:04:24,420 --> 00:04:30,390
+Let's take a quick break come back in the next section and wire up an event handler to a button inside
+
+69
+00:04:30,390 --> 00:04:34,500
+of this component to make sure that a user can delete an individual song.
+

@@ -1,0 +1,468 @@
+1
+00:00:00,780 --> 00:00:07,060
+A menos que a seo acabei com a nutao de inscrio e estamos quase prontos para test-la dentro da grfica.
+
+2
+00:00:07,260 --> 00:00:11,400
+H um pouco de configurao do ltimo minuto que temos que fazer dentro
+
+3
+00:00:11,850 --> 00:00:18,090
+do nosso projeto antecipadamente, embora possamos ter certeza de que alinhamos essas mutaes recm-criadas no nosso esquema dentro do esquema
+
+4
+00:00:18,300 --> 00:00:19,780
+J. S. Arquivo.
+
+5
+00:00:19,830 --> 00:00:25,090
+Ento dentro do esquema Geass importaremos ou exigiremos em nosso arquivo de mutao.
+
+6
+00:00:25,530 --> 00:00:32,490
+Ento, dizer que os equivalentes de mutao Konst exigem mutaes.
+
+7
+00:00:32,490 --> 00:00:34,440
+Note que certamente podemos chamar isso.
+
+8
+00:00:34,450 --> 00:00:39,810
+em plural, mas porque o esquema de grfico Kule aqui embaixo espera que passemos a chave da nutao.
+
+9
+00:00:39,810 --> 00:00:42,680
+Voc sabe que eu realmente deveria cham-lo de mutaes
+
+10
+00:00:42,720 --> 00:00:48,380
+Eu realmente no quero confundir a pluralidade ou devo dizer se  ou no plural.
+
+11
+00:00:48,480 --> 00:00:53,460
+Eu realmente s quero passar apenas a palavra mutao e permitir que sim atalho para cuidar
+
+12
+00:00:53,460 --> 00:00:54,420
+dela para ns.
+
+13
+00:00:54,420 --> 00:00:56,970
+Ento, em vez de chamar mutaes, eu vou chamar de mutao.
+
+14
+00:00:57,150 --> 00:01:01,500
+Isso significa que eu s posso atribuir taxas de mutao aqui e certifique-se de obter
+
+15
+00:01:01,500 --> 00:01:03,060
+a vrgula na linha bem acima.
+
+16
+00:01:03,210 --> 00:01:06,700
+E h um outro apenas um pequeno registro de registro apenas de contabilidade.
+
+17
+00:01:06,700 --> 00:01:08,430
+Temos que cuidar de dentro daqui.
+
+18
+00:01:08,550 --> 00:01:14,010
+Se olharmos para o tipo de queixo de raiz que est definido agora, no tem nenhum campo
+
+19
+00:01:14,010 --> 00:01:15,680
+atribudo a ele por padro.
+
+20
+00:01:15,690 --> 00:01:20,760
+O grfico sempre espera ter pelo menos um campo disponvel para cada tipo definido.
+
+21
+00:01:20,760 --> 00:01:25,020
+Ento, apenas para se certificar de que no temos erros que surjam do enxerto,
+
+22
+00:01:25,020 --> 00:01:29,810
+porque no temos nenhum tipo de cientistas dizendo que estou saindo num campo fofo agora.
+
+23
+00:01:30,420 --> 00:01:34,640
+Ento eu vou dizer campos e eu irei assinar um campo fofo assim.
+
+24
+00:01:34,680 --> 00:01:37,260
+Portanto, no h nenhum significado nesse campo.
+
+25
+00:01:37,320 --> 00:01:42,840
+Mais uma vez, tudo isso espera que todos os tipos carregados no nosso aplicativo tenham pelo menos
+
+26
+00:01:42,840 --> 00:01:44,490
+um campo atribudo a ele.
+
+27
+00:01:44,880 --> 00:01:54,840
+Ento, contra esse tipo de identificao de grfico bem e eu irei garantir que tambm exija uma identificao grfica tambm.
+
+28
+00:01:55,390 --> 00:01:57,790
+Ento, novamente, vamos voltar e substituir essa linha aqui.
+
+29
+00:01:57,790 --> 00:01:59,930
+Eu s quero que nosso cdigo seja executado agora.
+
+30
+00:02:01,100 --> 00:02:03,470
+Ento eu acho que estamos prontos para dar uma chance.
+
+31
+00:02:03,470 --> 00:02:07,840
+Primeiro vou comear o meu servidor, folheando o terminal.
+
+32
+00:02:07,910 --> 00:02:12,530
+do projeto e iniciaremos o projeto com o comando muito clssico e depois executaremos dev.
+
+33
+00:02:12,530 --> 00:02:15,410
+Posso me certificar de que estou dentro do meu diretrio
+
+34
+00:02:15,440 --> 00:02:18,210
+Ento, eu espero que o meu servidor esteja comeando agora.
+
+35
+00:02:18,230 --> 00:02:19,730
+Talvez eu tenha um erro de digitao ou dois.
+
+36
+00:02:19,730 --> 00:02:20,070
+EST BEM.
+
+37
+00:02:20,090 --> 00:02:21,410
+Parece que est funcionando corretamente.
+
+38
+00:02:21,410 --> 00:02:23,770
+Eu tenho um registro de escuta aqui.
+
+39
+00:02:23,840 --> 00:02:28,820
+Se voc vir algum erro aparecer na tela agora, quase definitivamente significa que voc tem um pequeno erro de digitao em algum
+
+40
+00:02:28,820 --> 00:02:30,460
+lugar dentro de sua base de cdigo.
+
+41
+00:02:30,530 --> 00:02:35,950
+Ento, voc vai querer fazer um pouco de caa e picotear ou lutar para encontrar onde esse erro de digitao .
+
+42
+00:02:35,990 --> 00:02:40,320
+Certifique-se de que voc sempre obtenha as vrgulas l para cada propriedade diferente que adicionamos a
+
+43
+00:02:40,340 --> 00:02:41,270
+todos esses objetos diferentes.
+
+44
+00:02:41,270 --> 00:02:44,920
+Esse  um erro de digitao muito comum.
+
+45
+00:02:44,920 --> 00:02:45,230
+Tudo bem.
+
+46
+00:02:45,230 --> 00:02:50,540
+Agora que nosso servidor  iniciado, podemos voltar para o nosso navegador e abrir grfico.
+
+47
+00:02:50,560 --> 00:03:01,330
+Vai para o meu navegador abrir uma nova guia e ir para uma placa QA de barra barra local 4000 e, uma vez aqui,
+
+48
+00:03:01,340 --> 00:03:06,910
+podemos comear a juntar a nossa mutao para assinar um novo usurio.
+
+49
+00:03:07,520 --> 00:03:13,970
+Ento, h um pouco de guias comentados por padro aqui, vou tirar tudo isso porque ficamos
+
+50
+00:03:14,060 --> 00:03:18,210
+bem familiarizados com os conceitos bsicos de sintaxe grfica neste momento.
+
+51
+00:03:19,540 --> 00:03:19,780
+Tudo bem.
+
+52
+00:03:19,780 --> 00:03:21,840
+Ento precisamos definir esta mutao.
+
+53
+00:03:22,060 --> 00:03:26,230
+Eu no vou me preocupar com a criao de nenhuma varivel diferente agora, para que no possamos fazer
+
+54
+00:03:26,230 --> 00:03:27,300
+uma mutao de nome.
+
+55
+00:03:27,340 --> 00:03:31,130
+Ns apenas chamaremos nossa mutao de inscrio diretamente.
+
+56
+00:03:31,150 --> 00:03:35,710
+Vamos verificar o nosso painel Dachs e certifique-se de que temos a mutao listada aqui.
+
+57
+00:03:35,710 --> 00:03:40,520
+Ento, um clique no porto de mutao aqui  o sinal de mutao que acabamos de adicionar.
+
+58
+00:03:40,660 --> 00:03:46,260
+E, claro, espera obter um email diretamente como uma string e uma senha como uma string tambm.
+
+59
+00:03:46,330 --> 00:03:49,660
+E isso deve retornar um tipo de usurio e um tipo de usurio.
+
+60
+00:03:49,660 --> 00:03:52,790
+Atualmente, apenas um e-mail est disponvel para ele.
+
+61
+00:03:52,810 --> 00:03:55,390
+Ns no temos um eu. D. No temos uma senha atribuda a ele.
+
+62
+00:03:55,390 --> 00:03:56,330
+Nada como isso.
+
+63
+00:03:56,350 --> 00:03:59,590
+Apenas um e-mail no momento.
+
+64
+00:03:59,590 --> 00:04:05,560
+um novo usurio primeiro, declararemos que queremos chamar uma mutao, ento vamos definir a mutao que queremos chamar.
+
+65
+00:04:06,490 --> 00:04:08,680
+Ento, vamos escrever nossa mutao para registrar
+
+66
+00:04:08,710 --> 00:04:11,450
+No nosso caso, ser a mutao de inscrio.
+
+67
+00:04:11,590 --> 00:04:17,740
+Mais uma vez, no estamos fazendo uma mutao chamada aqui, ento no vamos usar o Sign-Up principal
+
+68
+00:04:17,740 --> 00:04:22,540
+aqui e tentar usar as variveis Kery porque eu s quero chamar a mutao
+
+69
+00:04:22,540 --> 00:04:25,400
+diretamente para garantir que possamos executar com sucesso.
+
+70
+00:04:25,660 --> 00:04:34,960
+Precisamos encontrar um e-mail aqui e eu darei isso, basta testar no test dot com e tambm definir
+
+71
+00:04:35,110 --> 00:04:37,650
+uma senha de senha e.
+
+72
+00:04:37,820 --> 00:04:39,250
+Ops, eu fiz um pequeno erro de digitao aqui.
+
+73
+00:04:39,250 --> 00:04:40,240
+Eu usei aspas simples.
+
+74
+00:04:40,240 --> 00:04:45,310
+Certifique-se de que use aspas duplas para ambas as cordas.
+
+75
+00:04:45,310 --> 00:04:46,320
+Meu erro.
+
+76
+00:04:46,660 --> 00:04:48,290
+Ok, isso parece um pouco melhor.
+
+77
+00:04:48,670 --> 00:04:53,580
+E ento, como sempre, precisamos ter certeza de que pedimos pelo menos uma propriedade em troca da mutao.
+
+78
+00:04:53,620 --> 00:04:56,870
+Ento, eu vou pedir o e-mail do usurio.
+
+79
+00:04:56,890 --> 00:05:02,740
+Ento, vamos apenas afirmar que o usurio est sendo criado com sucesso pedindo o e-mail
+
+80
+00:05:02,740 --> 00:05:03,640
+que retorna.
+
+81
+00:05:04,300 --> 00:05:04,630
+EST BEM.
+
+82
+00:05:04,660 --> 00:05:07,170
+Ento vamos fazer isso.
+
+83
+00:05:07,450 --> 00:05:08,990
+Tudo bem, isso parece bastante razovel.
+
+84
+00:05:09,070 --> 00:05:12,010
+Recebo uma resposta que contm e-mail.
+
+85
+00:05:12,010 --> 00:05:13,740
+Test set test dot com.
+
+86
+00:05:13,810 --> 00:05:20,800
+Portanto, presumivelmente, podemos assumir que, neste momento, um usurio foi adicionado  coleo de usurios em nosso banco de dados
+
+87
+00:05:20,830 --> 00:05:27,220
+de laboratrio e, mais importante ainda, que atualmente estamos autenticados ou assinamos nosso nmero de aplicativo,  o
+
+88
+00:05:27,710 --> 00:05:30,960
+que o objetivo real aqui  o Cadastro. mutao.
+
+89
+00:05:30,970 --> 00:05:36,250
+No  apenas para criar um novo usurio, mas tambm para se autenticar simultaneamente
+
+90
+00:05:36,250 --> 00:05:43,030
+com o aplicativo, alm de garantir que o usurio seja criado, podemos virar para nossa interface de laboratrio.
+
+91
+00:05:43,030 --> 00:05:52,050
+Ento, aqui est a interface do meu laboratrio, eu estou olhando para o meu banco de dados de autenticao ou atualizado a pgina e eu deveria ver
+
+92
+00:05:52,050 --> 00:05:54,800
+automaticamente uma nova coleo aparecer na lista aqui.
+
+93
+00:05:54,840 --> 00:05:58,830
+Ento, aqui est a coleo de usurios que acabou de ser criada automaticamente.
+
+94
+00:05:58,830 --> 00:06:02,240
+Voc notar que tambm h uma coleo de sesses aqui.
+
+95
+00:06:02,400 --> 00:06:08,070
+Isso faz parte do registro de sesso, mantendo parte do expresso que  sempre ou
+
+96
+00:06:08,070 --> 00:06:10,440
+desculpa-me j ligado no nosso projeto.
+
+97
+00:06:10,440 --> 00:06:16,740
+Ento, vejamos a coleo de usurios realmente um clique rpido nele e podemos percorrer um pouco
+
+98
+00:06:16,830 --> 00:06:21,390
+e ver o que parece que nosso usurio foi criado com sucesso.
+
+99
+00:06:21,390 --> 00:06:27,650
+Voc tambm notar que nossa senha est aqui tambm e no  absolutamente uma senha de texto simples.
+
+100
+00:06:27,720 --> 00:06:33,630
+Ento,  salgado e esmagado, o que significa que, se algum simplesmente tiver acesso a todos os nossos registros
+
+101
+00:06:33,630 --> 00:06:38,970
+de usurios, incluindo todas as nossas senhas de usurios, eles tero uma chance de tentar descobrir a
+
+102
+00:06:39,030 --> 00:06:42,660
+senha real do usurio a partir dessa seqncia de caracteres criptografada Aqui.
+
+103
+00:06:43,260 --> 00:06:43,560
+EST BEM.
+
+104
+00:06:43,590 --> 00:06:48,990
+Ento, parece que nossa inscrio, pelo menos, o lado da criao do usurio est funcionando corretamente.
+
+105
+00:06:48,990 --> 00:06:55,980
+Mais uma vez, a minha expectativa agora  que, alm de criar esse novo usurio, eu tambm deveria ter
+
+106
+00:06:56,040 --> 00:07:02,790
+obtido um lugar de cookie na minha sesso ou devo dizer e identificar ou colocar na minha sesso
+
+107
+00:07:02,880 --> 00:07:10,470
+que diz que, quem est fazendo solicitaes deste navegador, aqui est o usurio teste no ponto de teste com e consideramos
+
+108
+00:07:10,470 --> 00:07:11,960
+que eles so autenticados.
+
+109
+00:07:12,090 --> 00:07:15,290
+Ento, ns realmente no temos nenhuma boa maneira de provar isso em nosso servidor ainda.
+
+110
+00:07:15,300 --> 00:07:18,110
+Ns realmente no temos nenhuma boa maneira de testar a autenticao.
+
+111
+00:07:18,120 --> 00:07:22,620
+Certamente, vamos em um momento, mas agora teremos que assumir a f cega de
+
+112
+00:07:22,620 --> 00:07:25,720
+que estamos sendo autenticados com sucesso com o nosso servidor.
+
+113
+00:07:27,500 --> 00:07:27,920
+EST BEM.
+
+114
+00:07:27,960 --> 00:07:29,090
+Isso parece muito bom.
+
+115
+00:07:29,190 --> 00:07:34,680
+Agora que temos a capacidade de se inscrever e assinar ou desculpar-me de se inscrever e criar um
+
+116
+00:07:34,680 --> 00:07:40,420
+novo usurio com o nosso aplicativo, acho que faz muito sentido agora passar para poder sair de nossa aplicao.
+
+117
+00:07:40,440 --> 00:07:46,100
+Ento, vamos comear a trabalhar no ajudante de logout ou a mutao de logout na prxima seo.
+

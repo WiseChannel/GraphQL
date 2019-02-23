@@ -1,0 +1,236 @@
+1
+00:00:01,020 --> 00:00:06,270
+Ns sempre precisamos estar conscientes de garantir que nosso usurio possa navegar em todas as diferentes
+
+2
+00:00:06,270 --> 00:00:07,790
+pginas em nosso site.
+
+3
+00:00:07,980 --> 00:00:13,830
+Portanto, ns realmente no podemos assumir que um usurio sempre estar digitando manualmente em voc ou  assim.
+
+4
+00:00:13,830 --> 00:00:18,390
+Como tal, precisamos ter certeza de que estamos ligados entre as diferentes pginas do nosso produto.
+
+5
+00:00:18,390 --> 00:00:22,830
+Ento, nesta seo, vamos adicionar um pequeno boto para trs para levar o usurio de
+
+6
+00:00:22,830 --> 00:00:28,890
+volta  lista de msicas e tambm modificaremos nosso componente de lista de msicas para garantir que eles possam clicar
+
+7
+00:00:28,890 --> 00:00:33,330
+em cada msica e ir para elas tela de detalhes da msica respectiva das msicas.
+
+8
+00:00:33,330 --> 00:00:35,780
+Ento vamos cuidar desses dois desafios agora.
+
+9
+00:00:36,030 --> 00:00:40,680
+Em ambos os casos, realmente s vai girar em torno de fazer uso da tag do link
+
+10
+00:00:40,710 --> 00:00:43,860
+do roteador re-agir porque realmente queremos apenas fazer uma navegao simples.
+
+11
+00:00:44,220 --> 00:00:55,410
+Ento, dentro da msica, faa um componente no topo, vou importar o link do roteador re-agir e, em seguida, dentro do mtodo
+
+12
+00:00:55,410 --> 00:00:58,730
+de renderizao logo acima do H3.
+
+13
+00:00:58,890 --> 00:01:03,580
+Ou coloque uma marca de link com o texto de volta.
+
+14
+00:01:03,810 --> 00:01:09,960
+E se algum clicar nessa coisa, eu vou envi-los para minha rota rota assim.
+
+15
+00:01:10,790 --> 00:01:13,420
+Ento, vamos fazer um teste rpido.
+
+16
+00:01:13,440 --> 00:01:13,720
+Tudo bem.
+
+17
+00:01:13,740 --> 00:01:20,010
+H meu boto de trs e clique de volta e isso me leva de volta  minha lista de todas as msicas diferentes
+
+18
+00:01:20,010 --> 00:01:21,750
+que eu tenho dentro da minha aplicao.
+
+19
+00:01:21,750 --> 00:01:27,360
+Agora, uma vez que estou de volta, eu realmente quero ter certeza de que meu usurio tenha a capacidade de navegar at uma
+
+20
+00:01:27,360 --> 00:01:28,710
+pgina de detalhes da msica.
+
+21
+00:01:28,740 --> 00:01:31,690
+Ento, idealmente, eu faria o texto aqui clicvel.
+
+22
+00:01:31,710 --> 00:01:35,120
+Ento, um usurio pode clicar nela e ir para a pgina de detalhes.
+
+23
+00:01:35,190 --> 00:01:36,500
+Ol slim.
+
+24
+00:01:36,810 --> 00:01:40,090
+Ento podemos cuidar disso dentro do componente da nossa lista de msicas.
+
+25
+00:01:40,260 --> 00:01:46,500
+De volta ao meu editor de cdigo, vou encontrar o meu componente de lista de msicas aqui vamos.
+
+26
+00:01:46,760 --> 00:01:52,770
+Eu j estou fazendo uso da tag de link aqui, ento eu no preciso importar a tag de link aqui.
+
+27
+00:01:52,940 --> 00:01:54,780
+Eu vou me deslocar um pouco para baixo.
+
+28
+00:01:54,980 --> 00:02:01,490
+Aqui est a funo da msica de renderizao onde iterar atravs da nossa lista de msicas e para cada msica que
+
+29
+00:02:01,520 --> 00:02:05,110
+temos, ns geramos uma mentira em mostrar o ttulo da msica.
+
+30
+00:02:05,450 --> 00:02:11,330
+Ento, uma vez que eu s quero que o ttulo da msica seja clicvel, vou envolv-lo com uma tag de link.
+
+31
+00:02:12,320 --> 00:02:19,580
+Ento, coloque um link em torno do ttulo, de vez em quando, voc precisa pensar um pouco sobre como vamos
+
+32
+00:02:19,580 --> 00:02:20,300
+colocar isso.
+
+33
+00:02:20,300 --> 00:02:21,470
+Vocs esto todos juntos.
+
+34
+00:02:21,650 --> 00:02:26,730
+Lembre-se de que queremos ir s msicas cortar a idia de nossa msica.
+
+35
+00:02:26,960 --> 00:02:32,150
+Assim, as idias esto disponveis como a ID de varivel dentro desta funo de mapa.
+
+36
+00:02:32,150 --> 00:02:36,740
+Eu acho que vai usar um pouco de cordas de modelo E-6 para formar o URL que vamos
+
+37
+00:02:36,740 --> 00:02:37,310
+visitar aqui.
+
+38
+00:02:37,610 --> 00:02:40,700
+Ento, todos dizem back ticks para formar a seqncia de caracteres do modelo.
+
+39
+00:02:40,730 --> 00:02:43,190
+Mais uma vez no consigo estress-lo o suficiente.
+
+40
+00:02:43,190 --> 00:02:52,280
+tticas aqui e no citaes simples e diga msicas e depois a ID da msica que voc est tentando visitar.
+
+41
+00:02:52,280 --> 00:02:54,300
+Certifique-se de que est usando
+
+42
+00:02:54,380 --> 00:02:59,660
+Ento, esta funo de mapa aqui ser executada uma vez por cada msica que buscamos
+
+43
+00:02:59,960 --> 00:03:05,810
+e criaremos uma marca de link diferente para cada msica diferente, cada uma das quais apontar para
+
+44
+00:03:05,810 --> 00:03:08,800
+um diferente voc ou L dentro de nossa aplicao.
+
+45
+00:03:08,810 --> 00:03:09,770
+Tudo bem.
+
+46
+00:03:09,770 --> 00:03:15,470
+Eu acho que estamos prontos para testar alguma navegao, ento eu preciso voltar para o meu
+
+47
+00:03:15,470 --> 00:03:19,260
+aplicativo ir atualizar a pgina parece que tudo  clicvel agora.
+
+48
+00:03:19,460 --> 00:03:20,850
+Ento, v para rastrear no.
+
+49
+00:03:20,900 --> 00:03:23,020
+Parece boa noite de cachorro.
+
+50
+00:03:23,270 --> 00:03:28,430
+Ol leo de caf e balde de gua fina.
+
+51
+00:03:28,430 --> 00:03:28,830
+Tudo bem.
+
+52
+00:03:28,850 --> 00:03:30,440
+Ento, isso parece muito bom.
+
+53
+00:03:30,440 --> 00:03:34,940
+Estou bastante satisfeito com a forma como est acontecendo agora. A prxima coisa em que precisamos trabalhar 
+
+54
+00:03:34,940 --> 00:03:41,270
+garantir que, uma vez que voc esteja olhando para uma determinada msica, os usurios tm a capacidade de criar e adicionar letras para essa msica
+
+55
+00:03:41,270 --> 00:03:44,820
+em particular porque lembre-se disso sobre o que  toda a nossa aplicao.
+
+56
+00:03:44,840 --> 00:03:48,400
+Queremos que nossos usurios possam adicionar letras para uma msica.
+
+57
+00:03:48,680 --> 00:03:53,500
+Ento, vamos continuar na prxima seo e comearemos a trabalhar no componente de criao de
+
+58
+00:03:53,510 --> 00:03:55,920
+letras que colocamos dentro dos detalhes da msica.
+
+59
+00:03:56,170 --> 00:03:58,640
+Ento vamos cuidar disso em apenas um momento.
+

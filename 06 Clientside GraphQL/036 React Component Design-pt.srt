@@ -1,0 +1,428 @@
+1
+00:00:00,770 --> 00:00:06,090
+Na ltima seo, passamos um pouco de tempo fazendo o prprio nvel de raiz configurado para aplicao.
+
+2
+00:00:06,180 --> 00:00:10,860
+Utilizamos a biblioteca do cliente Apollo e a biblioteca Apollo reativada.
+
+3
+00:00:11,020 --> 00:00:16,250
+Lembre-se de que o cliente Apollo est na frente e / ou est agilizando a biblioteca.
+
+4
+00:00:16,440 --> 00:00:22,680
+No importa se estamos usando reagir ou ver a nossa espinha dorsal ou angular, s quer obter dados
+
+5
+00:00:22,680 --> 00:00:24,960
+do nosso servidor e armazen-lo localmente.
+
+6
+00:00:25,020 --> 00:00:31,860
+ a biblioteca Apollo do re-atuao que realmente oferece uma integrao entre reagir e o nosso lado do lado do servidor
+
+7
+00:00:31,980 --> 00:00:35,260
+ou o nosso servidor de enxertia do lado do servidor.
+
+8
+00:00:35,280 --> 00:00:39,770
+Eu sei que estou fazendo um grande problema aqui sobre as diferentes bibliotecas das quais estamos fazendo uso.
+
+9
+00:00:39,960 --> 00:00:44,360
+Mas com o passar do tempo, vamos fazer uso de muitas bibliotecas diferentes.
+
+10
+00:00:44,400 --> 00:00:49,340
+Ento, eu quero ter certeza de que  realmente claro ainda claro o que  o objetivo de cada um
+
+11
+00:00:49,620 --> 00:00:52,260
+deles e o que eles realmente esto fazendo por ns.
+
+12
+00:00:52,890 --> 00:00:53,450
+EST BEM.
+
+13
+00:00:53,670 --> 00:00:56,400
+Ns temos o nvel de raiz configurado em nossa aplicao.
+
+14
+00:00:56,400 --> 00:01:01,980
+E mencionei na ltima seo que isso  realmente tudo o que temos a fazer para que nosso aplicativo
+
+15
+00:01:02,010 --> 00:01:05,150
+funcione e comece a usar dados do lado do cliente.
+
+16
+00:01:05,280 --> 00:01:07,990
+E ento, nesta seo, quero realmente provar isso para voc.
+
+17
+00:01:08,220 --> 00:01:13,440
+Eu quero criar um novo componente que mostrar uma lista de todas as msicas em nosso
+
+18
+00:01:13,440 --> 00:01:19,350
+aplicativo e vamos escrever alguma consulta em nosso cdigo aqui, em algum lugar que v e buscar esses
+
+19
+00:01:19,350 --> 00:01:22,360
+dados do servidor como a lista de msicas do servidor.
+
+20
+00:01:22,560 --> 00:01:27,340
+Ento, vamos comear com o lado real ou de reao da nossa aplicao na seo.
+
+21
+00:01:27,390 --> 00:01:31,680
+A primeira coisa que eu quero fazer  conversar um pouco sobre os diferentes componentes
+
+22
+00:01:31,680 --> 00:01:32,710
+que vamos fazer.
+
+23
+00:01:33,090 --> 00:01:37,190
+Ento lembre-se de que temos duas pginas diferentes, pelo menos, dentro desta aplicao.
+
+24
+00:01:37,200 --> 00:01:39,310
+Temos a pgina do ndice de msica.
+
+25
+00:01:39,360 --> 00:01:41,810
+Temos uma pgina de detalhes da msica.
+
+26
+00:01:42,000 --> 00:01:45,430
+A pgina ndice de msicas mostra uma lista de todas as msicas diferentes.
+
+27
+00:01:45,480 --> 00:01:52,380
+Ento, vou dizer que vamos criar um componente chamado Lista de msicas para mostrar todas as msicas diferentes.
+
+28
+00:01:52,410 --> 00:01:58,820
+No vou fazer um item de lista de msicas, voc conhece um componente apenas para mostrar um item individual na lista.
+
+29
+00:01:58,980 --> 00:02:03,510
+Eu acho que o componente ser bastante direto e devemos conseguir sair com
+
+30
+00:02:03,510 --> 00:02:11,100
+apenas fazer um nico componente para renderizar a lista e cada item individual na pgina de detalhes da msica e voltaremos a
+
+31
+00:02:11,220 --> 00:02:13,780
+esses nomes de componentes mais tarde .
+
+32
+00:02:13,830 --> 00:02:17,640
+ir criar uma nova letra e adicion-la a uma msica.
+
+33
+00:02:17,640 --> 00:02:25,500
+Eu s quero dar um pouco de uma prvia do que os diferentes componentes iro fazer, ter um detalhe geral da msica, um
+
+34
+00:02:25,650 --> 00:02:31,260
+componente que ser responsvel por buscar todas as letras associadas a esta msica em particular, todas
+
+35
+00:02:31,260 --> 00:02:36,750
+as letras diferentes sero representado por um componente chamado lista de letras e que tambm ter
+
+36
+00:02:36,750 --> 00:02:38,430
+o componente aqui embaixo, que
+
+37
+00:02:38,670 --> 00:02:41,310
+Vamos fazer com que isso seja chamado de letra.
+
+38
+00:02:41,640 --> 00:02:43,440
+Ento, alguns componentes diferentes aqui.
+
+39
+00:02:43,590 --> 00:02:49,860
+Eu lembro que tambm queremos ter uma tela para criar uma nova msica que provavelmente ser
+
+40
+00:02:49,860 --> 00:02:55,730
+outro componente, provavelmente, algo como criar msica, mas certamente podemos descobrir isso quando chegarmos l.
+
+41
+00:02:55,740 --> 00:03:00,810
+Ento, novamente eu quero comear com o componente da lista de msicas nesta seo.
+
+42
+00:03:00,960 --> 00:03:05,670
+Ento, vamos continuar vamos chegar a ele para este novo componente.
+
+43
+00:03:05,670 --> 00:03:06,530
+Eu vou fazer.
+
+44
+00:03:06,570 --> 00:03:12,600
+Eu vou fazer o primeiro diretrio de um novo componente dentro da minha pasta do cliente e colocarei o componente
+
+45
+00:03:12,600 --> 00:03:14,540
+da lista de msicas dentro de l.
+
+46
+00:03:14,850 --> 00:03:18,400
+Ento, dentro do diretrio do meu projeto e encontre o diretrio do cliente.
+
+47
+00:03:18,440 --> 00:03:19,420
+Aqui est.
+
+48
+00:03:19,420 --> 00:03:27,630
+vou fazer uma nova pasta l chamada componentes e ento dentro de l eu vou fazer uma lista de msicas.
+
+49
+00:03:27,750 --> 00:03:28,790
+E eu
+
+50
+00:03:28,950 --> 00:03:29,940
+Sim.
+
+51
+00:03:30,540 --> 00:03:35,640
+Ento, isso deve ter toda a lgica necessria para buscar um indivduo.
+
+52
+00:03:35,640 --> 00:03:39,920
+Ou eu buscando uma lista de msicas e depois apresentando-as na tela.
+
+53
+00:03:40,200 --> 00:03:44,330
+Ento, vamos comear com um pouco do lado da reao das coisas.
+
+54
+00:03:44,340 --> 00:03:50,210
+Ento, o verdadeiro tipo de lgica de renderizao e como fazemos algum GSX que itere sobre uma lista de
+
+55
+00:03:50,220 --> 00:03:55,620
+msicas todo esse tipo de coisas boas e ento nos concentraremos um pouco mais no lado grfico de
+
+56
+00:03:55,620 --> 00:03:59,040
+coisas como, como realmente buscamos o dados aos quais queremos acessar.
+
+57
+00:03:59,040 --> 00:04:06,330
+Ento, primeiro o lado de Riak das coisas que a placa de caldeira que provavelmente estamos familiarizados com o que
+
+58
+00:04:06,330 --> 00:04:07,580
+vou importar reage.
+
+59
+00:04:07,860 --> 00:04:13,620
+Eu vou fazer deste um componente baseado em classe, no porque eu pretendo usar o nvel de nvel
+
+60
+00:04:13,620 --> 00:04:14,270
+de componente.
+
+61
+00:04:14,430 --> 00:04:19,200
+Eu espero que este seja um componente bastante complexo, onde provavelmente vou querer
+
+62
+00:04:19,200 --> 00:04:24,180
+ter um par de mtodos auxiliares e, assim, farei um componente baseado em classe.
+
+63
+00:04:24,210 --> 00:04:31,110
+fazer o meu componente de lista de msicas e, em seguida, imediatamente na parte inferior eu vou exportar a
+
+64
+00:04:31,110 --> 00:04:35,250
+lista de msicas padro colocar aqui um mtodo de renderizao .
+
+65
+00:04:38,340 --> 00:04:45,830
+Ento, novamente, aula baseada apenas porque eu espero ter um pouco de desejo de ter mtodos auxiliares dentro daqui, ento vou
+
+66
+00:04:46,680 --> 00:04:56,100
+Penso que, no momento, podemos simplesmente retornar uma div que diga a lista de msicas, de uma forma ou outra, apenas para obter algo na tela
+
+67
+00:04:56,100 --> 00:05:01,250
+apenas para garantir que possamos renderizar isso na tela a partir do nmero um.
+
+68
+00:05:01,330 --> 00:05:06,370
+Eu vou voltar para o arquivo ndice do meu ndice, onde  o tipo de
+
+69
+00:05:06,370 --> 00:05:11,980
+bootstrapping do lado do cliente do Apollo e eu vou importar aquele componente e, imediatamente, exibi-lo dentro
+
+70
+00:05:12,040 --> 00:05:13,070
+do componente raiz.
+
+71
+00:05:13,090 --> 00:05:18,790
+Ento, novamente, isso  apenas para obter a coisa na tela para que possamos v-la evoluir ao longo do tempo quando
+
+72
+00:05:18,790 --> 00:05:20,310
+comeamos a trabalhar com o Apollo.
+
+73
+00:05:20,860 --> 00:05:29,530
+Ento, importe a lista de msicas da lista de msicas de componentes, certifique-se de que voc obteve a barra de pontos l porque
+
+74
+00:05:29,530 --> 00:05:34,750
+estamos acessando o diretrio de componentes dentro da pasta de clientes atual na qual
+
+75
+00:05:34,750 --> 00:05:35,420
+estamos trabalhando.
+
+76
+00:05:35,710 --> 00:05:41,290
+E ento eu vou substituir o div de lrico com a lista de msicas, ento
+
+77
+00:05:44,570 --> 00:05:49,460
+agora, uma coisa que eu quero lembr-lo, voc pode fazer muita digitao em toda
+
+78
+00:05:49,520 --> 00:05:53,140
+essa seo como uma quantidade louca de digitao como lembrete.
+
+79
+00:05:53,180 --> 00:05:58,790
+Eu encorajo voc a verificar constantemente seu terminal e estar observando isso para ver se voc
+
+80
+00:05:58,790 --> 00:06:00,550
+possui alguma informao de depurao.
+
+81
+00:06:00,740 --> 00:06:03,760
+Se voc fizer erros de digitao, eles aparecero aqui.
+
+82
+00:06:03,770 --> 00:06:08,150
+Voc vai ter uma grande mensagem de erro e vai dizer algo como Hey, eu esperava ver
+
+83
+00:06:08,150 --> 00:06:10,390
+x y z alguma mudana em algum lugar.
+
+84
+00:06:10,400 --> 00:06:13,910
+Voc sabe, deixe-me seguir em frente, faa uma mudana aqui que vai quebr-lo.
+
+85
+00:06:13,910 --> 00:06:14,980
+Ento, aqui  um timo exemplo.
+
+86
+00:06:15,000 --> 00:06:18,700
+Ei esperou a correspondente tag de fechamento GSX aqui.
+
+87
+00:06:18,860 --> 00:06:25,040
+A lista de msicas est ligada ou est fechada, ento no vou verificar o terminal com muita frequncia,
+
+88
+00:06:25,040 --> 00:06:29,510
+mas se voc vir algum erro dentro do navegador, algo no aparecer corretamente.
+
+89
+00:06:29,510 --> 00:06:34,400
+Por favor, por favor, imploro que voc d uma olhada no seu terminal e certifique-se de que
+
+90
+00:06:34,460 --> 00:06:36,520
+tudo esteja funcionando como seria de esperar.
+
+91
+00:06:37,580 --> 00:06:40,330
+OK, ento voltei a trabalhar do jeito que espero.
+
+92
+00:06:40,340 --> 00:06:44,130
+Eu reparei esse pequeno erro de digitao e vou voltar para o meu navegador.
+
+93
+00:06:44,150 --> 00:06:48,510
+Atualize a pgina e apenas certifique-se de que eu possa fazer com que tudo aparea.
+
+94
+00:06:48,510 --> 00:06:52,010
+Ento eu acho que provavelmente j cometi um erro aqui.
+
+95
+00:06:52,070 --> 00:06:55,680
+A lista de msicas deve renderizar um componente de reao reativo vlido.
+
+96
+00:06:56,060 --> 00:07:00,340
+Eu negligenciei devolver o assunto.
+
+97
+00:07:00,470 --> 00:07:04,430
+Desculpe, s vezes, as pessoas que falam e digitar realmente tem um impacto sobre voc.
+
+98
+00:07:04,820 --> 00:07:06,920
+OK, ento  muito melhor.
+
+99
+00:07:06,920 --> 00:07:12,050
+Engraado que eu mencionei verificar coisas para depurao quando eu cometi um erro eu mesmo.
+
+100
+00:07:12,260 --> 00:07:15,170
+Peo desculpa por isso, ento atualizo a pgina.
+
+101
+00:07:15,170 --> 00:07:17,170
+Eu deveria ter alguma lista aparecendo na tela.
+
+102
+00:07:17,220 --> 00:07:18,680
+Yup parece ser bom.
+
+103
+00:07:19,100 --> 00:07:24,230
+OK, este  um lugar muito bom para fazer uma pausa rpida e, quando voltarmos, vamos adicionar
+
+104
+00:07:24,260 --> 00:07:26,680
+um grfico a uma consulta para este componente.
+
+105
+00:07:26,840 --> 00:07:32,570
+Vamos descobrir exatamente como fazer a camada de ligao entre o nosso grfico para todo o servidor e
+
+106
+00:07:32,570 --> 00:07:33,980
+/ ou re-agir componente.
+
+107
+00:07:34,040 --> 00:07:36,270
+Ento vamos cuidar disso na prxima seo.
+

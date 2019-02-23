@@ -1,0 +1,408 @@
+1
+00:00:00,750 --> 00:00:05,790
+In the last section we spoke a little bit about the song create component which we'll use to make a
+
+2
+00:00:05,790 --> 00:00:08,670
+new song to save to our back and database.
+
+3
+00:00:08,670 --> 00:00:13,650
+And we also had said that it was going to be a separate component which probably meant that we need
+
+4
+00:00:13,650 --> 00:00:18,540
+to have re-act router inside of our application to navigate between these different pages that we're
+
+5
+00:00:18,540 --> 00:00:19,520
+using.
+
+6
+00:00:19,560 --> 00:00:24,550
+So let's continue now by setting up re-act router inside of our application.
+
+7
+00:00:24,630 --> 00:00:29,580
+I've already taken the liberty of installing re-act router inside of the starter package.
+
+8
+00:00:29,580 --> 00:00:35,010
+So we just have to start importing objects from it and we can do all the routes set up directly inside
+
+9
+00:00:35,010 --> 00:00:38,110
+of this top level index not J.S. file.
+
+10
+00:00:38,370 --> 00:00:41,040
+So right now I'm in inside of client index.
+
+11
+00:00:41,820 --> 00:00:45,920
+And we'll do the re-act router setup directly inside of here.
+
+12
+00:00:45,930 --> 00:00:51,000
+One thing I want to say quickly about re-act router is that this is really a course about graph.
+
+13
+00:00:51,000 --> 00:00:53,420
+Q Well not quite so much re-act router.
+
+14
+00:00:53,640 --> 00:00:59,850
+So we're going to keep our use of re-act router strictly as really as straightforward as possible and
+
+15
+00:00:59,850 --> 00:01:03,980
+we're also going to use a very stable version of re-act router.
+
+16
+00:01:04,020 --> 00:01:08,230
+So we're not going to use the much newer experimental version 4.
+
+17
+00:01:08,370 --> 00:01:14,680
+We're going to use the battle tested version 3 which has a really straightforward API to work with.
+
+18
+00:01:14,730 --> 00:01:16,950
+If you've never worked with re-act router before.
+
+19
+00:01:17,100 --> 00:01:22,140
+Again don't sweat it really going to walk through it very closely very carefully.
+
+20
+00:01:22,290 --> 00:01:24,360
+Make sure we understand what's going on.
+
+21
+00:01:24,960 --> 00:01:30,480
+So let's start off by importing a couple helpers from the re-act router library at the top of this file
+
+22
+00:01:32,040 --> 00:01:33,160
+from re-act router.
+
+23
+00:01:33,210 --> 00:01:43,230
+We're going to import the router object route hash history and index route from re-act router like so
+
+24
+00:01:44,220 --> 00:01:47,380
+now you'll note that I'm making use of hash history here.
+
+25
+00:01:47,460 --> 00:01:52,980
+The back end server that we are making use of is just set up for using hash history as opposed to the
+
+26
+00:01:52,980 --> 00:01:54,830
+fancier browser history.
+
+27
+00:01:54,840 --> 00:01:58,160
+I highly recommend just going ahead with hash histories here.
+
+28
+00:01:58,170 --> 00:02:00,240
+Again this is a course about graft.
+
+29
+00:02:00,270 --> 00:02:06,540
+Well that's what we're really focused on not quite so much configuration of browser history with re-act
+
+30
+00:02:06,540 --> 00:02:06,910
+router.
+
+31
+00:02:06,930 --> 00:02:09,870
+So we're going to go with a much more straightforward hash history
+
+32
+00:02:13,130 --> 00:02:18,680
+now that we've got all these helpers we can start setting up the router directly inside of our root
+
+33
+00:02:18,680 --> 00:02:19,920
+component.
+
+34
+00:02:20,450 --> 00:02:26,540
+So rather than always showing the song list we're going to hand off the responsibility of rendering
+
+35
+00:02:26,570 --> 00:02:30,590
+everything about our application to react router itself.
+
+36
+00:02:30,740 --> 00:02:39,230
+So we'll define an instance of the router and we'll pass it the history object cache history like so
+
+37
+00:02:40,190 --> 00:02:43,970
+now already I've kind of made a very interesting architectural choice here.
+
+38
+00:02:44,030 --> 00:02:51,770
+I've said that the Apollo provider is wrapping the entire re-act router as opposed to the other way
+
+39
+00:02:51,770 --> 00:02:52,620
+around.
+
+40
+00:02:53,150 --> 00:03:00,230
+Re-act router is not quite set up that well for having some component wrap every single one of its child
+
+41
+00:03:00,320 --> 00:03:01,120
+routes.
+
+42
+00:03:01,340 --> 00:03:07,070
+So in practice by convention we usually put Appollo provider on the outside and then define all the
+
+43
+00:03:07,070 --> 00:03:13,330
+different routes associated with our application inside the provider.
+
+44
+00:03:13,890 --> 00:03:19,520
+Let's define our first route which will have the route route of just slash.
+
+45
+00:03:19,530 --> 00:03:22,620
+And for this we don't have a component to show just yet.
+
+46
+00:03:22,770 --> 00:03:30,000
+So I'm going to assume that we're going to make a component probably called something like app and then
+
+47
+00:03:30,000 --> 00:03:32,780
+we'll close off the route tag.
+
+48
+00:03:33,420 --> 00:03:39,540
+So we again we do not yet have the app component the app component is intended to solely be presentational
+
+49
+00:03:39,540 --> 00:03:40,330
+in nature.
+
+50
+00:03:40,380 --> 00:03:44,880
+So it's just going to be something that's going to receive a component as a child and then show it on
+
+51
+00:03:44,880 --> 00:03:45,660
+the screen.
+
+52
+00:03:45,870 --> 00:03:49,530
+Again this is going a little bit into knowledge about re-act router in particular.
+
+53
+00:03:49,740 --> 00:03:54,630
+All we really need to understand is that the app component is going to just show another component on
+
+54
+00:03:54,630 --> 00:03:56,700
+the screen.
+
+55
+00:03:56,700 --> 00:03:59,750
+We can then define our song list component.
+
+56
+00:04:00,030 --> 00:04:05,190
+I want to show the song list whenever a user hits the route of our application.
+
+57
+00:04:05,190 --> 00:04:08,550
+So just slash by itself to accomplish that effect.
+
+58
+00:04:08,550 --> 00:04:15,960
+We can use the index route like so and we'll say whenever someone goes to that index route we should
+
+59
+00:04:15,960 --> 00:04:19,890
+show the song list like so.
+
+60
+00:04:19,890 --> 00:04:22,520
+So I think this is probably enough to get started.
+
+61
+00:04:22,620 --> 00:04:27,630
+I think we'll come back and address the song create component in just a second after we're sure that
+
+62
+00:04:27,630 --> 00:04:31,170
+we've got this code at least working pretty well to get this working.
+
+63
+00:04:31,170 --> 00:04:35,760
+We need to make sure that we define that app component right there.
+
+64
+00:04:35,760 --> 00:04:37,960
+Let's import the app component.
+
+65
+00:04:38,040 --> 00:04:42,270
+Again we haven't created it yet but we'll assume that we'll make it just right now.
+
+66
+00:04:42,270 --> 00:04:44,100
+So an import app from
+
+67
+00:04:46,650 --> 00:04:55,810
+components slash out like so and then in the components directory will make this new app dot J.S. component
+
+68
+00:04:59,700 --> 00:05:03,000
+inside of your will import re-act from react.
+
+69
+00:05:03,960 --> 00:05:08,410
+And we're going to keep this component just dead simple.
+
+70
+00:05:08,460 --> 00:05:14,340
+We're going to make it a functional component and no matter what it's always going return a div with
+
+71
+00:05:14,340 --> 00:05:16,440
+a class name of container.
+
+72
+00:05:17,190 --> 00:05:22,800
+I'm using a classroom of container here solely because it's going to help us out with some of the styling
+
+73
+00:05:22,800 --> 00:05:24,530
+on the CSSA side.
+
+74
+00:05:24,900 --> 00:05:30,510
+Materialize USS which we're using always assumes that you're using some root component with a classroom
+
+75
+00:05:30,510 --> 00:05:31,430
+of container.
+
+76
+00:05:31,590 --> 00:05:36,080
+And so we're really just following that convention here and will close off the div.
+
+77
+00:05:36,150 --> 00:05:41,100
+And then the last thing to do is to make sure that we show any children component that are passed into
+
+78
+00:05:41,100 --> 00:05:42,550
+this thing as props.
+
+79
+00:05:42,960 --> 00:05:49,770
+So we will structure off the props object will get the reference to any children and then we'll show
+
+80
+00:05:49,770 --> 00:05:52,440
+it inside of the div.
+
+81
+00:05:52,440 --> 00:05:56,100
+Again I know I've mentioned this several times but this is really going into knowledge about re-act
+
+82
+00:05:56,100 --> 00:05:59,640
+router which is not really our focus of what's going on here.
+
+83
+00:05:59,670 --> 00:06:06,090
+This app component right here is saying if re-act router decides to show the index route right here
+
+84
+00:06:06,430 --> 00:06:13,800
+of song list song list will be passed to the app component as children and we'll show that component
+
+85
+00:06:13,890 --> 00:06:16,890
+as a child like so using children.
+
+86
+00:06:17,460 --> 00:06:21,690
+So let's give this a shot out inside the browser and just make sure that we took care of all the re-act
+
+87
+00:06:21,690 --> 00:06:23,880
+router set up appropriately.
+
+88
+00:06:24,060 --> 00:06:30,570
+Going to go over to the browser will refresh the page and you'll notice that I get a hash in the URL
+
+89
+00:06:30,660 --> 00:06:35,490
+which is very good it means that re-act routers working as we expect and I still see the component on
+
+90
+00:06:35,490 --> 00:06:36,200
+the screen.
+
+91
+00:06:36,360 --> 00:06:39,230
+You also notice not butting up against the sides anymore.
+
+92
+00:06:39,240 --> 00:06:42,680
+That is the did with class container in action.
+
+93
+00:06:42,870 --> 00:06:48,390
+So the container class that we had on that component adds a little bit of padding or margin on the left
+
+94
+00:06:48,390 --> 00:06:53,370
+and right hand gutters of the screen which is very nice for making sure we don't butt up directly against
+
+95
+00:06:53,430 --> 00:06:55,030
+either edge.
+
+96
+00:06:55,770 --> 00:06:57,150
+OK so this looks good.
+
+97
+00:06:57,150 --> 00:07:02,500
+It looks like we've done successfully the very default core set up of re-act router.
+
+98
+00:07:02,700 --> 00:07:06,360
+We're going to come back to react router a couple of times for adding another couple of routes.
+
+99
+00:07:06,360 --> 00:07:08,920
+But again it's really not our focus.
+
+100
+00:07:08,940 --> 00:07:12,560
+We're just using it to get some routing throughout our application.
+
+101
+00:07:12,600 --> 00:07:18,540
+So let's take a quick break and then come back and start working on our song create component which
+
+102
+00:07:18,540 --> 00:07:23,960
+we'll use to add another song to the list of songs we have stored inside of our database.
+

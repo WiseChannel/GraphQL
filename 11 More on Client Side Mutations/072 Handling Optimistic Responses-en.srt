@@ -1,0 +1,392 @@
+1
+00:00:00,740 --> 00:00:06,950
+We're now ready to implement an optimistic response from our mutation we're going to do a little bit
+
+2
+00:00:06,950 --> 00:00:11,870
+of reformatting first and put the variables term on a new line because we're going to need a good amount
+
+3
+00:00:11,870 --> 00:00:14,070
+of space here.
+
+4
+00:00:14,240 --> 00:00:20,750
+Next we're going to say hey here's the optimistic response when this mutation runs I want you to try
+
+5
+00:00:20,750 --> 00:00:25,150
+to just early use this data as soon as possible.
+
+6
+00:00:25,340 --> 00:00:32,690
+So I say here's the optimistic response like so do triple check your spelling of optimistic right here.
+
+7
+00:00:32,690 --> 00:00:35,660
+Very easy place to make a little typo.
+
+8
+00:00:35,690 --> 00:00:41,100
+Now the next part is something that's not the best thing in the world because it's kind of hard to explain.
+
+9
+00:00:41,120 --> 00:00:46,740
+It might seem on the one hand really obvious but on the other hand why is it here.
+
+10
+00:00:46,970 --> 00:00:55,210
+So we have to specifically say that we are making a mutation like so now the next part is the part that's
+
+11
+00:00:55,210 --> 00:00:56,880
+much more straightforward.
+
+12
+00:00:56,890 --> 00:01:02,390
+We're going to provide the response that we are going to expect to see from our back and server.
+
+13
+00:01:02,530 --> 00:01:07,870
+And when I say that I'm talking about exactly what we see in our response log right here.
+
+14
+00:01:07,900 --> 00:01:14,110
+So like Eric the type name the ID of the record that was updated and the number of likes that it should
+
+15
+00:01:14,110 --> 00:01:15,960
+now have.
+
+16
+00:01:15,970 --> 00:01:20,900
+So we'll say like lyric because that's exactly what we saw in the response log.
+
+17
+00:01:21,250 --> 00:01:24,700
+We'll provide the ID of the record that was changed.
+
+18
+00:01:24,730 --> 00:01:31,510
+And remember we already received the ID as an argument to the online callback will then provide the
+
+19
+00:01:31,540 --> 00:01:39,160
+type name which is Lirot type just as we saw in the request log and do note that there's two underscores
+
+20
+00:01:39,160 --> 00:01:39,720
+right here.
+
+21
+00:01:39,730 --> 00:01:41,320
+Make sure you've got two.
+
+22
+00:01:41,530 --> 00:01:44,850
+And then finally we have to provide the number of likes.
+
+23
+00:01:45,280 --> 00:01:50,530
+So we don't really have access to the number of lights inside of callback right here but recall that
+
+24
+00:01:50,530 --> 00:01:56,490
+we are calling this call back on like from within the render lyrics map function.
+
+25
+00:01:56,560 --> 00:02:01,900
+So if we scroll down just a little bit here's where we call on like.
+
+26
+00:02:01,900 --> 00:02:06,170
+And we already have access to the current number of likes within that function.
+
+27
+00:02:06,400 --> 00:02:14,380
+So we're going to provide the lights as a second argument to the callback like so now backup talk inside
+
+28
+00:02:14,380 --> 00:02:21,090
+the callback we can receive the number of likes and then this is the real key.
+
+29
+00:02:21,090 --> 00:02:26,060
+This is the super important part we're going to take that number of likes and we're going to add one.
+
+30
+00:02:26,100 --> 00:02:29,020
+So that is the optimistic part of the response.
+
+31
+00:02:29,100 --> 00:02:34,320
+We are guessing that the request is going to go through successfully and we are hoping that when the
+
+32
+00:02:34,320 --> 00:02:39,950
+response comes back there's going to be an increment value for the number of likes right there.
+
+33
+00:02:40,470 --> 00:02:43,230
+So that's pretty much it for optimistic response.
+
+34
+00:02:43,240 --> 00:02:48,350
+Again we defined the optimistic response as a property when we call the mutation.
+
+35
+00:02:48,660 --> 00:02:54,810
+We have to then provide a type name of mutation and then the really important part is we essentially
+
+36
+00:02:54,810 --> 00:03:00,360
+duplicate the code or whatever we expect to see is the response from the back end.
+
+37
+00:03:00,570 --> 00:03:07,050
+In practice the approach that we just took where we looked at the mutation inside of our request log
+
+38
+00:03:07,350 --> 00:03:11,100
+that is absolutely what I recommend you do on your own application.
+
+39
+00:03:11,100 --> 00:03:16,350
+Look at run the mutation yourself look at the mutation inside the requests log right here and you can
+
+40
+00:03:16,350 --> 00:03:22,170
+literally just copy paste that whole chunk right there and stick it into the optimistic response like
+
+41
+00:03:22,170 --> 00:03:22,840
+so.
+
+42
+00:03:23,130 --> 00:03:28,330
+And then for every variable that you expect to have obviously a summit summit excuse me sub it out.
+
+43
+00:03:28,500 --> 00:03:35,940
+So like I expect the idea to not be hardcoded I expect it to be dynamic value which is why I'm specifying
+
+44
+00:03:35,940 --> 00:03:37,210
+it on the fly right here.
+
+45
+00:03:38,090 --> 00:03:43,470
+Deal with the I do want to point out is yes we can condense this down using a little bit of ESX syntax
+
+46
+00:03:43,490 --> 00:03:50,080
+to be just Id like so okay I think we're ready for a little bit of a test on this.
+
+47
+00:03:50,120 --> 00:03:55,810
+I'm going to flip over to my code editor and I'm going to refresh the page
+
+48
+00:03:59,980 --> 00:04:02,700
+and I think I've got a little bit of a typo in here somewhere.
+
+49
+00:04:03,160 --> 00:04:04,700
+Yep got a typo somewhere.
+
+50
+00:04:04,840 --> 00:04:06,150
+I think I missed a comma.
+
+51
+00:04:06,160 --> 00:04:07,400
+Let me do a quick double check
+
+52
+00:04:10,280 --> 00:04:16,760
+sorry right after variables Mr. Khama again will refresh again.
+
+53
+00:04:18,520 --> 00:04:19,960
+All right much better.
+
+54
+00:04:20,190 --> 00:04:26,490
+So now as we test this the expectation is that the instant I click on the thumbs up button I should
+
+55
+00:04:26,490 --> 00:04:33,530
+see the number increment but then the request should only resolve some tiny amount of time later.
+
+56
+00:04:33,570 --> 00:04:35,900
+Remember we're not delaying the request at all.
+
+57
+00:04:35,910 --> 00:04:38,460
+The request is still being issued instantly.
+
+58
+00:04:38,490 --> 00:04:40,350
+The only change is at this time around.
+
+59
+00:04:40,380 --> 00:04:43,590
+We are guessing at what the update should be for the UI.
+
+60
+00:04:43,860 --> 00:04:49,020
+So I'm going to click on this one and you'll notice that the number increments automatically but about
+
+61
+00:04:49,020 --> 00:04:56,340
+a quarter of a second later the request is actually responded to like so now your immediate question
+
+62
+00:04:56,340 --> 00:04:56,950
+might be.
+
+63
+00:04:57,000 --> 00:05:03,030
+Well Stephen what happens if I guess incorrectly what happens if I thought that the like was going to
+
+64
+00:05:03,030 --> 00:05:03,540
+go through.
+
+65
+00:05:03,560 --> 00:05:08,910
+But it turns out that the server rejects it or it turns out that the number of likes is actually much
+
+66
+00:05:08,910 --> 00:05:10,210
+greater than we expected.
+
+67
+00:05:10,230 --> 00:05:13,560
+Because maybe many other people have been voting on this post right here.
+
+68
+00:05:13,560 --> 00:05:18,750
+In the meantime that's a great question and we can very easily see what happens.
+
+69
+00:05:18,780 --> 00:05:21,700
+I'm going to flip back over to the optimistic update in here.
+
+70
+00:05:21,780 --> 00:05:23,130
+So here it is right here.
+
+71
+00:05:23,130 --> 00:05:24,900
+And here's the number of likes.
+
+72
+00:05:25,260 --> 00:05:31,020
+So what we know right now you and I know that whenever we run this mutation it's going to increment
+
+73
+00:05:31,020 --> 00:05:38,910
+the number of likes by 1 but let's just say you know what maybe we made a big mistake and maybe we think
+
+74
+00:05:38,910 --> 00:05:45,330
+that on the client side we believe that it's going to be changed by 12 but the server still is only
+
+75
+00:05:45,330 --> 00:05:47,200
+going to be incrementing by 1.
+
+76
+00:05:47,370 --> 00:05:48,900
+So let's see what happens now.
+
+77
+00:05:49,780 --> 00:05:54,020
+I'm going to refresh the page again OK.
+
+78
+00:05:54,230 --> 00:05:55,910
+So now when I click on the button.
+
+79
+00:05:56,130 --> 00:05:56,440
+Ah.
+
+80
+00:05:56,450 --> 00:05:58,560
+Now that's some interesting behavior.
+
+81
+00:05:58,610 --> 00:06:02,420
+The instant I click on the button the number adjusts by 12.
+
+82
+00:06:02,510 --> 00:06:04,370
+That's the optimistic update.
+
+83
+00:06:04,370 --> 00:06:10,040
+But as soon as the response comes in from the back end we get the real truth which is that it was only
+
+84
+00:06:10,040 --> 00:06:11,720
+incremented by one.
+
+85
+00:06:12,020 --> 00:06:17,570
+So you can see that optimistic updates are a pretty safe strategy for really increasing the speed of
+
+86
+00:06:17,570 --> 00:06:18,970
+your UI.
+
+87
+00:06:18,980 --> 00:06:24,320
+The only kind of risk here is that if you start doing things incorrectly your user is going to see that
+
+88
+00:06:24,320 --> 00:06:28,290
+kind of jump of data which is very much unexpected for them.
+
+89
+00:06:28,430 --> 00:06:32,630
+But in general at the end of the day it's not going to break anything per se.
+
+90
+00:06:32,690 --> 00:06:34,870
+You're not going to go totally out of whack here.
+
+91
+00:06:35,090 --> 00:06:39,100
+The UI will automatically eventually resolve to the correct answer.
+
+92
+00:06:39,960 --> 00:06:40,510
+OK.
+
+93
+00:06:40,820 --> 00:06:43,130
+So that's optimistic responses.
+
+94
+00:06:43,160 --> 00:06:47,870
+Let's continue in the next section and do a little bit of a wrap up on this application.
+
+95
+00:06:47,990 --> 00:06:48,250
+OK.
+
+96
+00:06:48,290 --> 00:06:48,960
+One last thing.
+
+97
+00:06:48,980 --> 00:06:52,120
+Let's make sure that we change the lights back to one area.
+
+98
+00:06:52,490 --> 00:06:55,920
+All right let's go to the next section and do a little wrap up on this application.
+

@@ -1,0 +1,180 @@
+1
+00:00:00,800 --> 00:00:06,630
+In the last section we hooked up our company to the route queery type so that in graphical we could
+
+2
+00:00:06,630 --> 00:00:13,190
+successfully ask for a very particular company without having to first ask for user.
+
+3
+00:00:13,260 --> 00:00:19,830
+However if I now take this query and ask for you know who are all the users who are associated with
+
+4
+00:00:19,830 --> 00:00:22,670
+this company tell me their first names.
+
+5
+00:00:22,740 --> 00:00:23,510
+We do this.
+
+6
+00:00:23,520 --> 00:00:28,640
+We get an error message that says cannot create field users on type company.
+
+7
+00:00:29,130 --> 00:00:30,480
+So why is that.
+
+8
+00:00:30,480 --> 00:00:35,190
+It definitely feels like we should be able to ask a company for all the users who are who belong to
+
+9
+00:00:35,190 --> 00:00:41,640
+that company but it turns out that we haven't actually set up that definition yet or that relationship.
+
+10
+00:00:41,640 --> 00:00:45,880
+This is a diagram of all the different relations that we have implemented so far.
+
+11
+00:00:46,140 --> 00:00:51,110
+We've instructed our root query on how to return a very particular user.
+
+12
+00:00:51,270 --> 00:00:57,230
+We've connected our user to a company so we can say hey user what company do you belong to.
+
+13
+00:00:57,390 --> 00:01:03,960
+We have the ability to go from a user over to a company but we do not yet have the ability to go from
+
+14
+00:01:03,960 --> 00:01:06,560
+a company over to a user.
+
+15
+00:01:06,870 --> 00:01:12,720
+So for every single one of these relationships going from one type of data over to another type we have
+
+16
+00:01:12,720 --> 00:01:15,200
+to set up the relationship manually.
+
+17
+00:01:15,540 --> 00:01:18,350
+So right now we've got going from left to right.
+
+18
+00:01:18,420 --> 00:01:25,500
+What we want to have is something like this where we can go from a user to a company or from a company
+
+19
+00:01:25,530 --> 00:01:28,710
+to a list of all the different users who belong to that company.
+
+20
+00:01:30,230 --> 00:01:33,710
+So let's get started on the implementation before we do.
+
+21
+00:01:33,740 --> 00:01:35,480
+I just want to remind you one more thing.
+
+22
+00:01:35,660 --> 00:01:42,410
+Every company that we have is has a Association of multiple users so many users belong to just one company
+
+23
+00:01:43,160 --> 00:01:48,470
+with the relationship that we've set up so far we can go from a single user over to a single company
+
+24
+00:01:48,560 --> 00:01:49,930
+that totally makes sense.
+
+25
+00:01:50,030 --> 00:01:58,180
+But when we go from a company over to our users I would expect to get back a list of multiple users.
+
+26
+00:01:59,250 --> 00:02:00,760
+Okay time for implementation.
+
+27
+00:02:00,800 --> 00:02:03,780
+We're going to handle this in two separate steps.
+
+28
+00:02:03,800 --> 00:02:10,160
+First we need to check out our Jason server and figure out how to get our list of users given a company
+
+29
+00:02:10,220 --> 00:02:11,170
+ID.
+
+30
+00:02:11,630 --> 00:02:19,030
+So in my browser I'm going to open up a new tab and will navigate to our Jason server.
+
+31
+00:02:19,190 --> 00:02:23,410
+I'm going to look out my company with ID number one.
+
+32
+00:02:23,600 --> 00:02:29,260
+So your company would like you one to get a list of all the users who are associated with company I.D.
+
+33
+00:02:29,270 --> 00:02:32,810
+one we can add on slash users like so.
+
+34
+00:02:32,870 --> 00:02:34,130
+So we looked at this previously.
+
+35
+00:02:34,130 --> 00:02:39,950
+I just wanted to remind you how we go from learning a little bit about a company to all the users who
+
+36
+00:02:39,950 --> 00:02:41,930
+are social with that company.
+
+37
+00:02:41,930 --> 00:02:46,620
+We can also look at company with I.T. too and that will give us all the users who are associated with
+
+38
+00:02:46,620 --> 00:02:48,120
+the company too.
+
+39
+00:02:48,200 --> 00:02:51,730
+Again this is a reminder we looked at this a couple of sections ago.
+
+40
+00:02:51,830 --> 00:02:57,050
+This is a relationship that is set up for us automatically by on server just because we add it on the
+
+41
+00:02:57,050 --> 00:02:59,980
+company ID property to each of our users.
+
+42
+00:03:00,220 --> 00:03:00,720
+OK.
+
+43
+00:03:00,860 --> 00:03:02,120
+So this is step number one.
+
+44
+00:03:02,120 --> 00:03:06,120
+Figuring out how to go from a company over to a list of users.
+
+45
+00:03:06,440 --> 00:03:12,280
+Let's continue working on the rest of the implementation inside of our schema file in the next section.
+

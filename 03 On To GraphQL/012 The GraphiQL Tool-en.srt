@@ -1,0 +1,460 @@
+1
+00:00:00,960 --> 00:00:06,750
+We've now finished up our first schema with some dummy data and get our application to at least load
+
+2
+00:00:06,750 --> 00:00:09,610
+up inside of the development tool graphical.
+
+3
+00:00:10,110 --> 00:00:15,990
+As a reminder this is a tool that is provided to us by the graph well express library.
+
+4
+00:00:15,990 --> 00:00:21,270
+We can use this tool to investigate all the different queries and whatnot inside of our application
+
+5
+00:00:22,140 --> 00:00:27,760
+on the left hand side the screen is an area we can where we can enter in a graphical query.
+
+6
+00:00:28,020 --> 00:00:33,510
+We can then run the query by pressing the play button at the top left hand side and see the results
+
+7
+00:00:33,540 --> 00:00:35,550
+pop up on the right.
+
+8
+00:00:35,550 --> 00:00:40,270
+Also note that on the very top right hand side is a panel that expands that call.
+
+9
+00:00:40,290 --> 00:00:47,250
+It is called Dock's this documentation Explorer will be automatically populated as we start to add in
+
+10
+00:00:47,310 --> 00:00:50,040
+more types of data to our application.
+
+11
+00:00:50,040 --> 00:00:56,940
+So right now we can click on route query type must see that we can use it to fetch a user provided the
+
+12
+00:00:56,940 --> 00:01:05,850
+fact that we pass an ID and we respond with a user and the user has a string of ID a first name and
+
+13
+00:01:05,850 --> 00:01:07,610
+an age assigned to it as well.
+
+14
+00:01:07,860 --> 00:01:13,350
+So over time this documentation panel starts to get a lot more information in it and it starts to get
+
+15
+00:01:13,350 --> 00:01:19,450
+really useful for figuring out how data is working inside of your application without actually having
+
+16
+00:01:19,450 --> 00:01:21,140
+to go read the schema.
+
+17
+00:01:21,670 --> 00:01:22,270
+OK.
+
+18
+00:01:22,440 --> 00:01:28,740
+So back to the left hand side the query panel at this point in the course we have at least brushed on
+
+19
+00:01:28,740 --> 00:01:33,360
+the basics of what is arguably the most difficult part of graph.
+
+20
+00:01:33,450 --> 00:01:36,750
+Well which is writing your schema file.
+
+21
+00:01:36,870 --> 00:01:41,420
+The schema is probably 50 percent of everything that is going on with graft.
+
+22
+00:01:41,470 --> 00:01:46,740
+Well the other 50 percent is all about writing queries.
+
+23
+00:01:46,800 --> 00:01:52,350
+So we're going to write our first query right now and I'll discuss exactly what is going on with it.
+
+24
+00:01:52,890 --> 00:01:56,200
+So we're going to write the code first and we'll talk about what it's doing.
+
+25
+00:01:56,250 --> 00:01:58,380
+I'm going to put a set of curly braces.
+
+26
+00:01:58,680 --> 00:02:05,420
+I'll say user id 23 and make sure ideas are 2003's in a string.
+
+27
+00:02:05,430 --> 00:02:14,280
+So we'll put another set of curly braces and I'll say Id first name and age.
+
+28
+00:02:14,280 --> 00:02:19,380
+Also notice that as we start to type stuff out here we get some nice auto complete features which is
+
+29
+00:02:19,430 --> 00:02:21,650
+of just so fantastic.
+
+30
+00:02:22,390 --> 00:02:27,420
+So now without saying anything about what we've actually typed here and the click play and on the right
+
+31
+00:02:27,420 --> 00:02:35,670
+hand side we get all the data about ID 23 or user with ID 23 so we get back the first name and the age
+
+32
+00:02:35,670 --> 00:02:37,020
+as well.
+
+33
+00:02:37,020 --> 00:02:37,620
+Magic.
+
+34
+00:02:37,680 --> 00:02:38,060
+Great.
+
+35
+00:02:38,070 --> 00:02:39,250
+That's our first query.
+
+36
+00:02:39,450 --> 00:02:43,430
+So let's talk a little bit more about what we just wrote though.
+
+37
+00:02:44,130 --> 00:02:52,230
+Queries that we write look like javascript but they are decidedly not javascript code so this is not
+
+38
+00:02:52,230 --> 00:02:54,350
+javascript that we're writing over here.
+
+39
+00:02:54,420 --> 00:03:03,060
+We can write a query in javascript like we can take this query and paste it into java script as a string
+
+40
+00:03:03,180 --> 00:03:11,480
+like we would wrap this with quotes but in practice it is not javascript code that we have in this query.
+
+41
+00:03:11,520 --> 00:03:19,440
+We asked Kraft to to look through our users and find a user with an ID of 23.
+
+42
+00:03:19,440 --> 00:03:26,520
+Once the user with an I.D. of 23 was found we then asked for the idea of that user back the first name
+
+43
+00:03:26,520 --> 00:03:30,560
+of the user and the age of that user as well.
+
+44
+00:03:30,600 --> 00:03:35,230
+The response that we got back from the server looks nearly identical in structure.
+
+45
+00:03:35,430 --> 00:03:43,500
+So we had this top level property of data that says OK I found your user Here's their ID first name
+
+46
+00:03:43,860 --> 00:03:46,050
+and age.
+
+47
+00:03:46,080 --> 00:03:50,370
+Note that the types of each of these properties are evident in the output.
+
+48
+00:03:50,580 --> 00:03:57,330
+So when we created the user type we had said that it had an ID property that was a string and so it
+
+49
+00:03:57,390 --> 00:03:58,690
+shows up as a string.
+
+50
+00:03:58,830 --> 00:04:04,260
+The first name is a string and the age is an integer as we hadn't marked it inside of the schema.
+
+51
+00:04:07,360 --> 00:04:08,320
+All right.
+
+52
+00:04:08,350 --> 00:04:16,600
+Now one thing I want to do while we have this all open is I want to pull up my schema and I want to
+
+53
+00:04:16,780 --> 00:04:22,240
+show you the schema as we're looking at the query inside of our code and hopefully we're going to get
+
+54
+00:04:22,240 --> 00:04:25,330
+a little bit of a better idea of what's going on.
+
+55
+00:04:27,210 --> 00:04:27,710
+OK.
+
+56
+00:04:27,870 --> 00:04:35,250
+So we have the query on the left hand side and the code on the right hand side the query that we wrote
+
+57
+00:04:35,250 --> 00:04:39,450
+on the left hand side gets sent to our root query type number.
+
+58
+00:04:39,570 --> 00:04:47,730
+The purpose of the query type is to take the query and enter into our graph of data because we specified
+
+59
+00:04:47,820 --> 00:04:51,110
+user as the field of the query.
+
+60
+00:04:51,120 --> 00:04:56,160
+The root query went and found the user key inside of its fields object.
+
+61
+00:04:57,860 --> 00:05:04,490
+We had specified inside of that field's object that the queries should come up with an ID that was a
+
+62
+00:05:04,490 --> 00:05:07,250
+type string which you can see that we did right here.
+
+63
+00:05:07,250 --> 00:05:13,780
+We said here is a ID argument and it has a id of type string.
+
+64
+00:05:14,840 --> 00:05:20,450
+After that graph to goes and does its thing and finds the user that we're looking for.
+
+65
+00:05:20,600 --> 00:05:27,470
+And then the object gets returned from this statement from the resolve function graph Q L will take
+
+66
+00:05:27,470 --> 00:05:33,650
+that it will pluck off the id property the first name property and the age property and return it in
+
+67
+00:05:33,650 --> 00:05:35,890
+the response over here on the right hand side.
+
+68
+00:05:37,990 --> 00:05:41,040
+Now there's one other really important item to note here.
+
+69
+00:05:41,320 --> 00:05:47,900
+Notice that inside of the resolve function we are returning a raw javascript object from the load shelf
+
+70
+00:05:47,940 --> 00:05:48,250
+right here.
+
+71
+00:05:48,260 --> 00:05:51,040
+So this returns a raw javascript object.
+
+72
+00:05:51,040 --> 00:05:57,070
+We did not have to coerce it into a user like we didn't have to say new user type because remember we
+
+73
+00:05:57,070 --> 00:05:58,920
+had to find the user type right here.
+
+74
+00:05:59,320 --> 00:06:04,610
+So everything having to do with types gets handled behind the scenes by graph Cuil.
+
+75
+00:06:04,630 --> 00:06:11,710
+For us we just have to return raw Jaison or raw javascript objects from these resolve functions and
+
+76
+00:06:11,710 --> 00:06:13,770
+graph Q L will take care of everything.
+
+77
+00:06:13,780 --> 00:06:15,150
+Front for us from there.
+
+78
+00:06:16,690 --> 00:06:19,420
+Two other quick items I want to talk about really quickly.
+
+79
+00:06:19,420 --> 00:06:24,210
+First we can easily fetch other users by changing the ID on here.
+
+80
+00:06:24,370 --> 00:06:31,310
+So rather than looking for a user with ID 23 Let's say I'm going to look for an ID of 47.
+
+81
+00:06:31,310 --> 00:06:33,960
+So replace 23 with 47.
+
+82
+00:06:33,970 --> 00:06:36,280
+Rerun the Querrey and now I get Samantha.
+
+83
+00:06:36,280 --> 00:06:37,880
+Fantastic.
+
+84
+00:06:38,140 --> 00:06:45,370
+And the other thing that I want you to look at is that we can freely change the arguments or the elements
+
+85
+00:06:45,370 --> 00:06:49,540
+that we're asking for the properties that we're asking for it out of the query itself.
+
+86
+00:06:49,600 --> 00:06:53,650
+So I can remove the first name and the age and the response I get back.
+
+87
+00:06:53,650 --> 00:07:00,190
+Now it just has the ID or I can say just given the age or just give me the first name.
+
+88
+00:07:00,370 --> 00:07:05,800
+So this plays directly into one of the discussions we had much earlier about the shortcomings of restful
+
+89
+00:07:05,800 --> 00:07:06,280
+routing.
+
+90
+00:07:06,280 --> 00:07:11,170
+If you recall when we were talking about restful routing we had said that sometimes it's really easy
+
+91
+00:07:11,170 --> 00:07:16,270
+to overfat the amount of data like we just want to know the name of a company or the first name of a
+
+92
+00:07:16,270 --> 00:07:17,020
+user.
+
+93
+00:07:17,170 --> 00:07:22,990
+And I don't want to have to handle all this extra data on my you know potentially mobile cell phone
+
+94
+00:07:22,990 --> 00:07:25,990
+data plan which might be really slow or really expensive.
+
+95
+00:07:25,990 --> 00:07:31,060
+I don't want to be shuffling around all that extra data about a user I just want to know just the first
+
+96
+00:07:31,060 --> 00:07:31,490
+name.
+
+97
+00:07:31,540 --> 00:07:32,330
+That's it.
+
+98
+00:07:32,590 --> 00:07:38,670
+And so this definitely goes very well and solving that issue with restful routing.
+
+99
+00:07:38,740 --> 00:07:41,410
+Now two other quick things I want to show you.
+
+100
+00:07:41,470 --> 00:07:47,290
+First if we try to find a user that does not exist and is going to put a random ID in here we get back
+
+101
+00:07:47,290 --> 00:07:48,200
+just no.
+
+102
+00:07:48,250 --> 00:07:52,200
+So we don't get an error just say hey can find a user like too bad.
+
+103
+00:07:52,330 --> 00:07:53,430
+Nothing found.
+
+104
+00:07:53,890 --> 00:07:59,590
+The other thing to take note of is that if we do not provide an argument at all.
+
+105
+00:07:59,640 --> 00:08:02,070
+Like so let's try running this.
+
+106
+00:08:02,440 --> 00:08:10,840
+We get something that says expected name found blah blah blah something first name what this says right
+
+107
+00:08:10,840 --> 00:08:11,360
+here.
+
+108
+00:08:11,440 --> 00:08:18,780
+And if we hover over the Puranas with the squiggly red line you can see hey I expected to see a name
+
+109
+00:08:18,820 --> 00:08:22,050
+and what name is really saying here is the name of an argument.
+
+110
+00:08:22,240 --> 00:08:27,970
+So it's not saying like a name property like so because that's what you might think it's saying.
+
+111
+00:08:28,450 --> 00:08:38,330
+It's saying I want to see the ID so it's expecting to see an idea of 23 or 47 or whatever it might be.
+
+112
+00:08:38,800 --> 00:08:43,570
+So if you start to make queries with incorrect argument lists you're going to start to see some really
+
+113
+00:08:43,570 --> 00:08:45,940
+nice error messages as well.
+
+114
+00:08:46,810 --> 00:08:50,850
+OK so this is our first schema and our first query to go with it.
+
+115
+00:08:51,070 --> 00:08:53,630
+Let's take a break and continue in the next section.
+

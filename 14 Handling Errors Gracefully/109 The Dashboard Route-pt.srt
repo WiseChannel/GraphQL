@@ -1,0 +1,200 @@
+1
+00:00:00,810 --> 00:00:05,940
+Temos que redirecionar para a rota do painel juntas, mas ainda no temos um componente que
+
+2
+00:00:05,940 --> 00:00:08,880
+seja exibido sempre que for na rota do painel.
+
+3
+00:00:09,120 --> 00:00:14,700
+Ento, vamos fazer um novo componente de painel e depois conect-lo dentro de nosso roteador para mudar de volta para
+
+4
+00:00:14,700 --> 00:00:19,100
+o meu editor de cdigo e, dentro do diretrio de componentes, far um novo arquivo.
+
+5
+00:00:19,130 --> 00:00:21,550
+Vou chamar este um dashboard Don.
+
+6
+00:00:21,620 --> 00:00:22,680
+Sim.
+
+7
+00:00:22,710 --> 00:00:26,330
+No vamos colocar uma enorme quantidade de lgica neste componente do painel.
+
+8
+00:00:26,340 --> 00:00:30,600
+diz que voc est no painel, voc s deve ver isso se voc estiver conectado no momento.
+
+9
+00:00:30,600 --> 00:00:32,390
+Eu realmente quero apenas ter algo que
+
+10
+00:00:32,430 --> 00:00:35,410
+Ento eu no acho que precisamos fazer um componente baseado em classe aqui.
+
+11
+00:00:35,430 --> 00:00:40,890
+Eu acho que podemos apenas fazer um componente funcional e cham-lo de bom naquele no topo.
+
+12
+00:00:40,890 --> 00:00:50,100
+Vamos importar reagir de reagir e, em seguida, imediatamente tornaremos nosso componente funcionando e exportar o estilo at o tamanho da
+
+13
+00:00:50,100 --> 00:00:53,560
+fonte, bem apenas um pouco e dentro dele.
+
+14
+00:00:53,580 --> 00:01:00,960
+Ei, vamos retornar um div que diz que voc est logado.
+
+15
+00:01:01,440 --> 00:01:02,210
+Parece bom.
+
+16
+00:01:02,420 --> 00:01:03,360
+Isto  praticamente tudo o que precisamos.
+
+17
+00:01:03,360 --> 00:01:07,980
+Mais uma vez, eu s quero algo para mostrar oi, voc  considerado logado neste momento,
+
+18
+00:01:07,980 --> 00:01:13,750
+ento no recebemos essa grande mensagem de erro depois de entrar e ser redirecionados para a rota do painel.
+
+19
+00:01:13,800 --> 00:01:19,590
+Ento, agora podemos conectar isso dentro do nosso arquivo de roteador dentro do ndice, no apenas
+
+20
+00:01:19,590 --> 00:01:21,640
+arquivo em nosso diretrio de cliente.
+
+21
+00:01:21,830 --> 00:01:26,220
+Vamos importar o componente do painel que acabamos de criar.
+
+22
+00:01:29,330 --> 00:01:32,930
+De vez em quando, podemos adicionar outra rota ao nosso arquivo de roteador.
+
+23
+00:01:32,940 --> 00:01:37,130
+Ou desculpe-me a nossa definio de rota apenas um pouco abaixo do arquivo.
+
+24
+00:01:37,130 --> 00:01:40,050
+Ento, aqui esto as trs rotas diferentes que temos agora.
+
+25
+00:01:40,370 --> 00:01:43,240
+Vou adicionar mais uma rota dentro daqui.
+
+26
+00:01:43,940 --> 00:01:50,300
+Ento, sempre que algum avana naquele painel de rota ou no painel do caminho mostrar que
+
+27
+00:01:51,260 --> 00:01:56,370
+o componente do painel de bordo naqueles testes Coosa  real rpido.
+
+28
+00:01:56,380 --> 00:01:58,960
+Definitivamente espero que isso funcione exatamente na caixa.
+
+29
+00:01:58,960 --> 00:02:01,290
+Ainda no estamos fazendo nada louco aqui ainda.
+
+30
+00:02:01,510 --> 00:02:04,150
+Ento vou atualizar a pgina.
+
+31
+00:02:04,270 --> 00:02:07,480
+Observe que estou atualmente no painel de barra do barramento.
+
+32
+00:02:07,510 --> 00:02:11,350
+E ento, depois de atualizar, eu verifiquei com sucesso na tela que voc efetuou login.
+
+33
+00:02:11,350 --> 00:02:13,330
+Fantstico.
+
+34
+00:02:13,330 --> 00:02:18,980
+Uma coisa rpida no entanto, voc notar que no cabealho aqui eu tenho o boto de logout.
+
+35
+00:02:18,990 --> 00:02:21,900
+Ento definitivamente significa que sim, eu estou logado no momento.
+
+36
+00:02:22,090 --> 00:02:23,610
+Procuremos fazer o login rapidamente.
+
+37
+00:02:23,670 --> 00:02:25,100
+Ento, chegue para sair.
+
+38
+00:02:25,130 --> 00:02:32,500
+Voc notar que ainda estou na rota do painel aqui e se eu atualizar eu ainda posso ver a rota do painel
+
+39
+00:02:32,500 --> 00:02:34,920
+e ainda diz que voc est logado.
+
+40
+00:02:35,020 --> 00:02:36,790
+Mas claramente o cabealho est refletindo.
+
+41
+00:02:36,790 --> 00:02:40,360
+No, esse no  o caso de eu no estar realmente logado neste momento.
+
+42
+00:02:40,510 --> 00:02:46,600
+Ento, precisamos fazer algo, pelo menos, em algum lugar, mais alguma lgica, para dizer oi se o usurio est
+
+43
+00:02:46,600 --> 00:02:52,510
+tentando chegar  pgina do painel, vamos nos certificar de que eles realmente esto logados e ento tambm
+
+44
+00:02:52,510 --> 00:02:58,000
+precisamos ter certeza de que, aps o usurio assinar como quando eles clicam em logout no cabealho.
+
+45
+00:02:58,270 --> 00:03:03,340
+Se eles esto atualmente na rota do painel, precisamos ter certeza de que os devolvemos  pgina de
+
+46
+00:03:03,340 --> 00:03:06,940
+login ou algo que diga, pelo menos, que voc no est logado.
+
+47
+00:03:06,940 --> 00:03:10,290
+Precisamos redirecion-lo para longe do painel de controle.
+
+48
+00:03:10,510 --> 00:03:14,620
+Ento, ns claramente no temos esse lote de lgica ainda dentro de nossa aplicao.
+
+49
+00:03:14,620 --> 00:03:19,090
+Vamos dar uma pausa rpida e vamos voltar e discutir exatamente como vamos adicionar essa lgica
+
+50
+00:03:19,300 --> 00:03:23,120
+para garantir que redirecionemos o usurio depois que eles se desconectarem do nosso aplicativo.
+

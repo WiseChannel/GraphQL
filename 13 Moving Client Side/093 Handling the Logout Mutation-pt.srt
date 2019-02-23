@@ -1,0 +1,456 @@
+1
+00:00:00,840 --> 00:00:06,180
+Hetter est fazendo o que  certo sempre que um usurio ou aplicativo no autenticado visita,
+
+2
+00:00:06,600 --> 00:00:11,250
+mas ainda precisamos melhorar a lgica um pouco sempre que o usurio olha o
+
+3
+00:00:11,310 --> 00:00:13,950
+cabealho quando eles so autenticados com sucesso.
+
+4
+00:00:13,950 --> 00:00:16,950
+Ento, agora, estamos apenas mostrando o log de texto na tela.
+
+5
+00:00:17,160 --> 00:00:23,240
+Eu realmente gostaria que este fosse um link em vez disso que o usurio pode clicar para sair do aplicativo.
+
+6
+00:00:23,250 --> 00:00:27,870
+Ento, vamos pensar no fluxo de trabalho aqui um pouco antes de comear a jogar cdigo na tela.
+
+7
+00:00:27,960 --> 00:00:33,240
+A primeira coisa que precisamos fazer  substituir o dispositivo aqui por uma marca de ncora real que
+
+8
+00:00:33,240 --> 00:00:34,410
+o usurio pode clicar.
+
+9
+00:00:34,410 --> 00:00:39,810
+Agora, o importante  notar que quando o usurio clicar nisso, o que quer que colocamos
+
+10
+00:00:39,810 --> 00:00:42,380
+aqui, no estamos fazendo nenhuma navegao imediatamente.
+
+11
+00:00:42,420 --> 00:00:49,020
+Em vez disso, primeiro queremos chamar uma mutao que ir registrar o usurio e, depois de a mutao
+
+12
+00:00:49,020 --> 00:00:55,140
+ter sido executada, navegaremos o usurio de volta  rota raiz do nosso aplicativo para garantir que
+
+13
+00:00:55,140 --> 00:00:58,190
+qualquer pgina que estivesse procurando no seja mais acessvel.
+
+14
+00:00:58,530 --> 00:01:00,660
+Ento, ser um processo em dois passos.
+
+15
+00:01:00,660 --> 00:01:06,360
+Em primeiro lugar, vamos substituir isso por algum item clicvel que ir definir um manipulador de eventos
+
+16
+00:01:06,360 --> 00:01:11,090
+de cliques que chamar uma mutao que ir registrar o usurio fora do nosso aplicativo.
+
+17
+00:01:11,460 --> 00:01:13,680
+Ento, vamos primeiro.
+
+18
+00:01:13,740 --> 00:01:19,770
+Comearemos por substituir a div que  exibida aqui com uma marca de ncora em vez disso.
+
+19
+00:01:20,130 --> 00:01:21,680
+Agora eu estou usando uma marca de ncora aqui.
+
+20
+00:01:21,690 --> 00:01:24,270
+No porque eu quero navegar pelo usurio em qualquer lugar.
+
+21
+00:01:24,300 --> 00:01:29,580
+Eu claramente no quero navegar para o usurio em qualquer lugar que eu estou usando tags de ncora apenas
+
+22
+00:01:29,580 --> 00:01:35,520
+porque eu quero obter o mesmo estilo exato que um usurio obteria sempre que estiverem clicando em um link de navegao real.
+
+23
+00:01:35,580 --> 00:01:41,510
+Ento, ns no estamos realmente navegando com esse link. Eu apenas estou usando isso para obter o mesmo estilo.
+
+24
+00:01:41,520 --> 00:01:48,930
+aliado porque lembre-se de que a funo de botes de renderizao est aninhada dentro da UL abaixo.
+
+25
+00:01:48,930 --> 00:01:51,850
+Eu tambm vou envolv-lo com um elemento
+
+26
+00:01:54,040 --> 00:01:54,400
+EST BEM.
+
+27
+00:01:54,430 --> 00:01:56,170
+Ento eu posso voltar para a tag ncora.
+
+28
+00:01:56,200 --> 00:01:56,980
+Aqui vamos ns.
+
+29
+00:01:57,070 --> 00:02:00,850
+Seria muito bom ter um pouco de indentao sobre isso apenas para ganhar um
+
+30
+00:02:00,850 --> 00:02:01,930
+pouco mais de espao.
+
+31
+00:02:01,990 --> 00:02:06,150
+Ento, eu vou continuar a namorar assim.
+
+32
+00:02:07,030 --> 00:02:10,720
+E, em seguida, dentro da marca de ncora, coloque o log de texto fora.
+
+33
+00:02:10,780 --> 00:02:15,610
+Portanto, no  muito claro o que ele faz quando o usurio clica e depois vou adicionar o manipulador de
+
+34
+00:02:15,610 --> 00:02:16,200
+cliques a ele.
+
+35
+00:02:18,060 --> 00:02:22,890
+E dentro desta coisa, chamaremos uma funo auxiliar que ir colocar dentro desse componente.
+
+36
+00:02:22,890 --> 00:02:24,250
+Ainda no existe.
+
+37
+00:02:24,450 --> 00:02:26,160
+Ligaremos.
+
+38
+00:02:26,430 --> 00:02:29,100
+Como sobre no fim de sesso clique.
+
+39
+00:02:29,190 --> 00:02:33,960
+E, ento, vamos ligar o contexto a este.
+
+40
+00:02:34,240 --> 00:02:35,350
+Isso parece muito bom.
+
+41
+00:02:35,590 --> 00:02:41,190
+Ento, agora defina essa funo auxiliar dentro deste componente no clique de logout.
+
+42
+00:02:41,200 --> 00:02:47,320
+Portanto, nosso trabalho  corar mutao da coisa no prximo ano, que tentar assinar o usurio fora
+
+43
+00:02:47,320 --> 00:02:48,480
+de nossa aplicao.
+
+44
+00:02:48,520 --> 00:02:50,400
+Ento fizemos isso algumas vezes antes.
+
+45
+00:02:50,410 --> 00:02:55,330
+Ns testmos a mutao dentro do grfico, mas ainda vamos seguir a mesma
+
+46
+00:02:55,330 --> 00:02:56,690
+abordagem que anteriormente.
+
+47
+00:02:56,710 --> 00:02:59,380
+Ns vamos virar para o direito grfico certo.
+
+48
+00:02:59,380 --> 00:03:05,320
+interface grfica e atualizar real rpido e ento vamos escrever a mutao novamente.
+
+49
+00:03:05,320 --> 00:03:17,080
+A mutao, em seguida, ir mover a mutao para a nossa base de cdigo e, em seguida, cham-lo de dentro do log out clique assinar para mudar
+
+50
+00:03:17,080 --> 00:03:18,280
+para a minha
+
+51
+00:03:18,320 --> 00:03:20,010
+J fizemos isso uma vez.
+
+52
+00:03:20,530 --> 00:03:22,490
+Ento vou definir a mutao.
+
+53
+00:03:22,570 --> 00:03:28,750
+Eu no preciso fazer uma mutao chamada porque no vamos passar em nenhuma varivel de consulta, ento eu
+
+54
+00:03:28,750 --> 00:03:30,240
+posso simplesmente dizer nutao.
+
+55
+00:03:30,340 --> 00:03:37,310
+Eu quero executar a mutao de log out e me dar o ID e o email do usurio que foi desconectado.
+
+56
+00:03:37,330 --> 00:03:40,000
+Ento vamos executar isso e no volto.
+
+57
+00:03:40,070 --> 00:03:43,220
+Isso porque eu na verdade no estou atualmente conectado ao aplicativo.
+
+58
+00:03:43,300 --> 00:03:47,260
+Ento, se eu no tiver iniciado sesso, sempre vou ficar nulo como resposta.
+
+59
+00:03:47,260 --> 00:03:51,580
+Ento eu tenho uma boa sensao de que est funcionando do jeito que espero, mas porque
+
+60
+00:03:51,580 --> 00:03:55,450
+no estou logado agora no recebo nenhum modelo de usurio que volte para mim.
+
+61
+00:03:55,450 --> 00:03:57,260
+Ento, essa mutao parece muito boa.
+
+62
+00:03:57,280 --> 00:04:03,430
+Eu vou selecionar todo ou copi-lo e mudar de novo para o meu editor de cdigo.
+
+63
+00:04:03,430 --> 00:04:08,160
+Agora, desta vez eu gostaria de colocar todas as mutaes diferentes que temos em arquivos separados.
+
+64
+00:04:08,170 --> 00:04:10,510
+Assim como estamos fazendo consultas diferentes.
+
+65
+00:04:10,660 --> 00:04:14,650
+Ento no vou salvar essa mutao diretamente dentro da cabea ou componente.
+
+66
+00:04:14,650 --> 00:04:23,380
+Em vez disso, vou fazer uma nova pasta chamada mutaes e, em seguida, dentro de l ou fazer uma nova mutao
+
+67
+00:04:23,470 --> 00:04:27,910
+chamada ou Exuma um novo arquivo chamado Vamos cham-lo de Lagat.
+
+68
+00:04:28,020 --> 00:04:36,030
+J. S. Outra mutao dentro do seu  idntico s consultas que
+
+69
+00:04:36,030 --> 00:04:37,790
+configuramos anteriormente em seus prprios arquivos separados.
+
+70
+00:04:37,860 --> 00:04:47,110
+Ento, vamos importar o GQ El helper da etiqueta UL do enxerto e ento vamos exportar o padro.
+
+71
+00:04:47,130 --> 00:04:53,250
+GQ Bem, podemos colocar as dicas de volta de modo a colar a mutao
+
+72
+00:04:56,130 --> 00:04:56,710
+OK.
+
+73
+00:04:57,180 --> 00:04:58,880
+Isso parece muito bom.
+
+74
+00:04:59,700 --> 00:05:02,030
+Agora vamos voltar para o nosso componente Hetter.
+
+75
+00:05:02,130 --> 00:05:07,320
+Precisamos importar a mutao e, em seguida, conect-la a este componente usando o enxerto para adicionar um
+
+76
+00:05:07,560 --> 00:05:09,880
+auxiliar, assim como j fizemos com a consulta.
+
+77
+00:05:10,710 --> 00:05:20,820
+Ento, primeiro, importa a mutao do logaritmo de mutaes, certifique-se de que voc obtenha o ponto ponto l porque estamos subindo
+
+78
+00:05:20,820 --> 00:05:26,370
+um diretrio e depois em mutaes e iremos at o final do
+
+79
+00:05:26,370 --> 00:05:30,800
+arquivo onde vamos associar a mutao com este componente.
+
+80
+00:05:31,590 --> 00:05:33,420
+Agora fizemos isso uma vez antes.
+
+81
+00:05:33,420 --> 00:05:39,570
+Lembre-se de que o grfico ajudar ou aqui apenas pode levar uma nica mutao ou uma nica
+
+82
+00:05:39,570 --> 00:05:40,490
+consulta por vez.
+
+83
+00:05:40,500 --> 00:05:45,930
+Ento, se queremos associar mltiplas consultas ou mutaes ao componente, temos que empilhar o grfico, voc a
+
+84
+00:05:45,930 --> 00:05:51,330
+ajudar e  a que comeamos a usar esse tipo de sintaxe feia apenas um pouco.
+
+85
+00:05:51,330 --> 00:05:57,240
+Ento, o que vamos fazer  lanar a nova declarao e depois usarei o grfico
+
+86
+00:05:57,240 --> 00:06:03,860
+como um ajudante de novo. Eu passarei na minha mutao e vou abrir meu conjunto de parnteses.
+
+87
+00:06:04,200 --> 00:06:06,530
+Eu vou recuar nesta linha aqui.
+
+88
+00:06:06,640 --> 00:06:09,420
+Certifique-se de remover o semi-clon do fim.
+
+89
+00:06:09,440 --> 00:06:13,390
+Portanto, assegure-se de no ter isso e ento vou fechar o conjunto de parnteses assim.
+
+90
+00:06:13,560 --> 00:06:16,710
+Ento, esta  provavelmente a maneira mais limpa de lidar com isso.
+
+91
+00:06:16,800 --> 00:06:17,710
+Chamamos de enxerto.
+
+92
+00:06:17,790 --> 00:06:23,700
+Bem, passamos a mutao e depois abrimos o nosso segundo
+
+93
+00:06:23,700 --> 00:06:28,760
+conjunto de parnteses e passamos o Hetter j modificado.
+
+94
+00:06:29,000 --> 00:06:34,520
+Ok, ento, agora que a mutao est conectada a este componente, podemos seguir nosso mtodo auxiliar.
+
+95
+00:06:36,190 --> 00:06:37,820
+O manipulador de desbloqueio.
+
+96
+00:06:37,920 --> 00:06:38,380
+Aqui vamos ns.
+
+97
+00:06:38,380 --> 00:06:45,430
+No fim de sesso, clique e lembre-se sempre que queremos cham-lo de mutao, podemos chamar esses adereos,
+
+98
+00:06:45,930 --> 00:06:48,790
+no mutar e passar um objeto vazio.
+
+99
+00:06:48,790 --> 00:06:53,980
+Agora, desta vez, no temos nenhuma varivel de consulta que desejemos transmitir, porque no dizemos que
+
+100
+00:06:54,190 --> 00:06:56,950
+especificamos nenhum usurio especfico que estamos tentando sair.
+
+101
+00:06:57,070 --> 00:06:59,810
+Portanto, no precisamos definir nenhuma varivel de consulta aqui.
+
+102
+00:07:00,180 --> 00:07:06,600
+No entanto, provavelmente queremos pensar um pouco sobre como vamos atualizar esse componente.
+
+103
+00:07:06,700 --> 00:07:12,820
+login, o usurio atual no significa que o componente ir atualizar automaticamente de forma alguma mgica e mostrar o
+
+104
+00:07:12,850 --> 00:07:19,450
+conjunto de links aqui que permitir que o usurio se inscreva e faa login porque essa  definitivamente a inteno.
+
+105
+00:07:19,450 --> 00:07:21,510
+Ento, s porque estamos fazendo o
+
+106
+00:07:21,520 --> 00:07:22,070
+Certo.
+
+107
+00:07:22,120 --> 00:07:27,700
+Como quando um usurio clica nesse boto aqui mesmo para sair do meu aplicativo, definitivamente quero ver a mudana
+
+108
+00:07:27,700 --> 00:07:32,800
+de cabealho e, em vez disso, mostre isso, eu estou logado e loguei os botes em vez disso.
+
+109
+00:07:32,830 --> 00:07:35,830
+Ento, vai ser um pouco um desafio que vamos ter que pensar atravs de
+
+110
+00:07:35,830 --> 00:07:36,300
+um pouco.
+
+111
+00:07:36,430 --> 00:07:39,390
+Vamos dar uma pausa rpida e depois voltar na prxima seo.
+
+112
+00:07:39,400 --> 00:07:43,330
+que os componentes sejam atualizados e ento vamos testar todo o assunto dentro do navegador.
+
+113
+00:07:43,330 --> 00:07:44,440
+Descobre como vamos conseguir
+
+114
+00:07:44,720 --> 00:07:45,950
+Sosia em apenas um momento.
+

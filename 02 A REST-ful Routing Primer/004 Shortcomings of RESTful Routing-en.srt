@@ -1,0 +1,552 @@
+1
+00:00:00,640 --> 00:00:04,530
+In last section we did a review of restful conventions.
+
+2
+00:00:04,740 --> 00:00:12,510
+So remember restful conventions is talking about very common you URLs and HTP method types that we use
+
+3
+00:00:12,570 --> 00:00:15,990
+for these very common operations of manipulating data.
+
+4
+00:00:16,260 --> 00:00:18,690
+So they are not a hard coded set of rules.
+
+5
+00:00:18,690 --> 00:00:25,410
+It is just a set of conventions that you tend to see over different web frameworks of different languages.
+
+6
+00:00:25,950 --> 00:00:29,210
+As I said these relations start to break down a little bit.
+
+7
+00:00:29,220 --> 00:00:36,030
+Once you start to get to a very heavily nested or heavily related data in the case of having like a
+
+8
+00:00:36,030 --> 00:00:39,620
+list of users with all the given post they've created.
+
+9
+00:00:39,810 --> 00:00:43,920
+Well you know you start to get some very reasonable looking you or else you know we can really read
+
+10
+00:00:43,920 --> 00:00:50,440
+this like give me all the users find me user 23 and then find all the posts they've made.
+
+11
+00:00:50,460 --> 00:00:53,110
+So that's something I can live with right there.
+
+12
+00:00:53,370 --> 00:00:55,180
+But these rules start to break down.
+
+13
+00:00:55,320 --> 00:00:58,280
+Once our data starts to get really nested.
+
+14
+00:00:58,650 --> 00:01:02,540
+So let's start looking at a little bit more complex example.
+
+15
+00:01:03,100 --> 00:01:03,460
+OK.
+
+16
+00:01:03,510 --> 00:01:05,920
+So this is the more complex example.
+
+17
+00:01:06,150 --> 00:01:11,130
+This one to look really simple and straightforward but trust me there are some hidden complexity here.
+
+18
+00:01:11,130 --> 00:01:15,990
+So let's walk through this example and talk about what is so weird about it and how it starts to get
+
+19
+00:01:15,990 --> 00:01:19,920
+a little bit challenging with restful routing.
+
+20
+00:01:19,920 --> 00:01:26,640
+So in this diagram I have a list of users or a list of like maybe friends that I have on Facebook.
+
+21
+00:01:26,640 --> 00:01:33,380
+So on every single one of these boxes I have a very particular friend like a very particular user then
+
+22
+00:01:33,380 --> 00:01:39,800
+I have the company they work at and the position that they work or the title of their position.
+
+23
+00:01:39,870 --> 00:01:43,500
+Now let's imagine where each of these pieces of data come from.
+
+24
+00:01:43,850 --> 00:01:45,070
+Well a user's image.
+
+25
+00:01:45,120 --> 00:01:45,530
+OK.
+
+26
+00:01:45,540 --> 00:01:46,640
+You know that's a user's image.
+
+27
+00:01:46,650 --> 00:01:48,140
+We've got the user's name.
+
+28
+00:01:48,270 --> 00:01:53,350
+We've got the company name and the position name or the position title.
+
+29
+00:01:53,400 --> 00:02:00,690
+Now I want to ask you if we were using a relational database or maybe even a no sequel database like
+
+30
+00:02:00,690 --> 00:02:04,620
+Mongo D-B How might we store this data in our database.
+
+31
+00:02:04,630 --> 00:02:05,160
+You know how I.
+
+32
+00:02:05,250 --> 00:02:07,180
+How about we actually store this data.
+
+33
+00:02:07,520 --> 00:02:13,650
+Well you might be thinking hey let's just make a user model and we can say every user has a name an
+
+34
+00:02:13,680 --> 00:02:16,730
+image in a company name and a position name.
+
+35
+00:02:16,800 --> 00:02:20,810
+And I would say you know maybe that's not the ideal way to do it.
+
+36
+00:02:20,820 --> 00:02:23,180
+Maybe we would not want to take that approach.
+
+37
+00:02:23,190 --> 00:02:27,480
+And the reason for which is that it would be really hard to get a list of.
+
+38
+00:02:27,720 --> 00:02:30,680
+Well I'm going to say reasonably hard.
+
+39
+00:02:30,840 --> 00:02:32,310
+Maybe I shouldn't even say recently hard.
+
+40
+00:02:32,310 --> 00:02:37,680
+It would be not obvious to you in a list of all the different company names that we have and trying
+
+41
+00:02:37,680 --> 00:02:43,920
+to find all the users who work at a particular company or say even provide more details about that company
+
+42
+00:02:44,100 --> 00:02:46,650
+Search get a little bit more challenging.
+
+43
+00:02:46,740 --> 00:02:52,470
+So as an alternative schema maybe we would end up with some type of scheme that looks like this right
+
+44
+00:02:52,470 --> 00:02:59,840
+here where we've got a collection of users a collection of companies and the collection of positions.
+
+45
+00:03:00,180 --> 00:03:06,240
+That way every single position and every single company can have their own very particular details and
+
+46
+00:03:06,240 --> 00:03:12,780
+a user can have a pointer or a foreign key that looks at a very particular company and a very particular
+
+47
+00:03:12,780 --> 00:03:14,090
+position ID.
+
+48
+00:03:14,490 --> 00:03:15,230
+OK.
+
+49
+00:03:15,690 --> 00:03:20,570
+So remember we're talking about all this stuff with relation to restful routing and don't worry you're
+
+50
+00:03:20,580 --> 00:03:23,090
+going to get to a point here fairly quickly.
+
+51
+00:03:23,430 --> 00:03:27,970
+So I want you to imagine what this might look like in diagram form.
+
+52
+00:03:27,970 --> 00:03:29,730
+You know we've got the current user.
+
+53
+00:03:30,000 --> 00:03:32,000
+We've got all of their friends.
+
+54
+00:03:32,400 --> 00:03:36,290
+And then we've got all the companies and positions related to them.
+
+55
+00:03:36,330 --> 00:03:43,940
+Now I'm going to ask you a question I want you to produce some type of restful routing you RL and each
+
+56
+00:03:43,950 --> 00:03:51,720
+GTP methodology for getting access to each of these records because like the current user the current
+
+57
+00:03:51,720 --> 00:03:58,620
+user's friends and then the companies in positions that those friends work at what restful conventions
+
+58
+00:03:58,620 --> 00:03:59,950
+might we use here.
+
+59
+00:04:00,390 --> 00:04:04,850
+Well for the first two columns life is not that bad.
+
+60
+00:04:04,860 --> 00:04:10,560
+Like we kind of we could kind of imagine how it might work we might have slashed users 23 to get access
+
+61
+00:04:10,560 --> 00:04:17,160
+to the current user to find that current users friends we might go to users 23 slash friends or maybe
+
+62
+00:04:17,160 --> 00:04:20,160
+even technically users 23 slash users.
+
+63
+00:04:20,170 --> 00:04:26,670
+You know maybe that would work as well but then what you are l might we put in here to represent the
+
+64
+00:04:26,670 --> 00:04:30,680
+companies or the positions for all of those friends.
+
+65
+00:04:30,930 --> 00:04:35,490
+So that's where life starts to get really really challenging.
+
+66
+00:04:35,490 --> 00:04:38,740
+I'm going to present to you a couple of different directions that we might go.
+
+67
+00:04:38,740 --> 00:04:43,190
+All right so this might be like a couple of different options that we'd have for applying restful routing
+
+68
+00:04:43,200 --> 00:04:45,160
+to this situation.
+
+69
+00:04:45,750 --> 00:04:51,870
+So maybe forgetting all these particular companies and positions we could have like OK for a friend
+
+70
+00:04:51,870 --> 00:04:53,180
+with ID number one.
+
+71
+00:04:53,190 --> 00:04:59,010
+I could do users slash one slash companies and that would give me you know the company with ID 5.
+
+72
+00:04:59,520 --> 00:05:05,510
+And then we can do the same thing for their position and then repeat it for the other friends as well.
+
+73
+00:05:05,520 --> 00:05:12,360
+The downside to this approach right here is that we would be making a ton of separate age TTP requests
+
+74
+00:05:12,360 --> 00:05:15,690
+to our back end server to get all of this data.
+
+75
+00:05:15,690 --> 00:05:20,590
+Think about it you know for every single friend that our current user has we would have to make one.
+
+76
+00:05:20,610 --> 00:05:27,000
+H TTP request just to get their company and then another one to get their position than another one
+
+77
+00:05:27,000 --> 00:05:29,810
+to get the next Friends position in company as well.
+
+78
+00:05:30,000 --> 00:05:36,210
+So it ended up being a lot of very separate requests just to get this data that otherwise looks like
+
+79
+00:05:36,210 --> 00:05:41,190
+it would be simple to get for the market that we looked at earlier.
+
+80
+00:05:41,250 --> 00:05:46,440
+So our next option if we wanted to follow restful conventions might look a little something like this
+
+81
+00:05:46,590 --> 00:05:50,730
+maybe we would do like Slash users slash 23 slash friends.
+
+82
+00:05:50,730 --> 00:05:56,830
+So that would be like the list of all my friends and then slash companies and slash positions.
+
+83
+00:05:57,060 --> 00:06:04,660
+So in theory that would give me all the companies and all of the positions related to user 2030s friends.
+
+84
+00:06:05,080 --> 00:06:07,250
+Ok this is starting to look a little more realistic.
+
+85
+00:06:07,260 --> 00:06:07,640
+Right.
+
+86
+00:06:07,650 --> 00:06:11,620
+Like I could imagine putting an end point together like this.
+
+87
+00:06:11,640 --> 00:06:18,320
+The problem with this point right here is that well its very particular its very customized.
+
+88
+00:06:18,490 --> 00:06:23,880
+You know imagine if we were making use of you or else like this all over our application remember you
+
+89
+00:06:23,880 --> 00:06:26,250
+know someone has to actually program this route right here.
+
+90
+00:06:26,250 --> 00:06:29,570
+They have to like put together the queries to make this route.
+
+91
+00:06:29,780 --> 00:06:34,620
+They will start to get a little bit of a pain if we wanted to have a lot of different endpoints that
+
+92
+00:06:34,620 --> 00:06:42,050
+fetch these very customized pieces of data like that so the final option that I would present to you
+
+93
+00:06:42,110 --> 00:06:49,040
+and this is where a lot of people tend to go is to make just one very particular very customized endpoint
+
+94
+00:06:49,040 --> 00:06:51,980
+that really starts to break restoral conventions.
+
+95
+00:06:52,220 --> 00:06:59,540
+So maybe they would say Okay finally user 23 and then I'm going to make a custom endpoint called friends
+
+96
+00:06:59,540 --> 00:07:05,300
+with companies and technically could be friends with companies and positions.
+
+97
+00:07:06,050 --> 00:07:12,920
+And this single end point right here would fetch me user 23 with all of their friends and all the associated
+
+98
+00:07:12,920 --> 00:07:14,950
+companies and positions as well.
+
+99
+00:07:15,260 --> 00:07:16,500
+So with this you are all right here.
+
+100
+00:07:16,570 --> 00:07:22,540
+Yeah we're definitely breaking restful conventions and definitely breaking restful conventions here.
+
+101
+00:07:24,190 --> 00:07:29,940
+So clearly out of all these different options we have there is none that really screams to me really.
+
+102
+00:07:29,950 --> 00:07:33,300
+You know I really look at it and say like yeah that makes a ton of sense.
+
+103
+00:07:33,300 --> 00:07:36,460
+Like let's go definitely in that direction.
+
+104
+00:07:36,460 --> 00:07:41,170
+So in conclusion you know what we're kind of getting at here is that when we're working with restful
+
+105
+00:07:41,180 --> 00:07:47,530
+routing these conventions start to break down once we're working with highly related data.
+
+106
+00:07:47,740 --> 00:07:54,130
+We either start to run into a lot of issues with too many HGP requests or we start to run into big issues
+
+107
+00:07:54,190 --> 00:08:00,640
+where we have these very customized endpoints that are very tightly coupled with very particular features
+
+108
+00:08:00,700 --> 00:08:02,180
+on our front.
+
+109
+00:08:03,070 --> 00:08:07,090
+Even then there is even one more big issue here that we haven't even addressed yet.
+
+110
+00:08:07,420 --> 00:08:10,080
+Let's imagine that we were using this endpoint right here.
+
+111
+00:08:10,080 --> 00:08:15,640
+You know let's imagine we were programming this thing well if we made a request like that and we got
+
+112
+00:08:15,640 --> 00:08:19,820
+back a list of all the companies that are social with our friends.
+
+113
+00:08:20,200 --> 00:08:26,830
+By default we might return the entire company model which might have all the data from like the stock
+
+114
+00:08:26,830 --> 00:08:31,470
+ticker to the employee account to the founding date to the company type.
+
+115
+00:08:31,630 --> 00:08:37,840
+All this data that we don't really care about for showing what you know it's just a presentation of
+
+116
+00:08:37,840 --> 00:08:42,790
+our current friends and the company is in position that they work at right.
+
+117
+00:08:42,790 --> 00:08:48,540
+The only thing we really care about on that request or that company object is the name of the company.
+
+118
+00:08:48,580 --> 00:08:55,630
+So even when we start to hone in on a very particular endpoint that we might be happy with we have to
+
+119
+00:08:55,630 --> 00:09:01,840
+think very carefully about what data were serving back to the application because we might be dramatically
+
+120
+00:09:01,960 --> 00:09:05,940
+over serving the amount of data that were tossing back to the client.
+
+121
+00:09:06,550 --> 00:09:07,200
+Okay.
+
+122
+00:09:07,690 --> 00:09:10,290
+So thats my little spiel on restful routing.
+
+123
+00:09:10,480 --> 00:09:15,770
+If all this doesnt make sense if it's unclear for us routing is like hey what's going on here.
+
+124
+00:09:15,820 --> 00:09:16,820
+Do not sweat it.
+
+125
+00:09:16,840 --> 00:09:22,420
+The only thing that I want you to take away from this discussion is that restful routing with highly
+
+126
+00:09:22,420 --> 00:09:28,990
+relational data starts to get quite challenging it starts to really bend your brain a little bit and
+
+127
+00:09:29,020 --> 00:09:34,840
+you might start to very easily get into disagreements with your coworkers over how this routing should
+
+128
+00:09:34,840 --> 00:09:36,220
+work.
+
+129
+00:09:36,220 --> 00:09:40,190
+So this is what graph QOL is looking to fix.
+
+130
+00:09:40,260 --> 00:09:48,130
+Q Well wants to fix some real big inconsistencies or challenges around restful routing and also tackle
+
+131
+00:09:48,130 --> 00:09:52,190
+big issues around over serving data.
+
+132
+00:09:52,330 --> 00:09:57,010
+We'll talk about some of the other big challenges the graphic Well solves as we go through over the
+
+133
+00:09:57,010 --> 00:09:58,000
+course as well.
+
+134
+00:09:58,150 --> 00:10:02,710
+But right now this is kind of like you know this is the idea I want you to have in your head this is
+
+135
+00:10:02,950 --> 00:10:05,440
+the idea of what graph 2L is solving for us.
+
+136
+00:10:05,440 --> 00:10:08,890
+I want you to be thinking about as we walk through our first example.
+
+137
+00:10:09,370 --> 00:10:14,560
+So speaking of our first example let's continue in the next section and start working a little bit on
+
+138
+00:10:14,570 --> 00:10:15,780
+graph Well.
+

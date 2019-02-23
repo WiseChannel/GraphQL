@@ -1,0 +1,360 @@
+1
+00:00:00,810 --> 00:00:07,200
+Agora que conectamos totalmente o nosso esquema de dados para que possamos passar de empresas para usurios e de usurios
+
+2
+00:00:07,200 --> 00:00:13,350
+para empresas, vamos passar um pouco mais de tempo para falar sobre a sintaxe das consultas que fizemos e
+
+3
+00:00:13,710 --> 00:00:17,520
+ampliar o que podemos faa com a sintaxe aqui apenas um pouco.
+
+4
+00:00:17,520 --> 00:00:22,200
+Em particular, quero indicar duas ou trs coisas diferentes para voc, ento, por que acabar
+
+5
+00:00:22,200 --> 00:00:24,430
+sendo til em seus prprios projetos pessoais.
+
+6
+00:00:24,780 --> 00:00:28,800
+Primeiro voc pode s vezes ver essas perguntas escritas assim.
+
+7
+00:00:28,850 --> 00:00:33,630
+Ento, s vezes, voc pode ver isso escrito dizendo que , especificamente, essa  uma consulta que estou prestes
+
+8
+00:00:33,630 --> 00:00:34,460
+a fazer aqui.
+
+9
+00:00:34,500 --> 00:00:36,920
+Agora isso no altera o comportamento da consulta.
+
+10
+00:00:36,990 --> 00:00:40,150
+ apenas um tipo de nome da consulta e diz que eu estou fazendo uma consulta.
+
+11
+00:00:40,290 --> 00:00:42,320
+Isso  praticamente isso.
+
+12
+00:00:42,360 --> 00:00:48,060
+O que  um pouco mais til no entanto,  a capacidade de nomear
+
+13
+00:00:48,060 --> 00:00:59,720
+a consulta para que eu possa cham-lo de algo como buscar empresa ou talvez eu possa cham-lo de encontrar empresa encontrar empresa, seu nome real na consulta comea
+
+14
+00:00:59,720 --> 00:01:01,260
+um pouco mais til.
+
+15
+00:01:01,270 --> 00:01:06,190
+Quando voc est trabalhando no front-end e voc pode ter muitas consultas diferentes correndo ao redor
+
+16
+00:01:06,190 --> 00:01:11,080
+e voc pode querer reutilizar essas consultas em diferentes locais dentro de sua base de cdigo.
+
+17
+00:01:11,110 --> 00:01:17,020
+Ento, para uso em grficos e no muito til, mas quando voc comea a usar isso na parte
+
+18
+00:01:17,020 --> 00:01:20,170
+frontal, sua consulta comea a ser um pouco mais til.
+
+19
+00:01:21,130 --> 00:01:26,110
+A prxima coisa que quero lembr-lo sobre as consultas  que o conjunto de abrandas
+
+20
+00:01:26,110 --> 00:01:32,040
+de abertura aqui podemos imaginar que a consulta geral est sendo enviada para um tipo de consulta raiz.
+
+21
+00:01:32,080 --> 00:01:37,400
+Ento, no tipo de consulta raiz, estamos pedindo algo do campo da empresa.
+
+22
+00:01:37,690 --> 00:01:43,810
+Ento, se voltarmos para o nosso arquivo de esquema e, em seguida, role para o tipo de consulta, lembre-se de que
+
+23
+00:01:43,810 --> 00:01:46,860
+temos o campo do usurio e o campo da empresa.
+
+24
+00:01:47,290 --> 00:01:53,200
+de aparelhos curly voc pode imaginar que essa consulta inteira est sendo enviada para este objeto de consulta raiz aqui.
+
+25
+00:01:53,200 --> 00:01:54,370
+O conjunto de abertura
+
+26
+00:01:54,610 --> 00:02:00,510
+E estamos pedindo um usurio ou uma empresa a partir da.
+
+27
+00:02:00,520 --> 00:02:03,350
+As funes de resoluo assumem e cobrimos isso.
+
+28
+00:02:03,580 --> 00:02:05,260
+E no iremos seguir esse caminho novamente.
+
+29
+00:02:05,260 --> 00:02:08,050
+J estivemos naquela estrada algumas vezes.
+
+30
+00:02:08,530 --> 00:02:15,820
+Agora, vamos falar um pouco mais sobre alguma sintaxe em torno de consultas, podemos pedir livremente quantas empresas
+
+31
+00:02:15,850 --> 00:02:18,030
+em uma nica consulta como gostaramos.
+
+32
+00:02:18,070 --> 00:02:23,630
+Ento eu posso levar a consulta no topo e duplic-la abaixo.
+
+33
+00:02:23,830 --> 00:02:27,530
+E eu posso mudar o ID, ento, quando eu fizer isso.
+
+34
+00:02:27,530 --> 00:02:30,890
+No entanto, ele diz que voc tem um pouco de problema aqui.
+
+35
+00:02:30,940 --> 00:02:37,720
+Voc recebeu essa mesma empresa ou o mesmo nome de consulta dentro da mesma consulta duas vezes.
+
+36
+00:02:37,840 --> 00:02:41,970
+Ento estamos pedindo empresa duas vezes por ano para resolver isso.
+
+37
+00:02:41,980 --> 00:02:49,840
+Podemos nomear o resultado da consulta quando retornar escrevendo alguma chave arbitrria  sua
+
+38
+00:02:49,840 --> 00:02:50,450
+frente.
+
+39
+00:02:50,530 --> 00:02:57,070
+volta dessa consulta, eu quero ser atribudo  ma-chave e, em seguida, esta aqui embaixo, eu quero atribuir o resultado ao Google,
+
+40
+00:02:57,340 --> 00:03:03,520
+por isso, apenas para estar 100 por cento claro por que no poderamos ter empresa duas vezes dentro dessa consulta.
+
+41
+00:03:03,550 --> 00:03:07,120
+Ento, eu diria que voc sabe o que quer que seja de
+
+42
+00:03:07,660 --> 00:03:14,650
+D uma olhada no objeto de resposta que temos aqui. A chave de resposta  empresa e dentro de javascript,
+
+43
+00:03:14,670 --> 00:03:17,560
+no podemos ter chaves duplicadas em um objeto.
+
+44
+00:03:17,590 --> 00:03:22,570
+Ento, se tivermos uma empresa duas vezes por aqui, grfico voc apenas fica confuso e diz que voc sabe
+
+45
+00:03:22,600 --> 00:03:25,600
+o que no quero colocar duas chaves no objeto chamado Empresa.
+
+46
+00:03:25,660 --> 00:03:31,140
+Voc precisa renomear pelo menos um deles que acabamos de fazer chamando uma ma e o outro Google.
+
+47
+00:03:31,540 --> 00:03:38,880
+Ento, agora, quando executamos essa consulta, o resultado j no  chamado de empresa e  chamado Apple e Google.
+
+48
+00:03:38,950 --> 00:03:40,930
+No precisamos renomear ambos.
+
+49
+00:03:40,930 --> 00:03:42,610
+Podemos renomear apenas um deles.
+
+50
+00:03:42,640 --> 00:03:51,490
+Ento, o primeiro que chamamos de Apple e a segunda chamada da empresa, eu vou voltar a reivindicar o segundo Google
+
+51
+00:03:51,490 --> 00:03:56,890
+apenas porque eu gosto de ter um pouco mais idntico entre os dois.
+
+52
+00:03:57,730 --> 00:03:58,040
+EST BEM.
+
+53
+00:03:58,060 --> 00:04:03,570
+Leslie, eu quero falar com voc sobre o uso dos chamados fragmentos de Querrey.
+
+54
+00:04:03,640 --> 00:04:08,530
+Voc pode notar que em ambas as consultas da empresa que temos aqui mesmo,
+
+55
+00:04:08,530 --> 00:04:16,300
+estamos listando o nome e a descrio das propriedades, duas vezes, agora no sou um para reclamar sobre ter que escrever esses trs
+
+56
+00:04:16,300 --> 00:04:20,340
+termos aqui duas vezes seguidas, mas algumas pessoas realmente no gosto disso.
+
+57
+00:04:20,350 --> 00:04:25,750
+De uma maneira grande e eu definitivamente concordaria se tivssemos conhecido como muitas outras
+
+58
+00:04:25,750 --> 00:04:34,930
+propriedades aqui como vermelho, azul, verde, OK, tipo automtico ou autocorreo,  um meio de assumir o lugar, mas voc pode imaginar de
+
+59
+00:04:34,930 --> 00:04:35,820
+onde veio.
+
+60
+00:04:35,850 --> 00:04:37,710
+Tivemos muitas outras propriedades aqui.
+
+61
+00:04:37,720 --> 00:04:42,300
+Definitivamente seria um pouco cansativo ter que duplic-los em todo o lugar.
+
+62
+00:04:42,760 --> 00:04:50,080
+Ento, para resolver isso, podemos fazer uso do que chamamos fragmentos de queie um fragmento de consulta  essencialmente apenas
+
+63
+00:04:50,080 --> 00:04:53,970
+uma lista de propriedades diferentes para as quais queremos acessar.
+
+64
+00:04:54,430 --> 00:04:57,610
+Vamos definir primeiro o fragmento e veremos como fazemos uso dele.
+
+65
+00:04:58,000 --> 00:05:07,690
+Ento eu vou definir um fragmento chamado detalhes da empresa na empresa e ento vou listar as propriedades que eu
+
+66
+00:05:07,690 --> 00:05:10,480
+quero estar contidas dentro desse fragmento.
+
+67
+00:05:10,480 --> 00:05:18,970
+Ento, nome e descrio do ID agora, em vez de listar as propriedades individuais em ambos os locais.
+
+68
+00:05:19,210 --> 00:05:24,210
+Posso simplesmente escrever detalhes da empresa dot dot dot.
+
+69
+00:05:26,280 --> 00:05:31,130
+Como agora, quando eu executo essa consulta, voc ainda obtm o mesmo aqui.
+
+70
+00:05:31,150 --> 00:05:36,220
+Portanto, o objetivo dos fragmentos  apenas reduzir a quantidade de cpia e colar de
+
+71
+00:05:36,220 --> 00:05:39,050
+propriedades que voc deseja fazer dentro da sua consulta.
+
+72
+00:05:39,100 --> 00:05:44,710
+chamado de detalhes da empresa e, em seguida, muito importante, ns especificamos na empresa.
+
+73
+00:05:44,710 --> 00:05:51,840
+Olhando para a sintaxe do fragmento primeiro declaramos que queremos fazer um fragmento, dizemos que o fragmento ser
+
+74
+00:05:51,850 --> 00:05:56,410
+Isso permite que o grfico Cuil faa um pouco de verificao de tipo e certifique-se
+
+75
+00:05:56,410 --> 00:06:01,450
+de que as propriedades que estamos pedindo realmente pertencem ao objeto do qual estamos tentando retir-los.
+
+76
+00:06:01,450 --> 00:06:08,230
+Ento, se eu disse que queria puxar talvez o nome e a descrio de um usurio que no tenha um nome
+
+77
+00:06:08,230 --> 00:06:09,370
+e uma descrio.
+
+78
+00:06:09,370 --> 00:06:15,130
+Agora recebo uma boa mensagem de erro que diz que o seu objeto de usurio no tem nada chamado Nome seu objeto
+
+79
+00:06:15,130 --> 00:06:17,340
+de usurio no tem nada chamado de descrio.
+
+80
+00:06:17,350 --> 00:06:18,580
+Voc precisa corrigir isso.
+
+81
+00:06:18,850 --> 00:06:23,860
+Ento, a parte em branco  realmente fazer um pequeno tipo de verificao apenas para garantir que no
+
+82
+00:06:23,860 --> 00:06:26,020
+estamos quebrando as regras que criamos com grficos.
+
+83
+00:06:26,030 --> 00:06:35,790
+Bem, na prtica, usando fragmentos dentro de grficos e no muito comuns, apenas um pouco comuns, voc ver fragmentos de forma
+
+84
+00:06:36,000 --> 00:06:40,260
+mais freqente quando voc comear a entrar na frente.
+
+85
+00:06:40,260 --> 00:06:44,930
+Mais uma vez, isso  realmente uma coisa sobre a elaborao do seu cdigo ou no se repita.
+
+86
+00:06:44,970 --> 00:06:49,040
+Ento,  algo que voc ver muito mais freqentemente no front-end em
+
+87
+00:06:49,050 --> 00:06:51,110
+oposio a algo dentro do grfico.
+
+88
+00:06:51,420 --> 00:06:55,400
+OK, ento, alguns itens sobre a sintaxe das consultas.
+
+89
+00:06:55,600 --> 00:06:57,550
+Vamos continuar na prxima seo.
+
+90
+00:06:57,610 --> 00:07:02,140
+E vamos comear a falar sobre um dos aspectos mais desafiadores dentro do grfico QM.
+

@@ -1,0 +1,312 @@
+1
+00:00:00,690 --> 00:00:05,810
+We've now got our song list visible on the screen and we can successfully delete records.
+
+2
+00:00:05,910 --> 00:00:09,930
+But when we delete a song it does not actually remove it from the UI.
+
+3
+00:00:10,140 --> 00:00:14,880
+So in this section we're going to make sure that whenever we delete a song the UI successfully gets
+
+4
+00:00:14,880 --> 00:00:17,430
+updated in the manner that we would expect.
+
+5
+00:00:18,210 --> 00:00:21,800
+And only when we refresh does the song actually go away.
+
+6
+00:00:21,810 --> 00:00:23,880
+So let's get started.
+
+7
+00:00:23,880 --> 00:00:28,950
+We have seen previously how to refresh equerry inside the song create component.
+
+8
+00:00:29,160 --> 00:00:30,560
+So inside of song create.
+
+9
+00:00:30,570 --> 00:00:36,900
+Here's the on submit handler and we use that refence queries option over here to rerun the query to
+
+10
+00:00:36,900 --> 00:00:39,450
+fetch our list of songs.
+
+11
+00:00:39,450 --> 00:00:42,900
+This time around we don't have to use that same method.
+
+12
+00:00:42,930 --> 00:00:48,520
+And I want to show you a slightly different way for prefetching our list of songs from the back end
+
+13
+00:00:49,390 --> 00:00:54,900
+and then we'll talk about why we could not use this approach inside of the song create function.
+
+14
+00:00:54,960 --> 00:01:01,110
+So I'm going to start by adding in just a little bit of code to take this alternate approach for prefetching
+
+15
+00:01:01,110 --> 00:01:02,950
+the data from the back end.
+
+16
+00:01:03,000 --> 00:01:09,690
+Remember that whenever we color mutation it returns a promise which means we can change on a dot then
+
+17
+00:01:09,750 --> 00:01:15,680
+statement that will be executed after the mutation has been successfully completed.
+
+18
+00:01:16,110 --> 00:01:23,700
+So the alternate method of calling or somehow getting our list of songs refreshed is by calling this
+
+19
+00:01:23,700 --> 00:01:29,610
+dub props data datt really Thach like so.
+
+20
+00:01:30,330 --> 00:01:36,670
+So first a reminder that this dark props that data is added to our component automatically by the graph
+
+21
+00:01:36,690 --> 00:01:39,790
+cupla tag from the re-act Apollo library.
+
+22
+00:01:39,810 --> 00:01:45,510
+So that is a part of our prop's object that is managed by the crowd by the re-act Apollo library for
+
+23
+00:01:45,510 --> 00:01:46,530
+us.
+
+24
+00:01:46,530 --> 00:01:53,340
+One of the available functions on there is the reef fetch function the refence function will automatically
+
+25
+00:01:53,340 --> 00:01:58,800
+re execute any queries that are associated with this songless component.
+
+26
+00:01:59,100 --> 00:02:05,370
+In this case this query or this component has exactly one query associated with with it which is the
+
+27
+00:02:05,580 --> 00:02:07,600
+fetched song's query.
+
+28
+00:02:08,310 --> 00:02:13,950
+So I want to make sure that whenever we delete the song it actually really fetches the data that is
+
+29
+00:02:13,950 --> 00:02:16,470
+associated from that query right there.
+
+30
+00:02:16,470 --> 00:02:19,810
+So to rerun this or let's run this in the browser and then we'll talk.
+
+31
+00:02:19,820 --> 00:02:24,390
+We'll you know see whether or not it works and then we'll talk a little bit about why we might use this
+
+32
+00:02:24,390 --> 00:02:25,530
+approach right here.
+
+33
+00:02:25,710 --> 00:02:29,890
+Over the one that we had previously seen using re-offense queries over here.
+
+34
+00:02:30,090 --> 00:02:30,420
+Okay.
+
+35
+00:02:30,420 --> 00:02:37,200
+So let's get to the shot and change Everts the browser refresh the page to get that updated code and
+
+36
+00:02:37,200 --> 00:02:43,870
+then I'm going to delete the Dog Night Song so delete it and the song goes away.
+
+37
+00:02:44,190 --> 00:02:45,240
+You guys updated.
+
+38
+00:02:45,330 --> 00:02:46,810
+Just we want to have happen.
+
+39
+00:02:46,830 --> 00:02:48,720
+So this is looking pretty good.
+
+40
+00:02:49,500 --> 00:02:52,500
+So your question right now might be.
+
+41
+00:02:52,520 --> 00:02:58,590
+Well Stephen that's all well and good but why would we use this re fetched thing right here as opposed
+
+42
+00:02:58,590 --> 00:03:01,850
+to the refence queries option that we had seen previously.
+
+43
+00:03:02,130 --> 00:03:06,090
+And the answer really comes down to well it depends.
+
+44
+00:03:06,090 --> 00:03:07,380
+Sorry about that scroll right there.
+
+45
+00:03:07,380 --> 00:03:13,980
+It really depends on exactly how you are trying to update your query associated with which component
+
+46
+00:03:14,040 --> 00:03:15,260
+in your hierarchy.
+
+47
+00:03:15,600 --> 00:03:19,190
+So case in point the song creates component.
+
+48
+00:03:19,200 --> 00:03:26,460
+Over here we wanted to update a query that was not associated with the song create component it was
+
+49
+00:03:26,460 --> 00:03:30,770
+associated with a totally different component in our application.
+
+50
+00:03:30,780 --> 00:03:38,010
+So in this case I could have not called this stock prop's data prefetch because the query that I wanted
+
+51
+00:03:38,010 --> 00:03:41,590
+to refresh was not associated with this component right.
+
+52
+00:03:41,600 --> 00:03:51,060
+Your son create has no idea that the query or the song list or the song fetch query exists as being
+
+53
+00:03:51,060 --> 00:03:53,750
+tied with its component right here.
+
+54
+00:03:53,780 --> 00:03:59,410
+However the song list component did receive that query inside the prop's object.
+
+55
+00:03:59,580 --> 00:04:05,570
+So since it came in as a prop craft Well absolutely knows that that query exists.
+
+56
+00:04:05,610 --> 00:04:11,820
+It knows that it is associated with song list and so it's going to modify this refence function right
+
+57
+00:04:11,820 --> 00:04:18,530
+here to make sure that whenever we call it it will refresh the query that is associated with the component.
+
+58
+00:04:18,540 --> 00:04:24,270
+So again it really comes down to how the query is associated with the component to decide whether or
+
+59
+00:04:24,270 --> 00:04:27,910
+not we can call revanche Now don't get me wrong.
+
+60
+00:04:27,940 --> 00:04:35,080
+We could definitely replace this prefetch statement right here and use the alternative syntax we could
+
+61
+00:04:35,080 --> 00:04:40,480
+use refits queries over there as well so we could certainly use refence queries inside of this mutation
+
+62
+00:04:40,510 --> 00:04:42,050
+if we so chose.
+
+63
+00:04:42,220 --> 00:04:47,110
+That might be a really good approach to take just to have a very consistent means of prefetching your
+
+64
+00:04:47,110 --> 00:04:47,690
+data.
+
+65
+00:04:47,830 --> 00:04:52,060
+But again it really comes down to your personal taste.
+
+66
+00:04:52,060 --> 00:04:58,330
+Last thing I want to say about Rifat is that it is really the most simple most straightforward way of
+
+67
+00:04:58,330 --> 00:04:59,600
+rerunning a query.
+
+68
+00:04:59,620 --> 00:05:02,790
+It forces the query to rerun on the server.
+
+69
+00:05:02,920 --> 00:05:08,520
+And so it's going to blow away any existing fetch data that you have to re render your component.
+
+70
+00:05:08,680 --> 00:05:15,460
+In general if you want to update the data associated with a very particular component just usery fetch
+
+71
+00:05:15,490 --> 00:05:18,740
+column a day and you're going to be one happy camper.
+
+72
+00:05:19,350 --> 00:05:20,100
+OK.
+
+73
+00:05:20,260 --> 00:05:24,250
+So I think that we're pretty much good on deleting songs at this point.
+
+74
+00:05:24,250 --> 00:05:27,720
+We're also pretty good on creating songs.
+
+75
+00:05:28,120 --> 00:05:32,680
+The last thing we have to do is take care of a little bit of success and then we can start working on
+
+76
+00:05:32,740 --> 00:05:36,290
+associating songs with individual lyrics.
+
+77
+00:05:36,310 --> 00:05:41,350
+So let's take care of the CSSA in the next section really quickly and then we'll continue on to talking
+
+78
+00:05:41,350 --> 00:05:43,900
+a little bit more about how to deal with lyrics.
+

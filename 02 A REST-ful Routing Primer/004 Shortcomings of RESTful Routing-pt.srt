@@ -1,0 +1,552 @@
+1
+00:00:00,640 --> 00:00:04,530
+Na ltima seo, fizemos uma reviso de convenes repousantes.
+
+2
+00:00:04,740 --> 00:00:12,510
+Ento, lembre-se de convenes repousantes  falar sobre os URLs muito comuns e os tipos de mtodos HTP que usamos
+
+3
+00:00:12,570 --> 00:00:15,990
+para essas operaes muito comuns de manipulao de dados.
+
+4
+00:00:16,260 --> 00:00:18,690
+Portanto, eles no so um conjunto de regras codificadas.
+
+5
+00:00:18,690 --> 00:00:25,410
+ apenas um conjunto de convenes que voc tende a ver em diferentes estruturas da Web de diferentes idiomas.
+
+6
+00:00:25,950 --> 00:00:29,210
+Como eu disse, essas relaes comeam a quebrar um pouco.
+
+7
+00:00:29,220 --> 00:00:36,030
+Uma vez que voc comea a obter dados muito fortemente aninhados ou fortemente relacionados, no caso de ter uma lista
+
+8
+00:00:36,030 --> 00:00:39,620
+de usurios com todas as publicaes publicadas que eles criaram.
+
+9
+00:00:39,810 --> 00:00:43,920
+Bem, voc sabe que voc comea a ter algo muito razovel olhando voc ou ento
+
+10
+00:00:43,920 --> 00:00:50,440
+voc sabe que podemos realmente ler isso, como me dar todos os usurios me acham usurio 23 e depois encontrar todas as postagens que fizeram.
+
+11
+00:00:50,460 --> 00:00:53,110
+Ento,  algo com o que posso viver aqui.
+
+12
+00:00:53,370 --> 00:00:55,180
+Mas essas regras comeam a quebrar.
+
+13
+00:00:55,320 --> 00:00:58,280
+Uma vez que nossos dados comeam a ficar realmente aninhados.
+
+14
+00:00:58,650 --> 00:01:02,540
+Ento, vamos comear a olhar um exemplo um pouco mais complexo.
+
+15
+00:01:03,100 --> 00:01:03,460
+EST BEM.
+
+16
+00:01:03,510 --> 00:01:05,920
+Ento este  o exemplo mais complexo.
+
+17
+00:01:06,150 --> 00:01:11,130
+Este para parecer muito simples e direto, mas confie em mim, h alguma complexidade oculta aqui.
+
+18
+00:01:11,130 --> 00:01:15,990
+Ento, vamos passar por este exemplo e falar sobre o que  to estranho sobre isso
+
+19
+00:01:15,990 --> 00:01:19,920
+e como ele comea a ser um pouco desafiador com um roteiro repousante.
+
+20
+00:01:19,920 --> 00:01:26,640
+Ento, neste diagrama, eu tenho uma lista de usurios ou uma lista de como talvez amigos que eu tenho no Facebook.
+
+21
+00:01:26,640 --> 00:01:33,380
+Ento, em cada uma dessas caixas eu tenho um amigo muito particular como um usurio muito particular, ento eu
+
+22
+00:01:33,380 --> 00:01:39,800
+tenho a empresa em que trabalham e a posio que eles trabalham ou o ttulo de sua posio.
+
+23
+00:01:39,870 --> 00:01:43,500
+Agora vamos imaginar de onde vm cada um desses dados.
+
+24
+00:01:43,850 --> 00:01:45,070
+Bem, a imagem de um usurio.
+
+25
+00:01:45,120 --> 00:01:45,530
+EST BEM.
+
+26
+00:01:45,540 --> 00:01:46,640
+Voc sabe que  a imagem de um usurio.
+
+27
+00:01:46,650 --> 00:01:48,140
+Ns temos o nome do usurio.
+
+28
+00:01:48,270 --> 00:01:53,350
+Ns temos o nome da empresa e o nome da posio ou o ttulo da posio.
+
+29
+00:01:53,400 --> 00:02:00,690
+Agora eu quero perguntar-lhe se estvamos usando um banco de dados relacional ou talvez at um banco de dados sem sequncia como o
+
+30
+00:02:00,690 --> 00:02:04,620
+Mongo D-B. Como podemos armazenar esses dados em nosso banco de dados.
+
+31
+00:02:04,630 --> 00:02:05,160
+Voc sabe como eu.
+
+32
+00:02:05,250 --> 00:02:07,180
+Que tal ns realmente armazenamos esses dados.
+
+33
+00:02:07,520 --> 00:02:13,650
+Bem, voc pode estar pensando, vamos fazer um modelo de usurio e podemos dizer que todos os usurios tm um nome de
+
+34
+00:02:13,680 --> 00:02:16,730
+uma imagem no nome da empresa e um nome de posio.
+
+35
+00:02:16,800 --> 00:02:20,810
+E eu diria que voc sabe que talvez no seja a maneira ideal de faz-lo.
+
+36
+00:02:20,820 --> 00:02:23,180
+Talvez no desejemos seguir essa abordagem.
+
+37
+00:02:23,190 --> 00:02:27,480
+E a razo para isso  que seria muito difcil obter uma lista de.
+
+38
+00:02:27,720 --> 00:02:30,680
+Bem, eu vou dizer razoavelmente difcil.
+
+39
+00:02:30,840 --> 00:02:32,310
+Talvez eu no devesse falar recentemente com dificuldade.
+
+40
+00:02:32,310 --> 00:02:37,680
+empresa em particular ou dizer, mesmo fornecer mais detalhes sobre essa empresa, procure um pouco mais desafiador.
+
+41
+00:02:37,680 --> 00:02:43,920
+No seria bvio para voc em uma lista de todos os nomes de empresas diferentes que temos e tentando
+
+42
+00:02:44,100 --> 00:02:46,650
+encontrar todos os usurios que trabalham em uma
+
+43
+00:02:46,740 --> 00:02:52,470
+Ento, como um esquema alternativo, talvez acabeis com algum tipo de esquema que se
+
+44
+00:02:52,470 --> 00:02:59,840
+parea aqui mesmo, onde temos uma coleo de usurios de uma coleo de empresas e a coleo de posies.
+
+45
+00:03:00,180 --> 00:03:06,240
+Dessa forma, cada posio nica e cada empresa pode ter seus prprios detalhes muito particulares e um
+
+46
+00:03:06,240 --> 00:03:12,780
+usurio pode ter um ponteiro ou uma chave estrangeira que veja uma empresa muito particular e uma ID
+
+47
+00:03:12,780 --> 00:03:14,090
+de posio muito particular.
+
+48
+00:03:14,490 --> 00:03:15,230
+EST BEM.
+
+49
+00:03:15,690 --> 00:03:20,570
+Ento lembre-se de que estamos falando de todas essas coisas com relao ao roteiro repousante e no se
+
+50
+00:03:20,580 --> 00:03:23,090
+preocupe, voc vai chegar a um ponto aqui bastante rpido.
+
+51
+00:03:23,430 --> 00:03:27,970
+Ento eu quero que voc imagine o que isso pode parecer em forma de diagrama.
+
+52
+00:03:27,970 --> 00:03:29,730
+Voc sabe que temos o usurio atual.
+
+53
+00:03:30,000 --> 00:03:32,000
+Ns temos todos os amigos deles.
+
+54
+00:03:32,400 --> 00:03:36,290
+E ento temos todas as empresas e posies relacionadas a elas.
+
+55
+00:03:36,330 --> 00:03:43,940
+cada metodologia GTP para obter acesso a cada um desses registros porque, como o usurio atual, os amigos
+
+56
+00:03:43,950 --> 00:03:51,720
+do usurio atual e as empresas em posies que Esses amigos trabalham em que convenes repousantes podemos usar aqui.
+
+57
+00:03:51,720 --> 00:03:58,620
+Agora vou lhe fazer uma pergunta que eu quero que voc produza algum tipo de roteamento repousante
+
+58
+00:03:58,620 --> 00:03:59,950
+que RL e
+
+59
+00:04:00,390 --> 00:04:04,850
+Bem, para as duas primeiras colunas, a vida no  to ruim assim.
+
+60
+00:04:04,860 --> 00:04:10,560
+Como ns, ns gostaramos de imaginar como isso poderia funcionar, talvez tenhamos usurios cortados 23 para
+
+61
+00:04:10,560 --> 00:04:17,160
+ter acesso ao usurio atual para encontrar usurios atuais de usurios que possamos ir aos usurios 23 cortar amigos
+
+62
+00:04:17,160 --> 00:04:20,160
+ou at mesmo tecnicamente usurios 23 usurios cortados.
+
+63
+00:04:20,170 --> 00:04:26,670
+Voc sabe que talvez isso tambm funcione, mas, o que voc , podemos colocar aqui para
+
+64
+00:04:26,670 --> 00:04:30,680
+representar as empresas ou os cargos para todos esses amigos.
+
+65
+00:04:30,930 --> 00:04:35,490
+Ento  a que a vida comea realmente realmente desafiadora.
+
+66
+00:04:35,490 --> 00:04:38,740
+Vou apresentar-lhe um par de direes diferentes para que possamos ir.
+
+67
+00:04:38,740 --> 00:04:43,190
+Tudo bem, ento isso pode ser como um par de opes diferentes que teramos para
+
+68
+00:04:43,200 --> 00:04:45,160
+aplicar um roteiro repousante para essa situao.
+
+69
+00:04:45,750 --> 00:04:51,870
+Ento, talvez esqueam todas essas empresas e posies em particular, poderamos ter como OK para um amigo
+
+70
+00:04:51,870 --> 00:04:53,180
+com identificao nmero um.
+
+71
+00:04:53,190 --> 00:04:59,010
+Eu poderia fazer usurios cortar uma barra de empresas e isso me daria conhecer a empresa com ID 5.
+
+72
+00:04:59,520 --> 00:05:05,510
+E ento podemos fazer o mesmo por sua posio e depois repetir para os outros amigos tambm.
+
+73
+00:05:05,520 --> 00:05:12,360
+A desvantagem dessa abordagem  que estaramos fazendo uma tonelada de solicitaes TTP de idade separada para
+
+74
+00:05:12,360 --> 00:05:15,690
+o nosso servidor back-end para obter todos esses dados.
+
+75
+00:05:15,690 --> 00:05:20,590
+Pense nisso que voc conhece para cada amigo que o nosso usurio atual tenha que fazer.
+
+76
+00:05:20,610 --> 00:05:27,000
+H pedido TTP apenas para obter a sua empresa e, em seguida, outro para obter a sua posio do que outro para
+
+77
+00:05:27,000 --> 00:05:29,810
+obter a prxima posio dos amigos na empresa tambm.
+
+78
+00:05:30,000 --> 00:05:36,210
+Ento, acabou por ser um monte de pedidos muito separados apenas para obter esses dados que de
+
+79
+00:05:36,210 --> 00:05:41,190
+outra forma parece que seria simples de obter para o mercado que examinamos anteriormente.
+
+80
+00:05:41,250 --> 00:05:46,440
+algo assim, talvez fssemos, como os usurios da Slash cortar 23 amigos da barra.
+
+81
+00:05:46,590 --> 00:05:50,730
+Ento, nossa prxima opo, se quisermos seguir convenes repousantes, pode parecer
+
+82
+00:05:50,730 --> 00:05:56,830
+Ento, isso seria como a lista de todos os meus amigos e depois reduziria as empresas e reduziria as posies.
+
+83
+00:05:57,060 --> 00:06:04,660
+Ento, em teoria, isso me daria todas as empresas e todas as posies relacionadas aos amigos dos usurios 2030.
+
+84
+00:06:05,080 --> 00:06:07,250
+Ok, isso est comeando a parecer um pouco mais realista.
+
+85
+00:06:07,260 --> 00:06:07,640
+Certo.
+
+86
+00:06:07,650 --> 00:06:11,620
+Como eu poderia imaginar colocar um ponto final juntos assim.
+
+87
+00:06:11,640 --> 00:06:18,320
+O problema com este ponto aqui  que bem,  muito particular,  muito personalizado.
+
+88
+00:06:18,490 --> 00:06:23,880
+voc ou, assim, assim por toda a nossa aplicao, lembre-se que voc sabe que algum realmente deve programar esta rota aqui.
+
+89
+00:06:23,880 --> 00:06:26,250
+Voc sabe imaginar se ns estivssemos fazendo uso de
+
+90
+00:06:26,250 --> 00:06:29,570
+Eles tm que gostar de juntar as consultas para fazer essa rota.
+
+91
+00:06:29,780 --> 00:06:34,620
+Eles comearo a ter um pouco de dor se quisermos ter muitos pontos
+
+92
+00:06:34,620 --> 00:06:42,050
+de extremidade diferentes que buscam esses dados to personalizados assim, ento a opo final que eu apresentaria para voc e
+
+93
+00:06:42,110 --> 00:06:49,040
+ a que muitas pessoas tendem ir  fazer apenas um ponto de extremidade muito personalizado muito personalizado que
+
+94
+00:06:49,040 --> 00:06:51,980
+realmente comea a quebrar as convenes de restaurao.
+
+95
+00:06:52,220 --> 00:06:59,540
+Ento, talvez eles diriam Ok, finalmente, usurio 23 e ento eu vou fazer um ponto final personalizado
+
+96
+00:06:59,540 --> 00:07:05,300
+chamado amigos com empresas e tecnicamente poderia ser amigo de empresas e cargos.
+
+97
+00:07:06,050 --> 00:07:12,920
+E este nico ponto final aqui me buscaria o usurio 23 com todos os seus amigos e todas as
+
+98
+00:07:12,920 --> 00:07:14,950
+empresas e posies associadas tambm.
+
+99
+00:07:15,260 --> 00:07:16,500
+Ento, com isso voc est bem aqui.
+
+100
+00:07:16,570 --> 00:07:22,540
+Sim, definitivamente estamos rompendo convenes repousantes e definitivamente rompendo convenes repousantes aqui.
+
+101
+00:07:24,190 --> 00:07:29,940
+Ento, claramente, de todas essas opes diferentes que temos, no h nenhum que realmente me grita realmente.
+
+102
+00:07:29,950 --> 00:07:33,300
+Voc sabe que eu realmente olho para isso e digo como sim, isso faz um monte de sentido.
+
+103
+00:07:33,300 --> 00:07:36,460
+Como vamos definitivamente nessa direo.
+
+104
+00:07:36,460 --> 00:07:41,170
+repousante, essas convenes comeam a quebrar quando estivermos trabalhando com dados altamente relacionados.
+
+105
+00:07:41,180 --> 00:07:47,530
+Ento, em concluso, voc sabe o que estamos conseguindo aqui  que, quando estamos trabalhando com um roteiro
+
+106
+00:07:47,740 --> 00:07:54,130
+Ou comeamos a encontrar muitos problemas com muitas solicitaes de HGP ou comeamos a enfrentar grandes problemas,
+
+107
+00:07:54,190 --> 00:08:00,640
+onde temos esses pontos de extremidade muito personalizados que so muito estreitamente acoplados a recursos muito particulares
+
+108
+00:08:00,700 --> 00:08:02,180
+em nossa frente.
+
+109
+00:08:03,070 --> 00:08:07,090
+Mesmo assim, h at um problema maior aqui que ainda no abordamos.
+
+110
+00:08:07,420 --> 00:08:10,080
+Imaginemos que estvamos usando este ponto final aqui.
+
+111
+00:08:10,080 --> 00:08:15,640
+Voc sabe, vamos imaginar que estvamos programando isso bem assim se fizssemos um pedido assim e recuperamos
+
+112
+00:08:15,640 --> 00:08:19,820
+uma lista de todas as empresas que so sociais com nossos amigos.
+
+113
+00:08:20,200 --> 00:08:26,830
+Por padro, podemos devolver todo o modelo da empresa, que pode ter todos os dados, como o ticker de aes para
+
+114
+00:08:26,830 --> 00:08:31,470
+a conta do funcionrio at a data de fundao para o tipo da empresa.
+
+115
+00:08:31,630 --> 00:08:37,840
+Todos esses dados que realmente no nos interessamos por mostrar o que voc conhece  apenas uma
+
+116
+00:08:37,840 --> 00:08:42,790
+apresentao de nossos amigos atuais e a empresa est em posio de trabalharem direito.
+
+117
+00:08:42,790 --> 00:08:48,540
+A nica coisa em que realmente nos interessamos nesse pedido ou nesse objeto de empresa  o nome da empresa.
+
+118
+00:08:48,580 --> 00:08:55,630
+Ento, mesmo quando comeamos a aprimorar um ponto de extremidade muito especial, podemos estar felizes com o que devemos pensar com muito
+
+119
+00:08:55,630 --> 00:09:01,840
+cuidado sobre o que os dados estavam servindo de volta para o aplicativo, pois podemos ser dramaticamente ao servir
+
+120
+00:09:01,960 --> 00:09:05,940
+a quantidade de dados que estavam sendo lanados de volta o cliente.
+
+121
+00:09:06,550 --> 00:09:07,200
+OK.
+
+122
+00:09:07,690 --> 00:09:10,290
+Ento, esse pequeno spiel em roteamento repousante.
+
+123
+00:09:10,480 --> 00:09:15,770
+Se tudo isso no faz sentido se no est claro para ns, rotear  como o que est acontecendo aqui.
+
+124
+00:09:15,820 --> 00:09:16,820
+No se preocupe.
+
+125
+00:09:16,840 --> 00:09:22,420
+A nica coisa que eu quero que voc tire desta discusso  que o roteamento
+
+126
+00:09:22,420 --> 00:09:28,990
+repousante com dados altamente relacionais comea a se tornar bastante desafiador e comea a dobrar seu crebro um
+
+127
+00:09:29,020 --> 00:09:34,840
+pouco e voc pode comear a facilmente entrar em desentendimentos com seus colegas de trabalho como
+
+128
+00:09:34,840 --> 00:09:36,220
+esse roteamento deve funcionar.
+
+129
+00:09:36,220 --> 00:09:40,190
+Ento, isso  o que o grfico QOL est procurando consertar.
+
+130
+00:09:40,260 --> 00:09:48,130
+Q Well quer consertar algumas grandes inconsistncias ou desafios em torno do roteamento restante e tambm
+
+131
+00:09:48,130 --> 00:09:52,190
+abordar grandes problemas em torno de dados de servio.
+
+132
+00:09:52,330 --> 00:09:57,010
+Falaremos sobre alguns dos outros grandes desafios que o grfico Bem resolva enquanto passamos durante
+
+133
+00:09:57,010 --> 00:09:58,000
+o curso tambm.
+
+134
+00:09:58,150 --> 00:10:02,710
+Mas agora mesmo  como se voc soubesse que esta  a idia que eu quero que voc tenha na sua cabea, essa
+
+135
+00:10:02,950 --> 00:10:05,440
+ a idia do que o grfico 2L est resolvendo para ns.
+
+136
+00:10:05,440 --> 00:10:08,890
+Eu quero que voc esteja pensando enquanto caminhamos pelo nosso primeiro exemplo.
+
+137
+00:10:09,370 --> 00:10:14,560
+Ento, falando sobre o nosso primeiro exemplo, vamos continuar na prxima seo e comear a trabalhar um
+
+138
+00:10:14,570 --> 00:10:15,780
+pouco no grfico Bem.
+

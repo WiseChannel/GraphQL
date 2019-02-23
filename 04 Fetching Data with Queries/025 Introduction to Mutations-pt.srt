@@ -1,0 +1,416 @@
+1
+00:00:00,780 --> 00:00:07,470
+Quase todos os tutorials ou recursos grficos que voc descobrir esto obcecados com a escrita de consultas para
+
+2
+00:00:07,470 --> 00:00:09,800
+ler dados de nosso servidor grfico.
+
+3
+00:00:09,990 --> 00:00:16,080
+Mesmo neste curso, agora gastamos provavelmente 30 segundos ou mais, apenas descobrindo como configurar a
+
+4
+00:00:16,080 --> 00:00:19,230
+capacidade de ler dados de nosso servidor grfico.
+
+5
+00:00:19,500 --> 00:00:25,230
+Ns no tocamos o processo de manipulao de nossos dados no menor bit.
+
+6
+00:00:25,230 --> 00:00:30,540
+Nesta seo, vamos comear a olhar para como usar o grfico Cuil para modificar
+
+7
+00:00:30,540 --> 00:00:36,180
+os dados armazenados em nosso servidor de alguma forma usando um sistema chamado mutaes.
+
+8
+00:00:36,180 --> 00:00:40,250
+As mutaes so usadas para mudar nossos dados de alguma forma.
+
+9
+00:00:40,260 --> 00:00:45,650
+As mutaes podem ser usadas para excluir registros, atualiz-los ou mesmo criar novos registros.
+
+10
+00:00:45,660 --> 00:00:51,840
+As mutaes so um pouco notrias e graficamente boas por serem bastante desafiadoras para trabalhar, mas
+
+11
+00:00:51,840 --> 00:00:57,060
+estou bastante confiante de que podemos percorrer esse processo e descobrir exatamente como funcionam.
+
+12
+00:00:57,060 --> 00:00:58,740
+Ento vamos comear.
+
+13
+00:00:58,740 --> 00:01:04,620
+Primeiro, quero mencionar que o servidor Jason que configuramos anteriormente oferece suporte para editar registros
+
+14
+00:01:04,620 --> 00:01:08,940
+que seguem as convenes repousantes sobre as quais falamos muito anteriormente.
+
+15
+00:01:09,240 --> 00:01:16,530
+Ento, temos em nosso grfico todos os servidores simiar Jaison server nossa coleo de usurios em
+
+16
+00:01:16,530 --> 00:01:19,540
+nossa coleo de empresas seguindo convenes repousantes.
+
+17
+00:01:19,560 --> 00:01:27,540
+Se publicarmos alguns dados para reduzir empresas que adicionaro um novo registro  coleo da nossa empresa.
+
+18
+00:01:27,540 --> 00:01:29,000
+A mesma coisa para os usurios.
+
+19
+00:01:29,160 --> 00:01:36,320
+Podemos fazer uma solicitao de excluso para cortar os usurios barra diagonal 23 para excluir alguns usurios particulares.
+
+20
+00:01:36,540 --> 00:01:41,310
+Ento, tudo o que estou tentando dizer aqui  que realmente no precisamos nos preocupar com o JS na
+
+21
+00:01:41,310 --> 00:01:42,150
+configurao do servidor.
+
+22
+00:01:42,150 --> 00:01:46,680
+Tudo o que vamos fazer  concentrar-se em torno do lado grfico das coisas.
+
+23
+00:01:46,680 --> 00:01:52,020
+E, claro, mais tarde, no curso, quando colocarmos nosso prprio banco de dados, faremos
+
+24
+00:01:52,020 --> 00:01:55,740
+todas essas mutaes e manipularemos o banco de dados diretamente.
+
+25
+00:01:55,740 --> 00:02:01,590
+Mas, novamente, agora estamos mais concentrados em garantir que este esquema funcione bem
+
+26
+00:02:01,590 --> 00:02:02,700
+com essas mutaes.
+
+27
+00:02:03,330 --> 00:02:04,900
+Certo, com isso feito de imediato.
+
+28
+00:02:05,040 --> 00:02:08,650
+Vamos falar sobre um pouco como as mutaes so configuradas.
+
+29
+00:02:09,030 --> 00:02:14,070
+Agora, nosso esquema grfico consiste em uma nica consulta de raiz.
+
+30
+00:02:14,100 --> 00:02:20,610
+Ento, aqui est a nossa consulta de raiz e a consulta de raiz nos d acesso ao tipo de
+
+31
+00:02:20,610 --> 00:02:28,230
+usurio e ao tipo de empresa, vamos configurar nossas mutaes de forma algo similar, onde ns fazemos um tipo de tipo de
+
+32
+00:02:28,230 --> 00:02:28,750
+nutation.
+
+33
+00:02:28,890 --> 00:02:35,970
+E, em seguida, adicionamos mais ou menos campos para fazer uma operao muito particular para manipular nossa coleo
+
+34
+00:02:35,970 --> 00:02:36,670
+de dados.
+
+35
+00:02:36,960 --> 00:02:43,260
+Ento, teremos uma mutao que pode adicionar um usurio  nossa coleo de usurios, voc
+
+36
+00:02:43,260 --> 00:02:48,420
+pode ter uma mutao que exclua um usurio ou qualquer outra operao similar.
+
+37
+00:02:48,420 --> 00:02:52,740
+Todas essas operaes sero vinculadas a este objeto de mutaes.
+
+38
+00:02:52,890 --> 00:02:58,020
+Portanto, nenhuma dessas manipulaes de dados ser associada aos tipos reais que
+
+39
+00:02:58,020 --> 00:02:58,730
+j definimos.
+
+40
+00:02:58,950 --> 00:03:04,620
+se olharmos o nosso arquivo de esquema, temos nossa empresa digitar aqui e logo abaixo, temos o nosso tipo de usurio.
+
+41
+00:03:04,620 --> 00:03:07,040
+Ento, tudo o que eu quero dizer  que,
+
+42
+00:03:07,630 --> 00:03:14,120
+Ns no vamos, no vamos colocar qualquer lgica em torno de editar esses registros ou esses tipos dentro
+
+43
+00:03:14,130 --> 00:03:15,220
+do tipo real.
+
+44
+00:03:15,450 --> 00:03:21,360
+Em vez disso, vamos fazer um objeto completamente separado e ensinar esse objeto sobre como manipular
+
+45
+00:03:21,360 --> 00:03:23,480
+alguns dos dados em nosso aplicativo.
+
+46
+00:03:24,030 --> 00:03:24,430
+EST BEM.
+
+47
+00:03:24,450 --> 00:03:25,620
+Bastante palestras.
+
+48
+00:03:25,620 --> 00:03:27,270
+Vamos ver o que isso realmente parece.
+
+49
+00:03:27,270 --> 00:03:29,040
+Honestamente no  to ruim assim.
+
+50
+00:03:29,040 --> 00:03:34,070
+ algo que eu estou realmente confiante de que voc vai conseguir um ataque rpido.
+
+51
+00:03:34,230 --> 00:03:39,390
+Ns vamos nos deslocar at a parte inferior do nosso arquivo aqui, voc encontra a declarao de exportao do mdulo
+
+52
+00:03:39,640 --> 00:03:39,860
+aqui.
+
+53
+00:03:39,870 --> 00:03:42,050
+Agora est bem acima dele.
+
+54
+00:03:42,060 --> 00:03:46,860
+Vamos comear definindo nossa mutao de raiz e uma.
+
+55
+00:03:46,890 --> 00:03:49,280
+A mutao  igual ao novo grfico.
+
+56
+00:03:49,290 --> 00:04:01,200
+Q tipo de objeto bem e eu vou dar-lhe um nome de mutao e vai ter uma propriedade de campo.
+
+57
+00:04:01,200 --> 00:04:06,440
+Ento, at agora, tudo o que escrevemos at agora realmente parece que estamos apenas definindo
+
+58
+00:04:06,440 --> 00:04:07,310
+outro tipo.
+
+59
+00:04:07,310 --> 00:04:12,320
+O nico perodo parcial  o nico lugar onde as coisas comeam a ser um pouco diferente 
+
+60
+00:04:12,320 --> 00:04:14,650
+o que realmente fazemos dentro da funo de resoluo.
+
+61
+00:04:14,930 --> 00:04:16,980
+Ento, ainda vamos ter um objeto de campo.
+
+62
+00:04:17,030 --> 00:04:19,910
+Ns vamos ter alguns campos dentro dele.
+
+63
+00:04:19,940 --> 00:04:23,390
+Esses campos tero tipos args resolve function blah blah.
+
+64
+00:04:23,390 --> 00:04:26,090
+Todas as coisas muito semelhantes.
+
+65
+00:04:26,090 --> 00:04:31,490
+A primeira mutao em que vamos trabalhar ser adicionar usurios  nossa coleo de usurios.
+
+66
+00:04:31,610 --> 00:04:36,420
+Ento, eu vou chamar esse usurio AD de nutao assim.
+
+67
+00:04:36,890 --> 00:04:39,050
+Ento note que o campo que eu estou adicionando aqui.
+
+68
+00:04:39,050 --> 00:04:45,590
+No tem um nome de campo semelhante, como todas as outras propriedades que tivemos onde tivemos ID e nomeamos a descrio
+
+69
+00:04:45,590 --> 00:04:46,600
+do primeiro nome.
+
+70
+00:04:46,610 --> 00:04:47,950
+Todo esse tipo de coisa.
+
+71
+00:04:48,020 --> 00:04:53,800
+Em vez disso, os campos da mutao descrevem a operao que esta mutao ir realizar.
+
+72
+00:04:53,810 --> 00:04:58,370
+Ento, esta mutao aqui espero que isso adicione um usurio  coleo do meu usurio.
+
+73
+00:04:58,370 --> 00:05:02,600
+E entendo, isso acrescenta que o usurio faz sentido.
+
+74
+00:05:02,600 --> 00:05:04,360
+Isso ter um tipo.
+
+75
+00:05:04,580 --> 00:05:09,890
+Eu vou colocar todas as chaves primeiro e voltaremos e completaremos os valores, teremos
+
+76
+00:05:09,950 --> 00:05:12,740
+args novamente e o resultado funcionar novamente.
+
+77
+00:05:12,830 --> 00:05:15,110
+Ento, novamente, coisas muito semelhantes at agora.
+
+78
+00:05:16,750 --> 00:05:19,140
+Ento, vamos primeiro comear com o campo de tipo.
+
+79
+00:05:19,240 --> 00:05:26,350
+Agora, o campo de tipo aqui  apenas um pouco desafiador, esse tipo se refere ao tipo
+
+80
+00:05:26,350 --> 00:05:29,830
+de dados que eventualmente retornaremos da funo de resultado.
+
+81
+00:05:29,830 --> 00:05:34,150
+Agora, isso pode parecer exatamente o que estamos usando o tipo anteriormente.
+
+82
+00:05:34,150 --> 00:05:34,420
+Certo.
+
+83
+00:05:34,420 --> 00:05:37,310
+Gostei que realmente era o que usamos antes.
+
+84
+00:05:37,330 --> 00:05:43,060
+A diferena  que s vezes, quando voc tem uma mutao, voc era a coleo de dados em
+
+85
+00:05:43,060 --> 00:05:48,100
+que voc est operando e o tipo que voc retorna pode no ser sempre o mesmo.
+
+86
+00:05:48,270 --> 00:05:53,590
+veremos um exemplo disso no prximo aplicativo em que trabalhamos onde o tipo que somos como
+
+87
+00:05:53,620 --> 00:05:59,560
+voc, presumivelmente, estamos trabalhando com os usurios aqui, mas talvez no devemos retornar um usurio, no entanto
+
+88
+00:05:59,560 --> 00:06:04,930
+grande maioria, o tempo podemos definitivamente fazer a suposio de que  isso que vamos voltar.
+
+89
+00:06:04,930 --> 00:06:05,960
+E, na verdade,
+
+90
+00:06:06,100 --> 00:06:10,600
+Eu s quero lisonje-lo l e preparo voc deixa voc saber que ns
+
+91
+00:06:10,600 --> 00:06:14,450
+no estaremos sempre retornando do mesmo tipo que estamos trabalhando agora.
+
+92
+00:06:14,470 --> 00:06:17,960
+O nosso tambm ter funcionalidades muito semelhantes.
+
+93
+00:06:17,980 --> 00:06:26,050
+Sero alguns argumentos ou dados que passaremos a esta funo resolvida sempre que
+
+94
+00:06:26,050 --> 00:06:28,270
+fizermos um novo usurio.
+
+95
+00:06:28,300 --> 00:06:34,480
+Eu esperaria que esse usurio precisasse de um primeiro nome e idade e uma ID da empresa porque gostaramos de associar 
+
+96
+00:06:34,480 --> 00:06:38,600
+empresa e tambm gostaramos de garantir que eles tenham um primeiro nome e uma idade.
+
+97
+00:06:38,650 --> 00:06:44,890
+Ento, eu vou fazer a suposio de que sempre que algum chama esse anncio usando mutao
+
+98
+00:06:44,890 --> 00:06:51,280
+para adicionar um novo usurio a nossa coleo de usurios, eles provavelmente deveriam passar ao longo
+
+99
+00:06:51,280 --> 00:06:59,110
+de um primeiro nome, que ser uma string que eles provavelmente precisaro fornecer uma idade que ser um grfico.
+
+100
+00:06:59,110 --> 00:07:08,260
+Q Bem, e provavelmente eles precisaro fornecer uma identificao da empresa, que ser um rascunho.
+
+101
+00:07:08,330 --> 00:07:10,220
+Bem, tambm.
+
+102
+00:07:12,980 --> 00:07:17,390
+Vamos dar uma pausa rpida e ento vamos voltar e enfrentar esta funo resolvida
+
+103
+00:07:17,390 --> 00:07:22,050
+e depois trabalhar em testar esse assunto dentro de nossa interface grfica no navegador.
+
+104
+00:07:22,070 --> 00:07:23,630
+Ento C-A em apenas um segundo.
+

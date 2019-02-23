@@ -1,0 +1,652 @@
+1
+00:00:00,840 --> 00:00:06,480
+Na ltima seo, comeamos a trabalhar em nossa mutao de msica de anncios dentro de nosso componente de criao de msica.
+
+2
+00:00:06,750 --> 00:00:12,720
+E nos deparamos com um enorme problema de exibio quando percebemos que sempre que chamamos essa mutao, devemos
+
+3
+00:00:12,720 --> 00:00:14,540
+passar no ttulo da nova msica.
+
+4
+00:00:14,850 --> 00:00:19,590
+Mas o ttulo s est disponvel no prprio componente.
+
+5
+00:00:19,620 --> 00:00:24,600
+Em teoria, queremos chamar a mutao disso no manipulador de eventos de envio aqui.
+
+6
+00:00:24,600 --> 00:00:30,140
+Ento, temos de comunicar de alguma forma o ttulo da msica para essa mutao.
+
+7
+00:00:30,510 --> 00:00:32,970
+Ento,  isso que vamos cuidar dentro desta seo.
+
+8
+00:00:32,970 --> 00:00:37,830
+como se comunicar do componente para a mutao que estamos escrevendo aqui.
+
+9
+00:00:37,830 --> 00:00:38,790
+Vamos descobrir
+
+10
+00:00:39,390 --> 00:00:41,070
+Ok, vamos l.
+
+11
+00:00:41,070 --> 00:00:45,810
+Eu acho que uma boa maneira de abordar isso  trabalhar dentro do grfico porque, em
+
+12
+00:00:45,810 --> 00:00:52,200
+ltima anlise, vamos usar uma pequena caracterstica da sintaxe de grfico legal que est disponvel para ns dentro de grficos, bem como
+
+13
+00:00:53,220 --> 00:00:54,270
+dentro de grficos.
+
+14
+00:00:54,270 --> 00:00:56,710
+Eu ainda tenho a mutao escrita aqui.
+
+15
+00:00:56,730 --> 00:00:58,600
+Ento eu ainda tenho a palavra-chave da mutao.
+
+16
+00:00:58,710 --> 00:01:02,020
+Ainda estou chamando a mutao da msica ADD e todo esse tipo de coisas boas.
+
+17
+00:01:03,430 --> 00:01:09,530
+Para cuidar dessa questo de alguma forma comunicar dados em nossa mutao.
+
+18
+00:01:09,530 --> 00:01:11,550
+Quero pensar em mutaes como uma funo.
+
+19
+00:01:11,570 --> 00:01:16,150
+Ns vamos passar algum argumento para isso de alguma fonte externa.
+
+20
+00:01:16,250 --> 00:01:23,480
+Utilizamos o sistema dentro do enxerto, bem chamado de variveis que so definidas aqui embaixo, na
+
+21
+00:01:23,480 --> 00:01:31,430
+parte inferior esquerda da interface; as variveis so usadas para injetar alguma varivel de fora da consulta para
+
+22
+00:01:31,430 --> 00:01:37,320
+as variveis de consulta de consulta so usadas com maior freqncia dentro do grfico.
+
+23
+00:01:37,370 --> 00:01:43,460
+por algum tempo, sempre que quisermos ter um componente reata que, de algum modo, customize a consulta de
+
+24
+00:01:43,460 --> 00:01:49,190
+alguma forma, que  extremamente til sempre que comeamos a pensar em dizer uma filtragem ou paginao.
+
+25
+00:01:49,190 --> 00:01:52,790
+Bem, absolutamente com mutaes e ns tambm as usaremos com perguntas
+
+26
+00:01:52,940 --> 00:01:59,930
+Se voc quiser obter apenas a primeira pgina de dados de uma consulta, o componente precisa informar a consulta que
+
+27
+00:01:59,930 --> 00:02:00,780
+foi feita.
+
+28
+00:02:00,860 --> 00:02:08,330
+Ei, eu s quero que a primeira pgina de dados se comunique do nosso componente re-act para a consulta ou a
+
+29
+00:02:08,330 --> 00:02:08,870
+prpria mutao.
+
+30
+00:02:08,900 --> 00:02:12,710
+Utilizamos o sistema dessa varivel de consulta.
+
+31
+00:02:12,710 --> 00:02:15,790
+Ento, vamos falar um pouco sobre como essas variveis de consulta funcionam.
+
+32
+00:02:16,840 --> 00:02:21,430
+a mutao e a forma como escrevemos as consultas para fazer uso de variveis de consulta.
+
+33
+00:02:21,430 --> 00:02:27,460
+Primeiro o grande para entender aqui  que a verdadeira mudana que vai continuar a fazer uso dessas variveis de consulta
+
+34
+00:02:27,460 --> 00:02:28,780
+ a forma como escrevemos
+
+35
+00:02:28,800 --> 00:02:34,210
+Indo virar para um slide que nos mostrar uma pequena sintaxe alternativa  taxa de
+
+36
+00:02:34,210 --> 00:02:38,580
+mutao aqui que nos ajudar a entender exatamente como vamos modificar essa mutao.
+
+37
+00:02:39,590 --> 00:02:40,370
+Olhe para isso.
+
+38
+00:02:40,520 --> 00:02:41,920
+Ento isso parece realmente feio.
+
+39
+00:02:42,020 --> 00:02:44,360
+Eu posso te dizer agora que parece feio, no posso.
+
+40
+00:02:44,390 --> 00:02:45,410
+Posso desacreditar isso.
+
+41
+00:02:45,410 --> 00:02:47,190
+Apenas parece feio.
+
+42
+00:02:47,360 --> 00:02:50,010
+Mas, de qualquer forma, vamos ficar com isso.
+
+43
+00:02:50,010 --> 00:02:55,550
+Primeiro, h algumas mudanas em como essa coisa parece em comparao com o Querrey ou a mutao que
+
+44
+00:02:55,550 --> 00:02:56,950
+temos no grfico agora.
+
+45
+00:02:57,080 --> 00:02:59,540
+Ento, eu quero primeiro salientar o que  semelhante.
+
+46
+00:02:59,540 --> 00:03:01,800
+E ento falaremos sobre o que no  semelhante.
+
+47
+00:03:02,090 --> 00:03:04,510
+Ento, ainda temos essa palavra-chave de mutao.
+
+48
+00:03:04,820 --> 00:03:11,450
+e, em seguida, dentro da mutao, eu ainda estou ligando para adicionar msica e dizendo que aqui  um ttulo que eu quero passar.
+
+49
+00:03:11,480 --> 00:03:13,480
+Ns temos a cinta aberta no final
+
+50
+00:03:13,490 --> 00:03:15,570
+Ento, todas essas coisas ainda esto aqui.
+
+51
+00:03:15,590 --> 00:03:19,760
+Ento, estamos realmente adicionando a mutao como voc sabe que olhamos para o ditado e olhamos
+
+52
+00:03:19,760 --> 00:03:20,480
+para o slide.
+
+53
+00:03:20,480 --> 00:03:23,940
+Estamos realmente adicionando sintaxe adicional nesta coisa.
+
+54
+00:03:24,550 --> 00:03:24,860
+EST BEM.
+
+55
+00:03:24,890 --> 00:03:31,100
+Ento, vamos falar sobre cada elemento que vamos adicionar aqui primeiro Emily aps a mutao da
+
+56
+00:03:31,370 --> 00:03:35,120
+palavra-chave, vamos adicionar um nome para a mutao neste caso.
+
+57
+00:03:35,120 --> 00:03:37,760
+Descompactando adiciona msica.
+
+58
+00:03:37,760 --> 00:03:42,440
+Isso  um pouco enganador porque voc pode estar pensando Bem, Stephen j no conhecemos a
+
+59
+00:03:42,440 --> 00:03:46,620
+luz de mutao dentro disso e ns somos a coisa mais legal, adicione msica aqui.
+
+60
+00:03:46,880 --> 00:03:48,890
+Bem, sim, ns fizemos.
+
+61
+00:03:48,890 --> 00:03:52,400
+O objetivo da msica ADD aqui  ter mais um tipo de tipo.
+
+62
+00:03:52,400 --> 00:03:53,110
+Voc pode obter.
+
+63
+00:03:53,180 --> 00:03:57,830
+Voc deve realmente imaginar essa mutao agora como sendo uma espcie de funo que podemos chamar
+
+64
+00:03:57,830 --> 00:03:59,680
+de qualquer lugar dentro de nossa aplicao.
+
+65
+00:03:59,750 --> 00:04:06,890
+Ento, eu esperaria isso, dizendo: Ei, todos, eu tenho uma mutao chamada adicionar msica quando voc acha que
+
+66
+00:04:06,890 --> 00:04:10,940
+vai invocar a mutao da msica ADD no nosso servidor.
+
+67
+00:04:10,940 --> 00:04:15,230
+Na prtica, o nome da mutao aqui pode ser tudo o que realmente queremos.
+
+68
+00:04:15,220 --> 00:04:20,990
+Portanto, no est vinculado a nenhuma parte de nossas costas e esquema, no est vinculado
+
+69
+00:04:20,990 --> 00:04:29,900
+ao grfico para todo o servidor na parte de trs,  realmente algo para nome-lo para o nosso uso pessoal, em seguida, a mutao
+
+70
+00:04:29,900 --> 00:04:36,650
+nomeada levar alguns parmetros ou argumentos a ele assim como estamos habituados a uma chamada de mutao individual,
+
+71
+00:04:36,740 --> 00:04:38,070
+como adicionar msica aqui.
+
+72
+00:04:38,540 --> 00:04:44,600
+Mas voc notar que a lista de argumentos  um pouco inesperada.
+
+73
+00:04:44,610 --> 00:04:48,590
+Ele diz que isso provavelmente  algo que estamos agora. Espero que voc esteja
+
+74
+00:04:48,600 --> 00:04:53,770
+coando sua cabea e dizer que esse tipo de parece arbitrrio e estranho, como o nome da mutao.
+
+75
+00:04:53,770 --> 00:04:55,880
+Por que estou passando em argumentos aqui.
+
+76
+00:04:56,090 --> 00:05:00,170
+Mais uma vez, voc quer pensar nisso como uma funo de tipo.
+
+77
+00:05:00,320 --> 00:05:05,420
+Ento, isso  como o nome da funo e estes so os mesmos argumentos que voc
+
+78
+00:05:05,670 --> 00:05:11,480
+est passando para a funo e vai personalizar o corpo da funo ou o corpo da mutao aqui embaixo.
+
+79
+00:05:11,480 --> 00:05:14,780
+Ento, vamos conversar um pouco sobre os argumentos que passamos.
+
+80
+00:05:14,870 --> 00:05:21,080
+diferente daquela em que estamos acostumados com a lista de argumentos que tivemos anteriormente dentro da mutao.
+
+81
+00:05:21,080 --> 00:05:26,930
+A primeira coisa que quero salientar  que a lista de argumentos aqui possui um formato muito
+
+82
+00:05:26,930 --> 00:05:28,520
+diferente de uma sintaxe muito
+
+83
+00:05:28,550 --> 00:05:35,810
+Primeiro listamos o sinal de dlar e, em seguida, o ttulo, que  o nome do parmetro ou o
+
+84
+00:05:35,850 --> 00:05:39,440
+nome do argumento que foi passado para essa mutao.
+
+85
+00:05:39,500 --> 00:05:45,410
+Em seguida, coloque dois pontos e, em seguida, o tipo que esse parmetro est entrando como.
+
+86
+00:05:45,740 --> 00:05:48,220
+Ento, para um ttulo, eu realmente espero que seja uma string.
+
+87
+00:05:48,230 --> 00:05:53,480
+Ento, vou anotar isso como sendo uma string para que todos saibam se voc chama
+
+88
+00:05:53,480 --> 00:06:01,710
+essa mutao e voc passa em um ttulo, espero que seja uma string uma vez que chamamos esta mutao e passamos um ttulo.
+
+89
+00:06:01,820 --> 00:06:08,100
+Ento, temos acesso  varivel do ttulo do sinal de dlar dentro do corpo da mutao.
+
+90
+00:06:08,180 --> 00:06:14,990
+Ento, em qualquer lugar dentro desta mutao, podemos agora referir-se ao ttulo de sinal de dlar e ser uma
+
+91
+00:06:14,990 --> 00:06:21,050
+referncia direta ao valor que passamos para essa mutao, ento podemos realmente pensar em sinal de dlar
+
+92
+00:06:21,050 --> 00:06:28,610
+voc mesa, desculpe-me ttulo de sinal de dlar como uma varivel de tipos que podemos nos referir para voltar a isso.
+
+93
+00:06:28,670 --> 00:06:33,950
+Fazemos uso para usar o ttulo de sinal de dlar em qualquer lugar onde anteriormente estivemos passando
+
+94
+00:06:33,950 --> 00:06:35,310
+em um fluxo direto.
+
+95
+00:06:35,630 --> 00:06:41,820
+Ento observe que no passado dissemos que o ttulo deveria ser exatamente isso que voc conhece.
+
+96
+00:06:41,880 --> 00:06:49,040
+Ento, a chamada de corda, eu estou dizendo que o ttulo deve ser o que foi passado como ttulo do smbolo do dlar.
+
+97
+00:06:49,040 --> 00:06:53,540
+Ento, se voc realmente pensa no ttulo de sinal de dlar como uma referncia
+
+98
+00:06:53,540 --> 00:07:00,800
+de volta ao argumento que foi passado para a mutao em si, o que eu acho muito problemtico ou muito desafiador para manter
+
+99
+00:07:00,800 --> 00:07:07,430
+em mente sempre que estou escrevendo mutaes  que o tipo de ordem de referncia s mudanas do ttulo de sinal
+
+100
+00:07:07,430 --> 00:07:12,890
+de dlar e os argumentos de mutao no topo, dizemos o nome da varivel e, em seguida, digite.
+
+101
+00:07:13,160 --> 00:07:18,160
+Mas ento dentro do corpo da mutao estamos dizendo o nome da varivel do nome do argumento.
+
+102
+00:07:18,260 --> 00:07:24,440
+Ento, est mudando, est passando de ser primeiro a segundo e, em seguida, o outro argumento
+
+103
+00:07:24,440 --> 00:07:31,060
+est mudando de ser um tipo para o nome do argumento que provavelmente estou faltando um pouco aqui.
+
+104
+00:07:31,070 --> 00:07:34,590
+Mas voc sabe como voc pode me contar pessoalmente, este  um pouco difcil.
+
+105
+00:07:34,730 --> 00:07:42,350
+Ento, eu realmente gosto de ter um pouco de pneumnico, lembre-se do primeiro nome do tipo de sinal Dlar Sinal de Dlar Nome do tipo
+
+106
+00:07:42,470 --> 00:07:46,280
+de sinal Sinal de dlar Sinal de dlar Sinal nome de dlar.
+
+107
+00:07:46,400 --> 00:07:49,740
+Mantenha isso em sua cabea e voc geralmente vai muito bem.
+
+108
+00:07:49,760 --> 00:07:56,390
+O outro ponto que  um pouco desafiante aqui  que a ferramenta grfica grfica no lhe oferece muita ajuda de
+
+109
+00:07:56,390 --> 00:08:00,070
+concluso automtica aqui, o que tambm  um pouco de dor.
+
+110
+00:08:00,080 --> 00:08:01,720
+Mas voc sabe que podemos super-lo.
+
+111
+00:08:02,050 --> 00:08:02,560
+EST BEM.
+
+112
+00:08:02,720 --> 00:08:10,400
+dlar da msica e, em seguida, dentro do nome da varivel de mutao, Dlar, signo, assim.
+
+113
+00:08:11,480 --> 00:08:19,840
+Ento, vamos modificar nossa mutao fazer uso desta sintaxe alternativa, vamos dizer adicionar tipo de sinal de
+
+114
+00:08:19,850 --> 00:08:26,030
+Ento, agora, se ns executamos essa consulta, ns realmente no temos nenhum argumento.
+
+115
+00:08:26,210 --> 00:08:34,440
+Ns passamos em um ttulo de no, como se tivssemos ttulo indefinido, no defini uma varivel de ttulo.
+
+116
+00:08:34,490 --> 00:08:37,140
+E ento, quando eu receber uma resposta de volta eu recebo um ttulo de No.
+
+117
+00:08:37,160 --> 00:08:43,310
+Porque eu no passei em um ttulo, no h validao sobre o ttulo, no entanto, como eu no adicionei nenhuma validao
+
+118
+00:08:43,640 --> 00:08:46,420
+no back-end para dizer que voc deve fornecer um ttulo.
+
+119
+00:08:46,550 --> 00:08:52,370
+Ento, o registro ainda foi criado com sucesso e, no entanto, ele tem um ttulo de no, o que definitivamente  algo
+
+120
+00:08:52,370 --> 00:08:54,520
+que eu no quero ter na minha aplicao.
+
+121
+00:08:54,590 --> 00:09:02,180
+Ento eu acho que isso provavelmente acabar voltando para o Mungo no laboratrio e limpar esse
+
+122
+00:09:02,180 --> 00:09:05,630
+registro dentro do meu painel D-B lrico.
+
+123
+00:09:06,110 --> 00:09:08,070
+Aqui est o meu painel aqui.
+
+124
+00:09:08,150 --> 00:09:12,060
+Posso encontrar minha coleo de msicas.
+
+125
+00:09:12,270 --> 00:09:16,790
+E ento eu posso excluir o registro que acabei de criar que no tem um ttulo associado a ele.
+
+126
+00:09:16,870 --> 00:09:19,900
+E eu posso fazer isso clicando no boto Excluir no lado direito.
+
+127
+00:09:20,190 --> 00:09:23,140
+Ento, h aquele sem o ttulo e irei em frente e elimine-o.
+
+128
+00:09:24,530 --> 00:09:24,870
+EST BEM.
+
+129
+00:09:24,920 --> 00:09:26,420
+Ento volte ao normal l.
+
+130
+00:09:26,510 --> 00:09:32,330
+Ento, descubramos agora como usamos o cdigo do grfico para definir uma varivel de consulta que pode
+
+131
+00:09:32,330 --> 00:09:35,230
+ser usada dentro da mutao real dentro daqui.
+
+132
+00:09:35,270 --> 00:09:39,830
+Ns vamos escrever o que parece um objeto que vai definir todas as variveis
+
+133
+00:09:39,830 --> 00:09:42,250
+de consulta que utilizamos dentro dessa mutao.
+
+134
+00:09:42,560 --> 00:09:49,080
+Ento eu vou dizer ttulo e esse ser o ttulo da minha nova msica que ser sprite.
+
+135
+00:09:49,140 --> 00:09:50,390
+Primeira coque.
+
+136
+00:09:50,750 --> 00:09:53,110
+Eu no sou um bom artista.
+
+137
+00:09:53,150 --> 00:09:55,980
+Tudo o que posso dizer  a coca Shrivers.
+
+138
+00:09:56,470 --> 00:09:56,830
+EST BEM.
+
+139
+00:09:56,850 --> 00:09:58,140
+Agora podemos executar isso.
+
+140
+00:09:58,550 --> 00:10:02,930
+E voc notar que o ttulo foi devidamente enviado para a mutao.
+
+141
+00:10:03,110 --> 00:10:08,540
+Portanto, sempre que voc cria uma mutao que se refere a uma varivel de grfico de Querrey, vai
+
+142
+00:10:08,540 --> 00:10:10,540
+analisar as variveis de curva definidas.
+
+143
+00:10:10,550 --> 00:10:16,490
+Vai levar qualquer varivel Kuri definida que corresponda com o nome dentro daqui e ele vai
+
+144
+00:10:16,490 --> 00:10:21,350
+levar o valor e empurr-lo como o valor do ttulo de sinal de dlar.
+
+145
+00:10:21,440 --> 00:10:25,900
+A verdadeira coisa importante a ter em mente  que, quando definimos variveis diferentes dentro da
+
+146
+00:10:25,940 --> 00:10:27,880
+grfica, no usamos o sinal de dlar.
+
+147
+00:10:27,980 --> 00:10:30,780
+Ento, se voc colocar o sinal de dlar, voc receber uma grande mensagem de erro.
+
+148
+00:10:30,980 --> 00:10:33,240
+Isso ir colocar o sinal de dlar l para voc.
+
+149
+00:10:33,290 --> 00:10:35,730
+Ento, apenas o nome da varivel de consulta sem o sinal de dlar.
+
+150
+00:10:35,750 --> 00:10:38,160
+E voc deve ser bom para ir.
+
+151
+00:10:38,700 --> 00:10:39,470
+Ah ok.
+
+152
+00:10:39,500 --> 00:10:44,630
+de consulta, mas novamente essa sintaxe completa aqui  que realmente se sente um pouco arbitrrio.
+
+153
+00:10:44,630 --> 00:10:50,540
+Eu sei que esta seo foi muito longa e eu realmente gritei um pouco sobre mutaes e variveis
+
+154
+00:10:50,540 --> 00:10:52,010
+No  to bom.
+
+155
+00:10:52,010 --> 00:10:57,320
+Ento eu quero ter certeza de que est realmente claro o pedido em que estamos definindo esses argumentos.
+
+156
+00:10:57,860 --> 00:11:04,520
+Sinto que temos uma boa soluo aqui para descobrir como passar alguns dados externos para a nutao,
+
+157
+00:11:04,730 --> 00:11:06,910
+mas apenas dentro do grfico.
+
+158
+00:11:06,950 --> 00:11:13,580
+Ns realmente ainda no abordamos o problema de como obtemos informaes do componente
+
+159
+00:11:13,580 --> 00:11:14,990
+em nossa mutao.
+
+160
+00:11:14,990 --> 00:11:16,330
+Ento vamos fazer uma pausa rpida.
+
+161
+00:11:16,340 --> 00:11:23,570
+Ns vamos voltar e ver se no conseguimos descobrir como obter dados do nosso componente reata em nossa
+
+162
+00:11:23,870 --> 00:11:26,940
+mutao, usando esse sistema varivel de consulta.
+
+163
+00:11:27,050 --> 00:11:29,110
+Ento vamos cuidar disso na prxima seo.
+

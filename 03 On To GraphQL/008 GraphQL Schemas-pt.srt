@@ -1,0 +1,216 @@
+1
+00:00:00,770 --> 00:00:04,620
+Na ltima seo, juntamos os comeos de nosso servidor grfico.
+
+2
+00:00:04,740 --> 00:00:10,650
+Mas quando tentamos acessar o servidor em nosso navegador, obtivemos uma mensagem de erro sobre um esquema que
+
+3
+00:00:10,650 --> 00:00:12,510
+no est presente em algum middleware.
+
+4
+00:00:12,750 --> 00:00:14,350
+Ento, vamos analisar esta mensagem de erro.
+
+5
+00:00:14,340 --> 00:00:16,640
+Vamos realmente tentar descobrir o que est dizendo aqui.
+
+6
+00:00:16,860 --> 00:00:20,990
+Ele diz o grfico Cuil opes de middleware.
+
+7
+00:00:21,180 --> 00:00:23,970
+A palavra-chave aqui  middleware.
+
+8
+00:00:23,970 --> 00:00:31,470
+para um middleware de aplicativos expressos, so pequenas funes destinadas a interceptar ou modificar pedidos  medida que eles passam e expressam servidor.
+
+9
+00:00:31,560 --> 00:00:38,850
+Quando acabamos de ligar nosso servidor dentro do arquivo doc GS do servidor, tivemos uma chamada para o uso do ponto
+
+10
+00:00:38,880 --> 00:00:42,750
+do aplicativo aps o uso,  como ns transferimos o middleware
+
+11
+00:00:42,750 --> 00:00:49,770
+Ento, quando nos registramos bem com nossa aplicao, registrou-se como um middleware.
+
+12
+00:00:49,820 --> 00:00:54,420
+Portanto, a mensagem de erro que estamos recebendo aqui claramente se refere primeiro que o aplicativo no usa a linha.
+
+13
+00:00:54,650 --> 00:00:56,610
+E se olharmos para a segunda parte.
+
+14
+00:00:56,660 --> 00:01:03,560
+As opes devem conter um esquema, mas quando conectamos esse middleware que passamos em um
+
+15
+00:01:03,560 --> 00:01:07,040
+objeto de opes para a funo grfica Express.
+
+16
+00:01:07,400 --> 00:01:10,820
+Este objeto de opes aqui  o que a mensagem de erro est falando.
+
+17
+00:01:10,820 --> 00:01:15,220
+ realmente dizer que voc precisa fornecer um esquema junto com essas opes.
+
+18
+00:01:15,710 --> 00:01:18,880
+Ento, isso realmente implora a questo do que  um esquema.
+
+19
+00:01:19,040 --> 00:01:21,350
+Boa pergunta.
+
+20
+00:01:21,350 --> 00:01:26,810
+Em uma discusso anterior ou veja a seo anterior, discutimos o quo graficado a Cuil considera
+
+21
+00:01:26,810 --> 00:01:32,940
+todos os dados em nosso aplicativo para se parecer com um grfico e ns analisamos esse diagrama aqui.
+
+22
+00:01:33,350 --> 00:01:40,220
+Ento, aqui est o que sabemos como voc e eu podemos olhar para este diagrama e sabemos que OK um
+
+23
+00:01:40,220 --> 00:01:46,010
+usurio tem uma associao associada com a posio na empresa e, aparentemente, com outros usurios tambm.
+
+24
+00:01:46,070 --> 00:01:52,010
+nosso banco de dados e descobre todos os diferentes dados de nossa aplicao e como eles esto todos relacionados.
+
+25
+00:01:52,070 --> 00:01:56,270
+Mas Graf Cuil sabe que, como Graf CULE, no apenas entra magicamente em
+
+26
+00:01:56,270 --> 00:02:03,740
+No, devemos informar especificamente o Graf Cuil sobre como os dados em nosso aplicativo so organizados e como
+
+27
+00:02:03,740 --> 00:02:05,610
+ele pode ser acessado.
+
+28
+00:02:05,750 --> 00:02:09,350
+E fazemos tudo isso dentro de um arquivo de esquema.
+
+29
+00:02:09,950 --> 00:02:15,050
+Portanto, o arquivo de esquema  o elemento fundamental de cada aplicao grfica.
+
+30
+00:02:15,050 --> 00:02:20,690
+ o que conta bem o grfico sobre o tipo de dados com os quais estamos trabalhando e
+
+31
+00:02:20,690 --> 00:02:24,200
+como todas as relaes so desempenhadas entre essas diferentes peas de dados.
+
+32
+00:02:24,260 --> 00:02:28,880
+Ento, vamos fazer um novo arquivo de esquema e descobrir o que colocar dentro dele.
+
+33
+00:02:28,880 --> 00:02:34,130
+Eu vou voltar para o meu editor de cdigo e dentro do meu diretrio de projeto raiz
+
+34
+00:02:34,130 --> 00:02:40,320
+Eu vou fazer uma nova pasta chamada esquema e ento dentro de l vou criar um novo arquivo chamado esquema.
+
+35
+00:02:40,590 --> 00:02:42,270
+Dot J Sim.
+
+36
+00:02:42,350 --> 00:02:46,960
+Ento, temos uma pasta de esquema com um ponto de esquema J. S. arquivo dentro dele.
+
+37
+00:02:48,560 --> 00:02:54,440
+Ento, a coisa chave a ter em mente sobre o seu arquivo de esquema  que ele
+
+38
+00:02:54,440 --> 00:03:01,340
+contm todo o conhecimento necessrio para contar o grfico. Bem, exatamente o que o aspecto dos seus aplicativos parece ser
+
+39
+00:03:01,640 --> 00:03:08,950
+o mais importante, quais propriedades cada objeto tem e exatamente como cada objeto est relacionado a cada um de outros.
+
+40
+00:03:09,440 --> 00:03:13,240
+Ento, sabemos que estamos trabalhando com empresas e posies de usurios.
+
+41
+00:03:13,250 --> 00:03:16,600
+Mas voc sabe exatamente quais propriedades o usurio possui.
+
+42
+00:03:16,640 --> 00:03:19,760
+Que propriedades possui uma empresa ou uma posio?
+
+43
+00:03:20,120 --> 00:03:24,110
+Bem, vamos gostar, posso codificar isso e me certificar de que  realmente claro entre
+
+44
+00:03:24,110 --> 00:03:26,050
+voc e eu quais propriedades ele possui.
+
+45
+00:03:26,050 --> 00:03:34,640
+Ento eu vou dizer que um usurio tem um primeiro nome, voc tem um erro de digitao, ento ele tem um primeiro nome como
+
+46
+00:03:34,640 --> 00:03:38,030
+referncia para uma empresa e uma referncia a uma posio.
+
+47
+00:03:38,180 --> 00:03:43,100
+Ento cada empresa tem um nome e cada posio tambm tem um nome.
+
+48
+00:03:43,340 --> 00:03:47,740
+E, presumivelmente, precisamos de alguma forma que os usurios estejam relacionados a outros usurios.
+
+49
+00:03:47,900 --> 00:03:50,200
+Ento, temos que descobrir essa parte tambm.
+
+50
+00:03:50,630 --> 00:03:53,930
+Ento nosso trabalho agora  de alguma forma se comunicar com o enxerto.
+
+51
+00:03:53,940 --> 00:04:01,130
+Q Bem, ns temos a idia de um usurio e um usurio tem uma ID e um primeiro nome.
+
+52
+00:04:01,320 --> 00:04:02,570
+Esse  o nosso trabalho.
+
+53
+00:04:03,080 --> 00:04:05,190
+Agora eu no quero que esta seo seja executada por muito tempo.
+
+54
+00:04:05,300 --> 00:04:09,360
+Ento, vamos respirar rapidamente e depois voltar e comear a trabalhar no esquema.
+

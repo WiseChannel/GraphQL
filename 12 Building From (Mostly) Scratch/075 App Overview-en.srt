@@ -1,0 +1,224 @@
+1
+00:00:01,140 --> 00:00:06,150
+In this course we've gone through one application where we focused on the back end one application where
+
+2
+00:00:06,150 --> 00:00:11,700
+we focused on the front end and now we're going to focus on an app where we are concerned with the entire
+
+3
+00:00:11,970 --> 00:00:13,110
+full stack.
+
+4
+00:00:13,140 --> 00:00:16,620
+So everything from the back end database all the way to the front end.
+
+5
+00:00:16,620 --> 00:00:21,380
+We're where we're going to write out our Riak J.S. components and associated queries.
+
+6
+00:00:21,660 --> 00:00:26,050
+So let's talk a little bit about the project that we're going to start working on in this section.
+
+7
+00:00:26,100 --> 00:00:30,660
+First we'll start by looking at a mockup for the app that we're going to be building.
+
+8
+00:00:31,290 --> 00:00:35,370
+So for this last application or I should say this next application that we're going to be working on
+
+9
+00:00:35,670 --> 00:00:40,830
+we're going to be working on an application using authentication with graft.
+
+10
+00:00:41,400 --> 00:00:46,410
+So we've already had a lot of content where we've kind of figured out how to associate data sitting
+
+11
+00:00:46,410 --> 00:00:52,680
+in our database with our graph queries but that's not really enough to build a full application right.
+
+12
+00:00:52,680 --> 00:00:57,420
+That's not enough to build a production application for a real production application.
+
+13
+00:00:57,420 --> 00:01:03,480
+We need to have a reasonable idea of how to authenticate our users and especially in the context of
+
+14
+00:01:03,480 --> 00:01:09,980
+graft Well we need to understand how we tie our authentication system with our graph.
+
+15
+00:01:10,050 --> 00:01:16,800
+Aquarius because a extremely common case and we'll talk about this in great detail is figuring out exactly
+
+16
+00:01:16,800 --> 00:01:23,350
+how to best restrict the amount of data that a user can feed that a user can see inside of our application.
+
+17
+00:01:23,550 --> 00:01:26,110
+But again we'll talk about that at great length.
+
+18
+00:01:26,110 --> 00:01:29,320
+Those continue looking through of our mockups just a little bit.
+
+19
+00:01:29,400 --> 00:01:33,110
+We're going to go through all the different pages that our application is going to have on the front
+
+20
+00:01:33,110 --> 00:01:38,570
+and side and then we'll talk about a couple of the challenges associated with this project.
+
+21
+00:01:38,610 --> 00:01:43,490
+So when the user first comes to our application I want them to see a landing page of some sort.
+
+22
+00:01:43,710 --> 00:01:46,960
+So they should in theory not be logged in right now.
+
+23
+00:01:46,980 --> 00:01:53,130
+When they first land on our landing page in the header they should see two buttons that say sign up
+
+24
+00:01:53,190 --> 00:01:58,750
+and sign in where a user can create account or sign into an account that already exists.
+
+25
+00:01:59,190 --> 00:02:01,760
+Assuming that they click on sign up.
+
+26
+00:02:02,100 --> 00:02:03,880
+I bet you can guess what's going to happen.
+
+27
+00:02:04,050 --> 00:02:07,940
+We're going to take them to a form and same thing if they click sign in.
+
+28
+00:02:07,950 --> 00:02:10,080
+So for both sign up and sign in.
+
+29
+00:02:10,110 --> 00:02:14,180
+I want the user to see a form appear on the screen.
+
+30
+00:02:14,310 --> 00:02:15,680
+Now these forms are here.
+
+31
+00:02:15,750 --> 00:02:20,720
+Yeah they look pretty straightforward and they look awfully similar to the forms we've already put together.
+
+32
+00:02:21,000 --> 00:02:26,850
+But there are some big differences this time around with the forms that we're looking at here most decidedly
+
+33
+00:02:27,030 --> 00:02:30,920
+in when we start thinking about validation of inputs.
+
+34
+00:02:30,990 --> 00:02:35,730
+So in the previous forms we put together we pretty much just always assume that the user was going to
+
+35
+00:02:35,730 --> 00:02:41,580
+be giving us valid inputs and we did absolutely no error checking or any validation of the input that
+
+36
+00:02:41,580 --> 00:02:43,030
+we got from the user.
+
+37
+00:02:43,140 --> 00:02:50,160
+But this time around in the case of both Sign-Up and sign in this email and password inputs definitely
+
+38
+00:02:50,160 --> 00:02:52,540
+have to be validated in some fashion.
+
+39
+00:02:52,620 --> 00:02:58,590
+So we have to make sure that the users and in say a valid email address and then that e-mail address
+
+40
+00:02:58,620 --> 00:03:00,460
+exists inside our database.
+
+41
+00:03:00,600 --> 00:03:05,520
+If they're trying to sign in or to make sure that that e-mail address is not already in use if they're
+
+42
+00:03:05,520 --> 00:03:09,300
+trying to sign up then we have to make sure that they entered the correct password.
+
+43
+00:03:09,360 --> 00:03:14,130
+If they're attempting to sign in so there's a lot of validation associated with these forms that we
+
+44
+00:03:14,130 --> 00:03:22,370
+have not yet addressed and the pass if we continue looking at some of the other markups on here after
+
+45
+00:03:22,380 --> 00:03:27,990
+a user successfully signs up or signs then we'll consider them to be authenticated in some fashion.
+
+46
+00:03:28,040 --> 00:03:33,700
+And I want to show them a log in page basically some page that says just Hey welcome back.
+
+47
+00:03:33,700 --> 00:03:35,980
+So we're not going to focus quite so much on the graph.
+
+48
+00:03:35,980 --> 00:03:42,790
+Q Well fancy data fetching and relationships and all that kind of stuff around the focus on this application
+
+49
+00:03:42,820 --> 00:03:46,710
+we're making is way more on the authentication side of things.
+
+50
+00:03:47,250 --> 00:03:47,670
+OK.
+
+51
+00:03:47,710 --> 00:03:54,280
+So in general standard authentication and all the problems associated with it but we're going to tackle
+
+52
+00:03:54,280 --> 00:04:00,610
+all this from a graft standpoint and we're going to see that there's a lot of very interesting ideas
+
+53
+00:04:00,610 --> 00:04:04,950
+or a lot of interesting problems that we have to solve as we go through this application.
+
+54
+00:04:04,960 --> 00:04:09,310
+So let's take a quick break and we're going to come back and talk about some of the problems and challenges
+
+55
+00:04:09,310 --> 00:04:11,380
+that are associated with this application.
+
+56
+00:04:11,620 --> 00:04:13,160
+So see you in just a second.
+

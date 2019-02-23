@@ -1,0 +1,692 @@
+1
+00:00:00,780 --> 00:00:05,430
+Na ltima seo, instalamos o nosso pacote de referncia e examinamos alguns dos diferentes
+
+2
+00:00:05,430 --> 00:00:06,480
+arquivos dentro dele.
+
+3
+00:00:06,600 --> 00:00:12,330
+Em particular, olhamos para o Auth. ponto J. S. arquivo e eu mencionei que
+
+4
+00:00:12,330 --> 00:00:18,690
+havia alguma codificao de compatibilidade aqui que faz o grfico QOL e o passaporte funcionarem bem e voc certamente l um pouco sobre
+
+5
+00:00:18,690 --> 00:00:18,950
+isso.
+
+6
+00:00:18,960 --> 00:00:21,530
+Se voc olhar para alguns dos comentrios aqui tambm.
+
+7
+00:00:21,900 --> 00:00:28,150
+Ento eu quero falar um pouco mais sobre passaporte e como funciona com o lado grfico do nosso aplicativo.
+
+8
+00:00:28,180 --> 00:00:32,160
+Vamos dar uma olhada em um diagrama para nos ajudar a entender isso um pouco melhor.
+
+9
+00:00:32,160 --> 00:00:39,960
+Primeiro, eu quero falar sobre o passaporte apenas por si s, e apenas passar o passaporte com o passaporte
+
+10
+00:00:39,960 --> 00:00:44,450
+apenas por dentro de um aplicativo expresso para autenticar um usurio.
+
+11
+00:00:44,460 --> 00:00:48,670
+Recebemos alguma solicitao recebida do que poderamos chamar de usurio misterioso.
+
+12
+00:00:48,720 --> 00:00:52,140
+Ns realmente no sabemos quem est fazendo o pedido de autenticao.
+
+13
+00:00:52,370 --> 00:00:58,200
+O pedido entrar com algum nome de usurio e senha e  passaporte
+
+14
+00:00:58,200 --> 00:01:01,860
+para descobrir qual usurio e autentic-los com sucesso.
+
+15
+00:01:01,860 --> 00:01:04,000
+Ento, o passaporte ter esse nome de usurio.
+
+16
+00:01:04,170 --> 00:01:09,360
+de autenticao  vlida ou no se a solicitao for vlida do que O passaporte ir dizer.
+
+17
+00:01:09,360 --> 00:01:15,090
+Ele ver atravs de seu banco de dados que encontrar um usurio com esse nome de usurio e, em
+
+18
+00:01:15,090 --> 00:01:20,730
+seguida, ir comparar a senha armazenada com uma senha fornecida na solicitao recebida e decidir se a solicitao
+
+19
+00:01:20,820 --> 00:01:21,890
+Ah, fantstico.
+
+20
+00:01:21,890 --> 00:01:29,580
+Este  o nmero de usurio de forma contnua e economizar um pequeno token ou uma pequena nota no cookie do usurio para que, a
+
+21
+00:01:29,910 --> 00:01:36,240
+qualquer momento que o usurio faa um pedido no futuro, saberemos imediatamente que  o nmero de usurio 5 ou
+
+22
+00:01:36,240 --> 00:01:40,580
+o nmero de usurio 6 ou 7 ou 8 ou quem quer que seja.
+
+23
+00:01:40,950 --> 00:01:47,220
+Ento,  assim que funciona a autenticao e realmente a grande maioria das aplicaes no mundo de hoje.
+
+24
+00:01:47,970 --> 00:01:53,400
+vamos falar um pouco sobre como esse esquema de autenticao vai mudar uma vez que comeamos a envolver o Graf.
+
+25
+00:01:53,400 --> 00:01:53,750
+Ento,
+
+26
+00:01:53,750 --> 00:01:56,720
+Q Bem, OK.
+
+27
+00:01:57,060 --> 00:01:59,900
+Ento, quando voc comearia a envolver o enxerto com o passaporte.
+
+28
+00:01:59,970 --> 00:02:06,720
+H realmente duas abordagens diferentes que podemos tomar, que eu gostaria de referir como uma abordagem de casal e
+
+29
+00:02:06,900 --> 00:02:11,060
+uma abordagem acoplada e veremos a abordagem acoplada e o prximo slide.
+
+30
+00:02:11,370 --> 00:02:17,990
+Ento, estes so dois mtodos diferentes de envolvimento de UL de enxerto e passaporte em conjunto, vamos falar sobre a
+
+31
+00:02:17,990 --> 00:02:21,600
+abordagem desacoplada no momento e conversaremos um pouco sobre um casal.
+
+32
+00:02:21,620 --> 00:02:28,520
+isso  desacoplado porque primeiro cuidamos o passaporte ou toda a autenticao sem qualquer preocupao de enxertia.
+
+33
+00:02:28,580 --> 00:02:36,060
+E, em seguida, alguns dos prs e contras entre os dois com uma abordagem desacoplada, onde dizemos que
+
+34
+00:02:36,170 --> 00:02:40,170
+Subgrfico bem no envolvido no menor bit.
+
+35
+00:02:40,390 --> 00:02:46,280
+Um usurio ainda vai fazer algum pedido de autenticao onde eles fornecem seu nome de usurio e senha.
+
+36
+00:02:46,490 --> 00:02:51,890
+O passaporte tentar autentic-los e, em seguida, identificar o usurio de alguma forma e
+
+37
+00:02:51,890 --> 00:02:53,570
+configurar o cookie dos usurios.
+
+38
+00:02:53,780 --> 00:02:59,540
+Ento, sempre que esse usurio faa qualquer tipo de solicitao de acompanhamento, o pedido ser identificado automaticamente
+
+39
+00:02:59,540 --> 00:03:03,070
+pelo passaporte e, em seguida, o pedido entrar no grfico.
+
+40
+00:03:03,070 --> 00:03:09,160
+Q Todas as fases de enxertia diro que  um usurio assim, e assim eles j foram identificados pelo passaporte.
+
+41
+00:03:09,320 --> 00:03:12,710
+Eu vou lhes dar todos os dados que eles mereceriam como voc desejava.
+
+42
+00:03:12,710 --> 00:03:14,280
+Nmero cinco.
+
+43
+00:03:14,340 --> 00:03:18,780
+Ento, o enxerto que ir formular a resposta e envi-la de volta ao cliente.
+
+44
+00:03:20,180 --> 00:03:25,460
+Agora, a nica coisa que quero apontar sobre esta soluo agora  que eu falei sobre a
+
+45
+00:03:25,460 --> 00:03:26,230
+identificao do usurio.
+
+46
+00:03:26,300 --> 00:03:33,380
+E se realmente pensamos em identificar o usurio,  como uma mudana no estado de autenticao
+
+47
+00:03:33,440 --> 00:03:35,030
+de nossa aplicao.
+
+48
+00:03:35,150 --> 00:03:41,290
+E sempre que eu digo a mudana de palavra, devemos pensar a nutao correta.
+
+49
+00:03:41,310 --> 00:03:43,480
+ o que temos dito sobre o enxerto o tempo todo.
+
+50
+00:03:43,490 --> 00:03:48,210
+Sempre que trocamos qualquer coisa sobre nossa aplicao,  sempre uma mutao.
+
+51
+00:03:48,260 --> 00:03:55,700
+Ento, se usarmos essa abordagem desacoplada e GRATHWOHL no estiver envolvido, no estamos fazendo uso de nenhum tipo de mutao
+
+52
+00:03:55,700 --> 00:04:00,700
+em nosso cdigo ou em qualquer tipo de mutao do nosso estado de aplicao.
+
+53
+00:04:01,010 --> 00:04:04,430
+Ento, vamos ver o que aconteceria se envolvssemos o enxerto.
+
+54
+00:04:04,510 --> 00:04:11,570
+Bem, usando essa abordagem e, por sinal, abordagem acoplada e abordagem desacoplada, isso no  uma
+
+55
+00:04:11,570 --> 00:04:12,530
+terminologia oficial.
+
+56
+00:04:12,530 --> 00:04:16,750
+A propsito, esta terminologia que eu introduzi para ajud-lo a entender o que est acontecendo aqui.
+
+57
+00:04:16,880 --> 00:04:20,350
+OK, ento vamos falar sobre o que  diferente com essa abordagem acoplada.
+
+58
+00:04:20,720 --> 00:04:27,380
+Ento, na abordagem acoplada, usaremos uma mutao para autenticar o usurio de alguma forma.
+
+59
+00:04:27,470 --> 00:04:33,370
+Ento, teremos esse pedido de autenticao recebida que realmente ser uma mutao.
+
+60
+00:04:33,520 --> 00:04:41,100
+ colocado como uma mutao Slash l, voc ver que o usurio est fazendo uma mutao ou
+
+61
+00:04:41,100 --> 00:04:47,100
+solicita para tentar identificar-se e passar o pedido ao passaporte e diga oh.
+
+62
+00:04:47,160 --> 00:04:52,320
+Parece que eles esto tentando identificar ou identificar ou se autenticar de alguma forma.
+
+63
+00:04:52,320 --> 00:04:57,930
+Eu vou deixar o passaporte cuidar deste passaporte, em seguida, ir identificar o usurio de alguma forma.
+
+64
+00:04:57,960 --> 00:05:03,780
+cookie ou um pequeno identificador no cookie do usurio e, em seguida, entregar o pedido de volta ao enxerto.
+
+65
+00:05:03,780 --> 00:05:05,190
+Ainda ir colocar um pequeno
+
+66
+00:05:05,250 --> 00:05:09,630
+Bem e depois o enxerto Q L responder com os dados apropriados.
+
+67
+00:05:09,660 --> 00:05:14,660
+Ento, quando o sempre que o usurio fizer essa solicitao de acompanhamento, um cliente entra na fila
+
+68
+00:05:14,670 --> 00:05:20,970
+do grfico, todos os lados das coisas que j possuem um QOL de usurio ou de enxerto identificado podem buscar dados relevantes
+
+69
+00:05:21,030 --> 00:05:23,430
+para esse usurio e responder por sua vez.
+
+70
+00:05:23,430 --> 00:05:29,580
+Ento, quando o casal se aproximou da grande chave  que vamos permitir o enxerto bem para
+
+71
+00:05:29,580 --> 00:05:35,320
+receber o pedido de autenticao e depois passar ou adiar o tratamento desse pedido ao passaporte.
+
+72
+00:05:35,370 --> 00:05:41,160
+forma,  realmente uma questo de saber se queremos ou no permitir que o enxerto manipule o pedido.
+
+73
+00:05:41,160 --> 00:05:44,890
+Ento, no importa o que os passaportes sempre se envolvam de alguma
+
+74
+00:05:45,290 --> 00:05:49,410
+Ento, vamos falar um pouco sobre os prs e contras de cada uma dessas abordagens.
+
+75
+00:05:49,740 --> 00:05:57,810
+Penso que agora vou pensar que talvez voc tenha uma ideia de uma maneira que possa
+
+76
+00:05:57,810 --> 00:06:00,590
+ser claramente superior  outra.
+
+77
+00:06:00,630 --> 00:06:02,390
+Como claramente 100 por cento.
+
+78
+00:06:02,490 --> 00:06:05,460
+Steven porque o passaporte j se envolveria com o enxerto.
+
+79
+00:06:05,470 --> 00:06:08,730
+Bem, eles deveriam estar completamente desacoplados.
+
+80
+00:06:08,730 --> 00:06:12,870
+ser desacoplados ou talvez voc esteja sentado aqui, pensando bem,  uma aplicao grfica legal.
+
+81
+00:06:12,870 --> 00:06:15,720
+Voc pode estar pensando que voc sabe, que eles realmente deveriam
+
+82
+00:06:15,720 --> 00:06:17,620
+Evidentemente, graficou que todos deveriam estar envolvidos.
+
+83
+00:06:17,850 --> 00:06:23,760
+E eu sinto que voc pode muito facilmente fazer um caso muito forte para qualquer abordagem, se houvesse um vencedor muito
+
+84
+00:06:23,760 --> 00:06:29,100
+claro ou muito forte, eu teria acabado de tomar essa abordagem neste curso e disse que  assim que
+
+85
+00:06:29,100 --> 00:06:29,850
+o fazemos.
+
+86
+00:06:30,180 --> 00:06:34,210
+Mas eu, pessoalmente, no acho que haja uma soluo de tamanho nico.
+
+87
+00:06:34,260 --> 00:06:39,180
+E, em vez disso, quero inform-lo sobre algumas das diferentes alternativas para que voc possa chegar a
+
+88
+00:06:39,210 --> 00:06:42,750
+uma concluso por voc e decidir qual abordagem  melhor para voc.
+
+89
+00:06:43,470 --> 00:06:46,500
+Ento fale um pouco sobre os prs e contras com cada um.
+
+90
+00:06:46,500 --> 00:06:52,410
+Primeiro, a abordagem acoplada eu diria que o maior benefcio para este par de comrcio profissional aqui
+
+91
+00:06:52,410 --> 00:06:57,510
+ que voc est usando o enxerto bem na maneira como ele se destina.
+
+92
+00:06:57,540 --> 00:07:04,980
+Graf Cuil destina-se a ser uma camada fina de tipos que fica em cima de uma tonelada de servios diferentes dentro de
+
+93
+00:07:04,980 --> 00:07:11,090
+sua aplicao e todas as aplicaes que ns construmos at agora, temos apenas um tipo de trabalho abstrado
+
+94
+00:07:11,100 --> 00:07:13,570
+com um nico banco de dados .
+
+95
+00:07:13,650 --> 00:07:17,070
+Mas no Facebook voc conhece as pessoas que fizeram.
+
+96
+00:07:17,130 --> 00:07:22,890
+tm que interagir com dezenas de servidores diferentes, dezenas de servios diferentes na parte de trs.
+
+97
+00:07:23,070 --> 00:07:25,710
+Bem, eles originalmente criaram grficos bem porque eles
+
+98
+00:07:25,980 --> 00:07:31,670
+E  muito fcil imaginar que a autenticao  apenas mais um desses servios.
+
+99
+00:07:31,920 --> 00:07:37,890
+Ento, eu posso muito facilmente fazer com que, quando colocarmos o enxerto bem na frente do passaporte, estamos
+
+100
+00:07:37,890 --> 00:07:41,770
+realmente usando o enxerto na maneira para a qual foi originalmente planejado.
+
+101
+00:07:41,770 --> 00:07:47,610
+Voc sabe que estamos fazendo uso do enxerto bem para resumir alguns dos desafios de trabalhar com a autenticao
+
+102
+00:07:48,330 --> 00:07:54,780
+que, em teoria, nos permitiria fazer um servio de autenticao de backend um pouco mais agradvel, onde ns apenas temos esses
+
+103
+00:07:54,780 --> 00:07:59,760
+pontos muito claros e ns dizemos que voc autentique esse usurio OK, eles so autenticados.
+
+104
+00:07:59,760 --> 00:08:00,450
+Fantstico.
+
+105
+00:08:00,450 --> 00:08:03,340
+Vamos continuar no nosso caminho.
+
+106
+00:08:03,610 --> 00:08:12,540
+Alm disso, com a abordagem desacoplada abordagem desacoplada, Skewes Mansei combina a abordagem do seu, ento eu quero pensar sobre
+
+107
+00:08:14,490 --> 00:08:18,360
+como iremos arquitetar o front-end da nossa aplicao.
+
+108
+00:08:18,360 --> 00:08:20,620
+Ah, no, eu no queria dizer desculpar-desculpa.
+
+109
+00:08:20,660 --> 00:08:21,740
+Me desculpe.
+
+110
+00:08:21,740 --> 00:08:27,130
+Ento, com a abordagem desacoplada, penso um pouco sobre como juntaramos nosso front-end.
+
+111
+00:08:27,440 --> 00:08:30,290
+Ento, isso pretende combinar com este diagrama aqui.
+
+112
+00:08:30,290 --> 00:08:30,530
+EST BEM.
+
+113
+00:08:30,540 --> 00:08:36,380
+Ento, lembre-se da abordagem de desacoplamento que fazemos pela primeira vez que o passaporte de solicitao de autenticao lida com isso e,
+
+114
+00:08:36,380 --> 00:08:40,750
+em seguida, ns podemos fazer qualquer pedido de acompanhamento adicional e j estamos autenticados com o enxerto.
+
+115
+00:08:40,790 --> 00:08:47,540
+Bem, ento, se seguimos esse tipo de arquitetura, o aplicativo re-acting realmente ter
+
+116
+00:08:47,540 --> 00:08:48,350
+dois lados.
+
+117
+00:08:48,410 --> 00:08:53,570
+Teramos um lado do nosso aplicativo riata que no usa grficos de forma adequada.
+
+118
+00:08:53,570 --> 00:08:59,790
+Seria necessrio mostrar o formulrio de login em um formulrio de inscrio, algum boto de logout todos esses diferentes elementos
+
+119
+00:08:59,810 --> 00:09:05,390
+de interface do usurio e todos esses componentes diferentes, juntamente com os pedidos que no fazem uso de
+
+120
+00:09:05,510 --> 00:09:07,390
+qualquer consulta grfica ou qualquer enxerto.
+
+121
+00:09:07,480 --> 00:09:09,190
+Bem mutaes tambm.
+
+122
+00:09:09,380 --> 00:09:14,780
+Ento, ns realmente dividiramos o aplicativo re-agir quase em duas partes.
+
+123
+00:09:14,810 --> 00:09:20,650
+A poro que no faz uso do bem, que  apenas responsvel por fazer a camada de autenticao.
+
+124
+00:09:20,900 --> 00:09:26,540
+E, em seguida, tambm a parte difcil que faz voc usar um grfico bem que agora leva esse usurio
+
+125
+00:09:26,600 --> 00:09:30,970
+identificado e faz uma consulta ou faz uma mutao ou o que quer que seja.
+
+126
+00:09:32,030 --> 00:09:36,800
+Ento, pode ser muito fcil de dizer Oh,  claro, queremos que todas essas coisas sejam acopladas desacopladas.
+
+127
+00:09:36,830 --> 00:09:42,800
+Mas voc paga por isso e alguns outros lados da sua aplicao ou algumas outras partes do seu pedido.
+
+128
+00:09:42,800 --> 00:09:46,660
+Agora, por que a abordagem acoplada  um mau caminho a seguir.
+
+129
+00:09:46,720 --> 00:09:47,110
+Por qu.
+
+130
+00:09:47,110 --> 00:09:52,100
+Por que eu no gostaria de usar isso aqui mesmo, se eu tivesse feito duas ou duas reas diferentes, voc sabe
+
+131
+00:09:52,100 --> 00:09:56,170
+que acabei de mencionar que estou dizendo bem, esse tipo de coisa parece que funciona um pouco melhor.
+
+132
+00:09:56,660 --> 00:10:02,450
+Bem, para ser honesto com voc, eu no gostaria de usar a abordagem acoplada porque
+
+133
+00:10:02,660 --> 00:10:11,090
+o enxerto e o passaporte so absolutamente positivamente no configurados para funcionar bem um com o outro de qualquer forma ou forma.
+
+134
+00:10:11,120 --> 00:10:15,470
+Eu mencionei na ltima seo que eu no queria fazer muito do cdigo de
+
+135
+00:10:15,470 --> 00:10:19,950
+referncia neste curso porque teria sido uma grande diverso uma grande parte dessa deciso.
+
+136
+00:10:19,970 --> 00:10:25,520
+E eu tenho que te dizer como se voc estivesse pensando na sua cabea agora Stephen queria fazer o boilerplate.
+
+137
+00:10:25,520 --> 00:10:26,780
+Por que estamos fazendo o boilerplate.
+
+138
+00:10:26,780 --> 00:10:29,430
+Confie em mim, tive que lutar com essa deciso.
+
+139
+00:10:29,660 --> 00:10:34,550
+Mas a verdadeira razo pela qual eu decidi que voc sabia que isso tinha que ser
+
+140
+00:10:34,610 --> 00:10:41,270
+algum cdigo escrito com antecedncia  que fazer o enxerto bem e o passaporte funcionar bem juntos no  um feito pequeno.
+
+141
+00:10:41,360 --> 00:10:47,720
+Quero dizer, eu realmente o encorajo a dar uma olhada nesta funo de Inscrio e a funo de
+
+142
+00:10:47,720 --> 00:10:55,030
+login dentro de desligar J J us e olhar para alguns dos cdigos l, como esta  alguma sintaxe desagradvel nasty
+
+143
+00:10:55,040 --> 00:10:56,540
+aqui em ambos os locais.
+
+144
+00:10:57,370 --> 00:11:03,910
+abordagem acoplada porque o grfico Cuil e o passaporte no so, de modo algum, projetados para funcionar bem um com o outro.
+
+145
+00:11:03,910 --> 00:11:06,470
+Ento, eu pessoalmente, no gostaria de usar a
+
+146
+00:11:06,490 --> 00:11:11,530
+E novamente eu tive que fazer um pouco de hackear aqui um pouco de diverso divertida misturando-se com
+
+147
+00:11:11,570 --> 00:11:12,030
+o passaporte.
+
+148
+00:11:12,040 --> 00:11:15,150
+Eu diria para faz-los funcionar bem juntos.
+
+149
+00:11:15,190 --> 00:11:20,290
+Agora, se houvesse alguma alternativa como passaporte l fora, se houvesse algum outro quadro de autenticao,
+
+150
+00:11:20,290 --> 00:11:26,290
+onde pudssemos dizer com facilidade que o log  usurio final ou logar esse usurio, ento isso tornaria essa
+
+151
+00:11:26,290 --> 00:11:27,760
+deciso muito mais fcil.
+
+152
+00:11:27,880 --> 00:11:33,310
+Mas, infelizmente, o passaporte  realmente o padro de fato de autenticao no mundo do G-S.
+
+153
+00:11:33,430 --> 00:11:35,470
+E por isso estamos meio presos com isso por enquanto.
+
+154
+00:11:37,610 --> 00:11:41,290
+Em concluso, porque eu sei que j falei um pouco agora.
+
+155
+00:11:41,300 --> 00:11:46,360
+Em concluso, temos a abordagem desacoplada e o par de profissionais para lidar com a autenticao.
+
+156
+00:11:46,430 --> 00:11:53,240
+Se eu fosse fazer um aplicativo hoje e tentar escolher um melhor para meu uso pessoal, eu realmente olharia o caso
+
+157
+00:11:53,240 --> 00:11:58,520
+de uso do aplicativo. Eu realmente teria que olhar para o que eu estou tentando fazer para
+
+158
+00:11:58,520 --> 00:12:00,500
+decidir qual abordagem Eu quero pegar.
+
+159
+00:12:00,500 --> 00:12:06,200
+Ento, novamente, no acho que haja um vencedor claro entre os dois para esse curso.
+
+160
+00:12:06,200 --> 00:12:08,370
+Ns iremos com a abordagem acoplada aqui.
+
+161
+00:12:08,390 --> 00:12:14,920
+Ento, iremos com essa abordagem, onde permitimos que o grfico Kjeld lide com todas as coisas relacionadas  autenticao.
+
+162
+00:12:15,020 --> 00:12:21,050
+Todas as solicitaes recebidas e vai delegar a parte de autenticao real para o passaporte.
+
+163
+00:12:21,370 --> 00:12:25,300
+E eu acho que vai funcionar bem com o cdigo que acabamos escrevendo no grfico.
+
+164
+00:12:25,310 --> 00:12:31,040
+Q Bem lado, mas novamente confiar em mim, houve uma certa dor de cabea em torno de reunir esta
+
+165
+00:12:31,040 --> 00:12:34,580
+camada de compatibilidade entre o grfico eo passaporte em primeiro lugar.
+
+166
+00:12:35,470 --> 00:12:35,940
+EST BEM.
+
+167
+00:12:36,180 --> 00:12:37,920
+Ento eu sei que esta foi uma seo bastante longa.
+
+168
+00:12:37,930 --> 00:12:43,470
+novamente eu quero demorar muito para falar sobre essas diferentes abordagens para lidar com autenticao com enxerto.
+
+169
+00:12:43,470 --> 00:12:45,490
+Apenas um pouco de divagar, mas
+
+170
+00:12:45,540 --> 00:12:50,600
+Bem principalmente porque realmente no  muito um problema resolvido ainda.
+
+171
+00:12:51,210 --> 00:12:54,760
+Ento, de qualquer forma, vamos dar uma pausa.
+
+172
+00:12:54,830 --> 00:13:00,270
+Vamos voltar na prxima seo ou queremos comear a implementar essa abordagem acoplada
+
+173
+00:13:00,330 --> 00:13:01,370
+de autenticao.
+

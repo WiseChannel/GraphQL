@@ -1,0 +1,376 @@
+1
+00:00:00,810 --> 00:00:05,980
+O componente de cabealho est comeando a se comportar da maneira que esperamos em termos de contedo que est mostrando.
+
+2
+00:00:06,150 --> 00:00:12,030
+Mas cada caso de autenticao ou no autenticao do usurio est apenas mostrando algum texto em bruto na
+
+3
+00:00:12,030 --> 00:00:18,060
+tela e nada til que realmente permita que o usurio diga sair do nosso aplicativo ou ir a
+
+4
+00:00:18,300 --> 00:00:21,130
+um frum onde eles podem fazer login .
+
+5
+00:00:21,230 --> 00:00:26,580
+Uma coisa que eu gostaria de salientar antes de comear a trabalhar neste componente  que eu acabei de gravar o
+
+6
+00:00:26,610 --> 00:00:30,690
+CSSA materializado para o meu projeto aqui, ento o seu provavelmente j se parece com isso.
+
+7
+00:00:30,690 --> 00:00:32,550
+Acabei de adicion-lo ao meu tambm.
+
+8
+00:00:32,550 --> 00:00:37,460
+E  por isso que voc est vendo a grande mudana no estilo da ltima seo para esta agora.
+
+9
+00:00:37,740 --> 00:00:38,100
+EST BEM.
+
+10
+00:00:38,130 --> 00:00:39,780
+Ento vamos comear de novo.
+
+11
+00:00:39,780 --> 00:00:45,660
+Eu quero certificar-me de que sempre que mostramos esse link de logout ou voc no est conectado no texto, no quero mostrar
+
+12
+00:00:45,660 --> 00:00:47,130
+apenas o texto sem formatao.
+
+13
+00:00:47,130 --> 00:00:49,470
+Quero mostrar algo realmente til.
+
+14
+00:00:49,470 --> 00:00:56,040
+Ento, se eu mostrar logout, quero ter a capacidade de realmente registrar meu usurio fora do aplicativo ou no caso de
+
+15
+00:00:56,040 --> 00:00:58,050
+o usurio no ter iniciado sesso.
+
+16
+00:00:58,050 --> 00:01:04,130
+Quero mostrar alguns links que levam o usurio a um formulrio onde podem se inscrever ou fazer login no nosso aplicativo.
+
+17
+00:01:04,380 --> 00:01:08,330
+Ento, vamos melhorar o nosso comportamento em torno de ambos os elementos aqui.
+
+18
+00:01:08,760 --> 00:01:14,880
+A primeira coisa que eu quero fazer  adicionar um pouco de um elemento de invlucro aos botes renderizados
+
+19
+00:01:14,880 --> 00:01:20,030
+desnecessrios chamados aqui para fazer o estilo funcionar um pouco mais bem do que  agora.
+
+20
+00:01:20,490 --> 00:01:26,830
+Ento, vou envolver a chamada para essa funo auxiliar com a UL que tem um nome de classe.
+
+21
+00:01:26,880 --> 00:01:27,800
+Certo.
+
+22
+00:01:28,170 --> 00:01:33,480
+Ento, isso vai garantir que todo o contedo que  processado pelos botes de
+
+23
+00:01:33,480 --> 00:01:38,340
+renderizao  puxado para o lado direito do cabealho, onde eu tradicionalmente quero
+
+24
+00:01:38,340 --> 00:01:42,870
+ter alguns links que tm que ver com a navegao aparecer na tela.
+
+25
+00:01:42,910 --> 00:01:47,590
+A prxima coisa que vou fazer  adicionar um link para o lado esquerdo do cabealho.
+
+26
+00:01:47,620 --> 00:01:53,740
+Portanto, presumivelmente em algum lugar aqui que permita ao usurio voltar  pgina raiz de
+
+27
+00:01:53,740 --> 00:01:54,860
+nosso aplicativo completo.
+
+28
+00:01:55,240 --> 00:02:00,540
+Ento eu vou rolar para o topo e vamos importar o ajudante de link do roteador re-agir.
+
+29
+00:02:00,740 --> 00:02:07,120
+Lembre-se de que o ajudante de links nos permite renderizar uma marca de ncora que funciona da maneira que esperamos
+
+30
+00:02:07,120 --> 00:02:08,560
+com o roteador de reativao.
+
+31
+00:02:08,560 --> 00:02:16,640
+logotipo da marca da classe e  esquerda e vou dar uma mensagem de texto para que o usurio que voc conhea
+
+32
+00:02:17,350 --> 00:02:21,960
+muito claro, eu clico nessa coisa e volto para a casa do aplicativo.
+
+33
+00:02:25,410 --> 00:02:30,180
+Ento, o link de importao voltar para baixo e vou adicionar uma etiqueta
+
+34
+00:02:30,180 --> 00:02:32,580
+vinculada  minha rota rota com um
+
+35
+00:02:32,670 --> 00:02:38,100
+Ento, vamos dar um pouco de teste entre as duas mudanas que acabamos de fazer de cinco metros de
+
+36
+00:02:38,100 --> 00:02:39,580
+volta e atualizamos a pgina.
+
+37
+00:02:39,790 --> 00:02:42,720
+OK, recebi o bom texto da casa na tela.
+
+38
+00:02:42,750 --> 00:02:45,480
+ um link para que eu possa clicar nele se quiser.
+
+39
+00:02:45,480 --> 00:02:47,620
+E ento eu tambm posso ver no lado direito.
+
+40
+00:02:47,640 --> 00:02:48,660
+No estou logado.
+
+41
+00:02:48,660 --> 00:02:52,830
+Ento, claramente, ainda precisamos fazer um pouco de trabalho l do lado direito, mas ns
+
+42
+00:02:52,830 --> 00:02:54,250
+cuidaremos isso em um momento.
+
+43
+00:02:55,640 --> 00:02:56,750
+EST BEM.
+
+44
+00:02:57,710 --> 00:03:00,130
+Ento, vamos dar uma olhada nos nossos botes renderizados agora.
+
+45
+00:03:00,200 --> 00:03:04,760
+Ento,  aqui que vamos querer melhorar alguns de nossos comportamentos e garantir que essas
+
+46
+00:03:04,760 --> 00:03:09,470
+coisas estejam renderizando um pouco mais de contedo til do que o que temos atualmente.
+
+47
+00:03:09,470 --> 00:03:14,360
+Eu acho que talvez devssemos primeiro comear com um caso em que o usurio no iniciou sesso.
+
+48
+00:03:14,390 --> 00:03:19,400
+Ento, se o usurio no iniciou sesso, quero mostrar dois botes ou dois links na tela.
+
+49
+00:03:19,550 --> 00:03:25,010
+Quero mostrar um link que permita ao usurio acessar um formulrio para se inscrever ou acessar
+
+50
+00:03:25,010 --> 00:03:29,680
+um formulrio para permitir que eles faam login ou iniciem sesso no aplicativo.
+
+51
+00:03:29,690 --> 00:03:36,080
+Ento, como eu quero que dois elementos diferentes sejam devolvidos deste caso, lembro-me de 3x.
+
+52
+00:03:36,080 --> 00:03:41,320
+Eu sempre tenho que retornar um nico elemento raiz mesmo se eu quiser retornar a diferentes comprimentos.
+
+53
+00:03:41,330 --> 00:03:46,790
+Ento, ao invs de retornar a comprimentos diferentes, ao mesmo tempo, posso retornar uma div diviso de nvel
+
+54
+00:03:46,790 --> 00:03:51,370
+superior e, em seguida, dentro de l, eu colocarei dois comprimentos diferentes que aparecero na tela.
+
+55
+00:03:51,890 --> 00:03:59,150
+Ento, vou colocar 1 aliado, isso est nos ajudando com um pouco de estilo com a CSSA materializada,
+
+56
+00:03:59,210 --> 00:04:03,010
+lembre-se que, por padro, estamos apresentando uma UL aqui embaixo.
+
+57
+00:04:03,110 --> 00:04:09,140
+A UL destina-se a envolver uma srie de mentiras que apenas ajudaram a criar uma srie de links bem
+
+58
+00:04:09,140 --> 00:04:10,200
+dentro do cabealho.
+
+59
+00:04:11,320 --> 00:04:17,350
+Que dentro da sua vontade, coloque uma marca de link que levar o usurio a uma pgina onde eles podem se
+
+60
+00:04:17,350 --> 00:04:19,320
+inscrever ou fazer login em nosso aplicativo.
+
+61
+00:04:19,330 --> 00:04:25,480
+Ento coloque a etiqueta que voc conhece, coloque isso em duas linhas apenas para torn-lo um pouco mais legvel.
+
+62
+00:04:25,480 --> 00:04:30,250
+Agora, ns realmente no falamos sobre as diferentes rotas dentro de sua aplicao demais.
+
+63
+00:04:30,250 --> 00:04:35,470
+Definitivamente,  claro que temos que ter uma pgina que mostra um frum onde um usurio pode se inscrever em um formulrio
+
+64
+00:04:35,470 --> 00:04:36,980
+ou um usurio pode fazer login.
+
+65
+00:04:37,000 --> 00:04:43,090
+Ento, vou decidir agora, de forma um tanto arbitrria, que chamaremos a rota onde os usurios vero um
+
+66
+00:04:43,090 --> 00:04:44,570
+formulrio para se inscrever.
+
+67
+00:04:44,650 --> 00:04:46,240
+Vamos chamar isso muito claramente.
+
+68
+00:04:46,240 --> 00:04:47,690
+Basta se inscrever.
+
+69
+00:04:48,130 --> 00:04:53,290
+Portanto, essa rota ainda no existe dentro do nosso aplicativo, mas ns estaremos criando isso muito brevemente
+
+70
+00:04:53,290 --> 00:04:58,210
+para garantir que sempre que o usurio v l, eles vero um formulrio que lhes permite
+
+71
+00:04:58,450 --> 00:05:01,300
+criar uma nova conta e entrar em nosso aplicativo.
+
+72
+00:05:02,470 --> 00:05:10,470
+Ento, dentro da etiqueta de deslizamento, podemos mostrar o sinal de texto e ento colocamos outra mentira.
+
+73
+00:05:10,510 --> 00:05:19,400
+Este permitir que o usurio faa o login na nossa aplicao.
+
+74
+00:05:19,450 --> 00:05:21,590
+Ento, estou fazendo o mesmo aqui.
+
+75
+00:05:21,710 --> 00:05:24,850
+Ainda no temos uma rota chamada log in the of a application.
+
+76
+00:05:24,860 --> 00:05:31,730
+Estou apenas fazendo a suposio de que queremos fazer uma rota chamada de logon quando um
+
+77
+00:05:31,790 --> 00:05:38,080
+usurio for l. Ns mostraremos um formulrio que lhes permite fazer login em nosso aplicativo.
+
+78
+00:05:38,340 --> 00:05:43,630
+A ltima coisa que queremos fazer  comear a pensar no boto de logout aqui.
+
+79
+00:05:43,650 --> 00:05:47,780
+Ento, agora,  apenas uma div e, provavelmente, no queremos que seja apenas um dia puro.
+
+80
+00:05:47,790 --> 00:05:53,640
+Ns provavelmente queremos que seja algo mais parecido com um boto que o usurio pode clicar para sair do aplicativo.
+
+81
+00:05:53,940 --> 00:06:00,090
+Ento, vamos primeiro atualizar nosso documento e certificar-se de que essas duas marcas de links estejam aparecendo corretamente
+
+82
+00:06:00,420 --> 00:06:06,780
+e depois comearemos a preocupar-nos sobre como sair, o usurio voltar a se voltar e eu vejo corretamente
+
+83
+00:06:07,410 --> 00:06:13,260
+um grande log in e assinar at o link no canto superior direito dentro da minha cabea.
+
+84
+00:06:13,320 --> 00:06:16,460
+Ento, esta  definitivamente a aparncia muito boa definitivamente da maneira que queremos ir.
+
+85
+00:06:16,500 --> 00:06:19,970
+Claro que se eu clicar em qualquer um, ainda no encontramos essas rotas.
+
+86
+00:06:19,980 --> 00:06:23,960
+Ento eu recebo uma mensagem de erro no console depois que retornamos para encontrar essas rotas.
+
+87
+00:06:23,970 --> 00:06:27,510
+Ento, tudo vai funcionar como esperamos.
+
+88
+00:06:27,510 --> 00:06:32,610
+volto para o roteador da raiz do aplicativo e ento eu ainda posso atualizar para que tudo mostre o jeito que eu espero.
+
+89
+00:06:33,050 --> 00:06:36,400
+Eu ainda posso clicar na etiqueta de casa aqui para ter certeza de que eu
+
+90
+00:06:37,290 --> 00:06:37,740
+EST BEM.
+
+91
+00:06:38,010 --> 00:06:42,600
+Ento, no que diz respeito ao estilo, acho que isso parece muito bom e, definitivamente, estamos indo
+
+92
+00:06:42,600 --> 00:06:43,650
+no caminho certo aqui.
+
+93
+00:06:43,800 --> 00:06:48,930
+Vamos dar uma pausa rpida e, em seguida, voltar e comear a juntar este link na parte superior
+
+94
+00:06:48,930 --> 00:06:52,200
+da pgina para ter certeza de que podemos sair de nossa aplicao.
+

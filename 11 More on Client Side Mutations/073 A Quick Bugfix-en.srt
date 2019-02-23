@@ -1,0 +1,124 @@
+1
+00:00:00,740 --> 00:00:05,550
+Before we do a wrap up of our application there is one little bug I wanted to point out to you that
+
+2
+00:00:05,550 --> 00:00:10,130
+was introduced and we started to introduce the idea of Wykes to our application.
+
+3
+00:00:10,530 --> 00:00:17,730
+So it's a reminder when we add a new lyric we run a mutation that grabs the whole song and all the associated
+
+4
+00:00:17,730 --> 00:00:18,840
+lyrics.
+
+5
+00:00:18,840 --> 00:00:22,110
+Let's try adding another lyric right now and see what happens.
+
+6
+00:00:23,190 --> 00:00:26,260
+Let's say and here is my lampshade.
+
+7
+00:00:26,450 --> 00:00:30,820
+I'll hit enter and you'll notice I see a big error message here.
+
+8
+00:00:30,950 --> 00:00:36,050
+And I've got loading at the top of the screen and it appears that it's not actually resolving the request
+
+9
+00:00:36,050 --> 00:00:37,040
+at all.
+
+10
+00:00:37,040 --> 00:00:40,030
+So this is a little bit of a bug in the Apollo world.
+
+11
+00:00:40,070 --> 00:00:43,360
+Again remember Apollo is still a developing technology.
+
+12
+00:00:43,670 --> 00:00:49,940
+Let's check out the mutation that we run whenever we add a new lyric and then flip back over to my code
+
+13
+00:00:49,940 --> 00:00:54,540
+editor and if you recall we are using the lyric create form.
+
+14
+00:00:54,560 --> 00:01:00,110
+Here it is right here and at the very bottom we can scroll down to find our mutation to add a new lyric
+
+15
+00:01:00,110 --> 00:01:02,920
+to an individual song.
+
+16
+00:01:02,950 --> 00:01:06,890
+So right now when we run that mutation we get back to song.
+
+17
+00:01:06,900 --> 00:01:11,400
+Here we are asking for the ID we're asking for are all the lyrics around it.
+
+18
+00:01:11,500 --> 00:01:15,190
+But we are only asking for the ID and the content.
+
+19
+00:01:15,190 --> 00:01:17,100
+So that is what is causing an issue right now.
+
+20
+00:01:17,140 --> 00:01:22,150
+That's what throwing the error part of the application is expecting that we're going to know the number
+
+21
+00:01:22,150 --> 00:01:27,870
+of Wykes associated with each lyric but we are not actually asking for that data right now.
+
+22
+00:01:28,060 --> 00:01:34,360
+So to get our error message to go away we have to include a request for the number of Wykes associated
+
+23
+00:01:34,360 --> 00:01:36,330
+with each lyric.
+
+24
+00:01:36,370 --> 00:01:41,390
+Now when we refresh the page in add in another lyric
+
+25
+00:01:44,270 --> 00:01:50,870
+and here's my other phone it is added as we would expect and everything works much better.
+
+26
+00:01:50,870 --> 00:01:55,940
+OK so again this is a little bit of an error or a bug in the Apollo side of things that requires us
+
+27
+00:01:55,940 --> 00:01:57,890
+to ask for the piece of data.
+
+28
+00:01:58,040 --> 00:02:00,870
+Hopefully it's something that we get resolved in the meantime.
+
+29
+00:02:00,890 --> 00:02:06,950
+I encourage you to generally make sure that if you are ever making use of some type of resource you
+
+30
+00:02:06,950 --> 00:02:12,730
+do your best to always make sure that you're grabbing the same properties off of that resource.
+
+31
+00:02:12,970 --> 00:02:17,760
+OK let's continue in the next section and really get to that wrap up for this application.
+

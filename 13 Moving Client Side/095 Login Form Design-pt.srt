@@ -1,0 +1,288 @@
+1
+00:00:00,720 --> 00:00:03,120
+Nosso cabealho est em um timo lugar agora.
+
+2
+00:00:03,180 --> 00:00:08,670
+Ento eu acho que estamos prontos para seguir em frente aos nossos formulrios de autenticao, tanto para se
+
+3
+00:00:08,670 --> 00:00:12,020
+inscrever e fazer login no nosso aplicativo como um lembrete rpido.
+
+4
+00:00:12,060 --> 00:00:16,690
+Vamos verificar nossos modelos de Zarar de wireframe para essas duas formas que temos que fazer.
+
+5
+00:00:17,010 --> 00:00:22,320
+Ento, temos a pgina para assinar um novo usurio e assinar um usurio existente em.
+
+6
+00:00:22,370 --> 00:00:25,720
+Agora eu havia dito anteriormente que estes so dois componentes separados.
+
+7
+00:00:25,830 --> 00:00:31,860
+Mas quando olhamos para eles de perto, ambos tm os campos de e-mail e senha sobre eles e o
+
+8
+00:00:31,860 --> 00:00:32,330
+boto enviar.
+
+9
+00:00:32,400 --> 00:00:35,930
+Ento, parece que no h muita diferena entre essas duas formas.
+
+10
+00:00:36,060 --> 00:00:39,080
+Ento talvez haja um pouco de compartilhamento de cdigo que podemos fazer aqui.
+
+11
+00:00:39,390 --> 00:00:45,180
+Claro que, uma vez que inserimos esse e-mail e senha, vamos chamar uma mutao dramaticamente diferente, dependendo
+
+12
+00:00:45,390 --> 00:00:47,660
+do formulrio que seja exibido na tela.
+
+13
+00:00:47,670 --> 00:00:51,090
+Portanto, ainda h um pouco de personalizao l.
+
+14
+00:00:51,270 --> 00:00:55,860
+Com isso em mente, acho que tenho um plano sobre como podemos fazer um pouco de reutilizao de cdigo aqui.
+
+15
+00:00:57,120 --> 00:00:58,350
+Ento  isso que eu estou pensando.
+
+16
+00:00:58,620 --> 00:01:04,650
+formulrio de inscrio, mas ambos usaro um componente comum chamado de autenticao do formulrio de autenticao aqui.
+
+17
+00:01:04,650 --> 00:01:09,680
+Estou pensando que vamos fazer um componente de formulrio de log e um componente de
+
+18
+00:01:09,690 --> 00:01:15,900
+Ser que ele contm o elemento de formulrio real com os rtulos das entradas e os botes que queremos
+
+19
+00:01:15,900 --> 00:01:17,140
+mostrar no prprio formulrio.
+
+20
+00:01:17,340 --> 00:01:23,940
+Mas, assim que o usurio clicar para enviar para enviar o formulrio ir nos passar e ns chamaremos um retorno
+
+21
+00:01:23,940 --> 00:01:27,650
+de chamada que  passado do pai para baixo no formulrio.
+
+22
+00:01:28,050 --> 00:01:34,500
+Ao fazer isso, podemos ter toda a lgica comum em torno de renderizar o prprio formulrio dentro da forma, mas
+
+23
+00:01:34,500 --> 00:01:40,710
+para lidar com a lgica muito personalizada em torno da qual a mutao que chamamos para realmente entrar ou
+
+24
+00:01:40,710 --> 00:01:44,710
+registrar o usurio que podemos encontrar para essa mutao dentro dos pais componente.
+
+25
+00:01:45,060 --> 00:01:50,430
+Ento, basicamente, o plano  que os componentes pai os exibiro em duas rotas diferentes
+
+26
+00:01:50,430 --> 00:01:56,550
+dentro da configurao do reator e, em seguida, cada um deles mostrar uma instncia do prprio formulrio.
+
+27
+00:01:57,680 --> 00:02:00,040
+Ento, acho que esse  provavelmente um bom plano para avanar.
+
+28
+00:02:00,350 --> 00:02:04,490
+Bem, primeiro comece com o formulrio de login, j que voc j possui uma conta de usurio.
+
+29
+00:02:04,520 --> 00:02:08,200
+E acho que isso talvez seja um pouco mais fcil dos dois.
+
+30
+00:02:08,510 --> 00:02:13,700
+Ento, faremos o log e formamos o componente, ento faremos o componente do formulrio e definiremos o formulrio
+
+31
+00:02:13,700 --> 00:02:14,660
+real dentro dele.
+
+32
+00:02:14,660 --> 00:02:16,110
+Ento vamos comear.
+
+33
+00:02:18,130 --> 00:02:24,610
+Dentro do diretrio dos meus componentes, vou criar um novo arquivo chamado loggin form.
+
+34
+00:02:24,800 --> 00:02:25,740
+Sim.
+
+35
+00:02:26,140 --> 00:02:30,850
+Agora, se voc  tudo o que realmente precisamos fazer agora, defina alguns andaimes para
+
+36
+00:02:31,290 --> 00:02:35,350
+o componente importar esse Authdio imaginrio. da forma em que estamos falando.
+
+37
+00:02:35,350 --> 00:02:40,440
+Ento, os componentes que vo mostrar a forma real e, em seguida, mostrar que dentro deste.
+
+38
+00:02:40,540 --> 00:02:44,860
+Ento, apenas um pouco de trabalho para comear e depois vamos voltar e personaliz-lo
+
+39
+00:02:44,860 --> 00:02:46,800
+um pouco com a mutao real.
+
+40
+00:02:46,870 --> 00:02:53,140
+Ento, comearemos importando reagir e a classe Component reagir.
+
+41
+00:02:53,310 --> 00:03:02,790
+Scuse me lowercase r, ento vamos definir o nosso formulrio de registro de classe, que ir estender a classe do componente
+
+42
+00:03:02,790 --> 00:03:03,740
+tudo bem.
+
+43
+00:03:03,940 --> 00:03:06,620
+Apenas um pouco de boilerplate dentro do mtodo de renderizao.
+
+44
+00:03:06,630 --> 00:03:13,810
+Agora,  uma refeio que  colocada em div para uma boa medida e, na parte inferior, ir exportar o
+
+45
+00:03:14,620 --> 00:03:16,370
+formulrio de login padro assim.
+
+46
+00:03:16,870 --> 00:03:17,110
+EST BEM.
+
+47
+00:03:17,140 --> 00:03:18,740
+Ento parece um comeo razovel.
+
+48
+00:03:18,790 --> 00:03:23,230
+ao roteador re-agir e verifique se ele est trabalhando com uma das nossas rotas existentes.
+
+49
+00:03:23,230 --> 00:03:24,540
+Agora eu quero associar isso
+
+50
+00:03:24,820 --> 00:03:30,220
+Ento eu vou abrir meu arquivo de ndice onde eu tenho toda a configurao para re-agir roteador.
+
+51
+00:03:30,550 --> 00:03:39,460
+Vou importar o componente que acabei de criar como formulrio de log do log e do formulrio dos componentes, e eu vou
+
+52
+00:03:40,710 --> 00:03:46,520
+gerar uma nova rota que vai mostrar o log em forma, ento, role para
+
+53
+00:03:47,280 --> 00:03:54,890
+baixo um pouco de encontrar o meu total roteie a ajuda aqui e fico com certeza de que, sempre
+
+54
+00:03:54,890 --> 00:03:55,550
+que um
+
+55
+00:03:58,070 --> 00:04:04,920
+usurio entrar no log do caminho, eu vou mostrar o formulrio de log de componente, OK.
+
+56
+00:04:04,980 --> 00:04:06,880
+Ento parece um bom lugar para comear.
+
+57
+00:04:06,930 --> 00:04:12,060
+Ento, devemos agora, pelo menos, sentir vontade de fazer login de barra e ver o componente de formulrio de logon
+
+58
+00:04:12,060 --> 00:04:12,770
+aparecer na tela.
+
+59
+00:04:13,020 --> 00:04:17,060
+Vamos fazer um teste rpido agora mesmo para garantir que tudo esteja funcionando da maneira que esperamos.
+
+60
+00:04:17,100 --> 00:04:21,090
+Ento vou voltar para o meu aplicativo ou atualizar a pgina.
+
+61
+00:04:21,090 --> 00:04:25,620
+E, ento, configuramos este boto de logon aqui, ento no deveria ter que digitar a rota
+
+62
+00:04:25,680 --> 00:04:29,900
+em Asheville ou simplesmente clicar em log e ver log e estrangeiros aparecerem na tela.
+
+63
+00:04:30,150 --> 00:04:34,450
+Agora, parece que no recebemos imediatamente o formulrio na tela para que possamos ter um pequeno erro de digitao em algum lugar.
+
+64
+00:04:34,650 --> 00:04:38,360
+Vamos verificar novamente o nosso componente real de log in form.
+
+65
+00:04:39,000 --> 00:04:42,120
+Sim, ns realmente no adicionamos nada  div ainda.
+
+66
+00:04:42,210 --> 00:04:47,330
+Ento  s sair com um pouco de texto fofo l de log in form.
+
+67
+00:04:47,870 --> 00:04:51,750
+E agora podemos atualizar a pgina e ver esse texto aparecer na tela.
+
+68
+00:04:51,890 --> 00:04:52,220
+EST BEM.
+
+69
+00:04:52,220 --> 00:04:53,400
+Ento est parecendo bom.
+
+70
+00:04:53,690 --> 00:04:54,740
+Vamos dar uma pausa rpida.
+
+71
+00:04:54,740 --> 00:04:58,550
+Ns vamos voltar e ento vamos comear a trabalhar neste formulrio off, que vai
+
+72
+00:04:58,550 --> 00:05:01,860
+mostrar a forma real que o usurio vai digitar em sua entrada.
+

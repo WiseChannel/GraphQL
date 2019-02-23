@@ -1,0 +1,268 @@
+1
+00:00:00,670 --> 00:00:03,950
+Agora temos um servidor que  um pouco mais amigvel ao desenvolvimento.
+
+2
+00:00:03,990 --> 00:00:09,090
+Ento eu acho que  hora de voltar para a nossa aplicao e trabalhar com um pouco mais de
+
+3
+00:00:09,090 --> 00:00:10,900
+lgica em torno do gerenciamento de consultas.
+
+4
+00:00:10,950 --> 00:00:15,990
+A prxima parte da aplicao em que estaremos trabalhando  conectar-se, estamos liderando uma
+
+5
+00:00:16,140 --> 00:00:17,460
+empresa para um usurio.
+
+6
+00:00:17,460 --> 00:00:21,860
+Ento, vamos apresentar a idia de uma empresa e vamos relacion-la com um usurio.
+
+7
+00:00:22,140 --> 00:00:23,050
+Como lembrete.
+
+8
+00:00:23,070 --> 00:00:28,980
+empresa com um determinado usurio, adicionando uma propriedade ID da empresa a um determinado usurio.
+
+9
+00:00:29,040 --> 00:00:35,390
+Vamos ver que cada empresa possui um ID e uma descrio e, em seguida, vamos relacionar cada
+
+10
+00:00:35,700 --> 00:00:41,220
+Ento, se ns possumos uma empresa com um ID de um, talvez algum usurio tenha um ID de empresa e
+
+11
+00:00:41,220 --> 00:00:44,730
+saberemos que esse usurio particular est relacionado a essa empresa em particular.
+
+12
+00:00:45,030 --> 00:00:49,170
+Uma vez que realmente escrevemos os dados, ser um pouco mais bvio como essa relao funciona.
+
+13
+00:00:49,320 --> 00:00:51,760
+Ento vamos l e ns veremos como isso acontece.
+
+14
+00:00:51,780 --> 00:00:53,930
+Uma vez que possamos test-lo dentro do nosso navegador.
+
+15
+00:00:54,540 --> 00:00:58,840
+Ento, de volta ao meu editor de cdigo, vou encontrar meus DVDs no arquivo.
+
+16
+00:00:59,130 --> 00:01:03,990
+por adicionar algumas empresas aqui, ento temos algumas empresas para jogar.
+
+17
+00:01:03,990 --> 00:01:05,190
+Ento vou comear
+
+18
+00:01:05,400 --> 00:01:11,490
+Em seguida, voltaremos ao nosso arquivo de esquema e criaremos um novo tipo de empresa, tal como criamos
+
+19
+00:01:11,490 --> 00:01:13,440
+o nosso tipo de usurio anteriormente.
+
+20
+00:01:13,440 --> 00:01:21,330
+Eu vou adicionar a chave de uma nova empresa e veremos que apenas duas
+
+21
+00:01:21,330 --> 00:01:26,640
+empresas daro a primeira uma identificao de um nome.
+
+22
+00:01:26,780 --> 00:01:32,360
+Como sobre a Apple e uma descrio do iPhone.
+
+23
+00:01:32,430 --> 00:01:43,820
+daremos um ID de dois, um nome do Google e a descrio da pesquisa, como alguns, lembre, lembre-se de que este  o velho Jason que estamos escrevendo aqui,
+
+24
+00:01:45,640 --> 00:01:51,880
+ento certifique-se de que voc est usando citaes duplas para ambas as chaves e valores.
+
+25
+00:01:51,880 --> 00:01:56,050
+Quero dizer, isso funciona, ento, para a segunda empresa, ns lhes
+
+26
+00:01:56,050 --> 00:02:00,260
+E novamente, certifique-se de que voc est usando aspas duplas, sem cotaes simples.
+
+27
+00:02:00,400 --> 00:02:02,400
+Ento, temos duas empresas aqui agora.
+
+28
+00:02:02,500 --> 00:02:07,540
+Eu vou adicionar mais um usurio e ento vamos configurar a relao entre todas as nossas
+
+29
+00:02:07,540 --> 00:02:09,620
+empresas em todos os nossos usurios.
+
+30
+00:02:09,730 --> 00:02:14,680
+Eu quero adicionar um outro usurio aqui apenas para que tenha pelo menos uma empresa que tenha dois usurios
+
+31
+00:02:14,880 --> 00:02:19,270
+que pertenam a ele, porque esse ser um pouco de um problema interessante quando tivermos de lidar
+
+32
+00:02:19,270 --> 00:02:19,660
+com isso.
+
+33
+00:02:19,660 --> 00:02:21,310
+Sobre o lado grfico.
+
+34
+00:02:21,670 --> 00:02:27,250
+Ento, eu vou duplicar um dos meus usurios, eu vou me certificar de que eu mudei
+
+35
+00:02:28,590 --> 00:02:36,310
+sua ID e seu primeiro nome e ento eu vou relacionar meus usurios com uma determinada empresa, adicionando na propriedade ID da
+
+36
+00:02:36,400 --> 00:02:37,820
+empresa, como assim.
+
+37
+00:02:37,840 --> 00:02:51,630
+Ento, eu quero dizer que Bill talvez ele trabalhe na Apple vai dizer que talvez Alex trabalhe no Google e acho que talvez Nick simplesmente
+
+38
+00:02:51,930 --> 00:02:53,850
+trabalhe no Google tambm.
+
+39
+00:02:54,150 --> 00:03:00,770
+Ento, tanto Alex quanto Nick tm uma ID de empresa para se certificar de que voc obteve um ID de capital.
+
+40
+00:03:00,800 --> 00:03:02,250
+Eu minsculo
+
+41
+00:03:02,280 --> 00:03:06,920
+Isso  realmente importante para quando comeamos a jogar com esses dados dentro do nosso servidor Jason.
+
+42
+00:03:07,200 --> 00:03:12,810
+Falando em que vamos testar isso, vamos abrir nosso servidor Jason dentro do navegador e
+
+43
+00:03:12,810 --> 00:03:18,560
+ver como podemos jogar com essas empresas e esses usurios e relacionar os dois juntos.
+
+44
+00:03:18,630 --> 00:03:25,980
+Vai abrir meu navegador, quero dizer, abrir uma nova guia e irei direto para os usurios do barramento local
+
+45
+00:03:26,040 --> 00:03:27,100
+da localidade 3000.
+
+46
+00:03:27,450 --> 00:03:30,130
+Ento, esta  a nossa lista de usurios corretos.
+
+47
+00:03:30,180 --> 00:03:30,750
+Ns sabemos isso.
+
+48
+00:03:30,780 --> 00:03:37,920
+timo agora que adicionamos na chave de nvel superior das empresas, tambm podemos ir para reduzir as empresas.
+
+49
+00:03:37,950 --> 00:03:45,450
+E aqui est a Apple e o Google so duas empresas que acabamos de adicionar todas as mesmas convenes repousantes aplicadas aqui tambm
+
+50
+00:03:45,450 --> 00:03:51,120
+para que possamos ir s empresas cortadas uma e obter a empresa com ID de uma aqui
+
+51
+00:03:51,120 --> 00:03:55,940
+tambm, ento  tudo que trabalha no mesmo maneira que vimos com usurios anteriormente.
+
+52
+00:03:55,950 --> 00:04:02,820
+Agora, a verdadeira pergunta, como podemos fazer com que Jason Serwer nos conte com todos os usurios que trabalham na empresa
+
+53
+00:04:02,820 --> 00:04:03,640
+com um ID.
+
+54
+00:04:03,990 --> 00:04:12,480
+Bem, porque adicionamos essa chave de identificao de empresa para o objeto de usurios que configura automaticamente um relacionamento nos bastidores com
+
+55
+00:04:12,570 --> 00:04:19,940
+o JS no servidor, para que possamos ir para barras de barras de barras de usurios de barras cortadas.
+
+56
+00:04:20,250 --> 00:04:24,130
+E isso me dar todos os usurios que trabalham na empresa.
+
+57
+00:04:24,270 --> 00:04:30,460
+Eu poderia ir a uma empresa para cortar usurios e agora tenho todos os que esto trabalhando em uma empresa com ID tambm.
+
+58
+00:04:30,840 --> 00:04:35,940
+Ento, novamente, essa relao aqui mesmo no mundo  uma relao repousante ou essa conveno
+
+59
+00:04:35,940 --> 00:04:42,300
+de luta que foi vista aqui, tudo est sendo feito nos bastidores por Jesus no servidor, apenas porque
+
+60
+00:04:42,300 --> 00:04:44,280
+configuramos essas IDs da empresa aqui.
+
+61
+00:04:44,280 --> 00:04:45,960
+Ento,  uma caracterstica realmente fantstica.
+
+62
+00:04:45,960 --> 00:04:47,110
+JS no servidor.
+
+63
+00:04:47,130 --> 00:04:51,930
+Honestamente, eu simplesmente no consigo entusiasmar com o Jason, ento eu realmente gosto disso.  um pequeno projeto
+
+64
+00:04:51,990 --> 00:04:54,110
+fantstico e voc precisa juntar alguns dados simulados.
+
+65
+00:04:54,490 --> 00:04:58,840
+OK, mas o suficiente para mim o suficiente para mim falar sobre Jason Silver.
+
+66
+00:04:59,100 --> 00:05:04,620
+Vejamos novamente o arquivo de esquema e vamos trabalhar em adicionar o novo tipo de empresa dentro
+
+67
+00:05:04,620 --> 00:05:10,140
+da prxima seo, ento vamos fazer uma pausa rpida e voltar a juntar nosso tipo de empresa.
+

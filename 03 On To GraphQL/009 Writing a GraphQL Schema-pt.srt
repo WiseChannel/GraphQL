@@ -1,0 +1,380 @@
+1
+00:00:01,020 --> 00:00:06,730
+Na ltima seo, comeamos a falar sobre a presena de um esquema em nosso aplicativo QOL grfico.
+
+2
+00:00:06,750 --> 00:00:13,320
+Ento, lembre-se que este esquema  o que diz o grfico Bem exatamente como nossos dados se parecem nesta seo.
+
+3
+00:00:13,320 --> 00:00:17,690
+Vamos comear a escrever o esquema para aplicao antes de comear.
+
+4
+00:00:18,000 --> 00:00:21,810
+Eu quero primeiro dizer-lhe algo que eu quero lhe dizer um monte de cdigo
+
+5
+00:00:21,870 --> 00:00:26,350
+que vamos escrever aqui vai parecer um pouco louco e muito difcil de se reproduzir no futuro.
+
+6
+00:00:26,370 --> 00:00:27,720
+Essa  a m notcia.
+
+7
+00:00:27,990 --> 00:00:33,280
+A boa notcia  que todas as coisas de esquema que estamos fazendo aqui so principalmente repetitivas.
+
+8
+00:00:33,480 --> 00:00:34,820
+Ento, a primeira vez que voc v.
+
+9
+00:00:34,830 --> 00:00:35,220
+Sim.
+
+10
+00:00:35,250 --> 00:00:40,800
+Vai parecer uma coisa louca e louca, mas enquanto continuamos trabalhando durante o enxerto. Bem, vai
+
+11
+00:00:40,800 --> 00:00:45,160
+parecer que  mais e mais as mesmas coisas ao longo do tempo.
+
+12
+00:00:45,240 --> 00:00:46,620
+Ento, tenha em mente isso.
+
+13
+00:00:46,660 --> 00:00:47,670
+Parece louco agora.
+
+14
+00:00:47,670 --> 00:00:53,780
+No se preocupe, vamos literalmente ser copiar colando essas coisas uma e outra vez em projetos futuros.
+
+15
+00:00:54,940 --> 00:01:01,580
+Ento, dentro do nosso arquivo de esquema, a primeira coisa que vamos fazer  importar a biblioteca grfica,
+
+16
+00:01:01,680 --> 00:01:04,390
+de modo que o grfico bem requer grficos.
+
+17
+00:01:04,390 --> 00:01:10,460
+Voc notar que estamos realmente jogando no grfico para uma biblioteca desta vez no os
+
+18
+00:01:10,490 --> 00:01:16,300
+grficos Express. Bem, um para esse objeto, vamos acabar desestruturando muitas propriedades diferentes dessa
+
+19
+00:01:16,300 --> 00:01:16,720
+coisa.
+
+20
+00:01:16,720 --> 00:01:20,190
+Ento, isso vai acabar por ser uma lista bastante longa.
+
+21
+00:01:20,200 --> 00:01:25,960
+Ento, que tipo de multilinha gosta assim, agora a primeira propriedade
+
+22
+00:01:26,320 --> 00:01:31,620
+que vamos estruturar  o grfico do tipo de objeto Cuil.
+
+23
+00:01:32,470 --> 00:01:32,860
+EST BEM.
+
+24
+00:01:32,890 --> 00:01:36,220
+As coisas to loucas novamente, como essa, so uma varivel louca ali mesmo.
+
+25
+00:01:36,220 --> 00:01:41,300
+Pelo menos, penso que, de qualquer forma, faa uma verificao dupla para garantir que voc tenha a capitalizao correta.
+
+26
+00:01:41,320 --> 00:01:44,290
+No posso te contar o suficiente durante todo este curso.
+
+27
+00:01:44,290 --> 00:01:46,370
+A capitalizao  extremamente importante.
+
+28
+00:01:46,370 --> 00:01:50,360
+Ento, a capital Tuaolo capital T a tempo.
+
+29
+00:01:50,410 --> 00:01:52,990
+Certifique-se de obt-los todos.
+
+30
+00:01:53,050 --> 00:01:59,800
+Ento, vamos usar esse tipo de objeto do grfico Q aqui mesmo para as instrues graficadas bem sobre a
+
+31
+00:01:59,860 --> 00:02:02,560
+presena de um usurio em nosso aplicativo.
+
+32
+00:02:02,560 --> 00:02:09,190
+Como a idia de um usurio ou usurio que tenha uma identificao e tambm tenha uma propriedade de nome prprio.
+
+33
+00:02:09,310 --> 00:02:19,660
+Ento faa isso criando um novo objeto que chamar o tipo de usurio, de modo que agora ser um novo tipo
+
+34
+00:02:20,020 --> 00:02:22,380
+de objeto de grfico QOL.
+
+35
+00:02:22,880 --> 00:02:28,370
+Lembre-se de todo o propsito do arquivo de esquema  instruir graficamente bem sobre o tipo de
+
+36
+00:02:28,400 --> 00:02:30,140
+dados que temos em nosso aplicativo.
+
+37
+00:02:30,140 --> 00:02:36,980
+Ento, quando voc v a palavra usurio digitar aqui, voc pode pensar que este objeto instrui bem o
+
+38
+00:02:37,070 --> 00:02:42,520
+que um objeto de usurio se parece com quais propriedades em vez de ter.
+
+39
+00:02:42,520 --> 00:02:47,960
+Ento, o tipo de usurio que vamos definir aqui ou esses objetos so como
+
+40
+00:02:47,960 --> 00:02:51,230
+os objetos vo passar aqui como duas propriedades necessrias.
+
+41
+00:02:51,230 --> 00:02:59,210
+O primeiro  o nome da propriedade do nome sempre ser uma string que descreva o tipo
+
+42
+00:02:59,210 --> 00:03:00,680
+que estamos definindo.
+
+43
+00:03:00,680 --> 00:03:05,140
+Na prtica, isso costuma ser igual ao que voc chamar desse tipo.
+
+44
+00:03:05,330 --> 00:03:13,280
+Ento, para ns, como tipo de usurio, geralmente significa que vamos ter um nome de usurio, observe que,
+
+45
+00:03:13,280 --> 00:03:18,230
+por conveno, usamos o nome do zoomy para o nome atual aqui.
+
+46
+00:03:18,230 --> 00:03:21,350
+Ento  capital-T voc usurio.
+
+47
+00:03:21,520 --> 00:03:29,960
+O segundo requer uma propriedade dentro desse objeto  a propriedade Fields e  um objeto.
+
+48
+00:03:30,010 --> 00:03:32,440
+Esta  a propriedade mais importante aqui.
+
+49
+00:03:32,440 --> 00:03:39,990
+ o que diz bem o grfico sobre todas as diferentes propriedades que um usurio possui as chaves deste assunto so
+
+50
+00:03:40,440 --> 00:03:43,280
+os nomes das propriedades que o usurio possui.
+
+51
+00:03:43,440 --> 00:03:52,170
+Ento, vou dizer que o meu usurio deveria ter uma ID um primeiro nome e vamos us-lo, digamos, tambm
+
+52
+00:03:52,170 --> 00:03:54,090
+tem uma idade tambm.
+
+53
+00:03:54,090 --> 00:03:58,080
+E note que estou colocando as vrgulas aqui porque vamos preencher alguns valores como este
+
+54
+00:03:58,080 --> 00:03:59,820
+no  uma nova sintaxe do mistrio.
+
+55
+00:03:59,820 --> 00:04:01,140
+Acabei de inventar.
+
+56
+00:04:01,140 --> 00:04:03,740
+Estou acabando de colocar todas as chaves primeiro.
+
+57
+00:04:04,260 --> 00:04:12,300
+Ento, passando nos campos, o objeto com o nome de identificao de uma idade, instruiu-se bem que cada usurio ter
+
+58
+00:04:12,300 --> 00:04:15,780
+uma identificao um primeiro nome e um H.
+
+59
+00:04:15,810 --> 00:04:16,470
+ isso a.
+
+60
+00:04:18,090 --> 00:04:21,740
+Agora, aqui  onde as coisas comeam a ser um pouco interessantes.
+
+61
+00:04:21,810 --> 00:04:25,930
+Telegravamos bem o tipo de dados.
+
+62
+00:04:26,010 --> 00:04:27,980
+Cada um desses campos .
+
+63
+00:04:28,110 --> 00:04:31,650
+E quando eu digo o tipo, quero dizer,  a idia de uma string.
+
+64
+00:04:31,650 --> 00:04:34,550
+ um nmero que uma matriz no  um objeto.
+
+65
+00:04:34,980 --> 00:04:43,870
+Fazemos isso, definindo o valor de cada uma dessas propriedades em um objeto e depois definindo uma propriedade de tipo.
+
+66
+00:04:43,920 --> 00:04:49,740
+Ento, vamos preencher esse prximo passo em cada um desses, ento cada um deles ter uma propriedade de tipo.
+
+67
+00:04:49,740 --> 00:04:51,840
+Mais uma vez eu vou deixar o valor em cada um deles.
+
+68
+00:04:51,840 --> 00:04:55,910
+Agora, vamos preench-lo apenas um segundo.
+
+69
+00:04:56,130 --> 00:05:01,890
+Assim, cabe a ns como desenvolvedores decidir qual  o tipo apropriado para cada uma
+
+70
+00:05:01,890 --> 00:05:02,660
+dessas propriedades.
+
+71
+00:05:03,030 --> 00:05:06,770
+Pessoalmente, acho que a idia provavelmente deve ser uma teoria de cordas que faa sentido.
+
+72
+00:05:06,840 --> 00:05:11,880
+Eu acho que o primeiro nome definitivamente deve ser uma string e a idade provavelmente deve ser um nmero inteiro.
+
+73
+00:05:11,880 --> 00:05:14,240
+Ento, como quantos anos eu sou.
+
+74
+00:05:14,240 --> 00:05:22,440
+Com apenas um nmero inteiro em um nmero inteiro para comunicar este digraph Bem, ns vamos usar alguns
+
+75
+00:05:22,530 --> 00:05:24,970
+tipos incorporados para comunicar isso.
+
+76
+00:05:24,990 --> 00:05:27,940
+OK ento, novamente,  aqui que as coisas comeam a ficar to estranhas.
+
+77
+00:05:27,960 --> 00:05:38,890
+Vamos dizer grfico Cuil string graph QOL string e grfico Cuil it.
+
+78
+00:05:39,330 --> 00:05:43,830
+Ento eu sei que eu disse isso provavelmente trs ou quatro vezes agora, mas isso se comunica
+
+79
+00:05:44,010 --> 00:05:48,180
+com o grfico bastante bem que todo usurio ter um ID que ser uma string.
+
+80
+00:05:48,180 --> 00:05:50,930
+Todo usurio ter um primeiro nome que  uma string.
+
+81
+00:05:51,060 --> 00:05:55,080
+Todo usurio ter uma idade que  um nmero inteiro.
+
+82
+00:05:55,080 --> 00:05:58,020
+Agora, fazemos uso do grfico Q Tudo e fim.
+
+83
+00:05:58,050 --> 00:06:02,470
+Precisamos ter certeza de que os importaremos do grfico para uma biblioteca aqui tambm.
+
+84
+00:06:02,700 --> 00:06:04,150
+Ento eu vou agarr-los como.
+
+85
+00:06:04,160 --> 00:06:09,990
+Q L cordo e grfico Cuil ele gosta de tudo bem.
+
+86
+00:06:10,950 --> 00:06:12,100
+Um bom progresso at agora.
+
+87
+00:06:12,150 --> 00:06:17,100
+Vamos dar um segundo olhar apenas um segundo para analisar aonde estamos nesta seo.
+
+88
+00:06:17,100 --> 00:06:23,520
+arquivo de esquema, o arquivo de esquema comunica todos os diferentes tipos de dados em nosso aplicativo ao longo do grfico.
+
+89
+00:06:23,520 --> 00:06:25,170
+Comeamos a trabalhar no nosso
+
+90
+00:06:25,180 --> 00:06:30,840
+Q Bem e tambm diz graficamente bem como eles esto todos relacionados e ns no participamos porque ainda
+
+91
+00:06:30,840 --> 00:06:32,560
+no fizemos essa segunda parte.
+
+92
+00:06:33,060 --> 00:06:39,340
+Comeamos por louco criando um tipo de usurio que se destina a representar um usurio e nos diz
+
+93
+00:06:39,360 --> 00:06:45,280
+o grfico Cuil que cada usurio possui trs propriedades e identifica um primeiro nome e uma idade.
+
+94
+00:06:45,720 --> 00:06:50,580
+Ento, meditemos sobre isso por apenas um momento e depois continue a prxima seo e descubra
+
+95
+00:06:50,580 --> 00:06:51,840
+para onde ir daqui.
+

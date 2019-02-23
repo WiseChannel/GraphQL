@@ -1,0 +1,684 @@
+1
+00:00:01,290 --> 00:00:06,750
+J fizemos muito progresso at agora com o enxerto, mas, at agora, todo esse
+
+2
+00:00:06,750 --> 00:00:10,330
+progresso foi limitado ao cliente grfico aqui no navegador.
+
+3
+00:00:10,380 --> 00:00:16,500
+Ns ainda no estamos colocando nenhuma dessas informaes em uma tela que um usurio final possa ver.
+
+4
+00:00:16,530 --> 00:00:21,900
+Ento eu no sei sobre voc, mas eu realmente no espero que meu usurio final inicialize o grfico e escreva
+
+5
+00:00:21,900 --> 00:00:25,110
+as consultas para a informao que eles querem obter da minha aplicao.
+
+6
+00:00:25,260 --> 00:00:31,530
+Em vez disso, eu quero levar meu grfico para Elser. Quero tirar as informaes e quero
+
+7
+00:00:31,530 --> 00:00:35,600
+integrar isso com algum framework de front-end, como dizer, talvez reagir.
+
+8
+00:00:35,970 --> 00:00:41,790
+na tela e uma boa moda bonita que dar aos meus usurios algo muito fcil de ver.
+
+9
+00:00:41,790 --> 00:00:47,010
+Eu posso usar reagir, em seguida, tirar informaes da ferramenta de grfico e t-lo aparecer
+
+10
+00:00:47,010 --> 00:00:52,140
+Ento, nesta seo, vamos comear a trabalhar para tirar nosso grfico atravs de todo
+
+11
+00:00:52,140 --> 00:00:54,880
+o servidor e integr-lo com eles reagir.
+
+12
+00:00:54,990 --> 00:00:56,120
+Essa  a boa notcia.
+
+13
+00:00:56,460 --> 00:01:01,700
+A m notcia  que tambm  onde o grfico 12 comea a ficar um pouco peludo.
+
+14
+00:01:02,130 --> 00:01:07,070
+Grfico Cuil  o limite sangrento da Internet e tecnologia de design web.
+
+15
+00:01:07,410 --> 00:01:13,740
+E h muitas mudanas muito rpidas que esto se saindo no ecossistema grfico de Cuil, especialmente
+
+16
+00:01:13,740 --> 00:01:16,010
+na frente e lado das coisas.
+
+17
+00:01:16,020 --> 00:01:21,130
+Ento, nesta seo, vamos analisar algumas das diferentes tecnologias em desenvolvimento que so usadas
+
+18
+00:01:21,150 --> 00:01:26,790
+na parte frontal de aplicativos grficos e vamos falar sobre os prs e contras de cada
+
+19
+00:01:26,790 --> 00:01:27,340
+um deles.
+
+20
+00:01:27,630 --> 00:01:32,680
+Ento, meu objetivo geral aqui  realmente fazer voc conhecer algumas das diferentes bibliotecas e ceder
+
+21
+00:01:32,730 --> 00:01:35,930
+para falar inteligentemente sobre o propsito de cada uma delas.
+
+22
+00:01:36,080 --> 00:01:37,800
+Esse  o objetivo.
+
+23
+00:01:37,800 --> 00:01:43,150
+Depois de falar sobre cada uma dessas bibliotecas, vamos escolher uma e avanar com ela.
+
+24
+00:01:43,580 --> 00:01:44,160
+EST BEM.
+
+25
+00:01:44,460 --> 00:01:48,480
+Para comear com eu quero lembr-lo de onde estamos no momento agora.
+
+26
+00:01:48,480 --> 00:01:50,610
+Agora eu sei que olhamos esse diagrama vrias vezes.
+
+27
+00:01:50,610 --> 00:01:54,710
+Mas confie em mim, talvez seja a ltima vez que a tivemos talvez.
+
+28
+00:01:54,930 --> 00:02:00,180
+De qualquer forma, temos um cliente grfico que est sendo executado dentro do navegador agora.
+
+29
+00:02:00,180 --> 00:02:05,910
+Ns escrevemos um grfico para uma consulta que presumivelmente  enviada para o nosso servidor expresso de alguma forma, ento
+
+30
+00:02:06,450 --> 00:02:08,340
+os grficos iro lado a lado.
+
+31
+00:02:08,340 --> 00:02:14,210
+Trabalha com a nossa loja de dados do servidor Jaison para formular uma resposta e envi-la de volta ao grfico.
+
+32
+00:02:14,250 --> 00:02:19,020
+Ento  isso que est acontecendo agora.
+
+33
+00:02:19,020 --> 00:02:23,850
+Uma das partes realmente importantes sobre esta aplicao e especialmente a compreenso
+
+34
+00:02:23,850 --> 00:02:30,990
+de como vamos integrar um cliente para ler os dados do nosso servidor grfico  entender exatamente quais
+
+35
+00:02:31,020 --> 00:02:33,520
+informaes esto sendo trocadas com o servidor.
+
+36
+00:02:33,540 --> 00:02:36,960
+Ento, em particular, estou falando sobre esse grfico para o servidor El.
+
+37
+00:02:37,000 --> 00:02:38,940
+Voc precisa desse grfico para carregar o Querrey.
+
+38
+00:02:39,150 --> 00:02:45,050
+Se pudermos entender quais informaes esto sendo enviadas do navegador para o servidor.
+
+39
+00:02:45,300 --> 00:02:50,580
+Talvez isso nos d um pouco mais de viso sobre exatamente como podemos interagir com o solo.
+
+40
+00:02:50,580 --> 00:02:51,600
+Servidor Q Well.
+
+41
+00:02:51,840 --> 00:02:58,500
+Ento, se entendermos quais informaes esto sendo trocadas aqui, talvez nos d um pouco mais de informaes
+
+42
+00:02:58,560 --> 00:03:04,180
+sobre como trabalhar com o enxerto bem dentro do navegador quando trabalhar com o re-agir.
+
+43
+00:03:04,490 --> 00:03:09,420
+Ento, para entender o que est acontecendo dentro dessa consulta, vamos voltar para o grfico.
+
+44
+00:03:09,680 --> 00:03:13,010
+Eu j tenho uma consulta na tela e aqui est o que eu quero fazer.
+
+45
+00:03:13,010 --> 00:03:15,450
+Eu vou abrir meu console cromado.
+
+46
+00:03:16,310 --> 00:03:18,870
+Eu vou mudar para a guia de rede.
+
+47
+00:03:19,130 --> 00:03:24,810
+Eu vou me certificar de que no  filtrada pela Exige nossos pedidos e ento vou emitir essa consulta.
+
+48
+00:03:25,430 --> 00:03:29,970
+To logo, clique no boto Reproduzir aqui e recebo a solicitao na tela.
+
+49
+00:03:30,020 --> 00:03:36,890
+Ento, esta  a solicitao de que o cliente grfico que acabei de enviar para o nosso grfico para o El Back-End vai
+
+50
+00:03:36,890 --> 00:03:39,790
+clicar nele e ento v para a guia de visualizao.
+
+51
+00:03:40,250 --> 00:03:45,620
+Eu posso ampliar tudo na guia de visualizao e voc ver que  idntico  informao
+
+52
+00:03:45,620 --> 00:03:49,380
+que  exibida como resultado da nossa consulta no lado direito.
+
+53
+00:03:49,640 --> 00:03:58,850
+Ento, claramente, a resposta que retorna do nosso servidor grfico  apenas dados muito simples e muito brutos.
+
+54
+00:03:58,850 --> 00:04:03,510
+Vamos tambm dar uma olhada no que o prprio grfico est enviando para o backend.
+
+55
+00:04:03,530 --> 00:04:07,010
+Ento, esta  apenas a resposta que estamos observando aqui  apenas a resposta.
+
+56
+00:04:07,010 --> 00:04:10,150
+Vejamos tambm o pedido que est sendo emitido.
+
+57
+00:04:10,190 --> 00:04:15,020
+Ento, vou clicar na aba dos cabealhos e, em seguida, rolar at a parte inferior e encontrar
+
+58
+00:04:15,020 --> 00:04:16,580
+a carga til do pedido.
+
+59
+00:04:16,580 --> 00:04:21,460
+Agora, dentro de aqui, voc ver que a carga de solicitao tem trs propriedades.
+
+60
+00:04:21,620 --> 00:04:27,240
+O nome da operao da consulta e as variveis vo falar sobre quais as variveis mais tarde.
+
+61
+00:04:27,260 --> 00:04:30,290
+Mas agora eu realmente quero me concentrar na consulta.
+
+62
+00:04:30,590 --> 00:04:31,580
+Ento d uma olhada nisso.
+
+63
+00:04:31,610 --> 00:04:38,950
+A consulta  o caracter exato da cadeia de caracteres que inserimos em nosso cliente grfico.
+
+64
+00:04:38,960 --> 00:04:41,910
+Isso  bastante importante para entender.
+
+65
+00:04:42,320 --> 00:04:48,680
+De todos os clientes diferentes que podemos fazer uso e do grfico Q Velho Mundo todos eles realmente falam
+
+66
+00:04:48,680 --> 00:04:50,770
+o mesmo idioma sobre o fio.
+
+67
+00:04:50,840 --> 00:04:55,690
+Todos eles falam o mesmo tipo idntico de consultas que vemos aqui.
+
+68
+00:04:56,000 --> 00:05:02,420
+Ento, no importa o cliente do front-end que estou usando e no importa o cliente de back-end
+
+69
+00:05:02,420 --> 00:05:07,940
+que estou usando, todos podem se comunicar, porque eles esto trocando a mesma informao.
+
+70
+00:05:08,000 --> 00:05:12,750
+No h nada de biblioteca especfica sobre essa consulta que est sendo emitida aqui.
+
+71
+00:05:12,770 --> 00:05:15,290
+Agora, claro, existem alguns casos de vantagem para isso.
+
+72
+00:05:15,290 --> 00:05:20,690
+onde  um pouco difcil conseguir uma biblioteca na frente para trabalhar bem com outra na parte de trs.
+
+73
+00:05:20,690 --> 00:05:22,500
+H algum tipo de bordas difceis
+
+74
+00:05:22,700 --> 00:05:25,070
+Mas falaremos mais sobre esses casos mais tarde.
+
+75
+00:05:25,070 --> 00:05:30,620
+O nico ponto que eu quero fazer agora  que o aplicativo de front-end e o aplicativo
+
+76
+00:05:30,830 --> 00:05:36,460
+de back-end que podemos imaginar esto funcionando exatamente como o tradicional pedido do Ajax com Jaison funciona.
+
+77
+00:05:36,590 --> 00:05:43,010
+ realmente apenas dados sobre o fio que  mais ou menos formatado e
+
+78
+00:05:43,370 --> 00:05:47,080
+no formatado especificamente para qualquer tecnologia especfica, OK.
+
+79
+00:05:47,350 --> 00:05:52,990
+Ento, eu s queria deixar esse primeiro ponto claro, permitindo que voc saiba que estamos usando um
+
+80
+00:05:52,990 --> 00:05:58,540
+cliente que no significa necessariamente que no podemos trabalhar com outro servidor de enxertia de back-end particular.
+
+81
+00:05:59,170 --> 00:06:03,700
+Ento, vamos agora girar um pouco e falar exatamente sobre o que este grfico para Al
+
+82
+00:06:03,700 --> 00:06:05,010
+Klein vai fazer por ns.
+
+83
+00:06:05,440 --> 00:06:07,870
+Ento, este  essencialmente o mesmo diagrama.
+
+84
+00:06:08,080 --> 00:06:11,000
+A grande diferena  o que est acontecendo dentro do navegador agora.
+
+85
+00:06:11,380 --> 00:06:16,900
+Ento, vamos ter muito em breve um aplicativo de reao e esse aplicativo de reator
+
+86
+00:06:16,900 --> 00:06:20,370
+estar muito acoplado a um grfico para o nosso cliente.
+
+87
+00:06:20,380 --> 00:06:26,170
+O objetivo deste grfico para nosso cliente aqui  fazer exatamente o que o grfico est fazendo atualmente.
+
+88
+00:06:26,470 --> 00:06:32,790
+as emitir nas nossas costas e receber uma resposta e passar esses dados no nosso aplicativo de reao.
+
+89
+00:06:32,800 --> 00:06:39,340
+Ns vamos enviar algumas perguntas, ns vamos aliment-las para esse grfico para o nosso cliente e, em seguida,
+
+90
+00:06:39,340 --> 00:06:41,620
+o grfico do cliente da Cuil
+
+91
+00:06:41,620 --> 00:06:46,780
+Ento, realmente devemos pensar neste grfico do cliente do Kubo que vamos usar como uma camada
+
+92
+00:06:46,780 --> 00:06:49,900
+de ligao entre o servidor QOL reage e digraph.
+
+93
+00:06:49,910 --> 00:06:51,600
+J escrevemos.
+
+94
+00:06:52,280 --> 00:06:58,060
+Tudo sobre o qual voc est falando sobre como este grfico de consulta antiga aqui  essencialmente
+
+95
+00:06:58,060 --> 00:07:05,080
+lingustico ou, pelo menos, tecnologia ou cliente, voc conhece o tipo agnstico  realmente descrever a relao entre esse grfico
+
+96
+00:07:05,080 --> 00:07:09,300
+para um cliente e o grfico Cuil servidor que j colocamos juntos.
+
+97
+00:07:09,340 --> 00:07:12,890
+Eles so muito ligeiramente acoplados.
+
+98
+00:07:13,320 --> 00:07:13,660
+Tudo bem.
+
+99
+00:07:13,710 --> 00:07:19,170
+Por fim, quero falar sobre os trs grandes clientes que esto em uso no
+
+100
+00:07:19,200 --> 00:07:20,980
+mundo javascript e grfico.
+
+101
+00:07:21,420 --> 00:07:26,340
+Ento, novamente, estes so clientes javascript que seriam utilizados dentro do navegador.
+
+102
+00:07:26,340 --> 00:07:29,750
+Estas no so necessariamente tecnologias de back-end.
+
+103
+00:07:30,270 --> 00:07:36,840
+Ento, estes so todos os trs, estes so vagamente organizados em um tipo de dificuldade crescente ou crescente complexidade
+
+104
+00:07:37,540 --> 00:07:41,030
+no lado mais fcil  algo chamado Loca ou Latka.
+
+105
+00:07:41,040 --> 00:07:46,590
+Eu serei honesto com voc. Eu realmente no sei o que  suposto ser este cliente louca
+
+106
+00:07:46,680 --> 00:07:49,190
+aqui  to simples quanto  possvel.
+
+107
+00:07:49,200 --> 00:07:58,160
+Isso nos d a capacidade de fazer solicitaes para uma ferramenta de grfico de volta e obter alguma resposta de volta, essencialmente funciona muito parecido
+
+108
+00:07:58,160 --> 00:08:01,950
+com o que o nosso cliente grfico grfico est fazendo agora.
+
+109
+00:08:02,120 --> 00:08:08,060
+Mas tambm tem alguns recursos extras para lidar com algo chamado armazenamento em cache e armazenamento em
+
+110
+00:08:08,060 --> 00:08:15,020
+cache  uma ferramenta de grande desempenho que usaremos mais tarde para melhorar significativamente o desempenho de nossa aplicao.
+
+111
+00:08:15,020 --> 00:08:17,530
+Em seguida, o cliente  Apollo.
+
+112
+00:08:17,650 --> 00:08:25,100
+Ento, o cliente Apollo  um dos maiores usos de pilha completa de artesanato l fora agora.
+
+113
+00:08:25,340 --> 00:08:32,150
+Em geral, o projeto  chamado de pilha Apollo, a pilha Apollo possui um servidor Cuil de fim de
+
+114
+00:08:32,450 --> 00:08:36,860
+ano, que usamos no lugar do grfico Expresso Q1 que estamos usando agora.
+
+115
+00:08:37,040 --> 00:08:44,330
+E tambm tem o cliente Apollo que funciona exclusivamente na frente ou no nosso navegador, o cliente Apollo est sendo feito
+
+116
+00:08:44,330 --> 00:08:46,610
+pelos mesmos caras que fizeram meteoro.
+
+117
+00:08:46,690 --> 00:08:47,140
+Sim.
+
+118
+00:08:47,150 --> 00:08:52,430
+Se voc est familiarizado com o meteoro que  meio geral, eu vejo isso como uma
+
+119
+00:08:52,520 --> 00:08:53,800
+coisa boa e ruim.
+
+120
+00:08:53,810 --> 00:09:01,460
+do cliente Apollo  realmente excelente em termos de um conjunto de caractersticas ambiciosas, enquanto equilibra isso com no fazer muito difcil trabalhar.
+
+121
+00:09:01,490 --> 00:09:06,880
+Ento, aqui  o tipo de minha caixa de sabo de 30 segundos na linha Apollo
+
+122
+00:09:06,920 --> 00:09:12,260
+Ento, voc pode finalmente se levantar e comear com o cliente Apollo muito rapidamente e geralmente feliz com
+
+123
+00:09:12,260 --> 00:09:13,280
+o conjunto de recursos.
+
+124
+00:09:13,280 --> 00:09:18,950
+A desvantagem  que est sendo feita pelo meteoro J J. S. Caras e isso  uma equipe
+
+125
+00:09:19,250 --> 00:09:25,700
+de pessoas onde, embora sejam extraordinariamente inteligentes, eles no tm necessariamente como voc sabe um ano ou mais ou
+
+126
+00:09:25,700 --> 00:09:29,390
+algo parecido com a experincia com os clientes do Graph Cuil.
+
+127
+00:09:29,480 --> 00:09:35,840
+Estas so algumas pessoas que se sentaram para fazer especificamente um cliente Apollo ou um grfico para um cliente para que
+
+128
+00:09:35,840 --> 00:09:39,210
+eles possam ter um negcio no grfico do seu mundo antigo.
+
+129
+00:09:39,470 --> 00:09:41,650
+Ento,  uma espcie de profissional e profissional.
+
+130
+00:09:41,840 --> 00:09:46,250
+E eu realmente no quero falar mal sobre eles, espero que no se
+
+131
+00:09:46,250 --> 00:09:52,400
+encontre assim, mas voc realmente precisa se lembrar do objetivo do time que est mantendo essa ferramenta agora
+
+132
+00:09:52,400 --> 00:09:57,790
+no fim da dificuldade e eu Realmente significa muito longe e  o cliente de retransmisso.
+
+133
+00:09:57,880 --> 00:10:07,370
+Ento, realmente, o que  oficialmente utilizado pelo relevo da equipe do Facebook  extraordinariamente complicado, especialmente quando comea a
+
+134
+00:10:07,370 --> 00:10:09,530
+se aproximar das mutaes.
+
+135
+00:10:09,530 --> 00:10:16,000
+Ento, no relevo, as mutaes de manipulao do mundo provavelmente so um fator de mais de 10 desafios do que
+
+136
+00:10:16,010 --> 00:10:17,450
+as mutaes j colocadas.
+
+137
+00:10:17,600 --> 00:10:24,380
+Ento eu realmente quero dizer-lhe que eu quero adverti-lo longe de usar relais, embora seja um desempenho
+
+138
+00:10:24,470 --> 00:10:26,270
+incrivelmente surpreendente no celular.
+
+139
+00:10:26,300 --> 00:10:32,810
+Como o rel foi construdo para dispositivos mveis que operam em pases do terceiro mundo onde eles tm qualidade de internet
+
+140
+00:10:32,840 --> 00:10:36,110
+muito fraca ou qualidade de conexo de internet muito fraca.
+
+141
+00:10:36,110 --> 00:10:42,920
+Ento, se voc estiver trabalhando em um aplicativo onde voc absolutamente no sabe que seus usurios tero
+
+142
+00:10:42,920 --> 00:10:48,560
+conexes de internet terrveis, ento o rel  definitivamente uma soluo muito boa para
+
+143
+00:10:48,560 --> 00:10:51,320
+ir, porque  realmente o que foi construdo.
+
+144
+00:10:51,410 --> 00:10:58,100
+em oramento de engenharia e realmente faz sentido para eles usarem relaes porque tm o oramento e o tempo para us-lo.
+
+145
+00:10:58,190 --> 00:11:03,800
+No entanto, voc paga por todo esse desempenho em complexidade, por isso faz muito sentido para uma
+
+146
+00:11:03,800 --> 00:11:08,130
+equipe como o Facebook, onde eles tm, literalmente, centenas de milhes de dlares
+
+147
+00:11:08,330 --> 00:11:15,530
+Mas se voc est fazendo, se voc est criando um aplicativo para uma inicializao, eu tenho que dirigi-lo para
+
+148
+00:11:15,560 --> 00:11:23,550
+longe de realmente eu realmente tenho que agora, porque  realmente um exagero em alguns lugares para sua aplicao tpica geral.
+
+149
+00:11:23,550 --> 00:11:30,320
+Agora, como a data de gravao deste vdeo realmente est atualmente na Verso 1, eles esto trabalhando em
+
+150
+00:11:30,320 --> 00:11:33,960
+uma verso 2, que vai simplificar a API um pouco.
+
+151
+00:11:34,070 --> 00:11:40,100
+Assim, pode ser que, em algum momento do futuro, o rel seja lanado com a verso 2 e  muito mais fcil de
+
+152
+00:11:40,100 --> 00:11:42,800
+usar, ento talvez voc aplique Appollo Cline e at Loga.
+
+153
+00:11:42,920 --> 00:11:48,770
+Eu no sei, talvez isso acontea, mas a partir de hoje, pelo menos, ainda  bastante louco.
+
+154
+00:11:48,800 --> 00:11:53,720
+A ltima coisa sobre o relais e a possvel verso tambm  que a verso 
+
+155
+00:11:53,720 --> 00:11:57,410
+direita tem sido um pouco pendente, como por ano, sem muito progresso.
+
+156
+00:11:57,410 --> 00:12:03,070
+Ento, eu realmente no faria minha respirao nessa verso para sair em breve.
+
+157
+00:12:03,480 --> 00:12:03,980
+EST BEM.
+
+158
+00:12:04,010 --> 00:12:06,360
+Ento, essa  a nossa viso geral no grfico.
+
+159
+00:12:06,360 --> 00:12:13,850
+um deles  fazer uma solicitao ao nosso servidor de ferramentas de grfico, obter a resposta de volta e encaminh-la para o aplicativo
+
+160
+00:12:13,850 --> 00:12:19,910
+de reao, de modo que o re-ato ainda ser 100 por cento no controle de mostrar informaes na tela.
+
+161
+00:12:19,910 --> 00:12:22,760
+Q Nossos clientes lembram que a finalidade de cada
+
+162
+00:12:22,880 --> 00:12:29,050
+Estamos apenas usando essas tecnologias para interagir com o nosso grfico Q Todo o servidor neste curso,
+
+163
+00:12:29,050 --> 00:12:33,920
+vamos avanar com o cliente Apollo porque realmente  um bom equilbrio entre
+
+164
+00:12:33,920 --> 00:12:35,090
+recursos e complexidade.
+
+165
+00:12:35,090 --> 00:12:35,930
+A API.
+
+166
+00:12:35,930 --> 00:12:41,240
+Eu espero mudar apenas um pouco ao longo do tempo, mas, em geral, eles tomaram boas decises
+
+167
+00:12:41,240 --> 00:12:45,640
+sobre desempenho e complexidade at agora e eu estou pessoalmente bastante satisfeito com isso.
+
+168
+00:12:45,650 --> 00:12:50,550
+Ento, estaremos usando o cliente Appollo durante todo esse curso em algum momento.
+
+169
+00:12:50,550 --> 00:12:54,320
+Voc sabe que podemos voltar a descobrir um pouco sobre como a loca realmente funciona.
+
+170
+00:12:54,320 --> 00:12:57,960
+Mas, novamente, estou muito feliz com o cliente Appollo por enquanto.
+
+171
+00:12:58,380 --> 00:13:04,770
+Ento, continue e comece a trabalhar no nosso prximo aplicativo na prxima seo.
+

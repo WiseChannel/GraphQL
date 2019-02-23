@@ -1,0 +1,352 @@
+1
+00:00:00,920 --> 00:00:04,370
+O formulrio de inscrio parece estar executando a mutao corretamente.
+
+2
+00:00:04,380 --> 00:00:06,970
+Mas ainda temos que cuidar de algumas chances e.
+
+3
+00:00:07,530 --> 00:00:11,910
+Notavelmente, temos que nos certificar de que lemos os erros que resultam da mutao.
+
+4
+00:00:11,910 --> 00:00:16,870
+Precisamos certificar-se de que reencontremos a nossa consulta de usurio atual aps essa mutao estar completa.
+
+5
+00:00:17,100 --> 00:00:22,530
+E, finalmente, precisamos ter certeza de que, aps a execuo da mutao, foramos o usurio ao
+
+6
+00:00:22,530 --> 00:00:25,440
+nosso componente do painel, que ainda temos que criar.
+
+7
+00:00:25,470 --> 00:00:26,580
+Para ser justo.
+
+8
+00:00:26,820 --> 00:00:31,440
+manuseio de erros ser absolutamente idntico ao tratamento de erros que utilizamos dentro do log em forma.
+
+9
+00:00:31,440 --> 00:00:36,690
+Ento, eu acho que o melhor lugar para comear ser em torno do tratamento de erros, de modo que o
+
+10
+00:00:36,780 --> 00:00:43,530
+Vamos definir um construtor inicializar uma matriz vazia tem o pedao de estado do nosso herdeiro, ento vamos adicionar
+
+11
+00:00:43,560 --> 00:00:45,480
+um caso de captura  mutao.
+
+12
+00:00:45,480 --> 00:00:50,760
+E se houver algum erro na resposta que retornar, vamos pegar uma lista de todos os erros e
+
+13
+00:00:50,820 --> 00:00:53,130
+atualizar o nosso estado de componentes com ele.
+
+14
+00:00:53,130 --> 00:00:57,810
+E ento, finalmente, teremos certeza de que ns passamos essa lista de erros no formulrio onde
+
+15
+00:00:57,810 --> 00:01:00,510
+eles podem ser exibidos na tela para o usurio.
+
+16
+00:01:00,510 --> 00:01:01,870
+Ento vamos comear.
+
+17
+00:01:01,890 --> 00:01:07,950
+Em primeiro lugar, iniciamos a inicializao do nosso nvel de componente dentro do construtor.
+
+18
+00:01:07,950 --> 00:01:08,590
+Aqui vamos ns.
+
+19
+00:01:10,910 --> 00:01:18,440
+Ligue para super com adereos e depois ligue ou veja-me inicializar o nosso estado com erros sendo
+
+20
+00:01:18,440 --> 00:01:20,480
+configurados para uma matriz vazia.
+
+21
+00:01:20,480 --> 00:01:24,950
+Em seguida, adicionaremos um caso de ketch  nossa declarao de mutaes.
+
+22
+00:01:25,050 --> 00:01:31,080
+Ento, no retire o ponto e vrgula e adicione um ponto catch. Vamos pegar a resposta
+
+23
+00:01:31,080 --> 00:01:32,460
+que retorna do servidor.
+
+24
+00:01:32,460 --> 00:01:37,260
+alguma lista de erros e no sero chamados se a mutao for executada com sucesso.
+
+25
+00:01:37,290 --> 00:01:44,070
+E lembre-se de que, na taxa de casos de captura aqui, o entendimento  que tach sempre ser chamado se a
+
+26
+00:01:44,070 --> 00:01:48,330
+solicitao falhar por qualquer motivo, ento os ketches s so chamados se houver
+
+27
+00:01:48,330 --> 00:01:57,600
+Ento, analisaremos os erros de erros do QG do ponto de rez, que vamos mapear sobre a coisa que  uma matriz
+
+28
+00:01:58,110 --> 00:02:05,000
+e, em seguida, para cada objeto de ar arrancar a propriedade da mensagem de ponto areo.
+
+29
+00:02:05,010 --> 00:02:09,950
+L, vamos nos certificar de que voc tenha o capital Q L E no grfico.
+
+30
+00:02:09,950 --> 00:02:11,280
+Q Todo o ar est aqui.
+
+31
+00:02:11,280 --> 00:02:17,100
+Se voc fizer um erro de digitao neste termo aqui, voc definitivamente receber uma mensagem de erro sobre o MAP sendo indefinido.
+
+32
+00:02:18,830 --> 00:02:21,470
+Ento, agora temos a variedade de mensagens de erro.
+
+33
+00:02:21,540 --> 00:02:26,170
+Podemos atualizar nossos estados de nvel de componente com erros como.
+
+34
+00:02:26,190 --> 00:02:29,190
+Ento, parece muito bom.
+
+35
+00:02:29,280 --> 00:02:35,160
+Agora, vamos nos certificar de que nosso formulrio no est mostrando essa matriz vazia em todos os
+
+36
+00:02:35,160 --> 00:02:38,380
+momentos e, em vez disso, mostrar esse estado assim.
+
+37
+00:02:38,980 --> 00:02:44,520
+Ento, agora, quando o componente primeiro processa como ser uma matriz vazia se o usurio cometer um
+
+38
+00:02:44,520 --> 00:02:50,310
+erro ao tentar se inscrever, atualizaremos a lista de erros que o autor renderizar e o usurio receber
+
+39
+00:02:50,310 --> 00:02:57,330
+um rosto cheio de todo o erro associado mensagens, ento acho que voc sabe que  hora de que seja hora de
+
+40
+00:02:57,330 --> 00:02:58,570
+outro teste no navegador.
+
+41
+00:02:58,770 --> 00:03:00,220
+Vamos voltar.
+
+42
+00:03:00,520 --> 00:03:01,680
+Bem, atualize isso e
+
+43
+00:03:04,170 --> 00:03:09,770
+voc conhece um ouvido que esperaria ser bem tratado  se o usurio tentar enviar o formulrio
+
+44
+00:03:09,860 --> 00:03:11,300
+sem e-mail ou senha.
+
+45
+00:03:11,300 --> 00:03:13,190
+Ento, talvez, se fizermos isso.
+
+46
+00:03:13,280 --> 00:03:13,700
+EST BEM.
+
+47
+00:03:13,700 --> 00:03:19,340
+Muito bom, ento, se tentarmos enviar o formulrio sem um e-mail ou senha, queremos dizer que
+
+48
+00:03:19,340 --> 00:03:25,400
+recebemos alguma validao que diz que voc deve nos dar um email, vamos ser realistas aqui corretamente.
+
+49
+00:03:25,570 --> 00:03:27,850
+E se olharmos para a mutao que foi executada.
+
+50
+00:03:27,850 --> 00:03:30,790
+Sim, voltamos essa mensagem de erro nica assim.
+
+51
+00:03:32,640 --> 00:03:35,660
+Ento, esse tratamento de erros definitivamente est sendo executado da maneira que esperamos.
+
+52
+00:03:35,880 --> 00:03:40,680
+Ento, a ltima coisa que temos a fazer  garantir que ns realmente buscamos
+
+53
+00:03:40,680 --> 00:03:45,860
+o usurio atual para garantir que o cabealho seja atualizado aps o usurio autenticar com sucesso.
+
+54
+00:03:45,960 --> 00:03:52,290
+Ento eu vou encontrar o manipulador do Samit dentro do meu formulrio de inscrio.
+
+55
+00:03:52,290 --> 00:03:57,090
+No se esquea de que ns tambm devemos importar a busca de usurio atual no topo tambm.
+
+56
+00:03:57,090 --> 00:04:04,600
+Ento, eu vou sair em uma declarao de importao para uma consulta de consultas DOT DOT.
+
+57
+00:04:04,740 --> 00:04:06,760
+Usurio atual como assim.
+
+58
+00:04:07,150 --> 00:04:11,320
+Ento, eu vou tirar a consulta atual do usurio da pasta de consultas.
+
+59
+00:04:11,370 --> 00:04:16,030
+Agora, temos que adicionar isso  nossa mutao.
+
+60
+00:04:16,050 --> 00:04:21,780
+Ento, aqui est o Samit, teremos certeza de que ele
+
+61
+00:04:21,780 --> 00:04:32,250
+sabe que, aps a emisso da mutao, ele precisa retornar essa nica consulta para obter o novo usurio atual.
+
+62
+00:04:32,250 --> 00:04:35,980
+Tudo bem, penso que estamos prontos para o ltimo teste para garantir que tudo esteja funcionando.
+
+63
+00:04:36,150 --> 00:04:38,260
+Vou voltar para o navegador.
+
+64
+00:04:38,260 --> 00:04:42,100
+Todos atualizam e ento vamos criar um ltimo usurio.
+
+65
+00:04:42,260 --> 00:04:47,880
+Certifique-se novamente de que voc receber um e-mail muito exclusivo aqui se voc usar um e-mail nico que j estivesse em uso,
+
+66
+00:04:47,880 --> 00:04:50,810
+ claro que voc vai receber uma mensagem de erro novamente.
+
+67
+00:04:51,120 --> 00:04:53,000
+Ento, eu vou fazer algo assim.
+
+68
+00:04:53,010 --> 00:04:54,670
+Eu acho que isso vai funcionar.
+
+69
+00:04:56,550 --> 00:04:58,790
+E vou dar-lhe outra senha de senha.
+
+70
+00:04:58,830 --> 00:05:04,600
+Ento, agora eu realmente, voc sabe o que estou olhando para esse assunto e ainda estamos autenticados atualmente.
+
+71
+00:05:04,620 --> 00:05:08,490
+Ns precisamos ter certeza de que no estamos autenticados quando tentamos se inscrever.
+
+72
+00:05:08,520 --> 00:05:13,440
+atualmente autenticados, precisamos de alguma forma nos certificarmos de que naveguemos para longe desta pgina.
+
+73
+00:05:13,440 --> 00:05:17,430
+Tambm vale a pena notar que precisamos ter certeza de que, se estamos
+
+74
+00:05:17,580 --> 00:05:22,290
+Portanto, um usurio realmente no deve poder ver a pgina de registro se eles estiverem logados no momento.
+
+75
+00:05:22,320 --> 00:05:26,260
+E esse  outro pouco a fazer que devemos abordar nossa lista de itens.
+
+76
+00:05:26,520 --> 00:05:28,120
+Ento, eu quero garantir que eu termine.
+
+77
+00:05:28,390 --> 00:05:28,740
+EST BEM.
+
+78
+00:05:28,740 --> 00:05:29,920
+Ento  melhor.
+
+79
+00:05:29,940 --> 00:05:35,100
+Ento, agora posso enviar este formulrio e espero ver a atualizao do cabealho  medida que eu me
+
+80
+00:05:35,100 --> 00:05:36,440
+autenticar com o novo usurio.
+
+81
+00:05:36,860 --> 00:05:40,230
+Ento vou enviar eu crio o novo usurio.
+
+82
+00:05:40,260 --> 00:05:46,820
+Aqui est a mutao e, em seguida, repito imediatamente a beleza da consulta para buscar o usurio atual
+
+83
+00:05:46,820 --> 00:05:49,990
+e voc ver que o cabealho atualiza como espero.
+
+84
+00:05:50,310 --> 00:05:50,640
+EST BEM.
+
+85
+00:05:50,670 --> 00:05:59,610
+Ento, eu acho que somos muito bons tanto para se inscrever e fazer login em nosso aplicativo, com exceo do fato de
+
+86
+00:05:59,640 --> 00:06:05,160
+que atualmente no estamos redirecionando o usurio longe do formulrio assim que eles so
+
+87
+00:06:05,160 --> 00:06:06,530
+autenticados com sucesso.
+
+88
+00:06:06,540 --> 00:06:10,560
+Ento, vamos pensar sobre como vamos conseguir isso dentro da prxima seo.
+

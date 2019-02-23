@@ -1,0 +1,376 @@
+1
+00:00:01,290 --> 00:00:07,140
+Nossa lista de msicas continua crescendo e crescendo e, embora tenhamos a capacidade de exclu-las manualmente
+
+2
+00:00:07,230 --> 00:00:13,110
+usando a interface de laboratrio Lango por aqui, seria muito bom se nossos usurios pudessem ver
+
+3
+00:00:13,110 --> 00:00:17,560
+X pouco ao lado direito que pudessem clicar para excluir uma msica individual.
+
+4
+00:00:17,940 --> 00:00:22,950
+Espero que isso exclua a msica e outras letras associadas adicionais com ela.
+
+5
+00:00:23,460 --> 00:00:27,940
+Vamos planejar como vamos abordar este recurso dentro desta seo.
+
+6
+00:00:27,960 --> 00:00:32,540
+Ento, no momento, vou mencionar duas grandes coisas que eu espero mudar sobre o aplicativo.
+
+7
+00:00:32,790 --> 00:00:37,860
+Quero ver algum tipo de boto no lado direito que um usurio pode clicar
+
+8
+00:00:37,860 --> 00:00:44,010
+e sempre que clicar nele, a fonte de dados deve ser atualizada automaticamente, excluindo essa msica individual.
+
+9
+00:00:44,280 --> 00:00:49,010
+Ento, na minha opinio, eu penso em duas peas de cdigo diferentes que teremos que adicionar.
+
+10
+00:00:49,290 --> 00:00:55,830
+Um pedao de cdigo no lado da reao que ir excluir o Orosius existente que mostrar um cone aqui
+
+11
+00:00:55,830 --> 00:01:01,140
+que o usurio pode clicar para excluir a msica e tambm ter que adicionar um
+
+12
+00:01:01,380 --> 00:01:07,360
+manipulador de eventos que provavelmente chamar uma mutao para se certificar que a msica realmente  excluda.
+
+13
+00:01:07,890 --> 00:01:13,770
+Lembre-se de qualquer momento em que estamos falando de edio criando ou excluindo um registro em
+
+14
+00:01:13,980 --> 00:01:17,300
+nossa fonte de dados, queremos estar pensando em mutaes.
+
+15
+00:01:17,600 --> 00:01:22,200
+Ento, vamos abordar essa mutao exatamente da mesma maneira que abordamos todas as outras
+
+16
+00:01:22,200 --> 00:01:23,060
+consultas e mutaes.
+
+17
+00:01:23,100 --> 00:01:27,560
+Bem, todos os outros dois devemos dizer que j trabalhamos at agora.
+
+18
+00:01:27,750 --> 00:01:33,480
+Ns vamos fazer isso primeiro comeando dentro da mutao grfica e escrita a mo e
+
+19
+00:01:33,480 --> 00:01:37,860
+depois migrando essa mutao para viver dentro de um de nossos componentes.
+
+20
+00:01:37,860 --> 00:01:42,150
+Ento, vamos virar para grfico e ns vamos dar um tiro.
+
+21
+00:01:42,150 --> 00:01:48,340
+A primeira coisa que eu vou fazer  executar nossa consulta para imprimir nossa lista completa de msicas.
+
+22
+00:01:48,570 --> 00:01:54,030
+nossa lista de msicas e vou dizer que me d a ID para cada msica individual
+
+23
+00:01:54,060 --> 00:02:00,750
+para que possamos ver claramente que temos vrias idias para cada uma das msicas aqui obtendo as idias relevantes porque,
+
+24
+00:02:00,750 --> 00:02:06,330
+quando tentamos eliminar uma msica, teremos que contar nossa parte de trs exatamente qual msica queremos excluir.
+
+25
+00:02:06,330 --> 00:02:10,720
+Ento eu vou colocar a minha consulta de abertura, vamos olhar para a
+
+26
+00:02:10,740 --> 00:02:17,150
+Portanto, presumivelmente vamos adicionar a ID da msica que queremos excluir como um tipo de varivel Querrey.
+
+27
+00:02:17,170 --> 00:02:23,370
+Lembre-se que estes esto aqui para aprender um pouco mais sobre a prpria mutao e sobre como ela vai funcionar.
+
+28
+00:02:23,370 --> 00:02:26,540
+Podemos abrir o painel docs no lado superior direito.
+
+29
+00:02:26,820 --> 00:02:32,550
+Ento eu tenho minha seo de mutao aberta e voc ver que uma das mutaes que temos disponveis
+
+30
+00:02:32,550 --> 00:02:36,150
+ excluir msica e a finalidade disso  excluir uma msica.
+
+31
+00:02:36,300 --> 00:02:37,620
+Totalmente razovel.
+
+32
+00:02:38,220 --> 00:02:38,770
+EST BEM.
+
+33
+00:02:38,880 --> 00:02:40,100
+Ento vamos dar uma chance.
+
+34
+00:02:40,140 --> 00:02:44,430
+Ns vamos escrever a mutao aqui e execut-la apenas para garantir que possamos
+
+35
+00:02:44,430 --> 00:02:46,090
+excluir uma msica individual primeiro.
+
+36
+00:02:46,100 --> 00:02:51,510
+Eu vou comear modificando nosso Querrey apenas um pouco para ver o nome no, mas o ttulo de
+
+37
+00:02:51,510 --> 00:02:52,120
+uma msica.
+
+38
+00:02:52,320 --> 00:02:58,660
+Ento, vamos dizer que eu quero excluir a primeira msica e a minha lista, que  chamada de
+
+39
+00:02:58,720 --> 00:03:05,070
+Noite para excluir, eu farei para certificar-se de que eu copiei o ID aqui por completo, porque eu
+
+40
+00:03:05,130 --> 00:03:08,950
+vou precisar fazer referncia a essa ID especfica quando escrevo minha mutao.
+
+41
+00:03:09,450 --> 00:03:09,770
+EST BEM.
+
+42
+00:03:09,780 --> 00:03:11,770
+Ento vamos escrever sua mutao.
+
+43
+00:03:11,970 --> 00:03:17,460
+Ento, vamos comear por escrever uma mutao chamada e vou fazer uma imitao mencionada porque
+
+44
+00:03:17,460 --> 00:03:22,690
+eu quero usar uma varivel de consulta para usar para passar na identificao especfica especfica.
+
+45
+00:03:22,980 --> 00:03:27,040
+Ento, vamos comear com a primeira varivel de consulta.
+
+46
+00:03:27,390 --> 00:03:34,710
+Eu vou dizer que eu quero passar um ID como um parmetro e o ID do registro que eu quero excluir.
+
+47
+00:03:34,920 --> 00:03:36,850
+Isso est certo.
+
+48
+00:03:36,900 --> 00:03:43,260
+Ento, o 5 8 9 5 8 9 termina em 3 5 7 e 9 e 3 5 7.
+
+49
+00:03:43,350 --> 00:03:43,610
+EST BEM.
+
+50
+00:03:43,620 --> 00:03:45,290
+Ento esta parte se parece bem aqui.
+
+51
+00:03:45,570 --> 00:03:47,980
+Voc notar que recebi uma placa vermelha em volta da ID.
+
+52
+00:03:48,000 --> 00:03:52,830
+O que significa que h um erro aqui e o erro  apenas dizer que voc realmente no usou essa varivel
+
+53
+00:03:52,830 --> 00:03:54,070
+de consulta em qualquer lugar.
+
+54
+00:03:54,090 --> 00:03:58,280
+Ento, se voc definir uma varivel de consulta grfica, quer ver que voc realmente faz uso dela.
+
+55
+00:03:58,290 --> 00:04:02,580
+Caso contrrio, vai pensar que provavelmente voc cometeu um erro em algum lugar.
+
+56
+00:04:02,580 --> 00:04:09,300
+de mutao e ento vamos aplicar um nome para a mutao e ento lembre-se da ordem dos argumentos aqui.
+
+57
+00:04:09,300 --> 00:04:14,050
+Ento, agora podemos trabalhar com a mutao nomeada voou logo para fora a palavra-chave
+
+58
+00:04:14,220 --> 00:04:20,550
+Ns tratamos essa mutao de nomeao como uma espcie de funo na qual vamos passar a idia.
+
+59
+00:04:20,550 --> 00:04:26,040
+Ento, fazemos sinal de dlar, digite o sinal de dlar.
+
+60
+00:04:26,040 --> 00:04:30,230
+Ento, vamos fazer ID que vai ser o nome desse parmetro.
+
+61
+00:04:30,360 --> 00:04:32,140
+Vai ser de tipo string.
+
+62
+00:04:34,070 --> 00:04:41,330
+msica e ento vamos fazer o nome do parmetro que  ID e a fonte desse valor ou esse valor vir
+
+63
+00:04:41,330 --> 00:04:48,010
+da Id da varivel, ento precisamos ter certeza de que ns pedimos em pelo menos uma coisa em troca,
+
+64
+00:04:48,010 --> 00:04:52,450
+o back-end ir dizer. Apenas me d a idia do registro que foi excludo.
+
+65
+00:04:52,450 --> 00:04:53,630
+Ento, exclumos a
+
+66
+00:04:54,010 --> 00:04:59,230
+Agora voc notar que temos um pouco de destaque vermelho aqui e diz que estamos
+
+67
+00:04:59,230 --> 00:05:03,880
+usando uma idia de tipo de string quando o ID do tipo era esperado.
+
+68
+00:05:03,880 --> 00:05:08,800
+Ento, o back-end que eu coloquei tem uma suposio pouco diferente sobre as IDs que
+
+69
+00:05:08,800 --> 00:05:13,930
+estamos passando por aqui no passado aplicativo em que trabalhamos, estvamos dizendo que os IDs eram
+
+70
+00:05:13,930 --> 00:05:15,290
+sempre de tipo string.
+
+71
+00:05:15,340 --> 00:05:18,810
+Desta vez eu mudo seu tipo para ser de tipo ID.
+
+72
+00:05:18,820 --> 00:05:23,270
+Falaremos exatamente por que fazemos isso na prxima aplicao em que trabalhamos.
+
+73
+00:05:23,380 --> 00:05:24,870
+Podemos ver essa ideia aqui.
+
+74
+00:05:24,880 --> 00:05:31,450
+ apenas outro tipo, como o tipo de string, assim como os tipos inteiros que usamos anteriormente.
+
+75
+00:05:31,460 --> 00:05:37,070
+ apenas outro tipo primitivo disponvel para ns em nosso esquema grfico.
+
+76
+00:05:37,180 --> 00:05:38,550
+Ento, isso parece muito bom agora.
+
+77
+00:05:38,740 --> 00:05:44,890
+Eu vou executar a consulta executando a mutao. Eu volto para o ID do registro que foi
+
+78
+00:05:44,890 --> 00:05:51,370
+excludo e agora vou reertar minha mutao na minha consulta para obter minha grande lista de msicas.
+
+79
+00:05:51,370 --> 00:05:54,370
+Eu espero que essa primeira msica esteja faltando agora.
+
+80
+00:05:54,370 --> 00:05:59,890
+excluir a mutao, ento eu vou comentar isso pressionando a barra de comando para a frente para comentar.
+
+81
+00:05:59,980 --> 00:06:01,030
+Eu no quero
+
+82
+00:06:02,100 --> 00:06:07,920
+E voc faz a mesma coisa para as variveis de consulta. Bem, na verdade eu no consigo comentar que alguns vo
+
+83
+00:06:07,920 --> 00:06:08,320
+apag-lo.
+
+84
+00:06:09,260 --> 00:06:13,910
+Agora vamos escrever a mutao como eu continuo dizendo que a mutao me desculpa a estranha para
+
+85
+00:06:13,910 --> 00:06:15,110
+obter nossa lista de msicas.
+
+86
+00:06:15,320 --> 00:06:19,110
+Ento, diga, me d minha lista de msicas e eu quero saber o ttulo.
+
+87
+00:06:19,460 --> 00:06:21,930
+E vamos fazer essas idias bem para cada uma delas.
+
+88
+00:06:23,120 --> 00:06:28,940
+estava trabalhando no est mais aqui especificamente aquela que teve a idia final de trs cinco sete.
+
+89
+00:06:28,940 --> 00:06:32,660
+Ento, voc perceber que a primeira cano com a qual eu
+
+90
+00:06:32,660 --> 00:06:37,210
+Ento, parece que essa mutao definitivamente funcionou da maneira que espero que funcione.
+
+91
+00:06:37,400 --> 00:06:40,390
+Ento eu acho que estamos em um bom lugar para avanar.
+
+92
+00:06:40,640 --> 00:06:46,520
+Vamos fazer uma pausa rpida e, em seguida, voltar e mover essa nutao para o componente da nossa lista
+
+93
+00:06:46,870 --> 00:06:50,200
+de msicas e conect-la ao nosso componente usando o auxiliar grfico.
+
+94
+00:06:50,220 --> 00:06:51,990
+Ento vamos cuidar disso na prxima seo.
+

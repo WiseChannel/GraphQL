@@ -1,0 +1,196 @@
+1
+00:00:00,820 --> 00:00:06,160
+Agora que temos uma melhor idia de todas essas tecnologias diferentes e o espao grfico,
+
+2
+00:00:06,160 --> 00:00:11,410
+vamos comear no nosso prximo projeto, onde vamos comear a se aventurar no front-end
+
+3
+00:00:11,410 --> 00:00:13,590
+e construir uma aplicao web real.
+
+4
+00:00:13,660 --> 00:00:18,670
+Agora, antes de comear em qualquer material de projeto, quero dar uma breve viso geral
+
+5
+00:00:18,700 --> 00:00:20,510
+de onde estamos neste curso agora.
+
+6
+00:00:20,560 --> 00:00:24,080
+Ento, neste diagrama, ns estvamos gastando em todo o lado da frente.
+
+7
+00:00:24,160 --> 00:00:30,760
+tipo de coisas at o fim de semana, onde temos o Express e o n e nosso banco de dados at agora
+
+8
+00:00:30,760 --> 00:00:38,890
+em nossos laos de trs e lado at agora e nosso lado e lado  o que ns apenas coberto na seo que acabamos de passar.
+
+9
+00:00:39,010 --> 00:00:41,310
+Ento, use re-agir usando o Appollo todo esse
+
+10
+00:00:41,320 --> 00:00:47,320
+Ento, ns vimos como usar o grfico Cuil no lado do servidor para montar uma aplicao grfica que
+
+11
+00:00:47,320 --> 00:00:48,480
+foi a Seo 1.
+
+12
+00:00:48,880 --> 00:00:54,020
+Agora, na seo 2, comearemos a concentrar-se muito mais na frente.
+
+13
+00:00:54,280 --> 00:00:58,430
+E para este aplicativo, no vamos fazer nenhum trabalho no backend.
+
+14
+00:00:58,540 --> 00:01:03,430
+Ento eu j tenho um servidor juntado que vamos clonar e fazer uso
+
+15
+00:01:03,430 --> 00:01:04,980
+dentro deste prximo aplicativo.
+
+16
+00:01:05,070 --> 00:01:11,840
+Voc ouve a idia aqui  que eu quero que voc apenas se concentre 100 por cento na frente do nosso aplicativo.
+
+17
+00:01:12,100 --> 00:01:17,770
+Todo o cdigo no projeto de inicializao que j coloquei est seguindo exatamente as mesmas convenes sobre o
+
+18
+00:01:17,800 --> 00:01:19,100
+que acabamos de passar.
+
+19
+00:01:19,230 --> 00:01:24,310
+Novamente, eu s quero que voc possa se concentrar no front-end deste prximo passo em que vamos
+
+20
+00:01:25,690 --> 00:01:28,480
+trabalhar depois de estarmos completos com este prximo aplicativo.
+
+21
+00:01:28,480 --> 00:01:34,270
+Vamos fazer a nossa ltima sada, que ser todo o espectro, a pilha cheia, de modo que tudo, desde o re-atuar
+
+22
+00:01:34,660 --> 00:01:39,250
+at o final, at o nosso banco de dados, na parte de trs, usando o grfico.
+
+23
+00:01:39,250 --> 00:01:42,390
+Q Bem em todas as tecnologias associadas.
+
+24
+00:01:42,490 --> 00:01:46,750
+de uma prvia no que vamos trabalhar para o restante deste curso.
+
+25
+00:01:46,750 --> 00:01:49,630
+Ento, novamente, eu s queria dar um pouco
+
+26
+00:01:49,660 --> 00:01:56,190
+Ento, com isso em mente, nosso prximo passo ser derrubar todo o cdigo para os projetos iniciais
+
+27
+00:01:56,200 --> 00:01:59,130
+que j criei para a Seo 2.
+
+28
+00:01:59,230 --> 00:02:02,770
+Vamos fazer isso agora e depois vamos conversar um pouco sobre
+
+29
+00:02:02,770 --> 00:02:05,110
+exatamente o que vamos construir na seo 2.
+
+30
+00:02:05,250 --> 00:02:07,730
+Ento vou abrir o editor de cdigo pela primeira vez.
+
+31
+00:02:07,770 --> 00:02:12,840
+Ns iremos para obter hub e clonar esse cdigo para o pacote inicial.
+
+32
+00:02:13,020 --> 00:02:23,460
+Ns iremos para obter o hub dot com slash Stephen Grider slash lyrical lyrical dash graph.
+
+33
+00:02:23,460 --> 00:02:25,700
+Q Bem, eu no posso aceitar este link aqui.
+
+34
+00:02:25,700 --> 00:02:30,560
+Quero dizer, eu a copio,  muito rpido para que voc possa v-lo definitivamente na tela.
+
+35
+00:02:30,690 --> 00:02:37,210
+Ento, apenas para se certificar de que voc obtenha a ortografia certa, Dubcek lyrical dash grfica.
+
+36
+00:02:37,270 --> 00:02:44,950
+Ento eu vou diretamente l e podemos baixar todos esses arquivos de projeto uma das duas maneiras pelas quais podemos
+
+37
+00:02:44,950 --> 00:02:51,730
+fazer o download como um arquivo zip completo e, em seguida, extrair o contedo do diretrio ou podemos
+
+38
+00:02:51,730 --> 00:02:53,070
+clon-lo usando get.
+
+39
+00:02:53,350 --> 00:02:58,840
+Eu vou continuar e baix-lo usando boa msica e copiar o link aqui e depois voltar
+
+40
+00:02:58,840 --> 00:03:01,540
+para o meu diretrio de projeto de trabalho.
+
+41
+00:03:01,810 --> 00:03:06,850
+Ento, note que no estou dentro do diretrio que estvamos usando anteriormente e no dentro
+
+42
+00:03:06,850 --> 00:03:09,520
+do diretrio desse usurio que tnhamos criado anteriormente.
+
+43
+00:03:09,520 --> 00:03:13,000
+Este  um diretrio completamente novo no qual estamos trabalhando.
+
+44
+00:03:13,180 --> 00:03:17,940
+Ento voc conseguir clonar o pacote e pegar esse link mais uma vez.
+
+45
+00:03:20,150 --> 00:03:26,330
+E ento, uma vez que acabamos de clonar, eu mudarei para essa pasta e vamos
+
+46
+00:03:26,420 --> 00:03:29,590
+instalar ou dependncias com a instalao do NPM.
+
+47
+00:03:29,870 --> 00:03:32,980
+Ento, isso levar apenas um momento ou dois para terminar enquanto ele est sendo executado.
+
+48
+00:03:33,020 --> 00:03:38,650
+seo e falaremos muito mais sobre o que vamos construir neste prximo aplicativo.
+
+49
+00:03:38,690 --> 00:03:40,520
+Vamos continuar na prxima
+

@@ -1,0 +1,204 @@
+1
+00:00:00,690 --> 00:00:05,670
+Now that our user has the ability to add lyrics to a song we need to start thinking about showing a
+
+2
+00:00:05,670 --> 00:00:09,550
+list of all the different lyrics that are associated with the song right here.
+
+3
+00:00:09,840 --> 00:00:16,020
+So as a reminder we basically want to show an interface kind of like this right here where a user should
+
+4
+00:00:16,020 --> 00:00:19,210
+be able to see a list of all the different lyrics.
+
+5
+00:00:19,440 --> 00:00:24,390
+They should see the content of the lyric off to the left hand side and then a like button on the right
+
+6
+00:00:24,390 --> 00:00:25,010
+hand side.
+
+7
+00:00:25,050 --> 00:00:30,630
+That people can click to like that given song and this is all going to be contained within the lyric
+
+8
+00:00:30,720 --> 00:00:32,220
+list component.
+
+9
+00:00:32,610 --> 00:00:37,590
+So you might be looking at this thing right here and thinking Steven Oh my gosh you're kidding me.
+
+10
+00:00:37,680 --> 00:00:42,410
+We really just did this list building stuff over and Song Index.
+
+11
+00:00:42,410 --> 00:00:48,440
+What possible new stuff can we possibly learn inside of building another list like this.
+
+12
+00:00:48,750 --> 00:00:51,590
+Well just just hold on there is still on there.
+
+13
+00:00:51,630 --> 00:00:57,810
+You'd be very surprised but we are going to run into several very big issues around big building this
+
+14
+00:00:57,810 --> 00:00:58,590
+list right here.
+
+15
+00:00:58,590 --> 00:01:03,660
+So even though it looks nearly identical to the one that we've already done I guarantee you there's
+
+16
+00:01:03,660 --> 00:01:09,520
+going to be some really interesting and challenging gotchas that come up around building this list.
+
+17
+00:01:09,540 --> 00:01:10,670
+So stick around.
+
+18
+00:01:10,680 --> 00:01:14,610
+We are going to build this list and we're going to tackle each one of these challenges.
+
+19
+00:01:15,930 --> 00:01:21,120
+Let's get started by working on the lyric list component and just doing some scaffolding of the thing
+
+20
+00:01:21,180 --> 00:01:23,160
+as a re-act component.
+
+21
+00:01:23,400 --> 00:01:29,130
+So we'll get started by opening up our code editor and creating a new component inside of our components
+
+22
+00:01:29,130 --> 00:01:37,520
+directory called lyric list and inside of here I'll import react.
+
+23
+00:01:37,530 --> 00:01:42,600
+I am going to make this a class based component because it will be a little bit more complicated and
+
+24
+00:01:42,600 --> 00:01:49,170
+it's going to be very nice to have some helper methods available rather than using a functional component.
+
+25
+00:01:49,410 --> 00:01:52,090
+So import that from reacts like so.
+
+26
+00:01:52,410 --> 00:01:54,890
+And we'll make our lyric list.
+
+27
+00:01:55,290 --> 00:02:02,280
+It's going to extend component of put in my render method right now.
+
+28
+00:02:02,590 --> 00:02:06,690
+And I expect this thing to really just be showing a list of items.
+
+29
+00:02:06,700 --> 00:02:10,230
+So I'm just going to place a UL in here for right now.
+
+30
+00:02:10,240 --> 00:02:14,080
+I'll say yeah give me a UL or give it the text lyric list.
+
+31
+00:02:14,080 --> 00:02:21,850
+Just put something on the screen and then at the bottom you know literary classic export default lyric
+
+32
+00:02:22,000 --> 00:02:22,720
+list.
+
+33
+00:02:22,900 --> 00:02:23,310
+OK.
+
+34
+00:02:23,470 --> 00:02:25,320
+So this is looking pretty reasonal right now.
+
+35
+00:02:25,390 --> 00:02:32,560
+I want to hook this thing up to the parent component of song detail so some detail is the overall container
+
+36
+00:02:32,830 --> 00:02:35,740
+for both lyric list and lyric create.
+
+37
+00:02:36,070 --> 00:02:42,110
+So we're going to flip back over to our song detail component we will import the lyric list that we
+
+38
+00:02:42,110 --> 00:02:42,830
+just created
+
+39
+00:02:46,150 --> 00:02:48,730
+import from lyric list like so.
+
+40
+00:02:49,060 --> 00:02:54,530
+And we'll make a list of or excuse me I'll make use of the lyric list inside of this guy right here.
+
+41
+00:02:54,760 --> 00:02:56,500
+So we'll scroll down just a little bit.
+
+42
+00:02:56,500 --> 00:03:02,170
+And I think just right below the age three but above the lyric creation form is probably a very appropriate
+
+43
+00:03:02,170 --> 00:03:04,030
+location for this element.
+
+44
+00:03:04,420 --> 00:03:08,290
+So we'll display the lyric list right here.
+
+45
+00:03:08,910 --> 00:03:09,480
+OK.
+
+46
+00:03:09,670 --> 00:03:11,510
+So looking good lookin reasonable.
+
+47
+00:03:11,650 --> 00:03:15,270
+Let's refresh our page and just make sure everything's working the way we expect.
+
+48
+00:03:15,630 --> 00:03:17,780
+You know Larry CList very good.
+
+49
+00:03:18,240 --> 00:03:18,840
+OK.
+
+50
+00:03:19,090 --> 00:03:23,140
+Let's take a quick break and then come back and start looking at some of the different challenges that
+
+51
+00:03:23,140 --> 00:03:25,620
+we're going to have with this lyric list component.
+

@@ -1,0 +1,232 @@
+1
+00:00:00,780 --> 00:00:04,290
+We've got our first real association between records working.
+
+2
+00:00:04,380 --> 00:00:07,330
+But there's a lot of content that we've been blasted with.
+
+3
+00:00:07,440 --> 00:00:11,370
+So let's take a second to really study the Querrey that we're working with.
+
+4
+00:00:11,430 --> 00:00:16,320
+I'm going to present you with two sets of diagrams to help clarify exactly what is going on with our
+
+5
+00:00:16,320 --> 00:00:21,010
+schema right now and help us understand how our request is being resolved.
+
+6
+00:00:21,410 --> 00:00:24,020
+So let's take a look at the first set of diagrams.
+
+7
+00:00:24,600 --> 00:00:29,150
+This is what our data's property looks like in a place and I like to call reality land.
+
+8
+00:00:29,190 --> 00:00:36,070
+By reality land I'm talking about the real data that is sitting on our device like in our database.
+
+9
+00:00:36,150 --> 00:00:43,260
+You know for us our Jason divi server but essentially the real data that we're working with in reality
+
+10
+00:00:43,260 --> 00:00:43,800
+land.
+
+11
+00:00:43,890 --> 00:00:50,160
+We've got the ID first name age and company ID and then we've got the company as well.
+
+12
+00:00:50,160 --> 00:00:56,160
+On the other side of the coin is graft Cuil land or graft land whatever you want to call it where we
+
+13
+00:00:56,160 --> 00:01:03,390
+treat all of our data as though it were a graph in this world we enter into our data structure through
+
+14
+00:01:03,390 --> 00:01:10,770
+the root Querrey which points us out the user type and then points us at a company type.
+
+15
+00:01:10,770 --> 00:01:15,820
+Right now all these associations are set up in one direction.
+
+16
+00:01:15,840 --> 00:01:19,830
+By that I mean we can only go from a user to a company.
+
+17
+00:01:19,830 --> 00:01:25,480
+We cannot yet ask the question hey given a company I want to find all of the users who belong to it.
+
+18
+00:01:25,500 --> 00:01:30,360
+So right now our entire graph is unidirectional in nature.
+
+19
+00:01:30,450 --> 00:01:34,810
+Let's talk now about a little bit about what happens when we make a query.
+
+20
+00:01:34,910 --> 00:01:41,220
+So says the process that we go through when we make a query and it gets sent off to our server when
+
+21
+00:01:41,220 --> 00:01:50,850
+we make our initial query for user with say Id 23 the query goes to our root query within args object
+
+22
+00:01:50,910 --> 00:01:54,770
+that contains an ID of 23 because that's what we need.
+
+23
+00:01:54,790 --> 00:01:56,280
+That's what we passed into the query.
+
+24
+00:01:56,280 --> 00:02:00,180
+We said hey I want to find the user with an ID of 23.
+
+25
+00:02:00,180 --> 00:02:06,760
+The root query then points us to the user with an ID of 23 things to the resolve function.
+
+26
+00:02:06,810 --> 00:02:12,900
+So we can think of these resolved functions as taking us from one place on our graph to another location
+
+27
+00:02:12,900 --> 00:02:14,060
+on the graph.
+
+28
+00:02:14,070 --> 00:02:21,420
+So thanks to the resolve function on the query we traveled on to the user then the query says hey you
+
+29
+00:02:21,420 --> 00:02:24,090
+know we also need to know a little bit about the company as well.
+
+30
+00:02:24,090 --> 00:02:31,200
+Tell me more about the company at that point the users resolve function gets called this time with a
+
+31
+00:02:31,200 --> 00:02:37,230
+first argument of the parent value which is the node on the graph that the query is coming from which
+
+32
+00:02:37,230 --> 00:02:40,370
+is user 23.
+
+33
+00:02:40,620 --> 00:02:44,150
+The arts don't get passed through that chain from earlier on.
+
+34
+00:02:44,160 --> 00:02:47,040
+You know we don't get the args from ID 23 over here.
+
+35
+00:02:47,100 --> 00:02:54,410
+We just get user 23 passed onto this second result function along the way to resolve object then reads
+
+36
+00:02:54,900 --> 00:02:59,460
+the result function then returns a promise that eventually gives us the company that we're looking for
+
+37
+00:02:59,820 --> 00:03:03,180
+and the whole data structure gets sent back to our user.
+
+38
+00:03:03,180 --> 00:03:08,820
+So the best way of thinking about all this schema stuff is not really being so mired down in working
+
+39
+00:03:08,820 --> 00:03:12,100
+with user types or company types or whatever.
+
+40
+00:03:12,330 --> 00:03:19,740
+Instead it's best to think of our schema or our data as a bunch of functions that return references
+
+41
+00:03:19,740 --> 00:03:25,710
+to other objects in our graph so we can think of each of the edges in our graph as being like a result
+
+42
+00:03:25,710 --> 00:03:27,870
+function.
+
+43
+00:03:27,870 --> 00:03:32,540
+Another way to think of this is as though we were truly working with a graph.
+
+44
+00:03:32,550 --> 00:03:36,050
+So I know this diagram here is pretty crazy but just bear with me.
+
+45
+00:03:36,390 --> 00:03:42,420
+Each node on our graph irksome each edge on our graph can really be thought of as being a result function.
+
+46
+00:03:42,420 --> 00:03:48,610
+So we're working from a node which is an actual piece of data and then if we say hey go find me.
+
+47
+00:03:48,640 --> 00:03:52,410
+You know if I'm this user go find me the company I'm associated with.
+
+48
+00:03:52,410 --> 00:03:58,050
+We go to the resolve function that points us along to the other company that we're working with in this
+
+49
+00:03:58,050 --> 00:03:58,580
+diagram.
+
+50
+00:03:58,590 --> 00:04:01,570
+I color coded all the different companies as being blue.
+
+51
+00:04:01,740 --> 00:04:04,340
+And then all of a users as being kind of black and white.
+
+52
+00:04:04,510 --> 00:04:10,390
+You'll notice that each of them are related with each other by the presence of a result function.
+
+53
+00:04:10,410 --> 00:04:15,030
+This is my personal favorite way of thinking about all this graft stuff because it really helps you
+
+54
+00:04:15,030 --> 00:04:21,010
+understand what that result function is doing when it returns a reference to another piece of data.
+
+55
+00:04:21,090 --> 00:04:21,430
+OK.
+
+56
+00:04:21,450 --> 00:04:26,190
+Now we've had a little bit more time to think about how graphic tool works and try you know continuously
+
+57
+00:04:26,190 --> 00:04:29,250
+getting this kind of graph picture in our head.
+
+58
+00:04:29,250 --> 00:04:32,530
+Let's get back to working on our example in the next section.
+

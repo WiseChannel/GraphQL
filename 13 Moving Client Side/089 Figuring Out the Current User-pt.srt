@@ -1,0 +1,600 @@
+1
+00:00:00,490 --> 00:00:05,320
+Na ltima seo, trabalhamos no componente de cabealho dentro do nosso aplicativo e recebi um pouco de uma mensagem
+
+2
+00:00:05,320 --> 00:00:08,740
+de erro sobre a biblioteca do roteador de reagem que no estava sendo encontrada.
+
+3
+00:00:08,800 --> 00:00:11,790
+Esse foi um pequeno erro de configurao que estava do meu lado.
+
+4
+00:00:11,860 --> 00:00:15,070
+Eu reparei isso, ento voc provavelmente no teve esse erro.
+
+5
+00:00:15,070 --> 00:00:17,380
+Novamente foi apenas um pequeno erro que eu fiz.
+
+6
+00:00:17,680 --> 00:00:22,780
+Ento, temos os cabealhos de texto mostrados na tela, o que significa que o nosso componente de cabealho est sendo
+
+7
+00:00:22,780 --> 00:00:26,410
+exibido com sucesso nos nossos usurios, o que  exatamente o que queremos ter.
+
+8
+00:00:26,410 --> 00:00:28,600
+Ento, isso  definitivamente bom.
+
+9
+00:00:28,600 --> 00:00:33,310
+Agora que temos o cabealho na tela, precisamos comear a pensar sobre o contedo
+
+10
+00:00:33,310 --> 00:00:34,170
+que precisa mostrar.
+
+11
+00:00:34,480 --> 00:00:41,130
+Ento, vejamos um diagrama que nos ajudar a descobrir exatamente como lidar com esse Hetter.
+
+12
+00:00:41,270 --> 00:00:47,940
+OK, ento, quando nosso aplicativo primeiro carrega na pgina e o usurio v esse componente de cabealho na
+
+13
+00:00:47,940 --> 00:00:53,490
+tela, queremos garantir que ele mostre os botes corretos dentro da cabea ou dependendo se
+
+14
+00:00:53,490 --> 00:00:57,060
+o usurio est atualmente autenticado com o nosso aplicativo.
+
+15
+00:00:57,060 --> 00:01:03,630
+Ento, quando o Hetter primeiro carrega, sugiro que possamos fazer uma consulta para obter nosso
+
+16
+00:01:03,690 --> 00:01:05,400
+estado de autenticao atual.
+
+17
+00:01:05,730 --> 00:01:12,150
+Ento lembre-se de que acabamos de adicionar em um campo ao nosso tipo de consulta de rota para perguntar se nosso
+
+18
+00:01:12,150 --> 00:01:15,800
+usurio est ou no conectado ou para obter o usurio atualmente conectado.
+
+19
+00:01:16,170 --> 00:01:23,400
+Ento, se fizermos uma consulta dentro do cabealho e pedimos esses dados do nosso servidor, podemos dizer que, se
+
+20
+00:01:23,400 --> 00:01:29,620
+o usurio estiver conectado, mostraremos um conjunto de botes que permitem que o usurio faa o logout.
+
+21
+00:01:29,670 --> 00:01:34,860
+Ento, provavelmente, ser apenas um nico boto que diz sair e se o usurio clicar, chamaremos
+
+22
+00:01:34,860 --> 00:01:36,100
+a mutao de logout.
+
+23
+00:01:36,100 --> 00:01:38,800
+Ento, isso  definitivamente bastante direto.
+
+24
+00:01:38,880 --> 00:01:45,540
+vez disso e esses botes de registro sero um boto que diz que voc sabe, talvez faa o login e faa o logout.
+
+25
+00:01:45,540 --> 00:01:51,080
+Agora, se o usurio no estiver autenticado atualmente, ento, se eles ainda no estiverem conectados ao nosso aplicativo, podemos mostrar
+
+26
+00:01:51,090 --> 00:01:53,040
+um conjunto de descontados de registro em
+
+27
+00:01:53,040 --> 00:01:58,290
+Assim, permitir ao usurio clicar em um desses e, em seguida, ir para o frum
+
+28
+00:01:58,290 --> 00:02:01,390
+apropriado para entrar ou se inscrever no nosso aplicativo.
+
+29
+00:02:01,410 --> 00:02:04,630
+Ento, acho que este  um bom plano para avanar.
+
+30
+00:02:04,830 --> 00:02:10,470
+Primeiro, escreva nossa consulta dentro do grfico e, em seguida, vamos mover a consulta para o nosso aplicativo e,
+
+31
+00:02:10,800 --> 00:02:15,210
+em seguida, certifique-se de que chamamos a consulta de dentro de nossa cabea ou componente.
+
+32
+00:02:15,210 --> 00:02:16,220
+Ento vamos fazer isso.
+
+33
+00:02:17,170 --> 00:02:20,720
+Primeiro vou mudar para grfico.
+
+34
+00:02:20,950 --> 00:02:27,370
+Agora, uma das ltimas consultas que escrevemos foi realmente testar a consulta atual do usurio na raiz do
+
+35
+00:02:27,370 --> 00:02:28,620
+tipo de consulta raiz.
+
+36
+00:02:28,630 --> 00:02:30,940
+Ento, ns j conseguimos essa coisa aqui.
+
+37
+00:02:31,000 --> 00:02:36,550
+Se voc excluir isso por qualquer motivo, ento voc pode certamente reescrever a consulta muito rapidamente aqui.
+
+38
+00:02:36,700 --> 00:02:40,430
+Estamos pedindo o tipo de consulta raiz para encontrar o usurio atual.
+
+39
+00:02:40,520 --> 00:02:44,810
+Estamos pedindo para voltar o email atual uma ID associada a eles.
+
+40
+00:02:45,010 --> 00:02:51,320
+eu adiciono o ID l tambm, eu atualizo isso apenas para ter certeza de que tambm recebemos a idia.
+
+41
+00:02:51,320 --> 00:02:52,000
+Ento, quando
+
+42
+00:02:55,050 --> 00:02:55,920
+Legal.
+
+43
+00:02:56,050 --> 00:03:02,040
+Ento, agora podemos pedir o usurio atualmente autenticado e retornamos o ID e o e-mail desse
+
+44
+00:03:02,040 --> 00:03:04,400
+usurio exatamente como seria de esperar.
+
+45
+00:03:04,450 --> 00:03:09,900
+Lembre-se de que, se voc ver um usurio da Noal aqui, isso significa que voc no est atualmente autenticado
+
+46
+00:03:09,900 --> 00:03:16,350
+com o nosso aplicativo, o que significa que voc pode executar a mutao de logon para se autenticar com o aplicativo e
+
+47
+00:03:16,350 --> 00:03:18,320
+ento voc pode executar esta consulta aqui.
+
+48
+00:03:18,470 --> 00:03:23,420
+Para voltar ao ID e ao e-mail do seu usurio atualmente autenticado.
+
+49
+00:03:23,630 --> 00:03:29,550
+OK, ento vamos levar essa consulta aqui e vamos transferi-la para a nossa aplicao.
+
+50
+00:03:29,560 --> 00:03:31,220
+Ento eu apenas copiei isso.
+
+51
+00:03:31,390 --> 00:03:36,310
+Ns vamos transferi-lo para nossa aplicao dentro de um novo arquivo que vai abrigar
+
+52
+00:03:36,310 --> 00:03:39,920
+todas as nossas consultas diferentes no meu diretrio de clientes.
+
+53
+00:03:40,020 --> 00:03:44,150
+Eu vou fazer uma nova pasta primeiro e eu vou chamar de perguntas.
+
+54
+00:03:44,500 --> 00:03:49,900
+Ento, na verdade, no espero ter muitas consultas associadas a este aplicativo, mas
+
+55
+00:03:49,900 --> 00:03:55,330
+definitivamente quero, sempre que possvel, tentar isol-los em um nico arquivo, caso possamos
+
+56
+00:03:55,330 --> 00:03:59,200
+pedir em vrios locais para o usurio atualmente autenticado.
+
+57
+00:03:59,230 --> 00:04:04,760
+Ento, dentro daqui, eu vou fazer um novo arquivo chamado usurio atual.
+
+58
+00:04:04,860 --> 00:04:05,760
+Sim.
+
+59
+00:04:06,190 --> 00:04:13,130
+Portanto, essa consulta atual do usurio ser responsvel por retornar o usurio atual do nosso aplicativo.
+
+60
+00:04:13,310 --> 00:04:17,050
+Ns escrevemos consultas dentro de arquivos individuais vrias vezes antes.
+
+61
+00:04:17,100 --> 00:04:27,510
+Ento, lembre-se no topo, iremos importar o ajudante GTL da etiqueta UL do enxerto e, depois, iremos exportar o padro
+
+62
+00:04:27,810 --> 00:04:29,290
+da consulta atual.
+
+63
+00:04:29,850 --> 00:04:32,070
+E novamente fizemos isso vrias vezes.
+
+64
+00:04:32,100 --> 00:04:34,070
+Colocamos nosso ajudante GQ.
+
+65
+00:04:34,230 --> 00:04:38,670
+Colocamos nossa cadeia de modelos e, em seguida, colamos na nossa consulta, como
+
+66
+00:04:42,400 --> 00:04:42,840
+OK.
+
+67
+00:04:42,870 --> 00:04:44,080
+Isso parece muito bom.
+
+68
+00:04:44,220 --> 00:04:49,890
+Agora podemos importar essa consulta para o nosso componente de cabealho e, em seguida, executar a consulta sempre
+
+69
+00:04:49,890 --> 00:04:52,070
+que o cabealho for exibido na tela.
+
+70
+00:04:52,440 --> 00:04:56,340
+Ento, vamos virar para o meu cabealho no topo.
+
+71
+00:04:56,340 --> 00:05:01,980
+Vamos importar tanto a consulta que acabamos de escrever quanto o grfico Cuil ajudante
+
+72
+00:05:01,980 --> 00:05:03,180
+da biblioteca Apollo.
+
+73
+00:05:03,810 --> 00:05:05,660
+Ento, primeiro importamos o enxerto.
+
+74
+00:05:05,750 --> 00:05:13,690
+Bem, de reativar o Apollo, lembre-se de que esta funo est aqui mesmo, o que nos permite fazer uma consulta em
+
+75
+00:05:13,700 --> 00:05:21,270
+um componente e encaixar os dois juntos e, em seguida, tambm importaremos nossa consulta atual do usurio, podemos cham-lo de
+
+76
+00:05:21,270 --> 00:05:27,720
+estranho. Em vez disso, vamos apenas manter  simples e ligue para consulta de um nico diretrio
+
+77
+00:05:27,780 --> 00:05:31,350
+na pasta de consultas e obtenha a consulta de usurio atual.
+
+78
+00:05:35,020 --> 00:05:35,410
+Tudo bem.
+
+79
+00:05:35,440 --> 00:05:41,490
+um nmero de cdigo repetido aqui colocar o grfico Q Ajudarei ou na parte inferior passar a consulta
+
+80
+00:05:41,500 --> 00:05:47,440
+que queremos executar e, em seguida, envolva o componente em um segundo conjunto de parnteses depois disso.
+
+81
+00:05:47,470 --> 00:05:50,270
+Em seguida, fizemos isso vrias vezes antes de
+
+82
+00:05:51,590 --> 00:05:52,230
+EST BEM.
+
+83
+00:05:52,760 --> 00:05:56,020
+Ento, novamente, nosso trabalho agora  executar essa consulta.
+
+84
+00:05:56,150 --> 00:06:00,980
+Olhe para a consulta e, em seguida, decida se queremos ou no mostrar um conjunto de
+
+85
+00:06:00,980 --> 00:06:07,690
+botes que permitem ao usurio sair ou permitir que eles naveguem para um formulrio para fazer login ou se inscrever no nosso aplicativo.
+
+86
+00:06:08,090 --> 00:06:13,520
+Ento, vou sugerir que talvez ainda possamos registrar os resultados da consulta e, em seguida,
+
+87
+00:06:13,520 --> 00:06:19,550
+examinamos a prpria consulta e descobrimos exatamente quais propriedades podemos referir para decidir o contedo que queremos
+
+88
+00:06:19,550 --> 00:06:21,030
+renderizar dentro do cabealho.
+
+89
+00:06:21,230 --> 00:06:27,800
+Ento, essencialmente, quer desejemos ou no mostrar o boto para sair ou os dois botes para iniciar sesso.
+
+90
+00:06:28,340 --> 00:06:32,180
+Ento eu vou colocar um log de console aqui e s vamos sair
+
+91
+00:06:32,450 --> 00:06:35,440
+dos resultados da consulta, vamos analis-lo e decidir o que fazer.
+
+92
+00:06:35,450 --> 00:06:41,510
+Lembre-se de que o resultado da consulta sempre existe neste estoque stock de dados de estoque OK.
+
+93
+00:06:41,800 --> 00:06:43,080
+Ento, isso parece muito bom.
+
+94
+00:06:43,090 --> 00:06:46,830
+Eu acho que estamos prontos para dar um teste.
+
+95
+00:06:46,840 --> 00:06:55,000
+Eu vou virar para minha aplicao. Posso atualizar a pgina e recebo meus dois consulados de consultas
+
+96
+00:06:55,140 --> 00:06:55,530
+aqui.
+
+97
+00:06:55,530 --> 00:06:57,420
+Perfeito para o que eu quero.
+
+98
+00:06:57,420 --> 00:07:02,760
+Lembre-se de que o primeiro resultado aqui  de quando antes a consulta est realmente concluda.
+
+99
+00:07:02,760 --> 00:07:07,980
+Ento, essa  a primeira vez que o componente  processado, o Kapono  processado instantaneamente  medida
+
+100
+00:07:07,980 --> 00:07:11,610
+que a consulta est em andamento e o componente torna outro tempo.
+
+101
+00:07:11,610 --> 00:07:15,230
+Uma vez que o componente ou alguns novos a consulta foi concluda.
+
+102
+00:07:15,290 --> 00:07:18,520
+Ento, vejamos os dados sobre essas coisas e vejamos o que temos disponvel.
+
+103
+00:07:19,810 --> 00:07:20,820
+OK.
+
+104
+00:07:21,560 --> 00:07:27,980
+ou a consulta no ter sido concluda, o carregamento  verdadeiro e j vimos essa propriedade vrias vezes antes.
+
+105
+00:07:28,070 --> 00:07:30,750
+Portanto, parece que, no caso de o usurio
+
+106
+00:07:30,770 --> 00:07:37,610
+ provvel que, quando o carregamento for verdadeiro, ainda no obtivemos quaisquer detalhes sobre o usurio.
+
+107
+00:07:37,610 --> 00:07:44,360
+Ento, eu ainda no sei se quer ou no mostrar algum contedo ao usurio para dizer que sim, voc precisa
+
+108
+00:07:44,360 --> 00:07:46,800
+fazer o login ou voc est logado.
+
+109
+00:07:46,970 --> 00:07:50,100
+Quando o carregamento  verdadeiro, eu ainda no sei o que renderizar.
+
+110
+00:07:50,180 --> 00:07:53,300
+Ento eu acho que devemos provavelmente ter alguma captura dentro de nosso componente.
+
+111
+00:07:53,300 --> 00:07:59,630
+em progresso, provavelmente no quero mostrar nenhum boto, porque no quero assumir que o usurio est
+
+112
+00:07:59,630 --> 00:08:07,650
+ou no est logado agora e a resposta ou o segundo conta que chegamos aqui temos um carregamento de falso.
+
+113
+00:08:07,840 --> 00:08:11,190
+Para dizer que, se a consulta ainda estiver
+
+114
+00:08:11,190 --> 00:08:17,120
+Ento, isso realmente faz sentido, a consulta agora est completa e nosso campo de usurio no , o que
+
+115
+00:08:17,120 --> 00:08:19,730
+significa que nosso usurio no est atualmente autenticado.
+
+116
+00:08:19,730 --> 00:08:24,440
+Agora, se voc est olhando para isso e voc est tentando dizer que voc est tentando descobrir
+
+117
+00:08:24,440 --> 00:08:28,940
+Bem, Stephen no fizemos apenas uma consulta que dizia que estamos autenticados, no estamos atualmente autenticados com
+
+118
+00:08:28,940 --> 00:08:29,450
+o servidor.
+
+119
+00:08:29,450 --> 00:08:31,580
+O usurio no deve ser preenchido aqui.
+
+120
+00:08:31,820 --> 00:08:34,780
+Bem, a resposta  sim, vamos chegar a isso em apenas um segundo.
+
+121
+00:08:34,970 --> 00:08:36,680
+Ligue comigo por um momento.
+
+122
+00:08:37,190 --> 00:08:43,220
+A ltima coisa que eu quero dizer sobre isso  logo aps o carregamento virar para falso, poderemos olhar
+
+123
+00:08:43,220 --> 00:08:45,260
+para esta propriedade de usurio aqui.
+
+124
+00:08:45,380 --> 00:08:46,890
+E se o usurio no estiver.
+
+125
+00:08:46,890 --> 00:08:47,300
+No.
+
+126
+00:08:47,390 --> 00:08:53,090
+Ento, se o usurio for um objeto que tenha um ID e um e-mail, isso significa que provavelmente
+
+127
+00:08:53,090 --> 00:08:58,730
+devemos mostrar o boto de logout, mas no caso em que o usurio no est bem, provavelmente devemos
+
+128
+00:08:58,730 --> 00:09:02,820
+mostrar os dois botes que permitem ao usurio navegar. para assinar ou assinar formulrios.
+
+129
+00:09:03,200 --> 00:09:03,560
+EST BEM.
+
+130
+00:09:03,590 --> 00:09:05,980
+Ento esse  o plano geral aqui.
+
+131
+00:09:06,020 --> 00:09:10,970
+Queremos primeiro ver a bandeira de carregamento e descobrir se deveramos ou no mostrar os botes.
+
+132
+00:09:11,210 --> 00:09:16,460
+E ento, uma vez que o carregamento  falso, podemos ento olhar para a propriedade do usurio e decidir o
+
+133
+00:09:16,460 --> 00:09:17,370
+que queremos realmente fazer.
+
+134
+00:09:17,940 --> 00:09:18,410
+EST BEM.
+
+135
+00:09:18,590 --> 00:09:23,930
+Agora eu quero voltar para algo que voc meio que interveio l onde eu disse que estamos olhando
+
+136
+00:09:23,930 --> 00:09:26,680
+para esta propriedade do usurio e est definido como No.
+
+137
+00:09:26,840 --> 00:09:32,310
+Mas acabamos de fazer uma consulta aqui, o que parece pensar que estamos atualmente autenticados.
+
+138
+00:09:32,360 --> 00:09:38,820
+Ento lembre-se de que voc s ver uma ID e um email aqui se voc j fez login no aplicativo.
+
+139
+00:09:38,840 --> 00:09:40,760
+Ento, se voc no iniciou sesso no momento.
+
+140
+00:09:40,760 --> 00:09:46,850
+Certifique-se de executar a mutao de login e, em seguida, voc poder solicitar o usurio atual e ver a idia de que
+
+141
+00:09:46,910 --> 00:09:49,920
+o e-mail que voc iniciou no momento foi de qualquer maneira.
+
+142
+00:09:50,060 --> 00:09:54,590
+O que eu estou tentando indicar aqui  o que eu estou tentando mostrar para
+
+143
+00:09:54,590 --> 00:09:59,750
+voc  que quando executamos essa consulta para obter o usurio atual dentro do grfico tudo em
+
+144
+00:09:59,750 --> 00:10:03,570
+torno das funes de autenticao da maneira que esperamos, estamos firmados no aplicativo.
+
+145
+00:10:03,650 --> 00:10:10,400
+No entanto, quando executamos a consulta dentro de nossa aplicao, parece que no estamos recuperando corretamente
+
+146
+00:10:10,400 --> 00:10:11,660
+o usurio atual.
+
+147
+00:10:11,720 --> 00:10:17,120
+Assim, parece que entre o grfico e a nossa aplicao, h um pouco de desacordo sobre
+
+148
+00:10:17,120 --> 00:10:19,310
+se estamos ou no autenticados atualmente.
+
+149
+00:10:19,310 --> 00:10:24,500
+Ento, vamos fazer uma pausa na nossa cabea ou na prxima seo e vamos descobrir o que est acontecendo
+
+150
+00:10:24,530 --> 00:10:29,620
+aqui e vamos descobrir por que nosso usurio atual no est sendo devolvido corretamente dentro de nossa aplicao.
+

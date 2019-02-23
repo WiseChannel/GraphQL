@@ -1,0 +1,208 @@
+1
+00:00:00,670 --> 00:00:05,810
+Ns passamos muito tempo falando sobre diferentes abordagens de manipulao de autenticao com grficos.
+
+2
+00:00:05,820 --> 00:00:10,710
+Bem, no final do dia, concordamos que ir com uma abordagem de casal provavelmente faria mais
+
+3
+00:00:10,710 --> 00:00:14,850
+sentido para o aplicativo em que vamos trabalhar agora porque acho que  um
+
+4
+00:00:14,850 --> 00:00:20,190
+pouco mais tecnicamente desafiador e gostaria de mostrar-lhe um exemplo de alguns dos lados realmente complexos do enxerto.
+
+5
+00:00:20,220 --> 00:00:26,280
+Bem, ao contrrio de um pouco de copping e dizendo que sim, sim manipulando a autenticao separadamente,  o melhor
+
+6
+00:00:26,280 --> 00:00:27,110
+caminho a seguir.
+
+7
+00:00:27,210 --> 00:00:31,450
+E ns realmente no conseguimos experimentar a vinculao de autenticao com grficos.
+
+8
+00:00:32,090 --> 00:00:32,580
+EST BEM.
+
+9
+00:00:32,640 --> 00:00:36,900
+Ento, nesta seo, vamos falar um pouco sobre os diferentes tipos e mutaes que eu
+
+10
+00:00:36,900 --> 00:00:41,970
+acho que precisaremos para a aplicao e ento comearemos a trabalhar na primeira mutao ou tipo ou o
+
+11
+00:00:41,970 --> 00:00:43,830
+que quer que decidamos, devemos fazer.
+
+12
+00:00:43,830 --> 00:00:46,080
+Existe uma configurao menor que eu quero cuidar.
+
+13
+00:00:46,080 --> 00:00:55,560
+No entanto, recorde que, dentro do nosso projeto, se abrimos o servidor do servidor, temos o arquivo G-S, temos que obter uma instncia
+
+14
+00:00:55,560 --> 00:00:58,490
+de laboratrio de mongo para lanar aqui.
+
+15
+00:00:58,530 --> 00:01:03,120
+pea de inscrio realmente rpida ou fazer essa nova pea de banco de dados realmente rpida e, ento, podemos
+
+16
+00:01:03,120 --> 00:01:08,550
+passar para o material de autenticao e no teremos que nos preocupar com nenhum cdigo de configurao e qualquer coisa assim no futuro.
+
+17
+00:01:08,550 --> 00:01:09,830
+Ento, eu quero fazer essa
+
+18
+00:01:10,140 --> 00:01:17,010
+Ento, vamos abrir o laboratrio Mongul dentro do nosso navegador e ns vamos conseguir um novo voc ou ento,
+
+19
+00:01:17,070 --> 00:01:25,830
+para uma instncia mais longa, ele ir navegar para Mungo lab dot com ou apenas no laboratrio, ele redireciona l de qualquer maneira e
+
+20
+00:01:25,830 --> 00:01:28,970
+eu vou criar uma nova implantao do Mongo DB.
+
+21
+00:01:31,110 --> 00:01:36,390
+Uma vez por ano, passamos por essas configuraes antes que eu queira me certificar de que eu tenho o AWOS selecionado.
+
+22
+00:01:36,390 --> 00:01:41,740
+Eu vou ter certeza de que minha regio  Amazon EU East, no importa onde voc mora no mundo, eu preciso ter
+
+23
+00:01:41,760 --> 00:01:43,450
+certeza de que eu tenha escolhido isso.
+
+24
+00:01:43,680 --> 00:01:50,220
+um nico n e ento selecionaremos o sandbox gratuito e podemos percorrer todo o caminho at a parte inferior.
+
+25
+00:01:50,220 --> 00:01:51,110
+Ns iremos para
+
+26
+00:01:51,240 --> 00:01:52,690
+D-lhe um nome de banco de dados.
+
+27
+00:01:52,800 --> 00:01:59,910
+Eu preciso ligar para o meu banco de dados apenas curto para a autenticao e ento vou criar a nova implantao.
+
+28
+00:02:00,180 --> 00:02:03,510
+E, como de costume, isso costuma ser bastante rpido.
+
+29
+00:02:03,690 --> 00:02:05,020
+E Rigaud parece ser bom.
+
+30
+00:02:05,280 --> 00:02:08,200
+Ento, podemos abrir o novo banco de dados que acabamos
+
+31
+00:02:12,560 --> 00:02:17,130
+de criar e, em seguida, pegar o novo usurio dos usurios do Numi Tabaret aqui.
+
+32
+00:02:17,390 --> 00:02:23,210
+o nosso novo usurio acessar o banco de dados no gostar da guia usurios e depois adicionar o boto do usurio do banco de dados.
+
+33
+00:02:23,210 --> 00:02:23,920
+Ento, vamos fazer
+
+34
+00:02:23,990 --> 00:02:28,430
+E, novamente, precisamos transformar um pouco de configurao aqui, ento vou seguir com o
+
+35
+00:02:28,430 --> 00:02:35,010
+Steven e a senha tentados e verdadeiros e vou ter certeza de que este no seja um usurio somente leitura.
+
+36
+00:02:35,030 --> 00:02:38,500
+Ento, isso no vai ser selecionado Bem, clique em Criar
+
+37
+00:02:42,760 --> 00:02:43,190
+legal.
+
+38
+00:02:43,210 --> 00:02:44,720
+Aqui est o meu novo usurio.
+
+39
+00:02:45,100 --> 00:02:48,800
+E ento eu posso ampliar aqui por apenas um segundo.
+
+40
+00:02:49,000 --> 00:02:50,550
+Pegue o banco de dados.
+
+41
+00:02:50,560 --> 00:02:54,670
+Voc ou eu na parte superior se eu puder selecion-lo.
+
+42
+00:02:54,670 --> 00:02:55,710
+Aqui vamos ns.
+
+43
+00:02:55,710 --> 00:03:03,190
+Eu vou copi-lo e voltaremos para o nosso editor de cdigo, encontre o Mungo, voc  uma varivel dentro do
+
+44
+00:03:03,230 --> 00:03:04,720
+arquivo J do servidor.
+
+45
+00:03:04,860 --> 00:03:12,830
+Eu vou col-lo e certifique-se de que eu substituo o usurio DV e senha D-B com meu nome de usurio e
+
+46
+00:03:12,830 --> 00:03:14,900
+senha que acabei de criar.
+
+47
+00:03:16,990 --> 00:03:17,490
+Legal.
+
+48
+00:03:17,550 --> 00:03:18,360
+Parece bom.
+
+49
+00:03:18,410 --> 00:03:22,140
+Ns temos o nosso para sua instncia de Mongo Lab.
+
+50
+00:03:22,220 --> 00:03:22,560
+EST BEM.
+
+51
+00:03:22,580 --> 00:03:26,870
+Vamos dar uma pausa rpida para voltar e falar sobre as consultas e mutaes que
+
+52
+00:03:26,870 --> 00:03:28,480
+vamos precisar dentro da nossa aplicao.
+

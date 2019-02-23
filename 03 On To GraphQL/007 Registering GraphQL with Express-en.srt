@@ -1,0 +1,372 @@
+1
+00:00:00,780 --> 00:00:06,630
+In the last section we created a new Express application and put together the tiniest bit of code to
+
+2
+00:00:06,630 --> 00:00:13,070
+stand up and express server will now continue in this section by figuring out exactly how to make graft
+
+3
+00:00:13,210 --> 00:00:17,100
+well and express work together nicely.
+
+4
+00:00:17,100 --> 00:00:22,500
+First we'll do a little bit of a review on how Xpress works by default just by itself.
+
+5
+00:00:22,500 --> 00:00:29,420
+Express is an age TTP server so a user's browser might make an HTP request.
+
+6
+00:00:29,490 --> 00:00:34,290
+Overdrew our express application Express will process it in some fashion.
+
+7
+00:00:34,490 --> 00:00:39,170
+Formulator response and then send response back to whoever made the initial request.
+
+8
+00:00:40,540 --> 00:00:46,520
+When we add in Express however things start to get a little bit more complicated.
+
+9
+00:00:46,920 --> 00:00:55,080
+So when we wire in graft Well we're going to get an additional step inside of our express Server Express
+
+10
+00:00:55,080 --> 00:01:00,180
+is going to examine the request that is incoming So it's going to look at the income your quest and
+
+11
+00:01:00,180 --> 00:01:02,280
+it's going to say.
+
+12
+00:01:02,640 --> 00:01:05,510
+Is this request trying to deal with crap.
+
+13
+00:01:05,880 --> 00:01:07,270
+Well in some fashion.
+
+14
+00:01:07,470 --> 00:01:10,920
+Like is it trying to deal with Graaff kill it all.
+
+15
+00:01:11,340 --> 00:01:14,940
+If it is the request will be handed over to graft.
+
+16
+00:01:15,030 --> 00:01:20,290
+Well who will then be responsible for handling the request after graft.
+
+17
+00:01:20,300 --> 00:01:23,150
+Who else has done its proud processing on the request.
+
+18
+00:01:23,170 --> 00:01:29,220
+It will send the response back to express who will then send the response back down to the user.
+
+19
+00:01:29,310 --> 00:01:34,590
+So I want to tell you right now the big reason that I'm making are the main reason making a big deal
+
+20
+00:01:34,590 --> 00:01:41,610
+about this is to make sure that it's clear that when we use graft well in an express application graph
+
+21
+00:01:41,610 --> 00:01:45,760
+queue is just one discrete component of our app.
+
+22
+00:01:45,780 --> 00:01:52,430
+It is not the entire app it's just one small little portion inside of the Express application.
+
+23
+00:01:52,650 --> 00:01:58,620
+Our overall express application can still have tons and tons of other logic associated with it.
+
+24
+00:01:58,620 --> 00:02:05,790
+So everything from server side template into standard API request handlers to authentication to anything
+
+25
+00:02:05,820 --> 00:02:13,260
+else you can possibly do with Express graph Cuil is written to just be one tiny tiny little piece of
+
+26
+00:02:13,260 --> 00:02:14,480
+an overall grout.
+
+27
+00:02:14,490 --> 00:02:21,540
+Or excuse me the overall express application and this course will certainly be focusing a lot on this
+
+28
+00:02:21,550 --> 00:02:29,310
+graph piece but certainly you can still use it with any other piece or any other component of express
+
+29
+00:02:29,310 --> 00:02:30,320
+that you wish.
+
+30
+00:02:30,510 --> 00:02:34,890
+So I want to make sure that that divide there is very clear.
+
+31
+00:02:35,290 --> 00:02:41,430
+OK so let's go back over toward code editor and we're going to hook up graph Q L to express.
+
+32
+00:02:41,610 --> 00:02:46,270
+So first we're going to require in one of the libraries that we just installed at the top.
+
+33
+00:02:46,440 --> 00:02:48,700
+So say Konst Express.
+
+34
+00:02:48,750 --> 00:02:53,960
+Q Well does require express dash graft.
+
+35
+00:02:54,000 --> 00:02:57,980
+Well OK looks my my font sizes are too large.
+
+36
+00:02:58,320 --> 00:02:59,610
+That should still be plenty legible.
+
+37
+00:02:59,610 --> 00:03:00,280
+There we go.
+
+38
+00:03:00,540 --> 00:03:03,280
+So we required in the library right here express craft.
+
+39
+00:03:03,330 --> 00:03:11,790
+Remember this library here is a sort of glue layer or compatibility layer between graph Cuil and express.
+
+40
+00:03:11,790 --> 00:03:17,460
+One other thing I want to point out to you is that by convention everywhere that we were right the word
+
+41
+00:03:17,470 --> 00:03:24,580
+graphed well in our code we say capital G for graph and then capital Q capital L.
+
+42
+00:03:24,600 --> 00:03:28,010
+So it's graphed Q with capitals not graph.
+
+43
+00:03:28,050 --> 00:03:31,240
+Well not graph Q lowercase L.
+
+44
+00:03:31,440 --> 00:03:32,910
+These are both incorrect right here.
+
+45
+00:03:32,910 --> 00:03:36,800
+We always stick by convention to capital Q capital L.
+
+46
+00:03:36,900 --> 00:03:41,100
+You make sure you just follow that convention you're going to save yourself a lot of headache of having
+
+47
+00:03:41,100 --> 00:03:44,990
+to troubleshoot stuff like hey couldn't find the variable graph.
+
+48
+00:03:45,120 --> 00:03:50,680
+Well you know the type of error message you would you would expect to see anyways.
+
+49
+00:03:51,020 --> 00:03:57,390
+Now that we've imported this compatibility layer right here we're now going to tell the Express application
+
+50
+00:03:57,530 --> 00:04:05,130
+that we created that if any request comes into our app looking for the route slash graph queue Well
+
+51
+00:04:05,550 --> 00:04:09,070
+we want the graphics library to handle it.
+
+52
+00:04:09,090 --> 00:04:13,240
+This is done by placing a call to app Daut use.
+
+53
+00:04:13,260 --> 00:04:15,760
+So we're going to say app dot.
+
+54
+00:04:16,010 --> 00:04:26,380
+Use a pass in a first argument of slash graph well and then the second argument will be Express graphed
+
+55
+00:04:26,460 --> 00:04:27,010
+Q else.
+
+56
+00:04:27,030 --> 00:04:33,570
+That's library that we just required in and I'll pass it a little bit of configuration so I'm going
+
+57
+00:04:33,570 --> 00:04:35,730
+to pass it an empty object.
+
+58
+00:04:35,970 --> 00:04:39,700
+We're going to add onto that object graphical.
+
+59
+00:04:39,810 --> 00:04:40,740
+True.
+
+60
+00:04:41,400 --> 00:04:43,530
+Now you'll notice I just said to you.
+
+61
+00:04:43,680 --> 00:04:47,660
+Yeah everywhere we say graphically Well we always do capital Q Well.
+
+62
+00:04:47,920 --> 00:04:50,190
+OK this is the one time I heard him break that rule.
+
+63
+00:04:50,220 --> 00:04:52,680
+The one time I swear the one time.
+
+64
+00:04:52,680 --> 00:04:58,270
+So when we put graph Q L are graphical excuse me right here has a property this object.
+
+65
+00:04:58,290 --> 00:05:01,500
+It is a lowercase Q and A lowercase L.
+
+66
+00:05:01,800 --> 00:05:07,870
+Also do make sure that you note that there is an I in this one is here right here as well.
+
+67
+00:05:08,070 --> 00:05:15,180
+This setting right here for graphical graphical as opposed to graphical graphics graphical as a development
+
+68
+00:05:15,180 --> 00:05:21,120
+tool that allows us to make queries against our development server so only intended to use in a development
+
+69
+00:05:21,120 --> 00:05:22,620
+environment right here.
+
+70
+00:05:23,130 --> 00:05:23,820
+OK.
+
+71
+00:05:24,390 --> 00:05:26,890
+So that's really all the set up that we're going to do for right now.
+
+72
+00:05:26,910 --> 00:05:29,920
+Let's start this server up and see how we're doing.
+
+73
+00:05:30,030 --> 00:05:31,320
+Let's just see how we're doing.
+
+74
+00:05:31,950 --> 00:05:39,840
+So I'm going to start my server up by going back to my terminal and then running the command node server.
+
+75
+00:05:39,870 --> 00:05:40,630
+Jay Yes.
+
+76
+00:05:40,630 --> 00:05:44,930
+So that's going to execute the module that we just installed.
+
+77
+00:05:44,930 --> 00:05:45,770
+I'm in the wrong directory.
+
+78
+00:05:45,770 --> 00:05:48,100
+Let me change back in right once a node server.
+
+79
+00:05:48,150 --> 00:05:48,580
+JS.
+
+80
+00:05:48,590 --> 00:05:49,800
+There we go.
+
+81
+00:05:50,600 --> 00:05:52,580
+So I should see the message listening.
+
+82
+00:05:52,640 --> 00:05:57,960
+Remember that's the consulate we put in there and we are listening on port 4000.
+
+83
+00:05:58,160 --> 00:06:00,090
+And as we specified right here.
+
+84
+00:06:00,500 --> 00:06:08,060
+So let's open up our browser and go to localhost 4000 Let's see what happens over in Chrome all navigate
+
+85
+00:06:08,060 --> 00:06:12,630
+to local host Colin 4000 slash graft.
+
+86
+00:06:12,770 --> 00:06:16,260
+Well like so when I do.
+
+87
+00:06:16,340 --> 00:06:18,710
+Well you can see a nice error message pop up.
+
+88
+00:06:18,710 --> 00:06:24,230
+So the first error message of many that we're probably going to end up seeing here looks like it's saying
+
+89
+00:06:24,230 --> 00:06:26,080
+something about a schema.
+
+90
+00:06:26,120 --> 00:06:26,670
+Hmm.
+
+91
+00:06:26,930 --> 00:06:33,350
+All right well let's take a quick break and come back and figure out exactly what this schema thing
+
+92
+00:06:33,920 --> 00:06:36,950
+that the server is asking for is so quick break.
+
+93
+00:06:37,070 --> 00:06:37,900
+Figure out schema.
+

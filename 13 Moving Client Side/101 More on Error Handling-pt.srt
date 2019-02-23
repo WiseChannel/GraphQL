@@ -1,0 +1,584 @@
+1
+00:00:00,640 --> 00:00:04,990
+Ainda estamos no processo de manipulao de erros dentro do nosso formulrio de registro.
+
+2
+00:00:05,140 --> 00:00:09,240
+Nosso objetivo agora  levar essa lista de erros que recuperamos do enxerto.
+
+3
+00:00:09,290 --> 00:00:14,510
+Certifique-se de atualizar algum nvel de nvel de componente com a lista de erros.
+
+4
+00:00:14,890 --> 00:00:20,110
+Em seguida, coloque essa lista de erros para pass-los para dentro do formulrio de arte e, em seguida, certifique-se de
+
+5
+00:00:20,110 --> 00:00:25,450
+que eles aparecem na tela de alguma forma e o usurio pode ver a lista de erros e dizer oh OK.
+
+6
+00:00:25,450 --> 00:00:28,420
+Eu acho que preciso corrigir meu e-mail ou a minha senha.
+
+7
+00:00:28,600 --> 00:00:29,750
+Ento vamos comear.
+
+8
+00:00:29,800 --> 00:00:38,480
+Definiremos primeiro o nosso construtor dentro desse componente para inicializar o nosso nvel de componente.
+
+9
+00:00:39,160 --> 00:00:45,740
+Ento, eu vou definir esse estado de ponto que ser erros e eu vou fazer com que ele seja uma matriz vazia.
+
+10
+00:00:46,120 --> 00:00:48,400
+Ento, note que alguns defeitos so uma matriz vazia aqui.
+
+11
+00:00:48,400 --> 00:00:49,800
+No estou faltando a mim.
+
+12
+00:00:49,810 --> 00:00:50,260
+No.
+
+13
+00:00:50,260 --> 00:00:51,560
+Ou indefinido.
+
+14
+00:00:51,790 --> 00:00:57,970
+E a razo para isso  que, quando eu o descarte, eu sempre quero apenas
+
+15
+00:00:58,000 --> 00:01:03,400
+mapear a lista de erros e no me preocupar com erros indefinidos ou no.
+
+16
+00:01:03,670 --> 00:01:10,420
+Lembre-se se eu chamo de mapa ou mapa no Knoller indefinido, eu imediatamente recebo uma grande mensagem de erro.
+
+17
+00:01:10,480 --> 00:01:12,780
+E assim, certificando-me de que eu no era uma matriz.
+
+18
+00:01:12,880 --> 00:01:19,150
+Estou apenas me economizando um pouco de problema dentro do componente de forma de autenticao de ter que olhar especificamente
+
+19
+00:01:19,180 --> 00:01:24,660
+para o objeto de Ayres e decidir, oh, bem,  essa coisa uma matriz que eu posso mapear.
+
+20
+00:01:24,660 --> 00:01:26,270
+Ou  indefinido ou desconhecido.
+
+21
+00:01:26,320 --> 00:01:28,680
+Ento, estou apenas escrevendo meu cdigo de maneira direta.
+
+22
+00:01:28,690 --> 00:01:33,510
+Eu tenho que colocar um pouco mais cheques de lgica dentro de l.
+
+23
+00:01:34,240 --> 00:01:34,550
+EST BEM.
+
+24
+00:01:34,570 --> 00:01:41,800
+aqui para atualizar nosso estado de nvel de componente com o objeto do novo herdeiro ou a matriz de herdeiro que foi definida.
+
+25
+00:01:41,800 --> 00:01:46,720
+Agora que inicializamos o nosso espao areo de estado, podemos atualizar nossa declarao de captura
+
+26
+00:01:46,720 --> 00:01:54,790
+Ento, vamos agora dizer que esse estado definido do Dotts e ns diremos que atualizamos o pedao de estado do ar novamente, o que
+
+27
+00:01:54,790 --> 00:01:57,670
+fizemos tantas vezes fazendo uso de Sharpers E-6.
+
+28
+00:01:57,670 --> 00:02:00,570
+Ento eu s tenho que colocar o nome da varivel aqui.
+
+29
+00:02:02,040 --> 00:02:09,070
+Ento, presumivelmente por este estado Dotts DOT  varivel, sempre ser uma matriz vazia
+
+30
+00:02:09,100 --> 00:02:12,160
+ou contm uma lista de erros.
+
+31
+00:02:12,700 --> 00:02:17,590
+Ento, podemos seguir em frente ao formulrio de arte, vamos passar a lista de erros para baixo nesta coisa
+
+32
+00:02:18,430 --> 00:02:20,710
+como um produto que todos apenas chamam de erros.
+
+33
+00:02:20,860 --> 00:02:23,770
+Isso vir desse estado de erros.
+
+34
+00:02:24,310 --> 00:02:25,830
+E estou ficando sem espao aqui.
+
+35
+00:02:25,840 --> 00:02:28,570
+Eu estou indo para uma nova linha  esta lista de adereos.
+
+36
+00:02:28,570 --> 00:02:33,970
+Voc provavelmente no precisa se voc no estiver muito distante, role para baixo apenas para garantir que as coisas sejam
+
+37
+00:02:33,970 --> 00:02:38,650
+legveis para que voc leia meu cdigo na tela vai fazer um pouco de novo olhar de brilho.
+
+38
+00:02:38,650 --> 00:02:43,220
+Ento, agora podemos mudar para fora do formulrio e mapear a lista de erros.
+
+39
+00:02:43,240 --> 00:02:47,280
+E, para cada erro, ir certificar-se de que ele aparece na tela.
+
+40
+00:02:47,560 --> 00:02:50,550
+Ento vou mudar para o meu formulrio de escritrio.
+
+41
+00:02:51,020 --> 00:02:54,540
+Eu vou encontrar meu componente de formulrio dentro do mtodo de renderizao.
+
+42
+00:02:54,850 --> 00:03:00,610
+E eu acho que um lugar muito razovel para colocar esta lista de mensagens de erro ser exatamente acima
+
+43
+00:03:00,610 --> 00:03:02,710
+do boto que o usurio deve pressionar.
+
+44
+00:03:02,900 --> 00:03:09,280
+Ento, em algum lugar aqui que permita ao usurio entender que a lista de erros faz
+
+45
+00:03:09,280 --> 00:03:10,420
+parte do formulrio.
+
+46
+00:03:10,450 --> 00:03:15,370
+Novamente, uma outra abordagem que possamos levar aqui se no nos interessssemos em colocar
+
+47
+00:03:15,370 --> 00:03:20,170
+a lista de mensagens de erro logo acima do boto, podendo ter feito a
+
+48
+00:03:20,230 --> 00:03:22,540
+lista de erros dentro do prprio informante.
+
+49
+00:03:22,540 --> 00:03:28,150
+Ento, se eu quisesse simplesmente no ter que me preocupar tanto com passar essa
+
+50
+00:03:28,240 --> 00:03:32,440
+lista de adereos, tambm poderia colocar a lista de erros aqui.
+
+51
+00:03:32,440 --> 00:03:36,610
+Mais uma vez,  algo que depende de voc, mas, pessoalmente, acho
+
+52
+00:03:37,300 --> 00:03:42,530
+que faz muito sentido exibir a lista de erros dentro do componente de formulrio atual.
+
+53
+00:03:42,690 --> 00:03:47,620
+Ento, dentro da forma de arte, vamos mapear nossa lista de erros.
+
+54
+00:03:47,920 --> 00:03:53,640
+E por cada erro que temos, vamos apenas bombear uma div e colocar a mensagem de erro dentro dela.
+
+55
+00:03:54,010 --> 00:03:58,910
+Ento eu no acho que precisamos de uma div. Ajudante aqui est vendo esse mtodo auxiliar ou algo assim.
+
+56
+00:03:58,930 --> 00:04:09,720
+porque estamos produzindo uma lista de elementos aqui, temos que mesmo que isso  uma lista muito pequena e muito confinada de erros ainda  uma lista.
+
+57
+00:04:11,220 --> 00:04:17,370
+Eu acho que podemos ns podemos apenas olhar para este ponto props dot heir's e, em
+
+58
+00:04:17,370 --> 00:04:23,880
+seguida, para cada ar, devolvemos uma div que contm o texto de erro e, em seguida, certifique-se
+
+59
+00:04:23,940 --> 00:04:24,650
+de que,
+
+60
+00:04:24,780 --> 00:04:28,230
+Portanto, temos que definir a propriedade chave em cada um desses.
+
+61
+00:04:28,410 --> 00:04:30,770
+Podemos usar a prpria mensagem de erro como uma chave.
+
+62
+00:04:30,780 --> 00:04:35,460
+Eu acho que isso  razovel nico e provavelmente no ser duplicado em toda a lista de erros.
+
+63
+00:04:35,570 --> 00:04:42,510
+mesmo que a chave seja duplicada se usarmos o texto de erro aqui como a chave, isso assegurar que esse
+
+64
+00:04:42,510 --> 00:04:49,550
+tipo de conversa ou um tipo de reagente de curto-circuito mostre apenas uma nica div para qualquer rea se houver duplicatas.
+
+65
+00:04:49,560 --> 00:04:50,760
+E, de fato,
+
+66
+00:04:51,930 --> 00:04:56,880
+Agora, a ltima coisa que eu quero fazer  certificar-se de que coramos essa lista de erros para serem lidos de alguma
+
+67
+00:04:57,180 --> 00:05:01,690
+forma, de modo que o usurio entende que hey, esta  uma lista de erros que voc precisa cuidar deles.
+
+68
+00:05:01,770 --> 00:05:07,980
+Ento, eu vou envolver esta declarao de mapa inteira com a div que tem um nome
+
+69
+00:05:11,050 --> 00:05:19,510
+de classe de erros, como agora, o CSSA materializado no tem nenhum tratamento de erro muito bom fora da caixa para formatar
+
+70
+00:05:19,510 --> 00:05:21,260
+ou exibir mensagens de erro.
+
+71
+00:05:21,370 --> 00:05:27,010
+ s porque o SS materializado assume que voc est usando sua biblioteca j queery ou sua biblioteca
+
+72
+00:05:27,010 --> 00:05:32,650
+javascript que usa Jaker internamente. Eu acredito que lidar com toda a validao e coisas assim na tela.
+
+73
+00:05:32,650 --> 00:05:33,350
+E isso
+
+74
+00:05:33,490 --> 00:05:39,820
+Portanto, no h realmente uma soluo para lidar com estilo de erros de validao.
+
+75
+00:05:39,820 --> 00:05:45,250
+Sempre que voc estiver usando o VSS materializado, reaja, ento vamos adicionar um pouco do
+
+76
+00:05:45,390 --> 00:05:49,780
+nosso CSSA personalizado apenas para colorir isso lido em apenas um momento.
+
+77
+00:05:49,780 --> 00:05:54,870
+Vamos primeiro testar esse assunto e ento podemos nos certificar de que est funcionando da maneira que esperamos.
+
+78
+00:05:54,920 --> 00:06:00,790
+Indo virar para o meu navegador ou atualizar a pgina inteira.
+
+79
+00:06:00,950 --> 00:06:03,860
+Parece que provavelmente eu tenho uma mensagem de erro aqui.
+
+80
+00:06:04,300 --> 00:06:10,960
+Provavelmente fiz um erro de digitao em algum lugar, ento vamos descobrir o que est acontecendo com isso, no.
+
+81
+00:06:11,020 --> 00:06:12,240
+Erros no  uma funo.
+
+82
+00:06:12,250 --> 00:06:15,310
+Ok, eu sei exatamente o que correu o que deu errado.
+
+83
+00:06:15,310 --> 00:06:16,230
+Com licena.
+
+84
+00:06:16,240 --> 00:06:19,820
+Ento, dentro da forma de autenticao eu chamo este Propst.
+
+85
+00:06:20,380 --> 00:06:22,790
+Deve ser essa coisa no mapa de Aristteles.
+
+86
+00:06:22,900 --> 00:06:24,510
+Ento, estamos mapeando a lista de erros.
+
+87
+00:06:24,520 --> 00:06:27,480
+Eu estava chamando isso como se fosse uma funo quando de fato era uma matriz.
+
+88
+00:06:27,480 --> 00:06:28,680
+Ento meu erro.
+
+89
+00:06:28,690 --> 00:06:32,000
+Peo desculpas se isso causasse alguma confuso l.
+
+90
+00:06:32,780 --> 00:06:37,980
+Ok ento, vamos dar outro tiro ou atualizar a pgina novamente.
+
+91
+00:06:37,990 --> 00:06:44,960
+Eu fiz isso para estudiosos no  uma funo, ento eu provavelmente no consegui salvar o arquivo e isso  melhor.
+
+92
+00:06:45,350 --> 00:06:50,330
+OK ento, por padro, quando meu formulrio primeiro rende, no tenho mensagens de erro.
+
+93
+00:06:50,560 --> 00:06:56,030
+Assim, a matriz de erros ou esta declarao de incio  uma corrida comea a ficar completamente vazia.
+
+94
+00:06:56,110 --> 00:07:01,210
+ s quando eu comear a clicar em enviar que espero ver o texto que as credenciais invlidas
+
+95
+00:07:01,210 --> 00:07:02,120
+aparecem na tela.
+
+96
+00:07:02,590 --> 00:07:04,420
+Ento, isso parece muito bem.
+
+97
+00:07:04,420 --> 00:07:07,420
+Vamos voltar a atualizar e test-lo novamente.
+
+98
+00:07:07,420 --> 00:07:13,180
+Se eu clicar em Enviar boom, eu recebo essa pequena e agradvel mensagem para o usurio que apenas permite que eles saibam
+
+99
+00:07:13,180 --> 00:07:15,920
+que alguma coisa deu errado com sua solicitao de log.
+
+100
+00:07:16,120 --> 00:07:19,780
+Ento, vejamos que realmente temos que fazer aqui  ter certeza de que temos apenas um pouco de
+
+101
+00:07:19,780 --> 00:07:20,320
+estilo sobre isso.
+
+102
+00:07:21,830 --> 00:07:31,160
+estamos trabalhando no possui tags de estilo ou nenhum lugar para adicionar sucesso nativamente dentro dele para ns podemos adicionar um pouco de
+
+103
+00:07:31,200 --> 00:07:38,650
+elementos de estilo no prprio dia, podemos criar um arquivo CSSA ou eu Acho o que pode ser mais
+
+104
+00:07:39,050 --> 00:07:45,450
+fcil para ns  apenas adicionar uma etiqueta de estilo diretamente ao arquivo ndice no HMO.
+
+105
+00:07:45,450 --> 00:07:48,090
+O comeo de um projeto de que
+
+106
+00:07:48,120 --> 00:07:52,200
+Eu acho que vamos fazer isso porque eu realmente no espero ter que adicionar um monte
+
+107
+00:07:52,200 --> 00:07:53,610
+de CSSA personalizado para este projeto.
+
+108
+00:07:53,610 --> 00:07:59,990
+Ento, dentro do arquivo HTL indexado na tag principal, iria adicionar na etiqueta de estilo.
+
+109
+00:08:01,530 --> 00:08:06,490
+E vou dizer se h algum elemento com o nome da classe dos herdeiros.
+
+110
+00:08:06,510 --> 00:08:08,590
+Vamos dar uma cor de vermelho.
+
+111
+00:08:08,730 --> 00:08:11,810
+Como alguns.
+
+112
+00:08:11,870 --> 00:08:14,780
+Ento vamos agora atualizar isso.
+
+113
+00:08:14,870 --> 00:08:22,050
+E se eu clicar em enviar novamente, o que deve tornar um ar imediatamente, acabei com uma linda mensagem de erro de leitura.
+
+114
+00:08:22,930 --> 00:08:25,230
+Eles esto faltando aqui  meio feio.
+
+115
+00:08:25,250 --> 00:08:29,070
+Eu sinto que est um pouco perto do boto e muito longe da entrada.
+
+116
+00:08:29,240 --> 00:08:34,130
+Ento, se voc quiser aumentar o tamanho da fonte dele um pouco, se voc quiser ousar
+
+117
+00:08:34,130 --> 00:08:37,050
+tudo o que voc quer fazer, sinta-se livre para faz-lo.
+
+118
+00:08:37,520 --> 00:08:45,020
+A outra coisa que podemos pensar sobre fazer  inspecionar a lista de erros dentro do nosso componente
+
+119
+00:08:45,020 --> 00:08:45,960
+off form.
+
+120
+00:08:46,190 --> 00:08:52,670
+um nome de classe para cada um de meus campos de entrada, bem como para obter a entrada em si para realar e ler.
+
+121
+00:08:52,670 --> 00:08:57,130
+E se a lista de erros tiver um comprimento de 1 ou maior, eu tambm pode adicionar
+
+122
+00:08:57,380 --> 00:09:02,660
+E eu apenas comunicaria mais aos nossos usurios que oi, voc est inserindo algumas informaes invlidas em
+
+123
+00:09:02,660 --> 00:09:03,740
+ambas as entradas aqui.
+
+124
+00:09:03,740 --> 00:09:08,750
+Tente novamente para que voc tambm possa seguir essa abordagem se voc sentir que a mensagem
+
+125
+00:09:08,750 --> 00:09:13,430
+de erro aqui no  suficiente para comunicar a lista de erros ao usurio.
+
+126
+00:09:13,560 --> 00:09:19,110
+OK, ento  o tratamento de erros dentro do Appollo.
+
+127
+00:09:19,160 --> 00:09:26,300
+Novamente, o grande takeaway aqui foi que na mutao em si, adicionamos em um caso de captura e dentro do
+
+128
+00:09:26,300 --> 00:09:29,560
+caso de captura, inspecionamos a lista de erros grficos.
+
+129
+00:09:29,750 --> 00:09:34,790
+Colecionamos uma lista de cada mensagem de erro e, em seguida, atualizamos nosso estado de nvel
+
+130
+00:09:34,790 --> 00:09:41,520
+de componente com essa lista de erros e mostramos a tela na tela para os nossos usurios em sua maior parte.
+
+131
+00:09:41,540 --> 00:09:46,820
+Em geral, eu adiciono somente o tratamento de erros em torno de mutaes porque geralmente espero
+
+132
+00:09:46,820 --> 00:09:49,320
+que todas as minhas consultas funcionem como espero.
+
+133
+00:09:49,340 --> 00:09:54,530
+Realmente, a nica vez que as consultas comeam a ficar um pouco estranhas no que diz respeito
+
+134
+00:09:54,530 --> 00:10:00,260
+ao tratamento de erros  se eu comear a ter muitas permisses ou problemas de autorizao em torno das
+
+135
+00:10:00,260 --> 00:10:04,640
+prprias consultas, mas descobrirei algumas estratgias mais tarde para minimizar o nmero dos casos
+
+136
+00:10:04,640 --> 00:10:09,630
+em que nos encontramos com erros em torno da autorizao de recursos que um usurio pode acessar.
+
+137
+00:10:10,130 --> 00:10:11,560
+Ento, isso parece muito bom.
+
+138
+00:10:11,600 --> 00:10:16,100
+Eu acho que estamos preparados para seguir em frente ao formulrio de inscrio.
+
+139
+00:10:16,100 --> 00:10:21,380
+Tambm precisamos ter em mente que precisamos lidar com o caso em que os usurios autenticam com
+
+140
+00:10:21,390 --> 00:10:26,090
+xito alguns aqui, precisamos garantir que os naveguemos para outro lugar dentro de nossa aplicao
+
+141
+00:10:26,090 --> 00:10:26,620
+tambm.
+
+142
+00:10:26,810 --> 00:10:32,360
+Ento, se um usurio faz logon corretamente, precisamos garantir que ns tambm os navegamos foradamente em algum
+
+143
+00:10:32,360 --> 00:10:32,920
+outro lugar.
+
+144
+00:10:33,170 --> 00:10:38,660
+Ento, precisamos atualizar nossa mutao aqui apenas um pouco para lidar com o caso de sucesso.
+
+145
+00:10:38,750 --> 00:10:41,830
+E tambm precisamos comear a trabalhar no nosso formulrio de inscrio tambm.
+
+146
+00:10:42,020 --> 00:10:44,790
+Ento, vamos cuidar de ambos os desafios na prxima seo.
+

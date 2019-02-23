@@ -1,0 +1,692 @@
+1
+00:00:00,780 --> 00:00:05,430
+In the last section we installed our boilerplate package and took a look at some of the different files
+
+2
+00:00:05,430 --> 00:00:06,480
+inside of it.
+
+3
+00:00:06,600 --> 00:00:12,330
+In particular we looked at the Auth. dot J.S. file and I had mentioned that there was some compatibility
+
+4
+00:00:12,330 --> 00:00:18,690
+coding here that makes graph QOL and passport work nicely and you'll certainly read a little bit about
+
+5
+00:00:18,690 --> 00:00:18,950
+that.
+
+6
+00:00:18,960 --> 00:00:21,530
+If you look at some of the comments in here as well.
+
+7
+00:00:21,900 --> 00:00:28,150
+So I want talk a little bit more about passport and how it works with the graphical side of our application.
+
+8
+00:00:28,180 --> 00:00:32,160
+Let's take a look at a diagram to help us understand this a little bit better.
+
+9
+00:00:32,160 --> 00:00:39,960
+First I want to talk about passport just by itself so just passport nothing else with passport just
+
+10
+00:00:39,960 --> 00:00:44,450
+by itself inside of an express application to authenticate a user.
+
+11
+00:00:44,460 --> 00:00:48,670
+We get some incoming request from what we might call a mystery user.
+
+12
+00:00:48,720 --> 00:00:52,140
+We don't really know who is making the authentication request.
+
+13
+00:00:52,370 --> 00:00:58,200
+The request will come in with some username and password and it's up to pass passport to figure out
+
+14
+00:00:58,200 --> 00:01:01,860
+which user that is and authenticate them successfully.
+
+15
+00:01:01,860 --> 00:01:04,000
+So passport will take that username.
+
+16
+00:01:04,170 --> 00:01:09,360
+It will look through its database it will find a user with that username and then it will compare the
+
+17
+00:01:09,360 --> 00:01:15,090
+stored password with a password that was provided on the incoming request and decide whether or not
+
+18
+00:01:15,090 --> 00:01:20,730
+the authentication request is valid or not if the request is valid than passport will say.
+
+19
+00:01:20,820 --> 00:01:21,890
+Ah fantastic.
+
+20
+00:01:21,890 --> 00:01:29,580
+This is user number so-and-so and it will save a little token or a little note on the user's cookie
+
+21
+00:01:29,910 --> 00:01:36,240
+so that any time the user makes a request in the future we will immediately know that that is user number
+
+22
+00:01:36,240 --> 00:01:40,580
+5 or user number 6 or 7 or 8 or whoever it might be.
+
+23
+00:01:40,950 --> 00:01:47,220
+So this is how authentication works and really the vast majority of applications in the world today.
+
+24
+00:01:47,970 --> 00:01:53,400
+So let's talk a little bit about how this authentication scheme is going to change once we start involving
+
+25
+00:01:53,400 --> 00:01:53,750
+Graf.
+
+26
+00:01:53,750 --> 00:01:56,720
+Q Well OK.
+
+27
+00:01:57,060 --> 00:01:59,900
+So when would you start involving graft with passport.
+
+28
+00:01:59,970 --> 00:02:06,720
+There's really two different approaches that we can take which I like to refer to as a de-couple approach
+
+29
+00:02:06,900 --> 00:02:11,060
+and a coupled approach and we'll see the coupled approach and the next slide.
+
+30
+00:02:11,370 --> 00:02:17,990
+So these are two different methods of involving graft UL and passport together we'll first talk about
+
+31
+00:02:17,990 --> 00:02:21,600
+the de-coupled approach right now and we'll talk a little bit about a couple.
+
+32
+00:02:21,620 --> 00:02:28,520
+And then some of the pros and cons between the two with a de-coupled approach where we say this is de-coupled
+
+33
+00:02:28,580 --> 00:02:36,060
+because we first take care of passport or all the authentication without any concern of graft whatsoever.
+
+34
+00:02:36,170 --> 00:02:40,170
+Subgraph well not involved in the slightest bit.
+
+35
+00:02:40,390 --> 00:02:46,280
+A user is still going to make some authentication request where they provide their username and password.
+
+36
+00:02:46,490 --> 00:02:51,890
+Passport is going to attempt to authenticate them and then identify the user in some fashion and set
+
+37
+00:02:51,890 --> 00:02:53,570
+the users cookie.
+
+38
+00:02:53,780 --> 00:02:59,540
+Then whenever that user makes any type of follow up request the request will be identified automatically
+
+39
+00:02:59,540 --> 00:03:03,070
+by passport and then the request will enter into the graph.
+
+40
+00:03:03,070 --> 00:03:09,160
+Q All phase engrafted will say oh this is user so and so they've already been identified by passport.
+
+41
+00:03:09,320 --> 00:03:12,710
+I'm going to give them all the data that they would deserve as you desired.
+
+42
+00:03:12,710 --> 00:03:14,280
+Number five.
+
+43
+00:03:14,340 --> 00:03:18,780
+So then graft who will formulate the response and send it back to the client.
+
+44
+00:03:20,180 --> 00:03:25,460
+Now the one thing I want to point out about this solution right now is that I've talked about identifying
+
+45
+00:03:25,460 --> 00:03:26,230
+the user.
+
+46
+00:03:26,300 --> 00:03:33,380
+And if we really think about identifying the user it's kind of like a change in the authentication state
+
+47
+00:03:33,440 --> 00:03:35,030
+of our application.
+
+48
+00:03:35,150 --> 00:03:41,290
+And whenever I say the word change we should be thinking nutation right.
+
+49
+00:03:41,310 --> 00:03:43,480
+That's what we've been saying about graft all along.
+
+50
+00:03:43,490 --> 00:03:48,210
+Anytime we change anything about our application it's always a mutation.
+
+51
+00:03:48,260 --> 00:03:55,700
+So if we use this de-coupled approach and GRATHWOHL is not involved at all we're not making use of any
+
+52
+00:03:55,700 --> 00:04:00,700
+type of mutation to our code or any type of mutation of our application state.
+
+53
+00:04:01,010 --> 00:04:04,430
+So let's look at what would happen if we do involve graft.
+
+54
+00:04:04,510 --> 00:04:11,570
+Well using this couple of approach and by the way coupled approach and de-coupled approach this is not
+
+55
+00:04:11,570 --> 00:04:12,530
+official terminology.
+
+56
+00:04:12,530 --> 00:04:16,750
+By the way is this terminology that I introduced to help you understand what's going on here.
+
+57
+00:04:16,880 --> 00:04:20,350
+OK so let's talk about what's different with this coupled approach.
+
+58
+00:04:20,720 --> 00:04:27,380
+So at the coupled approach we'll make use of a mutation to authenticate the user in some fashion.
+
+59
+00:04:27,470 --> 00:04:33,370
+So we'll have this incoming authentication request which will really be a mutation.
+
+60
+00:04:33,520 --> 00:04:41,100
+It's put on like Slash mutation there craft you l will see that the user is making a mutation or request
+
+61
+00:04:41,100 --> 00:04:47,100
+to attempt to identify themselves and it will pass along the request to passport and say oh.
+
+62
+00:04:47,160 --> 00:04:52,320
+Looks like they're attempting to identify or to identify or authenticate themselves in some fashion.
+
+63
+00:04:52,320 --> 00:04:57,930
+I'm going to let passport take care of this passport will then identify the user in some fashion.
+
+64
+00:04:57,960 --> 00:05:03,780
+It will still place a little cookie or a little identifier on the user's cookie and then will hand the
+
+65
+00:05:03,780 --> 00:05:05,190
+request back to graft.
+
+66
+00:05:05,250 --> 00:05:09,630
+Well and then graft Q L will respond with whatever appropriate data.
+
+67
+00:05:09,660 --> 00:05:14,660
+Then when the whenever the user makes that followup request a customer come into the graph queue all
+
+68
+00:05:14,670 --> 00:05:20,970
+side of things already with an identified user or engraft QOL can fetch any relevant data for that user
+
+69
+00:05:21,030 --> 00:05:23,430
+and respond in turn.
+
+70
+00:05:23,430 --> 00:05:29,580
+So when the couple approached the big key is that we're going to allow graft well to receive the authenticating
+
+71
+00:05:29,580 --> 00:05:35,320
+request and then pass along or defer handling that request to passport.
+
+72
+00:05:35,370 --> 00:05:41,160
+So no matter what passports always going to be involved in some fashion it's really a question of whether
+
+73
+00:05:41,160 --> 00:05:44,890
+or not we're going to allow graft to handle the request.
+
+74
+00:05:45,290 --> 00:05:49,410
+So let's talk a little bit about the pros and cons of each of these approaches.
+
+75
+00:05:49,740 --> 00:05:57,810
+I kind of imagine right now I'm going to take a guess maybe in your head you've got an idea of one way
+
+76
+00:05:57,810 --> 00:06:00,590
+that might be clearly superior to the other.
+
+77
+00:06:00,630 --> 00:06:02,390
+Like clearly 100 percent.
+
+78
+00:06:02,490 --> 00:06:05,460
+Steven why would passport ever be involved with graft.
+
+79
+00:06:05,470 --> 00:06:08,730
+Well they should absolutely be decoupled.
+
+80
+00:06:08,730 --> 00:06:12,870
+You might be thinking that you know hey they really should be de-coupled Or maybe you're sitting here
+
+81
+00:06:12,870 --> 00:06:15,720
+thinking well it's a graph cool application.
+
+82
+00:06:15,720 --> 00:06:17,620
+Of course graphed you all should be involved.
+
+83
+00:06:17,850 --> 00:06:23,760
+And I feel like you can very easily make a very strong case for either approach if there was a very
+
+84
+00:06:23,760 --> 00:06:29,100
+clear or very strong winner I would have just taken that approach in this course and said This is how
+
+85
+00:06:29,100 --> 00:06:29,850
+we do it.
+
+86
+00:06:30,180 --> 00:06:34,210
+But I personally don't think that there is a one size fits all solution.
+
+87
+00:06:34,260 --> 00:06:39,180
+And instead I want to inform you about some of the different alternatives so you can come to a conclusion
+
+88
+00:06:39,210 --> 00:06:42,750
+by yourself and decide which approach is best for you.
+
+89
+00:06:43,470 --> 00:06:46,500
+So talk a little bit about the pros and cons with each one.
+
+90
+00:06:46,500 --> 00:06:52,410
+First the coupled approach I would say that the biggest benefit to this couple of pro-trade here is
+
+91
+00:06:52,410 --> 00:06:57,510
+that you are using graft well in the manner in which it is intended.
+
+92
+00:06:57,540 --> 00:07:04,980
+Graf Cuil is it is intended to be a thin layer of sorts that sits on top of a ton of different services
+
+93
+00:07:04,980 --> 00:07:11,090
+inside of your application and all the applications that we've built so far we've only kind of abstracted
+
+94
+00:07:11,100 --> 00:07:13,570
+working with a single database.
+
+95
+00:07:13,650 --> 00:07:17,070
+But over at Facebook you know the people who made.
+
+96
+00:07:17,130 --> 00:07:22,890
+Well they originally made graphs well because they have to interact with dozens of different servers
+
+97
+00:07:23,070 --> 00:07:25,710
+dozens of different services on their back end.
+
+98
+00:07:25,980 --> 00:07:31,670
+And it's very easy to imagine that authentication is just another one of those services.
+
+99
+00:07:31,920 --> 00:07:37,890
+So I can very easily make the case that when we put graft well in front of passport we're really using
+
+100
+00:07:37,890 --> 00:07:41,770
+graft will in the manner for which it was originally intended.
+
+101
+00:07:41,770 --> 00:07:47,610
+You know we are making use of graft well to abstract out some of the challenges of working with authentication
+
+102
+00:07:48,330 --> 00:07:54,780
+that would in theory allow us to make a little bit nicer backend authentication service where we just
+
+103
+00:07:54,780 --> 00:07:59,760
+have these very clear points and we say hey authenticate this user OK they're authenticated.
+
+104
+00:07:59,760 --> 00:08:00,450
+Fantastic.
+
+105
+00:08:00,450 --> 00:08:03,340
+Let's continue on our way.
+
+106
+00:08:03,610 --> 00:08:12,540
+In addition with the de-coupled approach de-coupled approach Skewes Mansei couple the approach of your
+
+107
+00:08:14,490 --> 00:08:18,360
+so I want to think about how we would architect the front end of our application.
+
+108
+00:08:18,360 --> 00:08:20,620
+Oh no I didn't mean to say de-coupled sorry.
+
+109
+00:08:20,660 --> 00:08:21,740
+My apologies.
+
+110
+00:08:21,740 --> 00:08:27,130
+So with the de-coupled approach I think a little bit about how we would put together our front end.
+
+111
+00:08:27,440 --> 00:08:30,290
+So this is intended to match up with this diagram right here.
+
+112
+00:08:30,290 --> 00:08:30,530
+OK.
+
+113
+00:08:30,540 --> 00:08:36,380
+So remember the decouples approach we first make the authentication request passport handles it and
+
+114
+00:08:36,380 --> 00:08:40,750
+then boom we can make any additional follow up request and we're already authenticate with graft.
+
+115
+00:08:40,790 --> 00:08:47,540
+Well so if we follow that type of architecture are re-act application is really going to have two sides
+
+116
+00:08:47,540 --> 00:08:48,350
+to it.
+
+117
+00:08:48,410 --> 00:08:53,570
+We would have one side of our riata application that doesn't use graphics well at all.
+
+118
+00:08:53,570 --> 00:08:59,790
+It would have to show the log in form a sign up form some log out button all these different UI elements
+
+119
+00:08:59,810 --> 00:09:05,390
+and all these different components along with the accompanying requests that don't make use of any graphical
+
+120
+00:09:05,510 --> 00:09:07,390
+queries or any graft.
+
+121
+00:09:07,480 --> 00:09:09,190
+Well mutations either.
+
+122
+00:09:09,380 --> 00:09:14,780
+So we would really split the re-act application almost into two pieces.
+
+123
+00:09:14,810 --> 00:09:20,650
+The portion that doesn't make use of well which is just in charge of doing the authentication layer.
+
+124
+00:09:20,900 --> 00:09:26,540
+And then also the hard part that does make you use a graph well which now takes that identified user
+
+125
+00:09:26,600 --> 00:09:30,970
+and makes a query or makes a mutation or whatever it might be.
+
+126
+00:09:32,030 --> 00:09:36,800
+So it might be really easy to say Oh well of course we want all these things to be coupled decoupled.
+
+127
+00:09:36,830 --> 00:09:42,800
+But you do pay for it and some other sides of your application or some other parts of your application.
+
+128
+00:09:42,800 --> 00:09:46,660
+Now why is the coupled approach a bad way to go.
+
+129
+00:09:46,720 --> 00:09:47,110
+Why.
+
+130
+00:09:47,110 --> 00:09:52,100
+Why would I not want to use this right here if I just made two cases or two different areas you know
+
+131
+00:09:52,100 --> 00:09:56,170
+I just mentioned I'm saying well this kind of feels like it works a little bit better.
+
+132
+00:09:56,660 --> 00:10:02,450
+Well to be honest with you I would not want to use the coupled approach because graft well and passport
+
+133
+00:10:02,660 --> 00:10:11,090
+are absolutely positively not set up to work well with each other in any way shape or fashion.
+
+134
+00:10:11,120 --> 00:10:15,470
+I mentioned in the last section that I didn't want to do a lot of the boilerplate code in this course
+
+135
+00:10:15,470 --> 00:10:19,950
+because it would have been a big diversion a huge part of that decision.
+
+136
+00:10:19,970 --> 00:10:25,520
+And I got to tell you it like if you're thinking in your head right now Stephen I wanted to do the boilerplate.
+
+137
+00:10:25,520 --> 00:10:26,780
+Why are we doing the boilerplate.
+
+138
+00:10:26,780 --> 00:10:29,430
+Trust me I really had to wrangle with that decision.
+
+139
+00:10:29,660 --> 00:10:34,550
+But the real reason that I decided that you know this had to be some code written ahead of time is that
+
+140
+00:10:34,610 --> 00:10:41,270
+making graft well and passport work nicely together is no small feat.
+
+141
+00:10:41,360 --> 00:10:47,720
+I mean I really do encourage you to take a look at this Sign-Up function and the log in function inside
+
+142
+00:10:47,720 --> 00:10:55,030
+of offcut J J us and look at some of the code in there like this is some nasty nasty syntax in here
+
+143
+00:10:55,040 --> 00:10:56,540
+in both locations.
+
+144
+00:10:57,370 --> 00:11:03,910
+So I would personally not want to use the coupled approach because graph Cuil and passport are not at
+
+145
+00:11:03,910 --> 00:11:06,470
+all designed to work well with each other.
+
+146
+00:11:06,490 --> 00:11:11,530
+And again I had to do a little bit of hacking in here a little bit of kind of fun mingling around with
+
+147
+00:11:11,570 --> 00:11:12,030
+passport.
+
+148
+00:11:12,040 --> 00:11:15,150
+I would say to make them work nicely together.
+
+149
+00:11:15,190 --> 00:11:20,290
+Now if there was some alternative as passport out there if there was some other authentication framework
+
+150
+00:11:20,290 --> 00:11:26,290
+where we could just very easily say log is user end or log this user out then that would make this a
+
+151
+00:11:26,290 --> 00:11:27,760
+much easier decision.
+
+152
+00:11:27,880 --> 00:11:33,310
+But unfortunately passport is really the de facto standard of authentication in the no G-S world.
+
+153
+00:11:33,430 --> 00:11:35,470
+And so we're kind of stuck with it for now.
+
+154
+00:11:37,610 --> 00:11:41,290
+In conclusion because I know I've been talking for quite a bit now.
+
+155
+00:11:41,300 --> 00:11:46,360
+In conclusion we have the de-coupled approach and the couple of pros for handling authentication.
+
+156
+00:11:46,430 --> 00:11:53,240
+If I was going to make an application today and try to pick a better one for my personal use I would
+
+157
+00:11:53,240 --> 00:11:58,520
+really look at the use case of the application I'd really have to look at what I'm trying to make to
+
+158
+00:11:58,520 --> 00:12:00,500
+decide which approach I want to take.
+
+159
+00:12:00,500 --> 00:12:06,200
+So again I don't think there's really any clear winner between the two for this course.
+
+160
+00:12:06,200 --> 00:12:08,370
+We're going to go with the coupled approach right here.
+
+161
+00:12:08,390 --> 00:12:14,920
+So we're going to go with this approach where we allow graph Kjeld to handle all things related to authentication.
+
+162
+00:12:15,020 --> 00:12:21,050
+All incoming requests and it's going to delegate the actual authentication part off to passport.
+
+163
+00:12:21,370 --> 00:12:25,300
+And I think that's going to work out nicely with the code that we end up writing on the graph.
+
+164
+00:12:25,310 --> 00:12:31,040
+Q Well side but again trust me there was some headache around putting together this compatibility layer
+
+165
+00:12:31,040 --> 00:12:34,580
+between graphical and passport in the first place.
+
+166
+00:12:35,470 --> 00:12:35,940
+OK.
+
+167
+00:12:36,180 --> 00:12:37,920
+So I know this has been quite a long section.
+
+168
+00:12:37,930 --> 00:12:43,470
+Just a little bit of rambling but again I want to take a lot of time to tell you about these different
+
+169
+00:12:43,470 --> 00:12:45,490
+approaches to handling authentication with graft.
+
+170
+00:12:45,540 --> 00:12:50,600
+Well mostly because it's really just not a too much of a solved problem yet.
+
+171
+00:12:51,210 --> 00:12:54,760
+So anyways let's take a break.
+
+172
+00:12:54,830 --> 00:13:00,270
+We're going to come back in the next section or we want to start implementing this coupled approach
+
+173
+00:13:00,330 --> 00:13:01,370
+of authentication.
+

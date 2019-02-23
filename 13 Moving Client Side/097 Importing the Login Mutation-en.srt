@@ -1,0 +1,356 @@
+1
+00:00:00,830 --> 00:00:06,240
+In the last section and we put together our art form in its entirety we now need to make sure that whenever
+
+2
+00:00:06,240 --> 00:00:11,250
+the user submits this form right here we color mutation to log the user in.
+
+3
+00:00:11,520 --> 00:00:16,910
+So as a reminder this is logging the user and we're not attempting to sign up the user just yet.
+
+4
+00:00:17,190 --> 00:00:19,740
+Now there are a couple of things that we need to be aware of.
+
+5
+00:00:19,740 --> 00:00:25,440
+First off we need to be aware that whenever we submit our mutation there might be some errors that get
+
+6
+00:00:25,440 --> 00:00:26,590
+returned to us.
+
+7
+00:00:26,640 --> 00:00:32,730
+So maybe user enters in the incorrect password maybe they enter in an email that doesn't exist.
+
+8
+00:00:32,730 --> 00:00:38,130
+We have to figure out some way to communicate those errors back down into the form to get them to show
+
+9
+00:00:38,130 --> 00:00:45,230
+up on the screen so that the user knows that they need to make a little change to their log in information.
+
+10
+00:00:45,690 --> 00:00:50,320
+But first let's worry about just putting the mutation together and then we'll come back wired up to
+
+11
+00:00:50,320 --> 00:00:54,620
+the component itself and then worry about dealing with the error handling.
+
+12
+00:00:54,990 --> 00:00:58,780
+So as usual we're going to start off inside of graphical.
+
+13
+00:00:58,800 --> 00:01:05,470
+We're going to put our mutation together over here and then we'll copy it over to our component.
+
+14
+00:01:05,620 --> 00:01:10,270
+So we've been dealing with the loggin mutation in a couple of times but we've always been hard coding
+
+15
+00:01:10,270 --> 00:01:11,930
+the email and password.
+
+16
+00:01:12,070 --> 00:01:14,310
+I don't want to hard code the email and password.
+
+17
+00:01:14,380 --> 00:01:21,100
+We only know of what the value should be at runtime so we need to change this into a named mutation
+
+18
+00:01:21,400 --> 00:01:25,460
+where we can receive the e-mail and the password as query variables.
+
+19
+00:01:25,720 --> 00:01:29,350
+So I'm going to clean out the entire cetacean I've got in here right now.
+
+20
+00:01:29,530 --> 00:01:32,200
+And as a matter of fact I'm just going to refresh the entire tool.
+
+21
+00:01:32,400 --> 00:01:37,630
+And we're going to start from scratch and make sure that the log of mutation is named so that it returns
+
+22
+00:01:37,860 --> 00:01:42,030
+or excuse me so that it can accept some number of query variables.
+
+23
+00:01:42,030 --> 00:01:44,260
+So let's get to it first.
+
+24
+00:01:44,370 --> 00:01:51,080
+Just as a quick reminder the mutation itself requires the email as a string and a password as a string.
+
+25
+00:01:51,130 --> 00:01:59,620
+So I will first define some query variables so we can test against all define an email of test at test
+
+26
+00:01:59,620 --> 00:02:04,630
+dot com and a password of password.
+
+27
+00:02:04,630 --> 00:02:08,910
+So again for me this is valid account information for the account that I created.
+
+28
+00:02:09,100 --> 00:02:12,530
+If you made some account with a different email and password.
+
+29
+00:02:12,580 --> 00:02:19,060
+Be sure to enter those in here because we do want to test this mutation and make sure that it runs successfully.
+
+30
+00:02:19,060 --> 00:02:25,030
+Now we can write our mutation which will be a named mutation so we can accept the query variables.
+
+31
+00:02:25,030 --> 00:02:27,870
+So we'll declare a mutation.
+
+32
+00:02:28,030 --> 00:02:34,170
+Say I want to declare mutation named log in and it's going to accept two separate variables.
+
+33
+00:02:34,600 --> 00:02:42,220
+First off we're going to get an e-mail field which would be a string and a password field which will
+
+34
+00:02:42,220 --> 00:02:50,650
+also be a string then we will name the actual mutation we want to run which is log in this mutation
+
+35
+00:02:50,680 --> 00:02:56,860
+accepts both an email which is going to come from the email query string that we accepted as an argument.
+
+36
+00:02:57,340 --> 00:02:59,200
+We're not query string but query variable.
+
+37
+00:02:59,200 --> 00:03:00,200
+Scuse me.
+
+38
+00:03:00,460 --> 00:03:06,520
+And password which is also going to come from the query variables and then in the response that we get
+
+39
+00:03:06,520 --> 00:03:10,450
+back we will get both the ID and the email like so.
+
+40
+00:03:10,890 --> 00:03:11,210
+OK.
+
+41
+00:03:11,260 --> 00:03:13,580
+So I think that this is looking pretty good.
+
+42
+00:03:13,600 --> 00:03:16,030
+I think we're about ready to give it a little test.
+
+43
+00:03:16,030 --> 00:03:22,350
+So I will attempt to log the user in and I appear to get back a valid ID and a valid email.
+
+44
+00:03:22,360 --> 00:03:26,830
+So I definitely suspect I feel like I can safely assume is what I should say.
+
+45
+00:03:26,830 --> 00:03:31,770
+I feel like I can safely assume that our mutation is working the way we expect.
+
+46
+00:03:31,810 --> 00:03:37,870
+So let's copy this whole thing will make a new mutation file and put this mutation directly into it.
+
+47
+00:03:39,780 --> 00:03:45,330
+So inside of my mutations directory I'll make a new file that's going to house this mutation called
+
+48
+00:03:45,590 --> 00:03:46,540
+loggin.
+
+49
+00:03:46,820 --> 00:03:50,700
+J.S. we've gone through this process many many times.
+
+50
+00:03:50,700 --> 00:03:54,990
+Now we first are going to import the GQ El helper.
+
+51
+00:03:55,240 --> 00:04:01,140
+We will call the GQ helper paste in the query and then make sure we export it as the default export
+
+52
+00:04:01,140 --> 00:04:02,170
+from this file.
+
+53
+00:04:02,490 --> 00:04:09,080
+So import GQ L from graph Q All tagged will export defaults.
+
+54
+00:04:09,150 --> 00:04:12,950
+GQ well put in the query string.
+
+55
+00:04:12,960 --> 00:04:16,820
+Scuse me the tactics and then paste the actual query.
+
+56
+00:04:16,840 --> 00:04:19,430
+That's twice I've mentioned Cleary's straight which is totally off.
+
+57
+00:04:19,470 --> 00:04:22,780
+My brain is clearly in a different spot right now.
+
+58
+00:04:23,300 --> 00:04:24,950
+OK this is looking pretty good.
+
+59
+00:04:24,960 --> 00:04:26,160
+I like it.
+
+60
+00:04:26,490 --> 00:04:28,170
+We've got our mutation put together.
+
+61
+00:04:28,370 --> 00:04:33,840
+So the last thing we have to do is wired up to our log in form and then we can worry about passing it
+
+62
+00:04:33,840 --> 00:04:39,600
+down as some type of callback or something like that to the actual Auth. form.
+
+63
+00:04:39,600 --> 00:04:48,080
+So inside of my log in form form we will import both the mutation and the log in mutation and the graph
+
+64
+00:04:48,110 --> 00:04:49,430
+you as a helper.
+
+65
+00:04:49,560 --> 00:05:02,920
+So import nutation from mutations log in and import graph Cuil from react Appollo.
+
+66
+00:05:03,030 --> 00:05:09,600
+Now I feel like I've not been entirely consistent with the name of imported queries and mutations.
+
+67
+00:05:09,600 --> 00:05:13,590
+Again feel free to call it either exactly what the mutation is called.
+
+68
+00:05:13,590 --> 00:05:17,960
+So in this case like maybe log in or just call it by the word nutation.
+
+69
+00:05:18,060 --> 00:05:24,240
+Many times when you make use of the mutation you might be passing it to an object where the key and
+
+70
+00:05:24,240 --> 00:05:30,460
+the value will end up being nutation And so by just importing these things as like queery or mutation.
+
+71
+00:05:30,480 --> 00:05:36,180
+I'm just kind of kind of thinking into the future about making use of these variables with yes 6 syntax
+
+72
+00:05:36,420 --> 00:05:39,130
+where I can condense it down to be just the key.
+
+73
+00:05:39,140 --> 00:05:42,900
+Or is it just a variable name and allow it to be expanded automatically.
+
+74
+00:05:42,900 --> 00:05:49,050
+To me the key and the value and you can see that in practice inside of the header J.S. file where I
+
+75
+00:05:49,050 --> 00:05:54,240
+imported this as queery because I knew that later on I was going to be making use of prefetch queries
+
+76
+00:05:54,480 --> 00:05:57,440
+which expected a variable called query.
+
+77
+00:05:57,450 --> 00:06:01,670
+Now again if you're importing multiple queries or multiple mutations.
+
+78
+00:06:01,840 --> 00:06:06,960
+Well then that is definitely when you're going to want to start thinking about naming it correctly so
+
+79
+00:06:06,960 --> 00:06:10,430
+something like log in mutation will be much more appropriate.
+
+80
+00:06:10,440 --> 00:06:14,190
+If I had multiple mutations inside of a single file.
+
+81
+00:06:15,090 --> 00:06:20,610
+Ok so now our last step is going to be to take the graph view all helper take the mutation and push
+
+82
+00:06:20,610 --> 00:06:22,870
+it up together with the log in form.
+
+83
+00:06:23,010 --> 00:06:30,390
+So at the very bottom take graft you will pass in the mutation and then the second set of parentheses
+
+84
+00:06:30,390 --> 00:06:32,400
+for the log and form itself.
+
+85
+00:06:33,070 --> 00:06:35,060
+OK so this is looking good.
+
+86
+00:06:35,070 --> 00:06:36,530
+The last thing we have to do.
+
+87
+00:06:36,720 --> 00:06:42,450
+Make sure that whenever the form is submitted inside of the off form we call the mutation that is now
+
+88
+00:06:42,450 --> 00:06:44,630
+available inside of this component.
+
+89
+00:06:44,670 --> 00:06:49,790
+So let's take a quick break and then we'll come back and add a little bit of a callback to the off form.
+

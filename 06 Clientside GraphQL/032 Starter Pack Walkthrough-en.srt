@@ -1,0 +1,356 @@
+1
+00:00:00,840 --> 00:00:06,560
+In the last section we cloned a starter project and installed some dependencies inside of it.
+
+2
+00:00:06,570 --> 00:00:12,000
+I took the liberty of opening up my code editor and cited that project directory so we can spend a little
+
+3
+00:00:12,000 --> 00:00:16,640
+bit of time to see what code we got included with this starter package.
+
+4
+00:00:17,340 --> 00:00:22,620
+Looking at the code inside of here you'll notice that we have both a client folder and a server folder
+
+5
+00:00:23,140 --> 00:00:28,580
+that client as you might imagine has all of its code located inside of this client folder.
+
+6
+00:00:28,800 --> 00:00:31,560
+So this is all the java script that we're going to write.
+
+7
+00:00:31,560 --> 00:00:37,250
+That has me served down to our users browser as a react single page application.
+
+8
+00:00:37,290 --> 00:00:39,520
+On the flip side is the server folder.
+
+9
+00:00:39,570 --> 00:00:45,360
+So this is where we're getting a lot of functionality in here in the project that we already clone down.
+
+10
+00:00:45,360 --> 00:00:48,970
+You'll notice that there is still a schema folder and a schema file.
+
+11
+00:00:49,020 --> 00:00:54,620
+If I open up the schema file however you'll notice that there is not a lot of code inside of here.
+
+12
+00:00:54,900 --> 00:01:01,080
+So I took the liberty of splitting out the schema file into four separate files inside of the schema
+
+13
+00:01:01,080 --> 00:01:01,980
+directory.
+
+14
+00:01:02,250 --> 00:01:08,160
+This helps keep from getting the schema file to just grow unboundedly and make sure that every piece
+
+15
+00:01:08,160 --> 00:01:13,530
+of functionality has its own little place that it lives inside of our schema folder and all walk through
+
+16
+00:01:13,530 --> 00:01:19,050
+the process of setting up our graphical server in such a way in the next section when we end up building
+
+17
+00:01:19,080 --> 00:01:20,950
+a full stack application.
+
+18
+00:01:21,150 --> 00:01:25,060
+But again I just want you to see that this is still a graph to L back end.
+
+19
+00:01:26,510 --> 00:01:31,320
+OK let's talk a little bit about the application that we're going to be making here.
+
+20
+00:01:31,730 --> 00:01:36,570
+So I'm going to pull up some diagrams some mockups for the application itself.
+
+21
+00:01:36,570 --> 00:01:42,610
+Our application is going to be in a word a song writing application.
+
+22
+00:01:42,630 --> 00:01:46,380
+The idea here is that we can create multiple songs.
+
+23
+00:01:46,380 --> 00:01:53,010
+So we might have a song index page where we can list out all the different songs for our application.
+
+24
+00:01:53,100 --> 00:01:57,840
+The purpose of a song is to hold a collection of lyrics.
+
+25
+00:01:58,020 --> 00:02:03,000
+So on the right hand side is a diagram of a song detail so you can imagine that if I went to one of
+
+26
+00:02:03,000 --> 00:02:11,610
+the songs in here like dogless refuge and clicked on it I might go to a song detail page on a song detail
+
+27
+00:02:11,610 --> 00:02:12,080
+page.
+
+28
+00:02:12,120 --> 00:02:15,420
+A user will see a collection of lyrics on the screen.
+
+29
+00:02:15,660 --> 00:02:21,680
+So the whole idea behind this application is kind of like a collaborative songwriting app.
+
+30
+00:02:22,080 --> 00:02:28,230
+Users can add more lyrics over time so we could use this as a text input right here and type in some
+
+31
+00:02:28,230 --> 00:02:35,910
+next long for next line for the song and then press enter and see it appear on the page after a song
+
+32
+00:02:36,000 --> 00:02:38,230
+or after a lyric has been submitted.
+
+33
+00:02:38,250 --> 00:02:42,580
+Users can then up those individual lines to say hey I really liked this line.
+
+34
+00:02:42,590 --> 00:02:45,580
+This is a good line for the song we should keep it around.
+
+35
+00:02:46,260 --> 00:02:50,090
+So this is the idea behind the application and it's what we're going to be building.
+
+36
+00:02:50,430 --> 00:02:54,420
+There's some parts to this application that are not actually showing on the screen and that has some
+
+37
+00:02:54,420 --> 00:03:00,510
+common elements you might expect like maybe a back button on here to take these or back to a list of
+
+38
+00:03:00,510 --> 00:03:06,630
+songs and also maybe a button to take you to a page where you can create a new song on the song index
+
+39
+00:03:06,630 --> 00:03:07,400
+page.
+
+40
+00:03:07,470 --> 00:03:12,700
+So there's an element or two that's kind of not reflected quite so well in this mock up right here.
+
+41
+00:03:12,780 --> 00:03:15,340
+But we can definitely add each of those in over time.
+
+42
+00:03:15,450 --> 00:03:18,520
+And you know we can definitely figure out those pieces.
+
+43
+00:03:18,840 --> 00:03:23,340
+Now the next part I want to talk to you about talked to you about is a little bit about the architecture.
+
+44
+00:03:23,400 --> 00:03:30,120
+So this is a diagram that we've seen more or less couple of times now in slightly different incarnations.
+
+45
+00:03:30,120 --> 00:03:34,600
+And I want to show you this diagram just to give you a better idea of how the back end is working.
+
+46
+00:03:36,310 --> 00:03:37,520
+We still have Express.
+
+47
+00:03:37,570 --> 00:03:39,010
+We still have graph.
+
+48
+00:03:39,160 --> 00:03:44,410
+And the graph Cuil server the graph a module it's already been put together will be serving down data
+
+49
+00:03:44,440 --> 00:03:45,650
+to the browser.
+
+50
+00:03:45,760 --> 00:03:50,470
+So this will be like a list of songs or a list of lyrics within a song.
+
+51
+00:03:50,920 --> 00:03:56,350
+There's also a well-packed server running in the background as well that I have very hot wired together
+
+52
+00:03:56,350 --> 00:03:58,480
+inside of the starter package.
+
+53
+00:03:58,480 --> 00:04:03,340
+So the well-packed server is what is responsible for taking all the client side re-act code that we're
+
+54
+00:04:03,340 --> 00:04:07,210
+going to be writing shipping it down to the browser.
+
+55
+00:04:07,360 --> 00:04:10,950
+The last piece of the puzzle is the actual database.
+
+56
+00:04:10,990 --> 00:04:17,470
+So this time around we are being served by data out of a real Mongo D-B database rather than having
+
+57
+00:04:17,500 --> 00:04:23,040
+a kind of fake data Jaison server or some fake data just sitting in memory.
+
+58
+00:04:23,050 --> 00:04:29,380
+So this is a very real database where we will actually persist all the different songs and all the different
+
+59
+00:04:29,380 --> 00:04:32,330
+lyrics that we create inside of our application.
+
+60
+00:04:32,470 --> 00:04:37,420
+The Mongo DBP database is not going to be hosted on our local machine.
+
+61
+00:04:37,420 --> 00:04:38,810
+You definitely can if you want to.
+
+62
+00:04:38,830 --> 00:04:40,340
+I want to throw that out there.
+
+63
+00:04:40,600 --> 00:04:45,910
+But all the setup that we're going to go through is going to need to set up a mongo DBI server hosted
+
+64
+00:04:45,910 --> 00:04:53,400
+for free by Mongul lab dot com Munjal lab is a service that host Mongo divi servers.
+
+65
+00:04:53,530 --> 00:04:57,700
+And usually you pay them just scads of money to host production.
+
+66
+00:04:57,850 --> 00:04:59,620
+DV databases for you.
+
+67
+00:04:59,650 --> 00:05:05,050
+And we do that because it really got a reputation for scalability quality up time all that kind of good
+
+68
+00:05:05,050 --> 00:05:05,800
+stuff.
+
+69
+00:05:05,800 --> 00:05:10,310
+But they do offer a free sandbox which is what we're going to be using.
+
+70
+00:05:10,510 --> 00:05:16,600
+Now again if you have Mongo D-B already installed on your local machine you can definitely use a local
+
+71
+00:05:16,600 --> 00:05:20,740
+copy of Mago D-B in this course we're using Mongo lab here.
+
+72
+00:05:20,740 --> 00:05:27,710
+Just because it really skips the entire mongered DV set up to step in this course which is really nice
+
+73
+00:05:27,720 --> 00:05:31,810
+you know we don't have to go through all that set up which we don't really want to do because hey again
+
+74
+00:05:31,810 --> 00:05:33,130
+this is a course about graphics.
+
+75
+00:05:33,160 --> 00:05:41,160
+Well not quite so much Mongo D-B so though one piece of set up we have to do for Monga lab.
+
+76
+00:05:41,240 --> 00:05:44,110
+Let's let's take a look at that really quick.
+
+77
+00:05:44,110 --> 00:05:49,510
+I'm going to open up my code editor and inside if you're going to find my server directory and then
+
+78
+00:05:49,540 --> 00:05:51,310
+open up the server.
+
+79
+00:05:51,340 --> 00:05:51,750
+Jay Yes.
+
+80
+00:05:51,790 --> 00:05:59,890
+File inside if you're on around like 10 or so you'll find a comment that says Replace with your Mungo
+
+81
+00:05:59,890 --> 00:06:00,250
+lab.
+
+82
+00:06:00,260 --> 00:06:01,220
+You are right.
+
+83
+00:06:01,520 --> 00:06:05,570
+So we're going to take a quick break but then when we come back we're going to go sign up for Mungo
+
+84
+00:06:05,570 --> 00:06:13,310
+lab and stick in our custom or very user specific I should say developer specific Mungo you are right
+
+85
+00:06:13,310 --> 00:06:19,880
+here which is going to be the connection string to your personal instance of mongered DBS server that
+
+86
+00:06:19,880 --> 00:06:21,800
+is hosted by Mongo lab.
+
+87
+00:06:22,070 --> 00:06:27,170
+So let's take a quick break and then come back and go sign up for Mungo lab and stick that connection
+
+88
+00:06:27,170 --> 00:06:28,860
+string right into this server.
+
+89
+00:06:28,940 --> 00:06:29,740
+Yes file.
+

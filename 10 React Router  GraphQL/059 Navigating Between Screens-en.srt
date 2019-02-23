@@ -1,0 +1,236 @@
+1
+00:00:01,020 --> 00:00:06,270
+We always need to be cognisant of making sure that our user is able to navigate around to all the different
+
+2
+00:00:06,270 --> 00:00:07,790
+pages on our Web site.
+
+3
+00:00:07,980 --> 00:00:13,830
+So we really can't assume that a user is always going to be manually typing into you or are like this.
+
+4
+00:00:13,830 --> 00:00:18,390
+As such we need to make sure that we is linked together the different pages in our product.
+
+5
+00:00:18,390 --> 00:00:22,830
+So in this section we're going to add in a little back button appear to take the user back to the list
+
+6
+00:00:22,830 --> 00:00:28,890
+of songs and then we will also modify our song list component to make sure that they can click on each
+
+7
+00:00:28,890 --> 00:00:33,330
+song and go to these songs respective song details screen.
+
+8
+00:00:33,330 --> 00:00:35,780
+So let's take care of both these challenges right now.
+
+9
+00:00:36,030 --> 00:00:40,680
+In both cases it's really just going to revolve around making use of the link tag from re-act router
+
+10
+00:00:40,710 --> 00:00:43,860
+because we really just want to do some simple navigation.
+
+11
+00:00:44,220 --> 00:00:55,410
+So inside of the song do a component at the very top I will import link from re-act router and then
+
+12
+00:00:55,410 --> 00:00:58,730
+inside of the render method right above the H3.
+
+13
+00:00:58,890 --> 00:01:03,580
+Or put a link tag with the text back.
+
+14
+00:01:03,810 --> 00:01:09,960
+And if anyone clicks on this thing I'm going to send them to my route route like so.
+
+15
+00:01:10,790 --> 00:01:13,420
+So let's do a quick test.
+
+16
+00:01:13,440 --> 00:01:13,720
+All right.
+
+17
+00:01:13,740 --> 00:01:20,010
+There's my back button and click back and it takes me back to my list of all the different songs I have
+
+18
+00:01:20,010 --> 00:01:21,750
+inside of my application.
+
+19
+00:01:21,750 --> 00:01:27,360
+Now once I'm back here I really want to make sure that my user has the ability to navigate to a song
+
+20
+00:01:27,360 --> 00:01:28,710
+detail page.
+
+21
+00:01:28,740 --> 00:01:31,690
+So ideally I would make the text right here clickable.
+
+22
+00:01:31,710 --> 00:01:35,120
+So a user can click on it and go to the detail page for.
+
+23
+00:01:35,190 --> 00:01:36,500
+Hello slim.
+
+24
+00:01:36,810 --> 00:01:40,090
+So we can take care of that inside of our song list component.
+
+25
+00:01:40,260 --> 00:01:46,500
+Back inside my code editor I will find my song list component here we go.
+
+26
+00:01:46,760 --> 00:01:52,770
+I'm already making use of the link tag inside of here so I don't have to import the link tag in here.
+
+27
+00:01:52,940 --> 00:01:54,780
+I'm going to scroll down just a little bit.
+
+28
+00:01:54,980 --> 00:02:01,490
+Here's the render song's function where we iterate through our list of songs and for each song we have
+
+29
+00:02:01,520 --> 00:02:05,110
+we generate one lie in show the title of the song.
+
+30
+00:02:05,450 --> 00:02:11,330
+So since I just want the title of the song to be clickable I will wrap it with a link tag.
+
+31
+00:02:12,320 --> 00:02:19,580
+So place a link around the title like so and then you need to think just a little bit about how we're
+
+32
+00:02:19,580 --> 00:02:20,300
+going to put this.
+
+33
+00:02:20,300 --> 00:02:21,470
+You are all together.
+
+34
+00:02:21,650 --> 00:02:26,730
+Remember we want to go to songs slash idea of our song.
+
+35
+00:02:26,960 --> 00:02:32,150
+So are ideas available as the variable ID inside of this map function.
+
+36
+00:02:32,150 --> 00:02:36,740
+I think that will use a little bit of E-6 template strings to form up the URL that we're going to visit
+
+37
+00:02:36,740 --> 00:02:37,310
+here.
+
+38
+00:02:37,610 --> 00:02:40,700
+So all say back ticks to form up the template string.
+
+39
+00:02:40,730 --> 00:02:43,190
+Again I can't can't stress it enough.
+
+40
+00:02:43,190 --> 00:02:52,280
+Make sure you are using tactics here and not single quotes and say songs and then the ID of the song
+
+41
+00:02:52,280 --> 00:02:54,300
+that you're trying to visit.
+
+42
+00:02:54,380 --> 00:02:59,660
+So this map function right here will run one time for every single song that we've fetched and we'll
+
+43
+00:02:59,960 --> 00:03:05,810
+create one different link tag for each different song each of which will point to a different you or
+
+44
+00:03:05,810 --> 00:03:08,800
+L inside of our application.
+
+45
+00:03:08,810 --> 00:03:09,770
+All right.
+
+46
+00:03:09,770 --> 00:03:15,470
+I think we're ready to test out some navigation so I need to go back over to my application will refresh
+
+47
+00:03:15,470 --> 00:03:19,260
+the page looks like everything is clickable now.
+
+48
+00:03:19,460 --> 00:03:20,850
+So go to trace no.
+
+49
+00:03:20,900 --> 00:03:23,020
+Looks good dog night.
+
+50
+00:03:23,270 --> 00:03:28,430
+Hello slim coffeecup oil and water bucket.
+
+51
+00:03:28,430 --> 00:03:28,830
+All right.
+
+52
+00:03:28,850 --> 00:03:30,440
+So this is looking pretty good.
+
+53
+00:03:30,440 --> 00:03:34,940
+I'm pretty pleased with how it's coming along now the next thing that we need to work on is to make
+
+54
+00:03:34,940 --> 00:03:41,270
+sure that once you're looking at a particular song users have the ability to create and add lyrics to
+
+55
+00:03:41,270 --> 00:03:44,820
+that particular song because remember that's what our whole application is all about.
+
+56
+00:03:44,840 --> 00:03:48,400
+We want our users to be able to add lyrics to a song.
+
+57
+00:03:48,680 --> 00:03:53,500
+So let's continue in the next section and we'll start working on the lyric create component that we
+
+58
+00:03:53,510 --> 00:03:55,920
+placed inside of the song detail.
+
+59
+00:03:56,170 --> 00:03:58,640
+So let's take care of that in just a moment.
+

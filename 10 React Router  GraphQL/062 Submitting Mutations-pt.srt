@@ -1,0 +1,552 @@
+1
+00:00:00,920 --> 00:00:05,490
+Na ltima seo, terminamos a mutao de letras e a testamos.
+
+2
+00:00:05,490 --> 00:00:10,080
+Testou-o dentro do grfico definitivamente parece estar funcionando adequadamente.
+
+3
+00:00:10,170 --> 00:00:15,300
+Ento, a ltima coisa que temos a fazer em torno desta mutao  ter certeza de que
+
+4
+00:00:15,330 --> 00:00:19,370
+importamos o GQ helper e tambm associamos a mutao  nossa classe de componente.
+
+5
+00:00:19,440 --> 00:00:23,130
+Primeiro comece importando nossos ajudantes no topo deste arquivo.
+
+6
+00:00:23,760 --> 00:00:26,690
+Ento, se isso no topo, vamos adicionar.
+
+7
+00:00:26,700 --> 00:00:30,560
+GQ bem do grfico Cuil tag.
+
+8
+00:00:30,900 --> 00:00:32,760
+consultas grficas diretamente no nosso cdigo Javascript.
+
+9
+00:00:38,400 --> 00:00:43,890
+E, em seguida, o grfico Cuil ajudante de novo, eu no posso mencionar o suficiente, porque realmente vale a
+
+10
+00:00:43,890 --> 00:00:49,020
+pena conhecer todas as diferentes bibliotecas com as quais estamos trabalhando e o grfico para ajudar ou
+
+11
+00:00:49,020 --> 00:00:54,960
+aqui  o que nos permite fazer uma consulta e Sandwich  junto com um componente e o ajudante GQ
+
+12
+00:00:54,960 --> 00:00:56,800
+ o que nos permite escrever
+
+13
+00:00:57,240 --> 00:00:59,230
+Ento, agora vamos fazer uso de ambos.
+
+14
+00:00:59,700 --> 00:01:01,960
+Bem, para ser sincero, ns fizemos muito o GQ aqui.
+
+15
+00:01:01,980 --> 00:01:06,520
+Ento, tudo o que temos a fazer  associar mutao com o componente para baixo na parte inferior.
+
+16
+00:01:06,710 --> 00:01:07,600
+Ento, vamos representar um grfico.
+
+17
+00:01:07,690 --> 00:01:17,350
+Bem, usaremos essa sintaxe funky e ento passaremos na mutao assim.
+
+18
+00:01:17,580 --> 00:01:18,010
+Tudo bem.
+
+19
+00:01:18,030 --> 00:01:19,580
+Ento, isso definitivamente est funcionando.
+
+20
+00:01:19,620 --> 00:01:20,880
+Apenas um ltimo passo.
+
+21
+00:01:20,910 --> 00:01:24,860
+Precisamos garantir que sempre que um usurio envie o formulrio.
+
+22
+00:01:24,870 --> 00:01:29,340
+Ento, aqui est nosso manipulador de eventos no momento sempre que o usurio envia o formulrio.
+
+23
+00:01:29,340 --> 00:01:34,320
+Eu quero ter certeza de que eu chamo a mutao que acabamos de associar a esse componente.
+
+24
+00:01:34,680 --> 00:01:39,860
+Ento, dentro daqui, usaremos a mesma sintaxe que usamos anteriormente para a mutao Callard.
+
+25
+00:01:39,910 --> 00:01:46,050
+Lembre-se sempre que associamos uma mutao com o componente, como fizemos aqui, obtemos
+
+26
+00:01:46,260 --> 00:01:52,530
+acesso a este processo mutar e, se chamarmos isso, ele executar esta mutao aqui.
+
+27
+00:01:52,600 --> 00:01:57,990
+Ento, dentro do formulrio, chamaremos este ponto mutate.
+
+28
+00:01:58,580 --> 00:02:04,280
+A mutao espera separar as variveis de consulta que acabamos de experimentar com o
+
+29
+00:02:04,290 --> 00:02:05,640
+interior do grfico.
+
+30
+00:02:05,640 --> 00:02:08,460
+Ento, vamos definir o objeto das variveis.
+
+31
+00:02:08,670 --> 00:02:15,030
+Ns vamos dizer que temos que dar a essa coisa uma quantidade de contedo e essa ID da msica tambm.
+
+32
+00:02:15,030 --> 00:02:18,430
+Ento, temos que preencher esses dois espaos em branco para que o contedo seja fcil.
+
+33
+00:02:18,480 --> 00:02:23,780
+O contedo vive dentro desse componente neste estado de contedo.
+
+34
+00:02:23,850 --> 00:02:29,850
+Ns estamos gerenciando ativamente esse pedao de estado dentro desse componente para que possamos colocar esse contedo de ponto
+
+35
+00:02:29,850 --> 00:02:32,550
+DOT e depois no esqueamos a vrgula l.
+
+36
+00:02:32,950 --> 00:02:34,870
+OK, isso parece bastante razovel.
+
+37
+00:02:34,920 --> 00:02:38,280
+Agora  um pouco mais desafiante a idia da msica.
+
+38
+00:02:38,400 --> 00:02:40,620
+Ns devemos dizer de alguma forma esta mutao.
+
+39
+00:02:40,740 --> 00:02:46,930
+Sim, quando voc faz essa letra certifique-se de que ela  associada a essa msica em particular.
+
+40
+00:02:47,160 --> 00:02:50,510
+Agora voc pode estar pensando, oh, no h problema, podemos apenas olhar para isso.
+
+41
+00:02:50,530 --> 00:02:55,380
+Este adereos inicia o objeto dos programas novamente e consegue a ideia da msica que estamos olhando.
+
+42
+00:02:55,650 --> 00:02:57,160
+Bem, no to fcil.
+
+43
+00:02:57,180 --> 00:03:02,760
+Isso entra em um pouco de conhecimento sobre o roteador re-agir e, como funciona, o roteador de
+
+44
+00:03:02,760 --> 00:03:07,280
+reativao s passa os parmetros de rota para o primeiro componente que ele processa.
+
+45
+00:03:07,440 --> 00:03:13,830
+Portanto, o Llyr cria est sendo Riette no processado pelo roteador de reativao, ele est sendo processado pelo componente
+
+46
+00:03:13,830 --> 00:03:15,060
+de detalhes da msica.
+
+47
+00:03:15,060 --> 00:03:22,470
+Ento, para ter certeza de que o componente de criao de letras aqui sabe como associar esse contedo a esta
+
+48
+00:03:22,470 --> 00:03:23,780
+msica determinada aqui.
+
+49
+00:03:23,850 --> 00:03:29,420
+Precisamos ter certeza de que ns passamos a identificao da msica da qual estamos trabalhando, desde a
+
+50
+00:03:29,550 --> 00:03:35,200
+msica, o componente em letras lricas, criando uma vez que passamos para baixo como um livro prop.
+
+51
+00:03:35,220 --> 00:03:38,050
+Temos acesso a ele na ID da msica.
+
+52
+00:03:38,610 --> 00:03:43,530
+Ento, vamos virar para o nosso componente de detalhes da msica e ns teremos certeza de que ns passamos
+
+53
+00:03:43,530 --> 00:03:46,560
+a msica Id como um suporte para que possamos conect-lo aqui.
+
+54
+00:03:46,970 --> 00:03:49,040
+Ento, voltei para trs sobre o detalhe da msica.
+
+55
+00:03:49,050 --> 00:03:50,690
+Aqui vamos ns.
+
+56
+00:03:51,100 --> 00:03:59,370
+de que eu passei a msica com a qual eu estou trabalhando para criar uma msica que Id vai vir dessas coisas.
+
+57
+00:03:59,370 --> 00:04:00,810
+Eu vou me certificar
+
+58
+00:04:00,820 --> 00:04:04,680
+Props Inicie programas dot Id like so.
+
+59
+00:04:04,710 --> 00:04:11,430
+Ento, tire a ID dos parmetros ou fora de voc ou El Paso para criar letras
+
+60
+00:04:11,430 --> 00:04:20,340
+como a propriedade chamada ID da msica e, ento, podemos voltar atrs sobre a msica criar e acessar isso com essa
+
+61
+00:04:20,430 --> 00:04:21,810
+msica de adio.
+
+62
+00:04:22,770 --> 00:04:23,580
+Tudo bem.
+
+63
+00:04:23,910 --> 00:04:26,330
+Isso  muito bonito.
+
+64
+00:04:26,340 --> 00:04:31,790
+Ento eu acho que estamos preparados para nos dar um pequeno teste apenas para garantir que possamos enviar algo.
+
+65
+00:04:31,980 --> 00:04:35,740
+Ns realmente no temos nenhuma maneira de mostrar todas essas letras diferentes na tela agora.
+
+66
+00:04:35,790 --> 00:04:40,380
+Voc sabe que no temos um componente para buscar a lista de letras e exibir para o usurio, mas
+
+67
+00:04:40,380 --> 00:04:43,890
+podemos, pelo menos, olhar para o nosso registro de solicitao de rede e verificar isso.
+
+68
+00:04:43,980 --> 00:04:44,320
+EST BEM.
+
+69
+00:04:44,340 --> 00:04:44,630
+Sim.
+
+70
+00:04:44,640 --> 00:04:48,430
+Uma mutao foi enviada e parece no estar falhando.
+
+71
+00:04:48,540 --> 00:04:51,860
+Assim, pelo menos, ser capaz de test-lo dessa maneira.
+
+72
+00:04:51,960 --> 00:04:54,060
+Eu vou voltar para o meu editor de cdigo.
+
+73
+00:04:54,060 --> 00:04:55,770
+Vou abrir meu aplicativo.
+
+74
+00:04:55,800 --> 00:04:57,460
+Aqui est.
+
+75
+00:04:57,660 --> 00:05:04,080
+Eu tenho meu desenvolvedor de Chrome, o Townsell aberto com o pedido de rede para abrir e filtrar
+
+76
+00:05:04,080 --> 00:05:05,550
+por SH so solicitaes.
+
+77
+00:05:05,550 --> 00:05:06,530
+Ento, atualize a pgina.
+
+78
+00:05:06,540 --> 00:05:10,120
+Agora recebemos o primeiro pedido de rascunho.
+
+79
+00:05:10,140 --> 00:05:15,040
+O objetivo deste aqui  obter apenas o ttulo da msica para aparecer na tela.
+
+80
+00:05:15,270 --> 00:05:16,780
+Certifique-se de que tudo esteja realmente claro.
+
+81
+00:05:16,800 --> 00:05:23,040
+Eu vou limpar o fim de sesso, de vez em quando, vou colocar minha letra que
+
+82
+00:05:29,400 --> 00:05:30,910
+ser uma boa noite.
+
+83
+00:05:31,260 --> 00:05:33,520
+Era o que fosse.
+
+84
+00:05:33,900 --> 00:05:34,360
+Tudo bem.
+
+85
+00:05:34,460 --> 00:05:37,410
+Pressione Enter para envi-lo.
+
+86
+00:05:37,410 --> 00:05:39,740
+Recebo meu grfico Kubler Quest surgindo.
+
+87
+00:05:39,750 --> 00:05:41,050
+Ns podemos clicar nele.
+
+88
+00:05:41,760 --> 00:05:47,340
+Se eu clicar na aba dos cabealhos, eu posso rolar para baixo e eu vou ver a consulta aqui.
+
+89
+00:05:47,340 --> 00:05:49,020
+Ento, aqui est a consulta.
+
+90
+00:05:49,740 --> 00:05:50,350
+Tudo bem.
+
+91
+00:05:50,400 --> 00:05:51,120
+Verifique tudo.
+
+92
+00:05:51,120 --> 00:05:52,530
+Bl bl bl.
+
+93
+00:05:52,980 --> 00:05:53,970
+Sim, parece razovel.
+
+94
+00:05:53,970 --> 00:05:54,950
+Isso  ele mesmo.
+
+95
+00:05:54,960 --> 00:06:00,270
+E, em seguida, as variveis que esto sendo enviadas ao longo so no queer skimming esto no objeto de
+
+96
+00:06:00,270 --> 00:06:00,850
+variveis aqui.
+
+97
+00:06:00,990 --> 00:06:04,640
+Ento o contedo e o Sardi esto sendo devidamente enviados.
+
+98
+00:06:04,680 --> 00:06:09,330
+Esta  uma ferramenta fantstica aqui em baixo, a propsito, para solucionar problemas em torno de suas mutaes
+
+99
+00:06:09,330 --> 00:06:12,560
+e certifique-se de que est enviando os dados corretos para o seu servidor.
+
+100
+00:06:12,570 --> 00:06:15,750
+Portanto, sempre uma boa idia para verificar as variveis objeto aqui.
+
+101
+00:06:15,920 --> 00:06:19,670
+Certifique-se de que o seu aplicativo de reao esteja enviando o contedo certo.
+
+102
+00:06:19,730 --> 00:06:22,430
+Ento, parece que o pedido est sendo emitido corretamente.
+
+103
+00:06:22,430 --> 00:06:28,010
+E ento, se olharmos a pr-visualizao, definitivamente recebemos uma resposta muito boa aqui.
+
+104
+00:06:28,220 --> 00:06:33,340
+Ento eu disse que era bom, eu vou dizer uma boa noite.
+
+105
+00:06:34,140 --> 00:06:37,500
+Eu no sou um compositor.
+
+106
+00:06:37,620 --> 00:06:38,590
+Tudo bem.
+
+107
+00:06:38,820 --> 00:06:40,890
+Bem, o advogado definitivamente se associou a isso.
+
+108
+00:06:40,890 --> 00:06:41,860
+Isso definitivamente funciona.
+
+109
+00:06:41,880 --> 00:06:43,020
+Estou feliz com isso.
+
+110
+00:06:43,020 --> 00:06:47,820
+A ltima coisa que quero salientar  que eu realmente espero que, depois de enviar o
+
+111
+00:06:47,820 --> 00:06:50,370
+formulrio aqui, o formulrio definitivamente deve ser esclarecido.
+
+112
+00:06:50,370 --> 00:06:53,930
+Ento eu realmente esperaria que o texto fosse assim.
+
+113
+00:06:54,000 --> 00:06:58,410
+Podemos faz-lo adicionando um pouco de chamada de estado definida dentro do nosso componente.
+
+114
+00:06:58,530 --> 00:07:04,800
+Ento, se eu voltar para o meu manipulador de eventos, lembre-se de que minha mutao retorna uma promessa.
+
+115
+00:07:04,800 --> 00:07:13,020
+Ento, se encarmarmos em um ponto, ento, a declarao e pass-lo, uma funo disfuncional ser executada depois que a
+
+116
+00:07:13,020 --> 00:07:14,920
+mutao for executada com sucesso.
+
+117
+00:07:14,940 --> 00:07:22,740
+Ento, dentro de aqui, posso dizer que isso no configura o estado e que meu contedo seja uma string vazia assim.
+
+118
+00:07:22,940 --> 00:07:28,200
+E isso significa que depois que a mutao for concluda com xito, a entrada ser automaticamente apagada e
+
+119
+00:07:28,350 --> 00:07:30,150
+ser muito bvio para o usurio.
+
+120
+00:07:30,180 --> 00:07:32,640
+Ok, parece que isso foi submetido corretamente.
+
+121
+00:07:33,150 --> 00:07:35,170
+Ento, vamos fazer uma prova mais uma vez.
+
+122
+00:07:35,460 --> 00:07:39,990
+Eu vou atualizar o navegador, todos pensam em outra letra muito inteligente.
+
+123
+00:07:40,200 --> 00:07:44,380
+A lua estava brilhante enquanto Smidt estava.
+
+124
+00:07:44,460 --> 00:07:47,130
+A mutao foi bem sucedida.
+
+125
+00:07:47,150 --> 00:07:52,590
+E ento, minha entrada automaticamente desaparece, o que provavelmente  exatamente o que nossos usurios esperariam.
+
+126
+00:07:52,590 --> 00:07:58,020
+Uma outra coisa que s quer l fora desde a apresentao da mutao leva uma quantidade de tempo diferente
+
+127
+00:07:58,020 --> 00:07:58,550
+de zero.
+
+128
+00:07:58,560 --> 00:08:01,100
+Voc sabe que  preciso algum tempo para que essa coisa seja completada.
+
+129
+00:08:01,100 --> 00:08:06,210
+Voc sabe que pode ser um pouco irritante para os seus usurios terem que esperar que, como frao
+
+130
+00:08:06,210 --> 00:08:07,730
+de segundo, vejam o texto desaparecer.
+
+131
+00:08:07,890 --> 00:08:11,270
+Ento, se voc quiser limpar instantaneamente esse assunto, isso  totalmente bom.
+
+132
+00:08:11,280 --> 00:08:17,160
+Basta tomar a cor de estado definida aqui apenas nesta parte aqui e voc pode simplesmente
+
+133
+00:08:17,220 --> 00:08:19,340
+mov-la diretamente da promessa de mutao.
+
+134
+00:08:19,470 --> 00:08:24,510
+Ento, se voc fizer isso aqui, isso vai garantir que a entrada de texto automaticamente, instantaneamente,
+
+135
+00:08:24,510 --> 00:08:28,960
+aclara o que pode ser um comportamento um pouco mais previsvel para seus usurios.
+
+136
+00:08:30,530 --> 00:08:30,920
+EST BEM.
+
+137
+00:08:30,980 --> 00:08:36,230
+Ento eu acho que  sobre isso nesta nutao Vamos comear a mostrar uma lista de letras para
+
+138
+00:08:36,230 --> 00:08:37,830
+nosso usurio na prxima seo.
+

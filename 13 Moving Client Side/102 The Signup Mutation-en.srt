@@ -1,0 +1,508 @@
+1
+00:00:00,840 --> 00:00:05,280
+In the last section we finished working on our blog and form component and we had said that we need
+
+2
+00:00:05,280 --> 00:00:10,140
+to both start working on our sign up form and also make sure that we take care of the case in which
+
+3
+00:00:10,140 --> 00:00:16,830
+a user successfully authenticates with our application now to handle the case in a user which has user
+
+4
+00:00:16,830 --> 00:00:18,270
+successfully logged in.
+
+5
+00:00:18,300 --> 00:00:23,870
+We're going to navigate them to some imaginary dashboard component that we have not yet created.
+
+6
+00:00:23,880 --> 00:00:29,220
+So if you recall we had said that once a user had logged in we would show something called like Dashboard
+
+7
+00:00:29,510 --> 00:00:33,470
+would have a message that says welcome back or something similar to that.
+
+8
+00:00:34,020 --> 00:00:37,370
+Our sign of form is going to navigate to the same component as well.
+
+9
+00:00:37,410 --> 00:00:43,170
+So I'm kind of thinking that we'll first put together our sign up form over here and then we'll worry
+
+10
+00:00:43,170 --> 00:00:48,690
+about putting together the dashboard component and an update both the sign in and the sign up forms
+
+11
+00:00:48,750 --> 00:00:53,970
+to navigate over to the dashboard after the user successfully authenticates.
+
+12
+00:00:53,970 --> 00:00:59,220
+So let's start with our sign up form which should be pretty quick to get through and then we'll start
+
+13
+00:00:59,220 --> 00:01:01,340
+working on the dashboard.
+
+14
+00:01:02,430 --> 00:01:04,120
+So we got a ton of files open right now.
+
+15
+00:01:04,140 --> 00:01:07,320
+I'm going to close a couple of them.
+
+16
+00:01:07,560 --> 00:01:07,880
+OK.
+
+17
+00:01:07,920 --> 00:01:10,250
+I feel so much better.
+
+18
+00:01:10,800 --> 00:01:12,210
+So let's get started.
+
+19
+00:01:12,210 --> 00:01:18,000
+We've got on a log in form we're going to make a sign up form and in practice it's going to look nearly
+
+20
+00:01:18,000 --> 00:01:20,690
+identical to this to the log in form.
+
+21
+00:01:20,850 --> 00:01:24,750
+So I'm going to make a new component called sign up form.
+
+22
+00:01:24,890 --> 00:01:26,470
+Yes.
+
+23
+00:01:27,060 --> 00:01:29,660
+One thing I want to mention about the nomenclature here.
+
+24
+00:01:29,790 --> 00:01:32,400
+I've got sign up with the lower case you.
+
+25
+00:01:32,580 --> 00:01:37,260
+Some people like to use UPPER CASE YOU FOR up whatever you do.
+
+26
+00:01:37,260 --> 00:01:42,150
+Just make sure you stay consistent and you don't some in some places have Kapolei you and then in other
+
+27
+00:01:42,150 --> 00:01:46,070
+locations lower case you just make sure you stay consistent.
+
+28
+00:01:46,090 --> 00:01:46,340
+OK.
+
+29
+00:01:46,350 --> 00:01:52,420
+So the form itself to sign a user up is going to look very darn similar to the log and form that we
+
+30
+00:01:52,420 --> 00:01:53,750
+were just working on.
+
+31
+00:01:53,790 --> 00:01:58,680
+So we're going to put together a class based component.
+
+32
+00:01:58,680 --> 00:02:03,540
+We're going to have a Errors piece of state to track all the ears with signing user up.
+
+33
+00:02:03,630 --> 00:02:10,170
+We're going to show our form which is our reusable piece of code that we've been handling around and
+
+34
+00:02:10,170 --> 00:02:15,130
+we'll make sure that whenever the off form gets submitted it has a callback to invoke to run the sign
+
+35
+00:02:15,130 --> 00:02:19,710
+up nutation to create a new user and authenticate them.
+
+36
+00:02:19,710 --> 00:02:23,580
+So we've got a pretty good amount of typing ahead of us and I think that we've also got pretty good
+
+37
+00:02:23,580 --> 00:02:24,600
+direction.
+
+38
+00:02:24,930 --> 00:02:27,450
+So let's start getting through it.
+
+39
+00:02:27,510 --> 00:02:36,150
+We'll start by importing react and the component base class and then we will put down our boiler plate
+
+40
+00:02:36,760 --> 00:02:40,490
+for the sign up form itself.
+
+41
+00:02:40,880 --> 00:02:42,680
+We'll do our render method again.
+
+42
+00:02:42,680 --> 00:02:49,280
+I think that right now we can just start off with a simple div which we will replace in time with or
+
+43
+00:02:49,280 --> 00:02:54,770
+add to in time with the form and maybe an age 3 header at the top as well.
+
+44
+00:02:54,860 --> 00:02:57,650
+Then at the bottom we will export default.
+
+45
+00:02:58,040 --> 00:03:02,530
+Sign up form code.
+
+46
+00:03:02,990 --> 00:03:08,130
+I think maybe a good place to start will be to import the auth form and show it inside of this things
+
+47
+00:03:08,130 --> 00:03:09,240
+render method.
+
+48
+00:03:09,570 --> 00:03:19,270
+So let's import the Auth. form from the form and make sure that we show it inside the thing like so.
+
+49
+00:03:19,410 --> 00:03:19,810
+OK.
+
+50
+00:03:19,830 --> 00:03:20,640
+That's a good start.
+
+51
+00:03:20,640 --> 00:03:21,930
+That's an easy one.
+
+52
+00:03:22,050 --> 00:03:26,700
+We can add on and 3 as well to let the user know that this form that they're looking up is all about
+
+53
+00:03:26,700 --> 00:03:28,470
+signing up.
+
+54
+00:03:28,590 --> 00:03:35,700
+It's all put in H-3 with sign up in there and maybe before we do anything else we should start worrying
+
+55
+00:03:35,700 --> 00:03:40,870
+about the mutation that we need to write to to sign a user up to our application.
+
+56
+00:03:40,890 --> 00:03:45,890
+So this is another case where we've already written the mutation but we didn't write it in a name mutation
+
+57
+00:03:46,090 --> 00:03:47,100
+sort of way.
+
+58
+00:03:47,100 --> 00:03:52,170
+So we need to make sure that we write the name mutation that except some number of query variables then
+
+59
+00:03:52,170 --> 00:03:58,650
+we'll add it to a nutation file in our mutations folder and then we'll add it to the sign up form component.
+
+60
+00:03:59,010 --> 00:04:08,150
+So let's first switch over to graphical insider browser and we'll update this mutation to create a new
+
+61
+00:04:08,150 --> 00:04:08,600
+user
+
+62
+00:04:11,530 --> 00:04:12,160
+as usual.
+
+63
+00:04:12,160 --> 00:04:18,110
+I would really like to take a glance at our docs panel and look at our nutation object in here.
+
+64
+00:04:18,250 --> 00:04:22,190
+And just remember that you know it's called sign up that's our mutation name.
+
+65
+00:04:22,270 --> 00:04:26,330
+It accepts an e-mail and a password to authenticate our user.
+
+66
+00:04:26,650 --> 00:04:31,290
+So we will start off by defining are two variables.
+
+67
+00:04:31,500 --> 00:04:38,140
+I'll do an email and notice that I'm going to give it a different e-mail than any one that I've used
+
+68
+00:04:38,140 --> 00:04:45,570
+previously because I do want to make sure that this succeeds the first time through our password password
+
+69
+00:04:45,750 --> 00:04:46,390
+as well.
+
+70
+00:04:47,740 --> 00:04:53,850
+See how we can do our named the mutation of sign up we're going to specify that it expects to query
+
+71
+00:04:54,130 --> 00:04:58,600
+variables the e-mail and the password and both them are going to be strings.
+
+72
+00:04:58,900 --> 00:05:06,990
+So we all accept e-mail which would be a string and password which would be a string.
+
+73
+00:05:07,290 --> 00:05:09,600
+Then we can define the actual mutation itself.
+
+74
+00:05:09,690 --> 00:05:11,620
+So here sign up.
+
+75
+00:05:11,640 --> 00:05:15,150
+It's going to receive a email query variable.
+
+76
+00:05:15,150 --> 00:05:21,720
+Coming from the email query variable like so and it's also going to receive a password variable coming
+
+77
+00:05:21,720 --> 00:05:22,700
+from the password.
+
+78
+00:05:22,860 --> 00:05:23,980
+Variable.
+
+79
+00:05:24,660 --> 00:05:32,110
+And then again we'll ask for the ID and the email of the user who has created.
+
+80
+00:05:32,500 --> 00:05:38,310
+OK so I think that I really expect this to run successfully the first time that I executed because I
+
+81
+00:05:38,310 --> 00:05:42,320
+have a brand new e-mail address in here that I've never used before.
+
+82
+00:05:42,540 --> 00:05:49,640
+So I'm going to run this mutation and I successfully get back to the ID and email of this new user.
+
+83
+00:05:49,860 --> 00:05:51,230
+So this is looking pretty good.
+
+84
+00:05:51,480 --> 00:05:57,000
+I think that we can move this mutation over to a new mutation file and then important and wired up to
+
+85
+00:05:57,000 --> 00:05:58,660
+one of our components.
+
+86
+00:05:58,740 --> 00:06:06,010
+So I'm going a copy of the mutation I'm going to create my new mutation file which I'm going to call
+
+87
+00:06:06,010 --> 00:06:17,330
+sign up J.S. will import the GQ El helper from graft UL tag and then export defaults.
+
+88
+00:06:17,350 --> 00:06:24,880
+GQ well with our tactics and I successfully called it got tix this time not query string which is just
+
+89
+00:06:24,880 --> 00:06:26,570
+fantastic.
+
+90
+00:06:27,040 --> 00:06:27,560
+OK.
+
+91
+00:06:27,670 --> 00:06:33,100
+So we are importing the graft you all tagged helper which allows us to define mutations in queries within
+
+92
+00:06:33,100 --> 00:06:34,930
+our files.
+
+93
+00:06:34,930 --> 00:06:39,270
+We called a tool helper and we're defining it with a query.
+
+94
+00:06:39,550 --> 00:06:43,910
+I would just about set it with a back to 6 string.
+
+95
+00:06:44,680 --> 00:06:47,620
+I don't know if you've seen queries doing whatever.
+
+96
+00:06:47,800 --> 00:06:50,710
+And then we put the mutation itself inside of here.
+
+97
+00:06:51,760 --> 00:06:55,570
+So I think we're just about ready to import this into the sign up form.
+
+98
+00:06:55,780 --> 00:07:00,430
+We will wire it up to the sign up form and then I think that's a pretty good time to take a quick break
+
+99
+00:07:00,430 --> 00:07:01,740
+after that.
+
+100
+00:07:01,780 --> 00:07:07,720
+So I need to go back up to the sign up form we need to import both the mutation and the graph Kule helper
+
+101
+00:07:07,750 --> 00:07:10,010
+from the re-act Apollo library.
+
+102
+00:07:10,330 --> 00:07:11,520
+So import graphics.
+
+103
+00:07:11,590 --> 00:07:22,390
+Well from re-act Apollo and we'll import nutation from the mutations directory and I want to sign up
+
+104
+00:07:22,450 --> 00:07:26,690
+mutation in particular.
+
+105
+00:07:26,700 --> 00:07:34,020
+All right very last step we'll make sure that the very bottom we call the graphical helper passing the
+
+106
+00:07:34,020 --> 00:07:35,130
+mutation.
+
+107
+00:07:35,520 --> 00:07:39,340
+Second set of parentheses for the sign up form.
+
+108
+00:07:39,480 --> 00:07:40,450
+OK.
+
+109
+00:07:40,650 --> 00:07:43,780
+So this is looking like we're going down the right track here.
+
+110
+00:07:43,830 --> 00:07:48,720
+You know I've got to tell you I can only imagine that as we keep doing these same exact steps over and
+
+111
+00:07:48,720 --> 00:07:52,350
+over you're probably thinking oh my gosh discraft you all stuff is so boring.
+
+112
+00:07:52,650 --> 00:07:57,030
+We just keep on writing mutations and wiring them up to components that we just keep on doing over and
+
+113
+00:07:57,030 --> 00:07:57,940
+over again.
+
+114
+00:07:58,260 --> 00:08:01,630
+Well I can tell you what that's like one of the best things about graft.
+
+115
+00:08:01,680 --> 00:08:07,800
+Well we are just doing the same exact thing over and over and over and we don't have to worry about
+
+116
+00:08:07,830 --> 00:08:13,710
+all these one off edge cases that we sometimes have to do with other frameworks out there with graft.
+
+117
+00:08:13,720 --> 00:08:18,840
+Well we're just doing the same exact series of steps over and over again which I think is really just
+
+118
+00:08:18,870 --> 00:08:24,690
+fantastic because it allows us to put together these components in these applications much faster than
+
+119
+00:08:24,690 --> 00:08:28,750
+if we had to worry about every last edge case of how we're going to handle this stuff.
+
+120
+00:08:29,010 --> 00:08:31,410
+So my opinion Hey that's kind of a good thing.
+
+121
+00:08:31,410 --> 00:08:33,980
+I think it's a good thing.
+
+122
+00:08:34,470 --> 00:08:37,740
+So we've got our mutation hooked up to the sign of form.
+
+123
+00:08:37,740 --> 00:08:40,370
+Let's take a quick break and then we'll come back.
+
+124
+00:08:40,500 --> 00:08:43,650
+We'll define a callback to pass down into the form.
+
+125
+00:08:43,770 --> 00:08:47,610
+We'll also take care of a little bit of error handling and then we'll test this thing out inside the
+
+126
+00:08:47,610 --> 00:08:48,470
+browser.
+
+127
+00:08:48,480 --> 00:08:50,440
+SOSIA in just a second.
+

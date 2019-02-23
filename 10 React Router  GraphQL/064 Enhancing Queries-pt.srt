@@ -1,0 +1,396 @@
+1
+00:00:00,800 --> 00:00:03,680
+Ns conseguimos alguns andaimes para nossa lista de letras juntas.
+
+2
+00:00:03,680 --> 00:00:08,440
+Ento, ns precisamos comear a pensar um pouco mais sobre onde ele vai pegar a lista de letras.
+
+3
+00:00:08,810 --> 00:00:14,480
+Ento, para dar uma olhada em nossa maquete, temos o componente de detalhes da msica que atualmente est
+
+4
+00:00:14,480 --> 00:00:18,470
+fazendo o equley para buscar a msica que estamos mostrando na tela.
+
+5
+00:00:18,470 --> 00:00:22,470
+E ento tambm obtivemos a lista de letras como um filho do detalhe da msica.
+
+6
+00:00:22,640 --> 00:00:30,200
+Ento, voc pode estar pensando bem, vamos apenas passar a identificao da msica dada para a lista de letras e depois adicionar uma consulta 
+
+7
+00:00:30,230 --> 00:00:34,680
+lista de letras para ir e buscar todas as letras em torno dessa msica.
+
+8
+00:00:35,060 --> 00:00:40,220
+de detalhes da msica para tambm pedir uma lista de todas as letras associadas a ele.
+
+9
+00:00:40,220 --> 00:00:47,450
+Essa seria definitivamente uma opo vivel, mas acho que o que pode ser um pouco mais til  se aprimorarmos o equador
+
+10
+00:00:47,450 --> 00:00:52,860
+Ento lembre-se do detalhe da nossa msica agora est fazendo uso da msica fecche Querrey.
+
+11
+00:00:52,940 --> 00:00:58,700
+Ento, aqui est a primeira msica Querrey, ela alcana uma msica muito particular e nos d apenas
+
+12
+00:00:58,760 --> 00:01:01,160
+o ID e o ttulo para ele.
+
+13
+00:01:01,160 --> 00:01:07,540
+Ento, ao invs de fazer uma consulta completamente separada, podemos melhorar isso aqui e tambm pedir
+
+14
+00:01:07,550 --> 00:01:10,530
+todas as letras associadas a essa msica.
+
+15
+00:01:10,790 --> 00:01:16,910
+Ento, isso faz parte de onde o enxerto comear a ficar muito agradvel na frente, quando comeamos a
+
+16
+00:01:17,180 --> 00:01:19,700
+perceber que queremos mais e mais dados.
+
+17
+00:01:19,760 --> 00:01:22,930
+No necessariamente temos que ir e fazer outra consulta.
+
+18
+00:01:23,120 --> 00:01:28,610
+Ns podemos apenas aprimorar as consultas que j temos adicionando mais algumas propriedades para buscar como de
+
+19
+00:01:30,120 --> 00:01:31,200
+costume,  claro.
+
+20
+00:01:31,200 --> 00:01:36,260
+Gostaria realmente de testar nossa consulta em primeiro plano.
+
+21
+00:01:36,450 --> 00:01:41,430
+Ento, vamos fazer um teste rpido da consulta primeiro certifique-se de que podemos obter as letras e todas as
+
+22
+00:01:41,790 --> 00:01:46,230
+coisas associadas e, em seguida, vamos adicionar novamente na consulta dentro deste componente da msica fecche.
+
+23
+00:01:46,530 --> 00:01:48,360
+Ento vou pegar minha consulta existente aqui.
+
+24
+00:01:48,390 --> 00:01:55,110
+apenas a sintaxe da consulta e vamos transferi-la para grfico e executar a consulta.
+
+25
+00:01:55,110 --> 00:01:57,570
+Vai copiar a coisa inteira
+
+26
+00:01:57,740 --> 00:02:05,210
+Ento eu vou col-lo em como, ento eu no preciso fazer uso da varivel de consulta de contedo mais.
+
+27
+00:02:05,270 --> 00:02:09,990
+Ento eu quero tirar isso, mas eu preciso de uma idia para fornecer  consulta.
+
+28
+00:02:10,250 --> 00:02:13,420
+Ento eu vou dizer OK aqui  a idia que voc pode usar aqui.
+
+29
+00:02:13,990 --> 00:02:17,210
+Voc percebe que eu ainda tenho um ID vlido na minha tela.
+
+30
+00:02:17,210 --> 00:02:22,580
+Se voc no possui mais IDs ou se voc eliminou as msicas ou algo assim, voc sempre pode
+
+31
+00:02:22,580 --> 00:02:28,220
+escrever outra consulta para imprimir todas as IDs diferentes de suas msicas e depois copiar colar uma aqui.
+
+32
+00:02:30,080 --> 00:02:33,950
+Ento, vamos executar esta consulta agora mesmo para garantir que tudo funcione conforme o esperado.
+
+33
+00:02:34,340 --> 00:02:37,450
+Ok, eu obtive minha identificao e meu ttulo de volta.
+
+34
+00:02:37,820 --> 00:02:46,120
+Ento, se eu olhar para o meu tipo de msica dentro do meu navegador de documentao, aqui est minha msica.
+
+35
+00:02:46,130 --> 00:02:53,900
+Digite-o tem uma associao de letras para que eu possa pedir uma coleo de letras em todos os diferentes contedos da ID,
+
+36
+00:02:53,900 --> 00:02:57,120
+todo esse tipo de coisas boas associadas a elas.
+
+37
+00:02:57,230 --> 00:03:04,640
+Ento, vou dizer que v buscar a msica e tambm me d todas as letras que pertenam a ela e me diga o
+
+38
+00:03:04,640 --> 00:03:11,630
+ID e o contedo de cada uma dessas letras para que possamos executar esta consulta aqui e agora voltemos muito til a
+
+39
+00:03:12,080 --> 00:03:17,290
+idia da msica, a cano do ttulo e todas as diferentes letras que esto associadas a ela.
+
+40
+00:03:17,300 --> 00:03:24,440
+jeito que esperamos, ento vamos tomar essa consulta atualizada e ns a transferiremos de volta ao nosso arquivo de consulta para atualiz-lo.
+
+41
+00:03:24,440 --> 00:03:27,220
+Ento, isso definitivamente parece que est funcionando do
+
+42
+00:03:27,320 --> 00:03:29,510
+Ento voltei para o meu arquivo de consulta.
+
+43
+00:03:29,510 --> 00:03:30,270
+Aqui vamos ns.
+
+44
+00:03:30,530 --> 00:03:35,360
+Eu vou dizer Certifique-se de me dar uma lista de todas as letras diferentes e eu quero o ID de
+
+45
+00:03:35,360 --> 00:03:35,950
+cada um.
+
+46
+00:03:36,050 --> 00:03:42,170
+E eu tambm quero o contedo de cada um no caso de voc estar curioso porque eu estou pedindo o ID
+
+47
+00:03:42,170 --> 00:03:48,340
+aqui novamente, lembre-se de que, sempre que renderizamos uma lista de componentes e reagimos, devemos fornecer uma chave para cada item.
+
+48
+00:03:48,470 --> 00:03:55,490
+a identificao da maioria dos registros de qualquer maneira quando pedimos especialmente uma lista de dados.
+
+49
+00:03:55,490 --> 00:03:58,060
+E, na prtica, geralmente acabamos adicionando
+
+50
+00:03:58,130 --> 00:03:58,530
+EST BEM.
+
+51
+00:03:58,580 --> 00:03:59,920
+Ento, isso parece muito bom.
+
+52
+00:04:00,170 --> 00:04:02,610
+Eu vou salvar a msica fecche aqui.
+
+53
+00:04:02,660 --> 00:04:05,920
+Ento, agora modificamos a consulta de busca de msicas.
+
+54
+00:04:06,290 --> 00:04:11,620
+Ento eu espero que na minha msica detalhe um componente que est fazendo uso da msica fecche.
+
+55
+00:04:11,660 --> 00:04:16,470
+Lembre-se que isso  o que faz uso da msica fecche aqui dentro de uma msica.
+
+56
+00:04:16,670 --> 00:04:25,460
+msica que tiramos dos dados do estoque de suporte e passar as letras da cano Daut para baixo na lista de letras como um suporte.
+
+57
+00:04:25,460 --> 00:04:27,420
+Agora posso olhar para a Ento, novamente, todo o processo de pensamento
+
+58
+00:04:27,620 --> 00:04:32,390
+aqui  que no precisamos arbitrariamente apenas continuar adicionando mais e mais consultas  nossa aplicao.
+
+59
+00:04:32,390 --> 00:04:34,620
+Ns sempre podemos modificar uma consulta existente e
+
+60
+00:04:34,640 --> 00:04:40,820
+depois passar dados dessa consulta para baixo em algum componente filho que  exatamente o que estamos fazendo agora com nossa lista de letras.
+
+61
+00:04:41,090 --> 00:04:46,730
+Ento, eu vou tirar minhas letras desculpas, separadas por um
+
+62
+00:04:46,730 --> 00:04:50,420
+segundo e pegar algumas dessas letras.
+
+63
+00:04:53,140 --> 00:04:58,940
+Isso parece melhor.
+
+64
+00:04:59,110 --> 00:05:00,580
+como uma letra chamada.
+
+65
+00:05:00,580 --> 00:05:06,550
+Ento, olhe para a msica, pegue a coleo de letras e passe para a lista de letras
+
+66
+00:05:06,610 --> 00:05:08,230
+Ento, agora, somos tudo o que temos a fazer  voltar para a nossa lista de letras.
+
+67
+00:05:08,230 --> 00:05:11,920
+Vamos mapear essas letras de msica pop estpidas e podemos imprimir uma vida para cada letra.
+
+68
+00:05:11,920 --> 00:05:19,480
+Ento volte para a lista de letras.
+
+69
+00:05:20,290 --> 00:05:21,940
+Aqui estamos.
+
+70
+00:05:22,060 --> 00:05:23,170
+Eu vou fazer um mtodo auxiliar para renderizar essa lista e eu irei chamar sua letra de render como assim.
+
+71
+00:05:23,260 --> 00:05:32,870
+Ento, devolva isso.
+
+72
+00:05:32,930 --> 00:05:34,820
+Letras de Stuck.
+
+73
+00:05:35,120 --> 00:05:36,780
+Eu vou mapear essa lista.
+
+74
+00:05:36,820 --> 00:05:38,500
+E para cada
+
+75
+00:05:38,680 --> 00:05:46,780
+letra nica que tenho, vou produzir um elemento simples aqui ou um pedao de GSX.
+
+76
+00:05:46,780 --> 00:05:48,640
+Agora voc notar que eu estou passando em toda a letra.
+
+77
+00:05:48,640 --> 00:05:51,350
+Ns realmente nos preocupamos com a propriedade de id e a propriedade de contedo da prpria letra.
+
+78
+00:05:51,460 --> 00:05:56,270
+Ento, eu me sinto bastante confortvel com a mudana de tal
+
+79
+00:05:56,410 --> 00:06:03,100
+desestruturao em vez disso, usando um conjunto de pais e, em seguida, um conjunto de aparelhos
+
+80
+00:06:03,100 --> 00:06:10,330
+de apoio curly e s pedirei o ID e a propriedade de contedo fora de cada letra.
+
+81
+00:06:10,330 --> 00:06:12,910
+Agora, dentro daqui, podemos gerar o nosso aliado.
+
+82
+00:06:13,300 --> 00:06:18,250
+O Ally conter o contedo e lhe dar o id de chave para
+
+83
+00:06:18,250 --> 00:06:26,110
+que o illai parea realmente agradvel. Ns tambm vamos adicionar um nome de classe exatamente como fizemos por outras listas.
+
+84
+00:06:26,110 --> 00:06:30,900
+Usamos um nome de classe do item de coleo e, em seguida, completamos todo o estilo CSSA.
+
+85
+00:06:30,970 --> 00:06:37,570
+Eu tambm modificarei a UL dentro do nosso mtodo de renderizao, adicionando um nome de classe de coleo.
+
+86
+00:06:37,570 --> 00:06:45,090
+Ento, novamente, ambos os nomes das classes esto vindo do estilo de design do material que j esto.
+
+87
+00:06:45,130 --> 00:06:49,870
+Isso j est includo dentro do nosso projeto inicial.
+
+88
+00:06:49,870 --> 00:06:53,480
+Tudo bem, acho que estamos prontos para um teste.
+
+89
+00:06:54,430 --> 00:06:56,740
+Ento eu vou voltar para o
+
+90
+00:06:57,040 --> 00:07:04,750
+meu navegador puxar meu aplicativo de volta aberto ou atualizar a pgina e eu exibo minha lista de letras na tela.
+
+91
+00:07:04,750 --> 00:07:07,760
+Agora eu definitivamente sinto que o estilo pode no estar
+
+92
+00:07:07,950 --> 00:07:13,690
+correto aqui, ento eu vou dar uma olhada no estilo e ter certeza de que ele esteja configurado corretamente.
+
+93
+00:07:13,690 --> 00:07:16,960
+Eu tenho um nome de classe de item de
+
+94
+00:07:16,970 --> 00:07:22,320
+coleo e coleo, tentamos fazer um zoom por um segundo, porque eu estou amplamente ampliado.
+
+95
+00:07:22,330 --> 00:07:23,350
+OK, ento talvez precisemos
+
+96
+00:07:23,740 --> 00:07:28,660
+de um pouco de reviso no estilo aqui, porque novamente ele deve parecer um pouco melhor do que isso.
+
+97
+00:07:28,660 --> 00:07:29,880
+Ento, vamos dar uma
+
+98
+00:07:30,040 --> 00:07:33,970
+rpida pausa, volte na prxima seo e abordaremos um pouco de estilo tambm.
+
+99
+00:07:34,000 --> 00:07:34,980
+&nbsp;
+

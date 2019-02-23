@@ -1,0 +1,356 @@
+1
+00:00:00,840 --> 00:00:06,560
+Na ltima seo, ns clonamos um projeto inicial e instalamos algumas dependncias dentro dele.
+
+2
+00:00:06,570 --> 00:00:12,000
+Eu tomei a liberdade de abrir meu editor de cdigo e citei o diretrio do projeto para que
+
+3
+00:00:12,000 --> 00:00:16,640
+possamos passar um pouco de tempo para ver o cdigo que inclumos com esse pacote inicial.
+
+4
+00:00:17,340 --> 00:00:22,620
+Olhando para o cdigo dentro daqui, voc notar que temos uma pasta de cliente e uma pasta de
+
+5
+00:00:23,140 --> 00:00:28,580
+servidor que o cliente, como voc pode imaginar, possui todo o cdigo localizado dentro desta pasta de clientes.
+
+6
+00:00:28,800 --> 00:00:31,560
+Ento, este  todo o script do java que vamos escrever.
+
+7
+00:00:31,560 --> 00:00:37,250
+Isso me serviu para o navegador de usurios como um aplicativo de pgina nica reativa.
+
+8
+00:00:37,290 --> 00:00:39,520
+Por outro lado,  a pasta do servidor.
+
+9
+00:00:39,570 --> 00:00:45,360
+Ento,  aqui que estamos recebendo muita funcionalidade aqui no projeto que j clonamos.
+
+10
+00:00:45,360 --> 00:00:48,970
+Voc notar que ainda h uma pasta de esquema e um arquivo de esquema.
+
+11
+00:00:49,020 --> 00:00:54,620
+Se eu abrir o arquivo de esquema, porm voc notar que no h muito cdigo dentro daqui.
+
+12
+00:00:54,900 --> 00:01:01,080
+Ento eu tomei a liberdade de dividir o arquivo de esquema em quatro arquivos separados dentro do
+
+13
+00:01:01,080 --> 00:01:01,980
+diretrio do esquema.
+
+14
+00:01:02,250 --> 00:01:08,160
+arquivo de esquema simplesmente cresa sem limites e certifique-se de que cada funcionalidade tenha seu prprio lugar onde ele
+
+15
+00:01:08,160 --> 00:01:13,530
+mora dentro de nossa pasta de esquema e todos caminham atravs do processo de configurao de nosso
+
+16
+00:01:13,530 --> 00:01:19,050
+servidor grfico de tal maneira em na prxima seo quando acabarmos construindo uma aplicao de pilha cheia.
+
+17
+00:01:19,080 --> 00:01:20,950
+Isso ajuda a evitar que o
+
+18
+00:01:21,150 --> 00:01:25,060
+Mas, novamente, eu s quero que voc veja que este ainda  um grfico para L back-end.
+
+19
+00:01:26,510 --> 00:01:31,320
+OK, vamos falar um pouco sobre o aplicativo que vamos fazer aqui.
+
+20
+00:01:31,730 --> 00:01:36,570
+Ento, eu vou fazer alguns diagramas algumas maquetes para o prprio aplicativo.
+
+21
+00:01:36,570 --> 00:01:42,610
+Nosso aplicativo ser uma palavra um aplicativo de escrita de msica.
+
+22
+00:01:42,630 --> 00:01:46,380
+A idia aqui  que podemos criar vrias msicas.
+
+23
+00:01:46,380 --> 00:01:53,010
+Ento, podemos ter uma pgina de ndice de msica onde podemos listar todas as msicas diferentes para nossa aplicao.
+
+24
+00:01:53,100 --> 00:01:57,840
+O objetivo de uma msica  manter uma coleo de letras.
+
+25
+00:01:58,020 --> 00:02:03,000
+Ento, no lado direito, h um diagrama de detalhes de uma msica para que voc possa imaginar que,
+
+26
+00:02:03,000 --> 00:02:11,610
+se eu fosse a uma das msicas aqui como um refgio desajeitado e clicando nela, eu poderia ir a uma pgina de detalhes da msica em uma pgina de detalhes da
+
+27
+00:02:11,610 --> 00:02:12,080
+msica.
+
+28
+00:02:12,120 --> 00:02:15,420
+Um usurio ver uma coleo de letras na tela.
+
+29
+00:02:15,660 --> 00:02:21,680
+Portanto, toda a idia por trs desse aplicativo  como um aplicativo colaborativo de composio composta.
+
+30
+00:02:22,080 --> 00:02:28,230
+Os usurios podem adicionar mais letras ao longo do tempo para que possamos usar isso como uma entrada de texto aqui
+
+31
+00:02:28,230 --> 00:02:35,910
+e digitar o prximo tempo para a prxima linha para a msica e, em seguida, pressione enter e veja que aparece na pgina aps uma msica
+
+32
+00:02:36,000 --> 00:02:38,230
+ou depois que uma letra foi submetido.
+
+33
+00:02:38,250 --> 00:02:42,580
+Os usurios podem ento montar essas linhas individuais para dizer que eu realmente gostei dessa linha.
+
+34
+00:02:42,590 --> 00:02:45,580
+Esta  uma boa linha para a msica, devemos mant-la ao redor.
+
+35
+00:02:46,260 --> 00:02:50,090
+Ento, esta  a idia por trs da aplicao e  o que vamos construir.
+
+36
+00:02:50,430 --> 00:02:54,420
+H algumas partes para esta aplicao que na verdade no esto mostrando na tela e
+
+37
+00:02:54,420 --> 00:03:00,510
+que tem alguns elementos comuns que voc pode esperar, como talvez um boto de trs aqui para levar estes ou de volta para
+
+38
+00:03:00,510 --> 00:03:06,630
+uma lista de msicas e tambm talvez um boto para lev-lo a um pgina onde voc pode criar uma nova msica na pgina
+
+39
+00:03:06,630 --> 00:03:07,400
+do ndice de msicas.
+
+40
+00:03:07,470 --> 00:03:12,700
+Ento, h um ou dois elementos que no so to bem refletidos nesta maquete aqui mesmo.
+
+41
+00:03:12,780 --> 00:03:15,340
+Mas definitivamente podemos adicionar cada uma dessas pessoas ao longo do tempo.
+
+42
+00:03:15,450 --> 00:03:18,520
+E voc sabe que definitivamente podemos descobrir essas peas.
+
+43
+00:03:18,840 --> 00:03:23,340
+Agora, a prxima parte com a qual vou conversar com voc sobre falar sobre voc  um pouco sobre a arquitetura.
+
+44
+00:03:23,400 --> 00:03:30,120
+Ento, este  um diagrama que vimos mais ou menos algumas vezes agora em encarnaes ligeiramente diferentes.
+
+45
+00:03:30,120 --> 00:03:34,600
+E eu quero mostrar-lhe este diagrama apenas para lhe dar uma idia melhor de como o back-end est funcionando.
+
+46
+00:03:36,310 --> 00:03:37,520
+Ainda temos Express.
+
+47
+00:03:37,570 --> 00:03:39,010
+Ainda temos grfico.
+
+48
+00:03:39,160 --> 00:03:44,410
+servidor Cuil, o grfico, um mdulo que j foi colocado, estar servindo dados baixos para o navegador.
+
+49
+00:03:44,440 --> 00:03:45,650
+E o grfico do
+
+50
+00:03:45,760 --> 00:03:50,470
+Ento, isso ser como uma lista de msicas ou uma lista de letras dentro de uma msica.
+
+51
+00:03:50,920 --> 00:03:56,350
+H tambm um servidor bem embalado que funciona em segundo plano, alm disso, que eu tenho muito
+
+52
+00:03:56,350 --> 00:03:58,480
+quente conectados juntos dentro do pacote inicial.
+
+53
+00:03:58,480 --> 00:04:03,340
+Ento, o servidor bem embalado  o que  responsvel por levar todo o cdigo do
+
+54
+00:04:03,340 --> 00:04:07,210
+retalho do lado do cliente que estaremos escrevendo enviando-o para o navegador.
+
+55
+00:04:07,360 --> 00:04:10,950
+A ltima pea do quebra-cabea  o banco de dados atual.
+
+56
+00:04:10,990 --> 00:04:17,470
+vez de ter um tipo de servidor de Jason de dados falsos ou alguns dados falsos apenas sentados na memria.
+
+57
+00:04:17,500 --> 00:04:23,040
+Ento, desta vez, estamos sendo atendidos por dados de um banco de dados real do Mongo D-B, em
+
+58
+00:04:23,050 --> 00:04:29,380
+Ento, este  um banco de dados muito real onde realmente vamos persistir todas as msicas diferentes e todas
+
+59
+00:04:29,380 --> 00:04:32,330
+as diferentes letras que criamos dentro da nossa aplicao.
+
+60
+00:04:32,470 --> 00:04:37,420
+O banco de dados DBO Mongo no ser hospedado em nossa mquina local.
+
+61
+00:04:37,420 --> 00:04:38,810
+Voc definitivamente pode, se quiser.
+
+62
+00:04:38,830 --> 00:04:40,340
+Eu quero jogar isso l fora.
+
+63
+00:04:40,600 --> 00:04:45,910
+Mas toda a configurao que vamos passar vai precisar configurar um servidor DBI mongo hospedado
+
+64
+00:04:45,910 --> 00:04:53,400
+gratuitamente pelo laboratrio Munjal com ponto de laboratrio Mongul. O Munjal Lab  um servio que hospeda servidores Mongo divi.
+
+65
+00:04:53,530 --> 00:04:57,700
+E geralmente voc paga-lhes apenas um pouco de dinheiro para hospedar a produo.
+
+66
+00:04:57,850 --> 00:04:59,620
+Bases de dados DV para voc.
+
+67
+00:04:59,650 --> 00:05:05,050
+E ns fazemos isso porque realmente conseguiu uma reputao de qualidade de escalabilidade durante todo esse tipo de
+
+68
+00:05:05,050 --> 00:05:05,800
+coisas boas.
+
+69
+00:05:05,800 --> 00:05:10,310
+Mas eles oferecem uma caixa de areia gratuita, que  o que vamos usar.
+
+70
+00:05:10,510 --> 00:05:16,600
+Agora, novamente se voc tiver o Mongo D-B j instalado em sua mquina local, voc pode usar uma
+
+71
+00:05:16,600 --> 00:05:20,740
+cpia local de Mago D-B neste curso, estamos usando Mongo Lab aqui.
+
+72
+00:05:20,740 --> 00:05:27,710
+que no precisamos passar por tudo o que configuramos, o que realmente no queremos fazer porque oi novamente isso  um curso sobre grficos.
+
+73
+00:05:27,720 --> 00:05:31,810
+S porque realmente ignora toda a DV criada para entrar neste curso, o que
+
+74
+00:05:31,810 --> 00:05:33,130
+ realmente bom, voc sabe
+
+75
+00:05:33,160 --> 00:05:41,160
+Bem, no muito Mongo D-B, ento, apesar de uma pea de montagem, temos que fazer para o laboratrio Monga.
+
+76
+00:05:41,240 --> 00:05:44,110
+Vamos ver isso muito rpido.
+
+77
+00:05:44,110 --> 00:05:49,510
+Eu vou abrir meu editor de cdigo e dentro se voc for encontrar meu diretrio do servidor
+
+78
+00:05:49,540 --> 00:05:51,310
+e depois abrir o servidor.
+
+79
+00:05:51,340 --> 00:05:51,750
+Jay Sim.
+
+80
+00:05:51,790 --> 00:05:59,890
+para dentro, se voc estiver por perto, como 10, voc encontrar um comentrio que diz: Substitua pelo seu laboratrio Mungo.
+
+81
+00:05:59,890 --> 00:06:00,250
+Arquive
+
+82
+00:06:00,260 --> 00:06:01,220
+Voc est certo.
+
+83
+00:06:01,520 --> 00:06:05,570
+Ento, vamos fazer uma pausa rpida, mas quando voltarmos, vamos nos inscrever
+
+84
+00:06:05,570 --> 00:06:13,310
+no laboratrio Mungo e ficar no nosso personalizado ou muito especfico para o usurio, devo dizer que o Mungo especfico do desenvolvedor est
+
+85
+00:06:13,310 --> 00:06:19,880
+aqui mesmo, o que est indo para seja a seqncia de conexo para sua instncia pessoal do servidor DBS
+
+86
+00:06:19,880 --> 00:06:21,800
+que est hospedado pelo laboratrio Mongo.
+
+87
+00:06:22,070 --> 00:06:27,170
+Ento, vamos fazer uma pausa rpida e depois voltar e ir inscrever-se no laboratrio Mungo e colar essa
+
+88
+00:06:27,170 --> 00:06:28,860
+cadeia de conexo diretamente neste servidor.
+
+89
+00:06:28,940 --> 00:06:29,740
+Sim arquivo.
+

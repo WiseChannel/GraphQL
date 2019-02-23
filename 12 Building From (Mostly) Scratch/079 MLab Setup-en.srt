@@ -1,0 +1,208 @@
+1
+00:00:00,670 --> 00:00:05,810
+We you spent a lot of time talking about different approaches of handling authentication with graphics.
+
+2
+00:00:05,820 --> 00:00:10,710
+Well at the end of the day we agreed that going with a couple approach would probably make more sense
+
+3
+00:00:10,710 --> 00:00:14,850
+for the app that we're going to work on right now because I think it's just slightly more technically
+
+4
+00:00:14,850 --> 00:00:20,190
+challenging and I would like to show you an example of some of the really complex sides of graft.
+
+5
+00:00:20,220 --> 00:00:26,280
+Well as opposed to kinda copping out and saying oh yeah handling authentication separately is the best
+
+6
+00:00:26,280 --> 00:00:27,110
+way to go.
+
+7
+00:00:27,210 --> 00:00:31,450
+And we don't really get to experience tying authentication with graphics at all.
+
+8
+00:00:32,090 --> 00:00:32,580
+OK.
+
+9
+00:00:32,640 --> 00:00:36,900
+So in this section we're going talk a little bit about the different types and mutations that I think
+
+10
+00:00:36,900 --> 00:00:41,970
+that we'll need for application and then we'll start working on the first mutation or type or whatever
+
+11
+00:00:41,970 --> 00:00:43,830
+we decide we need to make.
+
+12
+00:00:43,830 --> 00:00:46,080
+There is one less piece of set up I want to take care of.
+
+13
+00:00:46,080 --> 00:00:55,560
+However recall that inside of our project if we open up our server server got G-S file we have to get
+
+14
+00:00:55,560 --> 00:00:58,490
+a mongo lab instance to throw in here.
+
+15
+00:00:58,530 --> 00:01:03,120
+So I want to do that sign up piece really quick or make that new database piece really quick and then
+
+16
+00:01:03,120 --> 00:01:08,550
+we can move onto the authentication stuff and we won't have to worry about any set up code and anything
+
+17
+00:01:08,550 --> 00:01:09,830
+like that in the future.
+
+18
+00:01:10,140 --> 00:01:17,010
+So let's open up Mongul lab inside of our browser and we're going to get a new you or else for a longer
+
+19
+00:01:17,070 --> 00:01:25,830
+instance it's going to navigate to Mungo lab dot com or just in lab it redirects there anyways and I'm
+
+20
+00:01:25,830 --> 00:01:28,970
+going to create a new Mongo D-B deployment.
+
+21
+00:01:31,110 --> 00:01:36,390
+Once a year we've gone through these settings before I want to make sure that I have AWOS selected I'm
+
+22
+00:01:36,390 --> 00:01:41,740
+going to make sure that my region is Amazon US East no matter where you live in the in the world I need
+
+23
+00:01:41,760 --> 00:01:43,450
+make sure I have that selected.
+
+24
+00:01:43,680 --> 00:01:50,220
+We'll go to a single node and then we'll select the free sandbox and we can scroll all the way down
+
+25
+00:01:50,220 --> 00:01:51,110
+to the bottom.
+
+26
+00:01:51,240 --> 00:01:52,690
+Give it a database name.
+
+27
+00:01:52,800 --> 00:01:59,910
+I need to call my database just off short for authentication and then I'll create the new deployment.
+
+28
+00:02:00,180 --> 00:02:03,510
+And as usual this is usually pretty darn fast.
+
+29
+00:02:03,690 --> 00:02:05,020
+And Rigaud it looks good.
+
+30
+00:02:05,280 --> 00:02:08,200
+So we can open up the new database that was just created
+
+31
+00:02:12,560 --> 00:02:17,130
+and then grab the new user Numi users Tabaret here.
+
+32
+00:02:17,390 --> 00:02:23,210
+So let's make our new user to access the database mislike the users tab and then the add database user
+
+33
+00:02:23,210 --> 00:02:23,920
+button.
+
+34
+00:02:23,990 --> 00:02:28,430
+And then again we need to turn a little bit of configuration here so I'm going to go with my tried and
+
+35
+00:02:28,430 --> 00:02:35,010
+true Steven and password and I'm going to make sure that this is not a read only user.
+
+36
+00:02:35,030 --> 00:02:38,500
+So that is not going to be selected Well click Create
+
+37
+00:02:42,760 --> 00:02:43,190
+cool.
+
+38
+00:02:43,210 --> 00:02:44,720
+Here's my new user.
+
+39
+00:02:45,100 --> 00:02:48,800
+And then I can zoom in here for just a second.
+
+40
+00:02:49,000 --> 00:02:50,550
+Grab the database.
+
+41
+00:02:50,560 --> 00:02:54,670
+You or I right at the top if I can select it.
+
+42
+00:02:54,670 --> 00:02:55,710
+There we go.
+
+43
+00:02:55,710 --> 00:03:03,190
+I'm going to copy it and we'll flip back over to our code editor find the Mungo you are i variable inside
+
+44
+00:03:03,230 --> 00:03:04,720
+of the server J file.
+
+45
+00:03:04,860 --> 00:03:12,830
+I'm going to paste it in and make sure that I replace the DV user and D-B password with my entered username
+
+46
+00:03:12,830 --> 00:03:14,900
+and password that I just created.
+
+47
+00:03:16,990 --> 00:03:17,490
+Cool.
+
+48
+00:03:17,550 --> 00:03:18,360
+Looks good.
+
+49
+00:03:18,410 --> 00:03:22,140
+We've got our you are for our Mongo lab instance.
+
+50
+00:03:22,220 --> 00:03:22,560
+OK.
+
+51
+00:03:22,580 --> 00:03:26,870
+Let's take a quick break come back and talk about the queries and mutations that we're going to need
+
+52
+00:03:26,870 --> 00:03:28,480
+inside of our application.
+

@@ -1,0 +1,536 @@
+1
+00:00:00,810 --> 00:00:03,080
+We've got our log in form on the screen right now.
+
+2
+00:00:03,210 --> 00:00:08,910
+I want to make sure that we have a separate component called off form that is going to render the actual
+
+3
+00:00:08,910 --> 00:00:12,130
+form that the user is going to type their input into.
+
+4
+00:00:12,150 --> 00:00:17,700
+I mean to start off by creating a new component inside of my components directory and I get a call this
+
+5
+00:00:18,390 --> 00:00:19,840
+off form.
+
+6
+00:00:22,730 --> 00:00:23,090
+OK.
+
+7
+00:00:23,120 --> 00:00:25,640
+So again this would be a pretty straightforward component.
+
+8
+00:00:25,670 --> 00:00:32,470
+It's going to house a simple form that's going to show some details or associated inputs to the user.
+
+9
+00:00:32,630 --> 00:00:39,800
+We'll start off by importing react and the Component class from the re-act library and then we'll define
+
+10
+00:00:39,800 --> 00:00:42,580
+the actual form.
+
+11
+00:00:42,590 --> 00:00:47,380
+So art form extends component will define the render method again.
+
+12
+00:00:47,380 --> 00:00:50,200
+Gee that's getting awfully familiar isn't it.
+
+13
+00:00:50,510 --> 00:00:56,520
+And then inside of there will place the return tag and a little bit of default GSX for right now.
+
+14
+00:00:56,520 --> 00:01:03,140
+So I just want to show a form tag and then at the very bottom we will explore default Auth. form.
+
+15
+00:01:03,440 --> 00:01:05,000
+OK so this is looking pretty good.
+
+16
+00:01:05,220 --> 00:01:08,720
+Now let's think about what's going to go on inside this form.
+
+17
+00:01:08,720 --> 00:01:14,470
+We need to place a label and an input for both the email and the password fields.
+
+18
+00:01:15,050 --> 00:01:20,390
+Now as a user types inside of each of these fields we're not going to be instantly calling into mutation
+
+19
+00:01:20,420 --> 00:01:22,680
+or any query or anything like that.
+
+20
+00:01:22,760 --> 00:01:28,880
+We're going to use component levels state to keep track of the inputs that the user is modifying.
+
+21
+00:01:28,880 --> 00:01:33,800
+Now if you're not familiar with the redux form or redux at all you might be thinking Well Stephen isn't
+
+22
+00:01:33,800 --> 00:01:36,100
+this a good use case for using redux.
+
+23
+00:01:36,360 --> 00:01:39,030
+Well you know we're doing a very simple form here.
+
+24
+00:01:39,140 --> 00:01:45,350
+No other component really needs to make use of the content of this form beyond the parent to it which
+
+25
+00:01:45,350 --> 00:01:46,750
+is the log in form.
+
+26
+00:01:46,790 --> 00:01:50,140
+So I really don't think that this is a good use case for using redux.
+
+27
+00:01:50,150 --> 00:01:56,760
+I think that this is entirely a use case for react and react level to component level States.
+
+28
+00:01:57,320 --> 00:02:00,590
+So we're going to have two pieces of state inside of this component.
+
+29
+00:02:00,590 --> 00:02:02,440
+The email and the password.
+
+30
+00:02:02,660 --> 00:02:08,180
+And as the user updates each individual input that we're going to show here we'll update those two pieces
+
+31
+00:02:08,180 --> 00:02:09,120
+of state.
+
+32
+00:02:09,470 --> 00:02:18,140
+So let's for first define our component level state and then we'll put together the actual form.
+
+33
+00:02:18,680 --> 00:02:26,210
+So in the constructor we will receive our prop's object and we'll initialize our state first by pulling
+
+34
+00:02:26,210 --> 00:02:27,470
+super with props.
+
+35
+00:02:27,620 --> 00:02:33,530
+And then the actual state initialization of this dot state and we're going to have an initial state
+
+36
+00:02:33,680 --> 00:02:38,450
+of an email of empty string and a password of empty string like so
+
+37
+00:02:41,780 --> 00:02:44,410
+now we can start working on the form itself.
+
+38
+00:02:44,430 --> 00:02:49,580
+So in the form we are going to use just a little bit of styling from materialized.
+
+39
+00:02:49,630 --> 00:02:53,980
+SS I'm going to first wrap it with a div
+
+40
+00:02:58,190 --> 00:03:02,050
+that has a class name of row.
+
+41
+00:03:02,330 --> 00:03:08,780
+And again this is a little bit of using styling from the materialized CSSA framework on the form itself
+
+42
+00:03:08,870 --> 00:03:12,450
+allowed a class name of call and S for.
+
+43
+00:03:12,830 --> 00:03:18,290
+So between the div that I just added and the class name with call and as for that's going to limit the
+
+44
+00:03:18,290 --> 00:03:19,770
+width of the form itself.
+
+45
+00:03:19,790 --> 00:03:23,720
+So the form is not going to try to spend the entire width of the entire page.
+
+46
+00:03:23,780 --> 00:03:26,480
+It's going to be just a smaller subsection of the page.
+
+47
+00:03:26,480 --> 00:03:31,330
+So again this is really just for handling a little bit of layout of the form.
+
+48
+00:03:31,790 --> 00:03:40,610
+Then inside the form will declare a div with a class name of input field the input field the class name
+
+49
+00:03:40,670 --> 00:03:45,840
+is how materialized the SS handles a lot of the styling around form elements themselves.
+
+50
+00:03:46,040 --> 00:03:52,210
+So if we place a label tag inside of the div and an input tag inside the device will be use both styled
+
+51
+00:03:52,220 --> 00:04:01,730
+very nicely so we can add in the label the first label will show the email field and we'll show an input
+
+52
+00:04:01,730 --> 00:04:02,510
+tag.
+
+53
+00:04:02,870 --> 00:04:07,380
+We're going to come back to the input in just a second and hook it up to our component level state.
+
+54
+00:04:07,460 --> 00:04:13,400
+For right now we'll just leave it as an input tag and worry about the onchange handlers in just a moment.
+
+55
+00:04:13,400 --> 00:04:19,860
+First we'll take care of the password input as well so we can do both of them at the same time.
+
+56
+00:04:19,970 --> 00:04:20,250
+OK.
+
+57
+00:04:20,270 --> 00:04:24,430
+So we'll have a class name and here again of input field.
+
+58
+00:04:27,080 --> 00:04:28,370
+And then a label
+
+59
+00:04:30,980 --> 00:04:36,940
+for password and an input on that one as well.
+
+60
+00:04:37,520 --> 00:04:37,810
+OK.
+
+61
+00:04:37,820 --> 00:04:43,790
+So in both cases here we need to make sure that the input is receiving its value from the respective
+
+62
+00:04:43,790 --> 00:04:44,880
+piece of state.
+
+63
+00:04:45,020 --> 00:04:49,580
+And then whenever a user changes the individual input we need to make sure that we add an event handler
+
+64
+00:04:49,580 --> 00:04:50,360
+as well.
+
+65
+00:04:50,630 --> 00:04:55,640
+So let's take care of the e-mail input first and then we'll do the exact same thing to the password
+
+66
+00:04:55,640 --> 00:04:57,290
+one as well.
+
+67
+00:04:57,290 --> 00:05:02,920
+So first we'll tell the input that it needs to get its value from this state DOT e-mail.
+
+68
+00:05:03,350 --> 00:05:08,570
+And whenever someone makes a change to this thing I don't think that we really need a separate event
+
+69
+00:05:08,570 --> 00:05:12,590
+handler or a separate helper function to handle the update.
+
+70
+00:05:12,590 --> 00:05:17,870
+I think we can just put a helper function as an arrow function directly in here and this compact our
+
+71
+00:05:17,870 --> 00:05:19,460
+code just a little bit.
+
+72
+00:05:19,550 --> 00:05:24,900
+So we're going to receive an event object that is going to represent as letter e.
+
+73
+00:05:25,580 --> 00:05:33,830
+And whenever someone makes a change the input we will call this set States and say that the new e-mail
+
+74
+00:05:34,310 --> 00:05:38,190
+will be the target value like so.
+
+75
+00:05:38,750 --> 00:05:41,970
+So as a user types we've called set state.
+
+76
+00:05:41,990 --> 00:05:47,720
+We update the email that causes the component to reach render and the input will be updated with the
+
+77
+00:05:47,720 --> 00:05:49,520
+new value of this outstate.
+
+78
+00:05:49,550 --> 00:05:57,190
+Email geg we can now repeat the same exact thing with our password input as well.
+
+79
+00:05:57,260 --> 00:06:05,270
+So I get a value of this dot state DOT password this time and whenever someone changes this one will
+
+80
+00:06:05,270 --> 00:06:12,730
+take the event we'll call set state and we'll update the password with a target value.
+
+81
+00:06:14,650 --> 00:06:15,230
+OK.
+
+82
+00:06:15,520 --> 00:06:17,410
+This is looking pretty good to me.
+
+83
+00:06:17,440 --> 00:06:21,730
+The last thing I think we need is a button at the very bottom that's just going to instruct the user
+
+84
+00:06:21,730 --> 00:06:24,250
+to submit the actual form.
+
+85
+00:06:24,500 --> 00:06:35,230
+It's all allowed on a button tag with the class name of between and it will give the text submit like
+
+86
+00:06:35,230 --> 00:06:36,400
+so.
+
+87
+00:06:37,360 --> 00:06:37,740
+OK.
+
+88
+00:06:37,750 --> 00:06:40,910
+I think this is looking pretty darn good so far.
+
+89
+00:06:40,930 --> 00:06:45,520
+The last thing you have to do is think about how we're going to intercept the form being submitted.
+
+90
+00:06:45,760 --> 00:06:50,730
+Let's first place this on the form inside of the log and form and then we can think about adding in
+
+91
+00:06:50,740 --> 00:06:54,160
+a callback handler for the actual submit event.
+
+92
+00:06:54,160 --> 00:07:00,550
+So I'm going to flip on over to the log and form I want to import the form that we just created and
+
+93
+00:07:00,550 --> 00:07:07,030
+show it inside of the log in form and then we'll pass a couple of props down into it to customize what
+
+94
+00:07:07,030 --> 00:07:11,550
+the log in for excuse me what the art form does whenever it is submitted.
+
+95
+00:07:11,560 --> 00:07:19,830
+So at the top we will import our form from Auth. form and then we'll show that
+
+96
+00:07:23,050 --> 00:07:25,880
+inside of the logon form like so.
+
+97
+00:07:25,920 --> 00:07:30,510
+Now one last thing I want to do just a little bit of record keeping a little bit of configuration for
+
+98
+00:07:30,510 --> 00:07:35,640
+using materialized CSSA correctly inside of the off form that we are just working on.
+
+99
+00:07:35,670 --> 00:07:38,870
+I made use of the row and column class names.
+
+100
+00:07:39,090 --> 00:07:45,150
+Whenever we make use of these row and column class names materialized CSSA assumes that there is a component
+
+101
+00:07:45,180 --> 00:07:50,970
+inside of our hierarchy or I should say in each team element with a class name of container.
+
+102
+00:07:51,210 --> 00:07:55,620
+So just to make sure that materialized DSS is really happy with all the different class names that we
+
+103
+00:07:55,620 --> 00:08:01,110
+have set up here I'm going to flip over to the app component which remember is always the parent component
+
+104
+00:08:01,140 --> 00:08:03,750
+of every component inside of our application.
+
+105
+00:08:04,050 --> 00:08:09,320
+And on the inside of here a lot on a class name of container.
+
+106
+00:08:09,360 --> 00:08:16,880
+Again this is just helping to helping materialized DSS work nicely with the row and column formatters
+
+107
+00:08:18,040 --> 00:08:18,580
+OK.
+
+108
+00:08:18,800 --> 00:08:23,920
+Let's flip back over to our application will do a nice little refresh and see how we're doing.
+
+109
+00:08:24,620 --> 00:08:24,950
+All right.
+
+110
+00:08:24,950 --> 00:08:27,660
+So I've got my email and password fields on here.
+
+111
+00:08:27,680 --> 00:08:31,730
+You'll notice that my form looks awfully compacted but that's just because I'm really zoomed in right
+
+112
+00:08:31,730 --> 00:08:32,310
+now.
+
+113
+00:08:32,480 --> 00:08:39,470
+If I zoom out all the way and then close the console everything starts to get a little bit nicer with
+
+114
+00:08:39,560 --> 00:08:43,520
+assigned to it if I want to get the form to be a little bit wider as well.
+
+115
+00:08:43,520 --> 00:08:47,480
+I always have the option of changing the S for field right here.
+
+116
+00:08:47,500 --> 00:08:54,710
+So to me just a little bit wider I could say good to 6 inside of the off form and if I refreshed now
+
+117
+00:08:54,740 --> 00:08:58,960
+it should stretch a full half of the internal header.
+
+118
+00:08:59,540 --> 00:09:01,170
+So we've got the email and the password.
+
+119
+00:09:01,220 --> 00:09:02,670
+These both look pretty good.
+
+120
+00:09:02,720 --> 00:09:07,270
+I think that would make a lot of sense to make sure we have a little header on here to say hey you're
+
+121
+00:09:07,280 --> 00:09:09,250
+about to log into the application.
+
+122
+00:09:09,410 --> 00:09:15,770
+So I'm going to go over to the log and form remember the log and form is kind of customizing the form
+
+123
+00:09:15,800 --> 00:09:17,860
+for the log in purpose.
+
+124
+00:09:17,870 --> 00:09:26,800
+So I think that this would be a good place to add on maybe a quick H-3 that says simply log in.
+
+125
+00:09:26,930 --> 00:09:28,400
+Now if we refresh the page.
+
+126
+00:09:28,510 --> 00:09:28,850
+OK.
+
+127
+00:09:28,970 --> 00:09:30,290
+This looks very reasonable to me.
+
+128
+00:09:30,290 --> 00:09:32,140
+I think this is totally reasonable.
+
+129
+00:09:32,150 --> 00:09:37,110
+So now presumably our user can enter an e-mail in a password and then submit it.
+
+130
+00:09:37,130 --> 00:09:39,840
+So I think the foreman did a pretty good spot right now.
+
+131
+00:09:40,010 --> 00:09:41,180
+Let's take a quick break.
+
+132
+00:09:41,180 --> 00:09:47,130
+We'll come back in the next section hook up our mutation to the log in form and make sure that the auth
+
+133
+00:09:47,150 --> 00:09:49,640
+form knows what to do whenever it's submitted.
+
+134
+00:09:49,850 --> 00:09:52,180
+So let's take care of all of that in the next section.
+

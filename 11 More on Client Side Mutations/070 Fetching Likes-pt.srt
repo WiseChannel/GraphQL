@@ -1,0 +1,304 @@
+1
+00:00:00,610 --> 00:00:05,430
+Na ltima seo, adicionamos um pouco de cdigo que definitivamente me fez pensar que devemos
+
+2
+00:00:05,430 --> 00:00:08,520
+ver o nmero de gostos em cada letra individual.
+
+3
+00:00:08,700 --> 00:00:14,670
+Mas como podemos ver absolutamente nenhum texto est aparecendo para nos contar o nmero de gostos associados
+
+4
+00:00:14,670 --> 00:00:15,720
+a cada letra.
+
+5
+00:00:15,720 --> 00:00:20,030
+Ento ainda  um pouco de pensamento e tentar entender por que esses dados no esto aparecendo.
+
+6
+00:00:20,310 --> 00:00:24,600
+A primeira coisa que eu quero apontar para voc que pode orientar-nos para a resposta
+
+7
+00:00:24,600 --> 00:00:30,640
+ou a soluo ou soluo para este problema  que parece que nenhum dos nmeros de luz aparece na tela.
+
+8
+00:00:30,720 --> 00:00:33,330
+Quando atualizamos a pgina pela primeira vez.
+
+9
+00:00:33,330 --> 00:00:38,400
+Ento eu suspeito que isso no  algo que tem a ver com a mutao que colocamos em vez disso.
+
+10
+00:00:38,430 --> 00:00:44,100
+Eu suspeito que pode ser algo em torno do Querrey que inicialmente obtm os dados para esta
+
+11
+00:00:44,100 --> 00:00:44,790
+pgina aqui.
+
+12
+00:00:45,000 --> 00:00:51,740
+Ento, a consulta que busca uma msica individual e todas as letras que esto associadas a essa msica.
+
+13
+00:00:52,290 --> 00:00:57,780
+Se voc lembrar, ns colocamos essa consulta dentro do arquivo Querrey da busca.
+
+14
+00:00:58,050 --> 00:01:04,430
+Ento, na minha pasta de consultas, posso encontrar a msica de busca J. S. arquivo e vamos abri-lo.
+
+15
+00:01:06,360 --> 00:01:12,270
+Ento, essa consulta leva a idia da msica que estamos tentando buscar e depois retorna a msica,
+
+16
+00:01:12,390 --> 00:01:16,730
+o ttulo da msica e todas as letras associadas a essa msica tambm.
+
+17
+00:01:16,740 --> 00:01:23,220
+Voc notar que a propriedade de letras aqui no est retornando o nmero de gostos associados a
+
+18
+00:01:23,220 --> 00:01:24,050
+essa letra.
+
+19
+00:01:24,270 --> 00:01:25,580
+Ento, esse  o problema aqui.
+
+20
+00:01:25,590 --> 00:01:30,210
+Quando carregamos a pgina pela primeira vez, no recebemos os gostos do servidor.
+
+21
+00:01:30,210 --> 00:01:33,910
+E ento no temos o nmero de gostos para mostrar na tela.
+
+22
+00:01:33,990 --> 00:01:40,470
+Podemos corrigir isso, adicionando a propriedade like, ento eu salvarei isso.
+
+23
+00:01:40,500 --> 00:01:45,360
+E vamos voltar para o navegador e test-lo e ver como estamos fazendo.
+
+24
+00:01:45,580 --> 00:01:46,630
+De volta ao navegador.
+
+25
+00:01:46,710 --> 00:01:48,110
+Recarregue a pgina.
+
+26
+00:01:48,470 --> 00:01:48,990
+EST BEM.
+
+27
+00:01:49,050 --> 00:01:55,150
+Ento, agora parece que o estilo est um pouco fora, mas o nmero de gostos est definitivamente aqui.
+
+28
+00:01:55,230 --> 00:02:00,440
+E quando eu clicar em um boto, o nmero de gostos automaticamente aumenta para cada um.
+
+29
+00:02:00,450 --> 00:02:09,270
+Definitivamente, o comportamento que eu estava esperando por ter o aspecto de estilo no  super ideal.
+
+30
+00:02:09,300 --> 00:02:14,010
+Ento, talvez devssemos fazer um pouco de trabalho no estilo aqui tambm, de modo que os
+
+31
+00:02:14,010 --> 00:02:17,910
+nmeros no estejam to desarrumados com o smbolo dos polegares para corrigir isso.
+
+32
+00:02:17,910 --> 00:02:22,190
+Vamos adicionar um pouco de GSX ao nosso mtodo de renderizao Lyric's helper.
+
+33
+00:02:22,230 --> 00:02:25,200
+Lembre-se que  o que torna cada linha individual aqui.
+
+34
+00:02:25,320 --> 00:02:30,270
+E ento tambm adicionaremos apenas um pouco de CSSA para limp-lo tambm.
+
+35
+00:02:30,270 --> 00:02:36,930
+Ento, de volta no meu editor de cdigo, eu unificando meu arquivo de lista de letras, eu vou rolar para baixo para o ajudante de letras
+
+36
+00:02:36,930 --> 00:02:37,560
+de renderizao.
+
+37
+00:02:37,590 --> 00:02:38,610
+Aqui est.
+
+38
+00:02:39,120 --> 00:02:46,890
+E vou envolver o cone para o polegar para cima e o nmero de gostas dentro de uma div
+
+39
+00:02:46,890 --> 00:02:47,530
+fazendo isso.
+
+40
+00:02:47,530 --> 00:02:54,230
+Vai ter certeza de que posso conter e agrupar o cone e o nmero de gostos.
+
+41
+00:02:54,420 --> 00:02:56,690
+Ento vou adicionar uma div aqui.
+
+42
+00:02:56,910 --> 00:03:03,110
+Eu tambm vou dar um nome de classe da caixa de votao para que possamos adicionar um pouco de
+
+43
+00:03:03,110 --> 00:03:04,200
+CSSA para limp-lo.
+
+44
+00:03:04,770 --> 00:03:10,050
+E ento, note que tambm estou fechando a div abaixo aqui abaixo do cone e
+
+45
+00:03:12,890 --> 00:03:20,450
+gosta. Ento, coloque apenas um pouco de CSSA em nosso estilo de estilo, que o CSSA arquiva seu estilo de sucesso.
+
+46
+00:03:21,150 --> 00:03:26,620
+E para a caixa de votao, vou adicionar um pouco de sucesso.
+
+47
+00:03:26,790 --> 00:03:36,930
+Eu vou dar uma exibio de flex e um item de linha Center o ltimo que eu vou fazer  dar
+
+48
+00:03:36,930 --> 00:03:40,590
+a classe do material Icahn uma margem direita.
+
+49
+00:03:41,930 --> 00:03:43,640
+De cinco pixels.
+
+50
+00:03:44,030 --> 00:03:44,620
+EST BEM.
+
+51
+00:03:44,870 --> 00:03:50,210
+Ento, isso essencialmente diz que pegue os dois itens que esto dentro dessa div e certifique-se de que eles
+
+52
+00:03:50,210 --> 00:03:50,970
+estejam alinhados verticalmente.
+
+53
+00:03:51,260 --> 00:03:56,780
+E ento tambm coloco um pouco de margem na classe do material Icahn apenas para garantir que
+
+54
+00:03:56,780 --> 00:04:00,590
+o cone no seja um sanduche contra o nmero de votos.
+
+55
+00:04:00,590 --> 00:04:06,860
+ s garantir que haja um pouco de espao entre o cone e o nmero do voto real.
+
+56
+00:04:06,860 --> 00:04:13,720
+Ento, eu vou salvar este documento e, em seguida, voltei para o meu navegador, farei uma atualizao.
+
+57
+00:04:13,750 --> 00:04:14,210
+Tudo bem.
+
+58
+00:04:14,210 --> 00:04:15,820
+Isso parece muito melhor.
+
+59
+00:04:15,830 --> 00:04:22,210
+Voc notar que assim que os votos entrarem nos dois dgitos do voto e voc pode ver que o
+
+60
+00:04:22,220 --> 00:04:23,850
+alinhamento no est bem aqui.
+
+61
+00:04:23,870 --> 00:04:29,000
+Essa pode ser uma boa razo para trocar a ordem dos dois ou tambm podemos usar um pouco
+
+62
+00:04:29,000 --> 00:04:33,470
+mais CSSA para garantir que o alinhamento funcione um pouco melhor, mas  definitivamente algo que
+
+63
+00:04:33,470 --> 00:04:37,010
+vou deix-lo para trabalhar um pouco Um pouco para o lado do CSF.
+
+64
+00:04:37,010 --> 00:04:37,500
+Tudo bem.
+
+65
+00:04:37,520 --> 00:04:44,270
+Eu realmente gosto de como esta aplicao est acabando, mas h uma ltima coisa aqui que  realmente irritante.
+
+66
+00:04:44,570 --> 00:04:51,320
+Voc notar que, sempre que clicamos no boto, h uma espcie de pequena pausa imperceptvel como apenas
+
+67
+00:04:51,560 --> 00:04:54,100
+um quarto de segundo ou meio segundo.
+
+68
+00:04:54,240 --> 00:05:00,080
+Estamos onde esperamos que a votao seja registrada pelo back-end e depois atualize a interface do
+
+69
+00:05:00,080 --> 00:05:01,980
+usurio quando recuperarmos a resposta.
+
+70
+00:05:02,120 --> 00:05:04,670
+Essa no  a melhor experincia do mundo.
+
+71
+00:05:04,730 --> 00:05:11,090
+E pessoalmente, eu realmente gostaria muito, se houvesse alguma maneira de podermos dizer bem, eu quero votar neste
+
+72
+00:05:11,090 --> 00:05:11,870
+post aqui.
+
+73
+00:05:11,890 --> 00:05:17,860
+Ou essa letra e eu queremos que esse nmero instantaneamente seja instantaneamente incrementado.
+
+74
+00:05:18,200 --> 00:05:23,300
+Ento, vamos ver se no podemos resolver este pequeno flub na UI ou esse tipo de experincia
+
+75
+00:05:23,300 --> 00:05:28,580
+de usurio que temos agora para fazer parecer um muito mais rpido e muito rpido seu site.
+
+76
+00:05:28,610 --> 00:05:30,650
+Ento vamos investigar isso na prxima seo.
+

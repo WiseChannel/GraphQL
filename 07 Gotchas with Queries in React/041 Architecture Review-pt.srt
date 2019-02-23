@@ -1,0 +1,212 @@
+1
+00:00:01,160 --> 00:00:04,280
+Que obtivemos o nosso primeiro componente completo que est usando grficos.
+
+2
+00:00:04,340 --> 00:00:09,450
+Bem, eu quero falar um pouco sobre a arquitetura geral do nosso aplicativo como
+
+3
+00:00:09,720 --> 00:00:12,620
+uma reviso e depois continuar no prximo componente.
+
+4
+00:00:13,170 --> 00:00:17,650
+Ento, aqui est a nossa aplicao geral tal como est agora no topo.
+
+5
+00:00:17,670 --> 00:00:23,670
+Temos o nosso servidor de grficos que hospeda todos os dados, a loja Apollo que configuramos dentro do
+
+6
+00:00:23,670 --> 00:00:28,810
+nosso arquivo js de ndice  o ponto de contato com o servidor de grficos.
+
+7
+00:00:28,860 --> 00:00:34,020
+ o que est assegurando de que os dados que buscamos est voltando e sendo
+
+8
+00:00:34,020 --> 00:00:35,670
+distribudos ao longo da aplicao.
+
+9
+00:00:35,820 --> 00:00:41,310
+Ento, no lado do re-atuao de coisas que so mais ou menos tudo dentro desta
+
+10
+00:00:41,310 --> 00:00:43,290
+caixa, aqui temos o provedor Apollo.
+
+11
+00:00:43,290 --> 00:00:48,990
+Lembre-se de que esse provedor  o ponto de integrao entre o lado re-atuao das coisas e a loja
+
+12
+00:00:48,990 --> 00:00:51,540
+real do Appollo onde os dados se encontram.
+
+13
+00:00:51,630 --> 00:00:59,160
+Ento, temos o nosso componente raiz que est exibindo uma lista de msicas com uma consulta anexada agora.
+
+14
+00:00:59,520 --> 00:01:04,770
+Voc tambm sabe que eu coloco essas trs pequenas coisas extras aqui com a presena deles,
+
+15
+00:01:04,770 --> 00:01:07,080
+ apenas para dizer componente de apresentao.
+
+16
+00:01:07,080 --> 00:01:12,990
+seja l o que poderia ser, todos poderiam certamente ser filhos do componente da lista de msicas.
+
+17
+00:01:12,990 --> 00:01:18,810
+Ento, se tivssemos alguns outros subcomponentes dentro da lista de msicas que voc conhecesse, talvez mostre mais detalhes
+
+18
+00:01:18,810 --> 00:01:22,680
+sobre uma msica particular ou uma imagem extravagante ou um boto ou
+
+19
+00:01:22,680 --> 00:01:28,230
+O ponto que eu realmente quero transmitir aqui com este ltimo pequeno passo  que em um
+
+20
+00:01:28,230 --> 00:01:34,530
+aplicativo Appollo como esse ou uma aplicao de ferramenta grfica como essa, ns tendemos a escolher componentes centralizados como
+
+21
+00:01:34,530 --> 00:01:40,790
+a lista de msicas como recebendo essas consultas ou recebendo uma quantidade de dados de o servidor grfico.
+
+22
+00:01:41,130 --> 00:01:47,980
+Podemos ento permitir que os dados giram desse componente para baixo em seus componentes como adereos.
+
+23
+00:01:48,180 --> 00:01:55,230
+Ento, geralmente, tentamos centralizar nossas consultas tanto quanto possvel e, em seguida, passar dados deles para baixo
+
+24
+00:01:55,230 --> 00:02:00,090
+em componentes filho, sempre que possvel, no aplicativo em que estamos trabalhando.
+
+25
+00:02:00,090 --> 00:02:05,860
+Ns no vamos ter muitos componentes aninhados para que no vejamos essa abordagem ou arquitetura com bastante frequncia, e
+
+26
+00:02:05,860 --> 00:02:11,290
+ por isso que eu queria realmente aproveitar o tempo para ser muito direto e muito explcito.
+
+27
+00:02:11,430 --> 00:02:12,860
+Isso geralmente  como abordamos isso.
+
+28
+00:02:12,870 --> 00:02:19,380
+Normalmente, ns centralizamos a consulta em algum componente raiz ou algum componente pai e, em seguida, passamos os dados
+
+29
+00:02:19,380 --> 00:02:20,260
+a partir da.
+
+30
+00:02:20,260 --> 00:02:24,810
+Novamente, se voc tiver experincia com o redox, estamos realmente seguindo a mesma abordagem que
+
+31
+00:02:24,810 --> 00:02:26,260
+costumamos usar com os contineres.
+
+32
+00:02:26,400 --> 00:02:29,990
+E vou repetir de novo se voc no tiver nenhum problema.
+
+33
+00:02:30,000 --> 00:02:33,390
+No  necessrio para entender o que est acontecendo aqui.
+
+34
+00:02:34,010 --> 00:02:34,760
+EST BEM.
+
+35
+00:02:34,920 --> 00:02:40,890
+Eu acho que estamos em um bom local para continuar com o prximo recurso dentro de nossa aplicao.
+
+36
+00:02:40,890 --> 00:02:45,600
+Eu fiz algumas modificaes aos maquetes que vimos anteriormente.
+
+37
+00:02:45,600 --> 00:02:50,790
+Voc notar que a maquete no lado direito agora que j vimos uma pgina que seria
+
+38
+00:02:50,790 --> 00:02:54,570
+como criar ou me ver mostrando mais detalhes sobre uma msica.
+
+39
+00:02:54,570 --> 00:02:56,700
+Ento, lemos os detalhes dessa msica.
+
+40
+00:02:56,940 --> 00:03:02,220
+ter a capacidade de criar uma nova msica e salv-la em nosso banco de dados de back-end.
+
+41
+00:03:02,220 --> 00:03:07,410
+Estou pensando que tambm devemos criar este componente de criao de msica, o que nos permitir
+
+42
+00:03:07,620 --> 00:03:13,680
+Devemos poder acessar este componente aqui mesmo por um novo boto vermelho grande que deve estar localizado
+
+43
+00:03:13,710 --> 00:03:16,580
+dentro da nossa pgina de ndice de msicas.
+
+44
+00:03:17,000 --> 00:03:18,350
+Ento me d o plano geral.
+
+45
+00:03:18,390 --> 00:03:25,510
+Vamos fazer um componente separado e, em seguida, um link entre os dois da pgina ndice de msicas.
+
+46
+00:03:25,650 --> 00:03:30,930
+Agora que estamos falando sobre a exibio de vrios componentes juntos no mesmo
+
+47
+00:03:30,960 --> 00:03:35,090
+aplicativo, precisamos tambm pensar sobre o uso do roteador re-agir tambm.
+
+48
+00:03:35,130 --> 00:03:40,770
+o nosso projeto e us-lo para mostrar essas diferentes pginas na tela ou ampliar o aplicativo.
+
+49
+00:03:40,770 --> 00:03:44,450
+Ento eu acho que podemos trazer o roteador re-agir para
+
+50
+00:03:44,460 --> 00:03:49,470
+Portanto, presumivelmente, esta seria a nossa pgina de rota ou o tipo de nossa rota de ndice para todo o aplicativo.
+
+51
+00:03:49,470 --> 00:03:55,560
+Ento, na lista de msicas e, em seguida, quando passamos para algo como criar msicas, ou algo assim
+
+52
+00:03:55,560 --> 00:03:59,010
+gostaria de mostrar o formulrio para criar uma nova msica.
+
+53
+00:03:59,340 --> 00:04:04,680
+Ento, vamos comear o processo de instalao e configurao para re-agir roteador dentro da prxima seo.
+

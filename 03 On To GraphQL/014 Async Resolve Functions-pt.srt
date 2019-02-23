@@ -1,0 +1,484 @@
+1
+00:00:00,710 --> 00:00:05,900
+Na ltima seo iniciamos um servidor separado que serve dados Jaison brutos.
+
+2
+00:00:06,210 --> 00:00:12,390
+A idia aqui foi obter alguma experincia em que um aplicativo de QOL puxa dados de um
+
+3
+00:00:12,840 --> 00:00:18,420
+servidor externo ao invs de usar os dados estticos que estamos usando atualmente, que  a
+
+4
+00:00:18,450 --> 00:00:21,920
+lista codificada de usurios dentro do nosso arquivo de esquema.
+
+5
+00:00:22,120 --> 00:00:27,280
+As duas coisas que eu quero apontar para voc so realmente claras sobre o caso no servidor
+
+6
+00:00:27,280 --> 00:00:35,440
+ que, se formos para os usurios da barra-barraca localhost Colan 3000, ns obtemos uma lista de todos os nossos usurios e se ns formos a barra 23
+
+7
+00:00:35,440 --> 00:00:38,130
+que me dar a usurio com ideia de 23.
+
+8
+00:00:38,350 --> 00:00:46,390
+14. Observe tambm que isso est sendo executado em uma porta completamente separada de nossa instncia de fila de grfico ou de nossa instncia grfica.
+
+9
+00:00:46,390 --> 00:00:50,680
+Eu tambm posso ir para 40 e h o meu ID de usurio
+
+10
+00:00:50,680 --> 00:00:56,310
+O outro est sendo executado no servidor localhost 4000 que acabamos de iniciar como localhost 3000.
+
+11
+00:00:56,320 --> 00:01:03,000
+Ento, para separar completamente os servidores desconectados, separe-se completamente.
+
+12
+00:01:03,070 --> 00:01:08,920
+Tudo bem com todas as coisas em mente, vamos abrir o nosso editor de cdigo e verificar o nosso arquivo de esquema.
+
+13
+00:01:08,920 --> 00:01:09,900
+Ento, aqui esquema.
+
+14
+00:01:09,920 --> 00:01:10,930
+J Sim.
+
+15
+00:01:12,230 --> 00:01:16,790
+Em nosso arquivo de esquema, eu vou rolar para baixo para a nossa consulta raiz para a parte inferior.
+
+16
+00:01:19,020 --> 00:01:25,000
+Dentro daqui, ainda estamos fazendo uso de poucas jogadas para pesquisar a lista local de usurios que temos.
+
+17
+00:01:25,020 --> 00:01:31,870
+Lembre-se do propsito de resolver e deve retornar os dados que representam um objeto de usurio.
+
+18
+00:01:31,890 --> 00:01:37,440
+Agora, est retornando o usurio de forma muito sncrona.
+
+19
+00:01:37,440 --> 00:01:44,890
+Ento, quando a resoluo  chamada de Boom, devolvemos instantaneamente o usurio a funo de resultado.
+
+20
+00:01:44,900 --> 00:01:51,930
+No entanto, tambm pode funcionar, devolvendo uma promessa para que ela possa funcionar de forma assncrona.
+
+21
+00:01:51,930 --> 00:01:58,780
+Se retornarmos uma promessa do grfico de funo resolvido, Q L detectar automaticamente que devolvemos
+
+22
+00:01:58,790 --> 00:01:59,820
+uma promessa.
+
+23
+00:01:59,820 --> 00:02:05,220
+Aguarde a promessa de resolver e, em seguida, uma vez que pegue os dados que resolveu e envie
+
+24
+00:02:05,220 --> 00:02:07,200
+a resposta de volta ao usurio.
+
+25
+00:02:07,200 --> 00:02:14,060
+Ento, na prtica, uma vez que fazemos uma solicitao ou uma consulta da nossa interface grfica, vai
+
+26
+00:02:14,070 --> 00:02:22,140
+ao grfico Grfico de Cuil, eu irei chegar ao nosso servidor Jason e dizer oi, estou procurando o usurio 2003
+
+27
+00:02:22,140 --> 00:02:28,940
+e, claro,  um assncrono pedido est no pedido HTP para sair e chegar a este outro servidor.
+
+28
+00:02:29,160 --> 00:02:35,760
+O servidor Sun ir ento responder e dizer que aqui, voc vai aqui, o grfico do usurio 23 Q L
+
+29
+00:02:35,760 --> 00:02:41,700
+vai aguardar o pedido para resolver e, em seguida, ele ir recuperar o usurio e envi-lo de volta
+
+30
+00:02:41,760 --> 00:02:43,890
+ resposta para o cliente grfico.
+
+31
+00:02:44,250 --> 00:02:48,400
+Ento,  isso que vamos fazer dentro dessa funo de resoluo.
+
+32
+00:02:48,540 --> 00:02:54,750
+de natureza assncrona, ento quase sempre acabamos tendo que devolver uma promessa dessa funo de resoluo aqui.
+
+33
+00:02:54,750 --> 00:03:01,250
+Quase todos os achados de dados que ns vamos fazer dentro de um aplicativo de n so
+
+34
+00:03:03,070 --> 00:03:05,360
+OK, ento acho que temos um plano para avanar.
+
+35
+00:03:05,400 --> 00:03:12,360
+Precisamos fazer e H TTP solicitar dentro desta funo de resoluo aqui e devolver
+
+36
+00:03:12,360 --> 00:03:15,320
+a promessa que gera para faz-lo.
+
+37
+00:03:15,330 --> 00:03:23,000
+Podemos usar a funo de busca nativa ou podemos usar os X-ers da biblioteca e a busca de membros e o uso de
+
+38
+00:03:23,010 --> 00:03:26,530
+X ou ambos para usar para fazer solicitaes de HTP.
+
+39
+00:03:26,580 --> 00:03:30,830
+Se voc j fez algum dos meus cursos antes que voc saiba que eu sou um grande f de X-posts.
+
+40
+00:03:30,840 --> 00:03:32,410
+Eu no sou um f de busca.
+
+41
+00:03:32,490 --> 00:03:34,730
+Ento, iremos com o eixo.
+
+42
+00:03:34,750 --> 00:03:36,540
+Vamos l.
+
+43
+00:03:36,540 --> 00:03:38,550
+Na verdade, esta  uma biblioteca de terceiros.
+
+44
+00:03:38,580 --> 00:03:44,910
+Ento, vamos voltar para nosso servidor e ter certeza de que ns o instalamos como uma dependncia.
+
+45
+00:03:44,910 --> 00:03:52,830
+Ento, dentro do meu diretrio do servidor, eu executarei o NPM instale o dash dash, salve o Axel, por isso  uma
+
+46
+00:03:52,830 --> 00:04:00,370
+biblioteca muito pequena, ento, basta demorar um segundo para instalar o real agora de volta ao meu esquema de arquivo, eu
+
+47
+00:04:00,370 --> 00:04:06,220
+vou importar x Diosa no topo, no precisamos de carregar ASH, porque no iremos passar por
+
+48
+00:04:06,220 --> 00:04:08,150
+essa lista esttica de usurios.
+
+49
+00:04:08,380 --> 00:04:15,850
+Ento, eu vou substituir a importao de tabelas baixas com uma declarao exigida para as postagens X.
+
+50
+00:04:17,350 --> 00:04:19,650
+No vamos mais usar a lista esttica de usurios.
+
+51
+00:04:19,670 --> 00:04:23,110
+Ento vou excluir a lista esttica de usurios que tambm podem ir.
+
+52
+00:04:23,680 --> 00:04:26,920
+E ento iremos para a funo de resultado.
+
+53
+00:04:26,920 --> 00:04:31,450
+Eu vou tirar a declarao existente que est l e
+
+54
+00:04:31,450 --> 00:04:41,500
+ns vamos substituir isso com um pedido para o nosso servidor Sun, ento dentro de aqui diremos que retornar X-post no entende
+
+55
+00:04:41,500 --> 00:04:48,440
+e ento queremos faa um pedido para o host local host 3000 barra de identificao.
+
+56
+00:04:48,460 --> 00:04:53,670
+Ou a idia do registro que estamos tentando encontrar, ento vamos usar uma seqncia de seis modelos.
+
+57
+00:04:53,680 --> 00:05:02,660
+Ento eu vou colocar uma marca de volta para o host local HTP Colin 4000 ou Susie 3000.
+
+58
+00:05:02,770 --> 00:05:04,820
+Certifique-se de que entendamos isso.
+
+59
+00:05:04,840 --> 00:05:16,380
+Os usurios do Slash slash mostram chaves curly so ID de estoque, assim como novamente, esta  uma cadeia de seis modelos, ento tenha certeza de que voc
+
+60
+00:05:16,390 --> 00:05:19,840
+tenha tiques de volta aqui de cada lado.
+
+61
+00:05:20,290 --> 00:05:26,140
+E estamos fazendo referncia ao nosso estoque. Id, lembre-se de que a ID vem
+
+62
+00:05:26,140 --> 00:05:29,350
+da consulta quando a consulta for feita nossa.
+
+63
+00:05:29,550 --> 00:05:31,080
+Isso parece muito bom aqui.
+
+64
+00:05:31,080 --> 00:05:34,220
+Fazemos o pedido e depois o devolvemos.
+
+65
+00:05:34,230 --> 00:05:39,420
+Ento, as postagens X ou me v bem do enxerto vo aguardar a promessa gerada por essa
+
+66
+00:05:39,420 --> 00:05:41,610
+solicitao para resolver uma vez que resolve.
+
+67
+00:05:41,610 --> 00:05:46,930
+Vai levar os dados e envi-lo novamente como resposta ao Querrey.
+
+68
+00:05:46,980 --> 00:05:55,650
+Agora, h um pouco de gotcha aqui, certo, um pouco e isso  uma espcie de estranheza de X ns trabalhando com
+
+69
+00:05:55,650 --> 00:05:56,200
+enxerto.
+
+70
+00:05:56,280 --> 00:06:04,790
+Bem, quando o X-post  prometido resultados, ento ns colocamos como um ponto ento e ns
+
+71
+00:06:04,790 --> 00:06:15,220
+levamos a resposta e ainda podemos registrar a resposta, ento ns voltamos algo parece esse nome de dados de Bill.
+
+72
+00:06:15,360 --> 00:06:22,580
+objeto de resposta que X retorna tem os dados de resposta reais aninhados nesta propriedade de dados aqui.
+
+73
+00:06:22,580 --> 00:06:23,310
+Ento, o
+
+74
+00:06:23,550 --> 00:06:30,210
+Est aninhado nisso e  assim que a Axel escolhe responder das solicitaes do HTP Nesse os dados
+
+75
+00:06:30,210 --> 00:06:31,710
+nesta propriedade de dados.
+
+76
+00:06:31,710 --> 00:06:37,830
+Agora, a m notcia  que o grfico Q L no sabe que no sabe que os dados esto aninhados em
+
+77
+00:06:37,840 --> 00:06:39,280
+sua propriedade de dados DOD.
+
+78
+00:06:39,570 --> 00:06:42,700
+Ento, faa o grfico de Axelson Cuil trabalhar juntos.
+
+79
+00:06:42,960 --> 00:06:49,270
+Ns vamos fazer um pouco de diverso misturando-se com a resposta antes de passar ao enxerto.
+
+80
+00:06:49,340 --> 00:06:57,410
+Bem, desculpe por dizer dados de dados de receitas, ento o que isso faz  dizer que faz o pedido.
+
+81
+00:06:57,500 --> 00:07:02,960
+E, antes, antes de mais alguma coisa acontecer com o problema,  como antes que qualquer outra funo seja
+
+82
+00:07:02,960 --> 00:07:04,820
+adotada no prometido para ser resolvido.
+
+83
+00:07:05,090 --> 00:07:09,500
+Pegue a resposta retornar apenas a resposta aos dados de ponto.
+
+84
+00:07:09,590 --> 00:07:15,890
+Ento, qualquer outra pessoa que encadeie essa promessa como com outro ponto, ento eles s veriam os dados
+
+85
+00:07:15,890 --> 00:07:17,320
+que retornaram da resposta.
+
+86
+00:07:17,450 --> 00:07:22,640
+Ento, em outras palavras, estamos apenas analisando a resposta como um objeto que volta dos axiomas.
+
+87
+00:07:22,670 --> 00:07:26,640
+Eu sei que isso provavelmente parece um pouco confuso um pouco arbitrrio  um pouco doloroso.
+
+88
+00:07:26,810 --> 00:07:27,720
+Sim eu concordo.
+
+89
+00:07:27,730 --> 00:07:31,160
+Mas  tudo o que temos a fazer para fazer o trabalho de Axel bem com grficos.
+
+90
+00:07:31,160 --> 00:07:38,990
+Bem, no futuro, vamos embrulhar postagens X com um bom manipulador de pedidos antigo e, portanto, no teremos que lidar com
+
+91
+00:07:38,990 --> 00:07:42,160
+isso o tempo todo, mas cuidaremos disso no futuro.
+
+92
+00:07:42,930 --> 00:07:47,490
+OK, acho que estamos prontos para um teste agora, ento vou voltar para o meu terminal.
+
+93
+00:07:47,510 --> 00:07:54,470
+Eu vou comear o servidor de backup com o servidor de n G-S. Recebo a mensagem de escuta que 
+
+94
+00:07:54,950 --> 00:08:00,020
+boa e parece que o servidor do meu filho ainda est funcionando bem, ento tudo
+
+95
+00:08:00,020 --> 00:08:01,620
+parece muito bom neste momento.
+
+96
+00:08:01,670 --> 00:08:03,480
+Vamos voltar para o grfico.
+
+97
+00:08:03,560 --> 00:08:05,810
+Ento eu estou no local Kost 4000.
+
+98
+00:08:05,810 --> 00:08:06,970
+Slash graph.
+
+99
+00:08:06,980 --> 00:08:12,730
+Bem e far a mesma consulta para o usurio 23.
+
+100
+00:08:12,840 --> 00:08:14,210
+Ns corremos e ns voltamos.
+
+101
+00:08:14,210 --> 00:08:14,770
+Conta.
+
+102
+00:08:14,900 --> 00:08:16,130
+OK, isso  timo.
+
+103
+00:08:16,130 --> 00:08:18,330
+Procuremos o usurio 40.
+
+104
+00:08:18,380 --> 00:08:23,240
+Lembre-se de mim, eu fiz um usurio 40 dentro desse caso de DVD no arquivo.
+
+105
+00:08:23,240 --> 00:08:27,260
+Ento, dentro do DVD Jaison Aqui est um usurio com ID 40.
+
+106
+00:08:27,260 --> 00:08:31,790
+Se voc usou diferentes IDs, voc ver uma ID diferente aqui.
+
+107
+00:08:31,910 --> 00:08:35,720
+E voc vai querer usar uma idia diferente como o argumento para a consulta.
+
+108
+00:08:35,720 --> 00:08:38,080
+Ento, eu vou procurar um ID de usurio 40 novamente.
+
+109
+00:08:38,120 --> 00:08:40,100
+Sim, isso parece timo.
+
+110
+00:08:40,100 --> 00:08:45,380
+Podemos verificar nosso terminal e dentro se voc tambm notar que vemos os logs
+
+111
+00:08:45,430 --> 00:08:52,240
+de solicitao de nosso servidor grfico alcanando o JS separado no servidor para obter esses registros independentes.
+
+112
+00:08:53,040 --> 00:08:56,630
+OK, ento no  to ruim, no muito ruim.
+
+113
+00:08:57,620 --> 00:08:58,880
+Eu realmente gosto de como isso est acontecendo.
+
+114
+00:08:58,880 --> 00:09:05,930
+Ns dividimos nossa funo de resoluo para buscar alguns dados de algum servio de terceiros.
+
+115
+00:09:05,930 --> 00:09:11,000
+A coisa fundamental a ter em mente sobre resolver aqui  que, porque pode lidar
+
+116
+00:09:11,000 --> 00:09:15,460
+com uma promessa, podemos realmente buscar dados de qualquer lugar que voc possa imaginar.
+
+117
+00:09:15,540 --> 00:09:17,410
+Voc sabe que este pode ser um servidor de terceiros.
+
+118
+00:09:17,420 --> 00:09:20,210
+Isso poderia estar lendo um arquivo do disco rgido.
+
+119
+00:09:20,210 --> 00:09:26,390
+Pode ser um banco de dados e tudo o que queremos resolver  realmente o nosso campo de jogos para
+
+120
+00:09:26,390 --> 00:09:30,140
+apenas buscar qualquer pea de dados de qualquer forma que possamos imaginar.
+
+121
+00:09:30,810 --> 00:09:36,260
+OK, vamos para a prxima seo e comece a colocar um pouco mais de lgica em nossas consultas.
+

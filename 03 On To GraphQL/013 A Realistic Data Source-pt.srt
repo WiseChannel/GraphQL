@@ -1,0 +1,480 @@
+1
+00:00:00,580 --> 00:00:04,490
+Na ltima seo, fizemos nossa primeira consulta com a ferramenta grfica.
+
+2
+00:00:05,060 --> 00:00:11,810
+No entanto, se olharmos em nosso arquivo de esquema, estamos usando uma lista esttica de usurios aqui mesmo, apenas uma lista de
+
+3
+00:00:11,810 --> 00:00:13,160
+usurios com cdigos rgidos.
+
+4
+00:00:13,220 --> 00:00:16,580
+E para mim isso  to chato to chato.
+
+5
+00:00:16,580 --> 00:00:17,950
+Odeio usar dados codificados.
+
+6
+00:00:17,950 --> 00:00:20,450
+Gosto de usar dados dinmicos ao vivo.
+
+7
+00:00:20,450 --> 00:00:25,790
+e servir dados para uma aplicao grfica e, em seguida, trocaremos a fonte de
+
+8
+00:00:25,790 --> 00:00:31,370
+dados dessa lista codificada de usurios para algo pelo menos um pouco mais dinmico.
+
+9
+00:00:31,370 --> 00:00:35,770
+Ento, nesta seo, vamos investigar algumas arquiteturas diferentes de como construir
+
+10
+00:00:35,870 --> 00:00:40,210
+Ainda no ser apoiado por um banco de dados completo, mas ser pelo menos
+
+11
+00:00:40,210 --> 00:00:43,100
+um pouco melhor e veremos o que temos agora.
+
+12
+00:00:43,100 --> 00:00:48,680
+Ento, vejamos um diagrama para nos ajudar a entender algumas das diferentes maneiras de arquitetar
+
+13
+00:00:48,680 --> 00:00:50,330
+um grfico para nossa aplicao.
+
+14
+00:00:50,330 --> 00:00:55,460
+Ento, ns j olhamos para esse diagrama particular, e esse tipo de espiras vagamente tipo
+
+15
+00:00:55,460 --> 00:00:57,250
+de onde nos dirigimos agora.
+
+16
+00:00:57,530 --> 00:01:04,160
+pudesse ser, onde pudssemos alcanar e tirar nossos dados e devolva esse pedao de dados do nosso membro do mtodo de resoluo.
+
+17
+00:01:04,160 --> 00:01:10,250
+Temos o nosso navegador funcionando de forma grfica, como envia uma consulta grfica para o nosso servidor expresso e, em
+
+18
+00:01:10,640 --> 00:01:16,310
+teoria, poderamos ter como base de dados local do Mongo DB ou minha seqela ou postgresql, seja l o
+
+19
+00:01:16,910 --> 00:01:17,360
+que
+
+20
+00:01:17,390 --> 00:01:25,020
+Resolva ser o local muito mgico onde realmente vamos encontrar um dado e devolv-lo.
+
+21
+00:01:25,040 --> 00:01:31,340
+Ento, se voc estiver trabalhando em qualquer projeto de tamanho menor, isso  muito provvel a arquitetura
+
+22
+00:01:31,340 --> 00:01:33,020
+que voc vai dirigir.
+
+23
+00:01:33,350 --> 00:01:35,010
+Vejamos outra opo.
+
+24
+00:01:35,240 --> 00:01:41,480
+provvel de ser usado por uma grande empresa ou empresas com muita infraestrutura e muitos servios separados.
+
+25
+00:01:41,570 --> 00:01:44,970
+Esta outra opo  algo que  muito mais
+
+26
+00:01:45,050 --> 00:01:48,050
+O Facebook em particular  como o exemplo perfeito.
+
+27
+00:01:48,050 --> 00:01:49,760
+ o que eles fazem internamente.
+
+28
+00:01:50,090 --> 00:01:54,850
+Portanto, o Facebook internamente no possui uma nica loja de dados monoltica.
+
+29
+00:01:54,860 --> 00:01:58,610
+Voc sabe que eles no tm como um nico banco de dados My sequela.
+
+30
+00:01:58,610 --> 00:02:01,530
+E voc sabe que est executando consultas atravs dessa coisa o tempo todo.
+
+31
+00:02:01,790 --> 00:02:05,850
+Em vez disso, eles tm muitos sistemas internos diferentes.
+
+32
+00:02:05,960 --> 00:02:11,960
+enquanto outro sistema pode fornecer alguns artigos recomendados pela Regionh que o usurio atual possa estar interessado.
+
+33
+00:02:12,230 --> 00:02:14,520
+Alguns sistemas podem armazenar dados de usurios,
+
+34
+00:02:15,790 --> 00:02:23,250
+Craft pode servir como um proxy de tipos para ir e buscar dados de todas essas fontes diferentes juntar todos
+
+35
+00:02:23,250 --> 00:02:27,080
+os dados e enviar uma resposta de volta ao nosso usurio.
+
+36
+00:02:27,090 --> 00:02:34,440
+Ento, neste caso, podemos dizer que nosso servidor grfico faz uma solicitao H TTP para algum servidor externo que tenha
+
+37
+00:02:34,500 --> 00:02:36,550
+seu prprio banco de dados.
+
+38
+00:02:36,750 --> 00:02:39,130
+Talvez tambm nos alcance fora da API.
+
+39
+00:02:39,240 --> 00:02:41,520
+Este servidor externo que possui seu prprio banco de dados.
+
+40
+00:02:41,520 --> 00:02:46,100
+No entanto, muitas fontes externas de dados que queremos ir e alcanar.
+
+41
+00:02:46,230 --> 00:02:52,240
+Podemos sair e pegar esses dados e envi-lo de volta como resposta com o nosso grfico
+
+42
+00:02:53,430 --> 00:02:58,950
+Bem, Querrey Ento, quando este curso, vamos tentar essas duas abordagens e vamos passar com
+
+43
+00:02:58,950 --> 00:03:06,240
+a abordagem baseada em banco de dados. e com esta abordagem de tipo de servidor externo, onde fazemos uma solicitao
+
+44
+00:03:06,240 --> 00:03:13,620
+de idade real para alguma API remota para este primeiro aplicativo, onde queremos apenas consultar uma lista de empresas e
+
+45
+00:03:13,620 --> 00:03:14,730
+posies de usurios.
+
+46
+00:03:14,940 --> 00:03:20,730
+Vamos com essa abordagem aqui, onde vamos ter um servidor externo ou uma API de terceiros
+
+47
+00:03:21,000 --> 00:03:23,360
+que ir atualizar uma quantidade de dados.
+
+48
+00:03:23,460 --> 00:03:23,890
+EST BEM.
+
+49
+00:03:24,040 --> 00:03:27,920
+Ento, vamos seguir esse tipo de abordagem.
+
+50
+00:03:27,990 --> 00:03:34,410
+Ento, a idia aqui sempre que um usurio faz uma consulta ou sempre que voc conhece de maneira realista
+
+51
+00:03:34,410 --> 00:03:38,480
+voc e eu pressionamos jogar aqui nosso servidor expresso receber a consulta.
+
+52
+00:03:38,910 --> 00:03:45,840
+Em seguida, chegar a alguma outra API com a solicitao da rede, ela buscar os dados reunir a resposta
+
+53
+00:03:45,840 --> 00:03:50,860
+da fila de grfico e envi-la de volta para o nosso cliente grfico.
+
+54
+00:03:50,940 --> 00:03:52,090
+Esse  o objetivo.
+
+55
+00:03:52,620 --> 00:03:58,610
+Ento, isso significa que precisamos defender um segundo servidor para atuar como fonte externa de dados.
+
+56
+00:03:58,620 --> 00:04:01,980
+Ns somos como a API de terceiros como esta, fora da API.
+
+57
+00:04:02,250 --> 00:04:07,890
+Ento, vamos fazer um servidor separado para atuar como essa API externa.
+
+58
+00:04:07,890 --> 00:04:10,350
+Agora, este  um curso sobre o grfico,  claro.
+
+59
+00:04:10,350 --> 00:04:14,210
+Ento, no vamos gastar muito tempo trabalhando nessa fonte externa de dados.
+
+60
+00:04:14,400 --> 00:04:21,360
+Em vez disso, vamos usar esse pequeno framework fantstico chamado servidor Jaison para hospedar todos os
+
+61
+00:04:21,360 --> 00:04:22,300
+nossos dados.
+
+62
+00:04:22,680 --> 00:04:30,330
+Vamos verificar a pgina inicial no servidor no meu navegador e procurar apenas o servidor Jason, de modo a
+
+63
+00:04:30,330 --> 00:04:31,870
+encontrar o primeiro link.
+
+64
+00:04:34,810 --> 00:04:42,340
+tudo sobre a construo de uma pequena e pequena API muito pequena, muito rpida,  para servir uma quantidade de dados.
+
+65
+00:04:42,340 --> 00:04:44,250
+Ento, este projeto aqui 
+
+66
+00:04:44,410 --> 00:04:48,460
+ realmente fcil comear com realmente, estou apenas mostrando a documentao aqui, caso voc
+
+67
+00:04:48,460 --> 00:04:49,550
+queira ler isso sozinho.
+
+68
+00:04:49,780 --> 00:04:53,030
+Mas vamos comear com a implementao imediatamente.
+
+69
+00:04:53,110 --> 00:04:57,970
+O cerne da implementao  que temos que criar um caso de DVD no arquivo.
+
+70
+00:04:58,030 --> 00:05:03,410
+Ns adicionamos uma quantidade de dados nesse arquivo e, em seguida, iniciamos um servidor executando o servidor de Jason.
+
+71
+00:05:03,490 --> 00:05:04,590
+Isso  praticamente isso.
+
+72
+00:05:05,050 --> 00:05:07,660
+Ento vamos dar uma chance.
+
+73
+00:05:07,660 --> 00:05:13,900
+De volta  linha de comando, vou parar meu servidor e depois vou instalar a biblioteca do
+
+74
+00:05:13,960 --> 00:05:21,060
+Jaison no servidor com o comando Salvar as guias do painel de instalao do NPM no servidor do dash.
+
+75
+00:05:21,100 --> 00:05:31,950
+Assim como em meu editor de cdigo, eu vou fazer um novo arquivo chamado D-B Jason.
+
+76
+00:05:32,160 --> 00:05:38,070
+Ento este  o arquivo que acabamos de ver a lista dentro da documentao e dentro daqui vamos colar
+
+77
+00:05:38,070 --> 00:05:41,160
+em alguns dos dados que queremos que nosso servidor sirva.
+
+78
+00:05:41,190 --> 00:05:47,600
+Ento, vou dizer se algum entra no Access  a rota usurios no meu servidor.
+
+79
+00:05:47,880 --> 00:05:50,850
+Quero retornar uma lista de usurios.
+
+80
+00:05:51,460 --> 00:05:57,560
+em idade, certifique-se de que voc est usando aspas duplas em torno de tudo isso.
+
+81
+00:06:01,390 --> 00:06:07,040
+Ento, eu digo que cada usurio deve ter um nome de identidade e
+
+82
+00:06:07,060 --> 00:06:10,190
+Este  um arquivo Jason no um arquivo do javascript.
+
+83
+00:06:10,240 --> 00:06:15,440
+E to vlido Jaison requer cotaes duplas, sem cotaes simples.
+
+84
+00:06:16,270 --> 00:06:19,840
+Vou fazer um outro usurio ter uma idia
+
+85
+00:06:23,640 --> 00:06:26,080
+de 40 um nome de Alex.
+
+86
+00:06:26,650 --> 00:06:28,470
+E aos 40 anos de idade.
+
+87
+00:06:28,510 --> 00:06:29,160
+Por que no.
+
+88
+00:06:29,500 --> 00:06:30,960
+OK, ento parece bom agora.
+
+89
+00:06:32,870 --> 00:06:38,900
+Agora, para ser claro, este  um servidor que estamos fazendo ser um processo de execuo completamente diferente do
+
+90
+00:06:38,960 --> 00:06:40,670
+nosso servidor de enxerto normal.
+
+91
+00:06:40,700 --> 00:06:43,460
+Ento, completamente separado completamente desacoplado.
+
+92
+00:06:43,460 --> 00:06:48,850
+Ele est hospedado dentro do mesmo diretrio do projeto, mas  sobre isso.
+
+93
+00:06:48,860 --> 00:06:54,820
+Ns temos que iniciar o servidor separadamente do nosso prprio servidor grfico para faz-lo.
+
+94
+00:06:54,830 --> 00:06:59,260
+Eu vou adicionar um pequeno script de ajuda dentro do meu pacote Scott Giese no arquivo.
+
+95
+00:06:59,390 --> 00:07:06,380
+seo de scripts e vou adicionar outro script com o nome do servidor do Jason
+
+96
+00:07:06,380 --> 00:07:16,040
+Colon e que executar o comando JS no show dash do tabuleiro do servidor DV dot Jaison como entao vai.
+
+97
+00:07:16,040 --> 00:07:21,570
+Ento, indo encontrar meu pacote obteve algum arquivo, ele vai encontrar a
+
+98
+00:07:21,620 --> 00:07:25,760
+Ento, agora vamos voltar para o meu terminal e vamos comear este servidor de
+
+99
+00:07:25,760 --> 00:07:27,120
+notcias que acabamos de criar.
+
+100
+00:07:27,590 --> 00:07:30,540
+Ento vou abrir uma segunda janela de terminal.
+
+101
+00:07:31,070 --> 00:07:36,260
+Voc pode fazer isso obtendo controle t se estiver usando o Terminal no OSX.
+
+102
+00:07:36,260 --> 00:07:41,180
+Para mim, pessoalmente, estou usando o termo cano e uso um pequeno recurso extravagante ao fazer
+
+103
+00:07:41,180 --> 00:07:43,870
+uma diviso no Windows assim na nova janela.
+
+104
+00:07:43,910 --> 00:07:52,940
+servidor Jay Sun executando o comando NPM executado e depois o servidor Jason Colan como o CO.
+
+105
+00:07:54,020 --> 00:07:56,370
+Eu vou iniciar o novo
+
+106
+00:07:56,670 --> 00:07:58,120
+Ento, ele diz carregando o D-B.
+
+107
+00:07:58,130 --> 00:07:59,850
+Jason timo.
+
+108
+00:07:59,940 --> 00:08:05,060
+Tudo est sendo executado com sucesso em trs mil usurios de barras.
+
+109
+00:08:05,070 --> 00:08:09,780
+Ento, assim como um teste rpido, vou copiar este link e vamos visit-lo no navegador.
+
+110
+00:08:09,780 --> 00:08:12,280
+Certifique-se de que tudo esteja funcionando.
+
+111
+00:08:12,330 --> 00:08:12,660
+Legal.
+
+112
+00:08:12,690 --> 00:08:17,140
+Parece que temos sucesso em obter nossos dados atualizados aqui para que possamos acessar os usurios cortados.
+
+113
+00:08:17,150 --> 00:08:22,900
+Eu tambm posso acessar a barra diagonal de usurio 23 e isso deveria me dar a conta do usurio.
+
+114
+00:08:23,310 --> 00:08:27,030
+Ento, voc pode dizer que essa coisa do servidor Dusan aqui  tudo,  fantstico.
+
+115
+00:08:27,030 --> 00:08:27,670
+Eu amo isso.
+
+116
+00:08:27,690 --> 00:08:32,070
+ apenas o melhor pequeno servidor para executar com alguns dados falsos.
+
+117
+00:08:32,070 --> 00:08:34,600
+Quando voc est em um ambiente de desenvolvimento.
+
+118
+00:08:35,340 --> 00:08:41,030
+Ento, vamos continuar na prxima seo e vamos descobrir como levar nosso grfico para todo o
+
+119
+00:08:41,040 --> 00:08:48,420
+servidor e fazer uma consulta sobre esta API externa para buscar alguns dados sobre um usurio muito particular e depois envi-lo
+
+120
+00:08:48,420 --> 00:08:51,900
+de volta ao nosso navegador em um grfico uma consulta.
+

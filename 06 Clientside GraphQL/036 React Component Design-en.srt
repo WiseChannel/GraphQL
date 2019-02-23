@@ -1,0 +1,428 @@
+1
+00:00:00,770 --> 00:00:06,090
+In the last section we spent a little bit of time doing the very root level set up for application.
+
+2
+00:00:06,180 --> 00:00:10,860
+We made use of the Apollo client library and the re-act Apollo library.
+
+3
+00:00:11,020 --> 00:00:16,250
+Remember Apollo client is front and or rendering library agnostic.
+
+4
+00:00:16,440 --> 00:00:22,680
+It doesn't care if we're using react or view our backbone or angular it just wants to get data from
+
+5
+00:00:22,680 --> 00:00:24,960
+our server and store it locally.
+
+6
+00:00:25,020 --> 00:00:31,860
+It is the re-act Apollo library that actually provides an integration between react and our server side
+
+7
+00:00:31,980 --> 00:00:35,260
+piece of data or our server side graft server.
+
+8
+00:00:35,280 --> 00:00:39,770
+I know I'm making a big deal here about the different libraries that we're making use of.
+
+9
+00:00:39,960 --> 00:00:44,360
+But as time goes on we're going to be making use of a lot of different libraries.
+
+10
+00:00:44,400 --> 00:00:49,340
+So I want to make sure that it's really clear still crystal clear what the purpose of each of them is
+
+11
+00:00:49,620 --> 00:00:52,260
+and what they're really doing for us.
+
+12
+00:00:52,890 --> 00:00:53,450
+OK.
+
+13
+00:00:53,670 --> 00:00:56,400
+We've got the root level set up in our application.
+
+14
+00:00:56,400 --> 00:01:01,980
+And I mentioned in the last section that this is really all we have to do to get our application working
+
+15
+00:01:02,010 --> 00:01:05,150
+and start making use of data on the client side.
+
+16
+00:01:05,280 --> 00:01:07,990
+And so in this section I want to really prove that to you.
+
+17
+00:01:08,220 --> 00:01:13,440
+I want to create a new component that will show a list of all the songs in our application and we're
+
+18
+00:01:13,440 --> 00:01:19,350
+going to write out some query in our code here somewhere that's going to go and fetch that data from
+
+19
+00:01:19,350 --> 00:01:22,360
+the server like the list of songs from the server.
+
+20
+00:01:22,560 --> 00:01:27,340
+So we're going to get started with the actual or react side of our application the section.
+
+21
+00:01:27,390 --> 00:01:31,680
+The first thing I want to do is talk a little bit about the different components that we're going to
+
+22
+00:01:31,680 --> 00:01:32,710
+be making.
+
+23
+00:01:33,090 --> 00:01:37,190
+So remember we've got two different pages at least inside this application.
+
+24
+00:01:37,200 --> 00:01:39,310
+We've got the song index page.
+
+25
+00:01:39,360 --> 00:01:41,810
+We've got a song detail page.
+
+26
+00:01:42,000 --> 00:01:45,430
+The Song Index page shows a list of all the different songs.
+
+27
+00:01:45,480 --> 00:01:52,380
+So I'm going to say that we will make a component called Song list to show all the different songs.
+
+28
+00:01:52,410 --> 00:01:58,820
+I'm not going to make a song list item you know a component just to show an individual item in the list.
+
+29
+00:01:58,980 --> 00:02:03,510
+I think that the component will be pretty straightforward and we should be able to get away with just
+
+30
+00:02:03,510 --> 00:02:11,100
+making a single component to render the list and each individual item in it on the song detail page
+
+31
+00:02:11,220 --> 00:02:13,780
+and we'll come back to these component names later on.
+
+32
+00:02:13,830 --> 00:02:17,640
+I just want to kind of give you a little bit of a preview of what different components were going to
+
+33
+00:02:17,640 --> 00:02:25,500
+make will have an overall song detail a component that will be responsible for fetching all the lyrics
+
+34
+00:02:25,650 --> 00:02:31,260
+associated with this particular song all the different lyrics will be rendered by a component called
+
+35
+00:02:31,260 --> 00:02:36,750
+lyric list and that will also have the component down here at the bottom who will be creating a new
+
+36
+00:02:36,750 --> 00:02:38,430
+lyric and adding it to a song.
+
+37
+00:02:38,670 --> 00:02:41,310
+We'll make that thing called lyric create.
+
+38
+00:02:41,640 --> 00:02:43,440
+So couple of different components here.
+
+39
+00:02:43,590 --> 00:02:49,860
+I do remember that we also want to have a screen for creating a new song that will probably be another
+
+40
+00:02:49,860 --> 00:02:55,730
+component probably something like song create but we can certainly figure that out when we get there.
+
+41
+00:02:55,740 --> 00:03:00,810
+So again I want to get started with the song list component in this section.
+
+42
+00:03:00,960 --> 00:03:05,670
+So let's get on let's get to it for this new component.
+
+43
+00:03:05,670 --> 00:03:06,530
+I'm going to make.
+
+44
+00:03:06,570 --> 00:03:12,600
+I'm going to make first a new component's directory inside of my client folder and will place the song
+
+45
+00:03:12,600 --> 00:03:14,540
+list component inside of there.
+
+46
+00:03:14,850 --> 00:03:18,400
+So inside of my project directory and find the client directory.
+
+47
+00:03:18,440 --> 00:03:19,420
+Here it is.
+
+48
+00:03:19,420 --> 00:03:27,630
+And I'm going to make a new folder in there called components and then inside of there I'll make a song
+
+49
+00:03:27,750 --> 00:03:28,790
+list.
+
+50
+00:03:28,950 --> 00:03:29,940
+Yes.
+
+51
+00:03:30,540 --> 00:03:35,640
+So this should have all the logic required for fetching a individual.
+
+52
+00:03:35,640 --> 00:03:39,920
+Or me fetching a list of songs and then rendering them on the screen.
+
+53
+00:03:40,200 --> 00:03:44,330
+So let's first get started with a little bit of the react side of things.
+
+54
+00:03:44,340 --> 00:03:50,210
+So the actual kind of rendering logic and how do we make some GSX that iterates over a list of songs
+
+55
+00:03:50,220 --> 00:03:55,620
+all that kind of good stuff and then we'll focus a little bit more on the graphic side of things like
+
+56
+00:03:55,620 --> 00:03:59,040
+how do we actually fetch the data that we want to get access to.
+
+57
+00:03:59,040 --> 00:04:06,330
+So first the Riak side of things the boiler plate that we are probably all familiar with I'm going to
+
+58
+00:04:06,330 --> 00:04:07,580
+import react.
+
+59
+00:04:07,860 --> 00:04:13,620
+I'm going to make this a class based component not because I expect to be making use of component level
+
+60
+00:04:13,620 --> 00:04:14,270
+state.
+
+61
+00:04:14,430 --> 00:04:19,200
+I expect that this is going to be a pretty complex component where I'm probably going want to have a
+
+62
+00:04:19,200 --> 00:04:24,180
+couple of helper methods and to do so I would make a class based component.
+
+63
+00:04:24,210 --> 00:04:31,110
+So again class based just because I expect to have a little bit of desire of having helper methods inside
+
+64
+00:04:31,110 --> 00:04:35,250
+of here so I'll make my song list component
+
+65
+00:04:38,340 --> 00:04:45,830
+and then immediately at the bottom I will export default song list will put a render method in here.
+
+66
+00:04:46,680 --> 00:04:56,100
+I think for right now we can just return a div that says song list like so and then just to get something
+
+67
+00:04:56,100 --> 00:05:01,250
+on the screen just to make sure that we are able to render this on the screen from number one.
+
+68
+00:05:01,330 --> 00:05:06,370
+I'm going to go back to my index dodgiest file which is where we're kind of bootstrapping the Apollo
+
+69
+00:05:06,370 --> 00:05:11,980
+client side of things and I'm going to import that component and then immediately show it inside of
+
+70
+00:05:12,040 --> 00:05:13,070
+the root component.
+
+71
+00:05:13,090 --> 00:05:18,790
+So again this is just to get the thing on the screen so we can see it evolve over time as we start to
+
+72
+00:05:18,790 --> 00:05:20,310
+work with Apollo.
+
+73
+00:05:20,860 --> 00:05:29,530
+So import song list from components song list do make sure that you've got the dot slash in there because
+
+74
+00:05:29,530 --> 00:05:34,750
+we are accessing the components directory inside of the current client folder that we're working inside
+
+75
+00:05:34,750 --> 00:05:35,420
+of.
+
+76
+00:05:35,710 --> 00:05:41,290
+And then I'll replace the div of lyrical with song list like so
+
+77
+00:05:44,570 --> 00:05:49,460
+now one thing I want to remind you you might we're going to a lot of typing throughout this whole section
+
+78
+00:05:49,520 --> 00:05:53,140
+like crazy amount of typing as a reminder.
+
+79
+00:05:53,180 --> 00:05:58,790
+I encourage you to constantly be checking your terminal and be watching this thing to see if you have
+
+80
+00:05:58,790 --> 00:06:00,550
+any debug information.
+
+81
+00:06:00,740 --> 00:06:03,760
+If you make any typos they're going to show up over here.
+
+82
+00:06:03,770 --> 00:06:08,150
+You're going to get a big error message and it's going to say something like Hey I expected to see x
+
+83
+00:06:08,150 --> 00:06:10,390
+y z some change somewhere.
+
+84
+00:06:10,400 --> 00:06:13,910
+You know let me go ahead make a change in here that's going to break it.
+
+85
+00:06:13,910 --> 00:06:14,980
+So here's a great example.
+
+86
+00:06:15,000 --> 00:06:18,700
+Hey expected corresponding GSX closing tag in here.
+
+87
+00:06:18,860 --> 00:06:25,040
+The song list is on or is unclose so I'm not going to be checking the terminal myself too often but
+
+88
+00:06:25,040 --> 00:06:29,510
+if you ever see an error inside of the browser something is not showing up correctly.
+
+89
+00:06:29,510 --> 00:06:34,400
+Please please please I beg you take a glance at your terminal and make sure that everything is working
+
+90
+00:06:34,460 --> 00:06:36,520
+as you would expect.
+
+91
+00:06:37,580 --> 00:06:40,330
+OK so I'm now back to working the way I expect.
+
+92
+00:06:40,340 --> 00:06:44,130
+I fixed up that little typo and I'm going to go back over to my browser.
+
+93
+00:06:44,150 --> 00:06:48,510
+Refresh the page and just make sure that I can get everything showing up.
+
+94
+00:06:48,510 --> 00:06:52,010
+So I think that I probably already made a mistake in here.
+
+95
+00:06:52,070 --> 00:06:55,680
+The song list render a valid re-act component must be returned.
+
+96
+00:06:56,060 --> 00:07:00,340
+I neglected to return the thing.
+
+97
+00:07:00,470 --> 00:07:04,430
+Sorry guys sometimes talking and typing really takes a toll on you.
+
+98
+00:07:04,820 --> 00:07:06,920
+OK so that's a lot better.
+
+99
+00:07:06,920 --> 00:07:12,050
+Funny that I mention checking stuff out for debugging when I make a mistake myself.
+
+100
+00:07:12,260 --> 00:07:15,170
+I apologize for that so I refresh the page.
+
+101
+00:07:15,170 --> 00:07:17,170
+I should get some list appearing on the screen.
+
+102
+00:07:17,220 --> 00:07:18,680
+Yup looks good.
+
+103
+00:07:19,100 --> 00:07:24,230
+OK this is a pretty good place to take a quick break and then when we come back we're going to add in
+
+104
+00:07:24,260 --> 00:07:26,680
+a graph to a query to this component.
+
+105
+00:07:26,840 --> 00:07:32,570
+We're going to figure out exactly how to do the bonding layer between our graph to all server and or
+
+106
+00:07:32,570 --> 00:07:33,980
+re-act component.
+
+107
+00:07:34,040 --> 00:07:36,270
+So let's take care of that in the next section.
+

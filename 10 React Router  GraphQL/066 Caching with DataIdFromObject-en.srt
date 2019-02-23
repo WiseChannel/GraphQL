@@ -1,0 +1,476 @@
+1
+00:00:00,750 --> 00:00:05,940
+In the last section we had a discussion about how Apollo internally stores some of the data and how
+
+2
+00:00:05,940 --> 00:00:09,730
+it works with informing react about changes to our data.
+
+3
+00:00:09,750 --> 00:00:16,260
+Remember the big takeaway here was that when Apollo fetches data for application it really has no idea
+
+4
+00:00:16,350 --> 00:00:18,690
+about what piece of data is what.
+
+5
+00:00:18,690 --> 00:00:24,780
+And so we have to help Appollo understand which piece of data is which that allows it to more effectively
+
+6
+00:00:24,780 --> 00:00:29,580
+tell the re-act side of our application how it is fetching or excuse me whenever a certain piece of
+
+7
+00:00:29,580 --> 00:00:31,050
+data updates.
+
+8
+00:00:31,380 --> 00:00:37,940
+So obviously the big challenge here is how do we tell Appollo about what record is what.
+
+9
+00:00:38,220 --> 00:00:42,440
+Well in practice that ends up being gosh darn straightforward.
+
+10
+00:00:43,020 --> 00:00:49,680
+I'm going to open up the index dot J us file inside of our client directory inside of there or find
+
+11
+00:00:49,680 --> 00:00:52,980
+the new Appollo client declaration.
+
+12
+00:00:53,370 --> 00:00:58,470
+We're going to add one tiny piece of configuration here and you're going to be a little bit surprised
+
+13
+00:00:58,470 --> 00:01:04,590
+at how straightforward it is or how simple this configuration is but it's going to be awfully confusing
+
+14
+00:01:04,590 --> 00:01:06,030
+about what it actually does.
+
+15
+00:01:06,030 --> 00:01:09,870
+So let's put the code out and we'll talk a little bit about how it's working.
+
+16
+00:01:10,260 --> 00:01:14,940
+So we're going to add a property data I.D. from object.
+
+17
+00:01:14,970 --> 00:01:25,590
+And notice that ID has a lowercase D and then we'll say oh is o dot Id notice that this is an old character.
+
+18
+00:01:25,590 --> 00:01:27,090
+It is not a zero.
+
+19
+00:01:27,150 --> 00:01:28,410
+So it's not a zero.
+
+20
+00:01:28,530 --> 00:01:30,110
+It is a lower case o.
+
+21
+00:01:30,630 --> 00:01:34,020
+The O is short for object.
+
+22
+00:01:34,020 --> 00:01:41,310
+This piece of configuration right here takes every single piece of data that is fetched by our Apollo
+
+23
+00:01:41,310 --> 00:01:42,510
+client from the back end.
+
+24
+00:01:42,600 --> 00:01:47,100
+Every piece of data and runs it through this function.
+
+25
+00:01:47,100 --> 00:01:53,460
+The result of this function or whatever is returned from this function is used to identify that piece
+
+26
+00:01:53,460 --> 00:01:58,290
+of data inside of the Apollo store or inside of the Apollo client.
+
+27
+00:01:58,290 --> 00:02:02,800
+So what we're really saying here is go and fetch every piece of data you need.
+
+28
+00:02:03,090 --> 00:02:10,350
+Look at every single piece of data every single record and use the ID field off of that record to identify
+
+29
+00:02:10,350 --> 00:02:11,880
+that piece of data.
+
+30
+00:02:11,910 --> 00:02:14,730
+Now to me it might seem like that's a really obvious step.
+
+31
+00:02:14,730 --> 00:02:20,790
+It might seem like well of course use the idea to identify that record and maybe even when we were looking
+
+32
+00:02:20,790 --> 00:02:26,820
+at this diagram right here you're thinking in your head Stephen why don't they just use the ID to identify
+
+33
+00:02:26,820 --> 00:02:27,670
+what's going on.
+
+34
+00:02:27,670 --> 00:02:31,920
+Or like what piece of data that this is right here and that and that is exactly what's happening.
+
+35
+00:02:31,920 --> 00:02:38,070
+We're just telling Appollo use the idea of record to identify this piece of data and keep track of it
+
+36
+00:02:38,100 --> 00:02:42,200
+and tell it react whenever the song with idea of one is updated.
+
+37
+00:02:42,210 --> 00:02:45,000
+So it is as simple as it might seem.
+
+38
+00:02:45,000 --> 00:02:50,730
+The reason that we have to do this configuration step is that Apollo does not want to automatically
+
+39
+00:02:50,730 --> 00:02:57,010
+assume that you want to use that id property off of every record to identify it.
+
+40
+00:02:57,000 --> 00:03:04,280
+Like maybe maybe you don't serve up an ID with every piece of data or maybe your ideas aren't unique.
+
+41
+00:03:04,380 --> 00:03:11,190
+Using this idea as an identifier only works when all the IDs inside of our application are unique against
+
+42
+00:03:11,190 --> 00:03:12,240
+each other.
+
+43
+00:03:12,770 --> 00:03:13,490
+OK.
+
+44
+00:03:13,980 --> 00:03:17,320
+So let's talk a little bit about the ramifications of this right here.
+
+45
+00:03:17,490 --> 00:03:23,310
+When we use the idea off of every record to identify it inside of the Apollo side of our application
+
+46
+00:03:23,730 --> 00:03:27,000
+it means that when ever we make a query we have to make.
+
+47
+00:03:27,300 --> 00:03:33,900
+Excuse me we have to make sure that we return or we ask for the ID of every record and every query that
+
+48
+00:03:33,900 --> 00:03:35,440
+we put together.
+
+49
+00:03:35,460 --> 00:03:41,580
+So if we don't provide an ID inside of a query we don't ask for an ID then Apollo will not be able to
+
+50
+00:03:41,580 --> 00:03:47,750
+identify that piece of data which is definitely not what we want to have happen.
+
+51
+00:03:48,360 --> 00:03:53,070
+So to make sure that this is going to work the way we expect we're going to go back to the mutation
+
+52
+00:03:53,160 --> 00:03:59,550
+that we're using to create a new lyric and make sure that when we get back a song and the songs lyrics
+
+53
+00:03:59,640 --> 00:04:03,540
+we're going to ensure that we are asking for the ID with that as well.
+
+54
+00:04:03,540 --> 00:04:09,810
+And that will allow Apollo to track and follow every single one of the records that was fetched.
+
+55
+00:04:10,440 --> 00:04:16,510
+So I'm going to find the mutation that we've been working with which is inside of the lyric create component.
+
+56
+00:04:16,860 --> 00:04:24,360
+So here's lyric create I'm going to scroll down to the bottom and find the mutation itself.
+
+57
+00:04:24,360 --> 00:04:28,990
+So right now we are asking for the idea of the song that comes back that is good.
+
+58
+00:04:29,040 --> 00:04:35,580
+That means that when we get the song back from our back end we'll be able to say Oh hey Apollo that
+
+59
+00:04:35,580 --> 00:04:40,000
+song that you already fetched the one with the idea of five we've got an update for it.
+
+60
+00:04:40,020 --> 00:04:40,840
+Here it is.
+
+61
+00:04:41,070 --> 00:04:43,720
+That song now has a new list of lyrics.
+
+62
+00:04:43,740 --> 00:04:44,720
+And here they are.
+
+63
+00:04:44,790 --> 00:04:50,070
+So go tell the re-act side of our application that there's a new list of lyrics and the re-act component
+
+64
+00:04:50,070 --> 00:04:51,600
+needs to re render.
+
+65
+00:04:51,750 --> 00:04:57,870
+Now we also have to make sure that we ask for the ID of every single earth that comes back as well because
+
+66
+00:04:57,870 --> 00:05:04,650
+that will again allow hollow to say hey any part of the re-act application that's showing lyrics maybe
+
+67
+00:05:04,660 --> 00:05:08,500
+the content of these lyrics just change so you might need to re render.
+
+68
+00:05:08,830 --> 00:05:16,960
+And if they did if you're showing a lyric with ID 20 21 or 22 23 then maybe the content just changed
+
+69
+00:05:16,960 --> 00:05:19,420
+and you might need to re render yourself.
+
+70
+00:05:19,420 --> 00:05:26,050
+So again this entire process is all about taking the IDs of all of our different records and associating
+
+71
+00:05:26,050 --> 00:05:30,850
+that with some of the components inside of our application and all that stuff is going on behind the
+
+72
+00:05:30,850 --> 00:05:32,140
+scenes.
+
+73
+00:05:32,890 --> 00:05:37,050
+OK I think we're ready for a test now ready to test this out in the browser.
+
+74
+00:05:37,330 --> 00:05:43,150
+So I'm going to flip back over to our application or refresh the page.
+
+75
+00:05:43,750 --> 00:05:44,840
+Here's our lyrics.
+
+76
+00:05:44,850 --> 00:05:46,510
+I'm going to add in a new lyric.
+
+77
+00:05:46,900 --> 00:05:47,290
+How about
+
+78
+00:05:50,050 --> 00:05:59,300
+it was good I guess whatever will hit enter to smear it and boom it automatically appears on the screen.
+
+79
+00:05:59,500 --> 00:06:06,170
+So again this happens successfully because Apollo knows that this component right here is showing the
+
+80
+00:06:06,170 --> 00:06:10,670
+song with ID of five eight nine blah blah blah blah blah.
+
+81
+00:06:11,080 --> 00:06:19,720
+When the mutation occurs the server comes back and tells us hey the song with ID 5 8 9 2 0 8 was just
+
+82
+00:06:19,780 --> 00:06:20,430
+updated.
+
+83
+00:06:20,440 --> 00:06:23,760
+Here's the new list of lyrics that are associated with it.
+
+84
+00:06:23,770 --> 00:06:29,830
+Apollo takes this list of lyrics and says hey re-act application if you're showing anything about this
+
+85
+00:06:29,830 --> 00:06:35,920
+song right here the song with this particular ID some records on it or some properties of it just changed
+
+86
+00:06:35,930 --> 00:06:39,020
+I think maybe I got a new lyric or something like that.
+
+87
+00:06:39,100 --> 00:06:41,550
+So you might need to re render your list of lyrics.
+
+88
+00:06:41,650 --> 00:06:43,860
+So that's what's going on internally.
+
+89
+00:06:44,770 --> 00:06:49,870
+If all this stuff that we've gone through in the last section or two all the stuff about the ideas seems
+
+90
+00:06:49,870 --> 00:06:51,770
+really weird or really strange.
+
+91
+00:06:51,970 --> 00:06:59,050
+I want to remind you that you can avoid this whole system right here by making use of that refits queries
+
+92
+00:06:59,530 --> 00:07:01,810
+thing that we had seen inside of song create.
+
+93
+00:07:02,020 --> 00:07:05,940
+So inside a song create we had used refits queries right here.
+
+94
+00:07:05,980 --> 00:07:11,960
+You can always just re fetch all of your data and have a good time you know take care of it that way.
+
+95
+00:07:12,130 --> 00:07:17,470
+But I want to point out that when you use this refits queries system right here you have to run your
+
+96
+00:07:17,470 --> 00:07:22,930
+mutation and then make a follow up request to re-offends all of your data.
+
+97
+00:07:23,110 --> 00:07:30,550
+When we use this caching system more this data ID from object system only a single request is needed
+
+98
+00:07:31,510 --> 00:07:32,710
+to update our data.
+
+99
+00:07:32,800 --> 00:07:38,740
+See how we only made the mutation and we did not make any follow up request to re-offense the song or
+
+100
+00:07:38,740 --> 00:07:41,940
+the list of lyrics which is a huge benefit.
+
+101
+00:07:41,980 --> 00:07:48,360
+We are cutting the number of requests we make in half which is really just perfect for our application.
+
+102
+00:07:48,940 --> 00:07:49,530
+OK.
+
+103
+00:07:49,570 --> 00:07:51,830
+So this is data from object.
+
+104
+00:07:51,850 --> 00:07:58,300
+The last thing I want to say about it is that there is some official documentation that I kind of recommend
+
+105
+00:07:58,300 --> 00:08:02,750
+you read just a little bit just to get a little bit of a better sense of what's going on.
+
+106
+00:08:02,770 --> 00:08:11,060
+You can go to dev dot Appollo data dot com slash re-act slash cache updates.
+
+107
+00:08:11,150 --> 00:08:17,820
+It's email and I'll paste this link over here really quick just to make sure you can read it.
+
+108
+00:08:18,640 --> 00:08:24,550
+So if you want to pause video right now and copy this link over and visit it inside the browser would
+
+109
+00:08:24,560 --> 00:08:25,570
+be great.
+
+110
+00:08:27,100 --> 00:08:33,930
+So inside of this document right here there is an article about normalization with data ID from object.
+
+111
+00:08:34,150 --> 00:08:36,130
+So that's exactly what we're doing right here.
+
+112
+00:08:36,130 --> 00:08:40,240
+And if you want to you can take a glance at the documentation here and just kind of give you a little
+
+113
+00:08:40,240 --> 00:08:43,200
+bit of a different angle than what I've presented.
+
+114
+00:08:43,270 --> 00:08:48,190
+I'm showing this to you specifically because this is a rather complicated topic and I wanted to give
+
+115
+00:08:48,190 --> 00:08:52,960
+you at least someone else's viewpoint on the topic as opposed to just mine.
+
+116
+00:08:53,050 --> 00:08:56,370
+So you can really understand a little bit more about what's going on.
+
+117
+00:08:56,940 --> 00:08:57,440
+OK.
+
+118
+00:08:57,490 --> 00:09:01,590
+I think that our Larry list and lyric create functions are working perfectly.
+
+119
+00:09:01,630 --> 00:09:03,560
+So let's continue in the next section.
+

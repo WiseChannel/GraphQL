@@ -1,0 +1,276 @@
+1
+00:00:00,760 --> 00:00:06,240
+Agora, nossos usurios esto conectados  nossa lista de empresas e podemos pedir detalhes sobre cada empresa
+
+2
+00:00:06,290 --> 00:00:08,370
+com a qual um usurio est associado.
+
+3
+00:00:08,620 --> 00:00:14,800
+Ento, se olharmos para o nosso equador por aqui, podemos acessar um usurio que podemos pedir para a
+
+4
+00:00:14,800 --> 00:00:18,010
+sua empresa e podemos obter o nome dessa empresa assim.
+
+5
+00:00:18,030 --> 00:00:23,110
+Mas ainda no temos a capacidade de pedir apenas uma empresa por si s.
+
+6
+00:00:23,170 --> 00:00:28,120
+Ento eu no posso fazer algo como Hey, voc quer me dar a empresa com uma idia de um
+
+7
+00:00:28,120 --> 00:00:29,410
+e me dizer o nome.
+
+8
+00:00:29,410 --> 00:00:34,110
+No temos um campo no tipo de consulta que nos permita fazer isso ainda.
+
+9
+00:00:34,300 --> 00:00:37,580
+Ento, se pensarmos no diagrama que estava apenas olhando para este aqui.
+
+10
+00:00:37,750 --> 00:00:41,390
+Lembre-se de nossa roop queerie s nos permite ir a um usurio.
+
+11
+00:00:41,410 --> 00:00:45,370
+No temos a capacidade de ir diretamente para uma empresa ainda.
+
+12
+00:00:45,490 --> 00:00:48,730
+S podemos acessar a empresa primeiro indo ao usurio.
+
+13
+00:00:48,880 --> 00:00:50,870
+E depois para a empresa.
+
+14
+00:00:50,980 --> 00:00:57,730
+Ento, nesta seo, eu quero trabalhar na adio da capacidade de passar de uma consulta raiz para a nossa
+
+15
+00:00:57,760 --> 00:01:02,120
+empresa diretamente, sem ter que se preocupar com nenhum usurio no meio.
+
+16
+00:01:02,440 --> 00:01:07,120
+o que est com um ID, me diga seu nome, diga minha descrio e assim por diante.
+
+17
+00:01:07,120 --> 00:01:12,790
+Depois de fazermos isso, seremos capazes de fazer uma consulta que parea assim, onde podemos dizer que vamos encontrar uma empresa
+
+18
+00:01:12,790 --> 00:01:15,830
+e me fale um pouco sobre essa empresa, voc sabe, encontre
+
+19
+00:01:15,850 --> 00:01:17,650
+Ento, vamos abrir nosso arquivo de esquema.
+
+20
+00:01:17,650 --> 00:01:20,760
+Vamos encontrar nosso tipo de consulta raiz dentro de l.
+
+21
+00:01:20,990 --> 00:01:22,240
+Aqui est o meu esquema de arquivo.
+
+22
+00:01:22,240 --> 00:01:24,280
+Eu tenho o meu tipo de consulta raiz aqui.
+
+23
+00:01:24,490 --> 00:01:29,860
+E vamos adicionar em outro campo ao nosso tipo de consulta que vamos chamar
+
+24
+00:01:29,860 --> 00:01:33,640
+uma empresa e que nos permitir consultar diretamente uma empresa.
+
+25
+00:01:34,060 --> 00:01:38,590
+Ento, vamos ao objeto de campos como um irmo para o usurio.
+
+26
+00:01:38,610 --> 00:01:48,790
+Ento, este  um irmo para o usurio vai dizer que a empresa o tipo ser um tipo de empresa, porque  isso que este campo
+
+27
+00:01:49,390 --> 00:01:55,240
+vai retornar, vai retornar uma instncia de uma empresa e os outros argumentos que vamos
+
+28
+00:01:55,240 --> 00:01:59,330
+colocar aqui so As outras propriedades sero quase idnticas ao usurio.
+
+29
+00:01:59,380 --> 00:02:04,780
+Ento, tambm vamos adicionar no objeto args porque queremos pedir uma empresa atravs de uma
+
+30
+00:02:04,780 --> 00:02:10,600
+identificao muito particular e tambm ir definir a funo de resoluo que realmente vai encontrar uma
+
+31
+00:02:10,630 --> 00:02:12,080
+determinada empresa e devolv-la.
+
+32
+00:02:12,910 --> 00:02:17,670
+Ento, poderamos colocar nossa arca com uma identificao e tipo de grfico.
+
+33
+00:02:17,680 --> 00:02:20,430
+Q L string como assim.
+
+34
+00:02:20,620 --> 00:02:22,900
+Lembre-se deste objeto args aqui.
+
+35
+00:02:23,020 --> 00:02:28,900
+Define indica ao nosso esquema que sempre que algum tenta acessar este campo, esperamos que eles estejam
+
+36
+00:02:28,900 --> 00:02:33,430
+fornecendo este argumento ID e as idias devem ser fornecidas como uma string.
+
+37
+00:02:33,820 --> 00:02:38,640
+Ento, podemos fazer a funo de resultado.
+
+38
+00:02:38,740 --> 00:02:43,060
+parecer muito semelhante aos pedidos que acabamos de fazer para obter um
+
+39
+00:02:43,580 --> 00:02:56,680
+usurio especfico, far uma solicitao de rede ao longo da idade, o host local TTP 3000, as empresas da barra-nibus vm a barra de Bennie e usaremos cordas de interpolao de string ou de modelo e
+
+40
+00:02:56,720 --> 00:03:04,090
+dirijamos a nossa DOT Id, por isso, porque eu uso um modelo de cadeia aqui um pouco de um 6.
+
+41
+00:03:04,090 --> 00:03:05,670
+E novamente, ele vai
+
+42
+00:03:05,680 --> 00:03:09,070
+Certifique-se de que voc est usando batiks em vez de citaes simples aqui.
+
+43
+00:03:09,070 --> 00:03:11,150
+Muito importante.
+
+44
+00:03:11,260 --> 00:03:15,070
+E, novamente, faremos esse pouco de compatibilidade entre o Axel e os grficos.
+
+45
+00:03:15,070 --> 00:03:20,830
+Bem, apenas para garantir que apenas devolvamos os dados que retornam da solicitao e
+
+46
+00:03:20,830 --> 00:03:23,310
+no o objeto de resposta inteiro.
+
+47
+00:03:23,620 --> 00:03:25,120
+Tudo bem, vamos nos dar um tiro.
+
+48
+00:03:25,120 --> 00:03:28,670
+Eu vou mudar para o meu grfico.
+
+49
+00:03:28,690 --> 00:03:31,420
+Voc notar que ainda tenho um erro aqui.
+
+50
+00:03:31,420 --> 00:03:36,190
+Lembre-se de grficos grficos no atualizar automaticamente o nosso esquema que temos de
+
+51
+00:03:36,670 --> 00:03:37,990
+realmente atualiz-lo manualmente.
+
+52
+00:03:38,470 --> 00:03:42,630
+E agora deve ser um grfico muito mais bvio, obtm o novo esquema que diz.
+
+53
+00:03:42,640 --> 00:03:45,250
+OK, entendo que posso buscar uma empresa.
+
+54
+00:03:45,340 --> 00:03:47,380
+Parece que voc deu os argumentos corretos.
+
+55
+00:03:47,380 --> 00:03:48,220
+Ok, eu estou feliz.
+
+56
+00:03:48,220 --> 00:03:52,840
+Vamos executar esta consulta novamente se voc conseguir essa operao desconhecida nula.
+
+57
+00:03:52,870 --> 00:03:55,320
+Voc pode simplesmente excluir e ler o nome do tipo.
+
+58
+00:03:55,360 --> 00:03:58,310
+Apenas um pequeno erro em torno de grficos.
+
+59
+00:03:58,450 --> 00:04:01,870
+E quando eu coloco o nome e executo a consulta agora retornando a Apple.
+
+60
+00:04:01,870 --> 00:04:04,480
+Fantstico, tambm podemos procurar a descrio.
+
+61
+00:04:05,110 --> 00:04:09,530
+E, claro, se queremos obter o ID e a resposta, tambm vamos l.
+
+62
+00:04:09,910 --> 00:04:10,440
+Perfeito.
+
+63
+00:04:10,480 --> 00:04:15,740
+Ento, isso adicionou a idia de uma empresa ao nosso esquema.
+
+64
+00:04:16,570 --> 00:04:21,190
+voc deveria verificar seu terminal e certificar-se de que voc no tenha nenhum erro aqui ou de erros de digitao.
+
+65
+00:04:21,190 --> 00:04:25,060
+Se voc teve algum problema com a obteno desta coisa para mostrar, lembre-se sempre de que
+
+66
+00:04:25,060 --> 00:04:31,630
+Se voc tiver algum tipo de digitao, eles sempre aparecero aqui e nos avisar, voc conseguiu um erro de digitao na linha x y z.
+
+67
+00:04:32,290 --> 00:04:33,210
+OK, isso  timo.
+
+68
+00:04:33,310 --> 00:04:35,800
+Vamos voltar e chegar  prxima seo.
+
+69
+00:04:35,800 --> 00:04:41,350
+E vamos trabalhar em unir empresas e usurios de uma maneira mais.
+

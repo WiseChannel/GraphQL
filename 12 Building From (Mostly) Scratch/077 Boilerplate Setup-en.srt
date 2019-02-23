@@ -1,0 +1,444 @@
+1
+00:00:00,810 --> 00:00:06,180
+Now that we've had a chance to discuss some of the problems and possible solutions inside of this next
+
+2
+00:00:06,180 --> 00:00:09,280
+application let's get started with writing some code.
+
+3
+00:00:09,630 --> 00:00:15,720
+We'll first start by cloning an existing repository off of good hub and installing a couple of dependencies
+
+4
+00:00:15,720 --> 00:00:17,310
+inside of it.
+
+5
+00:00:17,310 --> 00:00:20,570
+First things through the link to get directly to that repository.
+
+6
+00:00:20,700 --> 00:00:22,140
+So here it is right here.
+
+7
+00:00:22,350 --> 00:00:27,030
+Do note that this is a different repository than the ones that we have been using in the two previous
+
+8
+00:00:27,030 --> 00:00:28,040
+applications.
+
+9
+00:00:28,080 --> 00:00:31,070
+So totally different started a project right here.
+
+10
+00:00:31,200 --> 00:00:36,880
+I'm going to copy the link open up chrome and then navigate directly there.
+
+11
+00:00:39,830 --> 00:00:45,590
+Being a good repository we can either clone or download this project by using the green button on the
+
+12
+00:00:45,590 --> 00:00:46,560
+right hand side.
+
+13
+00:00:46,760 --> 00:00:52,010
+And so as always it's up to you to decide whether or not you want to download it as zip file or clone
+
+14
+00:00:52,010 --> 00:00:57,830
+it using get I of course want to clone it using it just because it's a little bit faster and easier
+
+15
+00:00:57,830 --> 00:00:58,910
+to work with.
+
+16
+00:00:58,910 --> 00:01:00,520
+So a copy billing right here.
+
+17
+00:01:00,530 --> 00:01:06,680
+And then change over to my terminal once I'm at my terminal do notice that I'm not inside of my project
+
+18
+00:01:06,680 --> 00:01:07,670
+directory anymore.
+
+19
+00:01:07,670 --> 00:01:13,790
+I'm now at a workspace level folder which means this is an appropriate location to clone my project
+
+20
+00:01:13,790 --> 00:01:14,610
+to.
+
+21
+00:01:14,870 --> 00:01:19,750
+So right out get clone and then the link that I just copied.
+
+22
+00:01:19,900 --> 00:01:26,690
+So this will reach out to get her get my STRUGAR package and clone it now change into the new directory
+
+23
+00:01:26,690 --> 00:01:30,050
+that was just created which is all well off graph.
+
+24
+00:01:30,050 --> 00:01:31,190
+Q Well excuse me.
+
+25
+00:01:31,190 --> 00:01:36,650
+Starter so autograph kills charter and I'm going to start my code editor.
+
+26
+00:01:36,890 --> 00:01:42,920
+And while that starts up I'm also going to go back and start installing my dependencies by running NPM
+
+27
+00:01:42,980 --> 00:01:44,280
+install.
+
+28
+00:01:44,480 --> 00:01:48,520
+I'm going to assume that all the dependencies are going to install successfully.
+
+29
+00:01:48,530 --> 00:01:50,900
+So you're not going to see me come back here or anything like that.
+
+30
+00:01:50,900 --> 00:01:54,290
+We're just going to assume that everything's going to be installed successfully.
+
+31
+00:01:54,750 --> 00:01:55,100
+OK.
+
+32
+00:01:55,170 --> 00:01:56,960
+Let's change over to our code editor.
+
+33
+00:01:57,800 --> 00:02:02,430
+And you can see some of the project files in the left hand pane.
+
+34
+00:02:02,480 --> 00:02:07,550
+Now the general architecture of this project here is very similar to the ones the projects that we've
+
+35
+00:02:07,550 --> 00:02:09,020
+worked with previously.
+
+36
+00:02:09,110 --> 00:02:14,350
+So we have an index G-S file at the very top level that starts up our app.
+
+37
+00:02:14,480 --> 00:02:20,210
+We have a server folder with a bunch of our server related code and then a client folder that is supposed
+
+38
+00:02:20,210 --> 00:02:26,630
+to be that is intended to contain some of the client side javascript code for our application.
+
+39
+00:02:26,750 --> 00:02:31,610
+I want to start off by looking at the code that is included inside of the client folder.
+
+40
+00:02:31,670 --> 00:02:33,660
+So if I open up indexed on.
+
+41
+00:02:34,070 --> 00:02:41,180
+OK just route dead simple absolute minimum boilerplate for getting a re-act application on the screen
+
+42
+00:02:42,170 --> 00:02:45,160
+we create the root component and then we render on the screen.
+
+43
+00:02:45,170 --> 00:02:45,950
+That's pretty much it.
+
+44
+00:02:45,950 --> 00:02:52,060
+So not going not too much not too much going on inside of this client folder just yet.
+
+45
+00:02:52,070 --> 00:02:54,260
+Now let's check out the source server folder.
+
+46
+00:02:54,340 --> 00:02:58,260
+So there's definitely a couple of different folders inside of here.
+
+47
+00:02:58,260 --> 00:03:02,010
+I want to tell you a little bit about this boiler plate right now.
+
+48
+00:03:03,270 --> 00:03:08,660
+For this last application we are doing really a very full stack application here.
+
+49
+00:03:08,730 --> 00:03:13,860
+And when I sat down and started putting together all the code for this example I realized that if we
+
+50
+00:03:13,860 --> 00:03:20,700
+did this entire project from scratch we were going to really really really deviate from talking about
+
+51
+00:03:20,710 --> 00:03:21,610
+graphics.
+
+52
+00:03:21,900 --> 00:03:27,050
+And I really really really wanted to keep the course 100 percent focused on graphics well.
+
+53
+00:03:27,300 --> 00:03:32,580
+So I made that decision to put together a lot of the server boilerplate stuff together for this package
+
+54
+00:03:32,580 --> 00:03:33,460
+right here.
+
+55
+00:03:33,510 --> 00:03:37,920
+We're looking to write a lot of the server code but I took care of some of the just a little bit of
+
+56
+00:03:37,920 --> 00:03:44,280
+the authentication related stuff because again it would have been a real big diversion to talk about
+
+57
+00:03:44,280 --> 00:03:46,390
+all the authentication stuff.
+
+58
+00:03:46,560 --> 00:03:51,460
+And we would have not been discussing graft well at all for probably two or three hours.
+
+59
+00:03:51,480 --> 00:03:56,400
+So kind of made the decision to take care of that for us ahead of time.
+
+60
+00:03:56,400 --> 00:04:01,620
+Now if you take in any such materials before or really as we've worked through this one you know that
+
+61
+00:04:01,620 --> 00:04:06,620
+I hate putting code in front of your face without telling you anything about it.
+
+62
+00:04:06,660 --> 00:04:13,590
+So even though I gave you this big boilerplate starter package I did go through an ad on a tremendous
+
+63
+00:04:13,590 --> 00:04:16,920
+number of comments throughout this codebase right here.
+
+64
+00:04:16,920 --> 00:04:22,500
+So if you really want to know what's going on inside of this existing codebase there is a ton of comments
+
+65
+00:04:22,500 --> 00:04:27,570
+in here for you to read and understand about how I wired up some of the authentication stuff.
+
+66
+00:04:27,690 --> 00:04:33,590
+So let's do a very quick tour to cover what is already implemented in the starter package.
+
+67
+00:04:33,610 --> 00:04:38,550
+I'm inside of the server doc J.S. file right now and you can see a ton of require statements at the
+
+68
+00:04:38,550 --> 00:04:39,380
+top.
+
+69
+00:04:39,660 --> 00:04:45,090
+So this application does make use of a number of different dependencies most of which are helping around
+
+70
+00:04:45,090 --> 00:04:50,580
+the authentication system which we'll talk about in great detail when we start talking about authentication
+
+71
+00:04:50,610 --> 00:04:51,420
+with graft.
+
+72
+00:04:51,490 --> 00:04:55,780
+Well we are still making use of Mongul lab.
+
+73
+00:04:55,800 --> 00:05:01,270
+So we are going to create a new Mongo lab instance and paste the link inside of here.
+
+74
+00:05:01,320 --> 00:05:05,870
+We then initiate our connection to mongoose which is going to reach out to Ersin me we initiate our
+
+75
+00:05:05,880 --> 00:05:11,240
+connection to mongered DV through mongoose and then we print out any possible error messages.
+
+76
+00:05:12,380 --> 00:05:17,000
+Next there's a little bit of code in here about maintaining a session using a cookie.
+
+77
+00:05:17,000 --> 00:05:22,350
+So this again is part of the big discussion that we're going to have around authentication.
+
+78
+00:05:22,640 --> 00:05:29,150
+And then the rest of the code in here is about graph well and some setup with web pack as well.
+
+79
+00:05:29,150 --> 00:05:33,720
+Now there's two other files I want to talk about very briefly inside of the models folder.
+
+80
+00:05:33,740 --> 00:05:36,110
+You'll find a file called user dot J.
+
+81
+00:05:36,140 --> 00:05:37,200
+Yes.
+
+82
+00:05:37,220 --> 00:05:43,880
+So this is the user model that instructs mongoose about what the user looks like when it is saved to
+
+83
+00:05:43,880 --> 00:05:45,600
+the Mongo DB database.
+
+84
+00:05:45,800 --> 00:05:49,510
+So I've got a couple of comments in here as well which are completely free to read.
+
+85
+00:05:49,520 --> 00:05:55,040
+Again these are all about authentication and both the comments describe exactly what is happening inside
+
+86
+00:05:55,040 --> 00:05:56,780
+of each of the helper functions.
+
+87
+00:05:58,160 --> 00:06:01,080
+Then the last file is probably the most important one.
+
+88
+00:06:01,120 --> 00:06:02,770
+It is services off.
+
+89
+00:06:02,780 --> 00:06:04,760
+Jay Yes.
+
+90
+00:06:04,760 --> 00:06:10,040
+So this is where a lot of the really very off topic code came into play.
+
+91
+00:06:10,040 --> 00:06:14,580
+When I say off topic I'm talking about stuff that again is not really related to Graf.
+
+92
+00:06:14,570 --> 00:06:19,790
+Q Well and so I was very hesitant to put anything related to it inside of this course because again
+
+93
+00:06:19,910 --> 00:06:21,470
+I really want to have that focus on graph.
+
+94
+00:06:21,470 --> 00:06:25,850
+Q Well so feel free to read through all the comments that are in here.
+
+95
+00:06:25,850 --> 00:06:32,450
+The big takeaway is that we define some functions in here for helping to sign up and authenticate a
+
+96
+00:06:32,450 --> 00:06:33,530
+user.
+
+97
+00:06:33,620 --> 00:06:39,970
+The most important part about this file right here is that at the very bottom very very bottom we export
+
+98
+00:06:39,980 --> 00:06:47,320
+to different functions one which is called Sign up and one which is called log in to sign up and log
+
+99
+00:06:47,320 --> 00:06:54,920
+in functions both take an email and password and are used to authenticate a user either to sign them
+
+100
+00:06:54,920 --> 00:07:00,980
+up and log the man or to just log them in and notice that I you know again have a lot of comments on
+
+101
+00:07:00,980 --> 00:07:02,370
+both these right here.
+
+102
+00:07:02,990 --> 00:07:07,420
+So feel free to pause the video right now and read through some of these comments.
+
+103
+00:07:07,580 --> 00:07:13,850
+Part of the reason I don't want to go too much into this set up is that graft QOL and passport are not
+
+104
+00:07:13,850 --> 00:07:15,650
+really meant to be used together.
+
+105
+00:07:15,680 --> 00:07:18,500
+And we'll talk about why that is just a little bit.
+
+106
+00:07:18,650 --> 00:07:23,570
+And so there had to be a lot of kind of this kind of a little bit monkey patches in here kind of a little
+
+107
+00:07:23,570 --> 00:07:28,440
+bit of compatibility layers that would have not really serve to enhance our knowledge of.
+
+108
+00:07:28,440 --> 00:07:29,420
+Q All at all.
+
+109
+00:07:29,540 --> 00:07:34,210
+It really is just some headache of getting these different modules to work together nicely.
+
+110
+00:07:35,880 --> 00:07:38,550
+OK so now that we've gone through this starter pack a little bit.
+
+111
+00:07:38,640 --> 00:07:43,900
+Let's continue in the next section and start working on the authentication side of our application.
+

@@ -1,0 +1,496 @@
+1
+00:00:00,910 --> 00:00:05,530
+Ns associamos com sucesso nossa mutao ao componente da lista de msicas.
+
+2
+00:00:05,620 --> 00:00:10,930
+Ento, tudo o que temos a fazer agora  ter certeza de que chamamos a mutao em um certo ponto a
+
+3
+00:00:10,930 --> 00:00:13,640
+partir da lista de msicas para excluir uma msica em particular.
+
+4
+00:00:14,080 --> 00:00:15,310
+Ento vamos fazer isso.
+
+5
+00:00:15,310 --> 00:00:21,000
+Eu acho que provavelmente um bom plano ser encontrar o mtodo de renderizar msicas aqui.
+
+6
+00:00:21,040 --> 00:00:26,060
+Ento, aqui  renderizar msicas para cada msica que renderizamos na tela como um aliado.
+
+7
+00:00:26,080 --> 00:00:31,540
+Eu acho que uma boa abordagem seria mostrar um cone de excluso ou algo assim que
+
+8
+00:00:31,540 --> 00:00:36,520
+um usurio pode clicar para excluir uma determinada msica ir colocar o cone aqui.
+
+9
+00:00:36,550 --> 00:00:41,710
+E ento, uma vez que o usurio clicar nele, teremos certeza de que temos uma funo de retorno de chamada para
+
+10
+00:00:41,710 --> 00:00:44,710
+invocar a mutao que apenas anexamos ao componente da lista de msicas.
+
+11
+00:00:44,710 --> 00:00:46,060
+Ento esse ser o nosso plano.
+
+12
+00:00:46,090 --> 00:00:47,470
+Vamos adicionar o cone.
+
+13
+00:00:47,470 --> 00:00:51,760
+Vamos configurar um manipulador de eventos de clique e ento vamos chamar a mutao para excluir
+
+14
+00:00:51,760 --> 00:00:52,880
+essa msica em particular.
+
+15
+00:00:53,080 --> 00:00:53,840
+Vamos l.
+
+16
+00:00:55,000 --> 00:01:01,240
+Todos comeam pela primeira vez adicionando o cone dentro da luz que representa cada msica individual.
+
+17
+00:01:01,540 --> 00:01:05,780
+Ento, dentro de aqui, posso adicionar um cone com uma etiqueta ID.
+
+18
+00:01:06,400 --> 00:01:10,010
+Eu queria ser algo que parece uma lata de lixo ou algo assim.
+
+19
+00:01:10,060 --> 00:01:12,650
+Ento vou usar o cone de excluso.
+
+20
+00:01:12,910 --> 00:01:19,390
+Lembre-se que este  um pouco de magia com o conjunto de cones materializado, que olha para o interior da
+
+21
+00:01:19,390 --> 00:01:24,670
+etiqueta do olho, ele analisa a palavra muito particular que eu coloquei l e o substitui pelo
+
+22
+00:01:24,670 --> 00:01:25,350
+cone apropriado.
+
+23
+00:01:25,540 --> 00:01:27,920
+Ento, esta no  uma palavra arbitrria que eu adicionei aqui.
+
+24
+00:01:28,000 --> 00:01:31,690
+ um cone nomeado do conjunto de cones de material.
+
+25
+00:01:32,930 --> 00:01:34,910
+Agora, eu quero passar este item um par de adereos.
+
+26
+00:01:34,950 --> 00:01:43,440
+Ento, vou fazer um pouco de indentao, ento eu vou passar um nome de classe de cones de material,
+
+27
+00:01:43,950 --> 00:01:49,110
+de qualquer forma, eu tambm vou atribuir uma funo de clique.
+
+28
+00:01:49,110 --> 00:01:55,350
+Ento, sempre que algum clicar neste cone aqui, todos estamos executando um manipulador de cliques ou um manipulador
+
+29
+00:01:55,350 --> 00:02:00,960
+de eventos de clique que ser responsvel por chamar a mutao que foi passada para esse componente.
+
+30
+00:02:00,960 --> 00:02:08,250
+Ento, diga sempre que algum clicar nessa coisa, eu quero executar esta funo de seta que chamaremos
+
+31
+00:02:08,340 --> 00:02:10,740
+esse ponto na excluso de msica.
+
+32
+00:02:10,770 --> 00:02:12,690
+Agora, ainda no encontramos essa funo.
+
+33
+00:02:12,720 --> 00:02:14,790
+Ento, vamos faz-lo agora.
+
+34
+00:02:15,150 --> 00:02:21,360
+Direito acima, o mtodo de renderizao de msicas ir definir na eliminao de msica assim.
+
+35
+00:02:21,750 --> 00:02:27,870
+Ento, a inteno  que esta funo aqui ser responsvel por chamar a mutao real para excluir
+
+36
+00:02:27,870 --> 00:02:33,990
+a msica do nosso servidor back-end, como vimos, no entanto, uma coisa que eu s quero rever
+
+37
+00:02:33,990 --> 00:02:35,370
+com voc muito rapidamente.
+
+38
+00:02:35,370 --> 00:02:40,550
+A mutao da msica de excluso espera receber uma identificao como argumento.
+
+39
+00:02:40,890 --> 00:02:44,360
+Ento a msica de-lista  escrita de forma muito arbitrria.
+
+40
+00:02:44,400 --> 00:02:50,730
+que posso excluir uma msica que est bem, mas voc precisa me dizer a ID da msica que deseja excluir.
+
+41
+00:02:50,730 --> 00:02:51,440
+Est dizendo
+
+42
+00:02:51,600 --> 00:02:57,690
+Ento, precisamos ter certeza de que, quando chamamos essa mutao de msica de excluso, passamos a
+
+43
+00:02:57,690 --> 00:03:00,580
+ID da msica que queremos livrar-se de faz-lo.
+
+44
+00:03:00,600 --> 00:03:06,510
+Ns vamos modificar o manipulador de eventos de clique apenas um pouco e certifique-se de que passamos a
+
+45
+00:03:06,570 --> 00:03:08,430
+ID da msica que queremos excluir.
+
+46
+00:03:08,460 --> 00:03:11,540
+Vai ter certeza de que eu recebo isso como um argumento aqui.
+
+47
+00:03:13,150 --> 00:03:18,570
+Uma vez que eu estou esperando isso como argumento, eu terei que garantir que dentro do manipulador
+
+48
+00:03:18,760 --> 00:03:23,750
+do On Click quando eu chamo a msica, toque o I-PASS na letra da msica tambm.
+
+49
+00:03:23,980 --> 00:03:27,000
+Ento eu posso dizer ID de ponto de msica.
+
+50
+00:03:27,040 --> 00:03:33,960
+Voc notar que agora estou fazendo uso do ID da msica duas vezes aqui e tambm estou fazendo uso do ttulo da msica.
+
+51
+00:03:34,090 --> 00:03:39,340
+Eu acho que podemos fazer um pouco de refatorao aqui um pouco de limpeza para fazer alguma
+
+52
+00:03:39,360 --> 00:03:41,040
+desestruturao do argumento da msica.
+
+53
+00:03:41,050 --> 00:03:43,610
+Eu acho que isso ir limpar esta funo apenas um pouco.
+
+54
+00:03:43,840 --> 00:03:45,680
+Ento vou excluir a msica.
+
+55
+00:03:46,030 --> 00:03:48,820
+Vou substitu-lo com Perens.
+
+56
+00:03:49,090 --> 00:03:52,030
+E, em seguida, um conjunto de chaves para fazer a estrutura.
+
+57
+00:03:52,450 --> 00:03:59,950
+Eu quero retirar o ID e as propriedades do ttulo, ento eu posso passar por essa
+
+58
+00:03:59,950 --> 00:04:08,790
+funo e substituir cada ponto de msica blah blah blah com apenas um ttulo ID e Id, assim.
+
+59
+00:04:09,210 --> 00:04:12,410
+Ento, definitivamente serve para limpar o cdigo aqui um pouco.
+
+60
+00:04:12,420 --> 00:04:13,920
+Acho que parece muito legal.
+
+61
+00:04:15,170 --> 00:04:17,620
+Eu sei que o cone  um pouco desagradvel.
+
+62
+00:04:17,700 --> 00:04:20,230
+Ns provavelmente poderamos fugir com apenas um que o iluminava.
+
+63
+00:04:20,540 --> 00:04:25,160
+Vamos ver e acho que na minha tela eu quero diminuir o zoom para voc.
+
+64
+00:04:25,160 --> 00:04:27,680
+Definitivamente, sinta-se livre para fazer uma nica linha aqui.
+
+65
+00:04:27,680 --> 00:04:33,680
+Eu acho que isso seria um longo caminho para imprimir um pouco esse pequeno bloco de cdigo.
+
+66
+00:04:33,690 --> 00:04:34,170
+Tudo bem.
+
+67
+00:04:34,190 --> 00:04:39,740
+A ltima coisa que temos que fazer dentro de Songdo at tarde, vamos nos certificar de que chamamos
+
+68
+00:04:39,980 --> 00:04:44,550
+nossa mutao e passamos o ID como uma varivel de consulta para essa mutao.
+
+69
+00:04:44,570 --> 00:04:48,280
+Ento, o passo nmero um  chamar a prpria mutao.
+
+70
+00:04:48,300 --> 00:04:54,860
+Lembre-se sempre que ligamos uma mutao a um componente, podemos cham-lo ao se referir a que esses adereos de
+
+71
+00:04:55,030 --> 00:04:56,030
+pato no mata.
+
+72
+00:04:56,030 --> 00:04:59,340
+ assim que executamos uma mutao dentro de um componente.
+
+73
+00:04:59,540 --> 00:05:06,980
+Ento, para encontrar as variveis de consulta que queremos passar, definimos as variveis objetos e dentro de
+
+74
+00:05:06,980 --> 00:05:12,110
+um objeto dentro dessa coisa passaro todas as diferentes variveis que a
+
+75
+00:05:12,110 --> 00:05:13,310
+mutao espera ter.
+
+76
+00:05:13,310 --> 00:05:20,600
+Agora, nossa mutao espera apenas ter a propriedade ID e quer uma varivel ID fornecida.
+
+77
+00:05:20,750 --> 00:05:27,110
+Ento, vou dizer OK aqui  sua identificao e, logo, vejo que podemos fazer um pouco de refactao ESX
+
+78
+00:05:27,140 --> 00:05:30,380
+aqui novamente, a chave e o valor so idnticos.
+
+79
+00:05:30,410 --> 00:05:34,280
+Ento, ele se condensa para apenas v Id like.
+
+80
+00:05:34,540 --> 00:05:35,020
+EST BEM.
+
+81
+00:05:35,150 --> 00:05:37,130
+Ento eu acho que isso parece muito bom.
+
+82
+00:05:37,400 --> 00:05:44,420
+Ns adicionamos no cone sempre que um usurio clicar nele, chamaremos a eliminao e aprovao de msicas e a idia da msica
+
+83
+00:05:44,420 --> 00:05:48,640
+que queremos excluda na eliminao de msica e, em seguida, levar essa ID.
+
+84
+00:05:48,770 --> 00:05:54,230
+Ele chama a nutao e passa como uma varivel.
+
+85
+00:05:54,230 --> 00:06:01,220
+Agora, uma coisa que acabamos de encontrar no nosso componente de criao de msica, quando criamos uma nova msica, vimos
+
+86
+00:06:01,220 --> 00:06:07,280
+que havia algum problema em que, depois de executar uma mutao, a consulta subjacente que  responsvel
+
+87
+00:06:07,280 --> 00:06:14,420
+pela verificao da lista de msicas no foi imediatamente executada novamente e Obtenha a lista atualizada de msicas do servidor.
+
+88
+00:06:14,420 --> 00:06:20,190
+Ou seja, esse componente no alcanou renderizar com o conjunto correto de msicas.
+
+89
+00:06:20,270 --> 00:06:26,990
+Depois de executar a mutao quando fizemos Songkhla criar ou esta msica criou mutao anteriormente.
+
+90
+00:06:26,990 --> 00:06:32,720
+Ento, eu realmente no tenho nenhuma expectativa de que essa mutao funcione de forma diferente.
+
+91
+00:06:32,720 --> 00:06:38,000
+Ento, eu espero que, quando executem esta mutao, acho que vai excluir a msica
+
+92
+00:06:38,020 --> 00:06:44,030
+do nosso back-end, mas na verdade no sinto que vai atualizar automaticamente a IU para ns.
+
+93
+00:06:44,060 --> 00:06:50,900
+Isso  algo que para o pior para o pior, ns temos que cuidar manualmente, dizendo que com
+
+94
+00:06:50,900 --> 00:06:53,740
+certeza voc atualizou essa consulta depois de executar.
+
+95
+00:06:53,750 --> 00:06:57,130
+Ento eu acho que podemos ter que voltar e fazer um pouco mais de trabalho nessa frente.
+
+96
+00:06:57,290 --> 00:07:03,750
+Mas primeiro vamos fazer um teste dentro do navegador e ter certeza de que esta coisa est funcionando como esperamos.
+
+97
+00:07:04,020 --> 00:07:12,580
+Ento eu vou abrir o navegador Aqui est o meu componente ou atualizar a pgina, pois voc pode ver os cones
+
+98
+00:07:12,580 --> 00:07:15,580
+que esto aqui e um pouco feio.
+
+99
+00:07:15,820 --> 00:07:18,490
+Tudo o que devo dizer muito feio agora.
+
+100
+00:07:18,490 --> 00:07:22,000
+Eu acho que eles estariam muito melhores no lado direito da pgina.
+
+101
+00:07:22,000 --> 00:07:25,110
+Ns podemos cuidar disso com um pouco de CSSA em apenas um momento.
+
+102
+00:07:25,120 --> 00:07:30,840
+Mas, por agora, vamos nos concentrar em garantir que possamos excluir cada msica individual.
+
+103
+00:07:30,880 --> 00:07:36,370
+Voc notar que tenho o meu desenvolvedor Chrome Consolo aberto e selecionei minha guia de rede selecionada para que eu possa
+
+104
+00:07:36,370 --> 00:07:39,990
+ver todos os pedidos de rede que esto sendo trocados com o meu enxerto.
+
+105
+00:07:40,000 --> 00:07:44,890
+Bem, eu vou limpar o registro do pedido e ento vou exclu-lo.
+
+106
+00:07:44,980 --> 00:07:50,460
+Uma das msicas e, quando fao, espero ver um pedido ao enxerto para El Bacchante.
+
+107
+00:07:50,470 --> 00:07:55,810
+Essa  definitivamente a minha esperana de saber se a UI ser atualizada automaticamente para refletir que
+
+108
+00:07:55,810 --> 00:07:56,950
+essa msica foi excluda.
+
+109
+00:07:57,160 --> 00:07:59,930
+Bem, isso  algo que vamos descobrir em apenas um pouco.
+
+110
+00:08:00,770 --> 00:08:07,220
+Ento eu quero ir para a primeira Coca da Spryte e vou clicar no cone para excluir a msica quando
+
+111
+00:08:07,220 --> 00:08:10,800
+eu fizer, ento eu imediatamente recebo uma solicitao no log aqui.
+
+112
+00:08:10,840 --> 00:08:15,330
+Eu vou inspecion-lo clicando nele e depois selecionando a guia de visualizao.
+
+113
+00:08:15,890 --> 00:08:22,100
+Se eu expandir esta propriedade de dados, voc ver que sim eu definitivamente estou excluindo ou definitivamente estou
+
+114
+00:08:22,100 --> 00:08:24,800
+chamando a mutao da msica de excluso aqui.
+
+115
+00:08:24,830 --> 00:08:25,900
+Ento isso parece muito bom.
+
+116
+00:08:25,910 --> 00:08:28,060
+Estou muito feliz com isso aqui.
+
+117
+00:08:28,190 --> 00:08:34,920
+Mas voc notar que parece que a cano verso Cake do sprite ainda est presente na UI.
+
+118
+00:08:35,360 --> 00:08:41,280
+Bem, vamos ter certeza de que o assunto realmente foi excludo ao atualizar a pgina quando eu atualizar a pgina.
+
+119
+00:08:41,300 --> 00:08:45,150
+OK, o verso de sprite Coca-Cola  definitivamente ido, de modo que o registro est sendo excludo.
+
+120
+00:08:45,320 --> 00:08:50,760
+Mas parece que o registro no est sendo removido automaticamente da UI.
+
+121
+00:08:51,020 --> 00:08:55,640
+Ento eu acho que ainda h um pouco de trabalho que temos que fazer e
+
+122
+00:08:55,640 --> 00:09:01,580
+a nossa mutao vamos cuidar disso na prxima seo e tambm abordar esses cones terrivelmente feios que temos nesse
+
+123
+00:09:01,580 --> 00:09:02,130
+ponto tambm.
+
+124
+00:09:02,360 --> 00:09:06,510
+Ento, faa uma pausa rpida e abordaremos esses dois itens na prxima seo.
+

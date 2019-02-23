@@ -1,0 +1,344 @@
+1
+00:00:00,590 --> 00:00:06,210
+Na ltima seo, comeamos a trabalhar no nosso arquivo de esquema e a encontrar o primeiro
+
+2
+00:00:06,210 --> 00:00:13,110
+tipo de dados em nossa aplicao, o usurio digitado isso instrui bem o enxerto de nosso aplicativo com o conceito
+
+3
+00:00:13,470 --> 00:00:18,990
+de usurio e que cada usurio possui um ID um primeiro nome e um era.
+
+4
+00:00:19,020 --> 00:00:25,080
+Agora, a prxima parte desse quebra-cabea em que vamos trabalhar  novamente onde as coisas comeam a comear.
+
+5
+00:00:25,080 --> 00:00:27,030
+Eles podem parecer um pouco estranhos.
+
+6
+00:00:27,330 --> 00:00:33,040
+Novamente, lembre-se, ento, todos os esquemas que construmos realmente parecem bastante parecidos um com o outro.
+
+7
+00:00:33,210 --> 00:00:37,920
+Ento, s vai parecer estranho esta primeira vez e depois disso voc vai comear a
+
+8
+00:00:37,920 --> 00:00:40,330
+ver os mesmos padres uma e outra vez.
+
+9
+00:00:40,690 --> 00:00:40,960
+EST BEM.
+
+10
+00:00:40,980 --> 00:00:45,350
+Ento, vamos falar sobre o que  essa prxima parte em todas as nossas discusses de enxerto.
+
+11
+00:00:45,360 --> 00:00:48,720
+Bem, at agora, estamos observando este diagrama e dizendo OK.
+
+12
+00:00:48,740 --> 00:00:49,050
+Sim.
+
+13
+00:00:49,080 --> 00:00:53,270
+Comece com o usurio 23 e depois encontre meus amigos e encontre suas empresas.
+
+14
+00:00:53,520 --> 00:00:59,760
+Bem, acontece que a primeira parte dessa equao como encontrar o usurio com eu. T. 23  realmente um
+
+15
+00:00:59,880 --> 00:01:04,530
+pouco difcil para o grfico Q L fazer para faz-lo.
+
+16
+00:01:04,530 --> 00:01:13,920
+bem chamado Root Querrey, uma consulta de raiz  algo que nos permite entrar no nosso grfico de dados.
+
+17
+00:01:13,920 --> 00:01:17,080
+Ns temos que dar um dado
+
+18
+00:01:17,220 --> 00:01:24,840
+Ento, se ns dizemos graficamente, bem, me d um usurio com ID de 23, vamos passar essas instrues para
+
+19
+00:01:24,930 --> 00:01:27,570
+essa questo de consulta de raiz.
+
+20
+00:01:27,570 --> 00:01:33,360
+E, em seguida, a consulta de raiz ter alguma lgica nela para saber OK. Eu preciso ir para
+
+21
+00:01:33,360 --> 00:01:36,980
+esta parte do grfico aqui o usurio com ID de 23.
+
+22
+00:01:37,050 --> 00:01:43,170
+Em outras palavras, podemos pensar que essa consulta raiz  um ponto de entrada em nosso aplicativo ou
+
+23
+00:01:43,170 --> 00:01:45,480
+um ponto de entrada em nossos dados.
+
+24
+00:01:45,510 --> 00:01:50,310
+ uma dessas coisas em que eu acho que vai ter muito mais sentido depois de ter visto isso em ao.
+
+25
+00:01:50,310 --> 00:01:52,040
+Mais uma vez, a consulta do raiz
+
+26
+00:01:52,140 --> 00:01:56,020
+Ento vamos juntar algum cdigo em torno disso e ir de l.
+
+27
+00:01:56,550 --> 00:02:04,170
+Ento, de volta ao nosso arquivo de esquema abaixo do tipo de usurio, vou declarar uma nova varivel chamada
+
+28
+00:02:04,350 --> 00:02:11,040
+de consulta de root assim e diremos que  um novo tipo de objeto de grfico QOL.
+
+29
+00:02:11,100 --> 00:02:12,720
+Tal como antes.
+
+30
+00:02:12,720 --> 00:02:19,740
+Mais uma vez, triplique o seu capital de capitalizao Q l o n a capital T.
+
+31
+00:02:20,670 --> 00:02:24,890
+Ento, esta consulta raiz aqui ser um tipo de objeto de grfico l.
+
+32
+00:02:24,930 --> 00:02:33,420
+usurio ter as mesmas propriedades do nome e os campos para o nome, usaro o tipo de consulta raiz.
+
+33
+00:02:33,530 --> 00:02:34,650
+Assim como o
+
+34
+00:02:35,130 --> 00:02:40,020
+A propriedade Fields  onde as coisas comeam a ficar um pouco mais interessantes.
+
+35
+00:02:40,020 --> 00:02:47,760
+Lembro-me de que a finalidade da consulta de raiz  permitir que o grfico Q L pular e aterrar em um n muito
+
+36
+00:02:47,820 --> 00:02:50,530
+especfico no grfico de todos os nossos dados.
+
+37
+00:02:50,730 --> 00:02:57,300
+Ento, vamos dizer que, se algum entrar no nosso aplicativo pedindo um usurio particular, eles provavelmente esto perguntando
+
+38
+00:02:57,300 --> 00:03:00,330
+sobre esse tipo de usurio que acabamos de criar.
+
+39
+00:03:00,330 --> 00:03:01,870
+Assim, isso faz sentido.
+
+40
+00:03:02,010 --> 00:03:04,980
+Podemos deixar isso claro adicionando o seguinte.
+
+41
+00:03:04,980 --> 00:03:08,160
+Ento, novamente, isso vai ser apenas um pouco de coisas estranhas.
+
+42
+00:03:08,160 --> 00:03:09,990
+Envolva comigo uma vez que vemos no navegador.
+
+43
+00:03:09,990 --> 00:03:12,210
+Eu sei que voc vai entender exatamente o que est acontecendo.
+
+44
+00:03:12,210 --> 00:03:15,150
+Vamos dizer que o usurio  um objeto.
+
+45
+00:03:15,150 --> 00:03:25,180
+Tem um tipo de tipo de usurio e Ark's of ID com um tipo de grfico Cuil string.
+
+46
+00:03:25,670 --> 00:03:28,000
+Ok, muito de digitao l.
+
+47
+00:03:28,290 --> 00:03:36,670
+Voc pode ler isso como significando que voc pode me perguntar a consulta raiz sobre usurios no aplicativo.
+
+48
+00:03:36,840 --> 00:03:40,560
+Se voc me der a idia do usurio que voc est procurando.
+
+49
+00:03:40,560 --> 00:03:43,760
+Eu retornarei um usurio para voc.
+
+50
+00:03:44,160 --> 00:03:47,430
+Ento, o argumento aqui  curto para argumentos.
+
+51
+00:03:47,430 --> 00:03:53,220
+Ele especifica os argumentos que so necessrios para essa consulta raiz de um determinado usurio.
+
+52
+00:03:53,220 --> 00:03:59,880
+Ento, novamente, no total, podemos dizer se voc est procurando por um usurio e voc me d uma ID
+
+53
+00:04:00,000 --> 00:04:01,780
+Eu lhe responderei um usurio.
+
+54
+00:04:01,780 --> 00:04:09,060
+Outra ltima coisa que temos de definir aqui  a propriedade mais importante de tudo
+
+55
+00:04:09,120 --> 00:04:20,090
+o que  chamado de funo de resoluo, ento vamos usar seis anos de sintaxe resolver com os pais e depois abrir e
+
+56
+00:04:20,100 --> 00:04:25,340
+fechar chaves e os argumentos que so bastante importante para ns.
+
+57
+00:04:25,590 --> 00:04:28,980
+Nosso valor original e o nosso.
+
+58
+00:04:29,730 --> 00:04:35,340
+Ento, a funo de resultado funo muito importante file file out the purpose function purpose is to say
+
+59
+00:04:35,730 --> 00:04:39,040
+oh you're looking for a user with idea of 23.
+
+60
+00:04:39,070 --> 00:04:41,890
+OK, vou fazer o meu melhor para encontr-lo.
+
+61
+00:04:41,970 --> 00:04:47,970
+A funo de resultado  onde ns realmente entramos em nosso banco de dados ou nossa loja de dados ou qualquer
+
+62
+00:04:47,970 --> 00:04:55,080
+que seja o que for que possamos entrar em nosso banco de dados e ns achamos os dados reais que estamos procurando por outra
+
+63
+00:04:55,080 --> 00:05:01,320
+maneira de ver isso  que tudo o que temos adicionado a todo esse arquivo at agora nos diz como so
+
+64
+00:05:01,320 --> 00:05:02,080
+os nossos dados.
+
+65
+00:05:02,400 --> 00:05:08,570
+O resultado do objetivo das funes  realmente ir e alcanar e extrair os dados reais.
+
+66
+00:05:09,210 --> 00:05:10,900
+Ento, uma coisa a mencionar sobre a resoluo.
+
+67
+00:05:10,900 --> 00:05:12,900
+Observe os argumentos aqui.
+
+68
+00:05:13,080 --> 00:05:15,690
+O primeiro argumento  o valor do pai.
+
+69
+00:05:16,020 --> 00:05:20,430
+Esse argumento voc no vai acreditar em mim quando eu disser isso, mas
+
+70
+00:05:20,430 --> 00:05:24,410
+esse argumento aqui  um tanto notrio, como nunca mais foi usado.
+
+71
+00:05:24,660 --> 00:05:28,840
+E vamos discutir mais sobre isso mais tarde, mas agora vamos dizer que
+
+72
+00:05:28,840 --> 00:05:30,020
+podemos ignor-lo agora mesmo.
+
+73
+00:05:30,540 --> 00:05:36,510
+O que realmente nos interessa  o segundo argumento, que  o argumento com os argumentos.
+
+74
+00:05:36,520 --> 00:05:38,720
+Eu sei que estou dobrando palavras aqui.
+
+75
+00:05:38,730 --> 00:05:45,000
+O segundo argumento para a funo de resoluo que  curto para argumentos  um objeto que
+
+76
+00:05:45,000 --> 00:05:49,610
+ chamado com qualquer argumento que foi passado para a consulta original.
+
+77
+00:05:49,620 --> 00:05:55,890
+Ento, em outras palavras, simplifique isso um pouco se a nossa consulta pretender ter uma
+
+78
+00:05:55,950 --> 00:06:02,040
+idia do usurio que estamos tentando buscar essa idia estar presente neste objeto args aqui.
+
+79
+00:06:02,050 --> 00:06:02,290
+EST BEM.
+
+80
+00:06:02,340 --> 00:06:05,050
+Essa  uma maneira melhor de coloc-lo.
+
+81
+00:06:05,080 --> 00:06:05,550
+Tudo bem.
+
+82
+00:06:05,550 --> 00:06:11,600
+Uma reviso rpida nesta seo ns comeamos a implementar nossa rota Querrey que  usada para permitir
+
+83
+00:06:11,760 --> 00:06:15,690
+que o grfico entre no nosso grfico de dados de aplicativos.
+
+84
+00:06:15,690 --> 00:06:22,200
+A parte mais importante desta rota Querrey  a funo de resoluo que  usada para retornar um dado real de
+
+85
+00:06:22,200 --> 00:06:26,990
+nosso banco de dados ou armazenamento de dados ou qualquer outra coisa que contenha nossos dados.
+
+86
+00:06:27,000 --> 00:06:30,770
+Ento, vamos trabalhar no preenchimento da nossa funo de resoluo na prxima seo.
+

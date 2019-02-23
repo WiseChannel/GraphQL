@@ -1,0 +1,292 @@
+1
+00:00:00,660 --> 00:00:05,550
+Na ltima seo, conclumos nosso trabalho para detectar se um usurio iniciou sesso com
+
+2
+00:00:05,550 --> 00:00:06,710
+xito ou no.
+
+3
+00:00:06,780 --> 00:00:08,880
+Usamos um pouco de um hack aqui.
+
+4
+00:00:08,880 --> 00:00:14,190
+Eu definitivamente ligaria para o Zach porque estvamos detectando se o estado de autenticao do usurio
+
+5
+00:00:14,190 --> 00:00:20,550
+mudou ou no dentro do formulrio de logon para decidir se precisamos ou no enviar esse usurio para o
+
+6
+00:00:20,550 --> 00:00:21,440
+painel de controle.
+
+7
+00:00:21,690 --> 00:00:27,470
+Ento, novamente, eu diria que isso no  ideal, mas  o melhor que temos que trabalhar agora.
+
+8
+00:00:27,540 --> 00:00:33,390
+promessa retornada pela mutao for resolvida antes que as consultas atualizadas sejam executadas.
+
+9
+00:00:33,390 --> 00:00:34,500
+Enquanto essa
+
+10
+00:00:34,890 --> 00:00:40,650
+Ento, agora que temos esse processo de redaco e remodelao, tudo ligado, vamos adotar a lgica
+
+11
+00:00:40,650 --> 00:00:46,580
+que acabamos de adicionar ao formulrio de logon e duplicada para o formulrio de inscrio tambm.
+
+12
+00:00:46,590 --> 00:00:50,440
+Ento, vamos ao formulrio de inscrio no Rio.
+
+13
+00:00:50,550 --> 00:00:56,850
+Ento, vamos adicionar no nosso mtodo de ciclo de vida, vamos ligar nosso Querrey e, sempre que
+
+14
+00:00:56,910 --> 00:01:02,640
+esse objeto de usurio mude bem, provavelmente precisamos redirecionar o usurio para a pgina do painel.
+
+15
+00:01:03,150 --> 00:01:07,620
+Ento, a primeira coisa que vamos fazer aqui  ter certeza de que importamos o
+
+16
+00:01:07,620 --> 00:01:12,490
+objeto de histrico hash do roteador re-agir para que possamos redirecionar com sucesso o nosso usurio.
+
+17
+00:01:12,610 --> 00:01:17,610
+Ento, vamos importar o histrico hash de re-agir roteador.
+
+18
+00:01:18,000 --> 00:01:21,890
+Em seguida, vamos ligar o componente do mtodo do ciclo de vida que ir montar.
+
+19
+00:01:22,320 --> 00:01:29,370
+Ento, dentro do componente, dizer o componente ser ou, como eu disse, o componente novamente desculpar, o componente
+
+20
+00:01:29,370 --> 00:01:32,560
+atualizar recebendo um novo conjunto de adereos aqui.
+
+21
+00:01:33,030 --> 00:01:38,580
+Vamos pegar o prximo conjunto de adereos e, novamente, conseguimos comparar o conjunto atual de adereos com
+
+22
+00:01:38,580 --> 00:01:45,210
+o conjunto anterior de adereos e dizer ok se no houvesse um usurio atualmente, mas h um agora ou haver um
+
+23
+00:01:45,210 --> 00:01:47,140
+com este prximo conjunto de adereos.
+
+24
+00:01:47,250 --> 00:01:52,800
+Ento, as chances so de que o usurio acaba de fazer o login e precisamos redirecion-los para o painel de controle.
+
+25
+00:01:52,950 --> 00:01:56,650
+Ento, se os prximos dados do Propst no usurio.
+
+26
+00:01:56,670 --> 00:02:05,420
+Ento, se o conjunto de adendas recebidas tiver um usurio e o conjunto anterior de adereos no tivesse um.
+
+27
+00:02:05,640 --> 00:02:07,710
+Bem, o usurio deve estar logado.
+
+28
+00:02:07,710 --> 00:02:11,090
+Ento, vamos redirecionar o usurio para a pgina do painel.
+
+29
+00:02:11,440 --> 00:02:19,110
+Ento, o impulso da histria da Housh ir envi-los para o painel.
+
+30
+00:02:19,270 --> 00:02:21,580
+Isso ser bom para o componente ser atualizado.
+
+31
+00:02:21,580 --> 00:02:28,080
+Agora, precisamos ter certeza de que alinhamos a consulta atual do usurio para este componente.
+
+32
+00:02:28,090 --> 00:02:32,630
+Agora, ns s importmos para garantir que tentemos testar novamente essa consulta.
+
+33
+00:02:32,740 --> 00:02:37,660
+Ns precisamos nos certificar de que conectamos o componente em questo para que o componente
+
+34
+00:02:37,720 --> 00:02:39,590
+conhea o objeto de usurio atual.
+
+35
+00:02:39,790 --> 00:02:45,070
+Ento, vamos percorrer todo o caminho at o final deste arquivo e ns vamos conect-lo com o
+
+36
+00:02:45,070 --> 00:02:47,860
+grfico existente para ter mutao que j chegamos aqui.
+
+37
+00:02:47,890 --> 00:02:50,330
+Agora, fizemos esse pequeno refator vrias vezes agora.
+
+38
+00:02:50,550 --> 00:02:56,500
+Ento, lembre-se de seguir uma nova linha, a consulta existente far com que a certeza de
+
+39
+00:02:56,530 --> 00:03:04,570
+que remova o ponto-e-vrgula no final e ento eu vou ligar a consulta e ento vou abrir um conjunto de parnteses e
+
+40
+00:03:04,570 --> 00:03:06,460
+fech-lo em torno do existente 1.
+
+41
+00:03:06,460 --> 00:03:11,500
+Uma coisa com a qual eu quero ser muito claro com o empilhamento de consultas e mutaes
+
+42
+00:03:11,500 --> 00:03:16,000
+como esta  que podemos adicionar as consultas e mutaes em qualquer ordem que desejemos.
+
+43
+00:03:16,030 --> 00:03:18,410
+Ento no precisa ser Querrey e depois mutao.
+
+44
+00:03:18,430 --> 00:03:21,010
+Poderia ser mutao e depois Querrey.
+
+45
+00:03:21,010 --> 00:03:22,210
+ totalmente para ns.
+
+46
+00:03:22,210 --> 00:03:23,210
+A ordem em que vai.
+
+47
+00:03:23,230 --> 00:03:28,160
+E no tem absolutamente nenhum impacto nos internos de como tudo est funcionando.
+
+48
+00:03:30,110 --> 00:03:35,590
+Tudo bem, penso que estamos preparados para fazer um pequeno teste aqui, ento vou salvar esse arquivo.
+
+49
+00:03:35,800 --> 00:03:37,990
+Retornaremos ao nosso navegador.
+
+50
+00:03:38,250 --> 00:03:41,200
+Eu vou primeiro voltar para nossa rota
+
+51
+00:03:44,860 --> 00:03:47,300
+e quando atualizar a pgina.
+
+52
+00:03:47,310 --> 00:03:50,020
+Certifique-se de obter todo o novo cdigo aqui.
+
+53
+00:03:50,340 --> 00:03:52,440
+Eu vou garantir que eu esteja desconectado.
+
+54
+00:03:52,440 --> 00:03:57,010
+Ento, eu clique no boto sair e OK, agora eu acho que estamos prontos para fazer um pequeno teste.
+
+55
+00:03:57,300 --> 00:04:02,860
+Ento, vou clicar no boto de inscrio, entrando em um e-mail que nunca usamos antes.
+
+56
+00:04:02,970 --> 00:04:05,640
+Ento eu vou dizer 000.
+
+57
+00:04:05,650 --> 00:04:13,260
+Teste o ponto de teste com qualquer senha que voc queira usar e olhe o boto Smidt.
+
+58
+00:04:13,260 --> 00:04:19,410
+Ento, lembre-se quando clicamos em Enviar, espero ver uma solicitao de rede imediata que ser a mutao
+
+59
+00:04:19,410 --> 00:04:25,440
+que est criando o novo usurio e, em seguida, espera ver um segundo pedido que representa
+
+60
+00:04:25,560 --> 00:04:27,730
+a reao do nosso usurio atual.
+
+61
+00:04:27,780 --> 00:04:34,230
+E depois, aps a concluso do segundo pedido, espero que seja redirecionado para a pgina do painel e,
+
+62
+00:04:34,230 --> 00:04:39,600
+novamente, porque ainda no temos uma configurao do painel, espero ver uma boa mensagem de
+
+63
+00:04:39,600 --> 00:04:40,680
+erro no console tambm.
+
+64
+00:04:40,680 --> 00:04:41,840
+Ento vamos dar uma chance.
+
+65
+00:04:41,880 --> 00:04:47,880
+Vamos enviar uma mutao, h a consulta de acompanhamento para o usurio atual e podemos ver
+
+66
+00:04:47,880 --> 00:04:49,140
+o usurio l.
+
+67
+00:04:49,560 --> 00:04:52,490
+E, claro, sim, ns temos nossa mensagem de erro agradvel.
+
+68
+00:04:52,500 --> 00:04:57,720
+Esta  uma das poucas vezes que eu vou dizer uma boa mensagem de erro, dizendo
+
+69
+00:04:57,720 --> 00:05:00,610
+que, com sucesso, iniciamos o redirecionamento para o painel.
+
+70
+00:05:00,630 --> 00:05:02,730
+Mas no temos uma rota de painel.
+
+71
+00:05:03,260 --> 00:05:03,910
+Legal.
+
+72
+00:05:03,930 --> 00:05:05,460
+Parece que est funcionando muito bem.
+
+73
+00:05:05,520 --> 00:05:07,310
+Vamos continuar na prxima seo.
+

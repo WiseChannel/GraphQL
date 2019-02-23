@@ -1,0 +1,352 @@
+1
+00:00:00,810 --> 00:00:07,100
+In the last section we put together our log out button and we associated it with our log out mutation.
+
+2
+00:00:07,320 --> 00:00:12,810
+But I had said that whenever we click on this button the expectation is that this component right here
+
+3
+00:00:12,810 --> 00:00:18,750
+should automatically update and reflect the fact that the user is no longer logged in by making sure
+
+4
+00:00:18,750 --> 00:00:22,060
+that we see the sign up and log in buttons instead.
+
+5
+00:00:23,360 --> 00:00:27,800
+So there's clearly a little bit of thinking that we have to do here to make sure that after this mutation
+
+6
+00:00:27,800 --> 00:00:31,880
+is complete we will somehow refreshed the component.
+
+7
+00:00:31,890 --> 00:00:37,710
+Now we've handled this in the past by using that helper prefetch queries which we passed into the mutation
+
+8
+00:00:37,710 --> 00:00:44,250
+rate year remember that that refence queries helper we can pass it a list of queries to rerun after
+
+9
+00:00:44,250 --> 00:00:46,310
+the mutation is complete.
+
+10
+00:00:46,320 --> 00:00:48,570
+So I think that might be the plan of action here.
+
+11
+00:00:48,690 --> 00:00:50,460
+Let's let's give it a little bit of thought.
+
+12
+00:00:51,530 --> 00:00:53,210
+So here's the plan.
+
+13
+00:00:53,210 --> 00:00:58,710
+When the loader when the header first loads up we'll ask for the current authentication state.
+
+14
+00:00:58,910 --> 00:01:02,400
+If the user is signed in will show the log out button.
+
+15
+00:01:02,480 --> 00:01:08,210
+Now when the user clicks that button we will rerun the entire query to get the current authentication
+
+16
+00:01:08,210 --> 00:01:09,380
+state.
+
+17
+00:01:09,380 --> 00:01:16,010
+Now as soon as we rerun or excuse me as soon as we rerun that queery our component that is associated
+
+18
+00:01:16,010 --> 00:01:22,330
+with the query will automatically render and when it renders the component we'll see oh the query just
+
+19
+00:01:22,410 --> 00:01:25,470
+ran and the user is no longer logged in.
+
+20
+00:01:25,520 --> 00:01:31,220
+In that case I'm going to show the buttons that allow the user to sign up or log into the application.
+
+21
+00:01:31,220 --> 00:01:36,510
+So in practice this really just ends up being another exercise of using the refreshed queries help or
+
+22
+00:01:36,760 --> 00:01:38,910
+on with one of our mutations.
+
+23
+00:01:39,380 --> 00:01:45,650
+Remember in general that's one of the best helpers we have for handling refreshes to our data easily
+
+24
+00:01:45,710 --> 00:01:47,870
+after we've executed a mutation.
+
+25
+00:01:47,870 --> 00:01:53,300
+We can just rerun all the different queries that we think that mutation affected and then all the components
+
+26
+00:01:53,300 --> 00:01:59,240
+that are associated with the given query will automatically update inside of our application.
+
+27
+00:01:59,300 --> 00:02:06,710
+So after we run the mutation will say that we want graphed well to automatically rief fetch this list
+
+28
+00:02:06,710 --> 00:02:13,340
+of queries and I say this list we really have one query that we want to run but we're going to pass
+
+29
+00:02:13,340 --> 00:02:16,940
+in an array here because that's what the helper expects us to do.
+
+30
+00:02:17,270 --> 00:02:23,090
+Again if we had multiple queries that we wanted to Refshauge we could pass each of them in here in turn.
+
+31
+00:02:23,690 --> 00:02:29,540
+So I've just got one single query I want to rerun it is the current user query which we imported as
+
+32
+00:02:29,540 --> 00:02:39,870
+query so say query is query like so again key value identical variable names so we can condense down
+
+33
+00:02:39,870 --> 00:02:42,380
+to just the query like so.
+
+34
+00:02:42,530 --> 00:02:49,310
+OK so it's looking pretty good after mutation runs rerun this queery render any component that is associated
+
+35
+00:02:49,310 --> 00:02:50,130
+with that query.
+
+36
+00:02:50,210 --> 00:02:54,570
+And I will expect to see the header automatically update on the screen.
+
+37
+00:02:54,650 --> 00:02:57,960
+So I think that we're ready to get this a little bit of test inside the browser.
+
+38
+00:02:58,280 --> 00:03:01,140
+I need a change on over to our application.
+
+39
+00:03:01,140 --> 00:03:03,020
+I need to refresh the page.
+
+40
+00:03:03,020 --> 00:03:08,450
+Now you'll notice that I am currently not signed into the application and we do not have any way to
+
+41
+00:03:08,450 --> 00:03:11,750
+log into the application just yet outside of graphical.
+
+42
+00:03:11,810 --> 00:03:17,880
+So I'm first going to go over to graphical and run my log in mutation to start a session with my server.
+
+43
+00:03:18,020 --> 00:03:22,880
+Then I should be able to refresh this page and see everything worked the way we expect.
+
+44
+00:03:22,880 --> 00:03:24,770
+So I'm going to come on over geographical.
+
+45
+00:03:24,950 --> 00:03:27,640
+I'm going to write out my mutation to log in.
+
+46
+00:03:27,970 --> 00:03:35,160
+So say mutation log in I have to pass in the email and password to a valid user account.
+
+47
+00:03:35,650 --> 00:03:41,510
+So we'll say email of test at test dot com and the password password
+
+48
+00:03:45,390 --> 00:03:49,140
+and then from the user that gets returns Hey just give me the I.D. or something.
+
+49
+00:03:50,520 --> 00:03:50,860
+OK.
+
+50
+00:03:50,890 --> 00:03:51,640
+Looks good.
+
+51
+00:03:51,670 --> 00:03:56,380
+So I should now have a running session with the server which means I should be able to flip back over
+
+52
+00:03:56,380 --> 00:04:03,010
+to my application refresh the page I see log out appear on the screen and notice how quickly log out
+
+53
+00:04:03,010 --> 00:04:04,010
+appears there.
+
+54
+00:04:04,030 --> 00:04:06,840
+It just shows up almost instantly on the screen.
+
+55
+00:04:06,880 --> 00:04:09,870
+And one thing that I want to tell you is you know we're running locally.
+
+56
+00:04:10,030 --> 00:04:10,620
+Yeah right.
+
+57
+00:04:10,630 --> 00:04:15,780
+You know of course we're running this application locally but we want to remind you that our Mongo divi
+
+58
+00:04:15,790 --> 00:04:18,430
+database is hosted remotely.
+
+59
+00:04:18,430 --> 00:04:25,840
+So even though our application itself is hosted locally the data that we're fetching is from some remote
+
+60
+00:04:25,840 --> 00:04:26,570
+server.
+
+61
+00:04:26,620 --> 00:04:32,320
+So the speed with which this button up on the top right hand side renders is pretty darn representative
+
+62
+00:04:32,380 --> 00:04:36,670
+of how I would expect this to render inside of a production environment.
+
+63
+00:04:36,670 --> 00:04:39,500
+So it is pretty fast I'm definitely pleased with it.
+
+64
+00:04:39,790 --> 00:04:41,790
+OK so now here's the moment of truth.
+
+65
+00:04:41,950 --> 00:04:43,190
+We're going to click this button.
+
+66
+00:04:43,360 --> 00:04:50,000
+We should see a query immediate Earthsea a mutation automatically be fired off to our backend.
+
+67
+00:04:50,230 --> 00:04:55,840
+So when I bring up my network request log right here all sort by experts are requests to see all the
+
+68
+00:04:55,840 --> 00:04:57,630
+network requests to the back end.
+
+69
+00:04:57,910 --> 00:05:02,800
+So when I click on the button I should see one request that will log out of the mutation.
+
+70
+00:05:02,800 --> 00:05:07,930
+So that's going to mean log us out of the application and that's going to represent the mutation that's
+
+71
+00:05:07,930 --> 00:05:12,820
+going to the back end as soon as we get the response to that mutation.
+
+72
+00:05:12,820 --> 00:05:18,190
+Our client should automatically follow up with an additional query to ask for the current authentication
+
+73
+00:05:18,190 --> 00:05:19,640
+state of the user.
+
+74
+00:05:19,870 --> 00:05:25,120
+And at that point in time when we get a response then we should see the two buttons appear for sign
+
+75
+00:05:25,120 --> 00:05:28,270
+out or see me sign in or sign up.
+
+76
+00:05:28,270 --> 00:05:30,580
+So click on log out.
+
+77
+00:05:30,580 --> 00:05:32,020
+I get the first request.
+
+78
+00:05:32,110 --> 00:05:33,590
+That's a mutation right there.
+
+79
+00:05:33,740 --> 00:05:36,220
+So it looks like we logged out successfully.
+
+80
+00:05:36,220 --> 00:05:41,050
+Here's the email and the idea of the user who logged out and then we immediately followed that up with
+
+81
+00:05:41,050 --> 00:05:44,190
+another request to say Hey who's the current user.
+
+82
+00:05:44,380 --> 00:05:50,680
+Well now there's no current user so it's no field component automatically renders and we get to sign
+
+83
+00:05:50,680 --> 00:05:53,040
+up and log unbuttons appearing on the screen.
+
+84
+00:05:53,350 --> 00:05:56,200
+Perfect just the way we expect.
+
+85
+00:05:56,200 --> 00:05:59,710
+So looks like our header is in pretty good shape right now.
+
+86
+00:05:59,740 --> 00:06:04,720
+I think that the next thing that we're going to want to do is to start working on the sign up and log
+
+87
+00:06:04,720 --> 00:06:06,730
+in forms for our application.
+
+88
+00:06:06,730 --> 00:06:09,700
+So let's start working on those two pieces in the next section.
+

@@ -1,0 +1,484 @@
+1
+00:00:00,780 --> 00:00:04,920
+Now that we've got our user type put together we can start thinking about the different mutations that
+
+2
+00:00:04,920 --> 00:00:06,270
+we're going to be working with.
+
+3
+00:00:06,450 --> 00:00:12,810
+Which again is going to be the sign up log in and log out mutations before we start actually working
+
+4
+00:00:12,810 --> 00:00:13,140
+on them.
+
+5
+00:00:13,140 --> 00:00:17,010
+I do want to put at least a little bit of planning into each one.
+
+6
+00:00:17,290 --> 00:00:19,680
+So take a look at a diagram ahead of time.
+
+7
+00:00:19,720 --> 00:00:20,120
+OK.
+
+8
+00:00:20,160 --> 00:00:26,850
+This is a very simple diagram that is intended to convey a somewhat simple concept.
+
+9
+00:00:26,850 --> 00:00:31,620
+When we started thinking about signing up logging in logging out all these different things.
+
+10
+00:00:31,710 --> 00:00:37,500
+My head Personally I immediately start thinking about checking the user's password and reading users
+
+11
+00:00:37,500 --> 00:00:43,860
+from the database and making sure that that a user's e-mail is not in use and the password exists and
+
+12
+00:00:43,860 --> 00:00:50,220
+blah blah blah all these different steps that are all associated with signing a user in and just authentication
+
+13
+00:00:50,220 --> 00:00:51,280
+in general.
+
+14
+00:00:51,570 --> 00:00:58,020
+So the question very quickly becomes where do we put all that logic and where do we put all the logic
+
+15
+00:00:58,020 --> 00:01:04,100
+for comparing a user's password or making sure they that a valid e-mail was provided.
+
+16
+00:01:04,140 --> 00:01:08,190
+Do we stuff that all into the resolve function for each mutation.
+
+17
+00:01:08,190 --> 00:01:11,170
+The answer is unequivocally no.
+
+18
+00:01:11,550 --> 00:01:13,000
+No it's not.
+
+19
+00:01:13,290 --> 00:01:20,670
+For every mutation that we write we want to ensure that as little logic as possible is located in the
+
+20
+00:01:20,670 --> 00:01:22,820
+mutation itself.
+
+21
+00:01:22,830 --> 00:01:27,370
+So for every one of these mutations we're going to work with Sign-Up log in log out.
+
+22
+00:01:27,510 --> 00:01:34,560
+We are going to have one with three lines of logic at most inside of every resolved function rather
+
+23
+00:01:34,560 --> 00:01:39,150
+than placing all the logic first say creating a new user inside the mutation.
+
+24
+00:01:39,150 --> 00:01:45,390
+We were always going to delegate to an outside helper function or a Helper Object or a helper service
+
+25
+00:01:45,420 --> 00:01:47,750
+of some sorts.
+
+26
+00:01:47,760 --> 00:01:53,100
+Remember that the idea behind graph QOL is that it's kind of an abstraction layer of sorts between our
+
+27
+00:01:53,100 --> 00:01:59,910
+front end and our true back end which might consist of many different services running in our background.
+
+28
+00:02:00,030 --> 00:02:05,230
+In theory any one of those services might change in some very fundamental way at any time.
+
+29
+00:02:05,310 --> 00:02:10,890
+And so it really behooves us to make sure that we don't couple are back in service too closely with
+
+30
+00:02:10,890 --> 00:02:16,470
+our graphic code which is really just there to be kind of a presentation layer of all the different
+
+31
+00:02:16,470 --> 00:02:18,210
+data in our application.
+
+32
+00:02:18,600 --> 00:02:24,750
+So rather than stuffing all of the authenticate all Scuse me all the authentication logic inside the
+
+33
+00:02:24,750 --> 00:02:31,110
+mutations itself we're going to make use of outside helper functions and outside objects.
+
+34
+00:02:31,110 --> 00:02:36,870
+Now again we spoke about this in the last few sections for the project that we're working on making
+
+35
+00:02:36,870 --> 00:02:41,130
+passport and graph to work nicely is a little bit of a pain in the rear.
+
+36
+00:02:41,220 --> 00:02:46,020
+So I've taken the liberty of writing out a couple of these helper functions for us but we certainly
+
+37
+00:02:46,020 --> 00:02:51,030
+will go back to the code and take a look at it and say hey look at all the stuff that we did not place
+
+38
+00:02:51,030 --> 00:02:53,120
+inside the mutation.
+
+39
+00:02:53,580 --> 00:02:57,770
+So with that in mind let's get started with our different mutations.
+
+40
+00:02:58,410 --> 00:03:03,080
+I'm going to make a single file to house all the different mutations of my project.
+
+41
+00:03:03,090 --> 00:03:08,940
+Now again I could certainly make a folder of sorts and place a bunch of different mutations in that
+
+42
+00:03:08,940 --> 00:03:12,930
+folder and then reference it from somewhere else for this time.
+
+43
+00:03:12,930 --> 00:03:17,100
+I'm going to make a single file because as you're going to see our mutations are going to end up being
+
+44
+00:03:17,400 --> 00:03:21,080
+very small and very compact.
+
+45
+00:03:21,300 --> 00:03:28,320
+So inside of my schema directory I'm going to make a new file called mutations dot G-S and then inside
+
+46
+00:03:28,320 --> 00:03:33,160
+of here will place some of our boilerplate code for working with mutations.
+
+47
+00:03:33,240 --> 00:03:34,740
+Import grafting all at the top
+
+48
+00:03:37,550 --> 00:03:42,600
+and I think we probably need two objects in here two objects off the graph to a library.
+
+49
+00:03:42,810 --> 00:03:48,780
+I want graph Cuil object type to define the overall mutation and then based on the facts that we're
+
+50
+00:03:48,780 --> 00:03:54,930
+reading in e-mails and passwords which I really expect to be strings will also point graphed Well string
+
+51
+00:03:55,590 --> 00:03:56,270
+as well.
+
+52
+00:04:00,530 --> 00:04:05,660
+Finally because we're working with users and chances are that a lot of these different mutations that
+
+53
+00:04:05,660 --> 00:04:08,680
+we're going to create are going to be returning users.
+
+54
+00:04:08,800 --> 00:04:11,740
+I like to import my user type as well.
+
+55
+00:04:11,780 --> 00:04:21,650
+The user that we just created so I'll say Konst user type is going to be from the types directory I
+
+56
+00:04:21,650 --> 00:04:23,110
+want the user type
+
+57
+00:04:26,380 --> 00:04:27,890
+call.
+
+58
+00:04:28,380 --> 00:04:31,450
+Next we'll create the overall mutation.
+
+59
+00:04:31,450 --> 00:04:36,030
+So we've gone through this step several times before it looks just like the type that we just created.
+
+60
+00:04:36,060 --> 00:04:46,310
+We make our new graph Well object type making sure that we have Q L and O all capitalized and give it
+
+61
+00:04:46,310 --> 00:04:48,460
+the name of mutation.
+
+62
+00:04:48,950 --> 00:04:52,030
+We'll give it a field's property.
+
+63
+00:04:52,580 --> 00:04:57,360
+And then at the very bottom we can export the mutation object that we just created.
+
+64
+00:04:57,560 --> 00:05:05,520
+It's a module that exports nutation Okay sounds like a reasonable start.
+
+65
+00:05:05,550 --> 00:05:10,830
+Next we're going to fill in a couple of properties inside of the fields object here.
+
+66
+00:05:11,010 --> 00:05:15,870
+So we need to immediately be thinking about those three different mutations that we expected to make
+
+67
+00:05:16,050 --> 00:05:20,310
+which are going to be Sign-Up log in and log out.
+
+68
+00:05:20,370 --> 00:05:25,530
+Now it doesn't really make any sense to attempt to log in or log out without having any users available.
+
+69
+00:05:25,530 --> 00:05:30,070
+So I think a very clear first choice will be to work on the sign up mutation.
+
+70
+00:05:30,360 --> 00:05:33,280
+So we're going to make a new mutation called Sign up.
+
+71
+00:05:33,450 --> 00:05:38,820
+I think that Sign-Up definitely makes sense to expect that we're going to receive an email and a password
+
+72
+00:05:38,820 --> 00:05:39,810
+into that.
+
+73
+00:05:39,990 --> 00:05:43,950
+And then returning from it we will return the user that was created.
+
+74
+00:05:43,980 --> 00:05:50,550
+So if anyone on our friend makes a calls this Sign-Up mutation they will get back the user model that
+
+75
+00:05:50,550 --> 00:05:56,100
+was created which right now as we discussed is really just going to contain the idea of the user and
+
+76
+00:05:56,100 --> 00:05:58,780
+the e-mail that they were created with.
+
+77
+00:05:58,770 --> 00:06:04,050
+But if the client the front end wants to know about the ID or the e-mail hey they'll definitely have
+
+78
+00:06:04,050 --> 00:06:05,380
+access to it.
+
+79
+00:06:06,030 --> 00:06:15,740
+So inside of our mutation we'll add on the new field of Sign-Up we'll assign it the type the args and
+
+80
+00:06:15,740 --> 00:06:18,700
+then we'll set up the resolve function as well.
+
+81
+00:06:19,010 --> 00:06:20,410
+So we'll do our type.
+
+82
+00:06:20,720 --> 00:06:27,860
+I expect it to return the user that is created so it will return a user type.
+
+83
+00:06:28,110 --> 00:06:30,700
+We're going to need to call it with some number of arguments.
+
+84
+00:06:30,740 --> 00:06:37,490
+So this will be the e-mail and the password used to sign up the user will receive an email which will
+
+85
+00:06:37,490 --> 00:06:43,190
+be a type graphic you will string make sure you do not have a capital T there because I need that type
+
+86
+00:06:43,190 --> 00:06:48,020
+of all the time and they password type is Magrath.
+
+87
+00:06:48,040 --> 00:06:50,520
+Q So string.
+
+88
+00:06:50,750 --> 00:06:56,000
+Now you will note that when I sign a user up traditionally whenever you sign or a user up you always
+
+89
+00:06:56,000 --> 00:06:58,730
+get like a password confirmation on the UI.
+
+90
+00:06:58,850 --> 00:07:03,890
+So the UI will say hey enter your password now enter it again so we can make sure that you enter the
+
+91
+00:07:03,890 --> 00:07:05,820
+password you intended to.
+
+92
+00:07:05,900 --> 00:07:12,340
+We can make that comparison know if we if we decide to do password confirmation we can do that comparison
+
+93
+00:07:12,350 --> 00:07:13,430
+on the front end.
+
+94
+00:07:13,460 --> 00:07:19,360
+So we really don't need to send both a password and a confirmation password to the backend.
+
+95
+00:07:19,430 --> 00:07:24,320
+So if we care about doing that confirmation step we would take care of that entirely on the front end
+
+96
+00:07:24,320 --> 00:07:25,510
+of our application.
+
+97
+00:07:27,530 --> 00:07:30,330
+And finally we'll define our resolve function.
+
+98
+00:07:30,470 --> 00:07:36,900
+So resolve and we'll add on our apparent value args.
+
+99
+00:07:37,190 --> 00:07:43,880
+And then there's one third argument that is going to start become start to become extremely important
+
+100
+00:07:43,910 --> 00:07:45,880
+for us inside of our application.
+
+101
+00:07:45,950 --> 00:07:48,350
+Just extremely important.
+
+102
+00:07:48,350 --> 00:07:55,280
+The third argument in here that we really care about is something called request and you'll also see
+
+103
+00:07:55,280 --> 00:07:59,160
+it called in some other locations and some documentation I should say.
+
+104
+00:07:59,210 --> 00:08:01,380
+You'll see it called context.
+
+105
+00:08:01,490 --> 00:08:08,690
+But Alex Kilat request because by default that is what it is request right here represents the request
+
+106
+00:08:08,750 --> 00:08:11,770
+object coming from Express.
+
+107
+00:08:11,810 --> 00:08:20,240
+So remember that when we make an H TTP request to our back end of any type B it's coming from graft
+
+108
+00:08:20,240 --> 00:08:27,980
+UL or from G query or from the Fed chair or whatever it is it enters into our express application as
+
+109
+00:08:27,980 --> 00:08:30,050
+a request.
+
+110
+00:08:30,050 --> 00:08:33,410
+So the third argument that is being passed to that resolved function.
+
+111
+00:08:33,410 --> 00:08:35,140
+We've not made use of till now.
+
+112
+00:08:35,210 --> 00:08:36,960
+We didn't really have any reason to.
+
+113
+00:08:37,070 --> 00:08:44,840
+Is that request object the request object has a bunch of details about the incoming request like what
+
+114
+00:08:44,840 --> 00:08:48,940
+route they were trying to access some of the query string if one exists.
+
+115
+00:08:48,980 --> 00:08:55,010
+The body of the request if one exists and other associated properties for us it's going to be very helpful
+
+116
+00:08:55,040 --> 00:09:00,110
+because we're going to use the request object to help out with the authentication side of things as
+
+117
+00:09:00,110 --> 00:09:01,980
+we'll see in just a moment.
+
+118
+00:09:02,660 --> 00:09:03,250
+Okay.
+
+119
+00:09:03,410 --> 00:09:06,390
+This looks like a reasonable start for our sign up mutation.
+
+120
+00:09:06,400 --> 00:09:10,790
+So let's take a quick break and we're going to come back and figure out the real meat of the mutation
+
+121
+00:09:11,030 --> 00:09:12,740
+which is the resolve function.
+

@@ -1,0 +1,396 @@
+1
+00:00:00,800 --> 00:00:03,680
+We've got some scaffolding for our lyric list put together.
+
+2
+00:00:03,680 --> 00:00:08,440
+So we need to start thinking a little bit more about where it's going to get the list of lyrics from.
+
+3
+00:00:08,810 --> 00:00:14,480
+So to take a look back at our mockup right here we've got the song detail component which is currently
+
+4
+00:00:14,480 --> 00:00:18,470
+making equerry to fetch the song that we're showing on the screen.
+
+5
+00:00:18,470 --> 00:00:22,470
+And then we've also got the lyric list as a child of the song detail.
+
+6
+00:00:22,640 --> 00:00:30,200
+So you might be thinking well let's just pass down the ID of the given song to the lyric list and then
+
+7
+00:00:30,230 --> 00:00:34,680
+add in a query to lyric list to go and fetch all the lyrics around that song.
+
+8
+00:00:35,060 --> 00:00:40,220
+That would definitely be one viable option but I think what might be a little bit more useful is if
+
+9
+00:00:40,220 --> 00:00:47,450
+we enhance our song detail equerry to also ask for a list of all the lyrics associated with it.
+
+10
+00:00:47,450 --> 00:00:52,860
+So remember our song detail right now is making use of the fecche song Querrey.
+
+11
+00:00:52,940 --> 00:00:58,700
+So here is the first song Querrey it reaches out grabs a very particular song and gives us only the
+
+12
+00:00:58,760 --> 00:01:01,160
+ID and the title for it.
+
+13
+00:01:01,160 --> 00:01:07,540
+So rather than making a completely separate query we can enhance this right here and also ask for all
+
+14
+00:01:07,550 --> 00:01:10,530
+the lyrics associated with this given song.
+
+15
+00:01:10,790 --> 00:01:16,910
+So this is part of where graft will starts to get really really nice on the front end as we start to
+
+16
+00:01:17,180 --> 00:01:19,700
+realize that we want more and more pieces of data.
+
+17
+00:01:19,760 --> 00:01:22,930
+We don't necessarily have to go and make another query.
+
+18
+00:01:23,120 --> 00:01:28,610
+We can just enhance the queries that we already have by adding on a couple more properties to fetch
+
+19
+00:01:30,120 --> 00:01:31,200
+as usual of course.
+
+20
+00:01:31,200 --> 00:01:36,260
+I would really like to test out our query in graphical first.
+
+21
+00:01:36,450 --> 00:01:41,430
+So we'll do a quick test of the query first make sure we can get the lyrics and all the associated stuff
+
+22
+00:01:41,790 --> 00:01:46,230
+and then we'll add back into the query inside of this fecche song component.
+
+23
+00:01:46,530 --> 00:01:48,360
+So I'm going to take my existing query here.
+
+24
+00:01:48,390 --> 00:01:55,110
+It's going to copy the entire thing just the query syntax and we'll move it over to graphical and run
+
+25
+00:01:55,110 --> 00:01:57,570
+the query.
+
+26
+00:01:57,740 --> 00:02:05,210
+So I'm going to paste it in like so I do not need to make use of the content query variable anymore.
+
+27
+00:02:05,270 --> 00:02:09,990
+So I want to take that out but I do need an idea to provide to the query.
+
+28
+00:02:10,250 --> 00:02:13,420
+So I'm going to say OK here is the idea you can use right here.
+
+29
+00:02:13,990 --> 00:02:17,210
+Do you notice that I still have a valid ID on my screen.
+
+30
+00:02:17,210 --> 00:02:22,580
+If you do not have any IDs left or if you've deleted the songs or anything like that you can always
+
+31
+00:02:22,580 --> 00:02:28,220
+write another query to print out all the different IDs of your songs and then copy paste one down here.
+
+32
+00:02:30,080 --> 00:02:33,950
+So let's run this query right now just to make sure that everything works as expected.
+
+33
+00:02:34,340 --> 00:02:37,450
+Ok yeah I get my ID and my title back.
+
+34
+00:02:37,820 --> 00:02:46,120
+So if I look at my song type inside of my documentation browser here's my song.
+
+35
+00:02:46,130 --> 00:02:53,900
+Type it has an association of lyrics so I can ask for a collection of lyrics in all the different ID's
+
+36
+00:02:53,900 --> 00:02:57,120
+content all that kind of good stuff associated with them.
+
+37
+00:02:57,230 --> 00:03:04,640
+So I'll say go fetch the song and also give me all the lyrics that belong to it and tell me the ID and
+
+38
+00:03:04,640 --> 00:03:11,630
+the content of each of those lyrics so we can run this query right here and now we get back very helpfully
+
+39
+00:03:12,080 --> 00:03:17,290
+the idea of the song the title song and all the different lyrics that are associated with it.
+
+40
+00:03:17,300 --> 00:03:24,440
+So this definitely looks like it's working the way that we expect so we'll take this updated query and
+
+41
+00:03:24,440 --> 00:03:27,220
+we'll move it back into our query file to update it.
+
+42
+00:03:27,320 --> 00:03:29,510
+So going to flip back over to my query file.
+
+43
+00:03:29,510 --> 00:03:30,270
+Here we go.
+
+44
+00:03:30,530 --> 00:03:35,360
+I'm going to say Make sure you give me a list of all the different lyrics and I want the ID of each
+
+45
+00:03:35,360 --> 00:03:35,950
+one.
+
+46
+00:03:36,050 --> 00:03:42,170
+And I also want the content of each one in case you're curious why I'm asking for the ID here again
+
+47
+00:03:42,170 --> 00:03:48,340
+remember that whenever we render a list of components and react we have to provide a key for every item.
+
+48
+00:03:48,470 --> 00:03:55,490
+And so in practice we usually end up adding in the ID of most records anyways when we're asking especially
+
+49
+00:03:55,490 --> 00:03:58,060
+for a list of data.
+
+50
+00:03:58,130 --> 00:03:58,530
+OK.
+
+51
+00:03:58,580 --> 00:03:59,920
+So this is looking pretty good.
+
+52
+00:04:00,170 --> 00:04:02,610
+I'm going to save fecche song right here.
+
+53
+00:04:02,660 --> 00:04:05,920
+So we have now modified the fetch song query.
+
+54
+00:04:06,290 --> 00:04:11,620
+So I expect that in my song detail a component which is making use of fecche song.
+
+55
+00:04:11,660 --> 00:04:16,470
+Remember this is what's making use of fecche song right here inside a song.
+
+56
+00:04:16,670 --> 00:04:25,460
+I can now look at the song that we pull off of prop stock data and pass song Daut lyrics down into the
+
+57
+00:04:25,460 --> 00:04:27,420
+lyric list as a prop..
+
+58
+00:04:27,620 --> 00:04:32,390
+So again the whole thought process here is that we don't need to arbitrarily just keep on adding in
+
+59
+00:04:32,390 --> 00:04:34,620
+more and more queries to our application.
+
+60
+00:04:34,640 --> 00:04:40,820
+We can always modify an existing query and then pass data from that query down into some child component
+
+61
+00:04:41,090 --> 00:04:46,730
+which is exactly what we're doing right now with our lyric list.
+
+62
+00:04:46,730 --> 00:04:50,420
+So I'm going to take my
+
+63
+00:04:53,140 --> 00:04:58,940
+lyrics sorry spaced off there for a second and take some of that lyrics.
+
+64
+00:04:59,110 --> 00:05:00,580
+That looks better.
+
+65
+00:05:00,580 --> 00:05:06,550
+So look at the song get the collection of lyrics on it and pass it down until lyric list as a prop called
+
+66
+00:05:06,610 --> 00:05:08,230
+lyrics.
+
+67
+00:05:08,230 --> 00:05:11,920
+So now we are all we have to do is flip back over to our lyric list.
+
+68
+00:05:11,920 --> 00:05:19,480
+We will map over this dumb pop song lyrics and we can print out one life for each lyric.
+
+69
+00:05:20,290 --> 00:05:21,940
+So go back to lyric list.
+
+70
+00:05:22,060 --> 00:05:23,170
+Here we are.
+
+71
+00:05:23,260 --> 00:05:32,870
+I'm going to make a helper method to render this list and I will call its render lyrics like so.
+
+72
+00:05:32,930 --> 00:05:34,820
+So return this.
+
+73
+00:05:35,120 --> 00:05:36,780
+Stuck lyrics.
+
+74
+00:05:36,820 --> 00:05:38,500
+I'm going to map over that list.
+
+75
+00:05:38,680 --> 00:05:46,780
+And for every single lyric I have I'm going to produce one a simple element in here or one chunk of
+
+76
+00:05:46,780 --> 00:05:48,640
+GSX.
+
+77
+00:05:48,640 --> 00:05:51,350
+Now you'll notice that I am passing in the entire lyric.
+
+78
+00:05:51,460 --> 00:05:56,270
+We really only care about the id property and the content property of the lyric itself.
+
+79
+00:05:56,410 --> 00:06:03,100
+So I feel pretty comfortable with changing this out to some destructuring instead by using a set of
+
+80
+00:06:03,100 --> 00:06:10,330
+parents and then a set of curly braces and will just ask for the ID and content property off of every
+
+81
+00:06:10,330 --> 00:06:12,910
+single lyric.
+
+82
+00:06:13,300 --> 00:06:18,250
+Now inside of here we can generate our ally.
+
+83
+00:06:18,250 --> 00:06:26,110
+The Ally will contain the content and will give it the key id like so to make the illai look really
+
+84
+00:06:26,110 --> 00:06:30,900
+nice We're also going to add on a class name just as we did for other lists.
+
+85
+00:06:30,970 --> 00:06:37,570
+We use a class name of collection item and then to complete all the CSSA styling.
+
+86
+00:06:37,570 --> 00:06:45,090
+I will also modify the UL inside of our render method by adding a class name of collection.
+
+87
+00:06:45,130 --> 00:06:49,870
+So again both these class names are coming from the material design styling that are already.
+
+88
+00:06:49,870 --> 00:06:53,480
+That is already included inside of our starter project.
+
+89
+00:06:54,430 --> 00:06:56,740
+All right I think we're about ready for a test.
+
+90
+00:06:57,040 --> 00:07:04,750
+So I'm going to flip back over to my browser pull my application back open or refresh the page and I
+
+91
+00:07:04,750 --> 00:07:07,760
+get my lyric list appearing on the screen.
+
+92
+00:07:07,950 --> 00:07:13,690
+Now I definitely feel like the styling might not be quite correct right here so I will take a glance
+
+93
+00:07:13,690 --> 00:07:16,960
+at the styling and make sure it's set up correctly.
+
+94
+00:07:16,970 --> 00:07:22,320
+I have a class name of collection item and collection we try zooming out for a second because I am heavily
+
+95
+00:07:22,330 --> 00:07:23,350
+zoomed in.
+
+96
+00:07:23,740 --> 00:07:28,660
+OK so maybe we need a little bit of review on the styling here because again it should look a little
+
+97
+00:07:28,660 --> 00:07:29,880
+bit better than this.
+
+98
+00:07:30,040 --> 00:07:33,970
+So let's take a quick break come back in the next section and we'll address a little bit of styling
+
+99
+00:07:34,000 --> 00:07:34,980
+as well.
+

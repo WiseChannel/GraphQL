@@ -1,0 +1,216 @@
+1
+00:00:00,770 --> 00:00:04,620
+In the last section we put together the beginnings of our graphical server.
+
+2
+00:00:04,740 --> 00:00:10,650
+But when we tried to access the server in our browser We got an error message about a schema not being
+
+3
+00:00:10,650 --> 00:00:12,510
+present in some middleware.
+
+4
+00:00:12,750 --> 00:00:14,350
+So let's analyze this error message.
+
+5
+00:00:14,340 --> 00:00:16,640
+Let's really try to figure out what it's saying here.
+
+6
+00:00:16,860 --> 00:00:20,990
+It says graph Cuil middleware options.
+
+7
+00:00:21,180 --> 00:00:23,970
+The keyword in here is middleware.
+
+8
+00:00:23,970 --> 00:00:31,470
+When we just wired up our server inside of the server doc G-S file we had a call to app dot use after
+
+9
+00:00:31,560 --> 00:00:38,850
+use is how we wire up middleware to an express application middleware are tiny functions meant to intercept
+
+10
+00:00:38,880 --> 00:00:42,750
+or modify requests as they come through and express server.
+
+11
+00:00:42,750 --> 00:00:49,770
+So when we registered express craft well with our application it was registered as a middleware.
+
+12
+00:00:49,820 --> 00:00:54,420
+So the error message we're getting here clearly refers first that app don't use line.
+
+13
+00:00:54,650 --> 00:00:56,610
+And if we looked at the second part of it.
+
+14
+00:00:56,660 --> 00:01:03,560
+Options must contain a schema but when we wired up that middleware we passed in an options object to
+
+15
+00:01:03,560 --> 00:01:07,040
+the Express graphical function.
+
+16
+00:01:07,400 --> 00:01:10,820
+This options object right here is what that error message is talking about.
+
+17
+00:01:10,820 --> 00:01:15,220
+It's really saying hey you have to provide a schema along with these options.
+
+18
+00:01:15,710 --> 00:01:18,880
+So that really begs the question what is a schema.
+
+19
+00:01:19,040 --> 00:01:21,350
+Well great question.
+
+20
+00:01:21,350 --> 00:01:26,810
+In a previous discussion or see the previous section we discussed how graphed Cuil considers all of
+
+21
+00:01:26,810 --> 00:01:32,940
+the data in our application to look like a graph and we looked at this diagram right here.
+
+22
+00:01:33,350 --> 00:01:40,220
+So here's the thing we know like you and I can look at this diagram and we know that OK a user has an
+
+23
+00:01:40,220 --> 00:01:46,010
+associated association with the position in the company and apparently with other users as well.
+
+24
+00:01:46,070 --> 00:01:52,010
+But Graf Cuil does know that like Graf CULE doesn't just magically go into our database and figure out
+
+25
+00:01:52,070 --> 00:01:56,270
+all the different pieces of data in our application and how they're all related.
+
+26
+00:01:56,270 --> 00:02:03,740
+No we have to very specifically inform Graf Cuil about how the data in our application is arranged and
+
+27
+00:02:03,740 --> 00:02:05,610
+how it can be accessed.
+
+28
+00:02:05,750 --> 00:02:09,350
+And we do all this inside of a schema file.
+
+29
+00:02:09,950 --> 00:02:15,050
+So the schema file is the absolute linchpin of every graphical application.
+
+30
+00:02:15,050 --> 00:02:20,690
+It is what tells graph well about the type of data that we're working with and how all the relations
+
+31
+00:02:20,690 --> 00:02:24,200
+play out between those different pieces of data.
+
+32
+00:02:24,260 --> 00:02:28,880
+So let's make a new schema file and figure out what to place inside of it.
+
+33
+00:02:28,880 --> 00:02:34,130
+I'm going to go back to my code editor and inside of my root project directory I'm going to make a new
+
+34
+00:02:34,130 --> 00:02:40,320
+folder called schema and then inside there I'll make a new file called schema.
+
+35
+00:02:40,590 --> 00:02:42,270
+Dot J Yes.
+
+36
+00:02:42,350 --> 00:02:46,960
+So we've now got a schema folder with a schema dot J.S. file inside of it.
+
+37
+00:02:48,560 --> 00:02:54,440
+So the key thing to keep in mind about your schema file is that it contains all of the knowledge required
+
+38
+00:02:54,440 --> 00:03:01,340
+for telling graph Well exactly what your applications data look looks like including most importantly
+
+39
+00:03:01,640 --> 00:03:08,950
+what properties each object has and exactly how each object is related to each other.
+
+40
+00:03:09,440 --> 00:03:13,240
+So we know that we're working with users companies and positions.
+
+41
+00:03:13,250 --> 00:03:16,600
+But you know exactly what properties does the user have.
+
+42
+00:03:16,640 --> 00:03:19,760
+What properties does a company or a position have.
+
+43
+00:03:20,120 --> 00:03:24,110
+Well let's let's like can I codify this and make sure that it's really clear between you and me what
+
+44
+00:03:24,110 --> 00:03:26,050
+properties it has.
+
+45
+00:03:26,050 --> 00:03:34,640
+So I'm going to say that a user has a first name you got a typo there so it has a first name as a reference
+
+46
+00:03:34,640 --> 00:03:38,030
+to a company and a reference to a position.
+
+47
+00:03:38,180 --> 00:03:43,100
+Then every company has a name and every position has a name as well.
+
+48
+00:03:43,340 --> 00:03:47,740
+And presumably we need some way for users to be related to other users.
+
+49
+00:03:47,900 --> 00:03:50,200
+So we have to figure out that part as well.
+
+50
+00:03:50,630 --> 00:03:53,930
+So our job now is to somehow communicate to graft.
+
+51
+00:03:53,940 --> 00:04:01,130
+Q Well we have the idea of a user and a user has an ID and a first name.
+
+52
+00:04:01,320 --> 00:04:02,570
+That's our job.
+
+53
+00:04:03,080 --> 00:04:05,190
+Now I don't want this section to run on too long.
+
+54
+00:04:05,300 --> 00:04:09,360
+So let's take a quick breather and then come back and start working on the schema.
+

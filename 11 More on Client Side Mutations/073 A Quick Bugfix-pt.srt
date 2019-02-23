@@ -1,0 +1,124 @@
+1
+00:00:00,740 --> 00:00:05,550
+Antes de fazer um encerramento da nossa aplicao, h um pequeno bug que eu queria apontar
+
+2
+00:00:05,550 --> 00:00:10,130
+para voc que foi introduzido e comeamos a apresentar a idia da Wykes para nossa aplicao.
+
+3
+00:00:10,530 --> 00:00:17,730
+Ento,  um lembrete quando adicionamos uma nova letra, executando uma mutao que agarra toda a msica e todas
+
+4
+00:00:17,730 --> 00:00:18,840
+as letras associadas.
+
+5
+00:00:18,840 --> 00:00:22,110
+Vamos tentar adicionar outra letra agora e ver o que acontece.
+
+6
+00:00:23,190 --> 00:00:26,260
+Digamos e aqui est o meu abajur.
+
+7
+00:00:26,450 --> 00:00:30,820
+Eu vou entrar e voc notar que eu vejo uma grande mensagem de erro aqui.
+
+8
+00:00:30,950 --> 00:00:36,050
+carregado no topo da tela e parece que na verdade no est resolvendo o pedido.
+
+9
+00:00:36,050 --> 00:00:37,040
+E eu tenho
+
+10
+00:00:37,040 --> 00:00:40,030
+Ento, isso  um pouco um erro no mundo Apollo.
+
+11
+00:00:40,070 --> 00:00:43,360
+Lembre-se novamente de que a Apollo ainda  uma tecnologia em desenvolvimento.
+
+12
+00:00:43,670 --> 00:00:49,940
+Vamos verificar a mutao que corremos sempre que adicionamos uma nova letra e depois voltei para o meu editor
+
+13
+00:00:49,940 --> 00:00:54,540
+de cdigo e, se voc lembrar, estamos usando o formulrio de criao de letras.
+
+14
+00:00:54,560 --> 00:01:00,110
+Aqui est bem aqui e, no fundo, podemos rolar para baixo para encontrar nossa mutao para
+
+15
+00:01:00,110 --> 00:01:02,920
+adicionar uma nova letra a uma msica individual.
+
+16
+00:01:02,950 --> 00:01:06,890
+Ento, agora, quando executamos essa mutao, voltamos para a msica.
+
+17
+00:01:06,900 --> 00:01:11,400
+Aqui estamos pedindo a identificao que estamos pedindo so todas as letras ao redor.
+
+18
+00:01:11,500 --> 00:01:15,190
+Mas estamos apenas pedindo o ID e o contedo.
+
+19
+00:01:15,190 --> 00:01:17,100
+Ento  isso que est causando um problema agora.
+
+20
+00:01:17,140 --> 00:01:22,150
+Isso  o que atirar o erro parte do aplicativo est esperando que possamos conhecer
+
+21
+00:01:22,150 --> 00:01:27,870
+o nmero de Wykes associado a cada letra, mas ns realmente no estamos pedindo esses dados agora.
+
+22
+00:01:28,060 --> 00:01:34,360
+Ento, para que nossa mensagem de erro desaparea, devemos incluir um pedido para o nmero de
+
+23
+00:01:34,360 --> 00:01:36,330
+Wykes associado a cada letra.
+
+24
+00:01:36,370 --> 00:01:41,390
+telefone,  adicionado como seria de esperar e tudo funcionar muito melhor.
+
+25
+00:01:44,270 --> 00:01:50,870
+Agora, quando atualizamos a pgina em adicionar outra letra e aqui est o meu outro
+
+26
+00:01:50,870 --> 00:01:55,940
+OK, ento novamente isso  um pouco de um erro ou um erro no lado Apollo de coisas que exige
+
+27
+00:01:55,940 --> 00:01:57,890
+que ns pedimos a pea de dados.
+
+28
+00:01:58,040 --> 00:02:00,870
+Espero que seja algo que nos resolvamos enquanto isso.
+
+29
+00:02:00,890 --> 00:02:06,950
+Eu encorajo voc a se certificar de que, se voc j fizer uso de algum tipo de
+
+30
+00:02:06,950 --> 00:02:12,730
+recurso, faa o melhor para sempre certificar-se de que est tirando as mesmas propriedades desse recurso.
+
+31
+00:02:12,970 --> 00:02:17,760
+OK, vamos continuar na prxima seo e realmente chegar a essa concluso para esta aplicao.
+

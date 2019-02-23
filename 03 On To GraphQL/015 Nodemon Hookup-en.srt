@@ -1,0 +1,128 @@
+1
+00:00:00,920 --> 00:00:04,270
+We've really been hammering through a graph Kulick quite quickly at this point.
+
+2
+00:00:04,280 --> 00:00:09,410
+So I want to take a moment to just take a short break from anything graphically related and do a little
+
+3
+00:00:09,410 --> 00:00:16,010
+bit of maintenance on our server right now whenever we change our server code we have to manually stop
+
+4
+00:00:16,490 --> 00:00:19,130
+and restart our server backup.
+
+5
+00:00:19,130 --> 00:00:24,770
+This is really annoying to have to do and it's really not uncommon to forget to restart the server altogether
+
+6
+00:00:24,830 --> 00:00:26,910
+which of course leads to errors.
+
+7
+00:00:26,930 --> 00:00:33,170
+So to solve this we're going to hook up a little package called node Mohn to our server node one's purpose
+
+8
+00:00:33,230 --> 00:00:38,900
+is to watch over all of our project files and automatically restart the server whenever our project
+
+9
+00:00:38,900 --> 00:00:40,210
+code changes.
+
+10
+00:00:40,460 --> 00:00:47,000
+So this is really just done to help ensure that our server is always running the latest code hooking
+
+11
+00:00:47,000 --> 00:00:49,350
+up gnomon is pretty straightforward.
+
+12
+00:00:49,670 --> 00:00:56,150
+All we have to do is install it as a dependency so that the command line will run NPM install dust ash
+
+13
+00:00:56,150 --> 00:01:01,090
+saves Node 1 after this is installed.
+
+14
+00:01:01,110 --> 00:01:07,690
+We'll make a separate script inside of our package that is on file to start our server up using gnomon.
+
+15
+00:01:07,690 --> 00:01:10,060
+So let's change over to our code editor.
+
+16
+00:01:10,120 --> 00:01:16,080
+I'm going to find my package got some file and under the script section I'm going to make a new script
+
+17
+00:01:16,080 --> 00:01:27,550
+called Dev and whenever the devs script is executed we'll run node Mohn server dot J J.S. like so cool.
+
+18
+00:01:27,560 --> 00:01:30,180
+So now we can flip back over toward terminal.
+
+19
+00:01:30,410 --> 00:01:34,940
+We can start up our server now by running NPM run dev.
+
+20
+00:01:35,780 --> 00:01:41,330
+We really get a little bit of a pop up from gnomon and it says hey OK I'm watching all the files inside
+
+21
+00:01:41,330 --> 00:01:42,970
+of your current working directory.
+
+22
+00:01:43,130 --> 00:01:44,300
+It's any file changes.
+
+23
+00:01:44,300 --> 00:01:47,010
+The server will automatically be restarted as well.
+
+24
+00:01:47,300 --> 00:01:52,190
+So just as a quick little test I'm going to come into my schema file and it's going to add in a little
+
+25
+00:01:52,190 --> 00:01:53,590
+comment symbol right here.
+
+26
+00:01:53,630 --> 00:01:56,970
+I can save it and automatically get the restart.
+
+27
+00:01:57,300 --> 00:01:58,730
+I'm also going to clean up that comment.
+
+28
+00:01:58,730 --> 00:02:01,600
+So it's not left in there and we get the restarted again.
+
+29
+00:02:01,610 --> 00:02:02,100
+Perfect.
+
+30
+00:02:02,130 --> 00:02:03,070
+Just so we wanted.
+
+31
+00:02:03,320 --> 00:02:06,830
+So now we do not need to research a server at any point in time.
+
+32
+00:02:06,920 --> 00:02:10,250
+Let's continue on the next section and start working on our next query.
+

@@ -1,0 +1,424 @@
+1
+00:00:00,780 --> 00:00:07,730
+O formulrio de login agora tem acesso ao login na nutao. Lembre-se de que sempre que chamamos o
+
+2
+00:00:07,730 --> 00:00:15,080
+log e a mutao do componente, ns o chamamos, pois este processo mata e esta mutao, em particular, espera
+
+3
+00:00:15,080 --> 00:00:19,500
+tanto um e-mail como uma senha como variveis de consulta. forneceu.
+
+4
+00:00:19,520 --> 00:00:25,610
+Ento, temos de alguma forma obter nosso nvel de nvel do componente do formulrio OT e mov-lo para cima
+
+5
+00:00:25,610 --> 00:00:26,940
+no formulrio log in.
+
+6
+00:00:26,990 --> 00:00:30,280
+Na prtica, isso vai acabar sendo um simples retorno de chamada.
+
+7
+00:00:30,440 --> 00:00:36,560
+Ento, vou definir uma chamada de retorno dentro do formulrio de log e depois vou passar para o formulrio
+
+8
+00:00:36,560 --> 00:00:41,590
+de autenticao e deve ser chamado sempre que o formulrio de dentro e depois for enviado.
+
+9
+00:00:42,440 --> 00:00:49,460
+Ento, eu primeiro definirei o meu retorno de chamada, diremos chamar algo de simples. Vamos apenas mant-lo no envio e
+
+10
+00:00:49,470 --> 00:00:55,240
+ento assumir que ele ser chamado com um objeto que contenha o e-mail e a senha,
+
+11
+00:00:57,870 --> 00:01:00,850
+ento, dentro desta coisa, ns chamaremos nossa nutao.
+
+12
+00:01:00,870 --> 00:01:08,880
+Ento, este suporte  mutate e precisamos ter certeza de que passamos ao longo de nossas variveis de consulta,
+
+13
+00:01:08,940 --> 00:01:16,230
+bem como as variveis objeto, as duas variveis necessrias so o e-mail e a senha para que
+
+14
+00:01:16,240 --> 00:01:18,690
+possamos passar por elas diretamente.
+
+15
+00:01:18,700 --> 00:01:19,340
+Como voc sabe disso.
+
+16
+00:01:19,350 --> 00:01:23,650
+Estou usando muita sim sintaxe 20:15 aqui em ambas as desestruturao.
+
+17
+00:01:23,650 --> 00:01:28,900
+Fora do objeto de argumentos e estou fazendo uso de um atalho para o objeto de variveis de consulta tambm.
+
+18
+00:01:29,110 --> 00:01:34,600
+Ento, sempre que chamamos de envio, precisamos nos certificar de que o chamamos de um objeto para o
+
+19
+00:01:34,600 --> 00:01:38,080
+contedo de um e-mail de propriedade e uma senha de propriedade tambm.
+
+20
+00:01:39,780 --> 00:01:40,110
+EST BEM.
+
+21
+00:01:40,120 --> 00:01:42,170
+Agora que em submeter  juntado.
+
+22
+00:01:42,370 --> 00:01:48,400
+Vamos pass-lo para o formulrio de arte e certifique-se de que o formulrio o chama sempre que o
+
+23
+00:01:48,430 --> 00:01:49,720
+prprio formulrio  submetido.
+
+24
+00:01:49,720 --> 00:01:53,080
+Ento, diremos sobre Samit chamar a funo.
+
+25
+00:01:53,080 --> 00:01:58,210
+Este ponto em enviar para encontrar isso.
+
+26
+00:01:58,230 --> 00:02:01,500
+Ento agora dentro do formulrio sempre que os formulrios forem submetidos.
+
+27
+00:02:01,500 --> 00:02:07,560
+Certifique-se de que chamamos de enviar e passar no e-mail e na senha com a qual
+
+28
+00:02:07,800 --> 00:02:09,780
+o usurio est tentando autenticar.
+
+29
+00:02:09,780 --> 00:02:12,750
+Ento, uma mudana  uma forma aberta.
+
+30
+00:02:13,000 --> 00:02:17,070
+Eu vou primeiro adicionar um manipulador de eventos  tag de formulrio propriamente dita.
+
+31
+00:02:17,200 --> 00:02:19,040
+Ento, envie.
+
+32
+00:02:19,210 --> 00:02:21,390
+Ligue para este ponto em enviar.
+
+33
+00:02:21,580 --> 00:02:23,290
+Relacione isso.
+
+34
+00:02:23,410 --> 00:02:26,680
+Agora observe que fez algo um pouco confuso aqui.
+
+35
+00:02:26,830 --> 00:02:28,960
+Estou ligando para enviar.
+
+36
+00:02:28,990 --> 00:02:34,290
+Este  um suporte que eu estou passando para formar e estou dizendo sempre que o formulrio  enviado.
+
+37
+00:02:34,400 --> 00:02:41,800
+Ligue para uma funo auxiliar dentro de Auth. formulrio chamado em enviar este retorno de chamada aqui e
+
+38
+00:02:41,800 --> 00:02:48,280
+este nome de propriedade aqui  100 por cento completamente diferente completamente separado do no envio que acabamos
+
+39
+00:02:48,280 --> 00:02:55,750
+de definir dentro do log e forma assim o cume aqui vai ser uma propriedade ou um suporte que  passado
+
+40
+00:02:55,750 --> 00:02:57,740
+at a forma de arte.
+
+41
+00:02:57,760 --> 00:03:04,380
+Ento, se esta funo estiver disponvel dentro do meu formulrio off, pois esses adereos comeam no envio.
+
+42
+00:03:04,540 --> 00:03:06,420
+Ento eu tenho todo o nome aqui.
+
+43
+00:03:06,450 --> 00:03:09,990
+Eu sei que parece muito muito semelhante.
+
+44
+00:03:10,000 --> 00:03:16,390
+Em todo o lugar, mas na prtica, eu realmente gosto de manter os nomes de propriedade to parecido quanto possvel
+
+45
+00:03:16,390 --> 00:03:21,640
+porque para mim isso realmente me permite no me preocupar em mudar artificialmente os nomes de propriedade
+
+46
+00:03:21,940 --> 00:03:25,180
+ao longo do tempo apenas para distinguir arbitrariamente entre eles.
+
+47
+00:03:25,180 --> 00:03:30,370
+simplesmente manter na minha cabea que isso no Samit est falando sobre um ajudante definido dentro
+
+48
+00:03:30,370 --> 00:03:36,280
+da forma ao invs de tentar e mudar isso para algo como algo completamente diferente por algum motivo arbitrrio.
+
+49
+00:03:36,280 --> 00:03:38,770
+Eu acho que  um pouco mais fcil
+
+50
+00:03:39,370 --> 00:03:42,510
+Ento vamos definir em Sumida aqui.
+
+51
+00:03:42,520 --> 00:03:48,100
+Lembre-se de que sempre que enviamos um formulrio, o manipulador de eventos  chamado com um objeto de evento e precisamos
+
+52
+00:03:48,100 --> 00:03:51,140
+ter certeza de que evitamos o padro no objeto de evento.
+
+53
+00:03:51,190 --> 00:03:58,980
+Portanto, o formulrio no tenta se submeter, ento ns chamaremos esse evento, no impedindo o padro, assim.
+
+54
+00:03:59,500 --> 00:04:07,210
+OK, ento agora, aqui est o ponto onde queremos chamar o suporte deste ponto do Doug prop em
+
+55
+00:04:07,600 --> 00:04:12,010
+enviar e passar no e-mail e na senha como um objeto.
+
+56
+00:04:12,010 --> 00:04:19,090
+objeto de estado tem o e-mail e a senha e praticamente nada mais que possamos passar livremente neste estado.
+
+57
+00:04:19,900 --> 00:04:25,870
+Ento, chamaremos esse ponto de parada de suporte no envio e passaremos no e-mail e na
+
+58
+00:04:25,870 --> 00:04:28,110
+senha como um objeto porque nosso
+
+59
+00:04:29,660 --> 00:04:35,480
+Agora, algo para ser realmente claro no prximo ano, o manipulador de eventos no Summit no tentar
+
+60
+00:04:35,480 --> 00:04:38,870
+mutar o objeto do estado de qualquer forma ou forma.
+
+61
+00:04:38,990 --> 00:04:45,390
+Esse  um requisito muito crtico aqui est voltando um pouco para os fundamentos de reagir para fazer.
+
+62
+00:04:45,410 --> 00:04:50,810
+Realmente, se eu estivesse escrevendo cdigo de produo aqui, eu poderia considerar desestruturar
+
+63
+00:04:50,810 --> 00:04:58,730
+essas propriedades de e-mail e senha, como o email e a senha de Konst so provenientes desses estados de
+
+64
+00:04:58,730 --> 00:05:02,920
+ponto e, em seguida, passando os dois deles de forma semelhante.
+
+65
+00:05:03,150 --> 00:05:07,770
+E isso s vai garantir que eu nunca mude acidentalmente meu objeto estatal dentro
+
+66
+00:05:07,770 --> 00:05:08,890
+do manipulador do Samit.
+
+67
+00:05:08,940 --> 00:05:15,600
+Mas, neste caso, eu realmente me sinto totalmente bem por apenas passar no objeto do estado inteiro apenas sob a
+
+68
+00:05:15,600 --> 00:05:20,570
+suposio de que eu nunca vou mutar o objeto dentro do prprio retorno de chamada.
+
+69
+00:05:22,630 --> 00:05:29,170
+OK, ento agora que nosso retorno de chamada est sendo chamado com sucesso com o e-mail e a senha e dentro
+
+70
+00:05:29,170 --> 00:05:31,850
+de um ano Smidt estamos chamando nossa mutao.
+
+71
+00:05:31,870 --> 00:05:35,820
+Eu acho que estamos prestes a chamar isso dentro do navegador.
+
+72
+00:05:35,830 --> 00:05:40,820
+H apenas uma ltima atualizao que eu quero fazer dentro do prprio frum.
+
+73
+00:05:40,900 --> 00:05:46,910
+Ento, aqui est a forma que eu quero fazer um pouco de uma mudana na forma como juntamos os formulrios o prprio formulrio.
+
+74
+00:05:47,080 --> 00:05:49,530
+Eu no quero mostrar o rtulo dentro daqui.
+
+75
+00:05:49,540 --> 00:05:51,180
+Voc ver por que em apenas um segundo.
+
+76
+00:05:51,350 --> 00:05:55,330
+Eu tirei o rtulo nos campos de e-mail e senha.
+
+77
+00:05:55,520 --> 00:06:01,230
+Agora eu vou usar o suporte de espao reservado apenas para torn-lo um pouco mais agradvel.
+
+78
+00:06:01,480 --> 00:06:03,130
+Voc X experincia.
+
+79
+00:06:03,280 --> 00:06:10,750
+Portanto, uma senha de espao reservado e para se certificar de que a senha que o usurio entra no  visvel
+
+80
+00:06:10,750 --> 00:06:11,640
+como texto simples.
+
+81
+00:06:11,800 --> 00:06:15,760
+Eu tambm especificarei um tipo de senha em apenas essa entrada.
+
+82
+00:06:15,940 --> 00:06:20,570
+Isso vai garantir que minha senha aparea como pontos em oposio aos caracteres reais.
+
+83
+00:06:22,360 --> 00:06:22,650
+Tudo bem.
+
+84
+00:06:22,660 --> 00:06:24,090
+Eu acho que estamos prontos para um teste.
+
+85
+00:06:24,130 --> 00:06:31,070
+Ento, eu vou salvar este arquivo e mudar para o Chrome, vou arrancar meu console apenas no caso
+
+86
+00:06:31,070 --> 00:06:35,440
+de eu ter erros,  claro, e ento vou atualizar meu formulrio.
+
+87
+00:06:35,870 --> 00:06:37,590
+Tudo ainda est sendo exibido muito bem.
+
+88
+00:06:37,610 --> 00:06:38,510
+Parece bom.
+
+89
+00:06:38,720 --> 00:06:44,030
+Ento eu vou colocar no meu teste de e-mail no ponto de teste com e senha.
+
+90
+00:06:44,030 --> 00:06:49,310
+Eu vou virar para a guia Rede dentro do meu inspetor de cromo para que eu possa
+
+91
+00:06:49,310 --> 00:06:50,400
+ver a nutao sair.
+
+92
+00:06:50,480 --> 00:06:51,620
+Vamos fazer esta cpula.
+
+93
+00:06:51,770 --> 00:06:57,770
+Parece que a mutao foi enviada com sucesso e parece que fui logado com sucesso como
+
+94
+00:06:57,860 --> 00:06:59,960
+teste no ponto de teste com.
+
+95
+00:06:59,990 --> 00:07:00,680
+Fantstico.
+
+96
+00:07:00,770 --> 00:07:02,690
+Ento, isso definitivamente est funcionando da maneira que esperamos.
+
+97
+00:07:02,930 --> 00:07:05,300
+E voc tambm notar que parece ser o.
+
+98
+00:07:05,360 --> 00:07:07,400
+No tenho certeza se o aquecedor est funcionando corretamente.
+
+99
+00:07:07,400 --> 00:07:08,430
+Eu no estava bem olhando para isso.
+
+100
+00:07:08,450 --> 00:07:14,110
+Vamos primeiro a sair e certifique-se de que estou 100% desconectado e vou enviar novamente.
+
+101
+00:07:14,410 --> 00:07:14,770
+EST BEM.
+
+102
+00:07:14,780 --> 00:07:18,850
+Ento, isso  um pouco mais do jeito que eu espero, ento eu estou firmando com sucesso aqui.
+
+103
+00:07:18,950 --> 00:07:24,590
+Mas, novamente, voc notar que no estou atualizando com sucesso o cabealho neste caso, ento meu
+
+104
+00:07:24,590 --> 00:07:29,780
+estado de aplicao no reflete o fato de meu usurio estar agora conectado ao aplicativo.
+
+105
+00:07:29,780 --> 00:07:35,190
+Ento, esta ser outra instncia em que queremos pensar em usar o auxiliar de pesquisas.
+
+106
+00:07:35,360 --> 00:07:39,940
+Ento, vamos pensar sobre como vamos implementar isso dentro de nossa aplicao na prxima seo.
+

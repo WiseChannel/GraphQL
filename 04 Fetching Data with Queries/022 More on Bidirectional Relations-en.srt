@@ -1,0 +1,244 @@
+1
+00:00:01,170 --> 00:00:05,970
+Now that we know how to get a list of all the users who are associated with the company from Arjay Sun
+
+2
+00:00:05,970 --> 00:00:13,110
+server we can update our schema file to teach the company type on how to go from a company over to a
+
+3
+00:00:13,110 --> 00:00:14,570
+list of users.
+
+4
+00:00:14,950 --> 00:00:16,450
+So I got to find my company type.
+
+5
+00:00:16,530 --> 00:00:19,200
+Here it is in the Fields property.
+
+6
+00:00:19,200 --> 00:00:23,810
+We're going to add on a new property called users.
+
+7
+00:00:23,820 --> 00:00:29,040
+So the configuration that we place in this object right here is going to teach graft well how to go
+
+8
+00:00:29,040 --> 00:00:34,450
+from a single company over to a list of users.
+
+9
+00:00:34,560 --> 00:00:37,160
+I bet you could guess the properties will be defined on here.
+
+10
+00:00:37,170 --> 00:00:42,210
+We're going to have a type are ours maybe you know maybe where you have args and then we'll also add
+
+11
+00:00:42,210 --> 00:00:43,900
+the result function.
+
+12
+00:00:44,100 --> 00:00:49,350
+Now wouldn't you think we should put in here for the type you might be thinking well this is going to
+
+13
+00:00:49,350 --> 00:00:51,030
+be a user right.
+
+14
+00:00:51,030 --> 00:00:54,710
+So we would put in user type and you're very nearly correct.
+
+15
+00:00:54,710 --> 00:00:57,020
+There is this one little gotcha here.
+
+16
+00:00:57,360 --> 00:01:03,750
+When we go from a company over to a user remember we have many users who are associated with a single
+
+17
+00:01:03,750 --> 00:01:05,070
+company we have.
+
+18
+00:01:05,070 --> 00:01:09,690
+You might say a list of users or a collection of users.
+
+19
+00:01:09,960 --> 00:01:12,140
+We have to tell graphed well that it will.
+
+20
+00:01:12,150 --> 00:01:18,240
+Should expect to get back a list of users like multiple users who are going to be associated with a
+
+21
+00:01:18,240 --> 00:01:20,690
+single company to do so.
+
+22
+00:01:20,730 --> 00:01:27,950
+We take our user type and we wrap it with something called a graph QOL list.
+
+23
+00:01:28,500 --> 00:01:33,910
+So we say new graph QOL list and then we pass in our user type.
+
+24
+00:01:33,910 --> 00:01:39,300
+Again this tells graphically well that when we go from a company over to a user We're going to have
+
+25
+00:01:39,390 --> 00:01:43,950
+multiple users associated with that one company.
+
+26
+00:01:44,160 --> 00:01:47,460
+Don't forget we just use this graph to a list property as well.
+
+27
+00:01:47,490 --> 00:01:49,880
+We need to make sure that we structure it.
+
+28
+00:01:49,880 --> 00:01:52,970
+Do you structure it from the graph to a library as well.
+
+29
+00:01:53,040 --> 00:01:58,630
+So I will say graphical list like so cool.
+
+30
+00:01:59,090 --> 00:02:03,680
+So now our second step do we need to worry about any ARX.
+
+31
+00:02:03,680 --> 00:02:06,260
+Are there any arguments that we expect to come in.
+
+32
+00:02:06,710 --> 00:02:08,990
+Well not really.
+
+33
+00:02:08,990 --> 00:02:12,320
+This is not a query that we're making directly to the company type.
+
+34
+00:02:12,320 --> 00:02:15,160
+You know we're saying go from the company over to the user.
+
+35
+00:02:15,160 --> 00:02:16,920
+I don't really expect that me.
+
+36
+00:02:17,020 --> 00:02:22,780
+The developer should have to pass in any arguments to figure out what set of users I want here.
+
+37
+00:02:22,790 --> 00:02:25,310
+So I don't think we need any args here.
+
+38
+00:02:25,310 --> 00:02:28,210
+So I think that we just need the result function.
+
+39
+00:02:28,220 --> 00:02:35,150
+Remember the arguments to the result function is parent value and ARGs like so and then inside of here
+
+40
+00:02:35,180 --> 00:02:41,600
+we can make our request over to our Jaison server API and get our list of users who are associated with
+
+41
+00:02:41,600 --> 00:02:44,010
+it with the current company.
+
+42
+00:02:44,990 --> 00:02:50,630
+As a reminder to get a reference to the current company like the current company we've already fetched
+
+43
+00:02:50,630 --> 00:02:54,650
+and we're working with we look at this parent value object right here.
+
+44
+00:02:54,890 --> 00:02:59,720
+So the parent value is the instance of the company that we're currently working with.
+
+45
+00:02:59,720 --> 00:03:01,830
+So say Axel's don't get.
+
+46
+00:03:02,060 --> 00:03:11,360
+We use a template string again a TTP logo whoas 3000 companies and then we'll make use of that parent
+
+47
+00:03:11,360 --> 00:03:12,230
+id.
+
+48
+00:03:12,650 --> 00:03:16,410
+So parents are suing the parent value dot I.D..
+
+49
+00:03:16,820 --> 00:03:23,070
+So this is the I.D. of the company that we're currently considering slash users.
+
+50
+00:03:23,080 --> 00:03:29,600
+It gives me all the users who are associated with that very particular company.
+
+51
+00:03:29,900 --> 00:03:34,640
+Then again we have to put in that little bit of compatibility layer between ASIO's and gravity well.
+
+52
+00:03:34,660 --> 00:03:41,300
+So we'll say Dot than rez dot data like so.
+
+53
+00:03:41,350 --> 00:03:41,980
+All right.
+
+54
+00:03:42,250 --> 00:03:43,690
+I think this looks good.
+
+55
+00:03:43,720 --> 00:03:46,760
+I'm going to check my terminal and make sure we don't have any errors.
+
+56
+00:03:46,840 --> 00:03:51,470
+So let's flip over here and it looks like we do have something going on.
+
+57
+00:03:51,760 --> 00:03:56,620
+If I scroll up a little bit it says reference error user type is not defined.
+
+58
+00:03:56,850 --> 00:03:59,440
+Hmm that's definitely interesting.
+
+59
+00:04:00,410 --> 00:04:05,490
+Here's our company type here is user type and don't we definitely define our user type.
+
+60
+00:04:05,740 --> 00:04:10,850
+Well let's pause for just a moment and we'll come back and try to figure out exactly what went wrong
+
+61
+00:04:10,850 --> 00:04:13,880
+here and why we're getting that nasty error message.
+

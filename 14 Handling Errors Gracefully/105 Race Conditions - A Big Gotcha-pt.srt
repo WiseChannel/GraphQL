@@ -1,0 +1,528 @@
+1
+00:00:00,850 --> 00:00:05,360
+Ambos so log in form e / ou inscreva-se esto em um lugar realmente bom.
+
+2
+00:00:05,380 --> 00:00:12,730
+Neste momento, em ambos os formulrios, os usurios podem inserir alguns detalhes, clique no boto e depois esto de
+
+3
+00:00:12,730 --> 00:00:16,500
+volta no servidor e, em seguida, considera o usurio autenticado.
+
+4
+00:00:16,510 --> 00:00:21,880
+Portanto, nossa aplicao no  um bom lugar agora e  hora de nos mover para o
+
+5
+00:00:22,180 --> 00:00:28,300
+trecho de casa, que ser ele para criar um componente do painel, que s deve ser visvel para os usurios
+
+6
+00:00:28,300 --> 00:00:29,660
+se eles forem autenticados.
+
+7
+00:00:29,890 --> 00:00:31,740
+E ento a ltima parte  realmente a chave.
+
+8
+00:00:31,780 --> 00:00:36,760
+painel quando eles no fizerem login anteriormente, devemos redirecion-los de volta ao formulrio de login.
+
+9
+00:00:36,760 --> 00:00:40,930
+Queremos certificar-se de que, se um usurio tentar visitar o componente do
+
+10
+00:00:40,930 --> 00:00:45,770
+Ento, realmente queremos que seu aplicativo se comporte como um aplicativo da Web normal se voc no iniciou sesso.
+
+11
+00:00:45,790 --> 00:00:49,600
+Voc no pode acessar os internos do aplicativo da Web.
+
+12
+00:00:49,840 --> 00:00:54,880
+Quero ter um pouco de tempo para conversar com voc um pouco sobre como estvamos
+
+13
+00:00:54,880 --> 00:00:59,710
+planejando fazer isso e ento vamos falar sobre um pouco de chave que ser lanada
+
+14
+00:00:59,710 --> 00:01:01,810
+no que nosso plano havia sido.
+
+15
+00:01:02,800 --> 00:01:07,420
+Ento eu vou abrir meu editor de cdigo e eu tenho o meu formulrio de logon aberto agora.
+
+16
+00:01:07,450 --> 00:01:16,150
+Ento eu estou em forma de log que GS se voc se lembra que ns estivemos pensando que, depois de executar nossa mutao para registrar um
+
+17
+00:01:16,150 --> 00:01:23,110
+usurio, talvez ns adicionssemos um ponto e uma declarao a esse assunto e diga algo como OK depois de ter mutao
+
+18
+00:01:23,200 --> 00:01:29,980
+aleatria para assinar um usurio, vamos usar de algum modo o roteador re-atuar e navegar o usurio em direo ao
+
+19
+00:01:29,980 --> 00:01:35,590
+componente do painel e, em seguida, em algum lugar ao longo das linhas, talvez o componente do
+
+20
+00:01:35,590 --> 00:01:41,500
+painel de instrumentos se assegure de que o usurio que o est visualizando seja autenticado, caso contrrio chuta
+
+21
+00:01:41,500 --> 00:01:43,610
+Eles voltaram para este log e formulrio.
+
+22
+00:01:43,630 --> 00:01:46,330
+Ento, esse tipo de plano foi nosso.
+
+23
+00:01:46,530 --> 00:01:52,030
+Quero dizer, tirou essa linha de cdigo e vamos ver esse plano em forma de diagrama.
+
+24
+00:01:52,160 --> 00:01:54,870
+OK, ento vamos ver o diagrama muito rpido.
+
+25
+00:01:54,870 --> 00:01:56,950
+Ento, isso vai chamar nossa descarga.
+
+26
+00:01:56,970 --> 00:02:02,280
+Em um mundo perfeito, isso  o que gostaramos de ter acontecido.
+
+27
+00:02:02,310 --> 00:02:08,810
+Ento, o processo de pensamento aqui  que vamos executar nossa mutao de logging que chegaria ao nosso
+
+28
+00:02:08,830 --> 00:02:09,570
+servidor backend.
+
+29
+00:02:09,690 --> 00:02:13,290
+Ele logaria o usurio e o cookie dos usurios seria definido.
+
+30
+00:02:13,530 --> 00:02:19,220
+Ento, depois que a mutao  executada com sucesso, adicion-lo na declarao de consulta de referncia.
+
+31
+00:02:19,260 --> 00:02:20,650
+Ns estvamos apenas olhando para ele.
+
+32
+00:02:20,820 --> 00:02:27,200
+atualizamos o usurio atual e isso estabelece nosso estado de autenticao atual, tanto quanto nosso front-end.
+
+33
+00:02:27,200 --> 00:02:32,900
+Ento, aqui esto as consultas de re-ofensa aqui onde atualizamos o usurio atual, ento
+
+34
+00:02:34,220 --> 00:02:39,890
+Em seguida, estvamos pensando OK nesse ponto no tempo, vamos encadear um ponto e, ento, redirecionar o
+
+35
+00:02:39,950 --> 00:02:41,800
+usurio para o componente do painel.
+
+36
+00:02:41,900 --> 00:02:47,810
+E, finalmente, o painel garantiria que o usurio seja autenticado. Uma vez que o usurio chega a ele.
+
+37
+00:02:47,900 --> 00:02:52,820
+O processo de pensamento  que um usurio pode vir para o painel, seja atravs do
+
+38
+00:02:53,150 --> 00:02:56,700
+formulrio de registro ou tentando navegar diretamente para o painel de controle.
+
+39
+00:02:56,780 --> 00:03:02,630
+E se o usurio navegar diretamente no painel, gostaramos de garantir que o usurio seja autenticado antes
+
+40
+00:03:02,630 --> 00:03:03,850
+de chegar l.
+
+41
+00:03:03,860 --> 00:03:08,430
+Ento,  por isso que estamos colocando autenticao ou assegurando no painel.
+
+42
+00:03:08,510 --> 00:03:14,440
+Permitam-me reformular isso, garantindo que o painel de controle seja responsvel por garantir que o usurio seja autenticado.
+
+43
+00:03:14,690 --> 00:03:19,450
+Ento, no final do dia, se o usurio foi autenticado quando chegaram no painel de bordo excelente.
+
+44
+00:03:19,550 --> 00:03:20,660
+Eles podem ficar l.
+
+45
+00:03:20,690 --> 00:03:26,270
+No entanto, se o painel de controle determinar que o usurio no est autenticado, olhe para isso, vamos lev-los de volta ao
+
+46
+00:03:26,270 --> 00:03:30,210
+login e eles devem ter certeza de que eles efetuem o login antes do tempo.
+
+47
+00:03:31,580 --> 00:03:31,840
+EST BEM.
+
+48
+00:03:31,850 --> 00:03:38,100
+Ento, como voc pode imaginar, este  o mundo perfeito e no vivemos em um mundo perfeito.
+
+49
+00:03:38,100 --> 00:03:45,020
+Vivemos em um mundo muito imperfeito, um mundo onde as coisas s vezes no funcionam da maneira que esperamos.
+
+50
+00:03:45,160 --> 00:03:50,850
+Mesmo que cada passo que eu estabeleci aqui tenha realmente parecido bastante razovel razoavelmente razovel.
+
+51
+00:03:50,980 --> 00:03:54,870
+Quero dizer, se eu estivesse olhando a srie de passos aqui, estaria pensando.
+
+52
+00:03:54,880 --> 00:03:55,170
+Sim.
+
+53
+00:03:55,180 --> 00:03:55,650
+Isso  timo.
+
+54
+00:03:55,650 --> 00:03:58,120
+Vamos faz-lo agora, vamos codificar isso.
+
+55
+00:03:58,630 --> 00:04:00,730
+Ento,  claro, este  um mundo imperfeito.
+
+56
+00:04:00,730 --> 00:04:06,730
+E isso no  exatamente como a autenticao vai se juntar dentro de nossa aplicao.
+
+57
+00:04:06,730 --> 00:04:10,490
+Ento, este  um pouco um ponto incmodo no mundo de Apollo.
+
+58
+00:04:10,510 --> 00:04:14,020
+Ento, ns vamos conhecer o trabalho atravs desta coisa e descobrir quais so os desafios.
+
+59
+00:04:14,290 --> 00:04:18,370
+Mas a boa notcia  que, embora existam alguns desafios, isso nos
+
+60
+00:04:18,370 --> 00:04:22,250
+permitir realmente descobrir muito mais sobre como o Apollo funciona internamente.
+
+61
+00:04:22,360 --> 00:04:27,000
+E tambm vamos aprender um pouco mais sobre o re-ato ao longo do caminho, bem como para ver.
+
+62
+00:04:27,130 --> 00:04:30,670
+Ento, vamos ver o que a descarga est na realidade.
+
+63
+00:04:30,680 --> 00:04:37,060
+Ento,  assim que a autenticao fluiria se encarmarmos o fluxo, como acabamos de ver no
+
+64
+00:04:37,060 --> 00:04:39,800
+ltimo diagrama,  o que realmente aconteceria.
+
+65
+00:04:39,820 --> 00:04:44,000
+Ento, nossa sesso de login foi executada e depois imediatamente aqui.
+
+66
+00:04:44,020 --> 00:04:44,880
+O segundo passo.
+
+67
+00:04:44,920 --> 00:04:50,440
+ a que h uma ruptura crtica,  a que as coisas comeam a realmente sair
+
+68
+00:04:50,440 --> 00:04:53,440
+das faixas e no funcionar da maneira que esperamos.
+
+69
+00:04:53,440 --> 00:05:00,880
+Ento, depois da corrida de mutao, dizamos que encadearamos um ponto e uma declarao da promessa que
+
+70
+00:05:00,880 --> 00:05:06,670
+retornou deste Propst no muta e a suposio de que essa promessa seria
+
+71
+00:05:06,730 --> 00:05:10,860
+resolvida somente depois que o usurio atual fosse buscado.
+
+72
+00:05:11,050 --> 00:05:14,410
+E, infelizmente, esse no  o caso.
+
+73
+00:05:14,410 --> 00:05:18,740
+Ento, aqui  o que realmente acontece depois que a nutao de logs  executada.
+
+74
+00:05:18,970 --> 00:05:24,410
+Qualquer declarao de ponto e que est acorrentada a essa promessa  executada imediatamente.
+
+75
+00:05:24,550 --> 00:05:29,200
+E, simultaneamente, pesquisamos o usurio atual Querrey.
+
+76
+00:05:29,260 --> 00:05:34,870
+Ento, em outras palavras, a grande captura aqui, o grande problema,  que a promessa no funciona da
+
+77
+00:05:34,870 --> 00:05:36,190
+maneira que voc esperaria.
+
+78
+00:05:36,460 --> 00:05:41,620
+Pessoalmente, o jeito que eu realmente gostaria de mutar para funcionar timo aqui,
+
+79
+00:05:41,620 --> 00:05:49,630
+eu gostaria que a promessa que  retornada para resolver somente depois de tanto a mutao quanto essas consultas associadas
+
+80
+00:05:49,720 --> 00:05:52,300
+s consultas de reajuste aqui foram resolvidas.
+
+81
+00:05:52,450 --> 00:05:57,610
+Isso seria realmente um mundo perfeito nos meus olhos, porque isso realmente descreve toda a
+
+82
+00:05:57,610 --> 00:06:04,150
+operao assncrona que est sendo englobada por essa mutao, como o Gare que esta mutao re-ofende essas consultas.
+
+83
+00:06:04,150 --> 00:06:05,820
+Deixe-me saber quando terminar.
+
+84
+00:06:06,340 --> 00:06:09,300
+Mas, novamente, no  assim que o fato realmente funciona.
+
+85
+00:06:09,310 --> 00:06:15,640
+Ento, depois que a mutao  executada se mudarmos em um e, em seguida, o usurio
+
+86
+00:06:15,640 --> 00:06:21,960
+ser redirecionado para o painel e tambm iniciaremos o pedido para buscar o nosso usurio atual.
+
+87
+00:06:21,970 --> 00:06:24,310
+Agora vamos falar exatamente por que isso  ruim.
+
+88
+00:06:25,910 --> 00:06:31,460
+Redirecionar nosso usurio para o painel de controle  uma operao quase instantnea.
+
+89
+00:06:31,460 --> 00:06:38,880
+Estamos falando sobre micro segundos de milissegundos ou micro-segundos com uma velocidade de transio muito rpida.
+
+90
+00:06:39,230 --> 00:06:45,710
+No entanto, prefetando o usurio atual que  uma solicitao de rede forada, ns sempre iremos alcanar
+
+91
+00:06:45,710 --> 00:06:50,840
+nosso aplicativo de reao no nosso servidor de back-end e tentar descobrir se
+
+92
+00:06:50,840 --> 00:06:53,000
+o usurio est ou no autenticado.
+
+93
+00:06:53,000 --> 00:06:58,160
+Este processo aqui  algo que pode levar de qualquer lugar, no sei
+
+94
+00:06:58,160 --> 00:06:59,890
+cinco milissegundos a cinco segundos.
+
+95
+00:07:00,020 --> 00:07:02,660
+Pode ser extremamente varivel e de velocidade.
+
+96
+00:07:02,900 --> 00:07:08,750
+E ento, o que realmente estamos lidando agora  uma ordem de operaes de ar ou uma condio de corrida.
+
+97
+00:07:08,780 --> 00:07:14,270
+Ento, porque estamos redirecionando o usurio para o painel no mesmo instante em que
+
+98
+00:07:14,310 --> 00:07:19,530
+estamos tentando re-ofender o usurio atual ou o redirecionamento sempre vai comear primeiro.
+
+99
+00:07:19,550 --> 00:07:22,470
+Ento, vamos imediatamente ao painel de controle.
+
+100
+00:07:22,730 --> 00:07:28,280
+Mas, no que diz respeito  nossa aplicao, no sabemos se o usurio est logado e
+
+101
+00:07:28,280 --> 00:07:34,820
+no temos realmente nenhuma maneira super razovel de atrasar o painel para decidir redirecionar o usurio at que a
+
+102
+00:07:34,820 --> 00:07:36,500
+consulta de reembolsos seja concluda.
+
+103
+00:07:36,500 --> 00:07:38,660
+Ns realmente no temos a capacidade de fazer isso.
+
+104
+00:07:38,720 --> 00:07:45,140
+seria logs de usurios registrados e, com sucesso, redirecionamos o usurio para o painel de controle.
+
+105
+00:07:45,140 --> 00:07:51,960
+Ento, se codificssemos este aplicativo de acordo com esse fluxo, aqui sempre obteremos o mesmo resultado exato, que
+
+106
+00:07:52,130 --> 00:07:54,870
+O painel diz que voc no est logado, venha aqui.
+
+107
+00:07:54,920 --> 00:08:02,240
+Isso nos leva de volta ao formulrio de logon e, em seguida, a milissegundos depois, o usurio atual  atualizado
+
+108
+00:08:02,480 --> 00:08:04,430
+atualizado e atualiza nossa aplicao.
+
+109
+00:08:04,430 --> 00:08:08,970
+E naquele momento, estamos meio que sentindo a bolsa sentada l, como se estivssemos olhando
+
+110
+00:08:09,080 --> 00:08:09,770
+o registro.
+
+111
+00:08:09,800 --> 00:08:12,820
+Mas eu estou logado o que deu errado aqui.
+
+112
+00:08:12,890 --> 00:08:17,810
+E assim  o que um grande problema com o fluxo de autenticao na realidade est dentro da nossa aplicao.
+
+113
+00:08:17,840 --> 00:08:24,560
+Tudo gira em torno do fato de que no temos uma maneira super boa de descobrir exatamente
+
+114
+00:08:24,560 --> 00:08:30,000
+quando toda a mutao e Rifat da consulta atual do usurio esto completos.
+
+115
+00:08:30,220 --> 00:08:32,740
+Ento  isso que estamos meio aqui.
+
+116
+00:08:32,750 --> 00:08:34,900
+ isso que temos que lidar.
+
+117
+00:08:34,920 --> 00:08:40,720
+Novamente, esta , na minha opinio, um pouco mais difcil em torno do Apollo em todas
+
+118
+00:08:40,720 --> 00:08:42,020
+as pesquisas que fiz.
+
+119
+00:08:42,130 --> 00:08:48,640
+Eu realmente achei que realmente parece que a equipe do Apollo no est muito feliz com a mecnica de
+
+120
+00:08:48,640 --> 00:08:49,310
+remodelao agora.
+
+121
+00:08:49,420 --> 00:08:55,180
+E ento eu espero ver esse comportamento talvez em algum momento no futuro.
+
+122
+00:08:55,240 --> 00:08:56,440
+Eu no sei quando isso pode ser.
+
+123
+00:08:56,470 --> 00:08:58,460
+E eu realmente no sei se isso aconteceria.
+
+124
+00:08:58,510 --> 00:09:04,960
+E, portanto, a melhor soluo para isso  apenas entender como a mutao funciona como a
+
+125
+00:09:05,050 --> 00:09:10,380
+pesquisa funciona e escrever algum cdigo que funcione de forma confivel 100% do tempo.
+
+126
+00:09:10,450 --> 00:09:14,170
+E assim, essa  a soluo que vamos tomar, vamos descobrir
+
+127
+00:09:14,170 --> 00:09:20,440
+algum trabalho por aqui para lidar com sucesso com o fato de que, enquanto estamos olhando para este
+
+128
+00:09:20,440 --> 00:09:27,370
+formulrio, no podemos realmente nos entregar ou no podemos Realmente confie neste pedido aqui para mudar nosso estado de autenticao.
+
+129
+00:09:27,560 --> 00:09:32,960
+Ento, antes de falar sobre a soluo, no quero essa seo por muito tempo, ento vamos
+
+130
+00:09:32,960 --> 00:09:37,550
+dar uma pausa rpida e voltaremos e falaremos exatamente sobre como iremos abordar
+
+131
+00:09:37,550 --> 00:09:40,730
+toda essa situao dentro de nosso log in Forum.
+
+132
+00:09:40,740 --> 00:09:43,640
+Ento, uma rpida ruptura volte e imagine esse assunto.
+

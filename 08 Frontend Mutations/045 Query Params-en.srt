@@ -1,0 +1,652 @@
+1
+00:00:00,840 --> 00:00:06,480
+In the last section we started working on our ads song mutation inside of our song create component.
+
+2
+00:00:06,750 --> 00:00:12,720
+And we ran into a huge show issue when we realized that whenever we call this mutation we have to pass
+
+3
+00:00:12,720 --> 00:00:14,540
+in the title of the new song.
+
+4
+00:00:14,850 --> 00:00:19,590
+But the title is only available inside of the component itself.
+
+5
+00:00:19,620 --> 00:00:24,600
+In theory we want to call the mutation from this on submit event handler right here.
+
+6
+00:00:24,600 --> 00:00:30,140
+So we have to somehow communicate the title of the song into that mutation.
+
+7
+00:00:30,510 --> 00:00:32,970
+So that's what we're going to take care of inside of this section.
+
+8
+00:00:32,970 --> 00:00:37,830
+We're going to figure out how to communicate from the component to the mutation that we're writing over
+
+9
+00:00:37,830 --> 00:00:38,790
+here.
+
+10
+00:00:39,390 --> 00:00:41,070
+OK let's get to it.
+
+11
+00:00:41,070 --> 00:00:45,810
+I think that a good way of approaching this is to work inside of graphical because ultimately we're
+
+12
+00:00:45,810 --> 00:00:52,200
+going to use a little feature of graph cool syntax that is available to us inside of graphical as well
+
+13
+00:00:53,220 --> 00:00:54,270
+inside of graphical.
+
+14
+00:00:54,270 --> 00:00:56,710
+I've still got the mutation written out right here.
+
+15
+00:00:56,730 --> 00:00:58,600
+So I've still got the mutation keyword.
+
+16
+00:00:58,710 --> 00:01:02,020
+I'm still calling the ADD song mutation and all that kind of good stuff.
+
+17
+00:01:03,430 --> 00:01:09,530
+To take care of this issue of somehow communicating data into our mutation.
+
+18
+00:01:09,530 --> 00:01:11,550
+I want to think of mutations like a function.
+
+19
+00:01:11,570 --> 00:01:16,150
+We're going to pass some argument to it from some outside source.
+
+20
+00:01:16,250 --> 00:01:23,480
+We make use of the system inside of graft well called queery variables which is defined down here at
+
+21
+00:01:23,480 --> 00:01:31,430
+the bottom left of the interface queery variables are used to inject some variable from outside the
+
+22
+00:01:31,430 --> 00:01:37,320
+query into the query query variables are most frequently used inside of graph.
+
+23
+00:01:37,370 --> 00:01:43,460
+Well absolutely with mutations and we'll also use them with queries some time when ever we want to have
+
+24
+00:01:43,460 --> 00:01:49,190
+a reata component that somehow customizes the query in some fashion which is extremely helpful whenever
+
+25
+00:01:49,190 --> 00:01:52,790
+we start thinking about say filtering or pagination.
+
+26
+00:01:52,940 --> 00:01:59,930
+If you want to get only the first page of data from a query then the component needs to tell the query
+
+27
+00:01:59,930 --> 00:02:00,780
+that has been made.
+
+28
+00:02:00,860 --> 00:02:08,330
+Hey I only want the first page of data to communicate from our re-act component to the query or mutation
+
+29
+00:02:08,330 --> 00:02:08,870
+itself.
+
+30
+00:02:08,900 --> 00:02:12,710
+We make use of this query variable's system.
+
+31
+00:02:12,710 --> 00:02:15,790
+So let's talk a little bit about how these query variables work.
+
+32
+00:02:16,840 --> 00:02:21,430
+First the big thing to understand here is that the real change that's going to go on to make use of
+
+33
+00:02:21,430 --> 00:02:27,460
+these query variables is how we write out the mutation and how we write out queries to make use of query
+
+34
+00:02:27,460 --> 00:02:28,780
+variables.
+
+35
+00:02:28,800 --> 00:02:34,210
+Going to flip over to a slide that's going to show us a little bit alternative syntax to mutation rate
+
+36
+00:02:34,210 --> 00:02:38,580
+here that will help us understand exactly how we're going to modify that mutation.
+
+37
+00:02:39,590 --> 00:02:40,370
+Look at it.
+
+38
+00:02:40,520 --> 00:02:41,920
+So this looks really ugly.
+
+39
+00:02:42,020 --> 00:02:44,360
+I can tell you right now it does look ugly I can't.
+
+40
+00:02:44,390 --> 00:02:45,410
+I can discredit that.
+
+41
+00:02:45,410 --> 00:02:47,190
+It just it just looks ugly.
+
+42
+00:02:47,360 --> 00:02:50,010
+But we're going to stick with it anyways.
+
+43
+00:02:50,010 --> 00:02:55,550
+First there's a couple of changes in how this thing looks compared to the Querrey or the mutation that
+
+44
+00:02:55,550 --> 00:02:56,950
+we have in graphical right now.
+
+45
+00:02:57,080 --> 00:02:59,540
+So I first want to point out what is similar.
+
+46
+00:02:59,540 --> 00:03:01,800
+And then we'll talk about what is not similar.
+
+47
+00:03:02,090 --> 00:03:04,510
+So we still have this mutation keyword.
+
+48
+00:03:04,820 --> 00:03:11,450
+We have the curly brace on the end and then inside of the mutation I'm still calling add song and saying
+
+49
+00:03:11,480 --> 00:03:13,480
+hey here's a title that I want to pass in.
+
+50
+00:03:13,490 --> 00:03:15,570
+So all that stuff is still here.
+
+51
+00:03:15,590 --> 00:03:19,760
+So we're really adding on to the mutation like you know we look at the saying and we look back at the
+
+52
+00:03:19,760 --> 00:03:20,480
+slide.
+
+53
+00:03:20,480 --> 00:03:23,940
+We're really adding additional syntax into this thing.
+
+54
+00:03:24,550 --> 00:03:24,860
+OK.
+
+55
+00:03:24,890 --> 00:03:31,100
+So let's talk about each element that we're going to add in here first Emily after the key word mutation
+
+56
+00:03:31,370 --> 00:03:35,120
+we're going to add a name for the mutation in this case.
+
+57
+00:03:35,120 --> 00:03:37,760
+Uncoiling it adds song.
+
+58
+00:03:37,760 --> 00:03:42,440
+This is a little bit misleading because you might be thinking Well Stephen didn't we already Name the
+
+59
+00:03:42,440 --> 00:03:46,620
+mutation light inside of it and we are the coolest thing add song down here.
+
+60
+00:03:46,880 --> 00:03:48,890
+Well yes we did.
+
+61
+00:03:48,890 --> 00:03:52,400
+The purpose of ADD song out here is to have more make kind of.
+
+62
+00:03:52,400 --> 00:03:53,110
+You can get of.
+
+63
+00:03:53,180 --> 00:03:57,830
+You should really imagine this mutation now as being a sort of function that we can call from anywhere
+
+64
+00:03:57,830 --> 00:03:59,680
+inside of our application.
+
+65
+00:03:59,750 --> 00:04:06,890
+So I would expect that by saying Hey everybody I have a mutation called add song when you call it it's
+
+66
+00:04:06,890 --> 00:04:10,940
+going to invoke the ADD song mutation on our server.
+
+67
+00:04:10,940 --> 00:04:15,230
+In practice the name of the mutation right here can be anything we really want.
+
+68
+00:04:15,220 --> 00:04:20,990
+So it's not tied to any part of our back and schema it's not tied to the graph to all server in the
+
+69
+00:04:20,990 --> 00:04:29,900
+back end it's really something for naming it for our personal use then named mutation will take some
+
+70
+00:04:29,900 --> 00:04:36,650
+number of parameters or arguments into it just as we are used to with an individual mutation call like
+
+71
+00:04:36,740 --> 00:04:38,070
+add song down here.
+
+72
+00:04:38,540 --> 00:04:44,600
+But you'll notice that the argument list is a little bit a little bit unexpected.
+
+73
+00:04:44,610 --> 00:04:48,590
+It says this is probably something we're right now I expect you're kind of scratching your head and
+
+74
+00:04:48,600 --> 00:04:53,770
+saying this kind of seems arbitrary and strange like what's with the name of the mutation.
+
+75
+00:04:53,770 --> 00:04:55,880
+Why am I passing in arguments right here.
+
+76
+00:04:56,090 --> 00:05:00,170
+Again you want to be thinking of this thing as being a function of sorts.
+
+77
+00:05:00,320 --> 00:05:05,420
+So this is like the name of the function and this is the same arguments you are passing into the function
+
+78
+00:05:05,670 --> 00:05:11,480
+and it's going to customize the body of the function or the body of the mutation down here.
+
+79
+00:05:11,480 --> 00:05:14,780
+So let's talk a little bit about the arguments that we pass in.
+
+80
+00:05:14,870 --> 00:05:21,080
+The first thing I want to point out is that the argument list in here has a very different format a
+
+81
+00:05:21,080 --> 00:05:26,930
+very different syntax than what we're used to with the argument list that we've previously had inside
+
+82
+00:05:26,930 --> 00:05:28,520
+the mutation.
+
+83
+00:05:28,550 --> 00:05:35,810
+We first list out dollar sign and then title that is the name of the parameter or the name of the argument
+
+84
+00:05:35,850 --> 00:05:39,440
+that has been passed into this mutation.
+
+85
+00:05:39,500 --> 00:05:45,410
+We then place a colon and then the type that that parameter is coming in as.
+
+86
+00:05:45,740 --> 00:05:48,220
+So for a title I really expect that to be a string.
+
+87
+00:05:48,230 --> 00:05:53,480
+So I'm going to annotate it as being a string to let everybody know hey if you call this mutation and
+
+88
+00:05:53,480 --> 00:06:01,710
+you pass in a title I expect it to be a string once we call this mutation and pass in a title.
+
+89
+00:06:01,820 --> 00:06:08,100
+We then have access to the dollar sign title variable inside of the mutation body.
+
+90
+00:06:08,180 --> 00:06:14,990
+So anywhere inside this mutation we can now refer to dollar sign title and it will be a direct reference
+
+91
+00:06:14,990 --> 00:06:21,050
+to the value that we passed into this mutation so we can really think of dollar sign you table excuse
+
+92
+00:06:21,050 --> 00:06:28,610
+me dollar sign title as a variable of sorts that we can refer back to to refer back to it.
+
+93
+00:06:28,670 --> 00:06:33,950
+We make use to make use of dollar sign title anywhere where we had previously just been passing in a
+
+94
+00:06:33,950 --> 00:06:35,310
+direct stream.
+
+95
+00:06:35,630 --> 00:06:41,820
+So notice that in the past we said hey that title should be exactly this you know.
+
+96
+00:06:41,880 --> 00:06:49,040
+So the string dog call I'm now saying the title should be whatever was passed in as Dollar Sign title.
+
+97
+00:06:49,040 --> 00:06:53,540
+So if you really think of dollar sign title as a reference back to the argument that was passed into
+
+98
+00:06:53,540 --> 00:07:00,800
+the mutation itself the thing that I find very troublesome or very challenging to keep in my mind whenever
+
+99
+00:07:00,800 --> 00:07:07,430
+I'm writing mutations out is that the kind of order of referring to dollar sign title changes and the
+
+100
+00:07:07,430 --> 00:07:12,890
+mutation arguments at the very top we say variable name and then type.
+
+101
+00:07:13,160 --> 00:07:18,160
+But then inside of the mutation body we're saying argument name variable name.
+
+102
+00:07:18,260 --> 00:07:24,440
+So it's changing it's going from being first to second and then the other argument is changing from
+
+103
+00:07:24,440 --> 00:07:31,060
+being a type to the name of the argument that I'm probably ranting here a little bit.
+
+104
+00:07:31,070 --> 00:07:34,590
+But you know as you can tell for me personally this is a little bit of a rough point.
+
+105
+00:07:34,730 --> 00:07:42,350
+So I really like to have a little bit of a pneumonic just remember first sign type name Dollar Sign
+
+106
+00:07:42,470 --> 00:07:46,280
+Dollar Sign type name Dollar Sign Dollar Sign type name dollar sign.
+
+107
+00:07:46,400 --> 00:07:49,740
+Keep that in your head and you'll generally do pretty well.
+
+108
+00:07:49,760 --> 00:07:56,390
+The other point that is a little bit challenging here is that graphical tool graphical doesn't give
+
+109
+00:07:56,390 --> 00:08:00,070
+you a lot of auto completion help in here which is a little bit of a pain as well.
+
+110
+00:08:00,080 --> 00:08:01,720
+But you know we can get through it.
+
+111
+00:08:02,050 --> 00:08:02,560
+OK.
+
+112
+00:08:02,720 --> 00:08:10,400
+So let's modify our mutation make use of this alternative syntax we'll say add song dollar sign type
+
+113
+00:08:11,480 --> 00:08:19,840
+and then inside of the mutation variable name Dollar Sign like so.
+
+114
+00:08:19,850 --> 00:08:26,030
+So now if we run this query we don't really get any argument at all.
+
+115
+00:08:26,210 --> 00:08:34,440
+We passed in a title of no like we had undefined title I didn't define a variable of title.
+
+116
+00:08:34,490 --> 00:08:37,140
+And so when I get a response back I get a title of No.
+
+117
+00:08:37,160 --> 00:08:43,310
+Because I did not pass in a title there is no validation on the title however like I didn't add any
+
+118
+00:08:43,640 --> 00:08:46,420
+validation on the back end to say you must provide a title.
+
+119
+00:08:46,550 --> 00:08:52,370
+So the record is still successfully created and but it has a title of no which is definitely probably
+
+120
+00:08:52,370 --> 00:08:54,520
+something I don't want to have in my application.
+
+121
+00:08:54,590 --> 00:09:02,180
+So I think that will probably end up going back over to Mungo in lab and clean up that record back inside
+
+122
+00:09:02,180 --> 00:09:05,630
+of my lyrical D-B dashboard.
+
+123
+00:09:06,110 --> 00:09:08,070
+Here's my dashboard right here.
+
+124
+00:09:08,150 --> 00:09:12,060
+I can find my songs collection.
+
+125
+00:09:12,270 --> 00:09:16,790
+And then I can delete the record that I just created that does not have a title associated with it.
+
+126
+00:09:16,870 --> 00:09:19,900
+And I can do so by clicking the delete button on the right hand side.
+
+127
+00:09:20,190 --> 00:09:23,140
+So there's that one without the title and I'll go ahead and delete it.
+
+128
+00:09:24,530 --> 00:09:24,870
+OK.
+
+129
+00:09:24,920 --> 00:09:26,420
+So back to normal there.
+
+130
+00:09:26,510 --> 00:09:32,330
+So let's now figure out how we use graph code to define a query variable that can be used inside of
+
+131
+00:09:32,330 --> 00:09:35,230
+the actual mutation inside of here.
+
+132
+00:09:35,270 --> 00:09:39,830
+We're going to write out what looks like an object that's going to define all the query variables that
+
+133
+00:09:39,830 --> 00:09:42,250
+we make use of inside of this mutation.
+
+134
+00:09:42,560 --> 00:09:49,080
+So I'm going to say title and this will be the title of my new song which will be sprite.
+
+135
+00:09:49,140 --> 00:09:50,390
+First coke.
+
+136
+00:09:50,750 --> 00:09:53,110
+I am not a good artist.
+
+137
+00:09:53,150 --> 00:09:55,980
+All I can say is Shrivers coke.
+
+138
+00:09:56,470 --> 00:09:56,830
+OK.
+
+139
+00:09:56,850 --> 00:09:58,140
+Now we can run this.
+
+140
+00:09:58,550 --> 00:10:02,930
+And you'll notice that the title has properly been sent into the mutation.
+
+141
+00:10:03,110 --> 00:10:08,540
+So whenever you create a mutation that refers to some Querrey variable graphical is going to look at
+
+142
+00:10:08,540 --> 00:10:10,540
+the defined curve variables.
+
+143
+00:10:10,550 --> 00:10:16,490
+It's going to take any defined Kuri variable that matches up with the name inside of here and it's going
+
+144
+00:10:16,490 --> 00:10:21,350
+to take the value and push it in as the value of dollar sign title.
+
+145
+00:10:21,440 --> 00:10:25,900
+The real big thing to keep in mind is that when we're defining queery variables inside of graphical
+
+146
+00:10:25,940 --> 00:10:27,880
+we do not use the dollar sign.
+
+147
+00:10:27,980 --> 00:10:30,780
+So if you put in the dollar sign you're going to get a big error message.
+
+148
+00:10:30,980 --> 00:10:33,240
+It will place the dollar sign in there for you.
+
+149
+00:10:33,290 --> 00:10:35,730
+So just the name of the query variable without the dollar sign.
+
+150
+00:10:35,750 --> 00:10:38,160
+And you should be good to go.
+
+151
+00:10:38,700 --> 00:10:39,470
+Oh OK.
+
+152
+00:10:39,500 --> 00:10:44,630
+I know this section has been very long and I've really ranted on a little bit about mutations and query
+
+153
+00:10:44,630 --> 00:10:50,540
+variables but again this whole syntax up here is it really feels a little bit arbitrary.
+
+154
+00:10:50,540 --> 00:10:52,010
+It doesn't feel that great.
+
+155
+00:10:52,010 --> 00:10:57,320
+So I want to make sure it's really clear the order in which we're defining these arguments.
+
+156
+00:10:57,860 --> 00:11:04,520
+I feel like we've got a good solution here for figuring out how to pass in some outside data into nutation
+
+157
+00:11:04,730 --> 00:11:06,910
+but only inside of graphical.
+
+158
+00:11:06,950 --> 00:11:13,580
+We really have not yet addressed the problem of how we get some information from the component into
+
+159
+00:11:13,580 --> 00:11:14,990
+our mutation.
+
+160
+00:11:14,990 --> 00:11:16,330
+So let's take a quick break.
+
+161
+00:11:16,340 --> 00:11:23,570
+We're going to come back and see if we can't figure out how to somehow get data from our reata component
+
+162
+00:11:23,870 --> 00:11:26,940
+into our mutation by using that query variable system.
+
+163
+00:11:27,050 --> 00:11:29,110
+So let's take care of that in the next section.
+

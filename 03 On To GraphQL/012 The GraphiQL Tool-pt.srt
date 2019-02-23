@@ -1,0 +1,460 @@
+1
+00:00:00,960 --> 00:00:06,750
+Agora terminamos nosso primeiro esquema com alguns dados falsos e conseguimos que nossa aplicao, pelo
+
+2
+00:00:06,750 --> 00:00:09,610
+menos, carregue dentro da ferramenta de desenvolvimento grfica.
+
+3
+00:00:10,110 --> 00:00:15,990
+Como lembrete, esta  uma ferramenta que nos  fornecida pela biblioteca grfica bem expressa.
+
+4
+00:00:15,990 --> 00:00:21,270
+Podemos usar esta ferramenta para investigar todas as consultas diferentes e o que no est dentro
+
+5
+00:00:22,140 --> 00:00:27,760
+do nosso aplicativo no lado esquerdo, a tela  uma rea que podemos inserir em uma consulta grfica.
+
+6
+00:00:28,020 --> 00:00:33,510
+Podemos ento executar a consulta pressionando o boto play no canto superior esquerdo e ver
+
+7
+00:00:33,540 --> 00:00:35,550
+os resultados pop-up  direita.
+
+8
+00:00:35,550 --> 00:00:40,270
+Observe tambm que, no lado superior direito, h um painel que expande essa chamada.
+
+9
+00:00:40,290 --> 00:00:47,250
+ chamado Dock's esta documentao O Explorer ser preenchido automaticamente  medida que comeamos a adicionar mais
+
+10
+00:00:47,310 --> 00:00:50,040
+tipos de dados ao nosso aplicativo.
+
+11
+00:00:50,040 --> 00:00:56,940
+Ento, agora, podemos clicar no tipo de consulta de rota, para ver se podemos us-lo para buscar um
+
+12
+00:00:56,940 --> 00:01:05,850
+usurio, desde que passemos uma ID e respondemos com um usurio e o usurio possui uma seqncia de ID, um primeiro nome e uma
+
+13
+00:01:05,850 --> 00:01:07,610
+idade atribuda para isso tambm.
+
+14
+00:01:07,860 --> 00:01:13,350
+Ento, ao longo do tempo, este painel de documentao comea a obter mais informaes nela e ele
+
+15
+00:01:13,350 --> 00:01:19,450
+comea a ser realmente til para descobrir como os dados esto funcionando dentro de seu aplicativo sem realmente ter
+
+16
+00:01:19,450 --> 00:01:21,140
+que ir ler o esquema.
+
+17
+00:01:21,670 --> 00:01:22,270
+EST BEM.
+
+18
+00:01:22,440 --> 00:01:28,740
+Ento, de volta ao lado esquerdo, o painel de consulta neste ponto do curso, pelo menos, escovamos
+
+19
+00:01:28,740 --> 00:01:33,360
+os conceitos bsicos do que  indiscutivelmente a parte mais difcil do grfico.
+
+20
+00:01:33,450 --> 00:01:36,750
+Bem, o que est escrevendo seu arquivo de esquema.
+
+21
+00:01:36,870 --> 00:01:41,420
+O esquema  provavelmente 50 por cento de tudo o que est acontecendo com o enxerto.
+
+22
+00:01:41,470 --> 00:01:46,740
+Bem, os outros 50% dizem respeito a questes de escrita.
+
+23
+00:01:46,800 --> 00:01:52,350
+Ento, vamos escrever a nossa primeira consulta agora e vou discutir exatamente o que est acontecendo com ela.
+
+24
+00:01:52,890 --> 00:01:56,200
+Ento, vamos escrever primeiro o cdigo e falaremos sobre o que est fazendo.
+
+25
+00:01:56,250 --> 00:01:58,380
+Vou colocar um conjunto de aparelhos de proteo.
+
+26
+00:01:58,680 --> 00:02:05,420
+Vou dizer o ID do usurio 23 e certifique-se de que as idias so 2003 em uma string.
+
+27
+00:02:05,430 --> 00:02:14,280
+Ento vamos colocar outro conjunto de chaves e eu vou dizer o primeiro nome e a idade.
+
+28
+00:02:14,280 --> 00:02:19,380
+Observe tambm que, quando comeamos a digitar coisas aqui, obtemos alguns recursos completos
+
+29
+00:02:19,430 --> 00:02:21,650
+auto agradveis que so to fantsticos.
+
+30
+00:02:22,390 --> 00:02:27,420
+Ento, agora, sem dizer nada sobre o que realmente digitamos aqui e o clique e
+
+31
+00:02:27,420 --> 00:02:35,670
+no lado direito, obtemos todos os dados sobre a ID 23 ou o usurio com ID 23 para que possamos receber o primeiro nome
+
+32
+00:02:35,670 --> 00:02:37,020
+e a idade tambm.
+
+33
+00:02:37,020 --> 00:02:37,620
+Magia.
+
+34
+00:02:37,680 --> 00:02:38,060
+timo.
+
+35
+00:02:38,070 --> 00:02:39,250
+Essa  nossa primeira consulta.
+
+36
+00:02:39,450 --> 00:02:43,430
+Ento, vamos falar um pouco mais sobre o que acabamos de escrever.
+
+37
+00:02:44,130 --> 00:02:52,230
+As consultas que escrevemos parecem javascript, mas eles no so decididamente o cdigo javascript, ento esse no  o
+
+38
+00:02:52,230 --> 00:02:54,350
+javascript que estamos escrevendo aqui.
+
+39
+00:02:54,420 --> 00:03:03,060
+Podemos escrever uma consulta no javascript, como podemos levar essa consulta e col-la no script java como uma seqncia de
+
+40
+00:03:03,180 --> 00:03:11,480
+caracteres, como se estivssemos envolvendo isso com aspas, mas na prtica no  o cdigo javascript que temos nesta consulta.
+
+41
+00:03:11,520 --> 00:03:19,440
+Pedimos a Kraft que olhe atravs de nossos usurios e encontre um usurio com um ID de 23.
+
+42
+00:03:19,440 --> 00:03:26,520
+Uma vez que o usurio com um I. D. de 23 foi encontrado, ento pedimos a idia de
+
+43
+00:03:26,520 --> 00:03:30,560
+que o usurio de volta o primeiro nome do usurio e a idade desse usurio tambm.
+
+44
+00:03:30,600 --> 00:03:35,230
+A resposta que recuperamos do servidor parece ser quase idntica na estrutura.
+
+45
+00:03:35,430 --> 00:03:43,500
+Ento, ns tivemos essa propriedade de nvel superior de dados que diz OK. Encontrei seu usurio. Aqui est o nome
+
+46
+00:03:43,860 --> 00:03:46,050
+e a idade de sua ID.
+
+47
+00:03:46,080 --> 00:03:50,370
+Observe que os tipos de cada uma dessas propriedades so evidentes na sada.
+
+48
+00:03:50,580 --> 00:03:57,330
+tipo de usurio, dissemos que tinha uma propriedade de ID que era uma string e, portanto, aparece como uma string.
+
+49
+00:03:57,390 --> 00:03:58,690
+Ento, quando criamos o
+
+50
+00:03:58,830 --> 00:04:04,260
+O primeiro nome  uma string ea idade  um nmero inteiro, pois no a marcamos dentro do esquema.
+
+51
+00:04:07,360 --> 00:04:08,320
+Tudo bem.
+
+52
+00:04:08,350 --> 00:04:16,600
+Agora, uma coisa que eu quero fazer enquanto temos tudo isso aberto  que eu quero abrir o meu esquema e quero mostrar-lhe o
+
+53
+00:04:16,780 --> 00:04:22,240
+esquema enquanto examinamos a consulta dentro do nosso cdigo e espero que possamos obter um um
+
+54
+00:04:22,240 --> 00:04:25,330
+pouco de uma idia melhor do que est acontecendo.
+
+55
+00:04:27,210 --> 00:04:27,710
+EST BEM.
+
+56
+00:04:27,870 --> 00:04:35,250
+lado direito, a consulta que escrevemos no lado esquerdo  enviada para o nosso nmero de tipo de consulta raiz.
+
+57
+00:04:35,250 --> 00:04:39,450
+Ento, temos a consulta no lado esquerdo e o cdigo no
+
+58
+00:04:39,570 --> 00:04:47,730
+O objetivo do tipo de consulta  levar a consulta e entrar em nosso grfico de dados porque especificamos
+
+59
+00:04:47,820 --> 00:04:51,110
+o usurio como o campo da consulta.
+
+60
+00:04:51,120 --> 00:04:56,160
+A consulta do raiz foi e encontrou a chave do usurio dentro de seus campos de objeto.
+
+61
+00:04:57,860 --> 00:05:04,490
+Ns especificamos dentro do objeto desse campo que as consultas deveriam surgir com um ID que era uma string de
+
+62
+00:05:04,490 --> 00:05:07,250
+tipo que voc pode ver que fizemos aqui.
+
+63
+00:05:07,250 --> 00:05:13,780
+Ns dissemos que aqui  um argumento de ID e tem um tipo de letra de tipo.
+
+64
+00:05:14,840 --> 00:05:20,450
+Depois desse grfico, vai e faz o que  e encontra o usurio que estamos procurando.
+
+65
+00:05:20,600 --> 00:05:27,470
+E, em seguida, o objeto  retornado a partir desta declarao do grfico de funo de resoluo Q L
+
+66
+00:05:27,470 --> 00:05:33,650
+levar que ele arrancar a propriedade id, a propriedade do primeiro nome e a propriedade idade e
+
+67
+00:05:33,650 --> 00:05:35,890
+retornar na resposta aqui no lado direito.
+
+68
+00:05:37,990 --> 00:05:41,040
+Agora, h um outro item muito importante a ser observado aqui.
+
+69
+00:05:41,320 --> 00:05:47,900
+Observe que dentro da funo de resoluo estamos retornando um objeto javascript bruto da plataforma de carga
+
+70
+00:05:47,940 --> 00:05:48,250
+aqui.
+
+71
+00:05:48,260 --> 00:05:51,040
+Ento, isso retorna um objeto javascript bruto.
+
+72
+00:05:51,040 --> 00:05:57,070
+usurio, como no precisamos dizer novo tipo de usurio, porque lembre-se de que devemos encontrar o tipo de usurio aqui.
+
+73
+00:05:57,070 --> 00:05:58,920
+No tivemos que coagi-lo em um
+
+74
+00:05:59,320 --> 00:06:04,610
+Ento, tudo o que tem que ver com os tipos  manipulado nos bastidores pelo grfico Cuil.
+
+75
+00:06:04,630 --> 00:06:11,710
+Para ns, temos que devolver Jaison crua ou objetos javascript em bruto dessas funes de resoluo e o grfico
+
+76
+00:06:11,710 --> 00:06:13,770
+Q L cuidar de tudo.
+
+77
+00:06:13,780 --> 00:06:15,150
+Frente para ns a partir da.
+
+78
+00:06:16,690 --> 00:06:19,420
+Dois outros itens rpidos que eu quero falar muito rapidamente.
+
+79
+00:06:19,420 --> 00:06:24,210
+Primeiro, podemos buscar facilmente outros usurios mudando a ID aqui.
+
+80
+00:06:24,370 --> 00:06:31,310
+Ento, em vez de procurar um usurio com ID 23 Digamos que vou procurar um ID de 47.
+
+81
+00:06:31,310 --> 00:06:33,960
+Ento, substitua 23 por 47.
+
+82
+00:06:33,970 --> 00:06:36,280
+Reencaminhe o Querrey e agora recebo Samantha.
+
+83
+00:06:36,280 --> 00:06:37,880
+Fantstico.
+
+84
+00:06:38,140 --> 00:06:45,370
+E a outra coisa que eu quero que voc veja  que podemos mudar livremente os argumentos ou os elementos que
+
+85
+00:06:45,370 --> 00:06:49,540
+pedimos para as propriedades que estamos pedindo para fora da prpria consulta.
+
+86
+00:06:49,600 --> 00:06:53,650
+Ento eu posso remover o primeiro nome e a idade e a resposta que eu volto.
+
+87
+00:06:53,650 --> 00:07:00,190
+Agora, ele s tem o ID ou posso dizer apenas dado a idade ou apenas me d o primeiro nome.
+
+88
+00:07:00,370 --> 00:07:05,800
+isso toca diretamente em uma das discusses que tnhamos muito antes sobre as falhas do roteiro restante.
+
+89
+00:07:05,800 --> 00:07:06,280
+Ento,
+
+90
+00:07:06,280 --> 00:07:11,170
+Se voc se lembra quando estvamos falando de roteamento repousante, dissemos que s vezes  muito fcil
+
+91
+00:07:11,170 --> 00:07:16,270
+sobrecarregar a quantidade de dados, como queremos apenas saber o nome de uma empresa ou o primeiro nome
+
+92
+00:07:16,270 --> 00:07:17,020
+de um usurio.
+
+93
+00:07:17,170 --> 00:07:22,990
+E eu no quero ter que lidar com todos esses dados extras no meu caso, voc conhece potencialmente um plano de
+
+94
+00:07:22,990 --> 00:07:25,990
+dados de celular, que pode ser muito lento ou realmente caro.
+
+95
+00:07:25,990 --> 00:07:31,060
+Eu no quero mexer com todos esses dados extras sobre um usurio, eu s quero saber apenas o
+
+96
+00:07:31,060 --> 00:07:31,490
+primeiro nome.
+
+97
+00:07:31,540 --> 00:07:32,330
+ isso a.
+
+98
+00:07:32,590 --> 00:07:38,670
+E assim, isso definitivamente vai muito bem e resolver esse problema com um roteiro repousante.
+
+99
+00:07:38,740 --> 00:07:41,410
+Agora, duas outras coisas rpidas que eu quero mostrar.
+
+100
+00:07:41,470 --> 00:07:47,290
+Primeiro, se tentarmos encontrar um usurio que no exista e que coloque uma ID aleatria aqui
+
+101
+00:07:47,290 --> 00:07:48,200
+voltemos apenas no.
+
+102
+00:07:48,250 --> 00:07:52,200
+Ento, no temos um erro, apenas diga que pode encontrar um usurio como muito ruim.
+
+103
+00:07:52,330 --> 00:07:53,430
+Nada encontrado.
+
+104
+00:07:53,890 --> 00:07:59,590
+A outra coisa a ter em conta  que se no oferecemos um argumento.
+
+105
+00:07:59,640 --> 00:08:02,070
+Assim, vamos tentar executar isso.
+
+106
+00:08:02,440 --> 00:08:10,840
+Ns conseguimos algo que diz que o nome esperado encontrou blah blah blah algo primeiro nome o que isso diz
+
+107
+00:08:10,840 --> 00:08:11,360
+aqui.
+
+108
+00:08:11,440 --> 00:08:18,780
+E se ns passarmos o mouse sobre os Puranas com a linha vermelha squiggly voc pode ver oi, eu esperava ver um nome e o nome
+
+109
+00:08:18,820 --> 00:08:22,050
+que realmente est dizendo aqui  o nome de um argumento.
+
+110
+00:08:22,240 --> 00:08:27,970
+Ento, no est dizendo como uma propriedade de nome, ento porque  isso que voc pensa que est dizendo.
+
+111
+00:08:28,450 --> 00:08:38,330
+Est dizendo que eu quero ver a ID, ento est esperando ver uma idia de 23 ou 47 ou seja o que for.
+
+112
+00:08:38,800 --> 00:08:43,570
+listas de argumento incorretas, voc tambm comear a ver algumas mensagens de erro muito agradveis.
+
+113
+00:08:43,570 --> 00:08:45,940
+Ento, se voc comear a fazer consultas com
+
+114
+00:08:46,810 --> 00:08:50,850
+OK, ento este  o nosso primeiro esquema e a nossa primeira consulta para ir com ele.
+
+115
+00:08:51,070 --> 00:08:53,630
+Vamos dar uma pausa e continuar na prxima seo.
+

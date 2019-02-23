@@ -1,0 +1,476 @@
+1
+00:00:00,750 --> 00:00:05,940
+Na ltima seo, tivemos uma discusso sobre como a Apollo armazena internamente alguns dos dados e
+
+2
+00:00:05,940 --> 00:00:09,730
+como funciona com informaes sobre reagir sobre mudanas nos nossos dados.
+
+3
+00:00:09,750 --> 00:00:16,260
+Lembre-se que o grande takeaway aqui foi que, quando o Apollo obtm dados para aplicao, ele realmente no tem
+
+4
+00:00:16,350 --> 00:00:18,690
+idia sobre o que  um dado.
+
+5
+00:00:18,690 --> 00:00:24,780
+E por isso, temos que ajudar o Appollo a entender qual dos dados  o que permite que ele diga de forma mais
+
+6
+00:00:24,780 --> 00:00:29,580
+efetiva o lado do re-atuao da nossa aplicao, como ele est sendo buscado ou me desculpa sempre que
+
+7
+00:00:29,580 --> 00:00:31,050
+uma determinada atualizao de dados.
+
+8
+00:00:31,380 --> 00:00:37,940
+Ento, obviamente, o grande desafio aqui  como contamos o Appollo sobre o que  o registro.
+
+9
+00:00:38,220 --> 00:00:42,440
+Bem, na prtica, isso acaba por ser muito difcil.
+
+10
+00:00:43,020 --> 00:00:49,680
+Eu vou abrir o arquivo de ndice J us dentro de nosso diretrio de clientes dentro de l
+
+11
+00:00:49,680 --> 00:00:52,980
+ou encontrar a nova declarao do cliente do Appollo.
+
+12
+00:00:53,370 --> 00:00:58,470
+Vamos adicionar uma pequena pea de configurao aqui e voc ficar um pouco
+
+13
+00:00:58,470 --> 00:01:04,590
+surpreso com o quo simples  ou com a simplicidade dessa configurao, mas ser confuso sobre
+
+14
+00:01:04,590 --> 00:01:06,030
+o que realmente faz.
+
+15
+00:01:06,030 --> 00:01:09,870
+Ento, coloquemos o cdigo e falaremos um pouco sobre como ele est funcionando.
+
+16
+00:01:10,260 --> 00:01:14,940
+Ento, vamos adicionar um dado de propriedade I. D. do objeto.
+
+17
+00:01:14,970 --> 00:01:25,590
+E note que a ID tem uma letra minscula e, ento, diremos que oh  o ponto Id aviso de que este  um personagem antigo.
+
+18
+00:01:25,590 --> 00:01:27,090
+No  um zero.
+
+19
+00:01:27,150 --> 00:01:28,410
+Ento no  um zero.
+
+20
+00:01:28,530 --> 00:01:30,110
+ uma minscula o.
+
+21
+00:01:30,630 --> 00:01:34,020
+O O  curto para o objeto.
+
+22
+00:01:34,020 --> 00:01:41,310
+Este pedao de configurao aqui requer todos os dados que so buscados pelo nosso cliente
+
+23
+00:01:41,310 --> 00:01:42,510
+Apollo do back-end.
+
+24
+00:01:42,600 --> 00:01:47,100
+Todos os dados e execut-lo atravs desta funo.
+
+25
+00:01:47,100 --> 00:01:53,460
+O resultado dessa funo ou o que quer que seja retornado dessa funo  usado para
+
+26
+00:01:53,460 --> 00:01:58,290
+identificar esses dados dentro da loja Apollo ou dentro do cliente Apollo.
+
+27
+00:01:58,290 --> 00:02:02,800
+Ento, o que realmente estamos dizendo aqui  ir buscar todos os dados que voc precisa.
+
+28
+00:02:03,090 --> 00:02:10,350
+Observe todos os dados de cada registro e use o campo ID fora desse registro para
+
+29
+00:02:10,350 --> 00:02:11,880
+identificar esse dado.
+
+30
+00:02:11,910 --> 00:02:14,730
+Agora, para mim, parece que esse  um passo realmente bvio.
+
+31
+00:02:14,730 --> 00:02:20,790
+ claro, usar a idia de identificar esse registro e, talvez, mesmo quando estivssemos olhando para esse diagrama aqui mesmo, voc
+
+32
+00:02:20,790 --> 00:02:26,820
+est pensando em sua cabea, Stephen, por que eles no usam apenas a ID para identificar o que est acontecendo.
+
+33
+00:02:26,820 --> 00:02:27,670
+Pode parecer bem,
+
+34
+00:02:27,670 --> 00:02:31,920
+Ou como que dados que isso  exatamente aqui e aquilo e  exatamente o que est acontecendo.
+
+35
+00:02:31,920 --> 00:02:38,070
+Ns estamos apenas dizendo a Appollo usar a idia de registro para identificar esse dado e acompanh-lo e diz-lo
+
+36
+00:02:38,100 --> 00:02:42,200
+reagir sempre que a msica com a idia de um  atualizada.
+
+37
+00:02:42,210 --> 00:02:45,000
+Ento,  to simples quanto parece.
+
+38
+00:02:45,000 --> 00:02:50,730
+A razo pela qual temos que fazer este passo de configurao  que o Apollo no
+
+39
+00:02:50,730 --> 00:02:57,010
+quer assumir automaticamente que voc deseja usar essa propriedade de identificao fora de cada registro para identific-la.
+
+40
+00:02:57,000 --> 00:03:04,280
+Como talvez talvez voc no fornea uma ID com cada dado ou talvez suas idias no sejam nicas.
+
+41
+00:03:04,380 --> 00:03:11,190
+Usar essa idia como um identificador s funciona quando todas as IDs dentro de nosso aplicativo so nicas uma
+
+42
+00:03:11,190 --> 00:03:12,240
+contra a outra.
+
+43
+00:03:12,770 --> 00:03:13,490
+EST BEM.
+
+44
+00:03:13,980 --> 00:03:17,320
+Ento, vamos conversar um pouco sobre as ramificaes deste aqui.
+
+45
+00:03:17,490 --> 00:03:23,310
+Quando usamos a idia de cada registro para identific-lo dentro do lado Apollo da nossa aplicao, isso
+
+46
+00:03:23,730 --> 00:03:27,000
+significa que, sempre que fazemos uma consulta, devemos fazer.
+
+47
+00:03:27,300 --> 00:03:33,900
+Com licena, temos que nos certificar de que retornamos ou pedimos o ID de todos os registros e todas
+
+48
+00:03:33,900 --> 00:03:35,440
+as perguntas que juntamos.
+
+49
+00:03:35,460 --> 00:03:41,580
+Ento, se no fornecemos uma ID dentro de uma consulta, no solicitamos uma identificao, ento
+
+50
+00:03:41,580 --> 00:03:47,750
+a Apollo no poder identificar essa informao que definitivamente no  o que queremos ter acontecido.
+
+51
+00:03:48,360 --> 00:03:53,070
+Ento, para se certificar de que isso vai funcionar do jeito que esperamos, vamos voltar
+
+52
+00:03:53,160 --> 00:03:59,550
+para a mutao que estamos usando para criar uma nova letra e certificar-se de que quando recuperarmos uma msica e as
+
+53
+00:03:59,640 --> 00:04:03,540
+letras das msicas, Vamos garantir que tambm estamos pedindo a identidade com isso.
+
+54
+00:04:03,540 --> 00:04:09,810
+E isso permitir que o Apollo rastreie e siga todos os registros que foram obtidos.
+
+55
+00:04:10,440 --> 00:04:16,510
+Ento eu vou encontrar a mutao com a qual trabalhamos e dentro do componente de criao de letras.
+
+56
+00:04:16,860 --> 00:04:24,360
+Ento, aqui est a letra, eu vou me deslocar para baixo e encontrar a prpria mutao.
+
+57
+00:04:24,360 --> 00:04:28,990
+Ento, agora, estamos pedindo a idia da msica que retorna, que  bom.
+
+58
+00:04:29,040 --> 00:04:35,580
+Isso significa que, quando recuperarmos a msica de nossa extremidade traseira, poderemos dizer: Ol, Apollo, aquela msica que voc
+
+59
+00:04:35,580 --> 00:04:40,000
+j obteve, com a idia de cinco, que temos uma atualizao para isso.
+
+60
+00:04:40,020 --> 00:04:40,840
+Aqui est.
+
+61
+00:04:41,070 --> 00:04:43,720
+Essa msica agora tem uma nova lista de letras.
+
+62
+00:04:43,740 --> 00:04:44,720
+E esto aqui.
+
+63
+00:04:44,790 --> 00:04:50,070
+Ento, diga ao lado do reao do nosso aplicativo que h uma nova lista de letras e o
+
+64
+00:04:50,070 --> 00:04:51,600
+componente de reao deve renderizar.
+
+65
+00:04:51,750 --> 00:04:57,870
+Agora, tambm temos que nos certificar de que pedimos a ID de cada terra que volte tambm, porque
+
+66
+00:04:57,870 --> 00:05:04,650
+isso ir permitir novamente que oco diga que h alguma parte do aplicativo de reao que est mostrando letras, talvez
+
+67
+00:05:04,660 --> 00:05:08,500
+o contedo dessas letras apenas mude ento voc pode precisar renderizar.
+
+68
+00:05:08,830 --> 00:05:16,960
+E se eles fizeram se voc estiver mostrando uma letra com o ID 20 21 ou 22 23, talvez o contedo acabe de
+
+69
+00:05:16,960 --> 00:05:19,420
+mudar e talvez seja necessrio re renderizar-se.
+
+70
+00:05:19,420 --> 00:05:26,050
+Ento, novamente, esse processo inteiro trata de tirar as IDs de todos os nossos registros diferentes e associ-lo
+
+71
+00:05:26,050 --> 00:05:30,850
+a alguns dos componentes dentro de nossa aplicao e todas essas coisas esto
+
+72
+00:05:30,850 --> 00:05:32,140
+acontecendo nos bastidores.
+
+73
+00:05:32,890 --> 00:05:37,050
+OK, acho que estamos prontos para um teste pronto para testar isso no navegador.
+
+74
+00:05:37,330 --> 00:05:43,150
+Ento vou voltar para a nossa aplicao ou atualizar a pgina.
+
+75
+00:05:43,750 --> 00:05:44,840
+Aqui est a nossa letra.
+
+76
+00:05:44,850 --> 00:05:46,510
+Eu vou adicionar uma nova letra.
+
+77
+00:05:46,900 --> 00:05:47,290
+Que
+
+78
+00:05:50,050 --> 00:05:59,300
+tal foi bom, acho que o que quer que seja atingido entre para limpar e boom ele aparece automaticamente na tela.
+
+79
+00:05:59,500 --> 00:06:06,170
+Ento, novamente, isso acontece com sucesso porque Apollo sabe que esse componente aqui est mostrando a msica
+
+80
+00:06:06,170 --> 00:06:10,670
+com identificao de cinco oito nove bl bl bl bl bl.
+
+81
+00:06:11,080 --> 00:06:19,720
+Quando a mutao ocorre, o servidor volta e nos diz que a msica com ID 5 8 9 2 0 8 acabou de
+
+82
+00:06:19,780 --> 00:06:20,430
+ser atualizada.
+
+83
+00:06:20,440 --> 00:06:23,760
+Aqui est a nova lista de letras que esto associadas a ele.
+
+84
+00:06:23,770 --> 00:06:29,830
+Apollo leva esta lista de letras e diz que o seu aplicativo de reativao se voc est mostrando alguma coisa sobre
+
+85
+00:06:29,830 --> 00:06:35,920
+essa msica aqui mesmo, a msica com essa identificao particular, alguns registros sobre ela ou algumas propriedades dela simplesmente mudadas. Eu
+
+86
+00:06:35,930 --> 00:06:39,020
+acho que talvez eu tenha uma nova letra ou algo parecido.
+
+87
+00:06:39,100 --> 00:06:41,550
+Ento voc pode precisar renderizar sua lista de letras.
+
+88
+00:06:41,650 --> 00:06:43,860
+Ento  o que est acontecendo internamente.
+
+89
+00:06:44,770 --> 00:06:49,870
+Se todas essas coisas que passamos na ltima seo ou duas, tudo sobre as idias
+
+90
+00:06:49,870 --> 00:06:51,770
+parece realmente estranho ou realmente estranho.
+
+91
+00:06:51,970 --> 00:06:59,050
+Quero lembr-lo de que voc pode evitar todo esse sistema aqui, fazendo uso do que refira as questes que ns
+
+92
+00:06:59,530 --> 00:07:01,810
+tnhamos visto dentro da msica criar.
+
+93
+00:07:02,020 --> 00:07:05,940
+Ento, dentro de uma msica, criamos que tnhamos usado refits consultas aqui.
+
+94
+00:07:05,980 --> 00:07:11,960
+Voc sempre pode simplesmente recuperar todos os seus dados e ter um bom tempo, voc sabe cuidar disso dessa forma.
+
+95
+00:07:12,130 --> 00:07:17,470
+Mas eu quero salientar que, quando voc usa esse sistema de consultas retocadas aqui, voc deve
+
+96
+00:07:17,470 --> 00:07:22,930
+executar sua mutao e, em seguida, fazer uma solicitao de acompanhamento para re-ofender todos os seus dados.
+
+97
+00:07:23,110 --> 00:07:30,550
+Quando usamos esse sistema de armazenamento em cache, mais essa ID de dados do sistema de objetos  necessria uma nica solicitao
+
+98
+00:07:31,510 --> 00:07:32,710
+para atualizar nossos dados.
+
+99
+00:07:32,800 --> 00:07:38,740
+Veja como fizemos apenas a mutao e no fizemos nenhum pedido de acompanhamento para re-ofender a msica ou
+
+100
+00:07:38,740 --> 00:07:41,940
+a lista de letras que  um grande benefcio.
+
+101
+00:07:41,980 --> 00:07:48,360
+Estamos reduzindo o nmero de pedidos que fazemos ao meio, o que realmente  perfeito para a nossa aplicao.
+
+102
+00:07:48,940 --> 00:07:49,530
+EST BEM.
+
+103
+00:07:49,570 --> 00:07:51,830
+Ento, isso  um dado do objeto.
+
+104
+00:07:51,850 --> 00:07:58,300
+que eu recomendo que voc leia apenas um pouco apenas para ter um pouco de melhor noo do que est acontecendo.
+
+105
+00:07:58,300 --> 00:08:02,750
+A ltima coisa que eu quero dizer sobre isso  que h alguma documentao oficial
+
+106
+00:08:02,770 --> 00:08:11,060
+Voc pode ir ao dev dot Appollo data dot com slash re-act slash cache updates.
+
+107
+00:08:11,150 --> 00:08:17,820
+ um e-mail e vou colar este link aqui muito rpido apenas para garantir que voc possa l-lo.
+
+108
+00:08:18,640 --> 00:08:24,550
+Ento, se voc quiser pausar o vdeo agora e copiar este link e visit-lo dentro do
+
+109
+00:08:24,560 --> 00:08:25,570
+navegador seria timo.
+
+110
+00:08:27,100 --> 00:08:33,930
+Ento, dentro deste documento, h um artigo sobre a normalizao com identificao de dados do objeto.
+
+111
+00:08:34,150 --> 00:08:36,130
+Ento  exatamente isso que estamos fazendo aqui.
+
+112
+00:08:36,130 --> 00:08:40,240
+documentao aqui e apenas dar um ngulo diferente do que eu mostrei.
+
+113
+00:08:40,240 --> 00:08:43,200
+E se voc quiser, pode dar uma olhada na
+
+114
+00:08:43,270 --> 00:08:48,190
+Estou mostrando isso especificamente porque este  um tpico bastante complicado e queria dar-lhe, pelo
+
+115
+00:08:48,190 --> 00:08:52,960
+menos, o ponto de vista de outra pessoa sobre o tema em oposio ao meu.
+
+116
+00:08:53,050 --> 00:08:56,370
+Ento, voc pode realmente entender um pouco mais sobre o que est acontecendo.
+
+117
+00:08:56,940 --> 00:08:57,440
+EST BEM.
+
+118
+00:08:57,490 --> 00:09:01,590
+Eu acho que nossa lista Larry e as funes de criao de letras funcionam perfeitamente.
+
+119
+00:09:01,630 --> 00:09:03,560
+Ento vamos continuar na prxima seo.
+

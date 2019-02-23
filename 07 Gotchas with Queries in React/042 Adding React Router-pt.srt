@@ -1,0 +1,408 @@
+1
+00:00:00,750 --> 00:00:05,790
+Na ltima seo, falamos um pouco sobre o componente de criao de msicas que usaremos para criar uma
+
+2
+00:00:05,790 --> 00:00:08,670
+nova msica para salvar nossas bases e banco de dados.
+
+3
+00:00:08,670 --> 00:00:13,650
+E tambm dissemos que seria um componente separado, o que provavelmente significava que precisvamos
+
+4
+00:00:13,650 --> 00:00:18,540
+reativar o roteador dentro do nosso aplicativo para navegar entre essas diferentes pginas que
+
+5
+00:00:18,540 --> 00:00:19,520
+estamos usando.
+
+6
+00:00:19,560 --> 00:00:24,550
+Ento, vamos continuar agora, criando o roteador re-agir dentro de nossa aplicao.
+
+7
+00:00:24,630 --> 00:00:29,580
+Eu j tomei a liberdade de instalar roteador re-agir dentro do pacote inicial.
+
+8
+00:00:29,580 --> 00:00:35,010
+importar objetos dele e podemos fazer todas as rotas configuradas diretamente dentro desse ndice de nvel superior, no J.
+
+9
+00:00:35,010 --> 00:00:38,110
+Ento, precisamos comear a S. Arquivo.
+
+10
+00:00:38,370 --> 00:00:41,040
+Ento, agora estou dentro do ndice do cliente.
+
+11
+00:00:41,820 --> 00:00:45,920
+E ns faremos a configurao do roteador de re-atuao diretamente dentro daqui.
+
+12
+00:00:45,930 --> 00:00:51,000
+Uma coisa que eu quero dizer rapidamente sobre o roteador de reativao  que este  realmente um curso sobre o grfico.
+
+13
+00:00:51,000 --> 00:00:53,420
+Q Bem, no muito re-agir roteador.
+
+14
+00:00:53,640 --> 00:00:59,850
+Ento, vamos manter nosso uso do roteador de reativao estritamente to real quanto possvel e
+
+15
+00:00:59,850 --> 00:01:03,980
+tambm usaremos uma verso muito estvel do roteador de reativao.
+
+16
+00:01:04,020 --> 00:01:08,230
+Ento, no vamos usar a verso experimental 4 mais nova.
+
+17
+00:01:08,370 --> 00:01:14,680
+Ns vamos usar a verso 3 testada pela batalha, que tem uma API muito direta para trabalhar.
+
+18
+00:01:14,730 --> 00:01:16,950
+Se voc nunca trabalhou com roteador re-agir antes.
+
+19
+00:01:17,100 --> 00:01:22,140
+Mais uma vez, no suar, ele realmente ir atravess-lo muito de perto com muito cuidado.
+
+20
+00:01:22,290 --> 00:01:24,360
+Certifique-se de entender o que est acontecendo.
+
+21
+00:01:24,960 --> 00:01:30,480
+Ento, comecemos por importar um par de ajudantes da biblioteca do roteador re-agir na parte superior deste
+
+22
+00:01:32,040 --> 00:01:33,160
+arquivo do roteador re-agir.
+
+23
+00:01:33,210 --> 00:01:43,230
+Vamos importar o histrico do hash da rota do objeto do roteador e a rota do ndice do roteador re-agir, ento agora voc notar
+
+24
+00:01:44,220 --> 00:01:47,380
+que estou fazendo uso do histrico hash aqui.
+
+25
+00:01:47,460 --> 00:01:52,980
+O servidor de back-end do qual estamos fazendo uso est configurado para usar o histrico de hash em oposio
+
+26
+00:01:52,980 --> 00:01:54,830
+ao histrico do navegador mais amvel.
+
+27
+00:01:54,840 --> 00:01:58,160
+Eu recomendo apenas seguir em frente com histrias de hash aqui.
+
+28
+00:01:58,170 --> 00:02:00,240
+Mais uma vez, este  um curso sobre o enxerto.
+
+29
+00:02:00,270 --> 00:02:06,540
+Bem, isso  o que estamos realmente focados em no muita configurao da histria do navegador com o roteador
+
+30
+00:02:06,540 --> 00:02:06,910
+re-act.
+
+31
+00:02:06,930 --> 00:02:09,870
+histria de hash muito mais direta agora que
+
+32
+00:02:13,130 --> 00:02:18,680
+temos todos esses ajudantes, podemos comear a configurar o roteador diretamente dentro do nosso componente raiz.
+
+33
+00:02:18,680 --> 00:02:19,920
+Ento, iremos com uma
+
+34
+00:02:20,450 --> 00:02:26,540
+Ento, ao invs de sempre mostrar a lista de msicas, ns vamos entregar a responsabilidade de
+
+35
+00:02:26,570 --> 00:02:30,590
+renderizar tudo sobre nosso aplicativo para reagir ao prprio roteador.
+
+36
+00:02:30,740 --> 00:02:39,230
+Ento, definiremos uma instncia do roteador e passaremos o histrico do cache do objeto de histrico, ento agora
+
+37
+00:02:40,190 --> 00:02:43,970
+j fiz uma escolha arquitetnica muito interessante aqui.
+
+38
+00:02:44,030 --> 00:02:51,770
+Eu disse que o provedor da Apollo est envolvendo todo o roteador de re-atuao em oposio
+
+39
+00:02:51,770 --> 00:02:52,620
+ao contrrio.
+
+40
+00:02:53,150 --> 00:03:00,230
+no est bem configurado que bem para ter algum componente envolver cada uma das suas rotas filho.
+
+41
+00:03:00,320 --> 00:03:01,120
+Re-act roteador
+
+42
+00:03:01,340 --> 00:03:07,070
+Ento, na prtica, por conveno, geralmente colocamos o provedor Appollo no exterior e,
+
+43
+00:03:07,070 --> 00:03:13,330
+em seguida, definimos todas as rotas diferentes associadas ao nosso aplicativo dentro do provedor.
+
+44
+00:03:13,890 --> 00:03:19,520
+Vamos definir a nossa primeira rota que ter a rota de rotas de apenas slash.
+
+45
+00:03:19,530 --> 00:03:22,620
+E para isso, ainda no temos um componente para mostrar.
+
+46
+00:03:22,770 --> 00:03:30,000
+Ento eu vou assumir que vamos fazer um componente provavelmente chamado algo como aplicativo e
+
+47
+00:03:30,000 --> 00:03:32,780
+ento fecharemos a etiqueta da rota.
+
+48
+00:03:33,420 --> 00:03:39,540
+ns ainda no temos o componente do aplicativo, o componente do aplicativo deve ser exclusivamente de natureza de apresentao.
+
+49
+00:03:39,540 --> 00:03:40,330
+Ento, ns novamente,
+
+50
+00:03:40,380 --> 00:03:44,880
+Ento, vai ser algo que vai receber um componente como filho e, em seguida,
+
+51
+00:03:44,880 --> 00:03:45,660
+mostrar na tela.
+
+52
+00:03:45,870 --> 00:03:49,530
+Mais uma vez, isso vai um pouco ao conhecimento sobre o roteador re-agir em particular.
+
+53
+00:03:49,740 --> 00:03:54,630
+Tudo o que realmente precisamos entender  que o componente do aplicativo vai
+
+54
+00:03:54,630 --> 00:03:56,700
+apenas mostrar outro componente na tela.
+
+55
+00:03:56,700 --> 00:03:59,750
+Podemos ento definir o nosso componente de lista de msicas.
+
+56
+00:04:00,030 --> 00:04:05,190
+Quero mostrar a lista de msicas sempre que um usurio atinja a rota de nossa aplicao.
+
+57
+00:04:05,190 --> 00:04:08,550
+Ento, apenas corte por si s para realizar esse efeito.
+
+58
+00:04:08,550 --> 00:04:15,960
+Podemos usar a rota de ndice assim e diremos sempre que algum vai a essa rota
+
+59
+00:04:15,960 --> 00:04:19,890
+de ndice, devemos mostrar a lista de msicas assim.
+
+60
+00:04:19,890 --> 00:04:22,520
+Ento, acho que isso provavelmente  o suficiente para comear.
+
+61
+00:04:22,620 --> 00:04:27,630
+Eu acho que vamos voltar e abordar o componente de criao de msicas em apenas um segundo depois de termos certeza
+
+62
+00:04:27,630 --> 00:04:31,170
+de que temos esse cdigo pelo menos funcionando muito bem para que isso funcione.
+
+63
+00:04:31,170 --> 00:04:35,760
+Precisamos ter certeza de que ns definimos esse componente do aplicativo l.
+
+64
+00:04:35,760 --> 00:04:37,960
+Vamos importar o componente do aplicativo.
+
+65
+00:04:38,040 --> 00:04:42,270
+Mais uma vez, ainda no o criamos, mas assumiremos que vamos fazer isso agora mesmo.
+
+66
+00:04:42,270 --> 00:04:44,100
+Ento, um aplicativo de importao de componentes slash como de
+
+67
+00:04:46,650 --> 00:04:55,810
+um lado para outro, no diretrio de componentes, far com que este novo aplicativo conserve J. S. componente dentro da sua
+
+68
+00:04:59,700 --> 00:05:03,000
+importao importar re-agir de reagir.
+
+69
+00:05:03,960 --> 00:05:08,410
+E ns vamos manter esse componente simplesmente simples.
+
+70
+00:05:08,460 --> 00:05:14,340
+Ns vamos transform-lo em um componente funcional e no importa o que est sempre retornando uma div com
+
+71
+00:05:14,340 --> 00:05:16,440
+um nome de classe de continer.
+
+72
+00:05:17,190 --> 00:05:22,800
+aula de continer aqui apenas porque isso vai nos ajudar com algum estilo no lado da CSSA.
+
+73
+00:05:22,800 --> 00:05:24,530
+Estou usando uma sala de
+
+74
+00:05:24,900 --> 00:05:30,510
+Materializar o USS que estamos usando sempre assume que voc est usando algum componente raiz com uma sala de
+
+75
+00:05:30,510 --> 00:05:31,430
+aula de continer.
+
+76
+00:05:31,590 --> 00:05:36,080
+E ento estamos realmente apenas seguindo essa conveno aqui e fecharemos a div.
+
+77
+00:05:36,150 --> 00:05:41,100
+E ento, a ltima coisa a fazer  certificar-se de que mostramos qualquer componente infantil que seja
+
+78
+00:05:41,100 --> 00:05:42,550
+passado para isso como adereos.
+
+79
+00:05:42,960 --> 00:05:49,770
+Ento, vamos estruturar o objeto de adereos, obteremos a referncia a qualquer criana e
+
+80
+00:05:49,770 --> 00:05:52,440
+depois mostraremos dentro da div.
+
+81
+00:05:52,440 --> 00:05:56,100
+Mais uma vez, eu sei que mencionei isso vrias vezes, mas isso realmente est entrando no conhecimento
+
+82
+00:05:56,100 --> 00:05:59,640
+sobre o roteador de re-atuao, o que no  realmente nosso foco no que est acontecendo aqui.
+
+83
+00:05:59,670 --> 00:06:06,090
+Este componente do aplicativo aqui est dizendo se o roteador re-agir decide mostrar a rota do ndice
+
+84
+00:06:06,430 --> 00:06:13,800
+aqui da lista de msicas da lista de msicas sero passadas para o componente do aplicativo como crianas e mostraremos
+
+85
+00:06:13,890 --> 00:06:16,890
+esse componente como uma criana assim, usando crianas.
+
+86
+00:06:17,460 --> 00:06:21,690
+Ento, vamos dar uma chance no navegador e apenas certifique-se de cuidar de
+
+87
+00:06:21,690 --> 00:06:23,880
+todo o roteador de re-atuao configurado adequadamente.
+
+88
+00:06:24,060 --> 00:06:30,570
+que  muito bom, significa que os roteadores de re-atuao funcionam como esperamos e ainda vejo o componente na tela.
+
+89
+00:06:30,660 --> 00:06:35,490
+Indo para o navegador atualizar a pgina e voc notar que eu recebo um hash
+
+90
+00:06:35,490 --> 00:06:36,200
+no URL,
+
+91
+00:06:36,360 --> 00:06:39,230
+Voc tambm percebeu que no est indo mais contra os lados.
+
+92
+00:06:39,240 --> 00:06:42,680
+Isso  feito com o recipiente de classe em ao.
+
+93
+00:06:42,870 --> 00:06:48,390
+Ento, a classe de continer que ns tivemos nesse componente adiciona um pouco de preenchimento ou margem nas calhas da
+
+94
+00:06:48,390 --> 00:06:53,370
+esquerda e da direita da tela, o que  muito bom para garantir que no nos encoste diretamente
+
+95
+00:06:53,430 --> 00:06:55,030
+contra qualquer uma das bordas.
+
+96
+00:06:55,770 --> 00:06:57,150
+OK, ento isso parece ser bom.
+
+97
+00:06:57,150 --> 00:07:02,500
+Parece que fizemos com sucesso o ncleo padro do roteador re-agir.
+
+98
+00:07:02,700 --> 00:07:06,360
+Vamos voltar a reagir ao roteador um par de vezes para adicionar outras duas rotas.
+
+99
+00:07:06,360 --> 00:07:08,920
+Mas, novamente, no  nosso foco.
+
+100
+00:07:08,940 --> 00:07:12,560
+Estamos apenas usando isso para obter algum roteamento em toda a nossa aplicao.
+
+101
+00:07:12,600 --> 00:07:18,540
+Ento, vamos dar uma pausa rpida e depois voltar e comear a trabalhar em nosso componente de criao de msica,
+
+102
+00:07:18,540 --> 00:07:23,960
+que usaremos para adicionar outra msica  lista de msicas que armazenamos dentro do nosso banco de dados.
+

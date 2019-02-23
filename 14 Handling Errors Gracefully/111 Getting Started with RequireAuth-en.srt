@@ -1,0 +1,460 @@
+1
+00:00:00,660 --> 00:00:05,700
+We just spoke a bit about creating the require off higher order component which is where we're going
+
+2
+00:00:05,700 --> 00:00:11,820
+to centralise a lot of logic around checking to see whether or not the user is currently authenticated.
+
+3
+00:00:11,820 --> 00:00:15,340
+Now if you're not familiar with higher order components that's okay.
+
+4
+00:00:15,360 --> 00:00:19,150
+The next part as we start to code this is going to seem to a little bit strange.
+
+5
+00:00:19,350 --> 00:00:23,610
+I don't want to spend too much time talking about high order components because again this is a course
+
+6
+00:00:23,610 --> 00:00:24,250
+about graft.
+
+7
+00:00:24,260 --> 00:00:29,550
+Well and I want to stay somewhat focused on that but just a little bit about higher order components
+
+8
+00:00:30,300 --> 00:00:36,100
+a higher order component is how we get some amount of code reusability in the react G-S world.
+
+9
+00:00:36,450 --> 00:00:41,970
+We take a standard component like that type of component we've been creating all throughout this course.
+
+10
+00:00:42,120 --> 00:00:45,510
+It can be a class based component or a functional one.
+
+11
+00:00:45,540 --> 00:00:52,170
+We take that component we compose it together with a higher order component and that adds some amount
+
+12
+00:00:52,170 --> 00:00:54,660
+of functionality to our original component.
+
+13
+00:00:54,660 --> 00:01:00,120
+So this original one over here gets some amount of additional functionality added onto it.
+
+14
+00:01:00,150 --> 00:01:03,100
+Thanks to the higher order component that we just added in.
+
+15
+00:01:03,480 --> 00:01:09,930
+We usually refer to these as enhanced or composed components because we've taken one or more higher
+
+16
+00:01:09,930 --> 00:01:14,970
+order components and combine it together with the original component we were working with.
+
+17
+00:01:14,970 --> 00:01:19,650
+So again I'm sure if you have not worked with higher order components before this is looking a little
+
+18
+00:01:19,650 --> 00:01:20,650
+bit weird.
+
+19
+00:01:20,760 --> 00:01:22,530
+Just bear with me as we go through it.
+
+20
+00:01:22,560 --> 00:01:26,620
+And I think that will end up making a pretty good amount of sense.
+
+21
+00:01:26,700 --> 00:01:28,600
+So let's get started on this thing.
+
+22
+00:01:29,190 --> 00:01:32,760
+One other thing that I want to mention about higher order components by the way if you want to learn
+
+23
+00:01:32,760 --> 00:01:34,470
+just a ton about them.
+
+24
+00:01:34,560 --> 00:01:37,460
+You can check out my advanced reaction redux course.
+
+25
+00:01:37,620 --> 00:01:42,690
+There's several hours I think worth of content in there about higher order components so you can always
+
+26
+00:01:42,690 --> 00:01:46,190
+get total mastery over them if you check out that course.
+
+27
+00:01:46,500 --> 00:01:47,060
+OK.
+
+28
+00:01:47,160 --> 00:01:51,280
+So let's create our higher order component inside of my components directory.
+
+29
+00:01:51,300 --> 00:01:54,910
+I'm going to make a new file called require off.
+
+30
+00:01:55,000 --> 00:01:55,950
+Yes.
+
+31
+00:01:55,980 --> 00:02:00,940
+Now you will notice I used a lower case are here traditionally with higher order components.
+
+32
+00:02:00,960 --> 00:02:05,340
+We use a lower case character for the first letter inside the name.
+
+33
+00:02:05,340 --> 00:02:10,440
+That is because a higher order component actually is a function and traditionally functions are not
+
+34
+00:02:10,440 --> 00:02:11,970
+capitalized.
+
+35
+00:02:12,560 --> 00:02:13,200
+OK.
+
+36
+00:02:13,710 --> 00:02:22,290
+So I'll start off by importing react and the Component class from the re-act library.
+
+37
+00:02:22,290 --> 00:02:27,030
+Now I want to remember with a higher order component suspicious specifically the one we're creating
+
+38
+00:02:27,030 --> 00:02:32,970
+right here the entire intent is to see whether or not the user is currently authenticated.
+
+39
+00:02:33,150 --> 00:02:39,600
+If they are not authenticated we want to redirect the user over to our log in route and pretty much
+
+40
+00:02:39,600 --> 00:02:42,750
+say hey you're not signed in here go sign and that's your job right now.
+
+41
+00:02:42,750 --> 00:02:48,360
+Just go sign in before you got to sign in before you see anything else having to do with this application.
+
+42
+00:02:48,420 --> 00:02:54,270
+So without worrying too much about anything related to higher order components right now let's just
+
+43
+00:02:54,270 --> 00:03:00,510
+imagine how we would make a component that solely is going to check to see whether or not the user is
+
+44
+00:03:00,510 --> 00:03:06,140
+currently logged in and if they are not logged in I want to redirect them over to the log in route and
+
+45
+00:03:06,150 --> 00:03:07,580
+our application can.
+
+46
+00:03:07,650 --> 00:03:08,580
+That's what I want to do right now.
+
+47
+00:03:08,580 --> 00:03:11,460
+I don't want to worry too much about higher order components.
+
+48
+00:03:11,460 --> 00:03:17,510
+I just want to make a component that looks to see if the user is currently authenticated.
+
+49
+00:03:17,550 --> 00:03:22,090
+So let's see what what my what code might we write if we want to do that.
+
+50
+00:03:22,260 --> 00:03:29,780
+Let's say that we'll make a component called require auth and we'll extend the component base class.
+
+51
+00:03:29,970 --> 00:03:37,670
+Now when ever this component is about to be rendered to the screen so we'll say components did mount
+
+52
+00:03:37,680 --> 00:03:43,020
+or excuse me I should say whenever that component has been rendered to the screen I want to check to
+
+53
+00:03:43,020 --> 00:03:47,100
+see whether or not the user is currently signed in.
+
+54
+00:03:47,130 --> 00:03:51,420
+So how do we check to see whether or not the users currently signed in we've done this several times
+
+55
+00:03:51,430 --> 00:03:53,100
+before inside of our application.
+
+56
+00:03:53,280 --> 00:03:56,370
+We've made use of that current user query.
+
+57
+00:03:56,580 --> 00:03:59,180
+We said run this query right here.
+
+58
+00:03:59,370 --> 00:04:03,330
+If a user is returned then they must be signed in.
+
+59
+00:04:03,630 --> 00:04:09,060
+But if a user is not returned then they are not authenticated and we need to kick them out to somewhere
+
+60
+00:04:09,060 --> 00:04:10,690
+else in our application.
+
+61
+00:04:10,890 --> 00:04:14,930
+And that's exactly what we're going to do inside of this component in Mt.
+
+62
+00:04:14,940 --> 00:04:21,080
+We can run that query the current user query and then we can look at this start Propst data.
+
+63
+00:04:21,150 --> 00:04:23,840
+User if that user exists.
+
+64
+00:04:23,850 --> 00:04:24,280
+Great.
+
+65
+00:04:24,300 --> 00:04:25,520
+They must be signed in.
+
+66
+00:04:25,560 --> 00:04:30,600
+If they are not if that property does not exist they are not authenticated and we need to redirect them
+
+67
+00:04:30,600 --> 00:04:32,830
+somewhere else inside of our application.
+
+68
+00:04:33,150 --> 00:04:36,330
+So lets hook up that query to this component.
+
+69
+00:04:36,390 --> 00:04:43,380
+Then inside of component did MT we can inspect this prob start data dight user and decide what to do
+
+70
+00:04:43,560 --> 00:04:46,710
+with our user what to do with our user.
+
+71
+00:04:47,250 --> 00:04:51,640
+So we need to first get access to the graph to El helper from re-act Apollo.
+
+72
+00:04:51,870 --> 00:04:55,460
+And we also need to import that current user query.
+
+73
+00:04:55,850 --> 00:05:06,140
+So import graph Cuil from reactor Appollo and we'll also import the query we'll call it the query itself.
+
+74
+00:05:06,140 --> 00:05:10,600
+Current User just make sure that it's really clear what it is.
+
+75
+00:05:10,980 --> 00:05:17,390
+So I'm going to go up one directory into queries and then current user like so.
+
+76
+00:05:18,080 --> 00:05:18,430
+OK.
+
+77
+00:05:18,470 --> 00:05:24,200
+Next we'll hook this query up to the component itself by using the graph tool helper.
+
+78
+00:05:24,200 --> 00:05:28,260
+So we will say right now I'm not going to export anything just yet.
+
+79
+00:05:28,730 --> 00:05:31,040
+Right now I'm just going to write the graph.
+
+80
+00:05:31,040 --> 00:05:34,940
+Q Well helper the function call out and wired up to the component.
+
+81
+00:05:34,940 --> 00:05:36,800
+I'm not going to export anything yet.
+
+82
+00:05:36,800 --> 00:05:42,560
+You'll see why in just a little bit which turns into an actual hire or a component.
+
+83
+00:05:42,860 --> 00:05:43,670
+So take graft.
+
+84
+00:05:43,670 --> 00:05:50,840
+Well we'll take our current user query and then we'll hook it up to the require off component.
+
+85
+00:05:51,230 --> 00:05:57,800
+So now inside of here we can look at if this stopped DOD data user.
+
+86
+00:05:57,830 --> 00:06:03,650
+So if the user exists here then OK they can be allowed progress on like no problem.
+
+87
+00:06:03,650 --> 00:06:05,410
+We don't need to redirect them.
+
+88
+00:06:05,510 --> 00:06:07,820
+They are signed and that's totally fine.
+
+89
+00:06:07,820 --> 00:06:13,580
+However if the user does not exist that's really the case you want to figure out here that's the case
+
+90
+00:06:13,580 --> 00:06:20,660
+you want to consider if the if the user does not exist yet then I want to somehow redirect the user
+
+91
+00:06:20,660 --> 00:06:22,470
+back to the log in screen.
+
+92
+00:06:22,730 --> 00:06:26,000
+And we've done redirects several times inside this application already.
+
+93
+00:06:26,000 --> 00:06:35,540
+We can import the hash history helper from re-act router and then inside of the if statement will say
+
+94
+00:06:35,540 --> 00:06:40,660
+hash history push send them back to the log in screen.
+
+95
+00:06:40,670 --> 00:06:47,660
+They're not supposed to use application or Su's component to send them back over to the logon screen.
+
+96
+00:06:47,660 --> 00:06:53,390
+Now there's one other case I want you to consider here the case in which our query has not yet been
+
+97
+00:06:53,390 --> 00:06:54,720
+resolved by the server.
+
+98
+00:06:54,830 --> 00:06:58,300
+So the case in which the query is still loading.
+
+99
+00:06:58,430 --> 00:07:02,710
+So if the query is still loading We don't know whether or not a user exists just yet.
+
+100
+00:07:02,900 --> 00:07:08,630
+And so we wouldn't want to prematurely redirect the user over to the log in screen where you know we're
+
+101
+00:07:08,630 --> 00:07:14,300
+still running the query we're still loading the thing up when the query is being executed a user will
+
+102
+00:07:14,300 --> 00:07:15,490
+be undefined.
+
+103
+00:07:15,560 --> 00:07:21,080
+And so we might accidentally redirect the user before the query has actually finished running.
+
+104
+00:07:21,320 --> 00:07:30,870
+So we will also look at this stop prop's start data loading we'll say if this thing is not loading anymore
+
+105
+00:07:30,920 --> 00:07:38,270
+so for done loading the query and there is no user present then yup we should probably be redirecting
+
+106
+00:07:38,270 --> 00:07:40,240
+the user over to the log in screen.
+
+107
+00:07:42,240 --> 00:07:42,580
+OK.
+
+108
+00:07:42,600 --> 00:07:49,140
+So at this point we've got a component here where all it does after it gets rendered to the screen it's
+
+109
+00:07:49,140 --> 00:07:54,670
+going to look at the query and say hey does this person logged in and is the query finished loading.
+
+110
+00:07:54,960 --> 00:08:01,320
+If the query is finished loading and the user is not logged in let's kick them over to the log in screen.
+
+111
+00:08:01,380 --> 00:08:03,460
+So this is looking pretty good as the start right here.
+
+112
+00:08:03,720 --> 00:08:06,420
+Let's take a quick break and then we're going to come back.
+
+113
+00:08:06,420 --> 00:08:11,880
+We're going to talk about a couple of interesting side issues and we'll turn this thing into an actual
+
+114
+00:08:11,880 --> 00:08:14,590
+higher order component and test it inside the browser.
+
+115
+00:08:14,730 --> 00:08:17,120
+So I'll catch ya in just a second.
+

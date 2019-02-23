@@ -1,0 +1,616 @@
+1
+00:00:00,630 --> 00:00:05,190
+Eu no acho que haja nenhuma maneira de atrasar o incio do lado do cliente como aplicativo.
+
+2
+00:00:05,190 --> 00:00:06,570
+Ento vamos fazer isso.
+
+3
+00:00:06,570 --> 00:00:09,550
+ hora de trabalhar no lado do cliente da nossa aplicao.
+
+4
+00:00:09,730 --> 00:00:16,690
+Dentro do diretrio do meu projeto, vou encontrar a pasta do meu cliente e, em seguida, abrir o arquivo de ndice.
+
+5
+00:00:16,740 --> 00:00:19,200
+Este  o ponto de partida da nossa aplicao.
+
+6
+00:00:19,230 --> 00:00:23,970
+E dentro daqui voc notar que eu tenho um componente definido como raiz onde atualmente
+
+7
+00:00:23,970 --> 00:00:27,530
+est apenas mostrando uma nica div com o texto lrico dentro dela.
+
+8
+00:00:27,930 --> 00:00:29,100
+Ento,  isso que vamos fazer.
+
+9
+00:00:29,100 --> 00:00:34,470
+A grande maioria dos primeiros trabalhos dentro de nossa aplicao para obter um par de peas diferentes configuradas,
+
+10
+00:00:34,470 --> 00:00:37,810
+vamos fazer todas as configuraes da Apollo e todo o grfico.
+
+11
+00:00:37,810 --> 00:00:39,480
+Q Tudo configurado a partir do zero.
+
+12
+00:00:39,480 --> 00:00:42,730
+Ento, vamos passar por isso comeando nesta seo agora.
+
+13
+00:00:43,110 --> 00:00:48,600
+Um monte de trabalho que vamos fazer aqui vai girar em torno de como ns envolvemos
+
+14
+00:00:48,600 --> 00:00:53,110
+nosso aplicativo de reao com alguns ajudantes da biblioteca de clientes da Apollo.
+
+15
+00:00:53,610 --> 00:00:58,400
+Ento, vamos ter uma idia melhor ou uma melhor compreenso sobre exatamente como isso vai funcionar.
+
+16
+00:00:58,870 --> 00:00:59,470
+EST BEM.
+
+17
+00:00:59,820 --> 00:01:05,640
+Ento, neste diagrama, o tipo de diagrama mostra mais ou menos como um aplicativo reativo ir funcionar com o
+
+18
+00:01:05,640 --> 00:01:05,970
+grfico.
+
+19
+00:01:05,970 --> 00:01:10,050
+Q Todo o servidor na nossa extremidade traseira dentro da caixa na parte superior.
+
+20
+00:01:10,110 --> 00:01:12,060
+Voc ver nosso aplicativo de reao.
+
+21
+00:01:12,060 --> 00:01:15,030
+Ento, re-atualize a camada de exibio.
+
+22
+00:01:15,030 --> 00:01:20,180
+O que produz HVM L  um pedao muito pequeno do quebra-cabea aqui.
+
+23
+00:01:20,400 --> 00:01:24,330
+Vamos gastar muito trabalho na aplicao de reao, vamos passar
+
+24
+00:01:24,330 --> 00:01:28,370
+muito tempo, mas  realmente um pequeno pedao do quebra-cabea.
+
+25
+00:01:28,770 --> 00:01:34,290
+O que  realmente importante  entender exatamente como o nosso reagir ao aplicativo
+
+26
+00:01:34,290 --> 00:01:41,970
+vai funcionar com o servidor de grficos in-between ou re-atuar o aplicativo e o GRUPO CULE server so duas
+
+27
+00:01:41,970 --> 00:01:43,830
+peas de tecnologia importantes diferentes.
+
+28
+00:01:43,830 --> 00:01:46,700
+O primeiro  o provedor da Apollo.
+
+29
+00:01:46,710 --> 00:01:48,900
+A segunda  a loja Apollo.
+
+30
+00:01:48,930 --> 00:01:51,780
+Ento vamos falar sobre ambos por um segundo.
+
+31
+00:01:51,840 --> 00:01:58,980
+A loja Apollo  o que vai se comunicar diretamente com o servidor grfico e armazena dados
+
+32
+00:01:58,980 --> 00:02:00,310
+que retornam dele.
+
+33
+00:02:00,510 --> 00:02:07,390
+Ento, podemos pensar nessa loja Appollo como uma loja de dados que existe no lado do cliente da nossa aplicao.
+
+34
+00:02:07,590 --> 00:02:13,860
+A loja da Apollo  um repositrio do lado do cliente de todos os dados que vem do servidor de grficos UL
+
+35
+00:02:14,250 --> 00:02:19,260
+e neste curso na seo vamos falar muito sobre exatamente o que est acontecendo dentro dessa loja
+
+36
+00:02:19,260 --> 00:02:22,760
+e quais so os dados realmente sendo mantido dentro de l tambm.
+
+37
+00:02:24,090 --> 00:02:29,910
+A loja Apollo  realmente uma pea abstrata de tecnologia.
+
+38
+00:02:29,910 --> 00:02:34,830
+ algo que realmente no se importa com a estrutura do lado do cliente que estamos usando para mostrar
+
+39
+00:02:34,830 --> 00:02:35,720
+dados na tela.
+
+40
+00:02:35,910 --> 00:02:42,300
+menos que estamos usando re-agir a camada de integrao entre a loja Apollo e nossa aplicao de reator real.
+
+41
+00:02:42,300 --> 00:02:48,000
+Ento, a loja Apollo no tem idia intrinsecamente que reaja para reagir, existe que no sabe que
+
+42
+00:02:48,000 --> 00:02:51,860
+estamos usando reagir e no importa que ele possa se importar
+
+43
+00:02:51,900 --> 00:02:54,040
+ o provedor da Apollo.
+
+44
+00:02:54,270 --> 00:02:58,260
+Portanto,  um provedor de dados para o nosso aplicativo de reao.
+
+45
+00:02:58,290 --> 00:03:04,350
+O fornecedor ir tirar dados da loja e injet-lo em nosso aplicativo de reao.
+
+46
+00:03:04,350 --> 00:03:09,760
+ a camada de cola entre a loja da Apollo e a nossa aplicao real de reao.
+
+47
+00:03:09,780 --> 00:03:14,310
+provedor da Apollo, na maior parte, a loja Apollo vai ser bastante autnoma e
+
+48
+00:03:14,640 --> 00:03:20,760
+ns realmente no teremos que toc-lo Muito, vamos cri-lo, voc sabe que faremos uma loja, mas isso  praticamente isso.
+
+49
+00:03:20,760 --> 00:03:26,210
+Por isso, uma grande parte da configurao e, provavelmente, a grande maioria da configurao que vamos fazer
+
+50
+00:03:26,430 --> 00:03:27,750
+ em torno do
+
+51
+00:03:27,750 --> 00:03:30,150
+Ns realmente no fazemos muito mais por a.
+
+52
+00:03:30,150 --> 00:03:35,400
+A grande maioria da configurao que faremos ser o provedor Apollo.
+
+53
+00:03:35,400 --> 00:03:39,540
+Ento, nesta seo, vamos continuar a fazer um pouco para configurar o
+
+54
+00:03:40,080 --> 00:03:46,170
+provedor na loja e, ao longo do resto da seo, tambm falaremos muito sobre exatamente como o provedor
+
+55
+00:03:46,170 --> 00:03:49,470
+interage com a loja para obter dados em nossa aplicao.
+
+56
+00:03:49,470 --> 00:03:50,220
+Ento vamos fazer isso.
+
+57
+00:03:50,220 --> 00:03:54,840
+Vamos fazer o provedor deixar as lojas configuradas e ir de l.
+
+58
+00:03:54,900 --> 00:04:00,660
+Eu vou voltar para o meu editor de cdigo e novamente eu tenho meu ndice ponto J. S. arquivo dentro do diretrio
+
+59
+00:04:00,660 --> 00:04:03,020
+do cliente aberto agora.
+
+60
+00:04:03,090 --> 00:04:10,060
+Ento, eu deveria ver o meu aplicativo de reao, o primeiro fato que faremos  fazer um pouco
+
+61
+00:04:10,080 --> 00:04:17,460
+de um refator para este componente raiz aqui para criar nosso novo cliente Appollo e configurar o provedor Apollo.
+
+62
+00:04:17,560 --> 00:04:22,420
+Agora eu j instalou as bibliotecas relevantes dentro deste pacote inicial, portanto no precisamos
+
+63
+00:04:22,900 --> 00:04:24,430
+instalar nenhum mdulo aqui.
+
+64
+00:04:24,460 --> 00:04:29,500
+qualquer projeto que voc vai trabalhar em si mesmo, voc vai querer instalar esses mdulos voc mesmo.
+
+65
+00:04:29,770 --> 00:04:33,000
+Eles j esto instalados para ns, mas para qualquer pacote ou
+
+66
+00:04:33,700 --> 00:04:40,820
+Ento, a primeira coisa que vamos importar ser o cliente Apollo do cliente da biblioteca Apollo.
+
+67
+00:04:40,930 --> 00:04:42,460
+Mais uma vez, o cliente Apollo aqui.
+
+68
+00:04:42,460 --> 00:04:45,290
+Isto  o que realmente est interagindo com o nosso grfico.
+
+69
+00:04:45,310 --> 00:04:51,310
+Voc vai v-la no back-end  o que realmente est fazendo pedidos de dados e depois
+
+70
+00:04:51,310 --> 00:04:54,580
+armazenar esses dados localmente quando a resposta volta.
+
+71
+00:04:54,700 --> 00:05:01,620
+Ento, ns tambm vamos trabalhar com o provedor Apollo de reagir Apollo.
+
+72
+00:05:02,320 --> 00:05:08,470
+aqui, temos a sensao de que o cliente Apollo realmente no tem idia de que estamos trabalhando com re-agir aqui.
+
+73
+00:05:08,500 --> 00:05:11,610
+Ento, mesmo nas duas declaraes de importao que voc v
+
+74
+00:05:11,620 --> 00:05:16,650
+Realmente no sabemos que estamos importando isso de uma biblioteca chamada cliente Apollo.
+
+75
+00:05:16,660 --> 00:05:24,460
+No est vinculado a qualquer biblioteca de renderizao de lado do cliente especfica, como o reator angular ou UJA Sim,  o pacote
+
+76
+00:05:24,520 --> 00:05:29,230
+Apollo de reao que est dizendo OK. Eu sei como trabalhar com um cliente.
+
+77
+00:05:29,230 --> 00:05:31,120
+Eu tambm sei como trabalhar com reagir.
+
+78
+00:05:31,120 --> 00:05:35,000
+Eu vou cuidar de ser a camada de cola dentro desta aplicao.
+
+79
+00:05:36,470 --> 00:05:39,350
+Ento, agora podemos fazer uso desse provedor Apollo.
+
+80
+00:05:39,450 --> 00:05:43,140
+Ns vamos fazer um pouco de fator dentro do componente raiz aqui.
+
+81
+00:05:43,320 --> 00:05:46,950
+Bem, primeiro comece colocando uma etiqueta de provedor
+
+82
+00:05:50,470 --> 00:05:57,940
+Apollo dentro daquele agora colocar e div e deixar tudo s dizendo as palavras lricas.
+
+83
+00:05:57,960 --> 00:06:00,260
+Isso  tudo o que precisamos agora.
+
+84
+00:06:00,510 --> 00:06:06,810
+Ento, a ltima coisa que vamos fazer  criar uma nova instncia do cliente Apollo e
+
+85
+00:06:06,900 --> 00:06:08,690
+pass-lo para o provedor Apollo.
+
+86
+00:06:08,790 --> 00:06:15,840
+Ento, on-line 6 certo para o componente de re-agir, o cliente da Konst ser um novo cliente da Apollo.
+
+87
+00:06:15,840 --> 00:06:19,300
+Ns vamos passar num objeto vazio para agora.
+
+88
+00:06:19,620 --> 00:06:25,170
+Ento vamos levar esse cliente e pass-lo para o provedor Apollo.
+
+89
+00:06:25,170 --> 00:06:31,230
+Se voc tem algum fundo com o redux, talvez voc esteja dizendo que esta coisa do provedor e esse tipo de
+
+90
+00:06:31,230 --> 00:06:32,920
+coisa de cliente aqui so familiares.
+
+91
+00:06:33,210 --> 00:06:34,260
+E a resposta  sim.
+
+92
+00:06:34,260 --> 00:06:38,630
+Isso atrai fortemente o mundo redux se voc no est familiarizado com trs e todos.
+
+93
+00:06:38,700 --> 00:06:39,430
+Sem problemas.
+
+94
+00:06:39,450 --> 00:06:43,670
+No  necessrio entender o que est acontecendo com o Apollo.
+
+95
+00:06:43,680 --> 00:06:48,840
+Uma coisa que eu quero mencionar sobre o cliente Apollo  que passamos em um objeto de
+
+96
+00:06:48,840 --> 00:06:49,720
+configurao vazio aqui.
+
+97
+00:06:49,770 --> 00:06:54,990
+Ento, fora da caixa, Apollo Klein  gentil, pois faz algumas hipteses sobre
+
+98
+00:06:54,990 --> 00:06:56,750
+como seu back-end est configurado.
+
+99
+00:06:56,790 --> 00:07:02,610
+Tudo o que fizemos at agora, como todo esse cdigo,  tudo o que  necessrio para o talento para que
+
+100
+00:07:02,610 --> 00:07:04,990
+o Apollo interaja com nosso servidor de back-end.
+
+101
+00:07:05,010 --> 00:07:10,740
+Ento, voc notar que no precisamos dizer ao cliente Apollo que v como olhar para algum ponto final especfico no
+
+102
+00:07:10,800 --> 00:07:11,490
+nosso servidor.
+
+103
+00:07:11,490 --> 00:07:17,700
+Apenas faz a suposio de onde o nosso servidor grfico est ouvindo os pedidos recebidos
+
+104
+00:07:17,700 --> 00:07:19,920
+conforme o nosso ltimo aplicativo.
+
+105
+00:07:19,940 --> 00:07:23,140
+Voltamos para o arquivo do servidor G-S por apenas um segundo.
+
+106
+00:07:23,520 --> 00:07:26,180
+Ento, aqui est um servidor G-S, vou me deslocar para baixo.
+
+107
+00:07:26,520 --> 00:07:32,150
+Se voc lembrar, ns configuramos esse servidor grfico expresso para ouvir o ponto final
+
+108
+00:07:32,160 --> 00:07:33,750
+grfico em nosso servidor.
+
+109
+00:07:33,750 --> 00:07:40,140
+Ento estamos ouvindo um ponto de extremidade muito especfico para o GRUPO entrante CULE solicita que a loja Apollo
+
+110
+00:07:40,140 --> 00:07:46,020
+ou o cliente Apollo que acabamos de criar aqui pressupe que o grfico do servidor Cuil est
+
+111
+00:07:46,020 --> 00:07:48,070
+disponvel na rota do grfico slash.
+
+112
+00:07:48,090 --> 00:07:53,370
+tipo de premissas feitas por este cliente da Apollo aqui exatamente sobre como seu back-end est configurado.
+
+113
+00:07:53,370 --> 00:07:54,300
+Ento, h algum
+
+114
+00:07:54,660 --> 00:07:58,500
+Se voc comear a se desviar desses pressupostos, voc ter que comear a adicionar
+
+115
+00:07:58,500 --> 00:08:00,830
+um pouco mais de configurao dentro desse objeto aqui.
+
+116
+00:08:00,870 --> 00:08:05,140
+Mas, para a grande maioria das aplicaes, voc provavelmente j funcionar.
+
+117
+00:08:05,330 --> 00:08:10,020
+Os pressupostos vo se alinhando muito bem e voc realmente no
+
+118
+00:08:10,020 --> 00:08:13,400
+precisar ter que adicionar em qualquer configurao adicional.
+
+119
+00:08:13,420 --> 00:08:18,330
+A ltima coisa que eu quero mencionar sobre o Apollo fornece aqui novamente  a camada
+
+120
+00:08:18,330 --> 00:08:24,470
+de cola entre reagir e o mundo Apollo ou o tipo de enxerto que voc revisou o prprio provedor da Apollo.
+
+121
+00:08:24,480 --> 00:08:30,300
+ um componente de re-ao, e  por isso que estamos usando tags GSX ao redor
+
+122
+00:08:30,360 --> 00:08:32,840
+e estamos passando o cliente como suporte.
+
+123
+00:08:33,180 --> 00:08:39,060
+Mais uma vez, voltaremos um pouco mais tarde e falamos sobre como o provedor da Apollo est empurrando dados para
+
+124
+00:08:39,120 --> 00:08:41,300
+o lado do re-atuao da nossa aplicao.
+
+125
+00:08:41,470 --> 00:08:45,690
+Tudo o que eu realmente quero dizer agora  apenas ressaltar que sim, 
+
+126
+00:08:45,690 --> 00:08:49,750
+um componente da vida real e estamos passando uma referncia para a loja Apollo.
+
+127
+00:08:50,060 --> 00:08:50,490
+EST BEM.
+
+128
+00:08:50,490 --> 00:08:55,590
+Ento,  um tipo de conhecimento que voc conhece de alto nvel nessa configurao em torno do grfico kewl de nossa aplicao.
+
+129
+00:08:55,620 --> 00:08:57,480
+Acredite ou no assim  isso.
+
+130
+00:08:57,510 --> 00:09:00,850
+Esta  a configurao mnima para o Apollo aqui.
+
+131
+00:09:00,870 --> 00:09:06,510
+Agora podemos comear a fazer graficas consultas legais dentro do nosso cdigo e eles funcionariam como se ele
+
+132
+00:09:06,510 --> 00:09:08,520
+realmente funcionasse diretamente fora da caixa.
+
+133
+00:09:08,520 --> 00:09:13,170
+Vamos fazer um pouco mais de trabalho neste aplicativo porque temos vrios fluxos de dados
+
+134
+00:09:13,170 --> 00:09:14,100
+que queremos mostrar.
+
+135
+00:09:14,160 --> 00:09:18,410
+Ento, vamos trazer roteio re-agir tambm para mostrar essas telas diferentes.
+
+136
+00:09:18,510 --> 00:09:21,430
+Ento, vamos configurar um pouco mais neste arquivo aqui.
+
+137
+00:09:21,480 --> 00:09:26,310
+Mas, novamente, eu s quero que voc saiba, no h demasiada configurao que continua a fazer
+
+138
+00:09:26,350 --> 00:09:28,580
+com que a Apollo tenha trabalhado em riqueza.
+
+139
+00:09:29,310 --> 00:09:36,330
+Isso est em timas probabilidades com os relais sobre os quais tnhamos falado anteriormente, realmente requer muita configurao do
+
+140
+00:09:36,330 --> 00:09:37,320
+lado do cliente.
+
+141
+00:09:37,440 --> 00:09:43,950
+E na minha mente, esse  outro grande profissional, um grande benefcio para o Apollo ao usar rels, ento apenas outro tipo
+
+142
+00:09:44,240 --> 00:09:48,320
+de ponto de dados deve ter em mente a comparao entre essas diferentes bibliotecas.
+
+143
+00:09:48,840 --> 00:09:49,380
+EST BEM.
+
+144
+00:09:49,390 --> 00:09:53,850
+Lesing vamos fazer dentro da seo  atualizar o nosso navegador e apenas ver.
+
+145
+00:09:53,880 --> 00:09:55,320
+Ei, como est funcionando tudo.
+
+146
+00:09:55,320 --> 00:09:56,040
+Est quebrado.
+
+147
+00:09:56,040 --> 00:09:57,200
+O que est acontecendo.
+
+148
+00:09:57,330 --> 00:10:04,230
+Ento eu posso abrir uma nova guia, eu acho que temos uma publicao local 4000 e s verificaremos se est funcionando.
+
+149
+00:10:04,230 --> 00:10:05,340
+Est quebrado.
+
+150
+00:10:05,360 --> 00:10:05,930
+Parece.
+
+151
+00:10:05,940 --> 00:10:06,390
+EST BEM.
+
+152
+00:10:06,480 --> 00:10:08,510
+Sim parece que ainda funciona.
+
+153
+00:10:08,520 --> 00:10:10,950
+Ento, tudo correu bem at agora.
+
+154
+00:10:10,950 --> 00:10:15,100
+Vamos continuar na prxima seo e continuar trabalhando em nosso aplicativo.
+

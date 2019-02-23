@@ -1,0 +1,412 @@
+1
+00:00:00,720 --> 00:00:06,470
+Na ltima seo, reunimos a grande maioria da nossa forma onde um usurio pode criar uma nova msica.
+
+2
+00:00:06,780 --> 00:00:11,790
+A ltima coisa em que precisamos pensar com respeito ao formulrio  interceptar o evento de
+
+3
+00:00:11,820 --> 00:00:12,750
+envio de formulrio.
+
+4
+00:00:12,840 --> 00:00:18,090
+Portanto, presumivelmente, sempre que um usurio inserir algum texto aqui e, em seguida, pressiona Enter, provavelmente 
+
+5
+00:00:18,090 --> 00:00:23,940
+o ponto no tempo em que iremos querer de alguma forma chegar s nossas costas e gravar todo o
+
+6
+00:00:23,940 --> 00:00:31,920
+servidor e adicionar esta msica  nossa lista de msicas para fazer isso Ns adicionaremos um manipulador de eventos do Summit  prpria tag do frum.
+
+7
+00:00:31,920 --> 00:00:39,980
+Ento, dir sempre que algum tentar enviar este formulrio. Eu quero chamar esse ponto para enviar por trs disso.
+
+8
+00:00:40,040 --> 00:00:44,520
+Ento, faa um manipulador de eventos chamado Samit dentro desse componente.
+
+9
+00:00:44,520 --> 00:00:51,450
+E no se esquea de ter o link aqui tambm para vincular o contexto a essa chamada de retorno
+
+10
+00:00:51,460 --> 00:00:56,260
+dentro de sua vontade definida no envio Sempre que o envio for chamado.
+
+11
+00:00:56,280 --> 00:01:03,100
+Ele  chamado com um objeto de evento que representa o evento de envio lembrar que, por padro,
+
+12
+00:01:03,130 --> 00:01:09,060
+cada equipe forma dentro do navegador tentar se submeter ao servidor backend, que  algum
+
+13
+00:01:09,060 --> 00:01:14,310
+comportamento que realmente no queremos ter acontecido automaticamente porque estamos indo para cuidar de
+
+14
+00:01:14,310 --> 00:01:18,900
+manipular as formas que nos enviamos para evitar que isso acontea passar.
+
+15
+00:01:18,910 --> 00:01:24,280
+Ou ele chamaria evento para evitar o padro no objeto de evento.
+
+16
+00:01:24,390 --> 00:01:28,770
+Ento, isso impede a fazenda de tentar cimeira.
+
+17
+00:01:29,120 --> 00:01:36,320
+OK to presumivelmente com este manipulador de evento Summit aqui mesmo, este  o ponto do tempo como este
+
+18
+00:01:36,320 --> 00:01:41,780
+aqui mesmo, esta linha est aqui quando queremos chegar ao nosso servidor back-end e tentar
+
+19
+00:01:41,840 --> 00:01:45,210
+adicionar uma nova msica  nossa coleo de canes.
+
+20
+00:01:45,560 --> 00:01:51,860
+Lembre-se de que, sempre que falamos sobre edio ou modificao ou criao de novos registros em nossas costas e
+
+21
+00:01:52,130 --> 00:01:55,360
+servidor, estamos imediatamente a pensar mutao em nossa cabea.
+
+22
+00:01:55,550 --> 00:02:02,100
+Ento, estamos realmente pensando como eu vou usar uma mutao para atualizar os dados nas minhas costas e no
+
+23
+00:02:02,180 --> 00:02:07,340
+servidor, anteriormente no ltimo componente em que trabalhamos, trabalhamos anteriormente em um componente que usou
+
+24
+00:02:07,340 --> 00:02:11,270
+uma consulta que estvamos onde buscvamos alguns dados do servidor back-end.
+
+25
+00:02:11,450 --> 00:02:16,600
+Ento, desta vez, me d um pouco diferente, mas ainda seguiremos algumas regras bastante semelhantes.
+
+26
+00:02:16,640 --> 00:02:22,430
+Ns vamos primeiro testar uma mutao dentro do grfico para garantir que estamos totalmente na mesma pgina
+
+27
+00:02:22,430 --> 00:02:26,570
+sobre a mutao que estamos fazendo uso e como vamos chamar isso.
+
+28
+00:02:27,020 --> 00:02:33,800
+Em seguida, definiremos a mutao dentro deste arquivo na parte inferior e depois fundiremos
+
+29
+00:02:33,890 --> 00:02:40,560
+a mutao e o componente, usando o grfico Cuil ajudante da biblioteca do Apollo.
+
+30
+00:02:40,760 --> 00:02:42,580
+Ento, alguns passos aqui.
+
+31
+00:02:42,830 --> 00:02:45,160
+Vamos l.
+
+32
+00:02:45,200 --> 00:02:51,740
+para grfico e usar a mutao certifique-se de que estamos exatamente na mesma pgina sobre como cham-lo.
+
+33
+00:02:51,770 --> 00:02:53,380
+Passo 1  virar
+
+34
+00:02:53,930 --> 00:02:55,510
+Ento, aqui  grfico.
+
+35
+00:02:55,590 --> 00:03:02,540
+Ns abordamos mutaes lembrando que a sintaxe  ligeiramente diferente de fazer uma consulta.
+
+36
+00:03:02,570 --> 00:03:09,080
+Primeiro escrevemos a palavra-chave de mutao e, em seguida, a mutao que realmente queremos chamar, usamos
+
+37
+00:03:09,170 --> 00:03:11,940
+a mutao que vamos usar aqui anteriormente.
+
+38
+00:03:11,960 --> 00:03:16,760
+Mas eu quero apenas analis-lo muito rpido, observando a documentao e o lado do grfico.
+
+39
+00:03:16,970 --> 00:03:24,280
+Ento eu vou expandir a seo docs para encontrar nossa mutao aqui.
+
+40
+00:03:24,280 --> 00:03:32,020
+o ttulo sendo o ttulo da nova msica e depois recebemos um tipo de msica sobre o qual podemos fazer algumas perguntas.
+
+41
+00:03:32,020 --> 00:03:38,560
+E se voc lembrar que dissemos que houve a mutao da msica ADD, podemos cham-lo com um ttulo,
+
+42
+00:03:38,560 --> 00:03:45,470
+Ento vamos adicionar algum cdigo a uma mutao aqui chamada a mutao da msica ADD e passamos um ttulo.
+
+43
+00:03:46,170 --> 00:03:46,740
+EST BEM.
+
+44
+00:03:47,110 --> 00:03:52,390
+Vamos dizer adicionar msica, eu vou dar um ttulo de nossa chamada de cachorro.
+
+45
+00:03:52,450 --> 00:03:57,830
+Sou um compositor muito ruim, suponho, porque isso parece uma msica terrvel.
+
+46
+00:03:58,000 --> 00:03:59,920
+No importa.
+
+47
+00:03:59,920 --> 00:04:05,740
+E ento, na msica que retorna dessa mutao, eu vou pedir o ID e o
+
+48
+00:04:05,740 --> 00:04:06,730
+ttulo da msica.
+
+49
+00:04:07,010 --> 00:04:07,320
+EST BEM.
+
+50
+00:04:07,360 --> 00:04:12,630
+Ento, isso parece uma mutao muito razovel que temos agora, ento vamos executar esta coisa e.
+
+51
+00:04:12,670 --> 00:04:13,080
+EST BEM.
+
+52
+00:04:13,120 --> 00:04:14,530
+Sim, isso parece razovel.
+
+53
+00:04:14,530 --> 00:04:18,540
+Eu vejo uma identificao que retornou e um ttulo para a msica tambm.
+
+54
+00:04:18,550 --> 00:04:20,700
+Ento eu me sinto bastante confiante sobre isso.
+
+55
+00:04:20,710 --> 00:04:24,960
+Estou bastante feliz de que a mutao funcione como esperamos.
+
+56
+00:04:25,210 --> 00:04:30,070
+Ento, vamos tomar essa mutao e vamos passar para o nosso arquivo de componente agora.
+
+57
+00:04:30,890 --> 00:04:33,430
+Eu vou voltar para o arquivo do componente.
+
+58
+00:04:33,430 --> 00:04:36,580
+Vamos importar o GQ El helper no topo.
+
+59
+00:04:36,580 --> 00:04:43,180
+Lembre-se que usamos isso para escrever consultas e mutaes dentro de nossos arquivos de componentes de
+
+60
+00:04:43,180 --> 00:04:51,790
+reao, porque o JavaScript no compreende nativamente a sintaxe do grfico As consultas de Cuil e as mutaes importaro o GQ
+
+61
+00:04:51,820 --> 00:04:55,280
+L do grfico Cuil, de modo a que iremos.
+
+62
+00:04:55,400 --> 00:05:00,060
+Desa at o final do nosso arquivo e escreva essa mutao.
+
+63
+00:05:00,190 --> 00:05:04,850
+Ento, diga mutao constante desta vez que anteriormente a chamamos de consulta.
+
+64
+00:05:04,930 --> 00:05:07,810
+Desta vez, vamos chamar mutao porque  realmente o que .
+
+65
+00:05:07,840 --> 00:05:12,130
+O nome que chamamos isso realmente no importa porque lembre-se de tudo o
+
+66
+00:05:12,130 --> 00:05:15,910
+que vamos fazer  pass-lo para o grfico Q ajudante aqui embaixo.
+
+67
+00:05:16,570 --> 00:05:22,100
+Ento, vamos dizer que GQ l colocamos nossos tiques nas costas.
+
+68
+00:05:22,150 --> 00:05:26,620
+Ento, abrindo novamente a ttica de fechamento de Tich no posso estress-lo o suficiente.
+
+69
+00:05:26,620 --> 00:05:29,160
+Certifique-se de que seja uma ttica e no uma dupla cotao.
+
+70
+00:05:29,170 --> 00:05:31,690
+No  uma nica citao.
+
+71
+00:05:31,750 --> 00:05:34,270
+Ento vamos definir a nossa mutao dentro daqui.
+
+72
+00:05:34,270 --> 00:05:39,540
+Ento, usamos palavras-chave de mutao, digamos, adicione o ttulo da msica.
+
+73
+00:05:39,970 --> 00:05:47,280
+Ei, espere um minuto, devemos fornecer o ttulo dentro dessa coisa.
+
+74
+00:05:47,590 --> 00:05:55,480
+Temos de fornecer o ttulo dentro da prpria mutao, mas s conhecemos o ttulo da msica dentro
+
+75
+00:05:55,480 --> 00:05:58,490
+da forma ou dentro do componente.
+
+76
+00:05:58,510 --> 00:06:05,230
+Como vamos comunicar alguns dados do componente re-agir para a prpria mutao.
+
+77
+00:06:06,030 --> 00:06:12,140
+Deixe-me deixar rebobinar aqui apenas por um segundo para ter certeza de que estamos exatamente na mesma pgina sobre
+
+78
+00:06:12,140 --> 00:06:14,460
+esse pequeno problema que acabamos de encontrar.
+
+79
+00:06:14,660 --> 00:06:21,080
+Dizemos todo esse tempo que sempre que chamamos uma mutao, passamos os dados para a mutao
+
+80
+00:06:21,080 --> 00:06:21,710
+diretamente nela.
+
+81
+00:06:21,710 --> 00:06:23,530
+Ento eu disse que adicione msicas.
+
+82
+00:06:23,540 --> 00:06:25,110
+Aqui est o ttulo co.
+
+83
+00:06:25,130 --> 00:06:25,420
+Estrondo.
+
+84
+00:06:25,430 --> 00:06:26,460
+A est.
+
+85
+00:06:26,930 --> 00:06:35,260
+Mas agora, de repente, estou definindo uma mutao fora da classe de componentes.
+
+86
+00:06:35,300 --> 00:06:41,000
+Como fao para obter dados da classe de componentes, como especificamente o objeto de estado
+
+87
+00:06:41,270 --> 00:06:47,780
+na classe de componente de volta para esta nutao que  definida completamente fora da classe de componente.
+
+88
+00:06:47,810 --> 00:06:52,220
+Voc pode estar pensando Bem, no podemos fazer como esse ttulo de ponto DOT.
+
+89
+00:06:52,280 --> 00:06:53,510
+No, no.
+
+90
+00:06:53,540 --> 00:06:56,750
+Lembre-se de como o estado funciona dentro do javascript.
+
+91
+00:06:56,750 --> 00:07:02,230
+Este ttulo DOT do estado do ponto s pode ser usado a partir do interior da instncia do componente.
+
+92
+00:07:02,240 --> 00:07:07,330
+Esta  uma varivel que est sendo declarada fora da classe de componente.
+
+93
+00:07:07,340 --> 00:07:08,000
+Ns vamos ter.
+
+94
+00:07:08,000 --> 00:07:13,790
+Em teoria, podemos ter muitas cpias diferentes do componente de criao de msica flutuando, ento no
+
+95
+00:07:13,820 --> 00:07:20,540
+h nenhuma maneira em que possamos amarr-la intrinsecamente facilmente essa msica, crie a classe aqui mesmo para a mutao
+
+96
+00:07:20,540 --> 00:07:22,050
+que estamos escrevendo aqui.
+
+97
+00:07:22,250 --> 00:07:27,890
+Ento, claramente, ainda h um pouco de descobrir exatamente como fazer essas coisas funcionar
+
+98
+00:07:27,890 --> 00:07:34,530
+juntas que temos que fazer antes que possamos realmente chamar esta mutao do interior do prprio componente.
+
+99
+00:07:34,640 --> 00:07:37,050
+Tire essa linha antes de nos esquecer.
+
+100
+00:07:37,640 --> 00:07:43,130
+Vamos fazer uma pausa rpida e depois fazer um pouco de cavando em mutaes e descobrir
+
+101
+00:07:43,130 --> 00:07:49,250
+exatamente como podemos comunicar alguns dados do componente de volta  mutao para garantir que possamos obter o
+
+102
+00:07:49,250 --> 00:07:52,660
+ttulo da forma dentro da mutao aqui mesmo .
+
+103
+00:07:52,670 --> 00:07:55,330
+Ento vamos cuidar disso na prxima seo.
+

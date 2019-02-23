@@ -1,0 +1,380 @@
+1
+00:00:00,630 --> 00:00:06,300
+Com qualquer tipo de grfico, a aplicao Cuil que voc j trabalhou sempre paga para fazer um pouco de lio
+
+2
+00:00:06,330 --> 00:00:11,670
+de casa ou planejamento de projeto antes do tempo para planejar todos os diferentes tipos e todas as diferentes
+
+3
+00:00:11,670 --> 00:00:13,780
+mutaes que voc espera ter em sua aplicao.
+
+4
+00:00:13,800 --> 00:00:18,600
+Ento, gaste um pouco de tempo para planejar os diferentes tipos e
+
+5
+00:00:18,600 --> 00:00:23,380
+as diferentes mutaes que vamos ter para o nosso aplicativo de autenticao.
+
+6
+00:00:23,410 --> 00:00:25,840
+Ento vamos dar uma olhada neste diagrama aqui.
+
+7
+00:00:25,860 --> 00:00:30,570
+Ento, esta ser a minha sugesto dos diferentes tipos de mutaes que nossa
+
+8
+00:00:30,570 --> 00:00:31,470
+aplicao deveria ter.
+
+9
+00:00:31,860 --> 00:00:37,890
+Eu acho que devemos ter um nico tipo chamado de tipo de usurio e, em seguida,
+
+10
+00:00:37,920 --> 00:00:42,520
+temos trs mutaes diferentes chamadas Registrar-se e inicie sesso no lado da mutao.
+
+11
+00:00:42,540 --> 00:00:45,110
+Aposto que voc pode adivinhar o propsito de cada um desses.
+
+12
+00:00:45,300 --> 00:00:50,880
+Eu quero ser capaz de criar um novo usurio atravs do registro, talvez um nome diferente para essa mutao
+
+13
+00:00:50,880 --> 00:00:52,780
+possa ser algo como criar usurio.
+
+14
+00:00:53,010 --> 00:00:58,740
+Mas eu acho que chamar isso de assinatura d realmente uma conotao muito clara de sua finalidade,
+
+15
+00:00:58,740 --> 00:01:04,650
+porque ns no estamos apenas criando novos usurios, mas tambm estamos autenticando nossos usurios, ao mesmo tempo em
+
+16
+00:01:04,650 --> 00:01:08,220
+que ns estamos considerando eles estar logados com um registro mutao.
+
+17
+00:01:08,220 --> 00:01:09,940
+Aposto que isso faz sentido tambm.
+
+18
+00:01:09,960 --> 00:01:16,110
+Estamos trocando um e-mail ou um nome de usurio e senha para a autenticao do usurio.
+
+19
+00:01:16,410 --> 00:01:21,120
+E ento, com o logout, vamos destruir o estado de autenticao que  realizado entre o
+
+20
+00:01:21,150 --> 00:01:22,270
+cliente e o servidor.
+
+21
+00:01:22,590 --> 00:01:27,630
+O importante lembrar aqui  que as trs so mutaes porque estamos alterando alguns
+
+22
+00:01:27,630 --> 00:01:33,340
+dos dados ou alguns dos estados que existem entre o nosso cliente e o servidor.
+
+23
+00:01:33,880 --> 00:01:36,170
+A ltima coisa  a mutao do usurio.
+
+24
+00:01:36,240 --> 00:01:39,230
+Eu acho que isso pode ou algum tipo de usurio no lado esquerdo.
+
+25
+00:01:39,390 --> 00:01:41,440
+Eu acho que isso faz muito sentido.
+
+26
+00:01:41,580 --> 00:01:48,830
+Voc sabe que estamos lidando com usurios assinemos o login, todos os usurios tero um e-mail e uma senha.
+
+27
+00:01:48,840 --> 00:01:51,570
+Ento eu acho que um tipo de usurio  totalmente irrelevante aqui.
+
+28
+00:01:51,570 --> 00:01:58,890
+Totalmente apropriado tornar esse tipo de usurio e, em seguida, adicion-lo  nossa consulta raiz e talvez o usurio possa olhar para
+
+29
+00:01:58,890 --> 00:02:04,770
+uma lista de usurios diferentes ou um usurio muito particular ou talvez at obter uma referncia apenas para
+
+30
+00:02:04,770 --> 00:02:06,260
+o usurio atual tambm.
+
+31
+00:02:06,270 --> 00:02:10,790
+Ento, essas seriam todas as possveis consultas que adicionaramos ao tipo de consulta.
+
+32
+00:02:11,470 --> 00:02:14,190
+OK, acho que estamos prontos para comear a escrever algum cdigo.
+
+33
+00:02:14,250 --> 00:02:19,320
+Eu quero primeiro comear criando o tipo de usurio e ento, uma vez que criamos esse tipo,
+
+34
+00:02:19,320 --> 00:02:24,780
+podemos comear a nos preocupar com as diferentes mutaes que teremos depois de colocar todos os tipos de
+
+35
+00:02:24,960 --> 00:02:30,510
+mutaes juntos, podemos comear a test-los dentro de grfico e, uma vez que tenhamos certeza de como eles
+
+36
+00:02:30,720 --> 00:02:35,670
+funcionam em grficos, passaremos para o lado do cliente da nossa aplicao e comearemos a trabalhar
+
+37
+00:02:35,670 --> 00:02:36,920
+no lado do reator tambm.
+
+38
+00:02:36,960 --> 00:02:42,600
+Ento, vamos comear primeiro com nosso tipo de usurio e virar para o meu editor de cdigo.
+
+39
+00:02:42,840 --> 00:02:49,880
+Eu vou encontrar a pasta do meu servidor e, em seguida, dentro da pasta do esquema, vou encontrar a pasta de tipos.
+
+40
+00:02:50,370 --> 00:02:56,550
+que chamamos de arquivo de esquema para todos os diferentes tipos de mutaes dentro de nossa aplicao.
+
+41
+00:02:56,550 --> 00:02:58,970
+Ento, no passado, criamos apenas um arquivo
+
+42
+00:02:59,250 --> 00:03:05,070
+Desta vez, eu quero fazer um pouco mais de abordagem modular, onde dividimos todos
+
+43
+00:03:05,070 --> 00:03:08,340
+os diferentes tipos de mutaes em arquivos separados.
+
+44
+00:03:08,340 --> 00:03:15,030
+Ento eu vou fazer um novo arquivo dentro do diretrio de tipos e ns vamos chamar esse tipo de usurio ou
+
+45
+00:03:15,390 --> 00:03:15,830
+usurio,
+
+46
+00:03:20,610 --> 00:03:24,070
+ento comearemos primeiro, importando um par de objetos auxiliares diferentes do grfico.
+
+47
+00:03:24,180 --> 00:03:28,390
+Uma biblioteca e depois pensamos nos diferentes campos que um usurio pode ter.
+
+48
+00:03:28,830 --> 00:03:30,450
+Ento, vamos fazer as nossas importaes no topo.
+
+49
+00:03:30,450 --> 00:03:36,500
+Primeiro vamos pegar o enxerto bem do enxerto.
+
+50
+00:03:36,920 --> 00:03:41,610
+Bem, tambm vamos pegar o enxerto.
+
+51
+00:03:41,610 --> 00:03:44,940
+Q Bom tipo de objeto e enxerto.
+
+52
+00:03:44,940 --> 00:03:53,220
+Q Corda bem do enxerto que voc quer uma biblioteca, voc ama todas estas grficas UL que flutuam.
+
+53
+00:03:53,580 --> 00:03:55,160
+E ento faremos nosso tipo real.
+
+54
+00:03:55,630 --> 00:04:02,430
+Ento, meu tipo de usurio ser um novo tipo de objeto grfico.
+
+55
+00:04:02,800 --> 00:04:10,290
+Certifique-se de que voc obtenha capital Q capital L capital O, tudo em uma fileira l e depois, em vez de definir
+
+56
+00:04:10,320 --> 00:04:14,560
+quaisquer campos em qualquer coisa, eu apenas vou export-lo imediatamente na parte inferior.
+
+57
+00:04:14,610 --> 00:04:17,980
+Ento, um mdulo que exporta  o tipo de usurio.
+
+58
+00:04:18,500 --> 00:04:19,210
+EST BEM.
+
+59
+00:04:19,710 --> 00:04:25,440
+Ento, vamos chegar muito rpido ao mundo para ter de pensar muito exatamente sobre quais campos diferentes, esses
+
+60
+00:04:25,470 --> 00:04:30,690
+diferentes objetos ou diferentes tipos de trabalho, devem ter Lembre-se de que sempre que trabalhamos com
+
+61
+00:04:31,500 --> 00:04:37,230
+um tipo geralmente corresponde a um modelo de tipo em nosso banco de dados ou a uma coleo
+
+62
+00:04:37,230 --> 00:04:40,210
+de dados que fica em nosso banco de dados.
+
+63
+00:04:40,290 --> 00:04:46,270
+A placa na qual estamos fazendo uso agora j possui um modelo de usurio definido dentro dos modelos.
+
+64
+00:04:46,380 --> 00:04:47,160
+Usurio ponto J.
+
+65
+00:04:47,200 --> 00:04:48,010
+Sim arquivo.
+
+66
+00:04:48,150 --> 00:04:54,720
+Ento, vamos abrir isso e olhar com o que o modelo padro est em nosso banco de dados.
+
+67
+00:04:54,720 --> 00:05:01,070
+Atualmente, estamos armazenando apenas o e-mail e a senha associados a cada usurio.
+
+68
+00:05:01,230 --> 00:05:07,830
+Agora, de forma ou forma alguma, realmente faz sentido adicionar a senha aos campos objeto do nosso
+
+69
+00:05:07,830 --> 00:05:09,130
+tipo de usurio.
+
+70
+00:05:09,150 --> 00:05:16,230
+Nunca penso em uma nica situao em que eu quero, por qualquer motivo, expor o campo de senha de
+
+71
+00:05:16,230 --> 00:05:18,240
+qualquer um dos meus usurios.
+
+72
+00:05:18,360 --> 00:05:23,120
+Mesmo que a senha como salva no banco de dados seja insultada.
+
+73
+00:05:23,120 --> 00:05:25,790
+Portanto, a senha no est em texto simples no banco de dados.
+
+74
+00:05:25,800 --> 00:05:30,470
+No entanto, no consigo pensar em um nico motivo para expor isso ao mundo exterior.
+
+75
+00:05:30,480 --> 00:05:32,260
+E meu grfico voc todos os esquemas.
+
+76
+00:05:32,580 --> 00:05:38,300
+Ento, acho que, no que diz respeito ao meu tipo de usurio, o nico campo que eu realmente me interessa  o campo de e-mail.
+
+77
+00:05:38,370 --> 00:05:44,130
+Como talvez seja totalmente razovel compartilhar o e-mail de um usurio com outros usurios dentro do aplicativo.
+
+78
+00:05:44,250 --> 00:05:47,950
+Ento exponho o campo de e-mail para todos os outros.
+
+79
+00:05:48,390 --> 00:05:56,310
+usurio e ns definiremos a propriedade do nome e a propriedade dos campos nela primeiro definir a propriedade do nome do
+
+80
+00:05:56,310 --> 00:06:03,930
+tipo de usurio e, em seguida, a propriedade dos campos tornar um endereo de e-mail porque faz sentido compartilhar e-mails.
+
+81
+00:06:03,930 --> 00:06:06,760
+Ento eu vou pegar o meu tipo de
+
+82
+00:06:06,780 --> 00:06:12,930
+Claro, se voc est fazendo o aplicativo onde voc deseja limitar a capacidade dos usurios para ver outros endereos de
+
+83
+00:06:12,930 --> 00:06:16,850
+e-mail de usurios, talvez voc no deseje ter o campo de e-mail aqui.
+
+84
+00:06:16,860 --> 00:06:21,000
+Ento, ele se resume  sua aplicao especfica.
+
+85
+00:06:21,000 --> 00:06:26,650
+Ento, meu e-mail tenho que especificar o tipo que ser uma string grfica.
+
+86
+00:06:26,970 --> 00:06:31,640
+E novamente, certifique-se de obter essa Q Q de capital l dentro.
+
+87
+00:06:31,810 --> 00:06:37,210
+OK, acho que isso parece bastante razovel, temos o incio de um tipo de usurio aqui.
+
+88
+00:06:37,410 --> 00:06:40,170
+Eu no acho que realmente precisamos adicionar mais nada aqui por agora.
+
+89
+00:06:40,170 --> 00:06:44,220
+Novamente, estamos apenas preocupados com a autenticao nesta fase do aplicativo.
+
+90
+00:06:44,280 --> 00:06:52,280
+Portanto, um usurio no vai ter amigos ou fazer ou vdeos ou livros ou qualquer outro tipo de dados.
+
+91
+00:06:52,320 --> 00:06:55,380
+Um usurio s ter um endereo de e-mail.
+
+92
+00:06:55,620 --> 00:07:00,840
+E, de forma realista, agora, estou fazendo apenas esse tipo de usurio para que possamos procurar todos
+
+93
+00:07:00,840 --> 00:07:05,800
+os diferentes usurios em nosso aplicativo e obter uma lista deles e voc sabe obter coisas assim.
+
+94
+00:07:05,820 --> 00:07:10,230
+Ento vamos dar uma pausa rpida e ento vamos voltar e comear a trabalhar
+
+95
+00:07:10,260 --> 00:07:12,340
+nas diferentes mutaes dentro de nossa aplicao.
+

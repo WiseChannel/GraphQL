@@ -1,0 +1,216 @@
+1
+00:00:00,840 --> 00:00:02,590
+Our application is looking pretty good.
+
+2
+00:00:02,610 --> 00:00:08,490
+And I think there's just one last big part that we have to do every single letter that we have should
+
+3
+00:00:08,490 --> 00:00:10,350
+have the ability to like it.
+
+4
+00:00:10,410 --> 00:00:16,200
+So a user should have some button over here where they can click to like an individual lyric let's look
+
+5
+00:00:16,200 --> 00:00:19,950
+back at our mock up just to make sure that we're still on the same page.
+
+6
+00:00:19,950 --> 00:00:25,080
+So here is my lyric list component and we're saying that every single lyric should have a big thumbs
+
+7
+00:00:25,080 --> 00:00:27,060
+up where the user can click.
+
+8
+00:00:27,060 --> 00:00:30,270
+So let's start taking care of that inside of this section.
+
+9
+00:00:30,510 --> 00:00:34,210
+The path we're tackling this will be just as we've done in the past.
+
+10
+00:00:34,230 --> 00:00:39,630
+We're talking about modifying or updating a piece of data on our back and so we immediately want to
+
+11
+00:00:39,630 --> 00:00:44,270
+start thinking nutation we want to mutate the data on our backend.
+
+12
+00:00:45,030 --> 00:00:50,850
+So we're going to first pleasurably place the eye on here probably place an event handler on it and
+
+13
+00:00:50,850 --> 00:00:57,210
+then we will flip over to graphical and start working on writing out the mutation inside of graphical.
+
+14
+00:00:57,210 --> 00:00:59,040
+So let's get started.
+
+15
+00:00:59,040 --> 00:01:04,740
+I'm going to flip over first to my code editor and find my lyric list component.
+
+16
+00:01:04,740 --> 00:01:06,110
+Here it is right here.
+
+17
+00:01:06,570 --> 00:01:13,160
+So my goal is to show a icon inside of the slide that is being rendered for each lyric.
+
+18
+00:01:13,350 --> 00:01:18,520
+We've done lyrics set and we've done icons several times in this application now.
+
+19
+00:01:18,840 --> 00:01:23,240
+So I'm going to add on a little icon in here that will show the lyric for us.
+
+20
+00:01:23,280 --> 00:01:31,050
+I keep saying lyrics that will show the icon for us excuse me in a place my I'd tag I'm going to give
+
+21
+00:01:31,050 --> 00:01:41,370
+it a class name of material icons and then the icon name I want to make use of is thumb up again.
+
+22
+00:01:41,370 --> 00:01:46,590
+Remember that the material icons library that we're making use of expects us to put the name of the
+
+23
+00:01:46,590 --> 00:01:48,210
+icon that we want right here.
+
+24
+00:01:48,210 --> 00:01:51,460
+I am not arbitrarily making up the name of the icon.
+
+25
+00:01:51,600 --> 00:01:55,490
+This is coming from a list of different icons that are available.
+
+26
+00:01:56,090 --> 00:02:01,620
+So now we can attach an event handler to this right here and whenever a user clicks on it it will call
+
+27
+00:02:01,620 --> 00:02:05,630
+our mutation just give myself a little bit more space.
+
+28
+00:02:05,640 --> 00:02:08,670
+I'm going to New Line the list of props like so
+
+29
+00:02:11,780 --> 00:02:13,030
+I know that's a little bit ugly.
+
+30
+00:02:13,040 --> 00:02:15,410
+But again I'm kind of a space constrained here.
+
+31
+00:02:15,620 --> 00:02:19,710
+If you want to you can probably keep a lot of this on a single line yourself.
+
+32
+00:02:19,910 --> 00:02:26,840
+So add on our event handler on click and the thing to keep in mind here is that we're in the same situation
+
+33
+00:02:26,870 --> 00:02:29,870
+as we were previously with our list of songs.
+
+34
+00:02:30,110 --> 00:02:36,770
+So the unclick handler that we're going to call needs to know about the ID of the lyric that we're trying
+
+35
+00:02:36,770 --> 00:02:37,840
+to like.
+
+36
+00:02:37,880 --> 00:02:45,210
+So rather than just saying oh yeah call this dot on like stop buying this or something like that.
+
+37
+00:02:45,260 --> 00:02:50,950
+We're going to use an arrow function where we can pass in the I.D. of the like.
+
+38
+00:02:50,970 --> 00:02:54,230
+That works to me the lyric that we're trying to like into the function.
+
+39
+00:02:54,800 --> 00:03:02,540
+So we're going to use an arrow function and we'll say this dot on like it will pass in the ID of the
+
+40
+00:03:02,540 --> 00:03:07,230
+lyric that we're trying to make use of.
+
+41
+00:03:07,260 --> 00:03:13,580
+So we now need to define the event handler on light come up and define it up here.
+
+42
+00:03:13,830 --> 00:03:18,200
+I'll say on light it's going to be called with the lyric ID.
+
+43
+00:03:18,540 --> 00:03:22,020
+And OK I think that's pretty good right now.
+
+44
+00:03:22,050 --> 00:03:23,950
+I'm going to add in just to console log.
+
+45
+00:03:24,030 --> 00:03:27,350
+Make sure everything is working the way we expect.
+
+46
+00:03:27,470 --> 00:03:29,470
+I'll flip back over to my code editor.
+
+47
+00:03:29,670 --> 00:03:32,150
+I'm going to refresh the application.
+
+48
+00:03:32,430 --> 00:03:35,160
+It looks like it's OK it's definitely looking pretty good right now.
+
+49
+00:03:35,160 --> 00:03:36,480
+That's nice.
+
+50
+00:03:36,480 --> 00:03:39,070
+I'll click on the thing and all right.
+
+51
+00:03:39,120 --> 00:03:42,730
+Looks like we're definitely getting the ID of the lyric that we're clicking on.
+
+52
+00:03:44,730 --> 00:03:48,900
+Looks like a pretty good place to take a quick pause because mutation that we're going to deal with
+
+53
+00:03:48,900 --> 00:03:51,660
+here is going to be a little bit more complex than you might think.
+
+54
+00:03:51,660 --> 00:03:56,160
+So let's take a quick break come back and start working on the mutation side of graphical.
+

@@ -1,0 +1,452 @@
+1
+00:00:00,670 --> 00:00:04,710
+Ns estvamos apenas trabalhando em relacionar empresas com usurios.
+
+2
+00:00:04,770 --> 00:00:11,480
+Criamos um novo campo de empresa no tipo de usurio e dissemos que seria da empresa tipo.
+
+3
+00:00:11,490 --> 00:00:15,600
+Nosso prximo passo ser encontrar uma funo de resultado nesta propriedade.
+
+4
+00:00:15,660 --> 00:00:21,630
+To grapeado quem sabe como encontrar a empresa que est associada a um determinado usurio.
+
+5
+00:00:21,630 --> 00:00:25,470
+A grande coisa que eles querem que voc tenha em mente agora como
+
+6
+00:00:25,470 --> 00:00:31,920
+todo esse tipo de dor de cabea que estamos passando na ltima seo e este  tudo sobre ensinar o enxerto bem como
+
+7
+00:00:31,920 --> 00:00:38,220
+levar um usurio como um usurio com identificao 23 e encontre sua empresa associada e  isso que estamos tentando fazer aqui.
+
+8
+00:00:38,220 --> 00:00:43,930
+Queremos ensinar muito bem a Kraft a andar de um usurio para uma empresa.
+
+9
+00:00:44,070 --> 00:00:47,730
+Portanto, mantenha isso em mente e continuemos.
+
+10
+00:00:47,790 --> 00:00:52,080
+H uma coisa que gostaria de contar antes de comear a escrever a
+
+11
+00:00:52,560 --> 00:00:57,570
+funo de resultado, no entanto, observamos que, no tipo de usurio, chamamos essa empresa de campo.
+
+12
+00:00:57,780 --> 00:01:03,040
+ interessante se voltarmos e olhar para um dos diagramas com os quais estamos trabalhando.
+
+13
+00:01:03,040 --> 00:01:04,380
+Est aqui mesmo.
+
+14
+00:01:04,380 --> 00:01:10,530
+Ns dissemos que cada usurio tinha uma idade de nome de identificao e a empresa Heidi.
+
+15
+00:01:10,950 --> 00:01:17,970
+Portanto, todos os outros nomes de propriedade em nosso tipo de usurio permanecem os mesmos, mas a ID da empresa parece
+
+16
+00:01:17,970 --> 00:01:21,790
+alterar de forma arbitrria a identificao da empresa para a empresa.
+
+17
+00:01:21,900 --> 00:01:23,690
+Por que conseguimos sair com isso?
+
+18
+00:01:23,890 --> 00:01:25,980
+Voc sabe o que quer dizer, se ns tivssemos que fazer outra coisa.
+
+19
+00:01:25,980 --> 00:01:28,310
+Por que fomos capazes de abandonar a idia.
+
+20
+00:01:28,320 --> 00:01:33,200
+Como eu esperava que tivesse que colocar a ID da empresa aqui, mas, em vez disso, dissemos uma empresa.
+
+21
+00:01:33,630 --> 00:01:36,960
+Ento vamos falar um pouco sobre o motivo pelo qual podemos sair com isso.
+
+22
+00:01:37,710 --> 00:01:43,010
+Neste diagrama, temos dois lados do lado esquerdo lado direito do lado esquerdo.
+
+23
+00:01:43,080 --> 00:01:44,650
+Ns temos o modelo de usurio.
+
+24
+00:01:44,670 --> 00:01:48,260
+Portanto, isso representa os dados que vem do nosso servidor Sun.
+
+25
+00:01:48,270 --> 00:01:56,130
+ o nosso dado muito real que presumivelmente vem de uma API ou nosso banco de dados no lado direito  nosso tipo
+
+26
+00:01:56,190 --> 00:02:01,390
+de usurio, o tipo de usurio  o que definimos dentro do nosso arquivo de esquema.
+
+27
+00:02:01,830 --> 00:02:06,330
+E eu digo das setas e, neste meio, voc pode achar onde eu vou com isso quando os
+
+28
+00:02:06,900 --> 00:02:12,540
+dados que esto vindo do nosso banco de dados ou o modelo do usurio tiverem uma propriedade com o mesmo nome para
+
+29
+00:02:12,540 --> 00:02:13,560
+o tipo de usurio.
+
+30
+00:02:13,560 --> 00:02:16,420
+No precisamos fazer nenhum trabalho.
+
+31
+00:02:16,480 --> 00:02:21,760
+Graft Well s vai dizer OK, os dados recebidos tm uma ID. Eu deveria ter um ID.
+
+32
+00:02:21,810 --> 00:02:24,110
+Eu acho que esse  o uso ideal.
+
+33
+00:02:24,600 --> 00:02:26,470
+Os dados recebidos possuem um primeiro nome.
+
+34
+00:02:26,580 --> 00:02:29,640
+Eu tenho um primeiro nome, eu usarei seu primeiro nome com a idade.
+
+35
+00:02:29,640 --> 00:02:37,230
+No entanto, quando se trata da ID da empresa, o tipo de usurio dentro do nosso esquema  o lado do grfico Q L
+
+36
+00:02:37,230 --> 00:02:39,010
+das coisas aqui no lado direito.
+
+37
+00:02:39,330 --> 00:02:45,990
+Isso diz que OK eu tenho uma empresa, mas os dados recebidos no possuem registro da empresa ou no
+
+38
+00:02:45,990 --> 00:02:47,640
+possuem uma propriedade da empresa.
+
+39
+00:02:47,640 --> 00:02:54,750
+Ento, onde eu deveria sumar meus dados para ensinar Kraft bem como obter alguns dados para preencher esta
+
+40
+00:02:54,750 --> 00:02:56,310
+propriedade da empresa com.
+
+41
+00:02:56,460 --> 00:02:59,230
+Definimos a funo de resoluo.
+
+42
+00:02:59,280 --> 00:03:05,130
+Portanto, lembre-se de que o propsito das funes de resultado  como o nome dele mesmo  muito
+
+43
+00:03:05,130 --> 00:03:12,120
+bem servido, assim, resolve as diferenas entre o Jaison entrante ou o modelo de dados recebidos e o tipo de dados real
+
+44
+00:03:12,120 --> 00:03:13,810
+que estamos tentando usar aqui.
+
+45
+00:03:14,280 --> 00:03:21,210
+Ento, vamos usar a funo de resultado para preencher esta propriedade da empresa logo no final do
+
+46
+00:03:21,210 --> 00:03:21,770
+dia.
+
+47
+00:03:21,840 --> 00:03:26,100
+Ns realmente estamos fazendo apenas tentando buscar a empresa com base no servidor.
+
+48
+00:03:26,190 --> 00:03:31,140
+voc tivesse em mente exatamente por que conseguimos sair com a renomeao da propriedade desta empresa.
+
+49
+00:03:31,140 --> 00:03:32,920
+Mas novamente eu s queria que
+
+50
+00:03:33,420 --> 00:03:35,580
+Ento, est em nossa funo de resultados.
+
+51
+00:03:35,670 --> 00:03:39,680
+Vamos pegar o nosso valor e args pai.
+
+52
+00:03:39,990 --> 00:03:42,270
+E novamente, eu sei que j disse trs vezes agora.
+
+53
+00:03:42,270 --> 00:03:49,880
+O nosso trabalho  de alguma forma devolver a empresa associada ao determinado usurio dessa funo de resultado.
+
+54
+00:03:49,890 --> 00:03:54,680
+Agora eu no sei sobre voc, mas esse tipo de parece ser uma tarefa impossvel.
+
+55
+00:03:54,750 --> 00:03:57,370
+Eu no sei como fazer isso, ento vou te dizer o que  o que faremos.
+
+56
+00:03:57,600 --> 00:04:01,490
+Vamos adicionar a declarao de bloqueio do console, vamos ver o valor do pai no ARX.
+
+57
+00:04:01,530 --> 00:04:07,500
+Vamos apenas ver esses valores e ver se h algo sobre esses objetos em relao a esses argumentos
+
+58
+00:04:07,500 --> 00:04:11,420
+que podem nos ajudar a buscar a empresa associada ao determinado usurio.
+
+59
+00:04:11,820 --> 00:04:16,620
+Ento, vou dizer este arquivo, vou verificar meu terminal para ter certeza de que no tenho erros de digitao.
+
+60
+00:04:16,620 --> 00:04:18,330
+Parece que eu no estou bem.
+
+61
+00:04:18,870 --> 00:04:22,770
+Eu vou voltar para grfico e eu vou apenas executar a consulta.
+
+62
+00:04:22,920 --> 00:04:23,420
+EST BEM.
+
+63
+00:04:23,520 --> 00:04:24,030
+Parece bom.
+
+64
+00:04:24,030 --> 00:04:25,340
+Nome Bill.
+
+65
+00:04:25,350 --> 00:04:30,870
+Uma coisa rpida se voc vir uma mensagem aqui que diz que algo como no pode encontrar a propriedade de
+
+66
+00:04:30,900 --> 00:04:32,130
+Noal ou algo assim.
+
+67
+00:04:32,370 --> 00:04:40,650
+Tudo o que voc precisa fazer  excluir o primeiro nome do tipo de leitura e redigitar a consulta e deve resolver para
+
+68
+00:04:40,650 --> 00:04:41,070
+voc.
+
+69
+00:04:41,070 --> 00:04:45,840
+Ento, se voc vir um erro aqui e ns gostamos de algo sobre nulo, basta ler o primeiro nome do tipo.
+
+70
+00:04:45,870 --> 00:04:48,000
+ um pequeno bug com grfico.
+
+71
+00:04:48,000 --> 00:04:49,610
+No se preocupe com isso.
+
+72
+00:04:50,310 --> 00:04:56,820
+podemos executar essa funo de resoluo perguntando pela empresa e especificamente pela idia da empresa.
+
+73
+00:04:56,820 --> 00:04:57,300
+Agora
+
+74
+00:04:57,330 --> 00:05:01,540
+Ento, ns ainda no assinamos essa coisa aqui, ento eu no espero que ela realmente funcione.
+
+75
+00:05:01,540 --> 00:05:08,380
+Tudo o que eu quero fazer , de alguma forma, desencadear que a funo de resoluo que acabamos de escrever fazendo uma
+
+76
+00:05:08,380 --> 00:05:14,950
+pergunta sobre o subgrupo da empresa, a QOL, no tentar encontrar ou resolver este campo da empresa se no o solicitarmos.
+
+77
+00:05:14,950 --> 00:05:20,320
+ por isso que estamos apenas pedindo isso aqui dentro da consulta que far funcionar a funo de resoluo para
+
+78
+00:05:20,320 --> 00:05:21,280
+que possamos executar isso.
+
+79
+00:05:21,410 --> 00:05:22,720
+Ok, ns conseguimos uma empresa de nulo.
+
+80
+00:05:22,750 --> 00:05:28,750
+eu esperava e o log do console que adicionamos a essa funo de resoluo deveria aparecer no nosso terminal.
+
+81
+00:05:28,750 --> 00:05:30,040
+Isso  o que
+
+82
+00:05:30,040 --> 00:05:38,870
+Ento, aqui est o slug do conselho, parece que o primeiro argumento que  o valor do pai  o usurio que acabamos
+
+83
+00:05:38,930 --> 00:05:44,300
+de obter e o usurio possui um ID de empresa de propriedade de um.
+
+84
+00:05:44,420 --> 00:05:44,970
+Ento  isso.
+
+85
+00:05:44,990 --> 00:05:48,670
+ assim que vamos conseguir a empresa associada a um determinado usurio.
+
+86
+00:05:48,710 --> 00:05:52,020
+Podemos observar a identificao da empresa de ces do valor dos pais.
+
+87
+00:05:52,190 --> 00:05:56,420
+Essa  a idia da empresa que estamos tentando buscar e podemos contactar o
+
+88
+00:05:56,420 --> 00:06:01,370
+nosso Geass no servidor e busc-la atravs de uma solicitao Ajax ou uma solicitao de rede.
+
+89
+00:06:01,370 --> 00:06:03,570
+Ento vamos retirar o log do console.
+
+90
+00:06:03,890 --> 00:06:12,950
+Em vez disso, faremos outra solicitao de rede do tipo Axel, iremos aos nossos hosts locais 3000, que  o
+
+91
+00:06:12,950 --> 00:06:20,880
+nosso servidor J-Zone e estvamos apenas a olhar para como buscar uma empresa especfica fora do servidor Sun.
+
+92
+00:06:21,020 --> 00:06:26,840
+Podemos dizer que as barras de empresas reduzem e, em seguida, a ideia da
+
+93
+00:06:26,840 --> 00:06:30,830
+empresa que desejamos obter, que ser o valor do pai.
+
+94
+00:06:31,430 --> 00:06:37,160
+Agora, duas coisas rpidas lembrar que devemos retornar esse pedido para que eu possa
+
+95
+00:06:37,160 --> 00:06:45,590
+colocar minha declarao de retorno l e depois apenas por causa de um pouco de incompatibilidade entre ASIO e o que
+
+96
+00:06:45,590 --> 00:06:54,180
+graphed espera obter como resposta, vamos encadear sobre isso rez com dados de ponto rez como to OK, vamos dar uma chance.
+
+97
+00:06:54,610 --> 00:06:59,630
+Eu vou mudar de volta para grfico ou executar novamente a consulta e hot dog.
+
+98
+00:06:59,710 --> 00:07:01,570
+Temos a idia da empresa.
+
+99
+00:07:01,630 --> 00:07:07,620
+Ns tambm devemos agora usar o nome e a descrio tambm.
+
+100
+00:07:08,150 --> 00:07:10,220
+E ns pegamos Apple um iPhone.
+
+101
+00:07:10,430 --> 00:07:16,480
+Agora, eu tambm posso dizer procurar o usurio 40 e obter o Google e suas descries de pesquisa.
+
+102
+00:07:16,490 --> 00:07:20,390
+E ento tambm tive uma ideia de 41 que  o meu usurio genrico.
+
+103
+00:07:20,420 --> 00:07:25,190
+Tenha em mente que, se voc deu a seus usurios diferentes IDs, voc precisar inserir os IDs
+
+104
+00:07:25,190 --> 00:07:26,210
+que voc usou aqui.
+
+105
+00:07:26,720 --> 00:07:27,640
+Ento parece bom.
+
+106
+00:07:27,640 --> 00:07:33,950
+Parece que temos associado corretamente ao nosso usurio junto com nossa empresa.
+
+107
+00:07:34,940 --> 00:07:40,760
+Ento, cobrimos um monte de material nas ltimas sees e eu sinto que agora, em particular
+
+108
+00:07:41,210 --> 00:07:46,280
+tipo de entendimento, como podemos associar o tipo de usurio com a empresa provavelmente
+
+109
+00:07:46,280 --> 00:07:47,720
+foi um pouco intenso.
+
+110
+00:07:47,750 --> 00:07:53,180
+Ento, vamos para a prxima seo, vamos dar um rpido suspiro e vamos rever todos os
+
+111
+00:07:53,180 --> 00:07:56,840
+conceitos diferentes com os quais trabalhamos dentro da prxima seo.
+
+112
+00:07:57,160 --> 00:07:59,910
+Ento, faremos uma reviso rpida e continuaremos depois disso.
+
+113
+00:08:00,020 --> 00:08:01,440
+Ento vamos ver em apenas um momento.
+

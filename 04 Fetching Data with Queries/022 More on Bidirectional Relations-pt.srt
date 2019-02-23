@@ -1,0 +1,244 @@
+1
+00:00:01,170 --> 00:00:05,970
+Agora que sabemos como obter uma lista de todos os usurios associados  empresa do
+
+2
+00:00:05,970 --> 00:00:13,110
+servidor Arjay Sun, podemos atualizar nosso arquivo de esquema para ensinar ao tipo de empresa sobre como ir de uma empresa para
+
+3
+00:00:13,110 --> 00:00:14,570
+uma lista de usurios.
+
+4
+00:00:14,950 --> 00:00:16,450
+Ento eu tenho que encontrar meu tipo de empresa.
+
+5
+00:00:16,530 --> 00:00:19,200
+Aqui est na propriedade Fields.
+
+6
+00:00:19,200 --> 00:00:23,810
+Vamos adicionar em uma nova propriedade chamada usurios.
+
+7
+00:00:23,820 --> 00:00:29,040
+Ento, a configurao que colocamos neste objeto aqui vai ensinar o enxerto
+
+8
+00:00:29,040 --> 00:00:34,450
+bem como passar de uma nica empresa para uma lista de usurios.
+
+9
+00:00:34,560 --> 00:00:37,160
+Aposto que voc poderia adivinhar as propriedades sero definidas aqui.
+
+10
+00:00:37,170 --> 00:00:42,210
+Ns vamos ter um tipo so os nossos, talvez voc saiba, talvez voc tenha args e
+
+11
+00:00:42,210 --> 00:00:43,900
+tambm adicionaremos a funo de resultado.
+
+12
+00:00:44,100 --> 00:00:49,350
+Agora, voc no pensaria que devemos colocar aqui para o tipo que voc pode estar pensando bem, isso
+
+13
+00:00:49,350 --> 00:00:51,030
+vai ser um direito de usurio.
+
+14
+00:00:51,030 --> 00:00:54,710
+Ento, colocamos o tipo de usurio e voc est muito correto.
+
+15
+00:00:54,710 --> 00:00:57,020
+H um pouco aqui aqui.
+
+16
+00:00:57,360 --> 00:01:03,750
+empresa para um usurio, lembre-se de que temos muitos usurios associados a uma nica empresa que temos.
+
+17
+00:01:03,750 --> 00:01:05,070
+Quando passamos de uma
+
+18
+00:01:05,070 --> 00:01:09,690
+Voc pode dizer uma lista de usurios ou uma coleo de usurios.
+
+19
+00:01:09,960 --> 00:01:12,140
+Temos que dizer bem grafico que ser.
+
+20
+00:01:12,150 --> 00:01:18,240
+Deve esperar para voltar a uma lista de usurios como vrios usurios que sero associados
+
+21
+00:01:18,240 --> 00:01:20,690
+a uma nica empresa para faz-lo.
+
+22
+00:01:20,730 --> 00:01:27,950
+Ns levamos nosso tipo de usurio e o envolvemos com algo chamado uma lista de QV de grfico.
+
+23
+00:01:28,500 --> 00:01:33,910
+Ento, dizemos uma nova lista de QV de grfico e depois passamos no nosso tipo de usurio.
+
+24
+00:01:33,910 --> 00:01:39,300
+empresa para um usurio, vamos ter vrios usurios associados a essa empresa.
+
+25
+00:01:39,390 --> 00:01:43,950
+Novamente isso diz graficamente bem que, quando passamos de uma
+
+26
+00:01:44,160 --> 00:01:47,460
+No esquea que apenas usamos esse grfico para uma propriedade de lista tambm.
+
+27
+00:01:47,490 --> 00:01:49,880
+Precisamos garantir que a estruturamos.
+
+28
+00:01:49,880 --> 00:01:52,970
+Voc tambm o estrutura do grfico para uma biblioteca.
+
+29
+00:01:53,040 --> 00:01:58,630
+Ento, vou dizer uma lista grfica to legal.
+
+30
+00:01:59,090 --> 00:02:03,680
+Ento, agora, nosso segundo passo, precisamos nos preocupar com qualquer ARX.
+
+31
+00:02:03,680 --> 00:02:06,260
+Existem argumentos que esperamos entrar.
+
+32
+00:02:06,710 --> 00:02:08,990
+Bem, na verdade no.
+
+33
+00:02:08,990 --> 00:02:12,320
+Esta no  uma consulta que estamos fazendo diretamente para o tipo de empresa.
+
+34
+00:02:12,320 --> 00:02:15,160
+Voc sabe que estamos dizendo que vo da empresa para o usurio.
+
+35
+00:02:15,160 --> 00:02:16,920
+Eu realmente no espero que eu.
+
+36
+00:02:17,020 --> 00:02:22,780
+O desenvolvedor deve ter que passar em qualquer argumento para descobrir o conjunto de usurios que eu quero aqui.
+
+37
+00:02:22,790 --> 00:02:25,310
+Ento eu no acho que precisamos de args aqui.
+
+38
+00:02:25,310 --> 00:02:28,210
+Ento eu acho que precisamos apenas da funo de resultado.
+
+39
+00:02:28,220 --> 00:02:35,150
+funo de resultado so o valor pai e os ARGs, de vez em quando dentro daqui, podemos fazer nosso pedido
+
+40
+00:02:35,180 --> 00:02:41,600
+para a API do servidor Jaison e obter nossa lista de usurios associados a ele com a empresa atual.
+
+41
+00:02:41,600 --> 00:02:44,010
+Lembre-se de que os argumentos para a
+
+42
+00:02:44,990 --> 00:02:50,630
+Como um lembrete para obter uma referncia para a empresa atual, como a empresa atual que j buscamos e
+
+43
+00:02:50,630 --> 00:02:54,650
+estamos trabalhando com ns, olhamos para este objeto de valor de pai aqui.
+
+44
+00:02:54,890 --> 00:02:59,720
+Portanto, o valor do pai  a instncia da empresa com a qual estamos trabalhando.
+
+45
+00:02:59,720 --> 00:03:01,830
+Ento, diga que Axel no consegue.
+
+46
+00:03:02,060 --> 00:03:11,360
+Ns usamos um modelo de cadeia de novo um logotipo TTP whoas 3000 empresas e depois usaremos
+
+47
+00:03:11,360 --> 00:03:12,230
+esse id.
+
+48
+00:03:12,650 --> 00:03:16,410
+Ento, os pais esto processando o valor do valor do ponto I. D. Ento este  o I. D. da empresa que estamos atualmente considerando usurios slash.
+
+49
+00:03:16,820 --> 00:03:23,070
+Isso me d todos os usurios que esto associados a essa empresa muito particular.
+
+50
+00:03:23,080 --> 00:03:29,600
+Ento, novamente, temos que colocar esse pouco de camada de compatibilidade entre o ASIO e a gravidade bem.
+
+51
+00:03:29,900 --> 00:03:34,640
+Ento, vamos dizer Dot do que os dados do rez dot como assim.
+
+52
+00:03:34,660 --> 00:03:41,300
+Tudo bem.
+
+53
+00:03:41,350 --> 00:03:41,980
+Acho que isso parece ser bom.
+
+54
+00:03:42,250 --> 00:03:43,690
+Eu vou verificar o meu terminal e ter certeza de que no temos erros.
+
+55
+00:03:43,720 --> 00:03:46,760
+Ento, viremos aqui e parece que temos algo acontecendo.
+
+56
+00:03:46,840 --> 00:03:51,470
+Se eu rolar um pouco, ele diz que o erro de referncia do tipo de usurio no est definido.
+
+57
+00:03:51,760 --> 00:03:56,620
+Hmm, isso  definitivamente interessante.
+
+58
+00:03:56,850 --> 00:03:59,440
+Aqui est o nosso tipo de empresa aqui  o tipo de usurio e definitivamente no definimos nosso tipo de usurio.
+
+59
+00:04:00,410 --> 00:04:05,490
+Bem, vamos pausar por apenas um momento e voltaremos e tentaremos descobrir exatamente o
+
+60
+00:04:05,740 --> 00:04:10,850
+que deu errado aqui e por que estamos recebendo essa mensagem de erro desagradvel.
+
+61
+00:04:10,850 --> 00:04:13,880
+&nbsp;
+

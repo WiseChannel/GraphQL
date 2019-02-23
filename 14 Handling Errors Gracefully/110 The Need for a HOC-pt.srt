@@ -1,0 +1,168 @@
+1
+00:00:00,610 --> 00:00:06,090
+Na ltima seo, reconhecemos que o componente do painel que acabamos de criar no est realmente
+
+2
+00:00:06,090 --> 00:00:09,290
+rastreando devidamente se estamos ou no inseridos no aplicativo.
+
+3
+00:00:09,480 --> 00:00:14,550
+Ento, mesmo que eu esteja na rota do painel agora mesmo, tambm no estou firmado em que definitivamente no
+
+4
+00:00:14,550 --> 00:00:15,610
+ a inteno aqui.
+
+5
+00:00:15,960 --> 00:00:20,670
+Ento, para ter certeza de que temos uma boa idia de como esperamos que a autenticao funcione no
+
+6
+00:00:20,670 --> 00:00:22,630
+nosso aplicativo, vejamos um diagrama rpido aqui.
+
+7
+00:00:23,010 --> 00:00:26,910
+Ento, no lado esquerdo, temos uma lista dos dois componentes diferentes que atualmente
+
+8
+00:00:27,000 --> 00:00:31,090
+temos onde qualquer pessoa pode ir independentemente de estar ou no autenticada atualmente.
+
+9
+00:00:31,090 --> 00:00:34,460
+E, claro, esse ser o formulrio de login e o formulrio de inscrio.
+
+10
+00:00:34,980 --> 00:00:41,550
+Por outro lado,  uma lista de componentes onde somente os usurios autenticados podem seguir depois de
+
+11
+00:00:41,550 --> 00:00:43,250
+ter entrado em nosso aplicativo.
+
+12
+00:00:43,340 --> 00:00:46,590
+Ns temos um componente de painel e ento s estou fazendo isso.
+
+13
+00:00:46,590 --> 00:00:50,100
+Estou apenas lanando um exemplo aqui, ns realmente no temos esses componentes.
+
+14
+00:00:50,100 --> 00:00:56,760
+Estou apenas dizendo, por exemplo, que tambm possamos ter uma pgina de configuraes de conta e uma pgina de perfil
+
+15
+00:00:56,760 --> 00:01:00,910
+onde um usurio s pode ir se estiver autenticado dentro de nossa aplicao.
+
+16
+00:01:00,930 --> 00:01:06,390
+componentes diferentes dentro do nosso aplicativo que precisam estar cientes do status de autenticao do usurio.
+
+17
+00:01:06,420 --> 00:01:11,580
+Ento, eu quero dizer que voc mostra com este diagrama aqui  que podemos ter vrios
+
+18
+00:01:11,640 --> 00:01:17,610
+Portanto, vrias rotas diferentes precisam garantir que o usurio esteja autenticado antes de
+
+19
+00:01:17,610 --> 00:01:19,260
+poderem visitar esse componente.
+
+20
+00:01:19,260 --> 00:01:20,660
+Todos estes trs.
+
+21
+00:01:21,390 --> 00:01:26,580
+Ento, o que isso significa para mim ou esse tipo de me diz pessoalmente que
+
+22
+00:01:26,580 --> 00:01:33,330
+no quero amarrar nenhuma lgica especfica de autenticao a qualquer componente individual porque no quero copiar colar um monte
+
+23
+00:01:33,330 --> 00:01:39,480
+de lgica do painel para as configuraes da conta para a pgina de perfil, decidindo se o usurio
+
+24
+00:01:39,480 --> 00:01:43,790
+precisa ou no ser redirecionado com base no status de autenticao atual.
+
+25
+00:01:43,860 --> 00:01:50,430
+Em vez disso, eu quero tomar todo esse cdigo que vai ser tudo sobre descobrir o estado de
+
+26
+00:01:50,430 --> 00:01:56,850
+autenticao atual do usurio e eu quero preench-lo em uma localizao centralizada e depois reutiliz-lo atravs desses trs
+
+27
+00:01:56,850 --> 00:01:58,120
+componentes diferentes aqui.
+
+28
+00:01:58,140 --> 00:02:03,780
+Ento, eu quero ter uma quantidade reutilizvel de cdigo que determina o que fazer com base
+
+29
+00:02:03,780 --> 00:02:12,570
+no status de autenticao do usurio para lidar com o cdigo reutilizvel, como este dentro de re-agir, o clssico para a soluo  um
+
+30
+00:02:12,570 --> 00:02:16,140
+componente de ordem superior ou uma agncia ou um falco.
+
+31
+00:02:16,170 --> 00:02:21,900
+aqui para lidar com a autenticao entre diferentes componentes dentro do nosso aplicativo, que todos precisam se
+
+32
+00:02:21,900 --> 00:02:26,880
+certificar de que o usurio est autenticado antes de poderem visitar esse componente especfico.
+
+33
+00:02:26,880 --> 00:02:28,840
+Ento,  isso que vamos usar
+
+34
+00:02:29,070 --> 00:02:35,170
+Ento, vamos criar algo chamado de componente requisito de ordem superior.
+
+35
+00:02:35,190 --> 00:02:38,230
+Agora, se voc no est familiarizado com os componentes de ordem superior, est OK.
+
+36
+00:02:38,280 --> 00:02:43,770
+Eu no vou entrar neles com grande detalhe apenas porque esta  uma espcie de ficar muito
+
+37
+00:02:43,800 --> 00:02:45,820
+fora do tpico do mundo grfico.
+
+38
+00:02:45,930 --> 00:02:47,340
+Ento vamos fazer uma pausa rpida.
+
+39
+00:02:47,340 --> 00:02:50,340
+Vamos voltar na prxima seo e comearemos a trabalhar nisso.
+
+40
+00:02:50,370 --> 00:02:56,580
+ou no ser redirecionado para a pgina de logon dependendo do status de autenticao atual.
+
+41
+00:02:56,580 --> 00:03:02,660
+Necessrio do componente de ordem superior que ser responsvel por decidir se o usurio precisa
+
+42
+00:03:02,850 --> 00:03:04,560
+Ento, para cuidar disso na prxima seo.
+

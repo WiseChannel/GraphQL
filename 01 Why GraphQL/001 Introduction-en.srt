@@ -1,0 +1,160 @@
+1
+00:00:00,660 --> 00:00:02,560
+Hello and welcome.
+
+2
+00:00:02,610 --> 00:00:08,940
+My name is Stephen Greider and I am here to teach you everything that I know about graft Cuil and react
+
+3
+00:00:09,600 --> 00:00:11,370
+before we get started with any code.
+
+4
+00:00:11,400 --> 00:00:16,410
+I want to cover a couple of frequently asked questions about this course and give you a better idea
+
+5
+00:00:16,410 --> 00:00:18,920
+of how it's structured.
+
+6
+00:00:18,930 --> 00:00:24,230
+First I want to tell you a little bit more about what we're going to be covering in the coming sections.
+
+7
+00:00:24,240 --> 00:00:28,250
+We're first going to be discussing why Graf QOL exists.
+
+8
+00:00:28,490 --> 00:00:34,500
+Gruffed QSL has the interesting distinction of being a technology where it's very important to understand
+
+9
+00:00:34,530 --> 00:00:37,120
+what problem it intends to solve.
+
+10
+00:00:37,170 --> 00:00:43,230
+Once you understand what graft to all attempts to solve understanding it starts to become a lot easier
+
+11
+00:00:43,260 --> 00:00:48,540
+because you're able to frame all the different challenges of the framework into understanding why we're
+
+12
+00:00:48,540 --> 00:00:50,680
+using it in the first place.
+
+13
+00:00:51,120 --> 00:00:55,550
+After we talk a little bit about what graph irks me why graph exists.
+
+14
+00:00:55,620 --> 00:00:58,570
+We'll talk a little bit about exactly what it is.
+
+15
+00:00:58,710 --> 00:00:59,780
+So what is graph.
+
+16
+00:00:59,780 --> 00:01:04,790
+Q Well if it is meant to solve some existing problems how is it going to solve it.
+
+17
+00:01:04,830 --> 00:01:07,650
+What does it really do for us.
+
+18
+00:01:07,650 --> 00:01:10,510
+Finally we'll talk about how we use craft Cuil.
+
+19
+00:01:10,650 --> 00:01:12,380
+So how do we make use of graphics.
+
+20
+00:01:12,400 --> 00:01:18,540
+Well on our back end applications and how do we actually wire that up to our re-act front end.
+
+21
+00:01:18,600 --> 00:01:23,730
+So this last step right here of course can be the very longest section of the course and will be the
+
+22
+00:01:23,730 --> 00:01:26,790
+bulk of everything that we cover.
+
+23
+00:01:26,790 --> 00:01:31,890
+Now before we get started anything else just one last quick slide a couple of frequently asked questions
+
+24
+00:01:31,890 --> 00:01:35,670
+and answers that I get throughout all of my different courses.
+
+25
+00:01:35,670 --> 00:01:40,970
+First I use balsamic mockups to create all the different diagrams that you'll be looking at inside this
+
+26
+00:01:40,980 --> 00:01:42,560
+course there.
+
+27
+00:01:42,570 --> 00:01:45,690
+I've used many different types of diagram tools.
+
+28
+00:01:45,720 --> 00:01:52,740
+I found balsamic has the best mix of being easy to use and quick to put diagrams together but the diagrams
+
+29
+00:01:52,740 --> 00:01:58,100
+that are generated also look really nice which is a nice little benefit.
+
+30
+00:01:58,140 --> 00:02:01,160
+Next I use ATOM for my code editor.
+
+31
+00:02:01,200 --> 00:02:04,530
+You're free to use absolutely any code editor that you like.
+
+32
+00:02:04,530 --> 00:02:07,000
+There is absolutely no requirement to use Adam.
+
+33
+00:02:07,110 --> 00:02:13,470
+You can use sublime web storm textedit anything you want totally up to you.
+
+34
+00:02:13,560 --> 00:02:17,460
+Finally for my terminal I make use of I term with Z shell.
+
+35
+00:02:17,460 --> 00:02:22,590
+So if you want to get the same looking command prompt that I do you can grab I'd term and Z shell and
+
+36
+00:02:22,590 --> 00:02:24,300
+you'll get something right out of the box.
+
+37
+00:02:24,300 --> 00:02:26,970
+Looks pretty much identical to what I use.
+
+38
+00:02:28,590 --> 00:02:28,950
+OK.
+
+39
+00:02:28,960 --> 00:02:30,960
+So that's it with frequently asked questions.
+
+40
+00:02:31,120 --> 00:02:35,260
+Let's get started with the real interesting content in the next section.
+

@@ -1,0 +1,288 @@
+1
+00:00:00,670 --> 00:00:05,860
+Estamos bastante envolvidos em nossa aplicao que nossos usurios tm a capacidade de criar novas
+
+2
+00:00:05,860 --> 00:00:12,790
+msicas, que podem excluir msicas existentes, ento eles podem criar novas letras que esto associadas a uma msica em upload
+
+3
+00:00:12,820 --> 00:00:15,600
+ou como letras individuais associadas a cada msica.
+
+4
+00:00:15,670 --> 00:00:21,430
+Quero ter um pouco de tempo agora para fazer um rpido encerramento em alguns dos principais tpicos importantes
+
+5
+00:00:21,490 --> 00:00:22,900
+em torno da aplicao.
+
+6
+00:00:23,210 --> 00:00:30,970
+Ento, vamos abrir nosso editor de cdigo e abrir nosso arquivo de criao de msica, o arquivo suncream  uma boa representao
+
+7
+00:00:31,030 --> 00:00:35,900
+de um componente tpico que eu esperaria ver dentro de uma aplicao de enxerto.
+
+8
+00:00:36,850 --> 00:00:38,320
+Algumas coisas importantes aqui.
+
+9
+00:00:38,320 --> 00:00:44,130
+Lembre-se de que fazemos uso da biblioteca Re-act Apollo para fazer uma consulta e empurr-la
+
+10
+00:00:44,130 --> 00:00:45,490
+juntamente com um componente.
+
+11
+00:00:45,490 --> 00:00:50,830
+Isso significa que, dentro de um aplicativo de re-ao tpico, espero ver
+
+12
+00:00:51,100 --> 00:00:55,080
+alguns componentes que esto unidos com consultas ou mutaes.
+
+13
+00:00:55,090 --> 00:01:02,500
+Em seguida, utilizamos o grfico da biblioteca de etiquetas Cuil para poder escrever consultas grficas reais ou mutaes
+
+14
+00:01:02,500 --> 00:01:05,030
+diretamente dentro de um arquivo javascript.
+
+15
+00:01:05,470 --> 00:01:13,040
+Ns vimos a implementao no fundo desta onde ns escrevemos a etiqueta GQ l e, em seguida, uma seqncia de consulta e colocamos
+
+16
+00:01:13,400 --> 00:01:15,740
+a consulta dentro da seqncia de consulta.
+
+17
+00:01:17,650 --> 00:01:21,690
+A prxima coisa que eu quero falar  algumas das maneiras pelas quais manipulamos nossos dados.
+
+18
+00:01:21,940 --> 00:01:28,810
+Vimos que ns manipulamos nossos dados no back-end fazendo uso de diferentes mutaes em cada caso que chamamos
+
+19
+00:01:28,810 --> 00:01:33,220
+de mutao que passamos ao longo de algumas variveis de consulta.
+
+20
+00:01:33,340 --> 00:01:38,800
+Em alguns casos, fomos capazes de chamar a varivel de consulta ou desculpar-me passou a varivel de consulta diretamente
+
+21
+00:01:38,800 --> 00:01:39,940
+e quando a chamamos.
+
+22
+00:01:40,200 --> 00:01:44,980
+E em alguns dos locais, tivemos que fazer um pouco de diverso misturando-se a descobrir
+
+23
+00:01:44,980 --> 00:01:48,710
+exatamente como obteramos algumas variveis de consulta em uma de nossas consultas.
+
+24
+00:01:48,730 --> 00:01:55,300
+questes de reposio que podemos automaticamente reinicie uma consulta inteira aps a mutao ter sido concluda com sucesso.
+
+25
+00:01:55,300 --> 00:02:01,930
+A outra grande coisa sobre a qual falamos foi como atualizar nossos dados, ns vimos como atualizar
+
+26
+00:02:01,930 --> 00:02:09,400
+nossos dados imediatamente depois de executar o mutar, executando isso remete as consultas, no o estamos executando, mas fornecemos
+
+27
+00:02:09,400 --> 00:02:11,800
+algumas opes para ele com as
+
+28
+00:02:11,830 --> 00:02:16,810
+Esta  uma tima maneira de atualizar os dados em seu aplicativo, mas esteja ciente
+
+29
+00:02:16,870 --> 00:02:21,760
+de que ele faz uma solicitao inteira para seu backend para obter esses dados atualizados.
+
+30
+00:02:21,820 --> 00:02:27,400
+Uma das melhores maneiras de lidar com as respostas do nosso back-end ou devo dizer que as formas mais performantes foram ao conectar o uso dessa identificao de dados
+
+31
+00:02:27,700 --> 00:02:34,990
+a partir do objeto dentro do nosso ndice de nvel superior J. S. Arquivo.
+
+32
+00:02:35,260 --> 00:02:40,900
+que, por padro, o cliente Apollo realmente no conhece os dados que esto voltando do back-end.
+
+33
+00:02:40,900 --> 00:02:41,770
+Lembre-se de
+
+34
+00:02:41,980 --> 00:02:44,330
+Tudo o que sabe  que ele emite uma consulta.
+
+35
+00:02:44,360 --> 00:02:49,530
+Obtm algumas informaes e, em seguida, elas fornecem essa informao diretamente para um componente.
+
+36
+00:02:49,870 --> 00:02:56,740
+Se, ento, fizermos uma consulta e outro, sem definir esta ID de dados, ento o Apollo assume de
+
+37
+00:02:56,740 --> 00:03:04,150
+forma instantnea que  para separar separadamente as consultas para separar separadamente os conjuntos de dados provenientes do backend quando
+
+38
+00:03:04,150 --> 00:03:11,620
+na verdade ele pode ser exatamente a mesma consulta em execuo novamente para garantir que o cliente Appollo possa acompanhar
+
+39
+00:03:11,620 --> 00:03:16,600
+todos os registros diferentes que vm de trs e ns definimos essa identificao
+
+40
+00:03:16,600 --> 00:03:24,540
+de dados a partir da funo de objeto, a identificao de dados da funo de objeto faz uso da propriedade id
+
+41
+00:03:24,790 --> 00:03:27,650
+de cada registro que buscamos no nosso backend .
+
+42
+00:03:27,670 --> 00:03:30,040
+Agora, existem alguns pressupostos por trs disso aqui.
+
+43
+00:03:30,070 --> 00:03:37,330
+Assume que estamos usando IDs nicos entre todos os registros diferentes e nosso aplicativo inteiro quando estamos usando
+
+44
+00:03:38,020 --> 00:03:39,440
+o Mongo D-B.
+
+45
+00:03:39,460 --> 00:03:45,490
+Essa  uma suposio muito segura, porque geralmente estamos garantidos que todas as IDs diferentes armazenadas
+
+46
+00:03:45,580 --> 00:03:50,740
+em um banco de dados D-B de mongo sero nicas, mesmo em diferentes colees.
+
+47
+00:03:50,740 --> 00:03:54,760
+Ento, novamente, essa  uma suposio muito segura para fazer.
+
+48
+00:03:54,760 --> 00:03:58,780
+A ltima coisa sobre a qual quero falar  como fazemos uma consulta individual.
+
+49
+00:03:59,020 --> 00:04:02,990
+Ento, para isso, vamos verificar o nosso componente de detalhes da msica.
+
+50
+00:04:03,160 --> 00:04:07,750
+Ento, este  realmente o grfico Cuil 101 que vimos o grfico matar 101.
+
+51
+00:04:07,830 --> 00:04:13,450
+Escreva a consulta, envolva-a com um grfico para adicionar um auxiliar e, em seguida, passe no componente que
+
+52
+00:04:13,450 --> 00:04:14,730
+deve receber esses dados.
+
+53
+00:04:14,770 --> 00:04:20,850
+Vimos que, quando reunimos uma consulta com o componente componente, recebemos uma quantidade de dados.
+
+54
+00:04:20,980 --> 00:04:23,880
+Como este adereos dados.
+
+55
+00:04:24,250 --> 00:04:30,160
+Agora, a desvantagem era que o componente tentaria renderizar pelo menos uma vez antes de esses dados
+
+56
+00:04:30,160 --> 00:04:31,300
+terem sido obtidos.
+
+57
+00:04:31,300 --> 00:04:36,070
+Portanto, precisamos ter certeza de que, sempre que colocarmos um componente que espera ter
+
+58
+00:04:36,430 --> 00:04:41,170
+alguns dados, devemos verificar se os dados esto disponveis antes de tentar us-lo dentro
+
+59
+00:04:41,170 --> 00:04:46,880
+do componente, este  um padro que eu gostaria Espera ver todo o lugar ao longo
+
+60
+00:04:46,880 --> 00:04:48,080
+de sua aplicao.
+
+61
+00:04:48,110 --> 00:04:53,090
+Eu realmente esperaria que voc sempre se certificasse de que seus dados estejam disponveis antes de
+
+62
+00:04:53,090 --> 00:04:58,640
+tentar consumi-lo de alguma forma, caso contrrio, voc vai encontrar muitos problemas em que voc v erros, como
+
+63
+00:04:58,750 --> 00:05:01,010
+no pode ler corretamente algo de indefinido.
+
+64
+00:05:01,010 --> 00:05:05,470
+Ento, neste caso, no consigo ler o ttulo de propriedade de indefinido.
+
+65
+00:05:06,070 --> 00:05:06,500
+EST BEM.
+
+66
+00:05:06,530 --> 00:05:11,480
+Ento, eu acho que  praticamente isso para os tpicos de alto nvel que
+
+67
+00:05:11,480 --> 00:05:18,110
+cobrimos dentro deste aplicativo, cobrimos um bom nmero de recursos no front-end, usando o cliente Appollo e reagimos com
+
+68
+00:05:18,110 --> 00:05:19,960
+nosso grfico para um back-end.
+
+69
+00:05:20,030 --> 00:05:24,500
+Agora vamos passar para a nossa prxima seo onde vamos pensar sobre
+
+70
+00:05:24,500 --> 00:05:28,130
+como montar uma replica completa e uma aplicao grfica.
+
+71
+00:05:28,280 --> 00:05:31,780
+Ento, tudo a partir do banco de dados at a frente.
+
+72
+00:05:32,060 --> 00:05:35,450
+Vamos continuar e cuidar disso na prxima seo.
+

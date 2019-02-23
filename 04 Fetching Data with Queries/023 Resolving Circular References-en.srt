@@ -1,0 +1,360 @@
+1
+00:00:00,870 --> 00:00:06,600
+In the last section we added some code to our company type but then saw a big red error message in the
+
+2
+00:00:06,600 --> 00:00:12,990
+terminal that said user type is not defined right here and it looks like that is an error that's coming
+
+3
+00:00:12,990 --> 00:00:15,860
+from line 18 inside of our schema file.
+
+4
+00:00:15,930 --> 00:00:20,150
+So line 18 right here let's go find that.
+
+5
+00:00:20,160 --> 00:00:21,480
+So here is my schema file.
+
+6
+00:00:21,510 --> 00:00:25,190
+I've got line 18 new graphics you list user type.
+
+7
+00:00:25,190 --> 00:00:25,490
+All right.
+
+8
+00:00:25,500 --> 00:00:28,080
+So this is definitely what is throwing that error right here.
+
+9
+00:00:28,080 --> 00:00:35,750
+So what can be going wrong here is the user type reference and down below is our user type definition.
+
+10
+00:00:36,150 --> 00:00:38,260
+So classic javascript error.
+
+11
+00:00:38,280 --> 00:00:45,660
+We are trying to make use of a variable before it has actually been defined inside of our application.
+
+12
+00:00:45,660 --> 00:00:52,140
+We've got the user type reference up here but only later on do we actually define the user type.
+
+13
+00:00:52,140 --> 00:00:55,620
+Now you might be thinking Well Stephen that's no big problem.
+
+14
+00:00:55,620 --> 00:00:56,850
+I'm going to collapse all my code here.
+
+15
+00:00:56,850 --> 00:01:02,610
+You might be thinking seman why don't we just first define the user type and then we can define the
+
+16
+00:01:02,610 --> 00:01:03,260
+company type.
+
+17
+00:01:03,260 --> 00:01:08,220
+That way the company can freely make reference to the user.
+
+18
+00:01:08,550 --> 00:01:09,900
+Well that would sure be nice.
+
+19
+00:01:09,900 --> 00:01:13,250
+That would definitely serve me nice but unfortunately that's not going to quite work out.
+
+20
+00:01:13,380 --> 00:01:14,440
+Here's why.
+
+21
+00:01:14,760 --> 00:01:17,680
+Here's my company type.
+
+22
+00:01:17,810 --> 00:01:20,130
+I've got my user type reference right here.
+
+23
+00:01:20,210 --> 00:01:21,770
+Later on I make reference to it.
+
+24
+00:01:21,800 --> 00:01:24,680
+Let's go look at the user type the user type.
+
+25
+00:01:24,680 --> 00:01:26,820
+Also makes reference to the company.
+
+26
+00:01:26,900 --> 00:01:31,640
+So we've got a circular reference between the two types.
+
+27
+00:01:31,640 --> 00:01:36,040
+The user depends on the company but the company also depends upon the user.
+
+28
+00:01:36,140 --> 00:01:38,210
+Here's the company depending on the user.
+
+29
+00:01:38,210 --> 00:01:42,100
+So we've got essentially an order of operations issue here.
+
+30
+00:01:42,530 --> 00:01:47,930
+Luckily the creators of graph Q L realized that this would be a big issue for whenever we have one type
+
+31
+00:01:47,930 --> 00:01:49,510
+relying upon another.
+
+32
+00:01:49,550 --> 00:01:50,510
+So they come up with.
+
+33
+00:01:50,540 --> 00:01:53,230
+They came up with a little work around to get around it.
+
+34
+00:01:53,460 --> 00:01:56,450
+All you have to do is find our fields object.
+
+35
+00:01:56,450 --> 00:02:02,540
+Here it is I'm going to take my fields object and I'm going to wrap it with a arrow function.
+
+36
+00:02:02,720 --> 00:02:11,300
+So I'll put parens arrow a opening present and then outside of the closing curly brace for the fields
+
+37
+00:02:11,300 --> 00:02:11,870
+object.
+
+38
+00:02:11,870 --> 00:02:12,970
+Way down here.
+
+39
+00:02:13,040 --> 00:02:15,770
+I'm going to place another parentheses.
+
+40
+00:02:15,950 --> 00:02:22,610
+So this turns the fields object right here are the fields property the fields value into an arrow function
+
+41
+00:02:22,910 --> 00:02:30,970
+that will return an object that has keys ID name description end users with the way that closures inside
+
+42
+00:02:30,980 --> 00:02:32,510
+of javascript work.
+
+43
+00:02:32,540 --> 00:02:39,530
+That means that this function gets defined but does not get executed until after this entire file has
+
+44
+00:02:39,530 --> 00:02:40,630
+been executed.
+
+45
+00:02:40,910 --> 00:02:43,520
+So the entire file will get executed.
+
+46
+00:02:43,520 --> 00:02:51,920
+That will define the company type and the user type then graphed well internally will execute this function
+
+47
+00:02:52,040 --> 00:02:57,950
+and we'll say okay like let's resolve all the types here the user type is now inside of the closure
+
+48
+00:02:57,950 --> 00:03:01,940
+scope of this closure function or this anonymous function right here.
+
+49
+00:03:01,970 --> 00:03:05,810
+It means that everything will be correctly defined as we would expect.
+
+50
+00:03:05,840 --> 00:03:08,680
+In short this is not really a graft issue.
+
+51
+00:03:08,690 --> 00:03:13,420
+This is really a javascript kind of thing dealing with closures and closure scopes.
+
+52
+00:03:13,460 --> 00:03:18,920
+So if you ever have gone through basic javascript courses and heard about closure scopes this is really
+
+53
+00:03:18,920 --> 00:03:21,610
+closer's 101 right here.
+
+54
+00:03:21,680 --> 00:03:23,990
+Let's do the same thing for the user type as well.
+
+55
+00:03:23,990 --> 00:03:30,090
+I'm going to find the fields object and we will wrap it with an arrow function as well.
+
+56
+00:03:30,170 --> 00:03:34,640
+So I'm going to put the arrow function opening up and then close it down here as well.
+
+57
+00:03:34,670 --> 00:03:39,480
+With the closing parentheses good looks good.
+
+58
+00:03:39,480 --> 00:03:42,810
+I'm going to check out my terminal just to make sure that the errors result.
+
+59
+00:03:42,960 --> 00:03:44,460
+Yup looks like errors resolved.
+
+60
+00:03:44,460 --> 00:03:46,340
+I got the nice listening message here.
+
+61
+00:03:46,650 --> 00:03:52,170
+So I think that we can now flip over to our browser go to our graphical interface and I think we're
+
+62
+00:03:52,170 --> 00:03:54,560
+now ready to get this query a shot.
+
+63
+00:03:54,720 --> 00:03:56,320
+So I'm going to refresh.
+
+64
+00:03:56,460 --> 00:03:58,950
+And now we get our list of users back.
+
+65
+00:03:59,130 --> 00:04:04,390
+So this is the only user who I currently have associated with company ID one.
+
+66
+00:04:04,800 --> 00:04:09,900
+I can look at company ID too and I'll get my two users who are associate with this one as well.
+
+67
+00:04:09,900 --> 00:04:17,650
+So Alex and Nick I can also look at the I.D. And let's pull on the age as well.
+
+68
+00:04:17,840 --> 00:04:19,330
+Good looks good.
+
+69
+00:04:20,070 --> 00:04:28,560
+Now that we've got a relationship going from users to companies and from the company to the user we
+
+70
+00:04:28,560 --> 00:04:31,770
+can start doing some really weird things in the graphical world.
+
+71
+00:04:31,770 --> 00:04:39,120
+So what would happen if we take our user object right here and we ask the user to tell us a little bit
+
+72
+00:04:39,180 --> 00:04:43,830
+about the company so we can say hey user what company do you belong to.
+
+73
+00:04:43,830 --> 00:04:46,740
+So notice that we have already fetched the company up here.
+
+74
+00:04:46,830 --> 00:04:50,340
+So we got the company we said give me the users associate with it.
+
+75
+00:04:50,340 --> 00:04:52,200
+And then for each user.
+
+76
+00:04:52,200 --> 00:04:55,090
+Tell me about the company you're associated with.
+
+77
+00:04:55,200 --> 00:04:59,760
+So we're really kind of a nest team some data within the company structure.
+
+78
+00:04:59,790 --> 00:05:04,430
+It's the same data really getting copy pasted down inside itself.
+
+79
+00:05:04,650 --> 00:05:11,580
+We can set up these type of circular relations as deep as we want to go so we can just keep on asking
+
+80
+00:05:11,580 --> 00:05:12,180
+for
+
+81
+00:05:15,010 --> 00:05:16,810
+nested data like so.
+
+82
+00:05:17,080 --> 00:05:18,760
+Oops I made a typo on here.
+
+83
+00:05:18,790 --> 00:05:22,400
+So users have a name.
+
+84
+00:05:22,770 --> 00:05:24,530
+I clearly went overkill here.
+
+85
+00:05:24,700 --> 00:05:29,470
+Let's just go with oh it's first name not name my mistake.
+
+86
+00:05:29,910 --> 00:05:34,970
+So you can see that we can really nest arbitrarily down with this kind of recursive structure.
+
+87
+00:05:34,980 --> 00:05:37,500
+It's very rare that you'll ever actually do this.
+
+88
+00:05:37,500 --> 00:05:42,770
+It's just kind of one of the odd things about graph Cuil that you can get away with if you so chose.
+
+89
+00:05:43,410 --> 00:05:48,340
+So we've now got a fully connected graph between our users and companies.
+
+90
+00:05:48,510 --> 00:05:51,060
+Let's continue on in the next section.
+

@@ -1,0 +1,468 @@
+1
+00:00:00,780 --> 00:00:07,060
+Unless section we finished up the sign up nutation and we're just about ready to test it inside of graphical.
+
+2
+00:00:07,260 --> 00:00:11,400
+There is a little bit of last minute set up that we have to do inside of our project ahead of time though
+
+3
+00:00:11,850 --> 00:00:18,090
+we do have to make sure that we wire up these newly created mutations to our schema inside of the schema
+
+4
+00:00:18,300 --> 00:00:19,780
+J.S. file.
+
+5
+00:00:19,830 --> 00:00:25,090
+So inside of schema Geass we will import or require in our mutation file.
+
+6
+00:00:25,530 --> 00:00:32,490
+So say Konst mutation equals require mutations.
+
+7
+00:00:32,490 --> 00:00:34,440
+Note that we certainly can call this.
+
+8
+00:00:34,450 --> 00:00:39,810
+You know I really should call it mutations plural but because the graph Kule schema down here at the
+
+9
+00:00:39,810 --> 00:00:42,680
+bottom expects that we pass in the key of nutation.
+
+10
+00:00:42,720 --> 00:00:48,380
+I don't really want to confuse the plurality or I should say whether or not it's plural.
+
+11
+00:00:48,480 --> 00:00:53,460
+I really just want to pass in just the word mutation and allow that yes shortcut to take care of it
+
+12
+00:00:53,460 --> 00:00:54,420
+for us.
+
+13
+00:00:54,420 --> 00:00:56,970
+So rather than call it mutations I'm going to call it mutation.
+
+14
+00:00:57,150 --> 00:01:01,500
+That means I can just assign mutation rates here and do make sure that you get the comma on the line
+
+15
+00:01:01,500 --> 00:01:03,060
+right above it as well.
+
+16
+00:01:03,210 --> 00:01:06,700
+And there's one other just little piece of record keeping just bookkeeping.
+
+17
+00:01:06,700 --> 00:01:08,430
+We have to take care of inside of here.
+
+18
+00:01:08,550 --> 00:01:14,010
+If we look at the root queery type that is defined right now it doesn't have any fields assigned to
+
+19
+00:01:14,010 --> 00:01:15,680
+it by default.
+
+20
+00:01:15,690 --> 00:01:20,760
+Graph will always expects to have at least one field available for every single defined type.
+
+21
+00:01:20,760 --> 00:01:25,020
+So just to make sure that we don't get any errors coming out of graft well because we don't have any
+
+22
+00:01:25,020 --> 00:01:29,810
+types of scientists saying I'm going out on a dummy field right now.
+
+23
+00:01:30,420 --> 00:01:34,640
+So I'll say fields and I was going to sign dummy field like so.
+
+24
+00:01:34,680 --> 00:01:37,260
+So there's no meaning to this field whatsoever.
+
+25
+00:01:37,320 --> 00:01:42,840
+Again graft you all just expects that every type that is loaded into our application has at least one
+
+26
+00:01:42,840 --> 00:01:44,490
+field assigned to it.
+
+27
+00:01:44,880 --> 00:01:54,840
+So against that type of graph well id and I'll make sure to also require an graphical ID as well.
+
+28
+00:01:55,390 --> 00:01:57,790
+So again we're going to come back and replace this line right here.
+
+29
+00:01:57,790 --> 00:01:59,930
+I just want to get our code running for right now.
+
+30
+00:02:01,100 --> 00:02:03,470
+So I think we're just about ready to give this a shot.
+
+31
+00:02:03,470 --> 00:02:07,840
+I'm first going to start up my server by flipping over to the terminal.
+
+32
+00:02:07,910 --> 00:02:12,530
+I can make sure I'm inside of my project directory and we'll start up the project with the very classic
+
+33
+00:02:12,530 --> 00:02:15,410
+command and then run dev.
+
+34
+00:02:15,440 --> 00:02:18,210
+So I'm going to expect to my server is going to start up right now.
+
+35
+00:02:18,230 --> 00:02:19,730
+Maybe I've got a typo or two.
+
+36
+00:02:19,730 --> 00:02:20,070
+OK.
+
+37
+00:02:20,090 --> 00:02:21,410
+Looks like it's working correctly.
+
+38
+00:02:21,410 --> 00:02:23,770
+I've got a listening log right here.
+
+39
+00:02:23,840 --> 00:02:28,820
+If you see any errors appear on the screen right now it almost definitely means you've got a tiny typo
+
+40
+00:02:28,820 --> 00:02:30,460
+somewhere inside of your code base.
+
+41
+00:02:30,530 --> 00:02:35,950
+So you'll want to do a little bit of hunting and pecking or fighting to find where that typo is.
+
+42
+00:02:35,990 --> 00:02:40,320
+Do make sure that you always get the commas in there for every different property that we add into all
+
+43
+00:02:40,340 --> 00:02:41,270
+these different objects.
+
+44
+00:02:41,270 --> 00:02:44,920
+That's a very common typo to have.
+
+45
+00:02:44,920 --> 00:02:45,230
+All right.
+
+46
+00:02:45,230 --> 00:02:50,540
+Now that our server is started up we can flip over to our browser and open up graphical.
+
+47
+00:02:50,560 --> 00:03:01,330
+It's going to go over to my browser open up a new tab and go to a local host 4000 slash graph QOL and
+
+48
+00:03:01,340 --> 00:03:06,910
+once here we can start putting together our mutation for signing up a new user.
+
+49
+00:03:07,520 --> 00:03:13,970
+So there's a little bit of default commented guides in here I'm going to take all this out because we've
+
+50
+00:03:14,060 --> 00:03:18,210
+kind of gotten pretty familiar with the basics of graphical syntax at this point.
+
+51
+00:03:19,540 --> 00:03:19,780
+All right.
+
+52
+00:03:19,780 --> 00:03:21,840
+So we need to define this mutation.
+
+53
+00:03:22,060 --> 00:03:26,230
+I'm not going to worry about setting up any queery variables right now so we're not going to make a
+
+54
+00:03:26,230 --> 00:03:27,300
+name mutation.
+
+55
+00:03:27,340 --> 00:03:31,130
+We're just going to call our Sign-Up mutation directly.
+
+56
+00:03:31,150 --> 00:03:35,710
+Let's check out our Dachs panel and make sure that we've got the mutation listed in here.
+
+57
+00:03:35,710 --> 00:03:40,520
+So a click into the mutation gate here is the sign of mutation that we just added.
+
+58
+00:03:40,660 --> 00:03:46,260
+And of course it expects to get a email straight as a string and a password as a string as well.
+
+59
+00:03:46,330 --> 00:03:49,660
+And that should be returning a user type and a user type.
+
+60
+00:03:49,660 --> 00:03:52,790
+Currently only has an e-mail available to it.
+
+61
+00:03:52,810 --> 00:03:55,390
+We don't have an I.D. We don't have a password assigned to it.
+
+62
+00:03:55,390 --> 00:03:56,330
+Nothing like that.
+
+63
+00:03:56,350 --> 00:03:59,590
+Just an e-mail right now.
+
+64
+00:03:59,590 --> 00:04:05,560
+So let's write out our mutation to sign up a new user first we'll declare that we want to call a mutation
+
+65
+00:04:06,490 --> 00:04:08,680
+then we will define the mutation we want to call.
+
+66
+00:04:08,710 --> 00:04:11,450
+In our case it's going to be the Sign-Up mutation.
+
+67
+00:04:11,590 --> 00:04:17,740
+Again we're not making a named mutation here so we're not going to use the capital Sign-Up up here and
+
+68
+00:04:17,740 --> 00:04:22,540
+try to make use of the Kery variables because I just want to call the mutation directly just to make
+
+69
+00:04:22,540 --> 00:04:25,400
+sure we can run it successfully.
+
+70
+00:04:25,660 --> 00:04:34,960
+We need to find an email in here and I'll give it say just test at test dot com and also define a password
+
+71
+00:04:35,110 --> 00:04:37,650
+of password and.
+
+72
+00:04:37,820 --> 00:04:39,250
+Oops I made a little typo here.
+
+73
+00:04:39,250 --> 00:04:40,240
+I used single quotes.
+
+74
+00:04:40,240 --> 00:04:45,310
+Do make sure that use double quotes for both of the strings.
+
+75
+00:04:45,310 --> 00:04:46,320
+My mistake.
+
+76
+00:04:46,660 --> 00:04:48,290
+Ok that looks a little bit better.
+
+77
+00:04:48,670 --> 00:04:53,580
+And then as always we need to make sure that we ask for at least one property in return from the mutation.
+
+78
+00:04:53,620 --> 00:04:56,870
+So I'm going to ask for the email of the user.
+
+79
+00:04:56,890 --> 00:05:02,740
+So we'll just assert that the user is being created successfully by asking for the e-mail that comes
+
+80
+00:05:02,740 --> 00:05:03,640
+back.
+
+81
+00:05:04,300 --> 00:05:04,630
+OK.
+
+82
+00:05:04,660 --> 00:05:07,170
+So let's run this.
+
+83
+00:05:07,450 --> 00:05:08,990
+All right that looks pretty reasonable.
+
+84
+00:05:09,070 --> 00:05:12,010
+I get back a response that contains e-mail.
+
+85
+00:05:12,010 --> 00:05:13,740
+Test set test dot com.
+
+86
+00:05:13,810 --> 00:05:20,800
+So presumably we can kind of assume at this point that a user has been added to our users collection
+
+87
+00:05:20,830 --> 00:05:27,220
+in our lab database and more importantly that we are currently authenticated or signed into our application
+
+88
+00:05:27,710 --> 00:05:30,960
+number that's what the real goal here is of the Sign-Up mutation.
+
+89
+00:05:30,970 --> 00:05:36,250
+It's not only to create a new user it is also to simultaneously authenticate ourselves with the application
+
+90
+00:05:36,250 --> 00:05:43,030
+as well to make sure that the user is created we can flip over to our lab interface.
+
+91
+00:05:43,030 --> 00:05:52,050
+So here's my lab interface I'm looking at my auth database or refreshed the page and I should see automatically
+
+92
+00:05:52,050 --> 00:05:54,800
+a new collection appear on the list here.
+
+93
+00:05:54,840 --> 00:05:58,830
+So here's the users collection that was just created automatically.
+
+94
+00:05:58,830 --> 00:06:02,240
+You'll notice that there's also a sessions collection in here as well.
+
+95
+00:06:02,400 --> 00:06:08,070
+That's part of the session record keeping part of express that is always or excuse me already wired
+
+96
+00:06:08,070 --> 00:06:10,440
+up inside of our project.
+
+97
+00:06:10,440 --> 00:06:16,740
+So let's look at the users collection really quick a click into it and we can scroll down a little bit
+
+98
+00:06:16,830 --> 00:06:21,390
+and see what looks like our user was successfully created.
+
+99
+00:06:21,390 --> 00:06:27,650
+You'll also notice that our password is in here as well and it is absolutely not a plain text password.
+
+100
+00:06:27,720 --> 00:06:33,630
+So it is salted and hashed which means that if anyone just happens to get access to all of our user
+
+101
+00:06:33,630 --> 00:06:38,970
+records including all of our user passwords they'll have a heck of a time trying to figure out the user's
+
+102
+00:06:39,030 --> 00:06:42,660
+actual password from this encrypted string right here.
+
+103
+00:06:43,260 --> 00:06:43,560
+OK.
+
+104
+00:06:43,590 --> 00:06:48,990
+So it looks like our sign up at least the user creation side is working correctly.
+
+105
+00:06:48,990 --> 00:06:55,980
+Again my expectation right now is that in addition to creating this new user I should have also gotten
+
+106
+00:06:56,040 --> 00:07:02,790
+a cookie place on my session or I should say and identify or place on my session that says hey whoever's
+
+107
+00:07:02,880 --> 00:07:10,470
+making requests from this browser right here is the user test at test dot com and we consider them to
+
+108
+00:07:10,470 --> 00:07:11,960
+be authenticated.
+
+109
+00:07:12,090 --> 00:07:15,290
+So we don't really have any good way of proving that on our server just yet.
+
+110
+00:07:15,300 --> 00:07:18,110
+We don't really have any good way of testing authentication.
+
+111
+00:07:18,120 --> 00:07:22,620
+We certainly will in a moment but right now we're just going to have to kind of take it on blind faith
+
+112
+00:07:22,620 --> 00:07:25,720
+that we are being successfully authenticate with our server.
+
+113
+00:07:27,500 --> 00:07:27,920
+OK.
+
+114
+00:07:27,960 --> 00:07:29,090
+This is looking pretty good.
+
+115
+00:07:29,190 --> 00:07:34,680
+Now that we have the ability to sign up and sign or excuse me sign up and create a new user with our
+
+116
+00:07:34,680 --> 00:07:40,420
+application I think it makes a lot of sense to now move over to being able to log out of our application.
+
+117
+00:07:40,440 --> 00:07:46,100
+So let's start working on the log out helper or the log out mutation in the next section.
+

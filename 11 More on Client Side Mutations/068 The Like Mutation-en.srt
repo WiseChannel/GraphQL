@@ -1,0 +1,340 @@
+1
+00:00:00,510 --> 00:00:06,720
+Not that we've got a place where we can intercept a user clicking on the thumbs up symbol we can start
+
+2
+00:00:06,720 --> 00:00:11,730
+thinking a little bit more about the mutation that we're going to call to like an individual lyric.
+
+3
+00:00:11,940 --> 00:00:17,250
+So we're going to start off by first writing the mutation out inside of graphical then we'll move the
+
+4
+00:00:17,250 --> 00:00:22,240
+mutation over to our lyric list component and call it from the online function.
+
+5
+00:00:22,680 --> 00:00:25,390
+So let's flip over to graphical.
+
+6
+00:00:25,410 --> 00:00:26,150
+Here we go.
+
+7
+00:00:26,520 --> 00:00:27,430
+And to get started.
+
+8
+00:00:27,510 --> 00:00:33,590
+Let's first look at our documentation panel and check out some of the different mutations we have available.
+
+9
+00:00:33,660 --> 00:00:36,540
+So click on mutation and all right.
+
+10
+00:00:36,540 --> 00:00:40,680
+Looks like there is a very aptly named mutation in here like lyric.
+
+11
+00:00:40,770 --> 00:00:45,240
+It expects us to call it with an ID and then it returns the light.
+
+12
+00:00:45,240 --> 00:00:51,300
+The updated lyric remember that each lyric we have has a property called likes.
+
+13
+00:00:51,300 --> 00:00:54,720
+So this is the number of likes that each lyric has.
+
+14
+00:00:55,320 --> 00:01:02,250
+So presumably after we like lyric we can ask the lyric for the number of new likes that it has and get
+
+15
+00:01:02,250 --> 00:01:06,490
+the response back and somehow update our application with it.
+
+16
+00:01:06,510 --> 00:01:08,820
+So let's give this thing a shot.
+
+17
+00:01:09,030 --> 00:01:14,140
+The first thing we need to do is make sure that we have the ID of a lyric inside of our application.
+
+18
+00:01:14,190 --> 00:01:17,640
+So I need to get a list of all the lyrics that I have.
+
+19
+00:01:18,210 --> 00:01:20,520
+I'm going to check my docs again for that really quickly.
+
+20
+00:01:20,730 --> 00:01:27,060
+Let's go back to the root documentation explore all find my root query type and it looks like I can
+
+21
+00:01:27,060 --> 00:01:29,530
+either ask for a lyric by ID.
+
+22
+00:01:29,580 --> 00:01:35,100
+I think that since we're trying to get at the idea of a lyric here we will get our big list of songs
+
+23
+00:01:35,160 --> 00:01:38,620
+and then print out the ID of each lyric inside those songs.
+
+24
+00:01:38,640 --> 00:01:42,210
+So we'll start there and then we'll do the mutation.
+
+25
+00:01:42,210 --> 00:01:49,080
+So I don't ask for a list of all my songs I want to hear about the lyrics associated with each and tell
+
+26
+00:01:49,080 --> 00:01:55,920
+me about the idea of each one and you give me that content to just so we can identify which lyric it
+
+27
+00:01:55,920 --> 00:01:57,470
+actually is.
+
+28
+00:01:58,260 --> 00:02:03,790
+So here's my list of songs it looks like the first song only has a single lyric here.
+
+29
+00:02:03,840 --> 00:02:08,790
+I kind of want to work with a song that I've been showing in the browser which is a little bit lower
+
+30
+00:02:08,790 --> 00:02:13,830
+down on the screen so I'm just going to arbitrarily pick one of the ideas in here.
+
+31
+00:02:14,070 --> 00:02:20,510
+I'll say that I want to vote or I want to like the ID or see me the lyric at the very bottom here.
+
+32
+00:02:20,520 --> 00:02:23,170
+So it has the content it was good I guess.
+
+33
+00:02:23,280 --> 00:02:30,780
+And here is the idea that I want someone to copy this idea right here and then I will remove the query
+
+34
+00:02:30,810 --> 00:02:33,660
+and we'll start thinking about the mutation again.
+
+35
+00:02:33,690 --> 00:02:36,030
+So we just looked at the nutation documentation.
+
+36
+00:02:36,030 --> 00:02:42,510
+We know that the mutation requires us to pass in the ID of the letters that we're trying to like.
+
+37
+00:02:42,510 --> 00:02:48,330
+So I know that I'm going to need to provide a query variable because I want to specify the idea of the
+
+38
+00:02:48,330 --> 00:02:56,100
+lyric that I'm working with at run time or I want to dynamically specify the ID that I'm trying to like.
+
+39
+00:02:56,100 --> 00:03:02,940
+So say hey you should expect there to be a query variable around and it's going to have the ID of this
+
+40
+00:03:02,940 --> 00:03:05,330
+lyric right here.
+
+41
+00:03:05,330 --> 00:03:07,110
+Again we get this red squiggly here.
+
+42
+00:03:07,140 --> 00:03:10,370
+Just because we're not making uses query variable which is totally fine.
+
+43
+00:03:10,380 --> 00:03:12,680
+We will in just a second.
+
+44
+00:03:12,780 --> 00:03:17,110
+So now we can start to write out the actual mutation or remember the syntax for this.
+
+45
+00:03:17,130 --> 00:03:20,670
+We use the mutation keyword we name the mutation
+
+46
+00:03:23,280 --> 00:03:28,800
+then we define the query variable that we expect to be passed to this mutation.
+
+47
+00:03:28,800 --> 00:03:35,730
+So we're going to say dollar sign ID and I'm going to indicate to graph quite well that it will be of
+
+48
+00:03:35,730 --> 00:03:39,650
+type Id just like we have a type string just like we have a type.
+
+49
+00:03:39,690 --> 00:03:48,250
+And do remember that this is one of those locations where we use an upper case d inside of ID.
+
+50
+00:03:48,270 --> 00:03:50,280
+Then we'll actually execute the mutation.
+
+51
+00:03:50,280 --> 00:03:55,810
+So I want to run like lyric.
+
+52
+00:03:56,150 --> 00:03:58,530
+I need to pass in the ID from somewhere.
+
+53
+00:03:58,580 --> 00:04:00,360
+So hey here's the ID.
+
+54
+00:04:00,380 --> 00:04:04,160
+I want you take the value of the ID from the query variable.
+
+55
+00:04:04,160 --> 00:04:05,700
+Dollar Sign ID.
+
+56
+00:04:05,780 --> 00:04:07,520
+So again remember the pneumonic here.
+
+57
+00:04:07,560 --> 00:04:11,450
+It's dollar sign type name dollar sign
+
+58
+00:04:15,110 --> 00:04:21,530
+after we create the lyric We will ask for the ID of the lyric that was created and I want to know how
+
+59
+00:04:21,530 --> 00:04:23,230
+many likes it now has.
+
+60
+00:04:23,270 --> 00:04:25,750
+So just tell me you know hey we just liked the thing.
+
+61
+00:04:25,760 --> 00:04:29,570
+How many are there now.
+
+62
+00:04:29,810 --> 00:04:35,470
+We're going to assume that the lyric that we are updating right here starts off with zero likes.
+
+63
+00:04:35,510 --> 00:04:40,190
+So when we first run this lyric or so I mean when we first run this mutation rate here I'm going to
+
+64
+00:04:40,190 --> 00:04:45,060
+accept expect to see a response come back where we only have one like assigned to it.
+
+65
+00:04:45,590 --> 00:04:48,100
+So I'm going to run this thing and ok.
+
+66
+00:04:48,140 --> 00:04:48,770
+Looks good.
+
+67
+00:04:48,770 --> 00:04:54,380
+I've got one like if I run a mutation again I got two three four and so on.
+
+68
+00:04:54,380 --> 00:04:59,570
+So every single time we run the mutation we're just incrementing the number of lights associated with
+
+69
+00:04:59,570 --> 00:05:01,140
+the individual lyric.
+
+70
+00:05:01,610 --> 00:05:02,570
+So this works perfectly.
+
+71
+00:05:02,570 --> 00:05:03,290
+I like it.
+
+72
+00:05:03,470 --> 00:05:08,150
+I think that we're ready to move this thing over to our component so I'm going to select the entire
+
+73
+00:05:08,150 --> 00:05:14,210
+mutation a copy it will flip over toward code editor.
+
+74
+00:05:14,210 --> 00:05:19,460
+I definitely want to place the mutation inside of the lyric list component because I want to call the
+
+75
+00:05:19,460 --> 00:05:27,230
+mutation from inside of the component and scroll down to the bottom of the file and underneath the component
+
+76
+00:05:27,230 --> 00:05:30,250
+definition will place our mutation
+
+77
+00:05:34,680 --> 00:05:36,610
+for probably the tenth time.
+
+78
+00:05:36,660 --> 00:05:41,600
+I'm going to remind you that we want to have batiks back ticks here excuse me not single quotes.
+
+79
+00:05:41,640 --> 00:05:44,150
+So do make sure that you have back ticks.
+
+80
+00:05:44,790 --> 00:05:45,510
+OK.
+
+81
+00:05:45,720 --> 00:05:47,800
+I think this is probably a good place to take a break.
+
+82
+00:05:47,850 --> 00:05:49,920
+So let's pause for just a second.
+
+83
+00:05:49,920 --> 00:05:55,530
+When we come back we need to make sure that we wire up the mutation to the component and we also have
+
+84
+00:05:55,530 --> 00:06:00,560
+to make sure we get some import statements for both the L library and the graphics library.
+
+85
+00:06:00,660 --> 00:06:03,900
+So let's take care of both those tasks in the next section.
+

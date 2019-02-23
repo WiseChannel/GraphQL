@@ -1,0 +1,480 @@
+1
+00:00:00,840 --> 00:00:07,620
+Na ltima seo, terminamos nosso primeiro fluxo total de ir de uma lista de msicas e poder clicar para criar uma
+
+2
+00:00:07,620 --> 00:00:13,000
+nova msica criando uma e, em seguida, voltar automaticamente e ver aparecer na tela e isso
+
+3
+00:00:13,750 --> 00:00:15,710
+definitivamente funcionou da maneira que espervamos.
+
+4
+00:00:15,810 --> 00:00:19,470
+Mas eu quero mostrar-lhe um pouco de estranheza para o processo.
+
+5
+00:00:19,470 --> 00:00:24,280
+Tenho certeza de que voc  um pouco estranho como nosso aplicativo est funcionando atualmente.
+
+6
+00:00:24,540 --> 00:00:26,530
+Vai ser um pouco frustrante para ver.
+
+7
+00:00:26,550 --> 00:00:31,500
+Mas uma vez que passamos por isso, acho que teremos uma compreenso muito melhor do que o
+
+8
+00:00:31,500 --> 00:00:36,690
+Apollo est fazendo nos bastidores, especialmente como ele est interagindo com o lado de reao da nossa aplicao.
+
+9
+00:00:36,690 --> 00:00:37,670
+Ento vamos dar uma chance.
+
+10
+00:00:37,770 --> 00:00:41,970
+Eu vou te mostrar o primeiro que vamos, vamos primeiro a atravessar o fluxo que funciona
+
+11
+00:00:41,970 --> 00:00:42,430
+muito bem.
+
+12
+00:00:42,450 --> 00:00:44,860
+E aquele que conhecemos comporta-se da maneira que esperamos.
+
+13
+00:00:44,880 --> 00:00:49,710
+E ento, vamos passar por um fluxo ligeiramente diferente, onde talvez o resultado que recebemos no
+
+14
+00:00:49,710 --> 00:00:51,050
+seja o que esperamos.
+
+15
+00:00:51,480 --> 00:00:53,010
+Ento, aqui est o fluxo exato.
+
+16
+00:00:53,030 --> 00:00:56,260
+E voc viu um conjunto muito especfico de direes aqui.
+
+17
+00:00:56,340 --> 00:01:01,640
+Vou comear o formulrio de criao de msicas e vou atualizar a pgina.
+
+18
+00:01:01,650 --> 00:01:02,610
+Agora isso  muito importante.
+
+19
+00:01:02,610 --> 00:01:05,010
+Acabei de atualizar a pgina.
+
+20
+00:01:05,010 --> 00:01:14,820
+Agora vou criar uma nova msica que eu chamarei de gua, o Boogie enviar e uma nova msica fantstica aparecer
+
+21
+00:01:14,880 --> 00:01:17,300
+na pgina exatamente como esperaria.
+
+22
+00:01:17,310 --> 00:01:20,080
+Definitivamente trabalhou da maneira que eu esperava que isso funcionasse l.
+
+23
+00:01:20,090 --> 00:01:23,850
+Agora vou atualizar a pgina para atualizar a pgina.
+
+24
+00:01:23,850 --> 00:01:26,020
+Ainda estou na lista de msicas.
+
+25
+00:01:26,040 --> 00:01:31,290
+Estou na lista de msicas agora e vou clicar em ADD e vou criar uma nova msica.
+
+26
+00:01:31,320 --> 00:01:35,330
+Ns chamaremos esse casal de caf.
+
+27
+00:01:35,700 --> 00:01:41,110
+Agora, minha expectativa  quando eu acertar Enter uma mutao deve ser enviada para o servidor.
+
+28
+00:01:41,460 --> 00:01:43,870
+O servidor criar uma nova msica.
+
+29
+00:01:44,100 --> 00:01:50,340
+Em seguida, ser redirecionado forosamente para a lista de msicas e eu deveria ver a lista de msicas aparecer
+
+30
+00:01:50,340 --> 00:01:54,080
+na tela junto com o meu novo casal de caf de cano.
+
+31
+00:01:54,090 --> 00:01:55,470
+Ento, essa  a minha expectativa.
+
+32
+00:01:55,470 --> 00:01:57,810
+Isso  o que eu quero ver acontecer aqui.
+
+33
+00:01:57,990 --> 00:02:02,060
+Ento eu preciso pressionar enter e hum.
+
+34
+00:02:02,190 --> 00:02:07,850
+Parece que o par de caf no apareceu na tela por algum motivo.
+
+35
+00:02:08,190 --> 00:02:10,950
+Bem, vamos atualizar a pgina e ver o que acontece.
+
+36
+00:02:11,310 --> 00:02:12,730
+Ento, quando eu atualizar a pgina.
+
+37
+00:02:12,810 --> 00:02:18,750
+Bem, eu definitivamente consegui a msica aparecer na tela, ento parece que a mutao funcionou corretamente na medida em
+
+38
+00:02:18,990 --> 00:02:21,650
+que o registro foi criado na minha extremidade traseira.
+
+39
+00:02:21,900 --> 00:02:27,570
+Mas quando voltei para esta pgina os dados no apareceram automaticamente na tela.
+
+40
+00:02:27,870 --> 00:02:31,520
+Ento, o que no mundo poderia ter acontecido ali mesmo.
+
+41
+00:02:31,510 --> 00:02:37,770
+Hmm bem, vamos dar uma olhada em um diagrama que talvez nos ajude a entender um pouco mais sobre como
+
+42
+00:02:38,010 --> 00:02:41,510
+o Apollo trabalha com o lado de reao da nossa aplicao.
+
+43
+00:02:42,180 --> 00:02:47,100
+Ok, ento vamos passar por esse fluxo aqui e vamos passar por dois cenrios
+
+44
+00:02:47,100 --> 00:02:49,890
+diferentes, os dois cenrios que acabamos de passar.
+
+45
+00:02:49,890 --> 00:02:54,300
+Ento, o lado esquerdo, eu tenho dinheiro frio, lado direito  dinheiro quente.
+
+46
+00:02:54,420 --> 00:02:57,870
+Agora note que estou abusando dos termos frio e calor.
+
+47
+00:02:57,870 --> 00:03:02,700
+Caixa, devemos pensar mais nisso como sendo apenas o lado esquerdo do fluxo.
+
+48
+00:03:02,700 --> 00:03:09,000
+quando eu vou primeiro para a lista de msicas e depois navegue at a msica Criar e passe por esse fluxo.
+
+49
+00:03:09,000 --> 00:03:13,130
+Onde atualizei a pgina no formulrio Criar msica e o lado direito 
+
+50
+00:03:13,140 --> 00:03:18,540
+Ento, o lado direito  o lado onde as coisas parecem no estar funcionando, pois espero que o lado
+
+51
+00:03:18,600 --> 00:03:21,620
+esquerdo seja o bom fluxo onde tudo foi como gostaramos.
+
+52
+00:03:21,720 --> 00:03:25,040
+Ento, vamos passar por esses dois fluxos no dinheiro frio.
+
+53
+00:03:25,050 --> 00:03:29,700
+Atualmente, estamos criando uma nova msica que envia mutao.
+
+54
+00:03:29,700 --> 00:03:35,850
+A mutao  executada com sucesso e depois  redirecionada automaticamente para a lista de msicas.
+
+55
+00:03:35,850 --> 00:03:42,390
+consulta  executada automaticamente para ns, um nmero de msicas so buscadas no nosso componente lendo automaticamente renderizaes quando
+
+56
+00:03:42,750 --> 00:03:48,030
+a consulta est completa para mostrar a lista de msicas na tela exatamente como ns espero.
+
+57
+00:03:48,180 --> 00:03:52,290
+Assim que comeamos a renderizar a lista de msicas na tela, nossa
+
+58
+00:03:52,290 --> 00:03:55,020
+Exatamente como esperamos.
+
+59
+00:03:55,080 --> 00:03:58,300
+Agora vamos passar por esta situao alternativa por aqui.
+
+60
+00:03:58,380 --> 00:04:04,110
+O caso em que eu primeiro vou para o componente da lista de msicas e, em seguida, crie uma nova msica e
+
+61
+00:04:04,110 --> 00:04:05,750
+volte para a lista de msicas.
+
+62
+00:04:05,760 --> 00:04:11,790
+Ento, neste fluxo, eu irei buscar minha lista de msicas que executamos essa consulta, dizemos que me d todas as minhas msicas
+
+63
+00:04:11,790 --> 00:04:17,200
+Quero ouvir sobre elas e ns retornamos uma lista de msicas, vamos imaginar que podemos cham-las de msicas 2 3
+
+64
+00:04:17,210 --> 00:04:17,910
+e 4.
+
+65
+00:04:17,940 --> 00:04:21,300
+Ento, diremos que as msicas 2 3 e 4 foram buscadas.
+
+66
+00:04:21,360 --> 00:04:24,540
+Eles agora esto sentados no lado do cliente.
+
+67
+00:04:25,020 --> 00:04:30,630
+Em seguida, vamos ao formulrio Criar msica e criamos uma nova msica chamada Nmero Cinco.
+
+68
+00:04:30,720 --> 00:04:36,900
+Minha expectativa minha esperana seria que a msica nmero 5 aparea no componente da lista de msicas.
+
+69
+00:04:37,140 --> 00:04:45,930
+No entanto, quando somos redirecionados forosamente de volta para a lista de msicas, voc disse mais ou devo dizer que Appollo diz
+
+70
+00:04:45,930 --> 00:04:51,060
+que voc sabe o que a lista de msicas que eu j obtive.
+
+71
+00:04:51,090 --> 00:04:53,150
+Como acabamos de correr isso.
+
+72
+00:04:53,250 --> 00:04:56,490
+No preciso executar essa consulta novamente.
+
+73
+00:04:56,520 --> 00:04:57,700
+Eu poderia, mas voc sabe o que.
+
+74
+00:04:57,720 --> 00:05:06,600
+No, obrigado, eu no vou, ento, o resultado  que lemos apenas renderizar esse formulrio ou ver essa lista, ns renderizamos essa lista
+
+75
+00:05:06,600 --> 00:05:15,030
+somente com as msicas 2 3 e 4 porque no reflash para obter o nmero de cano 5 na nossa loja do
+
+76
+00:05:15,030 --> 00:05:18,530
+lado do cliente ou na nossa loja lateral de msicas.
+
+77
+00:05:18,900 --> 00:05:25,500
+Ento, o grande problema aqui  que nossa consulta agora para buscar nossa lista de msicas
+
+78
+00:05:25,500 --> 00:05:27,620
+s foi executada uma vez.
+
+79
+00:05:27,630 --> 00:05:31,990
+Agora, este  um problema muito comum em todo o mundo do Appollo.
+
+80
+00:05:32,190 --> 00:05:39,510
+de dificuldade em fazer Appollo perceber que voc acabou de criar um novo registro que pertence a essa lista de dados.
+
+81
+00:05:39,510 --> 00:05:45,240
+Sempre que voc estiver trabalhando com uma lista de registros se voc for inserir um novo
+
+82
+00:05:45,300 --> 00:05:48,510
+registro nessa lista, com frequncia vai ter um pouco
+
+83
+00:05:48,630 --> 00:05:53,160
+Apolo no vai assumir, hey, voc sabe o que acabou de criar uma nova msica.
+
+84
+00:05:53,160 --> 00:06:00,480
+Certamente, todas as outras ou todas as listas de msicas que eu j procurei querem querer querer ver essa nova msica
+
+85
+00:06:00,510 --> 00:06:01,530
+adicionada a ela.
+
+86
+00:06:01,530 --> 00:06:04,590
+O Apolo no faz esse pressuposto para voc.
+
+87
+00:06:04,590 --> 00:06:12,210
+Podemos imaginar o que est acontecendo dentro do cliente Apollo ou da loja Apollo como
+
+88
+00:06:12,210 --> 00:06:13,430
+algo assim.
+
+89
+00:06:13,470 --> 00:06:16,960
+ uma espcie de dizer OK. Ser a primeira vez que eu vou e buscar os seus dados.
+
+90
+00:06:17,010 --> 00:06:19,000
+Eu vou pegar a msica 2 3 e 4.
+
+91
+00:06:19,020 --> 00:06:21,990
+E aqueles esto ligados ao componente da lista de msicas.
+
+92
+00:06:22,200 --> 00:06:25,680
+Eles esto vinculados a essa consulta que acabamos de executar.
+
+93
+00:06:25,920 --> 00:06:29,250
+Quando ento vamos e criamos a cano nmero cinco.
+
+94
+00:06:29,460 --> 00:06:31,450
+Apollo diz que voc sabe o que.
+
+95
+00:06:31,500 --> 00:06:33,770
+Eu sei que a cano nmero cinco existe.
+
+96
+00:06:33,780 --> 00:06:41,040
+no vou tentar voltar e inseri-lo em listas existentes ou colees de dados que voc j obteve.
+
+97
+00:06:41,040 --> 00:06:43,860
+Eu sei que est l, mas
+
+98
+00:06:43,860 --> 00:06:49,050
+Eu vou assumir que todas as colees que voc j buscou esto sentando em seus prprios
+
+99
+00:06:49,050 --> 00:06:54,000
+pequenos baldes em seus prprios pequenos recipientes e eles realmente no precisam obter essa nova
+
+100
+00:06:54,000 --> 00:06:56,260
+msica que acabamos de criar adicionada neles.
+
+101
+00:06:56,310 --> 00:07:04,650
+Ento, o nosso trabalho, o que precisamos fazer para que essa coisa funcione do jeito que esperamos  reenviar completamente a consulta que
+
+102
+00:07:04,890 --> 00:07:09,110
+busca nossa lista de msicas aps a mutao ter sido executada.
+
+103
+00:07:09,150 --> 00:07:15,650
+Se reencaminharmos todas as lnguas, ento, quando Apollo receber a resposta, isso dir Ah, eu vejo.
+
+104
+00:07:15,690 --> 00:07:21,720
+uma parte dessas msicas que eu deveria estar mostrando dentro do componente sem msicas que faz sentido.
+
+105
+00:07:21,720 --> 00:07:23,580
+OK, filho nmero cinco 
+
+106
+00:07:23,580 --> 00:07:30,810
+Ento, nosso trabalho  instruir o Apollo que, depois de criarmos essa nova msica, queramos reertar a consulta que j
+
+107
+00:07:30,810 --> 00:07:37,200
+foi executada e entender que a cano nmero cinco deveria ser parte da lista de msicas ou a
+
+108
+00:07:37,200 --> 00:07:41,630
+lista de msicas que queremos mostrar no componente da lista de msicas.
+
+109
+00:07:42,180 --> 00:07:42,680
+Tudo bem.
+
+110
+00:07:42,720 --> 00:07:48,930
+Ento, muita conversa e para entender o que  inerentemente, voc conhece algo que espero que nos
+
+111
+00:07:49,290 --> 00:07:50,980
+ajude a longo prazo.
+
+112
+00:07:51,000 --> 00:07:57,290
+que seja realmente fcil dizer que isso  louco,  claro, a cano 5 deve ser adicionada  minha lista.
+
+113
+00:07:57,300 --> 00:08:00,280
+Voc sabe nestas aplicaes muito simples que podemos fazer com
+
+114
+00:08:00,510 --> 00:08:06,660
+Mas, como voc sabe, voc comea a trabalhar em aplicativos mais complexos, pode ser o caso
+
+115
+00:08:06,660 --> 00:08:12,690
+em que voc no quer automaticamente ter apenas um grande balde antigo de msicas e apenas
+
+116
+00:08:12,690 --> 00:08:14,390
+manter registros anexos nesse automaticamente.
+
+117
+00:08:14,760 --> 00:08:19,740
+De qualquer forma, vamos dar uma pausa rpida e ento vamos voltar e descobrir como
+
+118
+00:08:19,740 --> 00:08:26,430
+fazer um pouco de refatorao para dizer ao Appollo que depois de executar nossa mutao, ele deve atualizar automaticamente a
+
+119
+00:08:26,430 --> 00:08:28,490
+consulta para obter nossa lista de msicas.
+
+120
+00:08:28,620 --> 00:08:30,670
+Ento vamos cuidar disso na prxima seo.
+

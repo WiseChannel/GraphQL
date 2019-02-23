@@ -1,0 +1,356 @@
+1
+00:00:00,690 --> 00:00:05,610
+Na ltima seo, falamos um pouco sobre alguns problemas em torno de garantir que apenas
+
+2
+00:00:05,610 --> 00:00:08,760
+usurios autenticados pudessem ver o nosso componente de painel.
+
+3
+00:00:08,760 --> 00:00:10,680
+Agora, ainda no criamos o painel de instrumentos.
+
+4
+00:00:10,680 --> 00:00:12,730
+ algo para o qual ainda temos que dar uma volta.
+
+5
+00:00:12,780 --> 00:00:15,200
+Mas definitivamente vamos em apenas alguns momentos.
+
+6
+00:00:15,330 --> 00:00:21,900
+Ns dissemos que em um mundo perfeito depois que um usurio efetuou o login, atualizaramos o usurio atual, redirecionando o usurio
+
+7
+00:00:21,900 --> 00:00:27,390
+para o painel de controle e o prprio painel de controle poderia ter certeza de que o usurio
+
+8
+00:00:27,800 --> 00:00:30,540
+estava autenticado e, se eles no fossem autenticados, expuls-los.
+
+9
+00:00:30,540 --> 00:00:38,010
+No entanto, como discutimos, descobrimos que a realidade da situao  que a mutao do usurio no log
+
+10
+00:00:38,130 --> 00:00:44,760
+depois de completar a execuo, redirecionamos instantaneamente para o painel de controle e, simultaneamente, lanamos esse
+
+11
+00:00:44,760 --> 00:00:48,570
+pedido de longa durao para atualizar o usurio atual.
+
+12
+00:00:48,600 --> 00:00:53,010
+E assim, o resultado foi que, de forma instantnea, nos reencaminhamos para o painel de bordo.
+
+13
+00:00:53,220 --> 00:00:56,010
+O painel diz que voc ainda no iniciou sesso.
+
+14
+00:00:56,010 --> 00:01:02,070
+Voc no tem um usurio atual atribudo e ento nos expulsaria de volta para a tela de
+
+15
+00:01:02,100 --> 00:01:08,630
+logon e, em seguida, apenas alguns milissegundos mais tarde, com a consulta para atualizar o usurio atual, sero atualizados.
+
+16
+00:01:08,640 --> 00:01:10,730
+Ento, tivemos que descobrir uma soluo para isso.
+
+17
+00:01:10,740 --> 00:01:15,410
+E vou mostrar-lhe a minha sugesto de como vamos lidar com este caso.
+
+18
+00:01:15,750 --> 00:01:21,570
+A primeira coisa que eu quero fazer  lembr-lo ou, pelo menos,
+
+19
+00:01:21,570 --> 00:01:27,990
+fazer algo muito claro sobre como nossos componentes em nossas interaes interagem uns
+
+20
+00:01:27,990 --> 00:01:36,930
+com os outros at agora associamos consultas com componentes e ficamos 100% cristalinos sempre que ns reinicie uma consulta.
+
+21
+00:01:36,930 --> 00:01:42,780
+Todos os componentes que esto associados a essa consulta dentro do nosso aplicativo sero
+
+22
+00:01:42,780 --> 00:01:45,910
+automaticamente atualizados com os resultados da consulta.
+
+23
+00:01:46,290 --> 00:01:53,910
+Ento, se considerarmos a nica consulta que temos agora, a consulta atual do usurio, podemos associar isso
+
+24
+00:01:53,910 --> 00:01:57,450
+a 100 componentes diferentes dentro de nossa aplicao.
+
+25
+00:01:57,600 --> 00:02:05,030
+E se qualquer um desses componentes decidir reiniciar esta consulta, todos os 100 componentes re-lero ou
+
+26
+00:02:05,030 --> 00:02:06,900
+com os dados atualizados.
+
+27
+00:02:06,960 --> 00:02:11,670
+E isso  algo que  muito importante ter em mente quando pensamos em rever
+
+28
+00:02:11,670 --> 00:02:13,380
+as consultas dentro da nossa aplicao.
+
+29
+00:02:13,410 --> 00:02:18,990
+Ento, se tivermos uma consulta que obtenha um resultado singular, assim como isso, faz o instante em
+
+30
+00:02:18,990 --> 00:02:24,030
+que buscamos boom e digite re-act application ou, pelo menos, qualquer componente que faa uso
+
+31
+00:02:24,030 --> 00:02:25,300
+da consulta vai renderizar.
+
+32
+00:02:25,860 --> 00:02:32,790
+nosso log em forma e assinar o formulrio para ser um pouco mais consciente do estado de autenticao do usurio.
+
+33
+00:02:32,790 --> 00:02:37,020
+Ento, com isso em mente, provavelmente podemos descobrir uma maneira de enganar o
+
+34
+00:02:37,020 --> 00:02:40,170
+Ento, aqui est o que vamos fazer para ver.
+
+35
+00:02:40,230 --> 00:02:44,850
+Ento,  por isso que eu me referi como o download finalizado  o que faremos na
+
+36
+00:02:44,850 --> 00:02:46,750
+prtica para que nosso projeto realmente funcione.
+
+37
+00:02:46,800 --> 00:02:53,310
+A primeira coisa que vamos fazer  associar o nosso formulrio ao usurio atual Querrey e eu digo que estou falando
+
+38
+00:02:53,360 --> 00:02:56,550
+sobre o formulrio de logon e os formulrios de inscrio.
+
+39
+00:02:56,610 --> 00:02:58,110
+Ambos.
+
+40
+00:02:58,110 --> 00:03:05,410
+depois de associarmos o formulrio  consulta atual do usurio, permitiremos que o usurio insira algum sinal de informao.
+
+41
+00:03:05,410 --> 00:03:07,590
+Ento, a idia aqui  que
+
+42
+00:03:07,630 --> 00:03:12,810
+Ento, eles vo entrar em seu e-mail e senha que vai executar a mutao e, em
+
+43
+00:03:12,810 --> 00:03:14,440
+seguida, recuperar o usurio atual.
+
+44
+00:03:14,440 --> 00:03:14,950
+Ento isso  bom.
+
+45
+00:03:14,950 --> 00:03:19,120
+Ento, quando eu digo prefetch o usurio atual aqui estou falando sobre questes de dvida que
+
+46
+00:03:19,120 --> 00:03:21,080
+temos dentro do formulrio de logon agora.
+
+47
+00:03:21,280 --> 00:03:22,320
+Ento, este passo aqui.
+
+48
+00:03:22,330 --> 00:03:29,800
+a consulta aps a resoluo da consulta forar cada componente que use essa consulta para renderizar automaticamente.
+
+49
+00:03:29,800 --> 00:03:35,160
+Portanto, atualize as consultas agora, como acabamos de discutir sempre que realizamos
+
+50
+00:03:35,350 --> 00:03:39,800
+E assim, se associarmos esta consulta de usurio atual com o formulrio de logon.
+
+51
+00:03:39,940 --> 00:03:45,740
+Ento, depois de atualizar essa consulta, o formulrio de login tambm ir renderizar automaticamente.
+
+52
+00:03:45,790 --> 00:03:51,770
+Assim, o log in form render com o conhecimento de que existe agora um usurio atual.
+
+53
+00:03:52,060 --> 00:03:57,880
+Ento, podemos explorar esse fato ali mesmo para obter um pouco de gancho de pelo menos alguma
+
+54
+00:03:57,880 --> 00:04:00,920
+compreenso de que minha empresa est prestes a atualizar.
+
+55
+00:04:00,970 --> 00:04:07,300
+pequena mudana no estado desse usurio atual, Querrey, vamos ter o fato de que no havia um usurio atual, mas
+
+56
+00:04:07,390 --> 00:04:11,590
+que agora  como um sinal que o usurio deve ter logado com sucesso.
+
+57
+00:04:11,590 --> 00:04:16,440
+No havia um usurio atual antes, mas parece que agora existe e vamos levar essa
+
+58
+00:04:16,540 --> 00:04:20,830
+E assim, no instante em que o formulrio de registro ele processa e detectamos que no havia usurio atual.
+
+59
+00:04:20,850 --> 00:04:26,530
+Mas agora  que vamos tomar isso como o sinal de que precisamos redirecionar o usurio para o painel de controle do
+
+60
+00:04:27,300 --> 00:04:32,200
+que o painel de controle pode olhar para a propriedade do usurio atual, o usurio atual j foi buscado.
+
+61
+00:04:32,200 --> 00:04:37,540
+Ns deixamos que o assunto terminasse e deixvamos que ele terminasse at o ponto de permitir que ele voltasse a
+
+62
+00:04:37,530 --> 00:04:38,240
+iniciar o formulrio.
+
+63
+00:04:38,410 --> 00:04:43,060
+Ento, claro, do painel de bordo, ele realmente olha para o estado de autenticao do usurio.
+
+64
+00:04:43,060 --> 00:04:45,850
+Vai dizer que sim, parece que eles so autenticados.
+
+65
+00:04:45,850 --> 00:04:48,060
+Eles podem continuar olhando o painel.
+
+66
+00:04:48,490 --> 00:04:52,870
+Ento, de novo, todo o pinculo que devo dizer, acho que esse  um bom termo para isso.
+
+67
+00:04:52,870 --> 00:04:58,390
+Todo o processo deste processo aqui  a nossa capacidade de assistir o processo de atualizao de
+
+68
+00:04:58,870 --> 00:05:05,290
+componentes e assistir o pedao de usurio ou usurio atual ou estado que retornou da consulta e no instante em
+
+69
+00:05:05,320 --> 00:05:10,690
+que vemos esse pequeno fragmento de dados de no autenticado para autenticado Ns vamos levar isso como
+
+70
+00:05:10,690 --> 00:05:15,520
+um sinal de que precisamos levar o usurio ao nosso componente do painel de instrumentos.
+
+71
+00:05:16,150 --> 00:05:17,140
+Ento esse  o nosso plano.
+
+72
+00:05:17,620 --> 00:05:21,540
+Essa ser a maneira pela qual lidamos com isso na prtica.
+
+73
+00:05:21,560 --> 00:05:27,760
+Eu para ver que isso no vai ser muito desafiador para codificar, pelo menos, esta fase, neste
+
+74
+00:05:27,760 --> 00:05:29,040
+primeiro semestre aqui.
+
+75
+00:05:29,080 --> 00:05:31,240
+Vai ser bastante difcil.
+
+76
+00:05:31,240 --> 00:05:37,840
+A desvantagem dessa abordagem  apenas o fato de que no  super claro o que est acontecendo com
+
+77
+00:05:37,840 --> 00:05:38,580
+essa coisa.
+
+78
+00:05:38,650 --> 00:05:43,240
+No  s sentir um pouco desagradvel onde realmente parece que deve haver uma maneira
+
+79
+00:05:43,240 --> 00:05:48,430
+melhor de faz-lo e menos ns vamos dar o nosso melhor tiro e espero que tudo se
+
+80
+00:05:48,430 --> 00:05:49,650
+junte do jeito que esperamos.
+
+81
+00:05:49,990 --> 00:05:51,360
+Ento vamos fazer uma pausa rpida.
+
+82
+00:05:51,490 --> 00:05:52,770
+Vamos voltar.
+
+83
+00:05:52,780 --> 00:05:58,870
+Comearemos por associar a nossa forma ao formulrio longo com a consulta atual do usurio e ento falaremos
+
+84
+00:05:58,870 --> 00:06:01,840
+exatamente sobre como observamos esse passo de repetio aqui.
+
+85
+00:06:01,840 --> 00:06:06,250
+Quando a consulta vai ser resolvida com o usurio atual quando adicionamos o cdigo para a etapa
+
+86
+00:06:06,250 --> 00:06:10,960
+aqui mesmo, eu realmente acho que voc vai dizer que sim, isso  totalmente bvio,  claro, que
+
+87
+00:06:10,960 --> 00:06:11,340
+vai funcionar.
+
+88
+00:06:11,530 --> 00:06:17,240
+Mas  meio que chegar a esse passo do tipo de descobrir o que fazer, pode ser um pouco desafiador.
+
+89
+00:06:17,500 --> 00:06:21,740
+Ento, vamos cuidar desse fluxo de autenticao finalizado na prxima seo.
+

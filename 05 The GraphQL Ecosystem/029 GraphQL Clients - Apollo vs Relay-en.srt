@@ -1,0 +1,684 @@
+1
+00:00:01,290 --> 00:00:06,750
+We've made a lot of progress so far with graft well but so far all of that progress has been limited
+
+2
+00:00:06,750 --> 00:00:10,330
+to the graphical client here in the browser.
+
+3
+00:00:10,380 --> 00:00:16,500
+We still are not actually putting any of this information onto a screen that an end user can look at.
+
+4
+00:00:16,530 --> 00:00:21,900
+So I don't know about you but I really do not expect my end user to boot up graphical and write out
+
+5
+00:00:21,900 --> 00:00:25,110
+the queries for the information they want to get from my application.
+
+6
+00:00:25,260 --> 00:00:31,530
+Instead I want to take my graph to Elser I want to take the information out of it and I want to integrate
+
+7
+00:00:31,530 --> 00:00:35,600
+that with some front end framework like say maybe react.
+
+8
+00:00:35,970 --> 00:00:41,790
+I can use react then to pull information out of graph tool and have it show up on the screen and some
+
+9
+00:00:41,790 --> 00:00:47,010
+nice pretty fashion which will give my users something very easy to look at.
+
+10
+00:00:47,010 --> 00:00:52,140
+So in this section we're going to start working towards taking our graph through all server and integrating
+
+11
+00:00:52,140 --> 00:00:54,880
+it with they react from it.
+
+12
+00:00:54,990 --> 00:00:56,120
+That's the good news.
+
+13
+00:00:56,460 --> 00:01:01,700
+The bad news is that this is also where graph 12 starts to get a little bit hairy.
+
+14
+00:01:02,130 --> 00:01:07,070
+Graph Cuil is the bleeding edge of the Internet and web design technology.
+
+15
+00:01:07,410 --> 00:01:13,740
+And there's a lot of very rapid changes that are coming out in the graph Cuil ecosystem especially on
+
+16
+00:01:13,740 --> 00:01:16,010
+the front and side of things.
+
+17
+00:01:16,020 --> 00:01:21,130
+So in this section we're going to look at some of the different evolving technologies that are used
+
+18
+00:01:21,150 --> 00:01:26,790
+on the front end of graphical applications and we're going to talk about the pros and cons of each of
+
+19
+00:01:26,790 --> 00:01:27,340
+them.
+
+20
+00:01:27,630 --> 00:01:32,680
+So my overall goal here is really to get you familiar with some of the different libraries and to yield
+
+21
+00:01:32,730 --> 00:01:35,930
+to speak intelligently about the purpose of each of them.
+
+22
+00:01:36,080 --> 00:01:37,800
+That's the that's the goal.
+
+23
+00:01:37,800 --> 00:01:43,150
+After we talk about each of these libraries we will pick one and move forward with it.
+
+24
+00:01:43,580 --> 00:01:44,160
+OK.
+
+25
+00:01:44,460 --> 00:01:48,480
+To start off with I want to remind you of where we're at right now.
+
+26
+00:01:48,480 --> 00:01:50,610
+Now I know we've looked at this diagram several times.
+
+27
+00:01:50,610 --> 00:01:54,710
+But trust me this will be maybe the last time we had it maybe.
+
+28
+00:01:54,930 --> 00:02:00,180
+Anyways we've got a graphical client running inside of the browser right now.
+
+29
+00:02:00,180 --> 00:02:05,910
+We write out a graph to a query which presumably gets sent down to our express server in some fashion
+
+30
+00:02:06,450 --> 00:02:08,340
+then the graphics will side of things.
+
+31
+00:02:08,340 --> 00:02:14,210
+Works with our Jaison server data store to formulate a response and send that back to graphical.
+
+32
+00:02:14,250 --> 00:02:19,020
+So that is what is happening right now.
+
+33
+00:02:19,020 --> 00:02:23,850
+One of the really important parts about this application and especially understanding how we're going
+
+34
+00:02:23,850 --> 00:02:30,990
+to integrate a client to read the data from our graphical server is to understand exactly what information
+
+35
+00:02:31,020 --> 00:02:33,520
+is being exchanged with the server.
+
+36
+00:02:33,540 --> 00:02:36,960
+So in particular I'm talking about this graph to El server right here.
+
+37
+00:02:37,000 --> 00:02:38,940
+You need this graph to load Querrey.
+
+38
+00:02:39,150 --> 00:02:45,050
+If we can understand what information is being sent from the browser to the server.
+
+39
+00:02:45,300 --> 00:02:50,580
+Maybe that would give us a little bit more insight on exactly how we can interface with the ground.
+
+40
+00:02:50,580 --> 00:02:51,600
+Q Well server.
+
+41
+00:02:51,840 --> 00:02:58,500
+So if we understand what information is being exchanged here maybe it'll give us a little bit more insight
+
+42
+00:02:58,560 --> 00:03:04,180
+on how to work with graft well inside the browser when working with re-act.
+
+43
+00:03:04,490 --> 00:03:09,420
+So to understand what is going on inside this query Let's flip back over to graphical.
+
+44
+00:03:09,680 --> 00:03:13,010
+I've got a query already up on the screen and here's what I want to do.
+
+45
+00:03:13,010 --> 00:03:15,450
+I'm going to open up my chrome console.
+
+46
+00:03:16,310 --> 00:03:18,870
+I'm going to change over to the network tab.
+
+47
+00:03:19,130 --> 00:03:24,810
+I'm going to make sure that unfiltered by Exige our requests and then I'm going to issue that query.
+
+48
+00:03:25,430 --> 00:03:29,970
+So soon like click the play button over here I get the request popping up on the screen.
+
+49
+00:03:30,020 --> 00:03:36,890
+So this is the request that the graphical client just issued to our graph to El Back-End going to click
+
+50
+00:03:36,890 --> 00:03:39,790
+into it and then go to the preview tab.
+
+51
+00:03:40,250 --> 00:03:45,620
+I can expand out everything on the preview tab and you'll see that it is identical to the information
+
+52
+00:03:45,620 --> 00:03:49,380
+that is displayed as the result of our query on the right hand side.
+
+53
+00:03:49,640 --> 00:03:58,850
+So clearly the response that comes back from our graph server is just very plain very raw data.
+
+54
+00:03:58,850 --> 00:04:03,510
+Let's also take a look at what graphical itself is sending to the backend.
+
+55
+00:04:03,530 --> 00:04:07,010
+So this is just the response that we're looking at right here is just the response.
+
+56
+00:04:07,010 --> 00:04:10,150
+Let's also look at the request that is being issued.
+
+57
+00:04:10,190 --> 00:04:15,020
+So I'm going to click on the headers tab and then scroll all the way to the bottom and find request
+
+58
+00:04:15,020 --> 00:04:16,580
+payload.
+
+59
+00:04:16,580 --> 00:04:21,460
+Now inside here you'll see that the request payload has three properties.
+
+60
+00:04:21,620 --> 00:04:27,240
+The operation name the query and the variables will talk about what variables is later on.
+
+61
+00:04:27,260 --> 00:04:30,290
+But right now I really want to focus on the query.
+
+62
+00:04:30,590 --> 00:04:31,580
+So take a look at that.
+
+63
+00:04:31,610 --> 00:04:38,950
+The query is the exact character for character string that we entered into our graphical client.
+
+64
+00:04:38,960 --> 00:04:41,910
+This is actually rather important to understand.
+
+65
+00:04:42,320 --> 00:04:48,680
+Out of all the different clients that we can make use of and the graph Q Old-World they all really speak
+
+66
+00:04:48,680 --> 00:04:50,770
+the same language over the wire.
+
+67
+00:04:50,840 --> 00:04:55,690
+They all speak the same identical type of queries that we see right here.
+
+68
+00:04:56,000 --> 00:05:02,420
+So no matter what front end client I'm using and no matter what back end client I'm using they can all
+
+69
+00:05:02,420 --> 00:05:07,940
+communicate with each other because they're exchanging the exact same information.
+
+70
+00:05:08,000 --> 00:05:12,750
+There's nothing library specific about this query that's being issued right here.
+
+71
+00:05:12,770 --> 00:05:15,290
+Now of course there are some edge cases to this.
+
+72
+00:05:15,290 --> 00:05:20,690
+There are some kind of rough edges where it's kind of tough to get one library on the front end to work
+
+73
+00:05:20,690 --> 00:05:22,500
+well with another one on the back end.
+
+74
+00:05:22,700 --> 00:05:25,070
+But we'll talk more about those cases later on.
+
+75
+00:05:25,070 --> 00:05:30,620
+The only point that I want to make right now is that the front end application and the back end application
+
+76
+00:05:30,830 --> 00:05:36,460
+we can kind of imagine are working just like how traditional Ajax request with Jaison work.
+
+77
+00:05:36,590 --> 00:05:43,010
+It's really just data over the wire that is more or less an formatted and not specifically formatted
+
+78
+00:05:43,370 --> 00:05:47,080
+for any one particular technology OK.
+
+79
+00:05:47,350 --> 00:05:52,990
+So I just wanted to make that first point clear let you know that hey we're using one client that doesn't
+
+80
+00:05:52,990 --> 00:05:58,540
+necessarily mean that we can't work with another particular back end graft server.
+
+81
+00:05:59,170 --> 00:06:03,700
+So let's now pivot just a little bit and talk about exactly what this graph to Al Klein is going to
+
+82
+00:06:03,700 --> 00:06:05,010
+do for us.
+
+83
+00:06:05,440 --> 00:06:07,870
+So this is essentially the same diagram.
+
+84
+00:06:08,080 --> 00:06:11,000
+The big difference is what's going on inside the browser now.
+
+85
+00:06:11,380 --> 00:06:16,900
+So we're going to very soon have a re-act application and this reactor application is going to be very
+
+86
+00:06:16,900 --> 00:06:20,370
+tightly coupled with a graph to our client.
+
+87
+00:06:20,380 --> 00:06:26,170
+The purpose of this graph to our client right here is to do exactly what graphical is currently doing.
+
+88
+00:06:26,470 --> 00:06:32,790
+We're going to handwrite out some queries we're going to feed them into this graph to our client then
+
+89
+00:06:32,800 --> 00:06:39,340
+the graph Cuil client will issue them to our back and get some response back and then pass that data
+
+90
+00:06:39,340 --> 00:06:41,620
+onto our re-act application.
+
+91
+00:06:41,620 --> 00:06:46,780
+So we really should be thinking of this graph Kubo client that we're going to be using as a bonding
+
+92
+00:06:46,780 --> 00:06:49,900
+layer between react and digraph QOL server.
+
+93
+00:06:49,910 --> 00:06:51,600
+We've already written.
+
+94
+00:06:52,280 --> 00:06:58,060
+Everything you're just talking about about how this graph old query right here is essentially language
+
+95
+00:06:58,060 --> 00:07:05,080
+agnostic or at least technology or client you know type agnostic is really to describe the relation
+
+96
+00:07:05,080 --> 00:07:09,300
+between this graph to a client and the graph Cuil server that we already put together.
+
+97
+00:07:09,340 --> 00:07:12,890
+They are very loosely coupled.
+
+98
+00:07:13,320 --> 00:07:13,660
+All right.
+
+99
+00:07:13,710 --> 00:07:19,170
+Lastly I want to talk about is the three different big clients that are in use today in the javascript
+
+100
+00:07:19,200 --> 00:07:20,980
+and graphical world.
+
+101
+00:07:21,420 --> 00:07:26,340
+So again these are javascript clients that would be made use of inside of the browser.
+
+102
+00:07:26,340 --> 00:07:29,750
+These are not necessarily back end technologies.
+
+103
+00:07:30,270 --> 00:07:36,840
+So these are all three these are loosely organized in kind of increasing difficulty or increasing complexity
+
+104
+00:07:37,540 --> 00:07:41,030
+on the very easiest side is something called Loca or Latka.
+
+105
+00:07:41,040 --> 00:07:46,590
+I'll be honest with you I don't really know what it's supposed to be this louca client right here is
+
+106
+00:07:46,680 --> 00:07:49,190
+about as simple as it gets.
+
+107
+00:07:49,200 --> 00:07:58,160
+It gives us the ability to make requests to a graph tool back end and get some response back it essentially
+
+108
+00:07:58,160 --> 00:08:01,950
+works very similar to what our graph graphical client is doing right now.
+
+109
+00:08:02,120 --> 00:08:08,060
+But it also has some little bit of extra features for handling something called caching and caching
+
+110
+00:08:08,060 --> 00:08:15,020
+is a big performance tool that we'll use later on to significantly improve the performance of our application.
+
+111
+00:08:15,020 --> 00:08:17,530
+Next up is the Apollo client.
+
+112
+00:08:17,650 --> 00:08:25,100
+So the Apollo client is one of the biggest full stack uses of craft out there right now.
+
+113
+00:08:25,340 --> 00:08:32,150
+Overall the project is called the Apollo stack the Apollo stack has both a back end graph Cuil server
+
+114
+00:08:32,450 --> 00:08:36,860
+which we will be using in place of the Express graph Q1 that we're using right now.
+
+115
+00:08:37,040 --> 00:08:44,330
+And it also has the Apollo client which runs exclusively in the front or in our browser the Apollo client
+
+116
+00:08:44,330 --> 00:08:46,610
+is being made by the same guys who made meteor.
+
+117
+00:08:46,690 --> 00:08:47,140
+Yes.
+
+118
+00:08:47,150 --> 00:08:52,430
+If you're at all familiar with meteor that's kind of overall I view that as kind of like a good thing
+
+119
+00:08:52,520 --> 00:08:53,800
+and a bad thing.
+
+120
+00:08:53,810 --> 00:09:01,460
+So here's kind of my 30 second soapbox on Apollo client Apollo line is really great in terms of having
+
+121
+00:09:01,490 --> 00:09:06,880
+a ambitious feature set while balancing that with not making it very difficult to work with.
+
+122
+00:09:06,920 --> 00:09:12,260
+So you can definitely get up and started with Apollo client very quickly and generally happy with the
+
+123
+00:09:12,260 --> 00:09:13,280
+feature set.
+
+124
+00:09:13,280 --> 00:09:18,950
+The downside to it is that it's being made by the meteor J J.S. guys and this is a team of guys where
+
+125
+00:09:19,250 --> 00:09:25,700
+although they are extraordinarily intelligent they don't necessarily have like you know a year or plus
+
+126
+00:09:25,700 --> 00:09:29,390
+or something like that of experience with Graph Cuil clients.
+
+127
+00:09:29,480 --> 00:09:35,840
+These are kind of people who sat down to make specifically an Apollo client or a graph to a client so
+
+128
+00:09:35,840 --> 00:09:39,210
+that they can have a business in the graph you old world.
+
+129
+00:09:39,470 --> 00:09:41,650
+So it's kind of a pro and con right there.
+
+130
+00:09:41,840 --> 00:09:46,250
+And I really don't mean to talk badly about them I hope it doesn't come across that way but you really
+
+131
+00:09:46,250 --> 00:09:52,400
+have to kind of remember the goal of the team who is maintaining that tool now on the very far end of
+
+132
+00:09:52,400 --> 00:09:57,790
+difficulty and I really do mean very far and is the relay client.
+
+133
+00:09:57,880 --> 00:10:07,370
+So really is what is officially used by the Facebook team relay is extraordinarily complicated especially
+
+134
+00:10:07,370 --> 00:10:09,530
+when it starts to get towards mutations.
+
+135
+00:10:09,530 --> 00:10:16,000
+So in the relay world handling mutations is probably like a factor of 10 more challenging than the mutations
+
+136
+00:10:16,010 --> 00:10:17,450
+we've put together already.
+
+137
+00:10:17,600 --> 00:10:24,380
+So I really want to tell you I kind of want to warn you away from using relais although it is amazingly
+
+138
+00:10:24,470 --> 00:10:26,270
+amazing performance on mobile.
+
+139
+00:10:26,300 --> 00:10:32,810
+Like relay was built for mobile devices that operate in third world countries where they have very poor
+
+140
+00:10:32,840 --> 00:10:36,110
+internet quality or very poor internet connection quality.
+
+141
+00:10:36,110 --> 00:10:42,920
+So if you are working on application where you absolutely unequivocally know that your users are going
+
+142
+00:10:42,920 --> 00:10:48,560
+to have awful internet connections then relay is definitely a very good solution to go with because
+
+143
+00:10:48,560 --> 00:10:51,320
+that is really what it was built for.
+
+144
+00:10:51,410 --> 00:10:58,100
+However you pay for all that performance in complexity so it makes a lot of sense for a team like Facebook
+
+145
+00:10:58,190 --> 00:11:03,800
+where they have literally hundreds of millions of dollars in engineering budget and really makes sense
+
+146
+00:11:03,800 --> 00:11:08,130
+for them to use relaid because they have the budget and the time to to use it.
+
+147
+00:11:08,330 --> 00:11:15,530
+But if you're making if you're building application for a startup I have to direct you away from really
+
+148
+00:11:15,560 --> 00:11:23,550
+I really I have to right now because it is really overkill in some places for your general typical application.
+
+149
+00:11:23,550 --> 00:11:30,320
+Now as the record date of this video really is currently on Version 1 they are working on a version
+
+150
+00:11:30,320 --> 00:11:33,960
+2 which is going to simplify the API a little bit.
+
+151
+00:11:34,070 --> 00:11:40,100
+So it might be that at some point in the future relay rolls out with version 2 and it's by far way easier
+
+152
+00:11:40,100 --> 00:11:42,800
+to use then you'll maybe Appollo Cline and even Loga.
+
+153
+00:11:42,920 --> 00:11:48,770
+I don't know maybe that's going to happen but as of today at least it's still pretty crazy.
+
+154
+00:11:48,800 --> 00:11:53,720
+The last thing about relais and that possible version too is that the version to the right has been
+
+155
+00:11:53,720 --> 00:11:57,410
+kind of pending for like a year now without too much progress.
+
+156
+00:11:57,410 --> 00:12:03,070
+So I wouldn't really hold my breath on that version to come out anytime soon.
+
+157
+00:12:03,480 --> 00:12:03,980
+OK.
+
+158
+00:12:04,010 --> 00:12:06,360
+So that is our overview on graph.
+
+159
+00:12:06,360 --> 00:12:13,850
+Q Our clients remember the purpose of each of these is to make a request to our graph tool server get
+
+160
+00:12:13,850 --> 00:12:19,910
+the response back and forward it on to the re-act application so re-act is still going to be 100 percent
+
+161
+00:12:19,910 --> 00:12:22,760
+in control of showing information on the screen.
+
+162
+00:12:22,880 --> 00:12:29,050
+We are only using these technologies to interface with our graph Q All server in this course we're going
+
+163
+00:12:29,050 --> 00:12:33,920
+to be moving forward with the Apollo client because it really is a good balance between features and
+
+164
+00:12:33,920 --> 00:12:35,090
+complexity.
+
+165
+00:12:35,090 --> 00:12:35,930
+The API.
+
+166
+00:12:35,930 --> 00:12:41,240
+I do expect to change just a little bit over time but in general they've made some good decisions about
+
+167
+00:12:41,240 --> 00:12:45,640
+performance and complexity so far and I am personally pretty darn pleased with it.
+
+168
+00:12:45,650 --> 00:12:50,550
+So we will be using Appollo client throughout this course at some point in time.
+
+169
+00:12:50,550 --> 00:12:54,320
+You know we might come back to maybe figure out a little bit about how loca really works.
+
+170
+00:12:54,320 --> 00:12:57,960
+But again I'm very happy with Appollo client for now.
+
+171
+00:12:58,380 --> 00:13:04,770
+So let's continue on and start working on our next application in the next section.
+

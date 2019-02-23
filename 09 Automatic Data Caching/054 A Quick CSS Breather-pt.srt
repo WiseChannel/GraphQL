@@ -1,0 +1,184 @@
+1
+00:00:00,840 --> 00:00:05,870
+Vamos tirar uma pausa rpida do grfico Cuil e Appollo lado de nossa aplicao, abordando
+
+2
+00:00:06,480 --> 00:00:08,040
+estas questes que temos aqui.
+
+3
+00:00:08,280 --> 00:00:13,560
+Ento, eu quero ter certeza de que o cone em si se desloca para o lado direito da direita de
+
+4
+00:00:13,980 --> 00:00:19,620
+cada linha e, em seguida, eu tambm gostaria muito se, em vez desse tipo de cursor de texto que eu fiz
+
+5
+00:00:19,620 --> 00:00:25,590
+ao passar por um cone, eu seria muito feliz se eu pudesse ter um bom tipo de dedo indicador, em vez disso,
+
+6
+00:00:25,590 --> 00:00:30,020
+apenas certifique-se de que os usurios so claros que podem clicar nesse cone para fazer algo.
+
+7
+00:00:30,450 --> 00:00:34,990
+Ento vamos adicionar um pouco de CSSA para abordar isso dentro do meu editor de cdigo.
+
+8
+00:00:35,100 --> 00:00:40,340
+regras, o primeiro seletor que ir adicionar  item de coleo com o nome da classe.
+
+9
+00:00:40,350 --> 00:00:47,430
+Eu vou encontrar essa pasta de estilo dentro do diretrio do cliente e, em seguida, abra o arquivo de estilo Dotsie
+
+10
+00:00:47,430 --> 00:00:51,720
+SS dentro se voc for adicionar dois seletores e apenas um punhado de
+
+11
+00:00:51,710 --> 00:00:53,450
+Ento use um ponto na frente dele.
+
+12
+00:00:53,760 --> 00:00:57,250
+Ento, esta  a linha individual para cada msica.
+
+13
+00:00:57,360 --> 00:01:00,410
+Eu vou dizer  linha que deve usar uma exibio de flaks.
+
+14
+00:01:00,420 --> 00:01:08,340
+Ento, isso  habilitar o sistema de caixa flexvel e, em seguida, eu tambm atribuirei a propriedade de contedo
+
+15
+00:01:08,340 --> 00:01:15,390
+justificada e atribuir-lhe espao entre o espao entre a regra, aqui, vai garantir que todo o contedo
+
+16
+00:01:15,420 --> 00:01:20,490
+dentro do item de coleta maximize o espao entre cada item .
+
+17
+00:01:20,490 --> 00:01:24,160
+Ento eu tenho atualmente o ttulo da msica e o cone.
+
+18
+00:01:24,260 --> 00:01:25,010
+S d uma olhada.
+
+19
+00:01:25,050 --> 00:01:26,930
+O ttulo da msica e o cone.
+
+20
+00:01:27,180 --> 00:01:32,340
+Ento, o espao entre a regra vai garantir que haja a distncia mxima
+
+21
+00:01:32,340 --> 00:01:33,880
+entre esses dois itens.
+
+22
+00:01:33,900 --> 00:01:36,520
+Vamos atualizar a pgina e ver como ela se parece.
+
+23
+00:01:36,790 --> 00:01:37,830
+Oh, um passo.
+
+24
+00:01:37,860 --> 00:01:39,380
+Temos um rpido passo.
+
+25
+00:01:39,510 --> 00:01:41,580
+O ltimo passo rpido que eu esqueci.
+
+26
+00:01:41,580 --> 00:01:46,480
+Precisamos garantir que importemos o estilo que o arquivo CSSA em algum lugar em nosso projeto.
+
+27
+00:01:46,560 --> 00:01:52,560
+Vou abrir meu arquivo de ndice e iremos importar o arquivo CSSA.
+
+28
+00:01:52,560 --> 00:01:57,540
+No topo, ento podemos dizer importar e no precisamos nomear a importao, no precisamos atribu-la
+
+29
+00:01:57,540 --> 00:02:02,160
+a uma varivel, para que possamos passar o caminho diretamente para o arquivo.
+
+30
+00:02:02,400 --> 00:02:06,330
+Ento, vamos dizer entrar no arquivo de estilo e depois encontrar pontos de estilo.
+
+31
+00:02:06,470 --> 00:02:07,590
+SS OK.
+
+32
+00:02:07,610 --> 00:02:12,010
+Agora podemos fazer isso realmente fresco e ver a atualizao na tela.
+
+33
+00:02:12,000 --> 00:02:14,170
+Ento, agora, todos atualizam e.
+
+34
+00:02:14,190 --> 00:02:14,600
+EST BEM.
+
+35
+00:02:14,610 --> 00:02:16,860
+Isso parece muito melhor.
+
+36
+00:02:16,860 --> 00:02:21,390
+Agora, a outra coisa que eu quero cuidar  ter certeza de ter o cone do cursor agradvel.
+
+37
+00:02:21,980 --> 00:02:30,180
+Ento, de volta ao interior do arquivo de folha de estilo, adicionarei na regra ou o seletor desculpa-me cones de material e, em
+
+38
+00:02:30,960 --> 00:02:36,660
+seguida, obtenha o ponteiro do dedo mais prximo,  claro, seu cursor e diga cursor com
+
+39
+00:02:36,750 --> 00:02:38,630
+uma propriedade de ponteiro assim.
+
+40
+00:02:40,220 --> 00:02:42,330
+Ento, agora vamos atualizar isso de novo.
+
+41
+00:02:43,100 --> 00:02:48,560
+E sempre que eu seguirei o mouse, eu recebo esse bom tipo de olhar no que diz, o
+
+42
+00:02:48,560 --> 00:02:55,490
+que deixa bem claro que um usurio pode clicar na lata de lixo para excluir uma cano individual de Yoga Express e Dog
+
+43
+00:02:55,900 --> 00:02:56,600
+Night e OK.
+
+44
+00:02:56,630 --> 00:02:59,940
+Sim,  definitivamente o trabalho da maneira que esperamos.
+
+45
+00:03:00,170 --> 00:03:01,230
+Isso est funcionando muito bem.
+
+46
+00:03:01,280 --> 00:03:06,520
+Voltemos ao enxerto de reao, voc se encolher das coisas na prxima seo.
+

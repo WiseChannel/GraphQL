@@ -1,0 +1,528 @@
+1
+00:00:00,750 --> 00:00:07,030
+Na ltima seo, conclumos a configurao do servidor Mongul labac nosso servidor grfico hospedado localmente.
+
+2
+00:00:07,440 --> 00:00:12,000
+Eu agora tenho um grfico aberto e vamos passar um pouco de tempo para
+
+3
+00:00:12,010 --> 00:00:18,150
+percorrer todo o esquema que j foi configurado no projeto que estamos fazendo uso no tipo anterior, como
+
+4
+00:00:18,150 --> 00:00:22,410
+um tipo de paradigmas diferentes no passado, onde usamos principalmente interfaces de descanso.
+
+5
+00:00:22,620 --> 00:00:28,410
+A melhor maneira de fazer isso geralmente  olhar o cdigo diretamente e dizer tudo bem, o que
+
+6
+00:00:28,410 --> 00:00:34,020
+so todos os diferentes navios entre meus todos meus tipos so todos meus dados dentro da minha aplicao.
+
+7
+00:00:34,410 --> 00:00:40,740
+Mas uma das coisas fantsticas sobre o enxerto  o sistema de documentao gerado automaticamente automaticamente
+
+8
+00:00:40,740 --> 00:00:44,230
+que est disponvel para ns a partir de grficos.
+
+9
+00:00:44,550 --> 00:00:46,690
+Ento eu estou no grfico de barras quadradas localhost 4000.
+
+10
+00:00:46,690 --> 00:00:52,590
+Q Bem, isso traz minha ferramenta grfica e podemos fazer uso da documentao gerada automaticamente dentro deste
+
+11
+00:00:52,620 --> 00:00:57,960
+painel docs para aprender um pouco mais sobre todos os dados que esto disponveis para
+
+12
+00:00:57,960 --> 00:00:59,780
+ns dentro de nossa aplicao.
+
+13
+00:00:59,970 --> 00:01:02,150
+Esta  realmente uma ferramenta fantstica.
+
+14
+00:01:02,280 --> 00:01:07,290
+diz que sabe, talvez voc esteja caminhando para um projeto pela primeira vez e quiser ter um melhor
+
+15
+00:01:07,650 --> 00:01:12,360
+senso sobre todos os dados que voc tenha acesso a voc quer estar olhando para este
+
+16
+00:01:12,360 --> 00:01:17,940
+painel aqui mesmo. Vou lhe dar uma boa ideia de quais dados voc tem acesso e como tudo est relacionado.
+
+17
+00:01:17,940 --> 00:01:20,070
+Sempre que voc  um engenheiro que
+
+18
+00:01:20,670 --> 00:01:26,620
+Ento, dentro do painel docs, temos nossos dois tipos de raiz, que  a nossa consulta de raiz e nossa mutao de raiz.
+
+19
+00:01:26,850 --> 00:01:29,240
+Vejamos o tipo de consulta raiz.
+
+20
+00:01:29,820 --> 00:01:35,600
+Ento, no tipo de consulta raiz, podemos solicitar uma lista de todas as msicas diferentes em nosso aplicativo.
+
+21
+00:01:35,730 --> 00:01:43,520
+Podemos pedir uma msica muito especfica por id e tambm podemos pedir uma letra muito especfica por ID tambm.
+
+22
+00:01:45,110 --> 00:01:46,250
+Vamos dar uma olhada na msica.
+
+23
+00:01:46,250 --> 00:01:48,270
+Digite o tipo de letra.
+
+24
+00:01:48,560 --> 00:01:53,570
+Ento, cada msica tem um ID um ttulo e uma srie de letras.
+
+25
+00:01:53,570 --> 00:02:00,260
+Ento, se eu pedir uma msica, eu vou voltar muitas letras anexadas, porque, em teoria,
+
+26
+00:02:00,260 --> 00:02:04,630
+uma msica tem muitas linhas de palavras ou cantando.
+
+27
+00:02:04,640 --> 00:02:13,670
+Eu acho que eu quero dizer que cada letra, por sua vez, tem uma ID, um nmero de gostos atribudos a ela alguma quantidade
+
+28
+00:02:13,670 --> 00:02:14,440
+de contedo.
+
+29
+00:02:14,450 --> 00:02:16,340
+Ento essa  a prpria letra.
+
+30
+00:02:16,430 --> 00:02:20,250
+E, em seguida, uma referncia de volta para a msica que realmente pertence.
+
+31
+00:02:20,270 --> 00:02:22,210
+Portanto,  definitivamente um relacionamento de dois sentidos.
+
+32
+00:02:22,210 --> 00:02:27,100
+Voc pode pedir uma msica sobre ou me enviar uma letra sobre qual msica pertence.
+
+33
+00:02:27,140 --> 00:02:30,630
+Ns tambm podemos pedir uma msica sobre todas as letras que tem.
+
+34
+00:02:30,640 --> 00:02:35,520
+Voc sabe que j conseguimos estabelecer os dois caminhos juntos aqui.
+
+35
+00:02:36,900 --> 00:02:39,700
+Voltemos ao nosso esquema de razes.
+
+36
+00:02:39,720 --> 00:02:43,160
+Aqui vamos e vamos dar uma olhada nas mutaes que temos disponveis tambm.
+
+37
+00:02:43,200 --> 00:02:47,980
+Ento, esta  outra rea muito importante para olhar quando voc est caminhando para um novo projeto.
+
+38
+00:02:48,030 --> 00:02:53,070
+ timo saber como todos os dados so realmente apenas juntos, mas voc tambm quer ter uma boa idia
+
+39
+00:02:53,200 --> 00:02:54,830
+de quais mutaes esto realmente disponveis.
+
+40
+00:02:54,840 --> 00:02:57,930
+Como posso alterar os dados aos quais eu tenho acesso.
+
+41
+00:02:58,470 --> 00:03:02,160
+Ento, temos quatro mutaes diferentes j configuradas para ns.
+
+42
+00:03:02,250 --> 00:03:08,760
+Podemos adicionar uma msica, podemos adicionar uma letra a uma msica existente, podemos gostar de uma nica letra e ento
+
+43
+00:03:08,760 --> 00:03:10,290
+podemos excluir uma msica tambm.
+
+44
+00:03:10,380 --> 00:03:15,040
+Ento, voc pode imaginar onde cada um deles entra em jogo dentro de nossa aplicao.
+
+45
+00:03:15,150 --> 00:03:20,420
+Ns provavelmente comearemos adicionando uma msica, ento podemos adicionar uma letra a ela.
+
+46
+00:03:20,490 --> 00:03:22,100
+Poderamos ento gostar dessa letra.
+
+47
+00:03:22,110 --> 00:03:26,250
+E ento, no final do dia em que terminamos, se no gostarmos de como
+
+48
+00:03:26,250 --> 00:03:28,630
+a msica acabou, podemos excluir a msica completamente.
+
+49
+00:03:28,770 --> 00:03:34,830
+Ento, para se certificar de que temos alguns dados raiz ou algum tipo de dados de reproduo para trabalhar com uma vez
+
+50
+00:03:34,830 --> 00:03:39,180
+que comeamos a trabalhar no lado do cliente da nossa aplicao, acho que provavelmente seria uma
+
+51
+00:03:39,180 --> 00:03:43,720
+boa idia agora, pelo menos, adicionar uma msica e talvez uma ou duas letras para ele.
+
+52
+00:03:43,770 --> 00:03:50,640
+Ento, vamos fazer isso agora dentro do editor grfico e as roupas na mo direita Dachs painel e, em
+
+53
+00:03:50,640 --> 00:03:54,320
+seguida, expandir a seo de consultas no lado esquerdo esquerdo.
+
+54
+00:03:54,750 --> 00:04:00,870
+Ento, meu objetivo agora  criar pelo menos uma msica e, em seguida, adicionar pelo menos uma letra a ela.
+
+55
+00:04:01,140 --> 00:04:06,660
+Quando o fizermos, acabaremos levando voc, vamos precisar de uma referncia de id para a msica que foi criada
+
+56
+00:04:06,720 --> 00:04:08,390
+quando queremos criar a letra real.
+
+57
+00:04:08,430 --> 00:04:12,180
+Ento, vamos nos certificar de que copiamos colar um pouco da sada que
+
+58
+00:04:12,180 --> 00:04:13,440
+aparece no lado direito.
+
+59
+00:04:14,100 --> 00:04:15,160
+Ento vamos fazer isso.
+
+60
+00:04:15,360 --> 00:04:18,180
+Primeiro criaremos uma mutao para adicionar uma msica.
+
+61
+00:04:18,360 --> 00:04:24,270
+Ento diga nutation add song e precisamos fornecer um ttulo para esta msica.
+
+62
+00:04:24,280 --> 00:04:29,320
+Ento  um ttulo e diremos sobre a noite fria.
+
+63
+00:04:29,790 --> 00:04:31,910
+Parece uma msica de tipo romntico.
+
+64
+00:04:31,920 --> 00:04:33,080
+E no.
+
+65
+00:04:33,300 --> 00:04:38,510
+E ento pedir a idia da msica que foi criada. Lembre-se de dentro da mutao.
+
+66
+00:04:38,520 --> 00:04:44,100
+Podemos pedir quantidade ou quantidade de dados do registro que acabou de ser criado.
+
+67
+00:04:44,130 --> 00:04:49,800
+Ento eu quero saber especificamente qual  a idia da msica que eu criei imediatamente depois de
+
+68
+00:04:50,870 --> 00:04:56,560
+criar ou executar esta mutao e conseguimos recuperar a idia de uma msica que acabou de ser criada.
+
+69
+00:04:56,610 --> 00:05:02,450
+Voc notar aqui que ns temos essa corda muito longa para a identificao, esta  uma boa hora
+
+70
+00:05:02,460 --> 00:05:05,080
+e espera ver o retorno do laboratrio Mongul.
+
+71
+00:05:05,250 --> 00:05:06,860
+Eles tendem a ser uma corda muito longa.
+
+72
+00:05:06,870 --> 00:05:10,490
+Mas a coisa boa  que eles geralmente so globalmente nicos.
+
+73
+00:05:10,530 --> 00:05:16,860
+Ento, mesmo que eu tenha vrias colees de dados, como dizer uma coleo de msicas e uma coleo
+
+74
+00:05:17,180 --> 00:05:23,580
+de letras, geralmente acaba que as idias que recebo so nicas entre todas essas colees diferentes, especialmente relevantes
+
+75
+00:05:23,580 --> 00:05:26,140
+no lado do cliente da nossa aplicao.
+
+76
+00:05:26,130 --> 00:05:31,550
+Vamos voltar a isso e falar sobre o quo bom  ter IDs nicas a nvel mundial.
+
+77
+00:05:32,410 --> 00:05:36,000
+OK, ento temos a idia da msica que acabou de ser criada.
+
+78
+00:05:36,000 --> 00:05:42,600
+Agora queremos adicionar pelo menos uma letra a essa msica para garantir que eu adicione uma letra  msica correta.
+
+79
+00:05:42,630 --> 00:05:48,270
+Preciso da ideia aqui, ento vou copi-lo e vamos us-lo na prxima
+
+80
+00:05:48,270 --> 00:05:49,950
+mutao que escrevemos.
+
+81
+00:05:49,980 --> 00:05:58,320
+Ento, para a prxima mutao, eu vou excluir o interior aqui e vamos adicionar letras para cano, a msica que eu quero
+
+82
+00:05:58,350 --> 00:06:05,670
+adicionar  a msica que acabamos de criar para que eu cole a ID certifique-se de que  o
+
+83
+00:06:05,670 --> 00:06:06,320
+mesmo ali.
+
+84
+00:06:07,850 --> 00:06:11,390
+E ento eu preciso dar uma quantidade de contedo tambm.
+
+85
+00:06:11,910 --> 00:06:16,570
+Ento, o contedo aqui  o real como a linha de canto  o processo de pensamento l.
+
+86
+00:06:16,570 --> 00:06:21,260
+Isto  o que o cantor realmente diria para o contedo atual aqui.
+
+87
+00:06:21,280 --> 00:06:28,560
+Ento vamos dar um segundo e pensar sobre algumas letras apropriadas aqui sobre o meu oh meu.
+
+88
+00:06:28,560 --> 00:06:31,590
+ uma noite fria.
+
+89
+00:06:31,590 --> 00:06:33,450
+Eu no sou, eu no sou compositor.
+
+90
+00:06:33,450 --> 00:06:36,950
+Eu vou dizer a vocs agora que no sou compositor, mas acho que isso vai acontecer.
+
+91
+00:06:37,620 --> 00:06:44,520
+Ento, ns pediremos a identificao dessas letras que foram criadas em troca, assim que se assegure de que voc obtenha
+
+92
+00:06:44,520 --> 00:06:46,380
+o suporte aberto curly aqui tambm.
+
+93
+00:06:46,380 --> 00:06:50,920
+Eu sei que minha tela est um pouco limitada agora no comprimento da linha.
+
+94
+00:06:50,940 --> 00:06:54,500
+Ento, temos a abertura franzida e o fechamento para a linha.
+
+95
+00:06:54,540 --> 00:06:56,790
+E tambm pedimos a identificao.
+
+96
+00:06:59,430 --> 00:06:59,950
+EST BEM.
+
+97
+00:07:00,010 --> 00:07:05,550
+Agora vamos executar esta mutao e voltamos para o ID da msica.
+
+98
+00:07:05,590 --> 00:07:07,050
+Isso foi modificado.
+
+99
+00:07:07,210 --> 00:07:09,330
+Ento, isso  um pouco inesperado aqui.
+
+100
+00:07:09,330 --> 00:07:12,130
+Quero indicar isso at a mutao.
+
+101
+00:07:12,130 --> 00:07:18,280
+Esta  a idia desta msica que foi modificada, no a idia das letras que acabaram de ser criadas e
+
+102
+00:07:18,280 --> 00:07:23,470
+falaremos exatamente sobre o motivo pelo qual tomamos essa abordagem quando tambm comeamos a trabalhar no aplicativo
+
+103
+00:07:23,470 --> 00:07:24,660
+do lado do cliente.
+
+104
+00:07:25,420 --> 00:07:31,240
+juntando um aplicativo, vamos agora escrever uma consulta para apenas buscar esses dados e ver como ele se parece.
+
+105
+00:07:31,240 --> 00:07:34,140
+OK, ento temos uma letra e ns conseguimos uma msica
+
+106
+00:07:34,690 --> 00:07:39,300
+Ento, vamos remover a palavra-chave da mutao, ento no estamos trabalhando com a mutao.
+
+107
+00:07:39,420 --> 00:07:50,710
+Os ltimos quatro so uma lista de msicas, vamos pedir o ID do nome ou me desculpar o ttulo e a letra dentro de cada
+
+108
+00:07:50,800 --> 00:07:55,550
+msica e depois obteremos o contedo de cada uma dessas letras.
+
+109
+00:07:55,990 --> 00:08:03,850
+Ento, vamos rodar essa consulta e recuperamos uma lista de msicas do ttulo de cada msica e, em seguida, as letras
+
+110
+00:08:03,850 --> 00:08:05,540
+que esto contidas nessa msica.
+
+111
+00:08:05,770 --> 00:08:10,750
+E aqui est o contedo da letra que acabamos de adicionar no Kosovo parece bom.
+
+112
+00:08:10,750 --> 00:08:16,020
+Ns conseguimos nosso primeiro pequeno conjunto de dados juntos dentro de um banco de dados de laboratrio remoto.
+
+113
+00:08:16,030 --> 00:08:22,000
+Uma coisa que eu quero apontar para voc ainda tenho minha conexo de laboratrio aberta aqui, ento aqui est
+
+114
+00:08:22,000 --> 00:08:26,890
+a guia do meu laboratrio e vou clicar na guia de colees no lado esquerdo.
+
+115
+00:08:27,040 --> 00:08:31,870
+Se voc j fechou no laboratrio, eu incentivaria voc a abrir seu navegador novamente e voltar a
+
+116
+00:08:31,900 --> 00:08:34,930
+entrar e abrir o banco de dados que acabamos de criar.
+
+117
+00:08:34,930 --> 00:08:40,740
+Se eu atualizar a pgina, eu deveria ver a coleo de dados que acabamos de criar pop-up aqui.
+
+118
+00:08:41,050 --> 00:08:46,160
+Ento, vamos l, atualizo a pgina e vejo minha coleo de letras na minha coleo de msicas.
+
+119
+00:08:46,450 --> 00:08:50,530
+Ento, uma coisa que provavelmente acabar fazendo ao longo deste curso ou, pelo menos, uma seo,
+
+120
+00:08:50,530 --> 00:08:53,620
+podemos acabar chegando aqui se alguma vez cometermos um erro nos dados.
+
+121
+00:08:53,650 --> 00:09:00,460
+Voc sabe como inserido no banco de dados sempre podemos voltar aqui e modificar ou
+
+122
+00:09:00,490 --> 00:09:01,990
+excluir registros individuais.
+
+123
+00:09:02,290 --> 00:09:06,070
+E alm disso, voc sabe que s vezes  muito bom olhar para os dados que esto sentados
+
+124
+00:09:06,070 --> 00:09:10,190
+dentro do nosso banco de dados e ter certeza de que estamos realmente inserindo o tipo correto de dados.
+
+125
+00:09:10,240 --> 00:09:15,880
+E da maneira correta para que eu possa olhar diretamente para a letra que acabou de adicionar e dizer Ok, parece
+
+126
+00:09:15,880 --> 00:09:17,860
+que eu adicionei a letra correta aqui.
+
+127
+00:09:17,980 --> 00:09:22,110
+E, claro, se eu quiser, eu sempre posso excluir este registro tambm.
+
+128
+00:09:22,870 --> 00:09:23,330
+EST BEM.
+
+129
+00:09:23,380 --> 00:09:28,720
+Ento, eu acho que temos uma melhor idia de como os dados esto funcionando dentro da nossa aplicao.
+
+130
+00:09:28,720 --> 00:09:34,250
+Sabemos que vamos ter muitas msicas e cada msica tem muitas letras associadas a ela.
+
+131
+00:09:34,480 --> 00:09:39,790
+Ento, agora que temos uma compreenso muito firme no lado do esquema do nosso aplicativo, vamos continuar
+
+132
+00:09:39,790 --> 00:09:44,280
+na prxima seo e comear a juntar o lado do cliente da nossa aplicao.
+

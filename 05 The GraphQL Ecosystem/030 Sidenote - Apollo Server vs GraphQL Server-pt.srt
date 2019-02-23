@@ -1,0 +1,312 @@
+1
+00:00:00,710 --> 00:00:05,450
+H uma ltima coisa rpida que eu quero mencionar sobre a possvel tecnologia aqui.
+
+2
+00:00:05,450 --> 00:00:08,290
+Isso  algo sobre o back-end que estamos usando.
+
+3
+00:00:08,300 --> 00:00:11,750
+Ento, na ltima seo, discutimos todos os clientes que usamos.
+
+4
+00:00:11,760 --> 00:00:18,110
+Ento, quando eu digo o cliente, estou falando sobre algo que funciona no navegador dos usurios, mas
+
+5
+00:00:18,110 --> 00:00:22,790
+tambm fazemos uso de uma ferramenta de ferramentas grficas na nossa parte traseira.
+
+6
+00:00:22,820 --> 00:00:25,700
+Ento na parte de trs que estamos trabalhando.
+
+7
+00:00:25,730 --> 00:00:26,810
+Ento, aqui est o nosso arquivo de esquema.
+
+8
+00:00:26,810 --> 00:00:29,160
+Esta  a nossa ferramenta de grficos back end aqui.
+
+9
+00:00:29,210 --> 00:00:35,870
+Se eu abrir meu pacote Scott JS no arquivo que contm todas as dependncias que o nosso projeto
+
+10
+00:00:35,870 --> 00:00:38,990
+tem. Voc notar que estamos usando Express graficado bem.
+
+11
+00:00:39,050 --> 00:00:41,780
+Portanto, isso no faz parte da pilha Apollo.
+
+12
+00:00:41,780 --> 00:00:43,390
+Isso no faz parte da Apollo.
+
+13
+00:00:43,490 --> 00:00:47,040
+Existe um servidor Apollo que podemos usar.
+
+14
+00:00:47,270 --> 00:00:50,160
+Mas eu tomei a deciso de ir com o Express.
+
+15
+00:00:50,210 --> 00:00:57,010
+Ento eu quero dar um segundo para lhe dizer por que estamos indo nesta direo ao invs de usar o cliente Apollo.
+
+16
+00:00:57,630 --> 00:01:04,890
+do arquivo de grfico express e, em seguida, o possvel arquivo equivalente do servidor Apollo no lado direito.
+
+17
+00:01:04,950 --> 00:01:10,660
+Portanto, este  um pequeno fragmento de cdigo de cada um dos arquivos fora
+
+18
+00:01:12,280 --> 00:01:18,500
+O servidor que estamos usando Express grfico  referido como a implementao de referncia do grfico.
+
+19
+00:01:18,500 --> 00:01:25,660
+Q Bem, porque  a implementao oficial que o Facebook mantm e  o tipo de especificao de
+
+20
+00:01:25,660 --> 00:01:28,600
+como um servidor pode ser implementado com grficos.
+
+21
+00:01:28,650 --> 00:01:36,100
+Bem, o servidor Apollo, por outro lado,  uma interpretao diferente de como implementar o enxerto
+
+22
+00:01:36,100 --> 00:01:37,140
+no servidor.
+
+23
+00:01:37,210 --> 00:01:40,200
+Nem isso  realmente parte desta prxima declarao  muito importante.
+
+24
+00:01:40,330 --> 00:01:43,770
+Nenhum deles  inerentemente melhor que o outro.
+
+25
+00:01:43,810 --> 00:01:46,450
+Nenhum deles  inerentemente melhor que o outro.
+
+26
+00:01:46,930 --> 00:01:54,580
+Eu fiz a deciso executiva de ir com o Graph CULE Express no backend, porque  significativamente mais
+
+27
+00:01:54,760 --> 00:01:59,120
+provvel que as mudanas da API sejam grandes no futuro.
+
+28
+00:01:59,230 --> 00:02:05,590
+Um servidor polons ainda est em desenvolvimento muito ativo e pode ter algumas mudanas de API
+
+29
+00:02:05,590 --> 00:02:07,390
+bastante grandes no futuro.
+
+30
+00:02:07,600 --> 00:02:12,880
+E mesmo nos ltimos dois lanamentos que eles fizeram ao longo dos ltimos meses, o
+
+31
+00:02:12,880 --> 00:02:14,580
+oponente mudou de forma importante.
+
+32
+00:02:14,650 --> 00:02:21,190
+dinheiro indo com grout para L'Express agora do que se preocupar com grandes mudanas de API com o Polo servidor.
+
+33
+00:02:21,190 --> 00:02:26,350
+EXPRESS gruffed voc vai expressar, no entanto, tem sido relativamente estvel no ltimo ano e assim, pessoalmente,
+
+34
+00:02:26,350 --> 00:02:29,320
+eu acho que voc est ficando mais bang por seu
+
+35
+00:02:30,720 --> 00:02:34,570
+Eu quero tirar apenas um pouco de tempo para falar sobre as diferenas entre os
+
+36
+00:02:34,570 --> 00:02:38,290
+dois porque h uma parte do servidor Apollos que voc pode ver na natureza.
+
+37
+00:02:38,290 --> 00:02:44,980
+Se voc procurar a documentao no grfico, o lado bem expresso, formamos esses objetos realmente grandes, voc conhece o objeto da
+
+38
+00:02:45,040 --> 00:02:50,380
+ferramenta de grfico tipo coisas desses objetos realmente grandes e dentro de cada um, ento ns listamos
+
+39
+00:02:50,380 --> 00:02:55,690
+todos os campos diferentes que cada um tem e, em seguida, resolver funes para o tipo de
+
+40
+00:02:55,690 --> 00:02:59,080
+viagem entre cada n no grfico de todos os nossos dados.
+
+41
+00:02:59,470 --> 00:03:03,100
+Ento, o que fizemos at agora com o servidor Apollo.
+
+42
+00:03:03,100 --> 00:03:09,820
+No entanto, eles realmente dividem toda essa informao em dois arquivos separados ou em dois locais separados no
+
+43
+00:03:10,250 --> 00:03:11,750
+mundo do servidor Apollo.
+
+44
+00:03:11,770 --> 00:03:18,250
+Eles exigem que voc defina um arquivo de esquema que usa um tipo de linguagem de marcao extravagante para descrever
+
+45
+00:03:18,280 --> 00:03:22,780
+o que cada tipo de dados parece e a relao entre cada um deles.
+
+46
+00:03:22,870 --> 00:03:25,780
+Ento podemos ver dentro deste possvel arquivo de tipos.
+
+47
+00:03:25,870 --> 00:03:29,150
+Novamente, esse  um tipo de marcao extravagante que estamos vendo aqui.
+
+48
+00:03:29,260 --> 00:03:35,380
+o servidor Apollo definiria um arquivo de resoluo ou um conjunto de resolvedores de funes de resoluo.
+
+49
+00:03:35,440 --> 00:03:41,770
+Podemos ter algo chamado de tipo de usurio e o usurio teria um ID como uma string um
+
+50
+00:03:42,070 --> 00:03:50,890
+primeiro nome e idade e uma empresa que era uma empresa e ento tambm teramos o tipo de empresa que tem um nome e uma
+
+51
+00:03:50,920 --> 00:03:54,960
+lista de usurios representados pela matriz, ento, em um arquivo separado,
+
+52
+00:03:55,210 --> 00:04:01,670
+Portanto, a grande diferena entre o servidor Apollo e o expresso grfico  que a ferramenta grfica expressa co-localize.
+
+53
+00:04:01,720 --> 00:04:07,990
+Todo esse tipo de informao com a lgica de resoluo, enquanto o servidor Apollo diz. D-me apenas
+
+54
+00:04:07,990 --> 00:04:14,740
+um local para definir tipos de amostragem e, em seguida, uma localizao separada para definir como relacionar todos
+
+55
+00:04:14,740 --> 00:04:15,980
+os tipos juntos.
+
+56
+00:04:16,420 --> 00:04:22,360
+Pessoalmente, eu gosto muito do cdigo que localiza as propriedades do meu tipo com as funes de resultado.
+
+57
+00:04:22,360 --> 00:04:27,850
+Eu acho que  muito sensato para eu olhar para isso e eu sei que voc olha isso agora
+
+58
+00:04:27,850 --> 00:04:33,040
+mesmo e isso  muito difcil de ler no lado esquerdo, mas  apenas o preto e branco
+
+59
+00:04:33,040 --> 00:04:35,390
+tipo de jogando truques em seus olhos.
+
+60
+00:04:35,500 --> 00:04:41,620
+Dentro de um editor de cdigo quando voc pode olhar como tipo de empresa e diga OK, isso tem um nome
+
+61
+00:04:41,620 --> 00:04:43,560
+de identificao de usurios de descrio.
+
+62
+00:04:43,600 --> 00:04:46,970
+E aqui  exatamente a origem desses usurios.
+
+63
+00:04:47,140 --> 00:04:52,690
+Eu acho que h um enorme valor ao ver as funes de resultados ao lado de todos os tipos diferentes.
+
+64
+00:04:52,690 --> 00:04:58,840
+h duas boas razes para usar o servidor do RFQ L'Express Apollo no  uma deciso ruim.
+
+65
+00:04:58,840 --> 00:05:00,510
+Ento, novamente, pessoalmente, acho que
+
+66
+00:05:00,520 --> 00:05:05,120
+No  uma deciso ruim  apenas diferente.
+
+67
+00:05:05,300 --> 00:05:10,150
+De qualquer forma, eu s queria mencionar a diferena entre essas duas abordagens
+
+68
+00:05:10,150 --> 00:05:14,930
+principalmente porque s vezes voc ver esquemas definidos com esta sintaxe compacta aqui.
+
+69
+00:05:14,980 --> 00:05:21,940
+Ento, se voc vai e olha para postagens de blog ou artigos, voc pode ver esse estilo de esquema compacto flutuando por a 
+
+70
+00:05:22,330 --> 00:05:23,620
+de onde est vindo.
+
+71
+00:05:23,620 --> 00:05:27,890
+ um pouco mais para a especificao padro de como definir tipos e grficos.
+
+72
+00:05:27,890 --> 00:05:33,370
+eu realmente gosto de coisas que fazem muito sentido colocar tudo dentro de um nico objeto.
+
+73
+00:05:33,370 --> 00:05:34,710
+Q Bem, mas, novamente,
+
+74
+00:05:35,200 --> 00:05:35,640
+EST BEM.
+
+75
+00:05:35,680 --> 00:05:37,910
+Vamos continuar agora na prxima seo.
+
+76
+00:05:37,930 --> 00:05:39,720
+E, de verdade,  hora de ser real.
+
+77
+00:05:39,730 --> 00:05:43,470
+Vamos comear a ligar no cliente Appollo para a nossa aplicao.
+
+78
+00:05:43,630 --> 00:05:45,390
+Ento vou ver na prxima seo.
+

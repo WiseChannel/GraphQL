@@ -1,0 +1,564 @@
+1
+00:00:00,950 --> 00:00:05,190
+Na ltima seo, juntamos algumas ferramentas para o componente de detalhes da msica.
+
+2
+00:00:05,340 --> 00:00:11,550
+Quero agora me concentrar em pensar sobre como podemos obter alguns detalhes sobre a msica atualmente
+
+3
+00:00:11,550 --> 00:00:13,730
+visualizada nesta msica detalhando um componente.
+
+4
+00:00:13,750 --> 00:00:19,260
+Ento lembre-se que os detalhes da msica precisam mostrar o ttulo da msica atualmente visualizada e a msica
+
+5
+00:00:19,260 --> 00:00:22,140
+atualmente visualizada  refletida dentro do u r l.
+
+6
+00:00:22,530 --> 00:00:27,610
+Ento, precisamos pensar um pouco sobre como vamos fazer um equador para uma msica muito particular.
+
+7
+00:00:27,960 --> 00:00:33,210
+Comecemos por analisar grficos e verificar nossa documentao para ver se podemos consultar
+
+8
+00:00:33,240 --> 00:00:35,160
+sobre uma msica muito particular.
+
+9
+00:00:35,670 --> 00:00:40,420
+Ento eu vou abrir grfico e vou abrir meu painel docs no lado direito.
+
+10
+00:00:40,500 --> 00:00:45,390
+Ento voc pode estar pensando Bem, Stephen Hey, no h problema em termos de encontrar nossa lista de msicas
+
+11
+00:00:45,420 --> 00:00:47,220
+o tempo todo neste aplicativo at agora.
+
+12
+00:00:47,220 --> 00:00:51,630
+Ns podemos simplesmente passar pela nossa lista de msicas e escolher aquilo com a ideia de que realmente
+
+13
+00:00:52,080 --> 00:00:55,190
+nos interessamos ao usar a referncia dessa msica, de modo que estamos usando.
+
+14
+00:00:55,560 --> 00:00:57,050
+Ah, sim,  definitivamente verdade.
+
+15
+00:00:57,060 --> 00:01:03,150
+Mas lembre-se de uma das grandes promessas em torno do grfico para L como uma soluo para obter dados.
+
+16
+00:01:03,300 --> 00:01:08,340
+A idia por trs disso  que no precisamos sobrecarregar os dados para a nossa aplicao.
+
+17
+00:01:08,340 --> 00:01:14,340
+Ento, se nosso usurio quiser ver apenas uma msica muito particular, eu s quero buscar os dados relacionados
+
+18
+00:01:14,340 --> 00:01:20,180
+a essa msica em particular e eu quero buscar toda a lista de msicas dentro da minha aplicao.
+
+19
+00:01:20,370 --> 00:01:26,310
+Ento, voc notar que minha consulta de raiz aqui tem outra consulta anexada a ela, onde
+
+20
+00:01:26,310 --> 00:01:30,720
+podemos pedir uma msica fornecendo a ID de uma msica muito particular.
+
+21
+00:01:31,080 --> 00:01:36,960
+Ento, se passarmos ou desculpe-me se fizermos uma consulta  msica e passamos aqui  a idia da
+
+22
+00:01:36,960 --> 00:01:38,150
+que estou tentando procurar.
+
+23
+00:01:38,250 --> 00:01:43,200
+Retornaremos alguns detalhes sobre essa msica singular apenas por si s.
+
+24
+00:01:43,200 --> 00:01:45,020
+Ento eu acho que essa ser nossa abordagem aqui.
+
+25
+00:01:45,030 --> 00:01:51,450
+De alguma forma, vamos tomar a ideia da msica que estamos olhando e refletida dentro desse
+
+26
+00:01:51,780 --> 00:01:55,130
+motivo, faa o resultado e mostre-o dentro do componente.
+
+27
+00:01:55,170 --> 00:01:59,730
+Vamos primeiro comear escrevendo este curry dentro de grficos apenas para ter certeza de que temos uma
+
+28
+00:01:59,730 --> 00:02:04,340
+boa idia do que a consulta vai se parecer e ento vamos passar para o nosso cdigo.
+
+29
+00:02:04,560 --> 00:02:06,820
+Ento, feche um painel lateral agora.
+
+30
+00:02:07,170 --> 00:02:12,980
+A primeira coisa que temos a fazer  garantir que conheamos a idia de uma msica vlida dentro do nosso projeto.
+
+31
+00:02:13,170 --> 00:02:17,520
+Ento eu no conheo nenhuma das idias do topo da minha cabea, porque h realmente longas seqncias
+
+32
+00:02:17,910 --> 00:02:23,720
+de caracteres, ento eu vou escrever em uma consulta que vai retornar uma lista de todas as msicas diferentes que temos disponveis.
+
+33
+00:02:23,770 --> 00:02:28,260
+Eu vou dizer Me d minha lista de msicas e me fale sobre as idias para cada uma delas.
+
+34
+00:02:28,550 --> 00:02:28,880
+EST BEM.
+
+35
+00:02:28,890 --> 00:02:31,290
+Ento, aqui est a idia de cada uma de nossas msicas.
+
+36
+00:02:31,290 --> 00:02:36,040
+Eu vou escolher uma msica ao acaso e dizer que irei com o top aqui.
+
+37
+00:02:36,060 --> 00:02:38,030
+Vou copiar o ID.
+
+38
+00:02:38,430 --> 00:02:43,830
+Em seguida, vou remover a consulta existente que temos e agora vamos escrever a consulta
+
+39
+00:02:43,830 --> 00:02:46,380
+para tentar obter uma msica muito particular.
+
+40
+00:02:46,500 --> 00:02:49,520
+Realmente essa msica, aqui, com essa ideia.
+
+41
+00:02:50,160 --> 00:02:55,560
+Lembre-se disso, porque na verdade no conhecemos a ideia da msica que desejamos ter acesso
+
+42
+00:02:55,560 --> 00:02:59,010
+antes, voc sabe que pode ser uma dessas idias aqui.
+
+43
+00:02:59,160 --> 00:03:05,550
+Eu vou decidir escrever uma consulta nomeada que leva uma varivel de consulta como um argumento.
+
+44
+00:03:05,730 --> 00:03:11,460
+Ento, poderemos especificar a idia da msica que estamos tentando buscar no tempo de execuo em oposio a apenas
+
+45
+00:03:11,460 --> 00:03:17,820
+uma codificao rgida de uma ID na consulta e dizendo que sim, sim, sempre traga esse aqui aqui,  claro, eu
+
+46
+00:03:17,820 --> 00:03:19,820
+no quero para sempre buscar esse.
+
+47
+00:03:19,860 --> 00:03:24,040
+Eu quero obter alguns diferentes, ento eu preciso especificar isso em tempo de execuo.
+
+48
+00:03:24,540 --> 00:03:27,970
+Ento, eu vou comear pela primeira definio de uma varivel de consulta.
+
+49
+00:03:28,260 --> 00:03:37,200
+Eu quero dizer que OK  uma identificao e eu vou colar a idia da msica que eu no recebo sem aviso prvio, ento ele obviamente obtm
+
+50
+00:03:37,200 --> 00:03:38,830
+a linha vermelha e espalhafatosa.
+
+51
+00:03:39,030 --> 00:03:39,500
+Sim.
+
+52
+00:03:39,540 --> 00:03:42,410
+Est apenas dizendo que voc ainda no est usando essa varivel de consulta.
+
+53
+00:03:42,420 --> 00:03:44,240
+Tem certeza de que deseja que ele seja definido.
+
+54
+00:03:44,250 --> 00:03:48,070
+Ns vamos usar em apenas um segundo para que o ar que somos vistos seja totalmente bom.
+
+55
+00:03:48,440 --> 00:03:54,720
+OK ento agora vamos escrever a nossa consulta escrevendo as consultas com nome onde aceitamos variveis
+
+56
+00:03:54,960 --> 00:03:59,320
+de consulta  exatamente a mesma sintaxe que usamos para mutaes.
+
+57
+00:03:59,520 --> 00:04:05,400
+Ento lembre-se com as mutaes em que tomamos as variveis de consulta que tnhamos dito como mutao e,
+
+58
+00:04:05,760 --> 00:04:10,920
+em seguida, adicione msica e, em seguida, o nome da varivel de consulta e seu tipo.
+
+59
+00:04:10,920 --> 00:04:15,110
+Ento, vamos fazer algo quase idntico para uma consulta nomeada.
+
+60
+00:04:15,420 --> 00:04:17,460
+Vamos usar a palavra-chave da consulta.
+
+61
+00:04:17,790 --> 00:04:22,250
+Vou nomear a consulta, ento eu quero dizer que  apenas chamar arbitrariamente uma consulta de msica.
+
+62
+00:04:22,260 --> 00:04:25,430
+Novamente, no h nada de bom.
+
+63
+00:04:25,890 --> 00:04:30,410
+No h nenhum requisito forado  o que quero dizer sobre o nome da msica Querrey aqui.
+
+64
+00:04:30,420 --> 00:04:32,590
+Podemos nomear tudo o que quisermos.
+
+65
+00:04:32,760 --> 00:04:41,080
+Podemos dizer msica fecche ou encontrar uma cano de msica fina por id, o que voc achar apropriado.
+
+66
+00:04:41,160 --> 00:04:47,400
+Em seguida, diremos que, sempre que for chamado, deve esperar receber uma
+
+67
+00:04:47,430 --> 00:04:55,950
+ID e eu irei cham-lo de identificao e, ento, devemos anotar o tipo de informao recebida aqui.
+
+68
+00:04:55,950 --> 00:04:59,980
+Ento eu tenho que dizer OK, voc deve estar esperando para obter uma ID como um argumento.
+
+69
+00:05:00,160 --> 00:05:03,240
+E quando se trata de garantir que seja do tipo em branco.
+
+70
+00:05:03,280 --> 00:05:09,400
+Ento, como um nmero ou um tipo de ID ou um tipo de string, todos esses tipos de chamadas e
+
+71
+00:05:09,400 --> 00:05:14,710
+primitivos que estamos fazendo uso neste caso, eu quero ter certeza de que um ID vem entrar.
+
+72
+00:05:14,710 --> 00:05:19,110
+E eu tambm quero garantir que um usurio fornea um ID.
+
+73
+00:05:19,120 --> 00:05:25,720
+Eu quero fazer um requisito obrigatrio e eu quero dizer se voc est tentando fazer uma consulta para uma msica aqui, voc tem
+
+74
+00:05:25,720 --> 00:05:31,270
+que me contar a idia da msica que voc est tentando que no pode dizer, v encontrar Essa msica,
+
+75
+00:05:31,300 --> 00:05:33,160
+mas no vou te dizer qual.
+
+76
+00:05:33,160 --> 00:05:35,030
+Isso realmente no faz sentido.
+
+77
+00:05:35,050 --> 00:05:41,260
+Ento, vamos impor uma validao para garantir que uma ID seja sempre fornecida e far isso,
+
+78
+00:05:41,260 --> 00:05:44,020
+colocando um ponto de exclamao como assim.
+
+79
+00:05:44,530 --> 00:05:51,100
+Portanto, o ponto de exclamao aqui diz que sim, isso ser de identificao de tipo e deve ser fornecido.
+
+80
+00:05:51,250 --> 00:05:56,290
+Portanto, o ponto de exclamao significa que voc deve fornecer esse argumento.
+
+81
+00:05:56,290 --> 00:06:00,590
+Agora podemos abrir nosso Clarie e escrever a consulta atual.
+
+82
+00:06:01,420 --> 00:06:05,950
+Ento, queremos olhar para o campo de msica em nosso objeto de consulta de rota.
+
+83
+00:06:05,950 --> 00:06:10,010
+Eu sei que eu quero usar a msica aqui porque acabamos de v-lo dentro de nossa documentao.
+
+84
+00:06:10,240 --> 00:06:11,810
+Aqui est o meu tipo de consulta de rota.
+
+85
+00:06:11,890 --> 00:06:22,290
+E eu sei que posso consultar uma msica muito particular e queremos encontrar a msica com um ID de ID.
+
+86
+00:06:23,040 --> 00:06:26,810
+Ento, novamente, temos o mesmo tipo de padro de argumentos aqui.
+
+87
+00:06:26,850 --> 00:06:31,440
+E sim, falamos muito sobre como  um pouco estranho como eles so lanados
+
+88
+00:06:31,440 --> 00:06:32,100
+na ordem.
+
+89
+00:06:32,220 --> 00:06:37,000
+Ento lembre-se que o primeiro diz esperar obter uma varivel chamada ID.
+
+90
+00:06:37,260 --> 00:06:41,130
+O segundo campo diz que aqui  o tipo dessa identificao quando ele entra.
+
+91
+00:06:41,160 --> 00:06:44,670
+Ento o terceiro  o que voc deve receber uma ID.
+
+92
+00:06:44,730 --> 00:06:46,290
+E aqui est o que deve
+
+93
+00:06:49,320 --> 00:06:51,580
+ser, ento, para cada msica, diga apenas faa isso.
+
+94
+00:06:51,600 --> 00:06:52,420
+Apenas me d o ttulo.
+
+95
+00:06:52,440 --> 00:06:53,290
+Estou feliz com isso.
+
+96
+00:06:53,340 --> 00:06:58,500
+Eric manter uma manuteno de registro, vamos pedir as idias bem apenas para verificar se conseguimos a correta.
+
+97
+00:06:58,500 --> 00:06:59,820
+E na verdade, apenas para
+
+98
+00:06:59,850 --> 00:07:05,210
+Ento, compararemos a idia da msica que buscamos com a varivel diferente que passamos tambm.
+
+99
+00:07:05,550 --> 00:07:06,280
+EST BEM.
+
+100
+00:07:06,780 --> 00:07:08,390
+Estamos prontos para testar isso.
+
+101
+00:07:08,510 --> 00:07:15,570
+Ento eu vou execut-lo, eu tenho uma idia de 5 8 9 5 8 9 200 200 no final.
+
+102
+00:07:15,600 --> 00:07:16,680
+Ento parece bom.
+
+103
+00:07:16,830 --> 00:07:20,520
+E eu tenho um ttulo de caf perfeito.
+
+104
+00:07:20,550 --> 00:07:25,500
+querer usar dentro de nossa msica, detalhe um componente para encontrar uma msica muito particular.
+
+105
+00:07:25,500 --> 00:07:27,930
+Ento, isso parece com a consulta que vamos
+
+106
+00:07:28,320 --> 00:07:37,540
+Ento vou copiar isso aqui e vou transferi-lo para o componente de detalhes da msica, OK.
+
+107
+00:07:38,050 --> 00:07:44,320
+Agora, novamente se quisermos, poderamos criar um arquivo de consulta separado.
+
+108
+00:07:44,650 --> 00:07:47,440
+No  um requisito difcil.
+
+109
+00:07:47,440 --> 00:07:48,700
+Voc no precisa.
+
+110
+00:07:48,700 --> 00:07:52,470
+ realmente uma preferncia pessoal nos projetos em que trabalho.
+
+111
+00:07:52,510 --> 00:07:55,590
+Sim, geralmente acabo criando um arquivo de consulta separado.
+
+112
+00:07:55,630 --> 00:08:00,860
+aqui, dizendo que sim, vamos colocar todas as nossas consultas em locais separados para que eles estejam bem organizados.
+
+113
+00:08:00,880 --> 00:08:06,250
+Eu acho que desta vez, vamos fazer um arquivo de consulta separado para como esta consulta  apenas um tipo
+
+114
+00:08:06,250 --> 00:08:07,980
+de seguimento de um precedente agradvel
+
+115
+00:08:08,140 --> 00:08:16,360
+Ento, dentro do meu diretrio de consultas, criarei um novo arquivo chamado busca de cano Dungey,
+
+116
+00:08:16,360 --> 00:08:20,360
+notemos que agora temos duas consultas muito semelhantes.
+
+117
+00:08:20,380 --> 00:08:23,450
+Ns buscamos msicas e buscamos msicas em plural.
+
+118
+00:08:23,650 --> 00:08:29,620
+Seria gentil se tivssemos uma terminologia um pouco melhor aqui para diferenciar entre
+
+119
+00:08:29,620 --> 00:08:30,920
+os dois arquivos.
+
+120
+00:08:30,940 --> 00:08:35,650
+realmente estamos apenas confiando na presena de um direito ali, o que  um erro de digitao muito fcil de fazer.
+
+121
+00:08:35,650 --> 00:08:36,040
+No momento,
+
+122
+00:08:36,040 --> 00:08:41,020
+Ento, se voc sentir como se voc renomear voc quer ser como ndice de msicas ou.
+
+123
+00:08:41,110 --> 00:08:42,680
+E, em seguida, Song get.
+
+124
+00:08:42,790 --> 00:08:45,880
+Isso pode ser um pouco mais claro sobre o que est acontecendo.
+
+125
+00:08:46,110 --> 00:08:48,400
+Ou sabemos que podemos fazer a lista de msicas fecche.
+
+126
+00:08:48,400 --> 00:08:50,090
+Isso tambm seria muito bom.
+
+127
+00:08:50,560 --> 00:08:52,350
+Para mim, eu vou ficar com essa msica.
+
+128
+00:08:52,360 --> 00:08:54,980
+Eu me sinto bastante confortvel com isso.
+
+129
+00:08:55,110 --> 00:08:57,230
+Eu vou me lembrar de como criamos uma consulta.
+
+130
+00:08:57,370 --> 00:09:03,790
+Primeiro, importamos a biblioteca GQ l da etiqueta de enxerto.
+
+131
+00:09:04,270 --> 00:09:08,120
+Em seguida, exportamos padres e fazemos o equer real.
+
+132
+00:09:08,200 --> 00:09:08,920
+Ento, vamos dizer.
+
+133
+00:09:08,920 --> 00:09:12,380
+GQ colocarei as tticas novamente.
+
+134
+00:09:12,430 --> 00:09:13,660
+No consigo repetir o suficiente.
+
+135
+00:09:13,660 --> 00:09:18,610
+Certifique-se de que est de volta, e certifique-se de que no  uma nica cotao ou uma cotao dupla e ento
+
+136
+00:09:18,610 --> 00:09:20,810
+vamos colar na consulta em que estvamos apenas trabalhando.
+
+137
+00:09:20,830 --> 00:09:23,990
+Como est bem.
+
+138
+00:09:24,160 --> 00:09:26,950
+Eu acho que isso parece muito bom aqui.
+
+139
+00:09:26,950 --> 00:09:28,660
+Eu acho que temos um bom comeo.
+
+140
+00:09:28,780 --> 00:09:34,930
+Vamos dar uma pausa rpida e, em seguida, descobrir como ligar essa consulta para trabalhar em conjunto com nosso componente
+
+141
+00:09:34,930 --> 00:09:35,980
+de detalhes da msica.
+

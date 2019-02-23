@@ -1,0 +1,324 @@
+1
+00:00:00,830 --> 00:00:07,550
+Unless section we've got a super broad overview of what graph Q L does we form up a graph of sorts to
+
+2
+00:00:07,550 --> 00:00:13,790
+model our data and then we write queries to ask questions about the data in that graph.
+
+3
+00:00:13,790 --> 00:00:18,410
+Now you might be starting to get a little bit of a sense of how this approach solve some of the issues
+
+4
+00:00:18,410 --> 00:00:23,930
+that we get with restful routing because we can freely walk through all these relations and not have
+
+5
+00:00:23,930 --> 00:00:28,940
+to worry about making separate or els or anything like that to deal with the relations.
+
+6
+00:00:29,120 --> 00:00:32,700
+For right now we're going to start working on a very practical example.
+
+7
+00:00:32,750 --> 00:00:38,810
+And then once we're done with that we'll have a nice good discussion on exactly how Graf Cuil approaches
+
+8
+00:00:38,870 --> 00:00:43,110
+and solves some issues we spoke about earlier around restful routing.
+
+9
+00:00:43,610 --> 00:00:48,170
+So let's get our hands dirty in this section and start writing some code.
+
+10
+00:00:48,170 --> 00:00:54,200
+Our goal in this section is to create a graphical application that has a similar data structure to the
+
+11
+00:00:54,200 --> 00:00:57,370
+one we've been looking at where we've got some users.
+
+12
+00:00:57,440 --> 00:01:04,290
+Each user has some friends and each user has a company and a position that's going to be the first application
+
+13
+00:01:04,290 --> 00:01:07,640
+that we're going to target we're going to make something that has a data structure that looks a lot
+
+14
+00:01:07,640 --> 00:01:09,620
+like this.
+
+15
+00:01:09,810 --> 00:01:14,760
+So the first thing we have to do is get a sense of exactly what pieces of technology we're going to
+
+16
+00:01:14,760 --> 00:01:16,760
+need to make this happen.
+
+17
+00:01:17,190 --> 00:01:21,830
+So let's kind of figure out exactly how this is all going to come together.
+
+18
+00:01:21,900 --> 00:01:26,730
+This is going to be the overall architecture of the app that we're going to build.
+
+19
+00:01:26,790 --> 00:01:33,480
+We are first going to make an express server and then hook it up to a data store of some kind.
+
+20
+00:01:33,480 --> 00:01:41,330
+Then we will load up a prebuilt application called graphical that's got one extra eye in there and graphical.
+
+21
+00:01:41,340 --> 00:01:42,000
+There we go.
+
+22
+00:01:43,160 --> 00:01:47,930
+We're going to load up this pre-build application called graphical into our browser and use it to make
+
+23
+00:01:48,020 --> 00:01:50,330
+a couple of test queries.
+
+24
+00:01:50,330 --> 00:01:57,230
+This graphical apparatus here is a pre-built application authored by the graph Kjeld team and it's made
+
+25
+00:01:57,230 --> 00:02:03,410
+solely for development purposes to help us get a little bit of a better feel of how graft works and
+
+26
+00:02:03,410 --> 00:02:05,860
+how we can execute queries with it.
+
+27
+00:02:06,190 --> 00:02:06,550
+OK.
+
+28
+00:02:06,580 --> 00:02:08,590
+So this is the this is where we're headed.
+
+29
+00:02:08,630 --> 00:02:12,230
+We're going to put together the Express side we're going to put together a little bit of stuff for the
+
+30
+00:02:12,230 --> 00:02:17,320
+data side and then we're going to test it out in the browser using this graphical tool right here.
+
+31
+00:02:17,330 --> 00:02:19,040
+So let's get started.
+
+32
+00:02:19,510 --> 00:02:26,150
+I need to change over to my terminal and in a workspace folder you know whatever works for you I call
+
+33
+00:02:26,150 --> 00:02:29,000
+my workspace folder Prod. wherever you want to place it.
+
+34
+00:02:29,000 --> 00:02:34,650
+We're going to make a new project directory and we're going to call it users.
+
+35
+00:02:34,650 --> 00:02:38,480
+So we'll make the folder users and then I'll change into it.
+
+36
+00:02:38,480 --> 00:02:45,620
+And then once inside we're going to initialize a new NPM application by running the command NPM in that
+
+37
+00:02:46,970 --> 00:02:50,480
+after we run that we'll get asked a couple of questions here.
+
+38
+00:02:50,930 --> 00:02:55,540
+None of the none of the answers are very important right now is all just enter a couple of times.
+
+39
+00:02:55,550 --> 00:02:56,930
+There we go.
+
+40
+00:02:57,110 --> 00:03:03,170
+Now we'll install a couple of packages that will help us get set up with Express and integrate express
+
+41
+00:03:03,170 --> 00:03:03,710
+with graphs.
+
+42
+00:03:03,710 --> 00:03:09,650
+Q Well to kind of fit that architectural we were just looking at having this combination express slash
+
+43
+00:03:09,650 --> 00:03:11,890
+graphical server.
+
+44
+00:03:12,070 --> 00:03:20,220
+I got so will install this stuff with and install dash dash save and then go to install four separate
+
+45
+00:03:20,220 --> 00:03:21,020
+items here.
+
+46
+00:03:21,030 --> 00:03:26,520
+So the first is express an express dash graph.
+
+47
+00:03:26,620 --> 00:03:31,880
+Well graphed UL and load apps.
+
+48
+00:03:31,950 --> 00:03:34,570
+So four separate packages here.
+
+49
+00:03:36,910 --> 00:03:43,000
+Olga the express package you may be familiar with previously.
+
+50
+00:03:43,000 --> 00:03:49,330
+Express is responsible for handling incoming HEG peer requests and making responses to be sent back
+
+51
+00:03:49,330 --> 00:03:50,470
+to a user.
+
+52
+00:03:50,860 --> 00:03:57,960
+We also installed express dash graft Well that is a compatibility layer between Express and graphs.
+
+53
+00:03:57,960 --> 00:03:58,430
+Q L.
+
+54
+00:03:58,450 --> 00:04:04,220
+So by default graphed you express they have absolutely no idea how to work with each other.
+
+55
+00:04:04,360 --> 00:04:10,000
+So that package is there to essentially provide some glue code to make the two work together nicely.
+
+56
+00:04:10,000 --> 00:04:15,430
+We also installed graft well which is the actual graph to a library that is used to crawl through all
+
+57
+00:04:15,430 --> 00:04:16,290
+of our data.
+
+58
+00:04:16,480 --> 00:04:21,150
+And the last thing that we got in there as well was load cache which is a library that has a couple
+
+59
+00:04:21,170 --> 00:04:24,530
+utility functions that are going to come in useful for us over time.
+
+60
+00:04:25,740 --> 00:04:28,660
+So the installation process awfully fast.
+
+61
+00:04:28,670 --> 00:04:30,640
+These are all very small packages.
+
+62
+00:04:30,650 --> 00:04:37,220
+So already done now inside of my project directory I'm going to open up my code editor
+
+63
+00:04:40,840 --> 00:04:46,670
+for now we're going to focus on just the bare essentials of putting together an express server.
+
+64
+00:04:46,670 --> 00:04:50,220
+We're going to start off by making a new file called Server Dot.
+
+65
+00:04:50,270 --> 00:04:53,360
+Yes inside of our root project directory.
+
+66
+00:04:53,450 --> 00:04:55,940
+So make a new file and call it server.
+
+67
+00:04:55,970 --> 00:04:57,270
+Just like so.
+
+68
+00:04:57,580 --> 00:05:03,840
+So this is where all the logic related to the Express side of our application is going to live.
+
+69
+00:05:04,250 --> 00:05:09,590
+So we'll add just a tiny bit of coding here for right now to start up a new Express application and
+
+70
+00:05:09,590 --> 00:05:11,430
+tell it to listen to an outside Port.
+
+71
+00:05:11,450 --> 00:05:14,640
+So right now none of this is going to be graphical related.
+
+72
+00:05:14,710 --> 00:05:20,210
+Dissolve soly express related code first will pull in Express
+
+73
+00:05:22,890 --> 00:05:30,030
+lets make a little bit bigger and we go on make a new Express application and then I'll tell that application
+
+74
+00:05:30,030 --> 00:05:36,300
+to listen to port 4000 like so then I'll add in a callback.
+
+75
+00:05:36,300 --> 00:05:44,130
+So after it starts listening we'll just cancel log out listening like so ok.
+
+76
+00:05:44,200 --> 00:05:48,440
+Looks good says the basics of an express application right here.
+
+77
+00:05:48,580 --> 00:05:50,610
+However still no mention of graphics.
+
+78
+00:05:50,680 --> 00:05:53,670
+Well and of course that is what we really care about.
+
+79
+00:05:53,860 --> 00:05:59,800
+So let's take a quick break and then come back and figure out how to make this very simple express application
+
+80
+00:06:00,130 --> 00:06:01,640
+work nicely with Graph.
+
+81
+00:06:01,690 --> 00:06:01,970
+Well.
+

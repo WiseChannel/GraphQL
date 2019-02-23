@@ -1,0 +1,380 @@
+1
+00:00:00,630 --> 00:00:06,300
+With any type of graph Cuil application you ever work on it always pays to do a little bit of homework
+
+2
+00:00:06,330 --> 00:00:11,670
+or design planning ahead of time to plan out all the different types and all the different mutations
+
+3
+00:00:11,670 --> 00:00:13,780
+you expect to have in your application.
+
+4
+00:00:13,800 --> 00:00:18,600
+So spend a little bit of time to plan out the different types and the different mutations we're going
+
+5
+00:00:18,600 --> 00:00:23,380
+to have for our authentication app.
+
+6
+00:00:23,410 --> 00:00:25,840
+So let's take a look at this diagram right here.
+
+7
+00:00:25,860 --> 00:00:30,570
+So this is going to be my suggestion of the different types of mutations that our application should
+
+8
+00:00:30,570 --> 00:00:31,470
+have.
+
+9
+00:00:31,860 --> 00:00:37,890
+I think that we should have a single type called the user type and then we have three different mutations
+
+10
+00:00:37,920 --> 00:00:42,520
+called Sign up log in and log out on mutation side.
+
+11
+00:00:42,540 --> 00:00:45,110
+I bet you can guess the purpose of each one of these.
+
+12
+00:00:45,300 --> 00:00:50,880
+I want to be able to create a new user through sign up maybe a different name for this mutation might
+
+13
+00:00:50,880 --> 00:00:52,780
+be something like user create.
+
+14
+00:00:53,010 --> 00:00:58,740
+But I think that calling it signed up gives really a very clear connotation of its purpose because we're
+
+15
+00:00:58,740 --> 00:01:04,650
+not only creating new user but we're also authenticating our users at the same time we're considering
+
+16
+00:01:04,650 --> 00:01:08,220
+them to be logged in with a logging mutation.
+
+17
+00:01:08,220 --> 00:01:09,940
+I bet this one makes sense as well.
+
+18
+00:01:09,960 --> 00:01:16,110
+We are exchanging an e-mail or a username and password for the user's authentication.
+
+19
+00:01:16,410 --> 00:01:21,120
+And then with log out we're going to destroy the authentication state that is held between the client
+
+20
+00:01:21,150 --> 00:01:22,270
+and the server.
+
+21
+00:01:22,590 --> 00:01:27,630
+The important thing to remember here is that all three of these are mutations because we are altering
+
+22
+00:01:27,630 --> 00:01:33,340
+some of the data or some of the state that exist between our client and the server.
+
+23
+00:01:33,880 --> 00:01:36,170
+The last thing is the user mutation.
+
+24
+00:01:36,240 --> 00:01:39,230
+I think this may or some of the user type over on the left hand side.
+
+25
+00:01:39,390 --> 00:01:41,440
+I think this one makes a lot of sense.
+
+26
+00:01:41,580 --> 00:01:48,830
+You know we're dealing with users users sign in sign out every user will have an e-mail and a password.
+
+27
+00:01:48,840 --> 00:01:51,570
+So I think a user type is totally irrelevant here.
+
+28
+00:01:51,570 --> 00:01:58,890
+Totally appropriate will make that user type and then add it to our root query and maybe the user can
+
+29
+00:01:58,890 --> 00:02:04,770
+look at a list of different users or a very particular user or maybe even get a reference to just the
+
+30
+00:02:04,770 --> 00:02:06,260
+current user as well.
+
+31
+00:02:06,270 --> 00:02:10,790
+So those would all be possible queries that we would add to the query type.
+
+32
+00:02:11,470 --> 00:02:14,190
+OK I think we're ready to start writing some code.
+
+33
+00:02:14,250 --> 00:02:19,320
+I want to first start by creating the user type and then once we've created that type we can start worrying
+
+34
+00:02:19,320 --> 00:02:24,780
+about the different mutations that we're going to have after we put all the types of mutations together
+
+35
+00:02:24,960 --> 00:02:30,510
+we can start testing them inside of graphical and then once we are confident with how they work in graphical
+
+36
+00:02:30,720 --> 00:02:35,670
+we'll move on over to the client side of our application and start working on the reactor side of things
+
+37
+00:02:35,670 --> 00:02:36,920
+as well.
+
+38
+00:02:36,960 --> 00:02:42,600
+So let's get started first with our user type and flip over to my code editor.
+
+39
+00:02:42,840 --> 00:02:49,880
+I'm going to find my server folder and then inside the schema folder I'm going to find the types folder.
+
+40
+00:02:50,370 --> 00:02:56,550
+So in the past we created just one file that we called the schema file for all the different types of
+
+41
+00:02:56,550 --> 00:02:58,970
+mutations inside of our application.
+
+42
+00:02:59,250 --> 00:03:05,070
+This time I want to take a little bit more modular approach where we split out all the different types
+
+43
+00:03:05,070 --> 00:03:08,340
+of mutations into separate files.
+
+44
+00:03:08,340 --> 00:03:15,030
+So I'm going to make a new file inside the types directory and we're going to call this or user type
+
+45
+00:03:15,390 --> 00:03:15,830
+like so
+
+46
+00:03:20,610 --> 00:03:24,070
+we'll first start off by importing a couple of different helper objects from the graph.
+
+47
+00:03:24,180 --> 00:03:28,390
+A library and then we'll think about the different fields that a user might have.
+
+48
+00:03:28,830 --> 00:03:30,450
+So let's do our imports at the top.
+
+49
+00:03:30,450 --> 00:03:36,500
+First we'll grab graft well from graft.
+
+50
+00:03:36,920 --> 00:03:41,610
+Well then we will also grab graft.
+
+51
+00:03:41,610 --> 00:03:44,940
+Q Well object type and graft.
+
+52
+00:03:44,940 --> 00:03:53,220
+Q Well string from the graft you want a library do you love all these graphic UL's floating around.
+
+53
+00:03:53,580 --> 00:03:55,160
+And then we'll make our actual type.
+
+54
+00:03:55,630 --> 00:04:02,430
+So my user type will be a new graphical object type.
+
+55
+00:04:02,800 --> 00:04:10,290
+Do make sure that you get capital Q capital L capital O all in a row in there and then rather than defining
+
+56
+00:04:10,320 --> 00:04:14,560
+any fields in there anything I'm just going to immediately export it at the bottom.
+
+57
+00:04:14,610 --> 00:04:17,980
+So a module that exports is user type.
+
+58
+00:04:18,500 --> 00:04:19,210
+OK.
+
+59
+00:04:19,710 --> 00:04:25,440
+So we're going to very quickly come into the world to your of having to do a lot of thought about exactly
+
+60
+00:04:25,470 --> 00:04:30,690
+what different fields these different objects or different types are going to work with should have
+
+61
+00:04:31,500 --> 00:04:37,230
+Remember that whenever we work with a type it usually corresponds to a model of sorts in our database
+
+62
+00:04:37,230 --> 00:04:40,210
+or a collection of data that sits in our database.
+
+63
+00:04:40,290 --> 00:04:46,270
+The board the plate that we're making use of right now already has a user model defined inside the models.
+
+64
+00:04:46,380 --> 00:04:47,160
+User dot J.
+
+65
+00:04:47,200 --> 00:04:48,010
+Yes file.
+
+66
+00:04:48,150 --> 00:04:54,720
+So let's open that up and look with look at what the default model is in our database.
+
+67
+00:04:54,720 --> 00:05:01,070
+We are currently storing just the email and password that is associated with each user.
+
+68
+00:05:01,230 --> 00:05:07,830
+Now in no way shape or form does it really make sense to add the password to the fields object of our
+
+69
+00:05:07,830 --> 00:05:09,130
+user type.
+
+70
+00:05:09,150 --> 00:05:16,230
+I am never ever going to think of a single situation where I want to for any reason expose the password
+
+71
+00:05:16,230 --> 00:05:18,240
+field of any of my users.
+
+72
+00:05:18,360 --> 00:05:23,120
+Even though the password as it's saved in the database is going to be hashed insulted.
+
+73
+00:05:23,120 --> 00:05:25,790
+So the password is not in plain text in the database.
+
+74
+00:05:25,800 --> 00:05:30,470
+Nonetheless I cannot think of a single reason to ever expose that to the outside world.
+
+75
+00:05:30,480 --> 00:05:32,260
+And my graph you all schema.
+
+76
+00:05:32,580 --> 00:05:38,300
+So I think that as far as my user type goes the only field I really care about is the e-mail field.
+
+77
+00:05:38,370 --> 00:05:44,130
+Like maybe it's totally reasonable to share a user's e-mail with other users inside the application.
+
+78
+00:05:44,250 --> 00:05:47,950
+So I will expose the email field to everyone else.
+
+79
+00:05:48,390 --> 00:05:56,310
+So I'm going to take my user type and we'll define the name property and the fields property on it first
+
+80
+00:05:56,310 --> 00:06:03,930
+will define the name property of user type and then the fields property will make it an email address
+
+81
+00:06:03,930 --> 00:06:06,760
+because it makes sense to share emails.
+
+82
+00:06:06,780 --> 00:06:12,930
+Of course if you are making the application where you want to limit users ability to see other users
+
+83
+00:06:12,930 --> 00:06:16,850
+email addresses maybe you wouldn't want to have the email field on here.
+
+84
+00:06:16,860 --> 00:06:21,000
+So it really comes down to your particular application.
+
+85
+00:06:21,000 --> 00:06:26,650
+So my email I have to specify the type which is going to be a graphical string.
+
+86
+00:06:26,970 --> 00:06:31,640
+And again make sure you get that capital Q L S in there.
+
+87
+00:06:31,810 --> 00:06:37,210
+OK I think this is looking pretty reasonable we've got the start of a user type in here.
+
+88
+00:06:37,410 --> 00:06:40,170
+I don't think that we really need to add anything else on here for right now.
+
+89
+00:06:40,170 --> 00:06:44,220
+Again we're only worrying about authentication at this stage of the application.
+
+90
+00:06:44,280 --> 00:06:52,280
+So a user is not going to have any friends or to do's or videos or books or any other type of data.
+
+91
+00:06:52,320 --> 00:06:55,380
+A user is only going to have an e-mail address.
+
+92
+00:06:55,620 --> 00:07:00,840
+And realistically right now I'm only making this user type so that we can look up all the different
+
+93
+00:07:00,840 --> 00:07:05,800
+users in our application and get a list of them and you know get stuff like that.
+
+94
+00:07:05,820 --> 00:07:10,230
+So let's take a quick break and then we're going to come back and start working on the different mutations
+
+95
+00:07:10,260 --> 00:07:12,340
+inside of our application.
+

@@ -1,0 +1,328 @@
+1
+00:00:00,750 --> 00:00:02,910
+Fizemos um bom progresso na nossa aplicao.
+
+2
+00:00:02,910 --> 00:00:07,470
+Ento, acho que estamos em um bom ponto em que devemos pensar um pouco sobre onde estamos e
+
+3
+00:00:07,470 --> 00:00:08,840
+sobre o que trabalhar no prximo.
+
+4
+00:00:09,450 --> 00:00:13,710
+Aqui est uma maquete com a qual trabalhamos at agora e ns definitivamente conclumos o componente
+
+5
+00:00:13,710 --> 00:00:16,540
+da lista de msicas no componente de criao de msicas.
+
+6
+00:00:16,680 --> 00:00:23,130
+Ento, provavelmente estamos na ltima tela do nosso aplicativo, que  a pgina de detalhes da msica.
+
+7
+00:00:23,220 --> 00:00:28,950
+associadas a uma determinada msica, a pgina de detalhes da msica ter uma lista de letras do componente
+
+8
+00:00:29,850 --> 00:00:36,480
+da lista de letras e tambm nos mostraremos um formulrio para adicionar novas letras que ns 'vai ligar para criar letras.
+
+9
+00:00:36,480 --> 00:00:41,370
+Lembre-se que o propsito da pgina de detalhes da msica  mostrar-nos todas as letras
+
+10
+00:00:41,370 --> 00:00:48,150
+Ento, eu acho que o melhor plano ser ir com a criao do componente de criao de letras, s porque
+
+11
+00:00:48,180 --> 00:00:51,480
+realmente no temos nenhuma letra amarrada em nenhuma msica.
+
+12
+00:00:51,480 --> 00:00:57,460
+E ento no podemos realmente mostrar uma lista de letras sem antes ter a capacidade de cri-las.
+
+13
+00:00:57,480 --> 00:01:02,910
+Ento eu acho que iremos com a criao do componente de detalhes da msica e, em seguida, coloque a letra criando
+
+14
+00:01:02,910 --> 00:01:03,500
+dentro dela.
+
+15
+00:01:03,780 --> 00:01:05,460
+Ento esse ser o nosso plano em andamento.
+
+16
+00:01:05,460 --> 00:01:07,870
+Vamos comear agora mesmo.
+
+17
+00:01:08,630 --> 00:01:10,880
+Ns vamos virar para o meu editor de cdigo.
+
+18
+00:01:11,340 --> 00:01:16,440
+Eu vou fechar alguns dos arquivos que eu tenho aqui muito rpido e
+
+19
+00:01:16,440 --> 00:01:25,300
+vou criar um novo arquivo dentro do diretrio dos meus componentes, que vou chamar o detalhe da msica, o detalhe da msica, 
+
+20
+00:01:25,300 --> 00:01:28,840
+tudo sobre mostrar o detalhes de uma msica muito particular.
+
+21
+00:01:28,990 --> 00:01:32,170
+Ento eu no espero que haja uma tonelada de marcao neste componente.
+
+22
+00:01:32,170 --> 00:01:37,480
+Eu no acho que vai fazer muito, alm de apenas mostrar o componente da lista de letras
+
+23
+00:01:39,280 --> 00:01:45,520
+e os criadores de letras no topo, a importao ir reagir e eu realmente no espero fazer uso do nvel
+
+24
+00:01:45,520 --> 00:01:49,750
+de componente dentro desse objeto, tornando-se um componente baseado em classe de qualquer maneira.
+
+25
+00:01:49,750 --> 00:01:53,680
+Novamente, eu realmente gosto de usar apenas componentes baseados em classe, no importa o que.
+
+26
+00:01:53,950 --> 00:01:59,470
+Ao contrrio dos componentes funcionais apenas porque me permite colocar mais facilmente os mtodos auxiliares se eu
+
+27
+00:01:59,500 --> 00:02:00,920
+sentir que os preciso.
+
+28
+00:02:03,340 --> 00:02:12,730
+Ento, faa com que nosso detalhe de msica exporte o componente com um mtodo de renderizao de fogo processar livros e
+
+29
+00:02:12,730 --> 00:02:21,790
+eu vou exportar imediatamente o componente para exportar detalhes de msica padro assim, ento, no mtodo de renderizao, voc colocar um
+
+30
+00:02:21,790 --> 00:02:24,460
+pouco de marcao padro aqui agora.
+
+31
+00:02:24,520 --> 00:02:35,230
+Ento eu digo que volto vou colocar uma div por agora e vamos dar um 3D completo dir detalhes da msica agora
+
+32
+00:02:35,220 --> 00:02:36,760
+mesmo no topo.
+
+33
+00:02:36,990 --> 00:02:40,880
+Idealmente, isso vai ter o nome da msica que estamos olhando.
+
+34
+00:02:40,980 --> 00:02:46,340
+Mas comeamos a descobrir exatamente como vamos conseguir a msica relevante dentro desse componente.
+
+35
+00:02:46,500 --> 00:02:51,330
+Ento, vamos deixar esse cdigo rgido para dizer detalhes da msica agora.
+
+36
+00:02:51,340 --> 00:02:54,770
+OK, acho que isso  suficiente para pelo menos comear.
+
+37
+00:02:54,870 --> 00:03:00,990
+Eu quero virar para o nosso arquivo de roteador agora e associar este componente detalhador de msicas com o cdigo
+
+38
+00:03:00,990 --> 00:03:03,420
+do roteador de reao que ns colocamos juntos.
+
+39
+00:03:03,570 --> 00:03:08,350
+Ento eu vou abrir meu arquivo de ndice dentro do diretrio do cliente.
+
+40
+00:03:08,670 --> 00:03:13,020
+Vou importar o componente de detalhes da msica que acabamos de criar.
+
+41
+00:03:13,140 --> 00:03:24,930
+Ento, importe os detalhes da msica a partir do detalhe da msica do componente assim e eu precisarei atribuir uma rota para esse
+
+42
+00:03:24,930 --> 00:03:25,790
+novo componente.
+
+43
+00:03:25,950 --> 00:03:29,700
+Ento eu vou fazer uma nova rota por baixo da existente que temos.
+
+44
+00:03:29,700 --> 00:03:34,860
+Agora, eu quero pensar apenas um pouco sobre exatamente o caminho que devemos usar para isso.
+
+45
+00:03:34,860 --> 00:03:39,660
+Eu acho que isso ir seguir convenes repousantes na medida em que voc est l vai, o que seria dizer isso.
+
+46
+00:03:39,690 --> 00:03:44,940
+Ok, vou fazer algo com a minha lista de msicas, ento eu vou usar as palavras msicas.
+
+47
+00:03:45,120 --> 00:03:48,140
+E ento eu quero saber qual msica eu estou tentando ver.
+
+48
+00:03:48,210 --> 00:03:53,280
+que nossos usurios compartilhem e copiem facilmente links de colar para vrias msicas especficas.
+
+49
+00:03:53,290 --> 00:03:59,310
+Ento, vamos refletir a idia da msica que estamos tentando mostrar ao usurio dentro do seu l
+
+50
+00:03:59,310 --> 00:04:00,710
+e isso vai permitir
+
+51
+00:04:00,780 --> 00:04:07,500
+Ento, vou dizer que sempre que algum vai para a pgina de msica e detalhes, eles vero as msicas
+
+52
+00:04:07,500 --> 00:04:10,430
+e, em seguida, a idia da msica que
+
+53
+00:04:13,750 --> 00:04:22,260
+eles esto tentando visitar ir definir o componente para ser detalhes da msica e fechar a etiqueta fora assim apenas como um lembrete, 
+
+54
+00:04:22,260 --> 00:04:28,950
+assim que definimos um parmetro ou wild card ou praticamente varivel dentro do nosso, voc est com o roteador
+
+55
+00:04:29,430 --> 00:04:37,710
+re-actriz porque definimos a ID logo aqui com o nosso componente de detalhe da msica do nosso crculo receber um parmetro de suporte
+
+56
+00:04:37,970 --> 00:04:45,030
+ou deveria dizer um parmetro no objeto do suporte que contm ID ou seja qual for o valor das idias
+
+57
+00:04:45,030 --> 00:04:45,510
+aqui.
+
+58
+00:04:45,690 --> 00:04:53,370
+Ento, se um usurio vai para as msicas cortar cinco que combinariam os cinco com a ID aqui e poderamos olhar para o objeto
+
+59
+00:04:53,370 --> 00:04:55,020
+do suporte e ver isso.
+
+60
+00:04:55,070 --> 00:04:55,570
+Ok, sim.
+
+61
+00:04:55,590 --> 00:04:58,000
+Eles esto tentando visitar a msica com a I-85.
+
+62
+00:04:58,320 --> 00:05:02,430
+Ento, este parmetro de ideia aqui ser muito til quando tentarmos descobrir qual
+
+63
+00:05:02,430 --> 00:05:04,140
+msica queremos mostrar ao usurio.
+
+64
+00:05:05,750 --> 00:05:06,050
+Tudo bem.
+
+65
+00:05:06,050 --> 00:05:10,570
+Eu acho que o ltimo passo ser testar este novo componente dentro do navegador.
+
+66
+00:05:10,910 --> 00:05:15,020
+Ento eu vou verificar o meu terminal, certifique-se de que no tenho nenhum ar por aqui.
+
+67
+00:05:15,100 --> 00:05:16,960
+Yup parece ser bom.
+
+68
+00:05:16,980 --> 00:05:21,500
+Quero dizer, eu abri meu navegador ainda um host local 4000.
+
+69
+00:05:21,500 --> 00:05:23,960
+Eu vou para a barraca de msicas.
+
+70
+00:05:23,990 --> 00:05:25,660
+Ns podemos ir  cano cortar qualquer coisa.
+
+71
+00:05:25,820 --> 00:05:27,350
+Eu vou dizer uma cano slash one.
+
+72
+00:05:27,350 --> 00:05:33,170
+agora mesmo, mas ns realmente precisamos de algum personagem nesse local exatamente para o reator externo para combinar.
+
+73
+00:05:33,170 --> 00:05:35,650
+Ns no temos uma msica com ID
+
+74
+00:05:35,990 --> 00:05:38,300
+Oh, esqueci de atualizar meu erro.
+
+75
+00:05:38,750 --> 00:05:38,970
+EST BEM.
+
+76
+00:05:38,990 --> 00:05:39,770
+Aqui vamos ns.
+
+77
+00:05:40,130 --> 00:05:44,790
+Ento, agora  uma cano, uma barra e vejo detalhes da msica aparecerem na tela.
+
+78
+00:05:45,040 --> 00:05:46,440
+Ento, este  um bom comeo.
+
+79
+00:05:46,550 --> 00:05:51,050
+Vamos dar uma pausa e depois voltar na prxima seo e descobrir como iremos buscar
+
+80
+00:05:51,050 --> 00:05:52,020
+a msica relevante.
+
+81
+00:05:52,040 --> 00:05:57,230
+E tambm comearemos a pensar em juntar o componente de criao de letras tambm.
+
+82
+00:05:57,230 --> 00:05:59,910
+Ento vamos dar uma pausa e eu vou pegar voc em apenas um segundo.
+

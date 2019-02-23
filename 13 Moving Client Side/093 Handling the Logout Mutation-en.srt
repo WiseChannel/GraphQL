@@ -1,0 +1,456 @@
+1
+00:00:00,840 --> 00:00:06,180
+Are Hetter is currently doing the right thing whenever a unauthenticated user visits or application
+
+2
+00:00:06,600 --> 00:00:11,250
+but we still need to improve the logic a little bit whenever the user looks at the header when they
+
+3
+00:00:11,310 --> 00:00:13,950
+are authenticated successfully.
+
+4
+00:00:13,950 --> 00:00:16,950
+So right now we're just showing the text log out on the screen.
+
+5
+00:00:17,160 --> 00:00:23,240
+I would really like this to be a link instead that the user can click to sign out of the application.
+
+6
+00:00:23,250 --> 00:00:27,870
+So let's think through the workflow here just a little bit before we start throwing code on the screen.
+
+7
+00:00:27,960 --> 00:00:33,240
+The first thing we need to do is replace the device here with an actual anchor tag that the user can
+
+8
+00:00:33,240 --> 00:00:34,410
+click.
+
+9
+00:00:34,410 --> 00:00:39,810
+Now the important thing to note is that when the user clicks this whatever we place right here we are
+
+10
+00:00:39,810 --> 00:00:42,380
+not doing any navigation right away.
+
+11
+00:00:42,420 --> 00:00:49,020
+Instead we first want to call a mutation that will log the user out and then after the mutation has
+
+12
+00:00:49,020 --> 00:00:55,140
+been ran we will navigate the user back to the root route of our application to make sure that whatever
+
+13
+00:00:55,140 --> 00:00:58,190
+page they were looking at is no longer accessible.
+
+14
+00:00:58,530 --> 00:01:00,660
+So it's going to be a two step process.
+
+15
+00:01:00,660 --> 00:01:06,360
+First we're are going to replace this with some clickable item that will define a click event handler
+
+16
+00:01:06,360 --> 00:01:11,090
+on it that will call a mutation that will log the user out of our application.
+
+17
+00:01:11,460 --> 00:01:13,680
+So let's get to it first.
+
+18
+00:01:13,740 --> 00:01:19,770
+We will start by replacing the div that is displayed right here with an anchor tag instead.
+
+19
+00:01:20,130 --> 00:01:21,680
+Now I'm using an anchor tag here.
+
+20
+00:01:21,690 --> 00:01:24,270
+Not because I want to navigate the user anywhere.
+
+21
+00:01:24,300 --> 00:01:29,580
+I distinctly do not want to navigate to user anywhere I'm using anchor tags just because I want to get
+
+22
+00:01:29,580 --> 00:01:35,520
+the same exact styling that a user would get whenever they are clicking on an actual navigational link.
+
+23
+00:01:35,580 --> 00:01:41,510
+So we're not actually navigating anyone with this link I'm just using it to get the exact same styling.
+
+24
+00:01:41,520 --> 00:01:48,930
+I'm also going to wrap it with an ally element because remember that the render buttons function is
+
+25
+00:01:48,930 --> 00:01:51,850
+nested inside of the UL down here.
+
+26
+00:01:54,040 --> 00:01:54,400
+OK.
+
+27
+00:01:54,430 --> 00:01:56,170
+So I can go back up to the anchor tag.
+
+28
+00:01:56,200 --> 00:01:56,980
+Here we go.
+
+29
+00:01:57,070 --> 00:02:00,850
+It'd be really nice to have a little bit of indentation on this thing just to get a little bit more
+
+30
+00:02:00,850 --> 00:02:01,930
+space.
+
+31
+00:02:01,990 --> 00:02:06,150
+So I'm going to newline it like so.
+
+32
+00:02:07,030 --> 00:02:10,720
+And then inside of the anchor tag place the text log out.
+
+33
+00:02:10,780 --> 00:02:15,610
+So it's not really clear what it does when the user clicks it and then I'll add in on click handler
+
+34
+00:02:15,610 --> 00:02:16,200
+to it.
+
+35
+00:02:18,060 --> 00:02:22,890
+And inside of this thing we will call a helper function that will place inside of this component.
+
+36
+00:02:22,890 --> 00:02:24,250
+It does not yet exist.
+
+37
+00:02:24,450 --> 00:02:26,160
+We'll call it.
+
+38
+00:02:26,430 --> 00:02:29,100
+How about on log out click.
+
+39
+00:02:29,190 --> 00:02:33,960
+And then we'll bind the context to this like so.
+
+40
+00:02:34,240 --> 00:02:35,350
+That looks pretty good.
+
+41
+00:02:35,590 --> 00:02:41,190
+So now define that helper function inside of this component on log out click.
+
+42
+00:02:41,200 --> 00:02:47,320
+So our job is to color mutation from the thing next year that will attempt to sign the user out of our
+
+43
+00:02:47,320 --> 00:02:48,480
+application.
+
+44
+00:02:48,520 --> 00:02:50,400
+So we've done this a couple of times before.
+
+45
+00:02:50,410 --> 00:02:55,330
+We've tested out the mutation inside of graphical but we're just going to still take the same approach
+
+46
+00:02:55,330 --> 00:02:56,690
+as we have previously.
+
+47
+00:02:56,710 --> 00:02:59,380
+We're going to flip over to graphical will right.
+
+48
+00:02:59,380 --> 00:03:05,320
+The mutation then will move the mutation over to our code base and then call it from within on log out
+
+49
+00:03:05,320 --> 00:03:17,080
+click sign to change over to my graphical interface and refresh real quick and then we'll write out
+
+50
+00:03:17,080 --> 00:03:18,280
+the mutation again.
+
+51
+00:03:18,320 --> 00:03:20,010
+We've done this one time already.
+
+52
+00:03:20,530 --> 00:03:22,490
+So I'm going to define the mutation.
+
+53
+00:03:22,570 --> 00:03:28,750
+I do not need to make this a named mutation because we're not going to pass in any query variables so
+
+54
+00:03:28,750 --> 00:03:30,240
+I can just say nutation.
+
+55
+00:03:30,340 --> 00:03:37,310
+I want to run the log out mutation and give me the ID and the email of the user who was logged out.
+
+56
+00:03:37,330 --> 00:03:40,000
+So let's run this and I get no back.
+
+57
+00:03:40,070 --> 00:03:43,220
+That's because I'm not actually currently signed into the application.
+
+58
+00:03:43,300 --> 00:03:47,260
+So if I'm not signed in I'm always going to get null as a response back.
+
+59
+00:03:47,260 --> 00:03:51,580
+So I've got a pretty good feeling that it's working the way I expect but because I'm not signed in right
+
+60
+00:03:51,580 --> 00:03:55,450
+now I don't get any user model coming back to me.
+
+61
+00:03:55,450 --> 00:03:57,260
+So this mutation is looking pretty good.
+
+62
+00:03:57,280 --> 00:04:03,430
+I'm going to select the whole thing or copy it and change back over to my code editor.
+
+63
+00:04:03,430 --> 00:04:08,160
+Now this time around I would like to place all the different mutations that we have into separate files.
+
+64
+00:04:08,170 --> 00:04:10,510
+Just as we're doing with different queries.
+
+65
+00:04:10,660 --> 00:04:14,650
+So I'm not going to save that mutation directly inside of the head or component.
+
+66
+00:04:14,650 --> 00:04:23,380
+Instead I'm going to make a new folder called mutations and then inside of there or make a new mutation
+
+67
+00:04:23,470 --> 00:04:27,910
+called or Exuma a new file called Let's call it Lagat.
+
+68
+00:04:28,020 --> 00:04:36,030
+J.S. another mutation inside of your is going to look identical to the queries that we set up previously
+
+69
+00:04:36,030 --> 00:04:37,790
+in their own separate files.
+
+70
+00:04:37,860 --> 00:04:47,110
+So we're going to import the GQ El helper from graft UL tag and then we will export default.
+
+71
+00:04:47,130 --> 00:04:53,250
+GQ Well we can place the back tips like so and then paste the mutation
+
+72
+00:04:56,130 --> 00:04:56,710
+OK.
+
+73
+00:04:57,180 --> 00:04:58,880
+That's looking pretty good.
+
+74
+00:04:59,700 --> 00:05:02,030
+We'll now flip back over to our Hetter component.
+
+75
+00:05:02,130 --> 00:05:07,320
+We need to import the mutation and then wire it up to this component by using the graft to add a helper
+
+76
+00:05:07,560 --> 00:05:09,880
+just as we've already done with the query.
+
+77
+00:05:10,710 --> 00:05:20,820
+So first import the mutation from mutations log out do make sure that you get the dot dot in there because
+
+78
+00:05:20,820 --> 00:05:26,370
+we are going up one directory and then into mutations and we'll go all the way down to the bottom of
+
+79
+00:05:26,370 --> 00:05:30,800
+the file where we will associate the mutation with this component.
+
+80
+00:05:31,590 --> 00:05:33,420
+Now we've done this one time before.
+
+81
+00:05:33,420 --> 00:05:39,570
+Recall that the graph will help or right here can only take a single mutation or a single query at a
+
+82
+00:05:39,570 --> 00:05:40,490
+time.
+
+83
+00:05:40,500 --> 00:05:45,930
+So if we want to associate multiple queries or mutations with the component we have to stack up the
+
+84
+00:05:45,930 --> 00:05:51,330
+graph you will help her and that's where we start to use that kind of ugly syntax just a little bit.
+
+85
+00:05:51,330 --> 00:05:57,240
+So what we're going to do is to newline the existing statement and then I'll use the graph as a helper
+
+86
+00:05:57,240 --> 00:06:03,860
+again I'll pass in my mutation and I'm going to open up my set of parentheses.
+
+87
+00:06:04,200 --> 00:06:06,530
+I'm going to indent this line right here.
+
+88
+00:06:06,640 --> 00:06:09,420
+I'll make sure to remove the semi colon off the end.
+
+89
+00:06:09,440 --> 00:06:13,390
+So make sure you don't have that and then I'll close the set of parentheses like so.
+
+90
+00:06:13,560 --> 00:06:16,710
+So this is probably the cleanest way of handling this.
+
+91
+00:06:16,800 --> 00:06:17,710
+We call graft.
+
+92
+00:06:17,790 --> 00:06:23,700
+Well we pass in the mutation and then we open up our second set of parentheses and pasand the already
+
+93
+00:06:23,700 --> 00:06:28,760
+modified Hetter like so.
+
+94
+00:06:29,000 --> 00:06:34,520
+OK so now that the mutation is wired up to this component we can go on to our helper method.
+
+95
+00:06:36,190 --> 00:06:37,820
+The unclick handler.
+
+96
+00:06:37,920 --> 00:06:38,380
+Here we go.
+
+97
+00:06:38,380 --> 00:06:45,430
+On log out click and remember whenever we want to call it mutation we can call this props don't mutate
+
+98
+00:06:45,930 --> 00:06:48,790
+and pass an empty object.
+
+99
+00:06:48,790 --> 00:06:53,980
+Now this time we don't have any query variables that we want to pass along because we're not say specifying
+
+100
+00:06:54,190 --> 00:06:56,950
+any particular user that we're attempting to log out.
+
+101
+00:06:57,070 --> 00:06:59,810
+So we don't need to define any query variables in here.
+
+102
+00:07:00,180 --> 00:07:06,600
+However we probably do want to think a little bit about how we're going to update this component.
+
+103
+00:07:06,700 --> 00:07:12,820
+So just because we are logging out the current user doesn't mean that the component is going to somehow
+
+104
+00:07:12,850 --> 00:07:19,450
+automatically magically update and show the set of links on here that will allow the user to sign up
+
+105
+00:07:19,450 --> 00:07:21,510
+and log in because that's definitely the intent.
+
+106
+00:07:21,520 --> 00:07:22,070
+Right.
+
+107
+00:07:22,120 --> 00:07:27,700
+Like when a user clicks on this button right here to log out of my application I definitely want to
+
+108
+00:07:27,700 --> 00:07:32,800
+see the header change and instead show this I'm up and log in buttons instead.
+
+109
+00:07:32,830 --> 00:07:35,830
+So it's going be a little bit a challenge that we're going have to think through through just a little
+
+110
+00:07:35,830 --> 00:07:36,300
+bit.
+
+111
+00:07:36,430 --> 00:07:39,390
+Let's take a quick break and then come back in the next section.
+
+112
+00:07:39,400 --> 00:07:43,330
+Figure out how we're going to get the components to update and then we're going to test the entire thing
+
+113
+00:07:43,330 --> 00:07:44,440
+inside the browser.
+
+114
+00:07:44,720 --> 00:07:45,950
+Sosia in just a moment.
+

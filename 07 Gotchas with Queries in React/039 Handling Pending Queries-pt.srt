@@ -1,0 +1,448 @@
+1
+00:00:00,750 --> 00:00:06,900
+Na ltima seo, executamos nossa primeira consulta que foi emitida pelo componente reata e vimos nossos
+
+2
+00:00:06,990 --> 00:00:10,530
+dados aparecerem no objeto do prop dentro desse componente.
+
+3
+00:00:10,920 --> 00:00:18,910
+Os dados reais que estamos procurando esto localizados na propriedade de msicas de ponto de dados do ponto deste prop.
+
+4
+00:00:19,110 --> 00:00:23,070
+ a que nossa lista de msicas  apenas para ser muito clara.
+
+5
+00:00:23,070 --> 00:00:28,440
+Quero falar um pouco mais sobre o porqu nossos dados esto disponveis na propriedade de msicas dentro
+
+6
+00:00:28,440 --> 00:00:29,740
+do objeto de dados.
+
+7
+00:00:30,090 --> 00:00:35,470
+Ento, primeiro, o prprio objeto de dados  fornecido pela biblioteca grfica.
+
+8
+00:00:35,580 --> 00:00:40,890
+dados de pontos no objeto do nosso suporte at a propriedade da msica de ponto real l.
+
+9
+00:00:40,890 --> 00:00:47,610
+Ento, no fundo, usamos o auxiliar grfico, a ferramenta de grfico, um auxiliar aqui  o que cria essa propriedade de
+
+10
+00:00:47,640 --> 00:00:53,460
+Voc lembrar que o Querrey que escrevemos disse achou-me uma lista de msicas especificamente.
+
+11
+00:00:53,460 --> 00:01:00,520
+Ento, porque dissemos msicas aqui, os dados que foram buscados estavam disponveis na propriedade das msicas ponto.
+
+12
+00:01:00,750 --> 00:01:05,590
+Se mudarmos isso ao longo do tempo para algo como Oh, sim, me d uma lista de letras ou algo assim.
+
+13
+00:01:05,850 --> 00:01:13,290
+Eu esperaria ento ter acesso  lista de letras, consultando esses adereos, comece os dados com letras pontilhadas em
+
+14
+00:01:13,380 --> 00:01:14,680
+vez das msicas.
+
+15
+00:01:14,940 --> 00:01:19,940
+Mas  claro que eu quero msicas neste caso, ento vou deix-lo como msicas.
+
+16
+00:01:20,390 --> 00:01:20,790
+EST BEM.
+
+17
+00:01:20,850 --> 00:01:26,580
+Agora que temos acesso aos nossos dados dentro do nosso componente, nosso prximo passo ser renderizar
+
+18
+00:01:26,580 --> 00:01:33,480
+uma lista de todas as msicas diferentes dentro do nosso componente, assim, definindo um mtodo auxiliar chamado talvez algo
+
+19
+00:01:33,510 --> 00:01:40,710
+como as msicas de renderizao geraro Uma pessoa reagiu ou uma tag GSX para cada msica que foi buscada e
+
+20
+00:01:41,010 --> 00:01:45,500
+ento chamaremos esse mtodo auxiliar do nosso prprio mtodo de renderizao.
+
+21
+00:01:45,630 --> 00:01:49,470
+A primeira coisa que eu vou fazer  limpar a declarao do log do console que
+
+22
+00:01:49,470 --> 00:01:52,960
+temos aqui porque eu realmente no gosto de ter toneladas penduradas de toros por a.
+
+23
+00:01:53,490 --> 00:01:59,260
+OK ento vamos definir um mtodo auxiliar chamado renderizar msicas assim.
+
+24
+00:01:59,340 --> 00:02:05,970
+disso  iterar sobre a nossa variedade de msicas e retornar uma tag GSX para cada msica que buscamos.
+
+25
+00:02:05,970 --> 00:02:07,770
+Mais uma vez, o objetivo
+
+26
+00:02:07,770 --> 00:02:15,200
+Ento, eu irei retornar o resultado dessa partio de pontos de dados.
+
+27
+00:02:15,240 --> 00:02:20,510
+ assim que obtemos acesso aos dados da consulta que acabamos de enviar.
+
+28
+00:02:20,670 --> 00:02:28,740
+Vamos ento mapear essa lista de msicas e dizer para cada msica que buscamos. Eu quero retornar uma
+
+29
+00:02:29,100 --> 00:02:29,930
+linha assim.
+
+30
+00:02:31,490 --> 00:02:33,140
+Eu sei que acabei de escrever muito.
+
+31
+00:02:33,140 --> 00:02:36,620
+Ento, certifique-se de que voc tenha as duas declaraes de retorno.
+
+32
+00:02:36,620 --> 00:02:43,190
+nos interessa  a msica individual que estamos representando a vida para dentro da mentira.
+
+33
+00:02:43,250 --> 00:02:48,870
+Vamos voltar uma nica mentira e o nico argumento para esta funo que
+
+34
+00:02:48,930 --> 00:02:52,510
+Eu acho que s temos que imprimir a msica desse ttulo assim.
+
+35
+00:02:52,980 --> 00:02:58,210
+Ento, isso imprimir o ttulo de cada msica individual dentro de um aliado.
+
+36
+00:02:58,920 --> 00:03:04,410
+Agora, a ltima coisa que faremos  certificar-se de que chamamos esse mtodo de renderizao de msicas auxiliares
+
+37
+00:03:04,410 --> 00:03:06,720
+do interior do nosso prprio mtodo de renderizao.
+
+38
+00:03:06,720 --> 00:03:09,480
+Ento vou excluir a lista de msicas aqui.
+
+39
+00:03:09,490 --> 00:03:10,580
+No precisamos mais.
+
+40
+00:03:10,800 --> 00:03:19,370
+E ns chamaremos essas msicas de renderizao de pontos, ento vamos dar uma chance e ver como estamos fazendo.
+
+41
+00:03:19,400 --> 00:03:23,470
+Eu suspeito que pode no funcionar exatamente da maneira que esperamos.
+
+42
+00:03:23,480 --> 00:03:27,290
+Ento, apenas voc sabe, vamos apenas correr a coisa e ver o que acontece.
+
+43
+00:03:28,830 --> 00:03:34,710
+Dentro do meu navegador, atualizarei os documentos e recebo uma grande mensagem de erro que diz que
+
+44
+00:03:34,710 --> 00:03:38,040
+no  possvel ler o mapa de propriedades de indefinido.
+
+45
+00:03:38,100 --> 00:03:44,670
+Ento, este  um problema muito grande que eu garanto que voc vai enfrentar todo o tempo quando faz
+
+46
+00:03:44,670 --> 00:03:45,840
+uso do enxerto.
+
+47
+00:03:45,840 --> 00:03:49,580
+Bem, vamos ler essa mensagem novamente, no conseguimos ler corretamente.
+
+48
+00:03:49,620 --> 00:03:51,680
+Mapa de indefinido.
+
+49
+00:03:51,780 --> 00:03:54,650
+E o ar veio do mtodo de renderizao de msicas.
+
+50
+00:03:54,660 --> 00:03:57,790
+Ento, claramente o nico lugar que lembra o mapa agora.
+
+51
+00:03:57,810 --> 00:03:59,350
+Ento aqui est aqui.
+
+52
+00:03:59,670 --> 00:04:05,020
+Se realmente pensamos sobre essa mensagem de erro, diz que no pode ler um mapa de indefinido.
+
+53
+00:04:05,040 --> 00:04:10,540
+Em outras palavras, Propst nossos dados que as msicas retornaram indefinidas.
+
+54
+00:04:10,590 --> 00:04:11,970
+Ento, aqui est o que est acontecendo.
+
+55
+00:04:12,360 --> 00:04:13,550
+D uma olhada neste grfico aqui.
+
+56
+00:04:13,560 --> 00:04:14,940
+Este grfico novamente.
+
+57
+00:04:14,940 --> 00:04:20,400
+Ento, quando nosso componente aparece pela primeira vez na tela, a consulta  emitida.
+
+58
+00:04:20,400 --> 00:04:26,500
+Portanto, nosso componente torna uma vez sem que nenhum dado tenha retornado do servidor back-end.
+
+59
+00:04:26,520 --> 00:04:32,640
+Nada voltou e o grfico do servidor Tules ainda este material Propst out dados que as
+
+60
+00:04:32,700 --> 00:04:41,070
+msicas so indefinidas naquele ponto no tempo somente quando a consulta foi realmente concluda  ou a lista de msicas das msicas
+
+61
+00:04:41,070 --> 00:04:43,180
+estaro disponveis na propriedade de dados.
+
+62
+00:04:43,260 --> 00:04:46,450
+E  a que podemos mostrar alguns dados na tela.
+
+63
+00:04:46,710 --> 00:04:52,380
+Ento, haver uma grande quantidade de tempo aqui quando no tivermos lista de msicas e se
+
+64
+00:04:52,380 --> 00:04:57,390
+tentarmos acess-lo, no ser definido e vamos aparecer uma grande mensagem de erro na tela.
+
+65
+00:04:57,390 --> 00:05:01,320
+Ento, novamente, isso  algo que voc vai enfrentar o tempo todo quando estiver trabalhando
+
+66
+00:05:01,320 --> 00:05:06,560
+em seus prprios projetos em todos os componentes, onde voc obtm alguns dados do seu grfico para o servidor.
+
+67
+00:05:06,660 --> 00:05:12,040
+Voc precisa estar ciente de escrever o cdigo ou voc precisa se preparar ou se certificar de que no.
+
+68
+00:05:12,070 --> 00:05:13,530
+ o que eu realmente estou tentando dizer.
+
+69
+00:05:13,740 --> 00:05:19,200
+Voc precisa ter certeza de que voc lida com o caso em que seus dados ainda no foram obtidos.
+
+70
+00:05:19,300 --> 00:05:26,630
+Biografia bem para fazer, vamos dar uma olhada no objeto de dados de incio adequado novamente.
+
+71
+00:05:26,640 --> 00:05:32,140
+Ento, vamos adicionar esse log do console de volta e voc diz isso no  prop. Vamos ver como.
+
+72
+00:05:32,160 --> 00:05:36,330
+para nos ajudar a detectar quando esses dados ainda no foram obtidos.
+
+73
+00:05:36,330 --> 00:05:41,790
+Talvez haja alguma coisa aqui ou algo sobre o objeto do prop que possamos usar
+
+74
+00:05:41,790 --> 00:05:44,050
+Ento, vamos atualizar nosso documento novamente.
+
+75
+00:05:44,460 --> 00:05:48,300
+Sei que conseguimos o log do console ou vejo a mensagem de erro novamente, mas obtemos um log
+
+76
+00:05:48,300 --> 00:05:49,230
+de console logo acima.
+
+77
+00:05:49,620 --> 00:05:54,070
+Ento, voc notar na propriedade de dados, h uma bandeira de carregamento aqui.
+
+78
+00:05:54,120 --> 00:05:55,350
+Ento, o carregamento significa.
+
+79
+00:05:55,470 --> 00:05:57,710
+Esse pedido ainda est pendente.
+
+80
+00:05:57,750 --> 00:06:01,420
+Ainda estamos no processo de buscar dados do back-end.
+
+81
+00:06:01,500 --> 00:06:04,610
+E neste caso, sim, o pedido foi feito.
+
+82
+00:06:04,650 --> 00:06:11,190
+Ainda estamos tentando buscar alguns dados do servidor do backend para que possamos olhar para esta bandeira de
+
+83
+00:06:11,190 --> 00:06:16,500
+carregamento aqui para descobrir se, na verdade, obtivemos todos os dados que precisamos no nosso
+
+84
+00:06:16,500 --> 00:06:23,130
+back-end, o que  uma tima maneira de redirecionar nosso componente de alguma forma ou retornar outra coisa talvez
+
+85
+00:06:23,160 --> 00:06:30,270
+quando nossos dados ainda no foram buscados na prtica, podemos realmente resolver isso com apenas uma nica linha de cdigo
+
+86
+00:06:30,270 --> 00:06:35,490
+dentro do mtodo de renderizao, se isso for interrompido o carregamento de dados de ponto.
+
+87
+00:06:36,150 --> 00:06:41,100
+Ento, se ainda estamos no processo de carregamento, no tente renderizar todo o componente.
+
+88
+00:06:41,100 --> 00:06:43,100
+No tente renderizar uma lista de msicas.
+
+89
+00:06:43,290 --> 00:06:50,320
+Vamos apenas retornar uma div que diz Carregando.
+
+90
+00:06:50,500 --> 00:06:55,460
+Assim, eu vou diminuir o zoom por um segundo para que voc possa ver toda a linha.
+
+91
+00:06:55,690 --> 00:07:00,550
+Ento, o processo de pensamento aqui  se estamos carregando se ainda estamos buscando essa consulta.
+
+92
+00:07:00,550 --> 00:07:02,820
+Esta consulta ainda est pendente na rede.
+
+93
+00:07:02,870 --> 00:07:04,460
+Voc sabe que ainda estamos esperando por isso.
+
+94
+00:07:04,510 --> 00:07:07,090
+Ento no tente renderizar tudo dentro do componente.
+
+95
+00:07:07,090 --> 00:07:10,330
+No tente acessar a lista de msicas que ainda no existem.
+
+96
+00:07:10,330 --> 00:07:13,370
+Apenas mostre algo que diz carregar em vez disso.
+
+97
+00:07:13,810 --> 00:07:16,450
+Ento vamos testar isso e ver como estamos fazendo.
+
+98
+00:07:16,960 --> 00:07:21,110
+Voltamos ao navegador atualizar a pgina e.
+
+99
+00:07:21,340 --> 00:07:21,880
+Tudo bem.
+
+100
+00:07:21,880 --> 00:07:22,680
+Parece que conseguimos.
+
+101
+00:07:22,690 --> 00:07:25,920
+Ns, pelo menos, temos uma msica aparecendo na tela.
+
+102
+00:07:26,230 --> 00:07:28,350
+Agora, sim, temos uma grande mensagem de aviso aqui.
+
+103
+00:07:28,390 --> 00:07:29,930
+Vamos cuidar disso em apenas um segundo.
+
+104
+00:07:30,040 --> 00:07:33,120
+Mas o importante a ser observado  que ns temos alguns dados na tela.
+
+105
+00:07:33,120 --> 00:07:33,790
+Cachorro quente.
+
+106
+00:07:33,820 --> 00:07:34,930
+Estamos fazendo algum progresso.
+
+107
+00:07:34,930 --> 00:07:36,580
+Muito bom.
+
+108
+00:07:36,580 --> 00:07:42,310
+Ento, ainda temos alguns problemas para cuidar desta grande mensagem de aviso aqui  que voc conhece em torno de renderizar
+
+109
+00:07:42,790 --> 00:07:47,890
+uma lista de componentes que  o que estamos fazendo agora e no estamos fornecendo uma propriedade chave.
+
+110
+00:07:47,890 --> 00:07:50,690
+Isso est voltando para as coisas de resposta bsicas aqui.
+
+111
+00:07:50,710 --> 00:07:55,240
+Vamos cuidar disso e olhar para algumas outras questes que podemos ter dentro do nosso componente
+
+112
+00:07:55,570 --> 00:07:56,580
+na prxima seo.
+

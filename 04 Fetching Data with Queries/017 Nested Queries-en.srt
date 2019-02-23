@@ -1,0 +1,200 @@
+1
+00:00:00,730 --> 00:00:03,620
+Jay Sun server now has the idea of companies.
+
+2
+00:00:03,630 --> 00:00:10,790
+So we're going to pivot back over to our graph Cuil schema and add in the idea of a company type inside
+
+3
+00:00:10,800 --> 00:00:11,590
+my schema.
+
+4
+00:00:11,730 --> 00:00:12,480
+Yes file.
+
+5
+00:00:12,480 --> 00:00:14,130
+I'm going to find my user type.
+
+6
+00:00:14,130 --> 00:00:17,220
+Here it is right here and then right above it.
+
+7
+00:00:17,220 --> 00:00:21,820
+We're going to add a couple of lines in on here we'll define our company type.
+
+8
+00:00:22,140 --> 00:00:27,180
+So it's really important right now that you make sure you define your company type above the user type.
+
+9
+00:00:27,230 --> 00:00:27,700
+OK.
+
+10
+00:00:27,740 --> 00:00:28,370
+And that's me.
+
+11
+00:00:28,410 --> 00:00:33,720
+So it's really important we're going to circle back around in about oh five sections or so and we'll
+
+12
+00:00:33,720 --> 00:00:38,840
+talk about exactly why it's really important to take the order of definition into play here.
+
+13
+00:00:38,950 --> 00:00:43,530
+So I promise you I will come right back to why we're putting this right above.
+
+14
+00:00:43,530 --> 00:00:48,820
+We'll define the company type in the same exact fashion as how we do the user type previously.
+
+15
+00:00:48,840 --> 00:00:50,940
+So say this is going to be a new graph.
+
+16
+00:00:50,940 --> 00:01:02,930
+Q Well object type like so after that we will place the two required properties the name and the field
+
+17
+00:01:02,930 --> 00:01:03,830
+properties in here.
+
+18
+00:01:03,830 --> 00:01:10,970
+So we'll say it's going to have a name of company and it will have fields as well.
+
+19
+00:01:11,060 --> 00:01:15,860
+The company fields will be the ID the name and the description as well.
+
+20
+00:01:15,860 --> 00:01:21,560
+I think for all three of these a graft will strain will be the appropriate type just as we had previously
+
+21
+00:01:21,560 --> 00:01:23,720
+used over on the user type as well.
+
+22
+00:01:24,170 --> 00:01:31,110
+So a use ID Grath Well string.
+
+23
+00:01:31,410 --> 00:01:32,600
+We've got a name
+
+24
+00:01:36,500 --> 00:01:44,300
+and a description.
+
+25
+00:01:44,330 --> 00:01:44,610
+All right.
+
+26
+00:01:44,610 --> 00:01:50,660
+So so far it's looking awfully similar to our user type that we've put together previously.
+
+27
+00:01:50,660 --> 00:01:56,150
+Remember as I said earlier the first time you start working with the schema it feels a little bit funny.
+
+28
+00:01:56,180 --> 00:02:01,310
+You know he's got all these graphical variables floating around all these types floating around.
+
+29
+00:02:01,310 --> 00:02:06,650
+But the more and more you work with it you start to realize you're just writing the same code over and
+
+30
+00:02:06,680 --> 00:02:10,460
+over again which in some ways is a pretty darned good thing.
+
+31
+00:02:10,910 --> 00:02:13,090
+So now you've got the company type in place.
+
+32
+00:02:13,100 --> 00:02:16,490
+We need to associate it with a user.
+
+33
+00:02:16,520 --> 00:02:19,920
+Now I don't want to overcomplicate associations at all here.
+
+34
+00:02:19,970 --> 00:02:21,410
+So let me be clear.
+
+35
+00:02:21,590 --> 00:02:29,510
+We treat associations between types get an association between the company type and the user type exactly
+
+36
+00:02:29,510 --> 00:02:31,900
+as though it were another field.
+
+37
+00:02:32,210 --> 00:02:38,840
+So if a user has a company property like I want to be told to walk from my user over to the company
+
+38
+00:02:38,840 --> 00:02:45,320
+on my graph of all my data I will add on the field company like so.
+
+39
+00:02:45,320 --> 00:02:50,840
+So we're just treating it like another field where we will define the type and the resolve function
+
+40
+00:02:50,840 --> 00:02:52,240
+ourselves.
+
+41
+00:02:52,790 --> 00:02:59,630
+So for the company we'll say that okay when we get this piece of data it's going to be a company type
+
+42
+00:03:01,910 --> 00:03:08,780
+you can start to imagine that perhaps these craft will induce and strings and you whatever other types
+
+43
+00:03:08,780 --> 00:03:14,510
+might come right out the box for us with graft well might have the exact same definition behind the
+
+44
+00:03:14,510 --> 00:03:21,230
+scenes as how we put together our company type really whether we are defining our own type as in the
+
+45
+00:03:21,230 --> 00:03:27,520
+case of company type or using one of the built in ones they're really treated all identically by graft.
+
+46
+00:03:27,620 --> 00:03:34,800
+Well OK so let's take a quick pause and we'll come back and continue working on the Company field right
+
+47
+00:03:34,800 --> 00:03:35,370
+here.
+
+48
+00:03:35,370 --> 00:03:39,270
+And this is a quick section but the next one is to me a little bit longer so I want to make sure that
+
+49
+00:03:39,270 --> 00:03:45,260
+we're going have a lot of time to work on exactly how we get the company associated with the user.
+
+50
+00:03:45,270 --> 00:03:47,860
+So let's take a quick break come back and finish that up.
+

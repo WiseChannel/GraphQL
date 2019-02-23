@@ -1,0 +1,212 @@
+1
+00:00:01,160 --> 00:00:04,280
+That we've got through our first full component that's using graphics.
+
+2
+00:00:04,340 --> 00:00:09,450
+Well I want to talk just a little bit about the overall architecture of our application as a review
+
+3
+00:00:09,720 --> 00:00:12,620
+and then continue on into the next component.
+
+4
+00:00:13,170 --> 00:00:17,650
+So here's our overall application as it stands right now at the very top.
+
+5
+00:00:17,670 --> 00:00:23,670
+We've got our graphics server which is hosting all the data the Apollo store which we set up inside
+
+6
+00:00:23,670 --> 00:00:28,810
+of our index js file is the point of contact with the graph server.
+
+7
+00:00:28,860 --> 00:00:34,020
+It's what's making sure that the data that we are fetching is coming back and being distributed throughout
+
+8
+00:00:34,020 --> 00:00:35,670
+the application.
+
+9
+00:00:35,820 --> 00:00:41,310
+Then on the re-act side of things which is more or less everything inside this box right here we've
+
+10
+00:00:41,310 --> 00:00:43,290
+got the Apollo provider.
+
+11
+00:00:43,290 --> 00:00:48,990
+Remember that this provider is the integration point between the re-act side of things and the actual
+
+12
+00:00:48,990 --> 00:00:51,540
+Appollo store where the data sits.
+
+13
+00:00:51,630 --> 00:00:59,160
+We then have our root component which is displaying a song list with an attached query right now.
+
+14
+00:00:59,520 --> 00:01:04,770
+You also know I put these three little extra things down here with presence of them that's just to say
+
+15
+00:01:04,770 --> 00:01:07,080
+presentational component.
+
+16
+00:01:07,080 --> 00:01:12,990
+So if we had some other subcomponents inside of the song list that were you know maybe showing more
+
+17
+00:01:12,990 --> 00:01:18,810
+details about a particular song or a fancy image or a button or whatever it might be those could all
+
+18
+00:01:18,810 --> 00:01:22,680
+certainly be children of the song list component.
+
+19
+00:01:22,680 --> 00:01:28,230
+The point that I really want to convey here with this last little step is that in a Appollo application
+
+20
+00:01:28,230 --> 00:01:34,530
+like this or a graph tool application like this we tend to pick centralized components like the song
+
+21
+00:01:34,530 --> 00:01:40,790
+list as receiving these queries or receiving some amount of data from the graph server.
+
+22
+00:01:41,130 --> 00:01:47,980
+We can then allow data to trickle from that component down into its components as props.
+
+23
+00:01:48,180 --> 00:01:55,230
+So usually we try to centralize our queries as much as possible and then pass data from them down into
+
+24
+00:01:55,230 --> 00:02:00,090
+child components wherever possible on the application we are working on.
+
+25
+00:02:00,090 --> 00:02:05,860
+We're not going to have too many nested components so we won't quite see this approach or architecture
+
+26
+00:02:05,860 --> 00:02:11,290
+at quite that often which is why I wanted to really take the time to be very direct and very explicit.
+
+27
+00:02:11,430 --> 00:02:12,860
+That's usually how we approach this.
+
+28
+00:02:12,870 --> 00:02:19,380
+We usually centralize the query in some root component or some parent component and then pass data from
+
+29
+00:02:19,380 --> 00:02:20,260
+there.
+
+30
+00:02:20,260 --> 00:02:24,810
+Again if you have experience with redox we're really following the same approach that we would usually
+
+31
+00:02:24,810 --> 00:02:26,260
+use with containers.
+
+32
+00:02:26,400 --> 00:02:29,990
+And I'm going to say again if you don't have redux no problem.
+
+33
+00:02:30,000 --> 00:02:33,390
+Not required for understanding what is going on here.
+
+34
+00:02:34,010 --> 00:02:34,760
+OK.
+
+35
+00:02:34,920 --> 00:02:40,890
+I think that we're in a good spot for continuing on to the next feature inside of our application.
+
+36
+00:02:40,890 --> 00:02:45,600
+I've made a little bit of a modification to the mock ups that we saw previously.
+
+37
+00:02:45,600 --> 00:02:50,790
+You'll notice that the mock up on the right hand side now we had previously been seen page that would
+
+38
+00:02:50,790 --> 00:02:54,570
+be like creating or see me showing us more details about a song.
+
+39
+00:02:54,570 --> 00:02:56,700
+So we had called that song detail.
+
+40
+00:02:56,940 --> 00:03:02,220
+I'm thinking that we should also create this song create component first which will allow us to have
+
+41
+00:03:02,220 --> 00:03:07,410
+the ability to create a new song and save it to our back end database.
+
+42
+00:03:07,620 --> 00:03:13,680
+We should be able to access this component right here by a new big red button that should be located
+
+43
+00:03:13,710 --> 00:03:16,580
+inside of our song index page.
+
+44
+00:03:17,000 --> 00:03:18,350
+So give me the overall plan.
+
+45
+00:03:18,390 --> 00:03:25,510
+We're going to make a separate component and then a link between the two from the Song Index page.
+
+46
+00:03:25,650 --> 00:03:30,930
+Now that we are talking about showing multiple components together in the same application we need to
+
+47
+00:03:30,960 --> 00:03:35,090
+also be thinking about the use of re-act router as well.
+
+48
+00:03:35,130 --> 00:03:40,770
+So I think that we can bring in re-act router to our project and make use of it to show these different
+
+49
+00:03:40,770 --> 00:03:44,450
+pages in the screen or zoomy in the application.
+
+50
+00:03:44,460 --> 00:03:49,470
+So presumably this would be our route page or kind of our index route for the entire application.
+
+51
+00:03:49,470 --> 00:03:55,560
+So in the list of songs and then when we go over to something like songs slash create or something like
+
+52
+00:03:55,560 --> 00:03:59,010
+that will want to show the form for creating a new song.
+
+53
+00:03:59,340 --> 00:04:04,680
+So let's start the installation and setup process for re-act router inside the next section.
+

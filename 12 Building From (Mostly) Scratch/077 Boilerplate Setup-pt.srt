@@ -1,0 +1,444 @@
+1
+00:00:00,810 --> 00:00:06,180
+Agora que tivemos a chance de discutir alguns dos problemas e possveis solues dentro
+
+2
+00:00:06,180 --> 00:00:09,280
+deste prximo aplicativo, comecemos a escrever algum cdigo.
+
+3
+00:00:09,630 --> 00:00:15,720
+Em primeiro lugar, comearemos por clonar um repositrio existente fora do bom hub e instalar
+
+4
+00:00:15,720 --> 00:00:17,310
+algumas dependncias dentro dele.
+
+5
+00:00:17,310 --> 00:00:20,570
+Primeiras coisas atravs do link para chegar diretamente a esse repositrio.
+
+6
+00:00:20,700 --> 00:00:22,140
+Ento aqui est aqui.
+
+7
+00:00:22,350 --> 00:00:27,030
+Observe que este  um repositrio diferente do que ns usamos nos
+
+8
+00:00:27,030 --> 00:00:28,040
+dois aplicativos anteriores.
+
+9
+00:00:28,080 --> 00:00:31,070
+Ento, totalmente diferente, iniciou um projeto aqui.
+
+10
+00:00:31,200 --> 00:00:36,880
+Vou copiar o link para abrir o Chrome e depois navegar diretamente.
+
+11
+00:00:39,830 --> 00:00:45,590
+Sendo um bom repositrio, podemos clonar ou baixar este projeto usando o boto verde no
+
+12
+00:00:45,590 --> 00:00:46,560
+lado direito.
+
+13
+00:00:46,760 --> 00:00:52,010
+E, como sempre, cabe a voc decidir se deseja ou no baix-lo como arquivo zip ou
+
+14
+00:00:52,010 --> 00:00:57,830
+clonar usando, eu quero, claro, querer clon-lo usando apenas porque  um pouco mais rpido e mais
+
+15
+00:00:57,830 --> 00:00:58,910
+fcil de trabalhar.
+
+16
+00:00:58,910 --> 00:01:00,520
+Ento, uma cpia de cobrana aqui.
+
+17
+00:01:00,530 --> 00:01:06,680
+E, em seguida, mude para o meu terminal, uma vez que eu estou no meu terminal, repare que j no estou no
+
+18
+00:01:06,680 --> 00:01:07,670
+meu diretrio do projeto.
+
+19
+00:01:07,670 --> 00:01:13,790
+Estou agora em uma pasta de nvel de espao de trabalho, o que significa que este  um local apropriado para
+
+20
+00:01:13,790 --> 00:01:14,610
+clonar meu projeto.
+
+21
+00:01:14,870 --> 00:01:19,750
+Ento, entenda o clone e depois o link que acabei de copiar.
+
+22
+00:01:19,900 --> 00:01:26,690
+Ento, isso ajudar a obter seu pacote STRUGAR e clon-lo agora, mudando para o novo diretrio que acabou
+
+23
+00:01:26,690 --> 00:01:30,050
+de ser criado, que  todo grfico bem definido.
+
+24
+00:01:30,050 --> 00:01:31,190
+Bem, pergunte-me.
+
+25
+00:01:31,190 --> 00:01:36,650
+Starter, ento o autgrafo mata a carta e vou comear meu editor de cdigo.
+
+26
+00:01:36,890 --> 00:01:42,920
+E enquanto isso comea, eu tambm vou voltar e comear a instalar minhas dependncias ao executar
+
+27
+00:01:42,980 --> 00:01:44,280
+a instalao do NPM.
+
+28
+00:01:44,480 --> 00:01:48,520
+Eu vou assumir que todas as dependncias vo se instalar com sucesso.
+
+29
+00:01:48,530 --> 00:01:50,900
+Ento voc no vai me ver voltar aqui ou algo assim.
+
+30
+00:01:50,900 --> 00:01:54,290
+Ns apenas vamos assumir que tudo vai ser instalado com sucesso.
+
+31
+00:01:54,750 --> 00:01:55,100
+EST BEM.
+
+32
+00:01:55,170 --> 00:01:56,960
+Vamos mudar para o nosso editor de cdigo.
+
+33
+00:01:57,800 --> 00:02:02,430
+E voc pode ver alguns dos arquivos do projeto no painel esquerdo.
+
+34
+00:02:02,480 --> 00:02:07,550
+Agora, a arquitetura geral deste projeto aqui  muito semelhante aos projetos com
+
+35
+00:02:07,550 --> 00:02:09,020
+os quais trabalhamos anteriormente.
+
+36
+00:02:09,110 --> 00:02:14,350
+Ento, temos um arquivo G-S de ndice no nvel mais alto que inicia nosso aplicativo.
+
+37
+00:02:14,480 --> 00:02:20,210
+Temos uma pasta de servidor com um monte de nosso cdigo relacionado ao servidor e, em seguida, uma pasta
+
+38
+00:02:20,210 --> 00:02:26,630
+de cliente que deveria ser que se destina a conter alguns dos cdigos javascript do lado do cliente para o nosso aplicativo.
+
+39
+00:02:26,750 --> 00:02:31,610
+Quero comear com o cdigo que est includo dentro da pasta do cliente.
+
+40
+00:02:31,670 --> 00:02:33,660
+Ento, se eu abrir indexado.
+
+41
+00:02:34,070 --> 00:02:41,180
+OK apenas roteie o gabinete mnimo mnimo absoluto para obter um aplicativo de reao na tela, criamos o
+
+42
+00:02:42,170 --> 00:02:45,160
+componente raiz e, ento, ns renderizamos na tela.
+
+43
+00:02:45,170 --> 00:02:45,950
+Isso  praticamente isso.
+
+44
+00:02:45,950 --> 00:02:52,060
+Ento, no est indo muito, no muito, continuando dentro dessa pasta de clientes ainda.
+
+45
+00:02:52,070 --> 00:02:54,260
+Agora, vamos verificar a pasta do servidor de origem.
+
+46
+00:02:54,340 --> 00:02:58,260
+Ento, definitivamente h algumas pastas diferentes dentro daqui.
+
+47
+00:02:58,260 --> 00:03:02,010
+Quero contar um pouco sobre este caldeiro no momento.
+
+48
+00:03:03,270 --> 00:03:08,660
+Para este ltimo aplicativo, estamos realmente fazendo uma aplicao de pilha muito cheia aqui.
+
+49
+00:03:08,730 --> 00:03:13,860
+E quando me sentei e comecei a montar todo o cdigo para este
+
+50
+00:03:13,860 --> 00:03:20,700
+exemplo, percebi que, se fizssemos todo esse projeto a partir do zero, realmente nos divertimos realmente de falar
+
+51
+00:03:20,710 --> 00:03:21,610
+de grficos.
+
+52
+00:03:21,900 --> 00:03:27,050
+E eu realmente realmente queria manter o curso 100% focado em grficos bem.
+
+53
+00:03:27,300 --> 00:03:32,580
+Ento eu tomei essa deciso para juntar um monte de coisas do servidor para esse
+
+54
+00:03:32,580 --> 00:03:33,460
+pacote aqui.
+
+55
+00:03:33,510 --> 00:03:37,920
+monte de cdigo do servidor, mas eu cuidei de um pouco do material
+
+56
+00:03:37,920 --> 00:03:44,280
+relacionado  autenticao porque, novamente, teria sido um grande desvio real para falar sobre todas as coisas de autenticao.
+
+57
+00:03:44,280 --> 00:03:46,390
+Ns estamos olhando para escrever um
+
+58
+00:03:46,560 --> 00:03:51,460
+E no teramos discutido bem o enxerto por provavelmente duas ou trs horas.
+
+59
+00:03:51,480 --> 00:03:56,400
+Ento, gentilmente tomou a deciso de cuidar disso para ns antes do tempo.
+
+60
+00:03:56,400 --> 00:04:01,620
+Agora, se voc aceitar esses materiais antes ou realmente, como trabalhamos atravs deste, voc sabe que
+
+61
+00:04:01,620 --> 00:04:06,620
+eu odeio colocar o cdigo na frente do seu rosto sem lhe contar nada sobre isso.
+
+62
+00:04:06,660 --> 00:04:13,590
+Ento, embora eu lhe desse este grande pacote de iniciao, eu cheguei por um anncio em uma tremenda quantidade
+
+63
+00:04:13,590 --> 00:04:16,920
+de comentrios em toda esta base de cdigo aqui.
+
+64
+00:04:16,920 --> 00:04:22,500
+h uma srie de comentrios aqui para voc ler e entender sobre como liguei algumas coisas de autenticao.
+
+65
+00:04:22,500 --> 00:04:27,570
+Ento, se voc realmente quer saber o que est acontecendo dentro desta base de cdigo existente,
+
+66
+00:04:27,690 --> 00:04:33,590
+Ento, vamos fazer uma turn muito rpida para cobrir o que j foi implementado no pacote inicial.
+
+67
+00:04:33,610 --> 00:04:38,550
+Estou dentro do servidor doc J. S. arquivo agora e voc pode ver uma tonelada de
+
+68
+00:04:38,550 --> 00:04:39,380
+exigir instrues no topo.
+
+69
+00:04:39,660 --> 00:04:45,090
+Ento, este aplicativo faz uso de uma srie de dependncias diferentes, a maioria dos quais est
+
+70
+00:04:45,090 --> 00:04:50,580
+ajudando em torno do sistema de autenticao que falamos em detalhes quando comeamos a falar sobre
+
+71
+00:04:50,610 --> 00:04:51,420
+autenticao com enxerto.
+
+72
+00:04:51,490 --> 00:04:55,780
+Bem, ainda estamos fazendo uso do laboratrio Mongul.
+
+73
+00:04:55,800 --> 00:05:01,270
+Ento, vamos criar uma nova instncia de Mongo lab e colar o link dentro daqui.
+
+74
+00:05:01,320 --> 00:05:05,870
+Em seguida, iniciamos nossa conexo com o mangusto, que vai chegar ao Ersin eu, iniciamos
+
+75
+00:05:05,880 --> 00:05:11,240
+nossa conexo com DV mongered atravs do mangusto e depois imprimimos todas as possveis mensagens de erro.
+
+76
+00:05:12,380 --> 00:05:17,000
+Em seguida, h um pouco de cdigo aqui sobre como manter uma sesso usando um cookie.
+
+77
+00:05:17,000 --> 00:05:22,350
+Ento isso novamente faz parte da grande discusso sobre a qual teremos em torno da autenticao.
+
+78
+00:05:22,640 --> 00:05:29,150
+E ento, o resto do cdigo aqui  sobre o grfico bem e algumas configuraes com o pacote web tambm.
+
+79
+00:05:29,150 --> 00:05:33,720
+Agora, existem dois outros arquivos que eu quero falar muito brevemente dentro da pasta dos modelos.
+
+80
+00:05:33,740 --> 00:05:36,110
+Voc encontrar um arquivo chamado ponto de usurio J.
+
+81
+00:05:36,140 --> 00:05:37,200
+Sim.
+
+82
+00:05:37,220 --> 00:05:43,880
+Ento, este  o modelo de usurio que instrui o mangusto sobre o que o usurio se parece quando ele  salvo no
+
+83
+00:05:43,880 --> 00:05:45,600
+banco de dados do Mongo DB.
+
+84
+00:05:45,800 --> 00:05:49,510
+Ento eu tenho alguns comentrios aqui tambm, que so completamente gratuitos para ler.
+
+85
+00:05:49,520 --> 00:05:55,040
+Mais uma vez, tudo isso  sobre autenticao e ambos os comentrios descrevem exatamente o que est acontecendo dentro
+
+86
+00:05:55,040 --> 00:05:56,780
+de cada uma das funes auxiliares.
+
+87
+00:05:58,160 --> 00:06:01,080
+Ento o ltimo arquivo provavelmente  o mais importante.
+
+88
+00:06:01,120 --> 00:06:02,770
+So servios fora.
+
+89
+00:06:02,780 --> 00:06:04,760
+Jay Sim.
+
+90
+00:06:04,760 --> 00:06:10,040
+Ento,  a que muitos dos realmente muito fora do tpico cdigo entraram em jogo.
+
+91
+00:06:10,040 --> 00:06:14,580
+Quando eu falo do tpico, estou falando sobre coisas que novamente no esto realmente relacionadas ao Graf.
+
+92
+00:06:14,570 --> 00:06:19,790
+Q Bem, ento eu estava muito hesitante em colocar qualquer coisa relacionada a ele dentro deste curso porque novamente eu realmente
+
+93
+00:06:19,910 --> 00:06:21,470
+quero ter esse foco no grfico.
+
+94
+00:06:21,470 --> 00:06:25,850
+Q Bem, sinta-se  vontade para ler todos os comentrios que esto aqui.
+
+95
+00:06:25,850 --> 00:06:32,450
+O grande takeaway  que definimos algumas funes aqui para ajudar a assinar e autenticar
+
+96
+00:06:32,450 --> 00:06:33,530
+um usurio.
+
+97
+00:06:33,620 --> 00:06:39,970
+A parte mais importante sobre este arquivo aqui  que, no fundo, muito em muito, ns exportamos
+
+98
+00:06:39,980 --> 00:06:47,320
+para funes diferentes, uma que  chamada de Inscrio e uma que  chamada de logon para se inscrever e
+
+99
+00:06:47,320 --> 00:06:54,920
+fazer login em ambas as funes, pegue um e-mail e senha e so usados para autenticar um usurio para assin-los
+
+100
+00:06:54,920 --> 00:07:00,980
+e registrar o homem ou apenas log-los e perceber que eu sei que h muitos comentrios
+
+101
+00:07:00,980 --> 00:07:02,370
+sobre estes dois aqui.
+
+102
+00:07:02,990 --> 00:07:07,420
+Ento, sinta-se  vontade para pausar o vdeo agora e ler alguns desses comentrios.
+
+103
+00:07:07,580 --> 00:07:13,850
+Parte da razo pela qual eu no quero ir muito nessa configurao  que a QV e o passaporte do enxerto no so
+
+104
+00:07:13,850 --> 00:07:15,650
+realmente destinados a serem usados em conjunto.
+
+105
+00:07:15,680 --> 00:07:18,500
+E vamos falar sobre por que isso  apenas um pouco.
+
+106
+00:07:18,650 --> 00:07:23,570
+E ento tinha que haver um monte de um tipo desse tipo de manchas de macaco
+
+107
+00:07:23,570 --> 00:07:28,440
+aqui, um pouco de camadas de compatibilidade que realmente no deveriam servir para aprimorar nosso conhecimento.
+
+108
+00:07:28,440 --> 00:07:29,420
+Q Em tudo.
+
+109
+00:07:29,540 --> 00:07:34,210
+Realmente  apenas uma dor de cabea ao conseguir que esses diferentes mdulos funcionem juntos bem.
+
+110
+00:07:35,880 --> 00:07:38,550
+OK, ento agora que passamos um pouco esse pacote inicial.
+
+111
+00:07:38,640 --> 00:07:43,900
+Vamos continuar na prxima seo e comear a trabalhar no lado da autenticao do nosso aplicativo.
+

@@ -1,0 +1,536 @@
+1
+00:00:01,050 --> 00:00:05,630
+We are correctly creating a new song whenever a user submits one from this form right here.
+
+2
+00:00:05,670 --> 00:00:11,130
+Which means our mutation is working the way in which we expect but so got a little couple of rough spots
+
+3
+00:00:11,130 --> 00:00:14,520
+around navigation for our user in particular.
+
+4
+00:00:14,550 --> 00:00:18,120
+I want to you have a back button at the top of this page.
+
+5
+00:00:18,180 --> 00:00:23,970
+I would like to make sure that whenever a user goes to our route route of songs so the song list right
+
+6
+00:00:23,970 --> 00:00:24,440
+here.
+
+7
+00:00:24,630 --> 00:00:29,530
+I would really like them to have a big red button to click down here to go to the Create song form.
+
+8
+00:00:29,580 --> 00:00:35,700
+And finally I would really like to make sure that after a user submits a new song to be created we forcibly
+
+9
+00:00:35,700 --> 00:00:38,420
+navigate them back to the list of all songs.
+
+10
+00:00:38,670 --> 00:00:41,110
+So still a couple of links to put together here.
+
+11
+00:00:41,130 --> 00:00:45,390
+Let's get started on patching up a couple of these rough spots.
+
+12
+00:00:45,390 --> 00:00:51,300
+I think the best place to start right now is going to be to open up our song list file and add in a
+
+13
+00:00:51,300 --> 00:00:58,230
+big red button on there for user to click to go to the song creation form to navigate to user over there.
+
+14
+00:00:58,230 --> 00:01:04,200
+We're going to use the linked tag again from re-act router link tag generates an anchor tag that the
+
+15
+00:01:04,200 --> 00:01:08,240
+user can easily click on the screen and navigate around her application.
+
+16
+00:01:08,520 --> 00:01:14,100
+So the top will will we will import the link tag from the re-act router library and it will scroll on
+
+17
+00:01:14,100 --> 00:01:17,920
+down to the bottom of our render method.
+
+18
+00:01:17,930 --> 00:01:22,550
+Here it is right here and we'll add a link tag to the render method.
+
+19
+00:01:22,560 --> 00:01:28,860
+Now I wouldn't really want to put a link tag inside of the UL UL is really for containing only allies
+
+20
+00:01:28,860 --> 00:01:30,990
+to stick with age T.M. semantics.
+
+21
+00:01:31,050 --> 00:01:38,550
+Someone to add in a div wrapper for everything inside of this component like so then I can easily add
+
+22
+00:01:38,550 --> 00:01:42,880
+in after the UL the linked tag go.
+
+23
+00:01:43,260 --> 00:01:46,880
+We need to specify exactly where we want to send this user.
+
+24
+00:01:46,890 --> 00:01:52,350
+So I'm going to define the two property and we're going to say that whenever a user clicks on this I
+
+25
+00:01:52,350 --> 00:01:57,560
+want to send them off to song Dot knew one thing I want to point out.
+
+26
+00:01:57,600 --> 00:02:03,780
+I kind of made a mistake around nomenclature here using singular song as opposed to songs.
+
+27
+00:02:03,780 --> 00:02:06,300
+I would really like to go with the plural of songs.
+
+28
+00:02:06,330 --> 00:02:09,960
+So I'm going to update this both in my index dot js file.
+
+29
+00:02:10,050 --> 00:02:13,950
+The router definition and inside of this link tag right here.
+
+30
+00:02:14,040 --> 00:02:19,680
+So I need to go first back to the index dot G-S file and fix this up to be plural instead of singular.
+
+31
+00:02:19,680 --> 00:02:21,840
+Again that's really a mistake on my side.
+
+32
+00:02:21,870 --> 00:02:24,360
+It really should have been plural to start off with.
+
+33
+00:02:24,870 --> 00:02:30,720
+Then back inside of the linked tag that we're working on right now all correctly fixes up to the songs
+
+34
+00:02:30,720 --> 00:02:31,940
+slash new.
+
+35
+00:02:32,200 --> 00:02:32,500
+OK.
+
+36
+00:02:32,520 --> 00:02:38,040
+So it looks a little bit better now to make sure that this is going to end up being a big red button.
+
+37
+00:02:38,040 --> 00:02:42,010
+We're also going to add in a couple of class names from materialize.
+
+38
+00:02:42,330 --> 00:02:49,570
+So we use button floating DTN large red and right.
+
+39
+00:02:49,770 --> 00:02:55,850
+This is going to create a big red round button red of course and it's going to float off to the right
+
+40
+00:02:55,850 --> 00:02:57,510
+hand side of our page.
+
+41
+00:02:57,600 --> 00:03:02,800
+You know it should end up being right underneath our list of songs.
+
+42
+00:03:03,300 --> 00:03:07,190
+Then we also need to make sure that the button shows some content inside of it.
+
+43
+00:03:07,200 --> 00:03:11,590
+The classiness we added right here are just for styling the button to the red.
+
+44
+00:03:11,640 --> 00:03:17,550
+I would like the red button to have a plus inside of it like a plus symbol so that so that the user
+
+45
+00:03:17,790 --> 00:03:21,590
+understands that they should be clicking it to add a new record to do so.
+
+46
+00:03:21,600 --> 00:03:26,970
+We can use the material icons library which has already been wired up inside this project.
+
+47
+00:03:26,970 --> 00:03:36,990
+We will add an IDE tag with the class name of material icons and then give it to text add the material
+
+48
+00:03:37,010 --> 00:03:42,420
+icons library has a little bit of magic to automatically read the text that we place inside of this
+
+49
+00:03:42,670 --> 00:03:45,770
+tag and replace it with the appropriate icon.
+
+50
+00:03:45,820 --> 00:03:51,270
+So add is a reference to the ADD icon which should show up as a big plus symbol.
+
+51
+00:03:51,810 --> 00:03:55,630
+OK let's give it a shot inside of her browser and see how we're doing.
+
+52
+00:03:56,040 --> 00:04:04,940
+I'm going to go back to my route route of localhost 4000 and I correctly see a big red button here.
+
+53
+00:04:04,950 --> 00:04:09,070
+And so when I press it I go to this concretion form again.
+
+54
+00:04:09,150 --> 00:04:11,910
+I would like to have a back button up here as well.
+
+55
+00:04:11,910 --> 00:04:14,310
+So let's add that in really quickly too.
+
+56
+00:04:15,090 --> 00:04:17,450
+We can do that inside of the song creation forum.
+
+57
+00:04:17,490 --> 00:04:24,120
+So I'm going to find song create an inside of here we will first add in the in link tag from re-act
+
+58
+00:04:24,120 --> 00:04:24,920
+router.
+
+59
+00:04:25,470 --> 00:04:34,410
+So import link from re-act router and then I'll scroll down to the render method and right above the
+
+60
+00:04:34,410 --> 00:04:37,680
+age 3 you can add in a link.
+
+61
+00:04:38,040 --> 00:04:39,280
+I'll just say back.
+
+62
+00:04:39,300 --> 00:04:41,120
+Keep it nice and simple.
+
+63
+00:04:41,300 --> 00:04:47,970
+I will say that whenever a user clicks on this they should go back to the root route like so ok thing
+
+64
+00:04:48,080 --> 00:04:50,260
+that's ready for a test too.
+
+65
+00:04:51,150 --> 00:04:57,020
+And OK got the back you can go back here see a list of all of our songs and then go back to the song
+
+66
+00:04:57,020 --> 00:04:58,920
+creation form.
+
+67
+00:04:59,060 --> 00:05:04,310
+So looks like our navigation is working perfectly as far as the self-directed navigation goes.
+
+68
+00:05:04,310 --> 00:05:10,820
+Anyways the lesson we have to do is make sure that after a user creates a new song we automatically
+
+69
+00:05:10,820 --> 00:05:14,900
+kick them back to the song list page to do so.
+
+70
+00:05:14,900 --> 00:05:21,210
+Let's take a closer look at our nutation insiders song create function or suncream component.
+
+71
+00:05:21,230 --> 00:05:22,610
+Excuse me.
+
+72
+00:05:22,610 --> 00:05:23,930
+So your song create.
+
+73
+00:05:24,110 --> 00:05:25,950
+Here's the submit handler.
+
+74
+00:05:26,120 --> 00:05:34,670
+And here's the actual mutation to make sure that a user navigates only after a mutation has been successfully
+
+75
+00:05:34,670 --> 00:05:35,890
+submitted to the server.
+
+76
+00:05:36,020 --> 00:05:40,590
+We can make use of the value that is returned from the mutation itself.
+
+77
+00:05:40,670 --> 00:05:46,760
+So when we color a mutation like this mutation right here it actually returns a promise that we can
+
+78
+00:05:46,760 --> 00:05:55,340
+chain a dot then onto We can add a aira function in here and any code that we placed inside of this
+
+79
+00:05:55,340 --> 00:06:02,570
+arrow function will only be executed after the mutation has resolved successfully if we wanted to catch
+
+80
+00:06:02,570 --> 00:06:04,520
+the case in which the mutation failed.
+
+81
+00:06:04,520 --> 00:06:09,580
+We can also add on a catch and pass that if that arrow function as well.
+
+82
+00:06:10,010 --> 00:06:14,750
+Adding in the doc catch would be very useful if we want to handle some validation errors coming from
+
+83
+00:06:14,750 --> 00:06:15,670
+the back end.
+
+84
+00:06:15,890 --> 00:06:20,460
+So at the back end was validating that we actually passed in a title we would use.
+
+85
+00:06:20,570 --> 00:06:25,300
+Ketchin here to catch an error if the user did not provide a title.
+
+86
+00:06:25,790 --> 00:06:31,220
+We can then use the arrow function right here to add a little bit of code to show an error to the user.
+
+87
+00:06:31,220 --> 00:06:35,140
+However right now the server is not doing any validation of the title.
+
+88
+00:06:35,210 --> 00:06:40,610
+And so there's not really good reason to have the catch on here because the promise should never actually
+
+89
+00:06:40,610 --> 00:06:41,300
+fail.
+
+90
+00:06:43,080 --> 00:06:49,770
+That then statement right here will only be called after the title has been or excuse me the song has
+
+91
+00:06:49,770 --> 00:06:51,510
+been successfully created.
+
+92
+00:06:51,600 --> 00:06:56,640
+So there will be a little bit of a delay between the user hitting enter on their keyboard and actually
+
+93
+00:06:56,640 --> 00:06:58,620
+getting navigated somewhere else.
+
+94
+00:06:58,620 --> 00:07:03,930
+If we wanted to we could certainly add in a little set statement in here little set state excuse me
+
+95
+00:07:04,320 --> 00:07:07,320
+to maybe show a spinner or something like that to the user.
+
+96
+00:07:07,380 --> 00:07:09,240
+That would definitely be appropriate.
+
+97
+00:07:09,240 --> 00:07:15,750
+But right now again all they really care about is navigating the user back to our list of songs because
+
+98
+00:07:15,750 --> 00:07:16,990
+that's really what we want to show them.
+
+99
+00:07:16,990 --> 00:07:23,430
+I want to show hey look here's the updated song that you just tried to create to forcibly navigate the
+
+100
+00:07:23,430 --> 00:07:24,340
+user around.
+
+101
+00:07:24,390 --> 00:07:33,090
+We can make direct access of the hash history object so we can say hash history push slash like so.
+
+102
+00:07:33,090 --> 00:07:36,870
+And that will kick the user back to the root route of our application.
+
+103
+00:07:37,140 --> 00:07:41,290
+The hash history object trait here is used by re-act routers well.
+
+104
+00:07:41,340 --> 00:07:46,480
+And here's what's key keeping track of navigation stayed inside of our application.
+
+105
+00:07:46,530 --> 00:07:50,650
+We do have to import hash history from re-act router at the top as well.
+
+106
+00:07:50,670 --> 00:07:55,160
+So let's take care of that to hash history.
+
+107
+00:07:55,710 --> 00:08:00,490
+Now you might be kind of curious why I'm using hash history for navigation here.
+
+108
+00:08:00,510 --> 00:08:06,090
+If you're at all familiar with re-act router reactor has several different ways to do navigation within
+
+109
+00:08:06,090 --> 00:08:07,040
+a component.
+
+110
+00:08:07,140 --> 00:08:09,160
+You can use.
+
+111
+00:08:09,360 --> 00:08:13,960
+I should say I should qualify that by saying forceable navigation inside of a component.
+
+112
+00:08:14,280 --> 00:08:17,490
+You can use the with router higher order component.
+
+113
+00:08:17,640 --> 00:08:23,160
+You can grab the router off of the context property and you can grab the router off of the prop's object
+
+114
+00:08:23,220 --> 00:08:29,400
+as well so many different ways to do routing inside of re-act router you'll see exactly why we're using
+
+115
+00:08:29,400 --> 00:08:31,840
+hash history here in just a moment.
+
+116
+00:08:31,860 --> 00:08:37,960
+Once we start doing the successful navigation between the song create and the song list form.
+
+117
+00:08:38,130 --> 00:08:43,260
+So speaking of which I think we're ready to test this out and make sure that after we create a song
+
+118
+00:08:43,500 --> 00:08:45,810
+we get kicked back to the song list.
+
+119
+00:08:45,810 --> 00:08:48,180
+So let's give it a shot.
+
+120
+00:08:48,210 --> 00:08:52,740
+I'm going to refresh the page and then going to enter in a new song here.
+
+121
+00:08:53,070 --> 00:08:55,050
+And for this one all do.
+
+122
+00:08:55,140 --> 00:08:59,360
+Let's do some title of yogurt Express.
+
+123
+00:08:59,910 --> 00:09:07,400
+As you can tell I generally just pick objects that are on my desk for song names of whatever.
+
+124
+00:09:07,410 --> 00:09:09,470
+Anyways So here's our song title.
+
+125
+00:09:09,510 --> 00:09:12,690
+I'm going to hit enter on my keyboard to cement this.
+
+126
+00:09:12,850 --> 00:09:20,370
+And my expectation is that I'll be kicked back to my song list back on the route of our application
+
+127
+00:09:20,580 --> 00:09:24,270
+and I should see this new song automatically appear like that.
+
+128
+00:09:24,270 --> 00:09:25,660
+That's best case scenario right.
+
+129
+00:09:25,650 --> 00:09:27,990
+That's that's what we want to have happen.
+
+130
+00:09:27,990 --> 00:09:33,730
+I want to go back over to the other route and see the song appear on the screen and hit enter.
+
+131
+00:09:34,170 --> 00:09:37,080
+It goes back over and hey hot dog.
+
+132
+00:09:37,140 --> 00:09:42,490
+We get the new song appearing on the screen just as we would expected.
+
+133
+00:09:42,510 --> 00:09:43,710
+So this looks fantastic.
+
+134
+00:09:43,740 --> 00:09:45,540
+Let's continue in the next section.
+

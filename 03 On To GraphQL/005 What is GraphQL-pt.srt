@@ -1,0 +1,364 @@
+1
+00:00:00,880 --> 00:00:06,100
+Tivemos a oportunidade de discutir algumas rotas repousantes agora e fizemos um caso de onde
+
+2
+00:00:06,100 --> 00:00:07,840
+parece cair um pouco curto.
+
+3
+00:00:07,840 --> 00:00:13,720
+Lembre-se que existem trs reas diferentes, onde o roteamento repousante parece apresentar alguns problemas
+
+4
+00:00:14,080 --> 00:00:14,580
+primeiro.
+
+5
+00:00:14,740 --> 00:00:20,810
+Decidir em um esquema de voc  difcil quando comeamos a ter relacionamentos fortemente aninhados.
+
+6
+00:00:20,950 --> 00:00:27,910
+Em segundo lugar, ao obter dados muito aninhados, podemos encontrar facilmente situaes em que fazemos muitas solicitaes
+
+7
+00:00:27,940 --> 00:00:30,970
+HTP para obter os dados que precisamos.
+
+8
+00:00:30,970 --> 00:00:38,320
+sobre a qual buscamos uma empresa inteira quando talvez ns realmente s precisssemos da propriedade Name dessa empresa.
+
+9
+00:00:38,320 --> 00:00:41,340
+Em terceiro lugar, somos vulnerveis a obter dados
+
+10
+00:00:42,430 --> 00:00:47,620
+Tenha em mente que, com cada uma dessas questes, definitivamente os problemas podem ser resolvidos,
+
+11
+00:00:47,620 --> 00:00:51,030
+mas encontrar solues como esse tipo de tempo de engenharia.
+
+12
+00:00:51,040 --> 00:00:55,750
+Ento, sempre queremos estar cientes de quanto tempo gastamos na soluo de qualquer problema.
+
+13
+00:00:55,840 --> 00:01:02,450
+E  aqui que entra um grfico e nos permite resolver esses problemas de forma muito oportuna.
+
+14
+00:01:02,470 --> 00:01:07,960
+Ento, nesta seo, eu quero passar um pouco de tempo para lhe dizer exatamente o que Kraft Cuil faz
+
+15
+00:01:07,960 --> 00:01:12,760
+para resolver cada uma dessas peas inerentes de confuso em torno de repousante e de roteamento.
+
+16
+00:01:13,180 --> 00:01:19,000
+nosso diagrama de nosso usurio atual que est tentando buscar alguns detalhes sobre seus amigos.
+
+17
+00:01:19,000 --> 00:01:20,180
+Vamos pensar em
+
+18
+00:01:20,230 --> 00:01:27,020
+Este usurio tinha alguns amigos e cada amigo tinha uma empresa e os registros de posio associados a ele.
+
+19
+00:01:27,040 --> 00:01:32,770
+Neste momento, estamos a olhar para este diagrama em uma espcie de forma de rvore onde comeamos com o usurio atual
+
+20
+00:01:33,100 --> 00:01:35,740
+e depois olhamos para os usurios que esto associados.
+
+21
+00:01:35,800 --> 00:01:38,970
+E ento, olhamos para as empresas e posies associadas com eles.
+
+22
+00:01:38,980 --> 00:01:45,320
+Ento tudo est focado em torno deste usurio atual ou  tudo a partir deste ponto de vista do usurio atual.
+
+23
+00:01:45,730 --> 00:01:50,560
+desde o ponto de vista deste usurio nico, eu quero imaginar todos os dados nesta
+
+24
+00:01:50,560 --> 00:01:57,160
+aplicao todos os dados neste banco de dados imaginrio, incluindo todos os usurios todos os cargos e todas as empresas.
+
+25
+00:01:57,160 --> 00:02:02,770
+Agora, eu vou mudar este diagrama de uma maneira grande e ao invs de olhar para tudo,
+
+26
+00:02:02,770 --> 00:02:08,200
+Ento, o diagrama ao qual eu vou trocar vai parecer um pouco louco, mas realmente est
+
+27
+00:02:08,290 --> 00:02:11,250
+transmitindo informaes muito semelhantes ao que estamos vendo agora.
+
+28
+00:02:11,440 --> 00:02:11,780
+EST BEM.
+
+29
+00:02:11,830 --> 00:02:12,670
+Ento vamos ver isso.
+
+30
+00:02:13,560 --> 00:02:20,550
+Toga este programa aqui mostra um grfico de todas as relaes em nosso aplicativo.
+
+31
+00:02:20,550 --> 00:02:26,970
+ou na sua aplicao de planilha favorita. Um grfico  uma estrutura de dados que contm notas
+
+32
+00:02:26,970 --> 00:02:34,110
+que so simbolizadas por todos os retngulos diferentes aqui e as relaes entre cada um desses ns referidos como bordas.
+
+33
+00:02:34,110 --> 00:02:41,970
+Quando eu digo um grfico, no estou falando sobre o tipo de char que voc encontra em uma planilha do Excel
+
+34
+00:02:41,970 --> 00:02:48,990
+Ento este  o grfico que o grfico que Cuil est se referindo e entender como nossa informao se encaixa
+
+35
+00:02:48,990 --> 00:02:55,570
+em uma estrutura de dados de grfico, como essa,  fundamental para entender como o grfico Cuil funciona.
+
+36
+00:02:55,590 --> 00:02:59,880
+Uma coisa que eu quero mencionar sobre esta estrutura grfica aqui  que eu no estou dizendo que
+
+37
+00:02:59,880 --> 00:03:04,350
+vamos mudar a forma como nossos dados esto sendo armazenados em um banco de dados ou algo assim.
+
+38
+00:03:04,380 --> 00:03:10,140
+Ns ainda podemos usar a sequela Mangu D-B aps o Natal, o que quer que voc queira usar para armazenar dados.
+
+39
+00:03:10,320 --> 00:03:15,600
+Estamos apenas a olhar para este diagrama para visualizar a forma como todos os
+
+40
+00:03:15,600 --> 00:03:23,410
+nossos dados esto conectados atravs de todas as diferentes relaes OK, agora que nossos dados esto organizados em um grfico.
+
+41
+00:03:23,690 --> 00:03:31,600
+No consigo que todos os meus diferentes usurios atribuam algumas IDs a eles uma vez que obtivemos todos os nossos dados nesta
+
+42
+00:03:31,600 --> 00:03:32,350
+estrutura grfica.
+
+43
+00:03:32,350 --> 00:03:37,420
+O que fazemos com isso e como consultamos sobre a informao contida aqui.
+
+44
+00:03:37,780 --> 00:03:43,210
+Bem, uma vez que organizamos nossos dados em um grfico, podemos consult-lo usando o grfico.
+
+45
+00:03:43,210 --> 00:03:47,360
+Bem, ento, vejamos um exemplo do que isso pode parecer.
+
+46
+00:03:47,410 --> 00:03:52,760
+OK, vamos desenhar um grfico Cuil Querrey correndo ao longo deste grfico aqui.
+
+47
+00:03:53,260 --> 00:03:57,570
+Imaginemos que queremos comear com o usurio 23 aqui.
+
+48
+00:03:57,820 --> 00:04:02,410
+Eu quero encontrar todos os seus amigos que so outros usurios no aplicativo.
+
+49
+00:04:02,650 --> 00:04:07,040
+E ento eu quero encontrar todas as empresas em que esses usurios trabalham.
+
+50
+00:04:07,390 --> 00:04:07,840
+EST BEM.
+
+51
+00:04:07,990 --> 00:04:12,820
+Ento, vamos visualizar como formamos uma consulta ou fazemos uma pergunta como esse.
+
+52
+00:04:12,820 --> 00:04:14,360
+Q Bem.
+
+53
+00:04:14,840 --> 00:04:21,330
+Bem, primeiro ns telegrafariamos o Cuil que queramos ir e encontrar o usurio com ID 23.
+
+54
+00:04:21,550 --> 00:04:27,490
+Em seguida, telegrafiaramos para L para encontrar todos os amigos associados  Graph TV ou a
+
+55
+00:04:27,490 --> 00:04:29,480
+ver com o usurio 23.
+
+56
+00:04:29,500 --> 00:04:36,640
+associada a todos esses amigos e obter como voc nomear o nome da propriedade fora dele ou algo assim.
+
+57
+00:04:36,640 --> 00:04:40,060
+Finalmente, ns telegrafemos para L para encontrar a empresa
+
+58
+00:04:40,060 --> 00:04:46,960
+Ento, em resumo, comeamos dizendo o grfico 12 para ir e ver um registro muito particular,
+
+59
+00:04:46,960 --> 00:04:54,900
+como esse registro, aqui e depois rastrear todos os registros associados para instruir como desculpar-me para instruir o grfico
+
+60
+00:04:54,900 --> 00:05:02,140
+de todos vocs sobre como fazer Na prtica, escrevemos e executamos o que  chamado de Querrey.
+
+61
+00:05:02,220 --> 00:05:06,270
+Ento, vamos olhar para uma consulta que faria algo muito parecido com o que acabamos de ver.
+
+62
+00:05:06,270 --> 00:05:12,060
+Como comear com um determinado usurio e, em seguida, v encontrar os nomes das empresas de amigos associados.
+
+63
+00:05:12,420 --> 00:05:16,260
+Ento, a consulta que estamos prestes a escrever, voc sabe que
+
+64
+00:05:16,260 --> 00:05:20,160
+s vamos fazer aqui no lado desse diagrama, ficar realmente familiar.
+
+65
+00:05:20,160 --> 00:05:24,060
+Uma vez que comeamos a trabalhar com Graph Well, ele vai se parecer com o javascript agora,
+
+66
+00:05:24,060 --> 00:05:28,120
+pode parecer um pouco estranho, mas confie em mim, vamos nos familiarizar realmente com as consultas com grficos.
+
+67
+00:05:28,130 --> 00:05:30,750
+Bem, eu vou conseguir.
+
+68
+00:05:31,420 --> 00:05:37,240
+Ento, esta ser a consulta que escreveramos para passar do usurio 23 at a
+
+69
+00:05:37,240 --> 00:05:37,900
+empresa aqui.
+
+70
+00:05:40,640 --> 00:05:44,760
+Primeiro comeamos pelo telgrafo se queremos fazer uma consulta.
+
+71
+00:05:44,780 --> 00:05:51,560
+Ento eu diria consulta e, em seguida, abra chaves abertas e ento eu diria que eu quero encontrar
+
+72
+00:05:51,560 --> 00:05:56,940
+um usurio com ID de 23 que telegrafar para L para ver este usurio aqui.
+
+73
+00:05:58,030 --> 00:06:05,050
+Em seguida, vamos Telegraph indicar que queremos encontrar todos os usurios que so amigos do usurio inicial, de modo a rastejar junto
+
+74
+00:06:05,050 --> 00:06:12,250
+com a prxima camada, o prximo conjunto de relaes aqui em que estamos em amigos, ento agora voc pode estar curioso porque
+
+75
+00:06:12,250 --> 00:06:15,710
+eu ' Estou dizendo amigos aqui e no como usurios novamente.
+
+76
+00:06:15,760 --> 00:06:16,720
+Bem, nos acostumaremos com isso.
+
+77
+00:06:16,720 --> 00:06:17,910
+Falaremos sobre isso.
+
+78
+00:06:17,920 --> 00:06:21,440
+Mas realmente podemos considerar que eles so apenas usurios.
+
+79
+00:06:21,700 --> 00:06:26,890
+analise esse grfico um pouco como caminhar at a prxima caminhada de relacionamento para o
+
+80
+00:06:26,890 --> 00:06:35,450
+prximo n e agora o ltimo passo seria de amigos para encontrar todas as empresas associadas a esses amigos, ento eu faria dizer companhia.
+
+81
+00:06:35,480 --> 00:06:38,990
+De qualquer maneira, estamos essencialmente a dizer ao grfico que
+
+82
+00:06:39,170 --> 00:06:44,420
+E ento, porque eu quero a propriedade do nome de cada empresa, eu escreverei o nome
+
+83
+00:06:46,260 --> 00:06:46,810
+como OK.
+
+84
+00:06:47,100 --> 00:06:49,700
+Ento, esta  a primeira consulta que vamos analisar.
+
+85
+00:06:49,710 --> 00:06:55,280
+Ns vamos implementar isso ns mesmos dentro de uma aplicao grfica.
+
+86
+00:06:55,670 --> 00:07:00,260
+Eu s agora no gosto de esperar que voc entenda a sintaxe das consultas.
+
+87
+00:07:00,290 --> 00:07:01,590
+No, no seja assim.
+
+88
+00:07:01,590 --> 00:07:06,690
+caminhando ao longo de um grfico para cada declarao na consulta que temos.
+
+89
+00:07:06,690 --> 00:07:12,700
+Eu s quero dar-lhe um exemplo de como tomamos uma consulta e podemos imaginar que est
+
+90
+00:07:13,350 --> 00:07:16,960
+Vamos dar uma pausa rpida porque tem havido muita coisa louca.
+
+91
+00:07:17,130 --> 00:07:21,880
+Vamos dar uma pausa rpida e depois comear a trabalhar em um exemplo prtico disso na prxima seo.
+

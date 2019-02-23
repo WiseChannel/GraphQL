@@ -1,0 +1,344 @@
+1
+00:00:00,590 --> 00:00:06,210
+In the last section we started working on our scheme file and to find the first type of data in our
+
+2
+00:00:06,210 --> 00:00:13,110
+application the user typed this instructs graft well that our application has the concept of a user
+
+3
+00:00:13,470 --> 00:00:18,990
+and that each user has an ID a first name and an age.
+
+4
+00:00:19,020 --> 00:00:25,080
+Now the next piece of this puzzle that we're going to work on is again where things start to muck start.
+
+5
+00:00:25,080 --> 00:00:27,030
+They might look a little bit strange.
+
+6
+00:00:27,330 --> 00:00:33,040
+Again remember then all the schemas we built they really do look quite similar to each other.
+
+7
+00:00:33,210 --> 00:00:37,920
+So it's only going to look weird this first time and after that you're going to start seeing the same
+
+8
+00:00:37,920 --> 00:00:40,330
+patterns over and over again.
+
+9
+00:00:40,690 --> 00:00:40,960
+OK.
+
+10
+00:00:40,980 --> 00:00:45,350
+So let's talk about what this next part is in all of our discussions of graft.
+
+11
+00:00:45,360 --> 00:00:48,720
+Well so far we've been looking at this diagram and saying OK.
+
+12
+00:00:48,740 --> 00:00:49,050
+Yup.
+
+13
+00:00:49,080 --> 00:00:53,270
+Start with user 23 and then find my friends and find their companies.
+
+14
+00:00:53,520 --> 00:00:59,760
+Well it turns out that the first part of that equation like finding the user with I.T. 23 is actually
+
+15
+00:00:59,880 --> 00:01:04,530
+a little bit tough for graph Q L to do to do so.
+
+16
+00:01:04,530 --> 00:01:13,920
+We have to give Well a piece of data called the root Querrey a root query is something that allows us
+
+17
+00:01:13,920 --> 00:01:17,080
+to jump in to our graph of data.
+
+18
+00:01:17,220 --> 00:01:24,840
+So if we say to graphically Well hey give me a user with ID of 23 we're going to pass that instruction
+
+19
+00:01:24,930 --> 00:01:27,570
+into this root query thing.
+
+20
+00:01:27,570 --> 00:01:33,360
+And then the root query will have some logic in it to know OK I need to go jump to this part of the
+
+21
+00:01:33,360 --> 00:01:36,980
+graph over here the user with ID of 23.
+
+22
+00:01:37,050 --> 00:01:43,170
+In other words we can think of this root query as being an entry point into our application or an entry
+
+23
+00:01:43,170 --> 00:01:45,480
+point into our data.
+
+24
+00:01:45,510 --> 00:01:50,310
+Again the root query is certainly one of those things where I think it's going to make a lot more sense
+
+25
+00:01:50,310 --> 00:01:52,040
+after you've seen it in action.
+
+26
+00:01:52,140 --> 00:01:56,020
+So let's put together some code around this and go from there.
+
+27
+00:01:56,550 --> 00:02:04,170
+So back in our schema file underneath the user type I'm going to declare a new variable called Root
+
+28
+00:02:04,350 --> 00:02:11,040
+query like so and we'll say that's new graph QOL object type.
+
+29
+00:02:11,100 --> 00:02:12,720
+Just as we used before.
+
+30
+00:02:12,720 --> 00:02:19,740
+Again please triple check on your capitalization capital Q l o n a capital T.
+
+31
+00:02:20,670 --> 00:02:24,890
+So this root query right here will be a graph l object type.
+
+32
+00:02:24,930 --> 00:02:33,420
+Just like the user will have the same properties of name and fields for the name will use root query
+
+33
+00:02:33,530 --> 00:02:34,650
+type.
+
+34
+00:02:35,130 --> 00:02:40,020
+The Fields property is where things start to get a little bit more interesting.
+
+35
+00:02:40,020 --> 00:02:47,760
+I remember the purpose of the root query is to allow graph Q L to jump and land on a very specific node
+
+36
+00:02:47,820 --> 00:02:50,530
+in the graph of all of our data.
+
+37
+00:02:50,730 --> 00:02:57,300
+So we are going to tell it that if anyone comes into our app asking for a particular user then they're
+
+38
+00:02:57,300 --> 00:03:00,330
+probably asking about that user type that we just created.
+
+39
+00:03:00,330 --> 00:03:01,870
+Right like that makes sense.
+
+40
+00:03:02,010 --> 00:03:04,980
+We can make this clear by adding the following.
+
+41
+00:03:04,980 --> 00:03:08,160
+So again this is going to be just a little weird stuff.
+
+42
+00:03:08,160 --> 00:03:09,990
+Bear with me once we see in the browser.
+
+43
+00:03:09,990 --> 00:03:12,210
+I know you're going to understand exactly what's going on.
+
+44
+00:03:12,210 --> 00:03:15,150
+We're going to say user is an object.
+
+45
+00:03:15,150 --> 00:03:25,180
+It has a type of user type and Ark's of ID with a type of graph Cuil string.
+
+46
+00:03:25,670 --> 00:03:28,000
+Ok lot of typing there.
+
+47
+00:03:28,290 --> 00:03:36,670
+You can read this as meaning you can ask me the root query about users in the application.
+
+48
+00:03:36,840 --> 00:03:40,560
+If you give me the idea of the user you're looking for.
+
+49
+00:03:40,560 --> 00:03:43,760
+I will return a user back to you.
+
+50
+00:03:44,160 --> 00:03:47,430
+So args right here is short for arguments.
+
+51
+00:03:47,430 --> 00:03:53,220
+It specifies arguments that are required for this root query of a given user.
+
+52
+00:03:53,220 --> 00:03:59,880
+So again in total we can say if you're looking for a user and you give me an ID I will give you back
+
+53
+00:04:00,000 --> 00:04:01,780
+a user.
+
+54
+00:04:01,780 --> 00:04:09,060
+Another last thing we have to define on here is the most important property of all which is called the
+
+55
+00:04:09,120 --> 00:04:20,090
+resolve function so we're going to use six syntax years resolve with parents and then open and close
+
+56
+00:04:20,100 --> 00:04:25,340
+curly braces and the arguments to it which are quite important for us.
+
+57
+00:04:25,590 --> 00:04:28,980
+Our parent value and ours.
+
+58
+00:04:29,730 --> 00:04:35,340
+So the result function very important function graph queue out the result functions purpose is to say
+
+59
+00:04:35,730 --> 00:04:39,040
+oh you're looking for a user with idea of 23.
+
+60
+00:04:39,070 --> 00:04:41,890
+OK I'll do my best to find it.
+
+61
+00:04:41,970 --> 00:04:47,970
+The result function is where we actually go into our database or our data store or whatever whatever
+
+62
+00:04:47,970 --> 00:04:55,080
+it is we go into our database and we find the actual data that we're looking for another way of looking
+
+63
+00:04:55,080 --> 00:05:01,320
+at this is that everything that we've added to this entire file so far tells us what our data looks
+
+64
+00:05:01,320 --> 00:05:02,080
+like.
+
+65
+00:05:02,400 --> 00:05:08,570
+The result the result of functions purpose is to actually go and reach out and grab the real data.
+
+66
+00:05:09,210 --> 00:05:10,900
+So one thing to mention about resolve.
+
+67
+00:05:10,900 --> 00:05:12,900
+Notice the arguments in here.
+
+68
+00:05:13,080 --> 00:05:15,690
+The first argument is parent value.
+
+69
+00:05:16,020 --> 00:05:20,430
+This argument you're not going to believe me when I say this but this argument right here is somewhat
+
+70
+00:05:20,430 --> 00:05:24,410
+notorious for like not ever really being used ever.
+
+71
+00:05:24,660 --> 00:05:28,840
+And we will discuss more about it later but right now we're going to say we can kind of ignore it for
+
+72
+00:05:28,840 --> 00:05:30,020
+right now.
+
+73
+00:05:30,540 --> 00:05:36,510
+What we really care about is the second argument which is the argument with arguments.
+
+74
+00:05:36,520 --> 00:05:38,720
+I know that I'm doubling up on words here.
+
+75
+00:05:38,730 --> 00:05:45,000
+The second argument to the resolve function which is ards short for arguments this is an object that
+
+76
+00:05:45,000 --> 00:05:49,610
+gets called with whatever arguments were passed into the original query.
+
+77
+00:05:49,620 --> 00:05:55,890
+So in other words to kind of simplify that a little bit if our query expects to be provided with an
+
+78
+00:05:55,950 --> 00:06:02,040
+idea of the user that we're trying to fetch that idea will be present on this args object right here.
+
+79
+00:06:02,050 --> 00:06:02,290
+OK.
+
+80
+00:06:02,340 --> 00:06:05,050
+That's a better way of putting it.
+
+81
+00:06:05,080 --> 00:06:05,550
+All right.
+
+82
+00:06:05,550 --> 00:06:11,600
+A quick review in this section we started implementing our route Querrey which is used to allow graphical
+
+83
+00:06:11,760 --> 00:06:15,690
+to enter into our applications data graph.
+
+84
+00:06:15,690 --> 00:06:22,200
+The most important part of this route Querrey is the resolve function which is used to return an actual
+
+85
+00:06:22,200 --> 00:06:26,990
+piece of data from our database or data store or whatever is holding our data.
+
+86
+00:06:27,000 --> 00:06:30,770
+So let's work on filling out our resolve function in the next section.
+

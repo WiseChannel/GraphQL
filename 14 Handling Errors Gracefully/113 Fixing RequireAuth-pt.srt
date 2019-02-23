@@ -1,0 +1,372 @@
+1
+00:00:00,790 --> 00:00:03,950
+A seo em que o componente necessrio foi conectado.
+
+2
+00:00:04,020 --> 00:00:07,320
+Mas definitivamente no funcionou do jeito que eu esperava.
+
+3
+00:00:07,560 --> 00:00:12,690
+Em particular, testmos dentro do navegador e vimos que ainda podamos ver a pgina
+
+4
+00:00:12,690 --> 00:00:15,900
+do painel mesmo que o usurio no estivesse autenticado.
+
+5
+00:00:15,900 --> 00:00:20,190
+Ento precisamos entender um pouco mais sobre o que est acontecendo internamente com essa coisa
+
+6
+00:00:20,190 --> 00:00:21,730
+antes que possamos realmente funcionar.
+
+7
+00:00:22,110 --> 00:00:28,630
+Eu acho que um bom primeiro passo seria adicionar um log do console ao nosso mtodo de ciclo de vida mt do componente.
+
+8
+00:00:28,770 --> 00:00:33,500
+E l dentro, podemos cancelar o desconto do valor do carregamento e do usurio.
+
+9
+00:00:33,510 --> 00:00:39,000
+E isso nos dar uma idia melhor de quando este componente est sendo chamado e como podemos ajustar este
+
+10
+00:00:39,000 --> 00:00:42,220
+pouco para garantir que ele esteja funcionando da maneira que esperamos.
+
+11
+00:00:42,660 --> 00:00:49,680
+Ento, vou adicionar um log de console e analisaremos os valores desse carregamento de dados de dados Propst e
+
+12
+00:00:49,680 --> 00:00:52,810
+tambm deste ponto dot start dot dot user.
+
+13
+00:00:52,890 --> 00:00:54,720
+Ento, vamos ver estes dois valores.
+
+14
+00:00:54,840 --> 00:01:01,170
+Lembre-se se ambos so valores falsos que resultariam em um usurio sendo redirecionado para
+
+15
+00:01:01,170 --> 00:01:03,150
+o log na tela.
+
+16
+00:01:03,210 --> 00:01:05,090
+Ento vamos atualizar a pgina agora.
+
+17
+00:01:05,310 --> 00:01:06,380
+Eu vou voltar a entrar.
+
+18
+00:01:06,390 --> 00:01:10,670
+Voc notar que eu terminei sesso desde o ltimo vdeo.
+
+19
+00:01:10,980 --> 00:01:13,430
+Teste esse ponto de teste e senha.
+
+20
+00:01:13,680 --> 00:01:16,800
+Agora, quando eu clicar em Enviar, fico falso.
+
+21
+00:01:16,800 --> 00:01:20,380
+Isso significa que a consulta no est sendo carregada mais.
+
+22
+00:01:20,910 --> 00:01:26,390
+E a segunda declarao registrada parece ser o usurio que eu carreguei para que seja meu usurio atual.
+
+23
+00:01:26,400 --> 00:01:29,440
+Ento, agora, eu definitivamente loguei no meu aplicativo.
+
+24
+00:01:29,490 --> 00:01:33,010
+Eu no esperaria ser redirecionado neste momento.
+
+25
+00:01:33,120 --> 00:01:38,390
+Eu s esperava ser redirecionado depois que eu clicar no boto de logout aqui.
+
+26
+00:01:38,670 --> 00:01:40,950
+Ento, vamos clicar em sair e ver o que acontece.
+
+27
+00:01:41,230 --> 00:01:41,760
+Oops.
+
+28
+00:01:41,870 --> 00:01:44,590
+Eu estava sobre o clique OK, ento eu clique para sair.
+
+29
+00:01:44,610 --> 00:01:50,000
+J no estou logado, mas voc notar que eu no tenho uma declarao de log do console aqui.
+
+30
+00:01:50,010 --> 00:01:51,550
+Eu no consegui outro.
+
+31
+00:01:51,570 --> 00:01:52,620
+Ento, por que  isso.
+
+32
+00:01:52,980 --> 00:01:56,280
+Bem, isso se resume a como o mtodo do ciclo de vida funciona.
+
+33
+00:01:56,460 --> 00:02:03,160
+Lembre-se que o componente fez montagem apenas  chamado quando o componente  processado pela primeira vez na tela.
+
+34
+00:02:03,450 --> 00:02:09,720
+Quando cliquei no boto para sair aqui, no faz com que o componente do painel de instrumentos seja processado
+
+35
+00:02:09,870 --> 00:02:11,320
+de forma ou forma.
+
+36
+00:02:11,340 --> 00:02:17,580
+Eu no devo dizer que no fez com que o componente do painel inclusse
+
+37
+00:02:17,580 --> 00:02:18,900
+o componente novamente.
+
+38
+00:02:18,900 --> 00:02:23,560
+Como o painel no foi desmontado e remontado, ele acabou de ser atualizado.
+
+39
+00:02:23,910 --> 00:02:31,500
+colocando toda essa lgica de autenticao dentro do nico componente, o mount no  uma boa localizao para lidar
+
+40
+00:02:31,500 --> 00:02:40,740
+com as atualizaes do meu estado atual para lidar corretamente e, em vez disso, usar um mtodo de ciclo de vida diferente.
+
+41
+00:02:40,920 --> 00:02:41,700
+Ento, agora,
+
+42
+00:02:41,700 --> 00:02:43,310
+Desculpe, eu no coloquei as respostas l.
+
+43
+00:02:43,350 --> 00:02:46,920
+Usaremos um mtodo de componente de ciclo de vida diferente.
+
+44
+00:02:46,980 --> 00:02:50,810
+Atualizar para que o componente seja atualizado.
+
+45
+00:02:50,850 --> 00:02:57,170
+Ns iremos chamar essa coisa todas as vezes que a consulta atualiza e declare de qualquer forma.
+
+46
+00:02:57,210 --> 00:03:03,330
+Ento, talvez a consulta no seja carregada para carregar ou carregar para no carregar ou agora temos um
+
+47
+00:03:03,330 --> 00:03:06,780
+usurio atual atribudo ou o usurio atual no existe mais.
+
+48
+00:03:06,840 --> 00:03:13,230
+usurio est ou no ou se precisamos ou no redirecione o usurio para o formulrio de login, desculpe-me.
+
+49
+00:03:13,230 --> 00:03:18,330
+Toda vez que a nossa consulta atualizar de qualquer forma, o componente ser atualizado,
+
+50
+00:03:18,330 --> 00:03:24,560
+ser chamado novamente e podemos verificar o novo conjunto de adereos que esto chegando para decidir se o
+
+51
+00:03:25,110 --> 00:03:27,850
+Ento, vamos matar o log do console que est aqui agora.
+
+52
+00:03:27,960 --> 00:03:34,020
+Lembre-se de que o componente ser atualizado  chamado com o novo conjunto de adereos com o qual o compilador est
+
+53
+00:03:34,020 --> 00:03:35,230
+prestes a ser processado.
+
+54
+00:03:35,490 --> 00:03:41,730
+Ento, no vamos nos referir a esses adereos dentro do seu. Em vez disso, somos para os prximos
+
+55
+00:03:41,730 --> 00:03:45,040
+adereos que o componente est prestes a ser processado.
+
+56
+00:03:45,120 --> 00:03:55,650
+ainda tenha as marcas de exclamao aqui porque queremos capturar o caso em que a consulta atualizada no  Carregando e a consulta atualizada no possui um usurio definido.
+
+57
+00:03:55,650 --> 00:04:01,260
+Ento, no prximo objeto do prop, queremos olhar para o prximo ponto de dados do suporte,
+
+58
+00:04:01,260 --> 00:04:08,460
+o carregamento de pontos e o prximo usurio do ponto do ponto de dados do suporte para garantir que voc
+
+59
+00:04:08,670 --> 00:04:09,610
+Se for esse o caso.
+
+60
+00:04:09,630 --> 00:04:09,980
+timo.
+
+61
+00:04:09,990 --> 00:04:13,140
+Vamos redirecionar o usurio para a tela de logon.
+
+62
+00:04:13,530 --> 00:04:13,880
+EST BEM.
+
+63
+00:04:13,890 --> 00:04:15,200
+Ento vamos dar uma chance agora.
+
+64
+00:04:15,340 --> 00:04:16,420
+Eu vou atualizar.
+
+65
+00:04:16,440 --> 00:04:22,230
+Vai salvar este arquivo e atualizar a pgina aqui e voc notar que no instante em que atualizo a
+
+66
+00:04:22,230 --> 00:04:26,070
+pgina por um segundo, eu estava olhando para o componente do painel.
+
+67
+00:04:26,250 --> 00:04:31,710
+Mas, assim que o queie terminou o carregamento, nosso aplicativo percebeu que no h usurio atual e
+
+68
+00:04:31,710 --> 00:04:34,330
+nos deixou de volta na tela de login.
+
+69
+00:04:34,330 --> 00:04:38,900
+Ento, agora vamos entrar novamente, vamos testar todo o fluxo aqui.
+
+70
+00:04:39,270 --> 00:04:43,150
+Ento, teste no teste uma senha comum ou assine novamente.
+
+71
+00:04:43,200 --> 00:04:43,640
+EST BEM.
+
+72
+00:04:43,680 --> 00:04:48,760
+Bem, agora, neste momento, nossa consulta terminou de carregar e um usurio atual existe.
+
+73
+00:04:48,810 --> 00:04:54,510
+Portanto, no precisamos fazer nenhum redirecionamento aqui, mas voc perceber no instante em que eu clicar no fim
+
+74
+00:04:54,510 --> 00:04:58,560
+da verificao da consulta que reconhece que no existe mais um usurio atual.
+
+75
+00:04:58,560 --> 00:05:04,680
+E ns somos devolvidos  tela de login e isso tambm deve funcionar se tentarmos ir manualmente diretamente para
+
+76
+00:05:04,680 --> 00:05:06,400
+o painel de controle tambm.
+
+77
+00:05:06,570 --> 00:05:13,800
+Ento, veja se eu vou ao painel de comando manualmente, est me chutando de volta para entrar na tela, o que definitivamente
+
+78
+00:05:13,800 --> 00:05:15,500
+ o comportamento que queremos.
+
+79
+00:05:16,140 --> 00:05:16,780
+EST BEM.
+
+80
+00:05:16,950 --> 00:05:20,050
+Ento eu acho que  praticamente isso para o lado de autenticao do conjunto.
+
+81
+00:05:20,070 --> 00:05:22,830
+Agora temos um fluxo de log realmente slido.
+
+82
+00:05:23,040 --> 00:05:28,400
+Ns temos a capacidade de assinar o usurio e temos a capacidade de assinar o usurio e
+
+83
+00:05:28,440 --> 00:05:32,420
+tambm temos uma autenticao de um componente de ordem superior que nos ajudar.
+
+84
+00:05:32,720 --> 00:05:36,720
+Bem, realmente s nos dar um ajudante para decidir se o usurio precisa
+
+85
+00:05:36,930 --> 00:05:39,870
+ou no fazer login antes de avanar em nossa aplicao.
+
+86
+00:05:40,170 --> 00:05:44,300
+Ento, apenas para ser muito claro se ns adicionamos em outras rotas para nossa aplicao.
+
+87
+00:05:44,340 --> 00:05:51,240
+Ento, se no tivssemos apenas o painel, mas tambm tivemos uma pgina de perfil ou uma pgina de configuraes de
+
+88
+00:05:51,240 --> 00:05:54,870
+conta, o que, em teoria, exigiria que o usurio fosse autenticado.
+
+89
+00:05:54,870 --> 00:06:00,300
+Podemos envolver cada um desses componentes dentro do componente de ordem superior de autenticao requerido aqui.
+
+90
+00:06:00,420 --> 00:06:05,490
+E isso exigiria que o usurio fosse iniciado se quiser acessar essa rota.
+
+91
+00:06:06,230 --> 00:06:06,670
+EST BEM.
+
+92
+00:06:06,690 --> 00:06:11,220
+Ento, eu acho que  s isso para autenticao dentro deste aplicativo.
+
+93
+00:06:11,220 --> 00:06:13,830
+Espero que voc tenha gostado de juntar.
+

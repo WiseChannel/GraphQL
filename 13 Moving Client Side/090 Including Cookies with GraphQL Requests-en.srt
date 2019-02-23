@@ -1,0 +1,512 @@
+1
+00:00:00,780 --> 00:00:07,050
+In the last section we added in a little query to figure out whether or not the user is currently authenticated.
+
+2
+00:00:07,110 --> 00:00:12,180
+Now to be 100 percent clear I am currently authenticated with the back end server.
+
+3
+00:00:12,360 --> 00:00:17,510
+So when I'm sitting in graphical and I run the query to fetch the current user I get a response back.
+
+4
+00:00:17,520 --> 00:00:24,240
+So I'm definitely authenticated according to graphical but inside of my application when I run the same
+
+5
+00:00:24,240 --> 00:00:27,690
+query to fetch the current user I get a response of No.
+
+6
+00:00:27,870 --> 00:00:33,960
+So clearly something either in graphical or inside of my application is not functioning the way I expect
+
+7
+00:00:34,350 --> 00:00:38,140
+because there is a big difference in the response that I get from each query.
+
+8
+00:00:38,340 --> 00:00:40,620
+Even though the query is identical.
+
+9
+00:00:40,860 --> 00:00:45,430
+So this is one of the biggest gotchas in the world around Appollo.
+
+10
+00:00:45,450 --> 00:00:47,380
+One of the biggest gotchas.
+
+11
+00:00:47,430 --> 00:00:51,870
+Let's take a look at a diagram that's going to help us understand exactly what's happening and what's
+
+12
+00:00:51,870 --> 00:00:54,040
+going wrong with our application.
+
+13
+00:00:54,700 --> 00:00:55,290
+OK.
+
+14
+00:00:55,650 --> 00:00:59,290
+So this is a diagram of the coupled approach for setting up graft.
+
+15
+00:00:59,310 --> 00:01:06,990
+Well remember that with this coupled approach we allow mutation to handle all of the different authentication
+
+16
+00:01:07,020 --> 00:01:08,480
+operations that we have.
+
+17
+00:01:08,700 --> 00:01:15,080
+So we rely on a mutation to figure out or to assign a sin to log out all that kind of good stuff.
+
+18
+00:01:15,080 --> 00:01:16,090
+And here's the catch.
+
+19
+00:01:16,140 --> 00:01:21,000
+I'm just going to get a beeline directly to it because it's such a tiny little thing it doesn't really
+
+20
+00:01:21,000 --> 00:01:25,730
+deserve to be beat around the bush too much so to speak.
+
+21
+00:01:25,920 --> 00:01:26,760
+Here's the thing.
+
+22
+00:01:27,030 --> 00:01:31,070
+Whenever we make requests to our back end using graft.
+
+23
+00:01:31,110 --> 00:01:38,700
+Well so whenever we execute a query whenever we execute a mutation by default graph Cuil does not attempt
+
+24
+00:01:38,700 --> 00:01:41,970
+to attach any of our cookies to the request.
+
+25
+00:01:41,970 --> 00:01:48,330
+What that means is when a request goes from our browser to our back end graph queue it does not attach
+
+26
+00:01:48,420 --> 00:01:52,610
+any of the information that identifies us to our back end server.
+
+27
+00:01:52,620 --> 00:02:02,540
+So inside of graphical when we execute this query graphical by default does attach queries to the request.
+
+28
+00:02:02,670 --> 00:02:05,270
+So I run this through this query right here.
+
+29
+00:02:05,340 --> 00:02:09,520
+My query is issued to the backend server and my cookie is sent along as well.
+
+30
+00:02:09,540 --> 00:02:14,580
+That identifies me to the back end server the back end server looks at the cookie.
+
+31
+00:02:14,580 --> 00:02:18,360
+It identifies me as user test at test dot com.
+
+32
+00:02:18,360 --> 00:02:23,760
+It sends the response back that contains the current user inside of my application.
+
+33
+00:02:23,760 --> 00:02:30,780
+However when my request is made to identify the current user by default my cookies are not included
+
+34
+00:02:30,780 --> 00:02:32,130
+with that request.
+
+35
+00:02:32,150 --> 00:02:37,280
+And so when the server looks at the request to figure out hey what am I trying to do here.
+
+36
+00:02:37,500 --> 00:02:40,630
+Passport is not able to identify the current user.
+
+37
+00:02:40,650 --> 00:02:46,370
+And so when we attempt to return the current user the server says well they didn't pass along any cookies.
+
+38
+00:02:46,380 --> 00:02:48,220
+I guess it's just some anonymous person.
+
+39
+00:02:48,240 --> 00:02:50,940
+I'm not going to make any assumptions about who they are.
+
+40
+00:02:51,240 --> 00:02:57,510
+So in short by default graph CULE does not send along cookies which tends to break authentication just
+
+41
+00:02:57,510 --> 00:02:58,850
+right out of the box.
+
+42
+00:02:58,920 --> 00:03:02,760
+If you're depending upon cookies for handling authentication.
+
+43
+00:03:03,540 --> 00:03:09,030
+So what we really have to do here is do a little bit of configuration for graft ul to instructed that
+
+44
+00:03:09,030 --> 00:03:12,480
+it needs to send along our cookies with every single request.
+
+45
+00:03:12,630 --> 00:03:17,600
+And then we should be able to run the same query and get back to the current user from our back end
+
+46
+00:03:17,670 --> 00:03:19,740
+as we would expect.
+
+47
+00:03:19,740 --> 00:03:25,320
+So again it's really just going to be a tiny bit of configuration with our GRATHWOHL client going to
+
+48
+00:03:25,320 --> 00:03:31,700
+flip over to my client folder and find the index not J.S. file.
+
+49
+00:03:31,770 --> 00:03:33,820
+So it is the Apollo client right here.
+
+50
+00:03:33,840 --> 00:03:38,680
+Remember is the Apollo client that is making actual requests to the back end server.
+
+51
+00:03:39,060 --> 00:03:45,360
+We can customize the way in which these requests are being made by specifying another option inside
+
+52
+00:03:45,360 --> 00:03:51,780
+of this options object called the network interface the network interface is a little piece of code
+
+53
+00:03:51,810 --> 00:03:57,630
+inside of the Apollo client that is in charge of making actual net network requests to our back and
+
+54
+00:03:57,630 --> 00:03:58,440
+server.
+
+55
+00:03:58,710 --> 00:04:04,680
+So what we're going to do is create our own custom network interface and we're going to tell it hey
+
+56
+00:04:04,740 --> 00:04:06,710
+whenever you make a request to the back end.
+
+57
+00:04:06,780 --> 00:04:10,180
+Just make sure you send along some cookies along with the request.
+
+58
+00:04:10,330 --> 00:04:15,100
+Then we'll take that network interface and pass it along to this Appollo client.
+
+59
+00:04:15,180 --> 00:04:17,580
+So if that sounds confusing I've got great news.
+
+60
+00:04:17,580 --> 00:04:20,760
+In practice it's really just a bit of boilerplate code.
+
+61
+00:04:20,760 --> 00:04:25,830
+You can find the same boilerplate code inside of the official Appollo documentation as well.
+
+62
+00:04:25,830 --> 00:04:30,990
+So really this is just one of those kind of jeopardy kind of questions where you kind of either know
+
+63
+00:04:30,990 --> 00:04:32,560
+it or you don't.
+
+64
+00:04:33,290 --> 00:04:33,620
+OK.
+
+65
+00:04:33,660 --> 00:04:35,190
+So let's get to it.
+
+66
+00:04:35,220 --> 00:04:40,430
+The first thing we're going to do is import a helper from the Apollo client library.
+
+67
+00:04:40,650 --> 00:04:47,010
+So we're going to add on a comma a set of curly braces because we're going to pull off this helper function
+
+68
+00:04:47,010 --> 00:04:53,910
+called create network interface then right above the client.
+
+69
+00:04:53,930 --> 00:04:59,690
+We're going to create a new network interface that is customized for our application.
+
+70
+00:04:59,820 --> 00:05:09,050
+So I mean to say Konst network interface will be create network interface and we're going to pass along
+
+71
+00:05:09,110 --> 00:05:12,170
+a couple of options to it as well.
+
+72
+00:05:12,170 --> 00:05:14,440
+So we're going to pass along two different options here.
+
+73
+00:05:14,450 --> 00:05:17,310
+The first is going to you one called You Are I.
+
+74
+00:05:17,660 --> 00:05:23,810
+So if you recall I've said several times that the Apollo client assumes that your graphical client on
+
+75
+00:05:23,810 --> 00:05:27,650
+the Express side is listening on the endpoint slash graft.
+
+76
+00:05:27,710 --> 00:05:34,340
+Well remember we set that up as said of some of the configuration inside of our server J.S. file.
+
+77
+00:05:34,400 --> 00:05:41,390
+So if I scroll down inside of here when we set up the graph view on server we said listen on slash graph
+
+78
+00:05:41,390 --> 00:05:47,730
+Cuil right here so that you or i option right here we are specifying.
+
+79
+00:05:47,740 --> 00:05:49,970
+Yeah you still are going to be using graph.
+
+80
+00:05:49,970 --> 00:05:57,580
+Q Well you might be thinking that well hey Stephen if Apollo client assumes that the server is listening
+
+81
+00:05:57,580 --> 00:06:01,340
+on the route graph Well why are we redefining that right here.
+
+82
+00:06:01,360 --> 00:06:06,430
+And the answer is that whenever you create your own default Susan whenever you create your own network
+
+83
+00:06:06,430 --> 00:06:12,340
+interface it no longer makes the assumption that your End Point is hosted at slash graft.
+
+84
+00:06:12,350 --> 00:06:15,870
+Well so we're just very directly saying yeah it's still the same end point.
+
+85
+00:06:15,870 --> 00:06:20,290
+Don't worry you're still going to use the same end point as before.
+
+86
+00:06:21,190 --> 00:06:27,280
+Now the part that really matters is this OP's short for options property.
+
+87
+00:06:27,310 --> 00:06:32,650
+We're going to pass to AAPS something called credentials and we're going to pass in the string.
+
+88
+00:06:32,680 --> 00:06:36,200
+Same origin like so.
+
+89
+00:06:36,930 --> 00:06:37,750
+So that's pretty much it.
+
+90
+00:06:37,750 --> 00:06:40,390
+This is the magic line right here.
+
+91
+00:06:40,390 --> 00:06:48,460
+The credentials are key of same origin means hey you're making requests to the same origin that the
+
+92
+00:06:48,460 --> 00:06:54,670
+browser is currently on the long of the short of it is that this says it's safe to attempt to send along
+
+93
+00:06:54,670 --> 00:06:56,770
+cookies with the outgoing request.
+
+94
+00:06:56,780 --> 00:07:02,080
+And so this line right here is what tells the Apollo client that it should send along queries whenever
+
+95
+00:07:02,080 --> 00:07:03,560
+it makes a risky move.
+
+96
+00:07:03,700 --> 00:07:09,130
+It should send along cookies whenever it makes a query to the backend server.
+
+97
+00:07:09,440 --> 00:07:14,860
+So now we're going to take this network interface and pass it along to the Apollo client.
+
+98
+00:07:14,990 --> 00:07:21,960
+So we're going to specify it as an option to pass on to the Apollo client like so.
+
+99
+00:07:22,410 --> 00:07:27,490
+So now the Apollo client is not using the default network interface that it assumes that you want to
+
+100
+00:07:27,490 --> 00:07:28,070
+use.
+
+101
+00:07:28,180 --> 00:07:30,540
+It's going to use this customized one right here.
+
+102
+00:07:32,560 --> 00:07:33,040
+OK.
+
+103
+00:07:33,140 --> 00:07:38,000
+So that's pretty much it for getting Appollo to send along cookies along with every single query that
+
+104
+00:07:38,000 --> 00:07:39,270
+it makes to the backend.
+
+105
+00:07:39,470 --> 00:07:42,710
+So now in theory when.
+
+106
+00:07:43,070 --> 00:07:49,460
+Cute When Apollo tends to make a request to our graph queue all server it's going to include cookies
+
+107
+00:07:49,460 --> 00:07:56,660
+with the request when the request hits our express Server Express will automatically populate the request
+
+108
+00:07:56,660 --> 00:07:58,160
+Daut user field.
+
+109
+00:07:58,370 --> 00:08:03,730
+And so our graph CULE server will understand who the current user of our application is.
+
+110
+00:08:04,070 --> 00:08:07,050
+So let's give a shot on our head for one more time.
+
+111
+00:08:07,290 --> 00:08:13,840
+You know flip over to the browser will refresh the page and then we'll look at both of the requests.
+
+112
+00:08:13,850 --> 00:08:16,800
+This lets us look at the second one because that's all that really matters.
+
+113
+00:08:17,150 --> 00:08:23,270
+So now if I look at the user property right here it is correctly populated with the e-mail and the ID
+
+114
+00:08:23,360 --> 00:08:27,690
+of the currently authenticated user just as I would expect.
+
+115
+00:08:27,860 --> 00:08:33,680
+Now if you still see no on the user right here remember that you have to be authenticated with our server
+
+116
+00:08:33,740 --> 00:08:36,510
+in order to get back to user from this query.
+
+117
+00:08:36,530 --> 00:08:43,070
+So if you are not signed into the server right now you could flip over to graft well or graphical and
+
+118
+00:08:43,070 --> 00:08:49,820
+run the nutation to log yourself in as a user once you like yourself and as a user you should be able
+
+119
+00:08:49,820 --> 00:08:50,790
+to come back here.
+
+120
+00:08:50,990 --> 00:08:57,960
+Refresh the page again and make sure that the user field is correctly populated with your current user.
+
+121
+00:08:58,640 --> 00:08:59,370
+OK.
+
+122
+00:08:59,630 --> 00:09:05,120
+So that's pretty much it for making authentication work as we would expect inside the browser.
+
+123
+00:09:05,420 --> 00:09:12,740
+Now that we understand that we should be looking at the loading flag and the user flag on the response
+
+124
+00:09:12,740 --> 00:09:14,570
+object inside of the header.
+
+125
+00:09:14,570 --> 00:09:19,430
+We can put the header together and make sure that we show a set of buttons up here that correctly tell
+
+126
+00:09:19,430 --> 00:09:22,840
+the user whether or not they are logged in or to our application.
+
+127
+00:09:22,850 --> 00:09:24,200
+So let's take care of that task.
+
+128
+00:09:24,230 --> 00:09:25,340
+Inside the next section.
+

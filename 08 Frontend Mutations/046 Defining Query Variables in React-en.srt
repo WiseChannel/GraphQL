@@ -1,0 +1,428 @@
+1
+00:00:00,630 --> 00:00:05,970
+In the last section we checked out the use of Querrey variables inside of graphical to communicate some
+
+2
+00:00:06,330 --> 00:00:09,210
+outside data to our mutation.
+
+3
+00:00:09,210 --> 00:00:14,730
+The big summary here is it allows us to treat our mutation as though it was a function of sorts where
+
+4
+00:00:14,730 --> 00:00:19,340
+we can pass in some customizable variable into the mutation.
+
+5
+00:00:19,350 --> 00:00:25,050
+This allows us to write a single mutation that is going to be working for a wide variety of different
+
+6
+00:00:25,050 --> 00:00:28,280
+uses because we can customize it over time.
+
+7
+00:00:28,920 --> 00:00:34,890
+We still have one big hang up however and that is we still don't really know how to somehow communicate
+
+8
+00:00:35,220 --> 00:00:41,210
+or for our title of the song from that component to the mutation that we're writing out here.
+
+9
+00:00:41,640 --> 00:00:44,770
+There is of course a way to handle this using a graph.
+
+10
+00:00:44,770 --> 00:00:50,490
+Q Well so let's modify our mutation to look a little bit more how it does in the graphical simulator
+
+11
+00:00:50,730 --> 00:00:56,160
+and then we'll worry a little bit about exactly how we communicate from the component down into this
+
+12
+00:00:56,340 --> 00:00:57,970
+mutation we have right now.
+
+13
+00:00:58,410 --> 00:01:03,040
+So the first thing we're going to do is update the mutation to use that modified syntax we saw.
+
+14
+00:01:03,240 --> 00:01:09,030
+So we're going to name the mutation had song and then we're going to tell it you should expect to receive
+
+15
+00:01:09,090 --> 00:01:13,790
+a variable called Title and that variable should be a string.
+
+16
+00:01:14,640 --> 00:01:23,920
+Then when we run the ADD song mutation I want the title used to be coming from the title variable and
+
+17
+00:01:23,920 --> 00:01:27,790
+then there's a little bit of recordkeeping a little bit of bookkeeping we're going to say that on the
+
+18
+00:01:27,790 --> 00:01:28,720
+song that comes back.
+
+19
+00:01:28,720 --> 00:01:33,540
+Just give me the sorry title not the song.
+
+20
+00:01:33,960 --> 00:01:34,630
+OK.
+
+21
+00:01:34,930 --> 00:01:37,620
+So that really takes care of writing the mutation.
+
+22
+00:01:37,810 --> 00:01:44,380
+Now we have to think about how we're going to communicate data from that component to the mutation itself.
+
+23
+00:01:44,380 --> 00:01:49,950
+The first thing we'll do is sandwiched the mutation and the component together by using that graphical
+
+24
+00:01:50,020 --> 00:01:53,750
+helper from the re-act Apollo library.
+
+25
+00:01:54,040 --> 00:01:59,290
+So let's scroll up to the top of this file and we'll first import that helper and then we'll smash the
+
+26
+00:01:59,290 --> 00:02:01,640
+two together down on line 41.
+
+27
+00:02:01,750 --> 00:02:08,880
+So we'll go to the top import graft well from the re-act Apollo library.
+
+28
+00:02:08,920 --> 00:02:13,990
+Again don't forget I know this is like the fifth or sixth time I've said it but the re-act Apollo library
+
+29
+00:02:14,050 --> 00:02:20,500
+has a set of helpers for integrating graft Cuil with the re-act side of our application.
+
+30
+00:02:20,950 --> 00:02:26,980
+So we're going to take this graph Kule helper or go back down to the bottom of our file and find the
+
+31
+00:02:27,040 --> 00:02:33,190
+export default function and we're going to use the exact same syntax as we used previously to smash
+
+32
+00:02:33,190 --> 00:02:37,800
+together the mutation and the song create component.
+
+33
+00:02:37,880 --> 00:02:47,440
+So we'll say graph QOL and place one set of parentheses and wrap it with or any old place nutation key
+
+34
+00:02:47,440 --> 00:02:52,900
+word or mutation variable and Raptr with one set of parentheses and the rap song create with the second
+
+35
+00:02:52,900 --> 00:03:02,330
+set of parentheses like so when we previously did this using the query that we'd written out not mutation
+
+36
+00:03:02,330 --> 00:03:10,610
+we use the query we saw that we got access to a property on our Prasada object called data when we wrap
+
+37
+00:03:10,670 --> 00:03:11,460
+a mutation.
+
+38
+00:03:11,470 --> 00:03:14,170
+However that system changes just a little bit.
+
+39
+00:03:14,390 --> 00:03:17,800
+So when we wrap a mutation we pass a mutation into the graph.
+
+40
+00:03:17,840 --> 00:03:23,550
+As a helper right here instead of getting access to something called prop's dot data.
+
+41
+00:03:23,570 --> 00:03:27,190
+We get access to something called Propst dot mutate.
+
+42
+00:03:27,560 --> 00:03:32,200
+So let's take a look at our prop's object and just look at what we're dealing with here.
+
+43
+00:03:32,210 --> 00:03:37,580
+So I'm going to say whenever we run on Samit I want to cancel log out this prompts.
+
+44
+00:03:37,610 --> 00:03:40,880
+So let's just look at that prop's object and see what we have to deal with.
+
+45
+00:03:42,340 --> 00:03:49,790
+So I to save it you know flip over to my app or refresh and I'm go to enter some amount of text in here
+
+46
+00:03:49,850 --> 00:03:52,640
+and press enter to submit the form.
+
+47
+00:03:52,880 --> 00:03:57,410
+When I do so I get my console log out of my prop's object.
+
+48
+00:03:57,470 --> 00:04:02,960
+You'll notice that we've got a couple of things in here like children location harams route router all
+
+49
+00:04:02,960 --> 00:04:04,050
+that kind of stuff.
+
+50
+00:04:04,190 --> 00:04:07,190
+A lot of those probs are associated with re-act router.
+
+51
+00:04:07,220 --> 00:04:11,270
+So those products are coming from the re-act router side of our application.
+
+52
+00:04:11,270 --> 00:04:19,080
+You'll notice that there is another prop in here that looks very relevantly named called mutate so mutate
+
+53
+00:04:19,200 --> 00:04:27,780
+appears to be a function that we can call if we call this Propst not mutate it invokes the function
+
+54
+00:04:27,900 --> 00:04:30,390
+that is tied to our component.
+
+55
+00:04:30,420 --> 00:04:35,870
+So if we call this start process something you take it's going to run this mutation right here.
+
+56
+00:04:35,940 --> 00:04:40,210
+The real question is how do we communicate this queery variable into it.
+
+57
+00:04:40,380 --> 00:04:44,820
+And the answer is very simply it's really not that bad.
+
+58
+00:04:44,850 --> 00:04:48,780
+Let's take a look at exactly what it looks like as far as syntax goes.
+
+59
+00:04:48,990 --> 00:04:56,580
+We'll call this doc profs don't mutate then we're going to pass in a configuration object this configuration
+
+60
+00:04:56,580 --> 00:05:02,940
+object is going to have a variables property and inside of here we're going to pass along all the different
+
+61
+00:05:02,940 --> 00:05:06,500
+Clarie variables that we want to have sent to the mutation.
+
+62
+00:05:06,870 --> 00:05:15,540
+So I want to take the title Querrey variable and I want to pass in this state title.
+
+63
+00:05:15,760 --> 00:05:20,040
+So remember this dark state title is the value of the text input.
+
+64
+00:05:20,250 --> 00:05:25,980
+So what we're doing right here is we're saying take the value out of the input assign it to a title
+
+65
+00:05:26,040 --> 00:05:29,480
+query variable and then pass that into the mutation.
+
+66
+00:05:29,760 --> 00:05:32,610
+So a new mutation runs down at the bottom.
+
+67
+00:05:32,610 --> 00:05:39,480
+It will receive this dot state DOT title as the query variable and it will run add song with the value
+
+68
+00:05:39,570 --> 00:05:40,650
+out of the text input.
+
+69
+00:05:40,680 --> 00:05:43,570
+Exactly what we want to have happen.
+
+70
+00:05:44,110 --> 00:05:45,260
+OK.
+
+71
+00:05:45,630 --> 00:05:51,150
+So I think that we're about ready to give this thing a test and at least figure out you know is it working
+
+72
+00:05:51,150 --> 00:05:52,690
+correctly or not.
+
+73
+00:05:53,210 --> 00:06:03,840
+I mean to flip over to our browser again and again put in a song title let's call this barbecue ballad.
+
+74
+00:06:03,950 --> 00:06:06,060
+That sounds fantastic.
+
+75
+00:06:06,090 --> 00:06:12,780
+I'm going to hit enter and it appears that nothing happens but let's go back to the index route of our
+
+76
+00:06:12,780 --> 00:06:16,490
+application and see if the new song pops up on the screen.
+
+77
+00:06:16,680 --> 00:06:19,010
+So I'm going to go back to local host 4000
+
+78
+00:06:21,770 --> 00:06:25,480
+and when I do I see barbecue ballad pop up on the screen.
+
+79
+00:06:25,520 --> 00:06:26,480
+Awesome.
+
+80
+00:06:26,720 --> 00:06:27,770
+That's it.
+
+81
+00:06:27,770 --> 00:06:36,800
+So we now are able to call a mutation and get some update to our back end database from a re-act component
+
+82
+00:06:36,800 --> 00:06:38,800
+that has been pushed together with graft.
+
+83
+00:06:38,900 --> 00:06:45,350
+Well everything that we've done inside this component is 100 percent copy paste double and reproducible
+
+84
+00:06:45,530 --> 00:06:47,170
+on your own personal project.
+
+85
+00:06:47,210 --> 00:06:49,370
+So this is a pattern that we're going to follow.
+
+86
+00:06:49,370 --> 00:06:55,790
+Time and time again for dealing with forms or any type of edit or delete action inside of a reactive
+
+87
+00:06:55,790 --> 00:06:56,990
+component.
+
+88
+00:06:56,990 --> 00:06:59,000
+We're going to create the component.
+
+89
+00:06:59,000 --> 00:07:06,130
+We're going to define a mutation if the mutation takes any type of queery variable we'll assign it very
+
+90
+00:07:06,140 --> 00:07:08,280
+variable inside the mutation itself.
+
+91
+00:07:08,510 --> 00:07:14,600
+And then inside of the Riak component we can make an event handler where we call this doc Propst mutates
+
+92
+00:07:14,990 --> 00:07:18,230
+and invoke the mutation itself.
+
+93
+00:07:18,230 --> 00:07:24,410
+Now one question that I'm sure you might be having is Stephen what do we do when we have like multiple
+
+94
+00:07:24,410 --> 00:07:29,180
+mutations tied to a single component and that's something that we'll address later on.
+
+95
+00:07:29,180 --> 00:07:34,910
+You'll notice that right now this top prop's not mutate it's a single function and I don't really see
+
+96
+00:07:34,910 --> 00:07:40,930
+the ability to say like this stop props don't mutate dots and song or anything like that.
+
+97
+00:07:40,970 --> 00:07:43,520
+You know it doesn't really appear that we have that ability just yet.
+
+98
+00:07:43,760 --> 00:07:48,590
+So in the case of we have multiple mutations tied to a single component we still have to do a little
+
+99
+00:07:48,590 --> 00:07:51,230
+bit of work but we'll get around to that.
+
+100
+00:07:51,960 --> 00:07:52,600
+OK.
+
+101
+00:07:52,700 --> 00:07:59,550
+So I think that we have made great progress but our form is still a little bit awkward.
+
+102
+00:07:59,780 --> 00:08:03,860
+Whenever we create a new song it just kind of sits here on this document.
+
+103
+00:08:03,890 --> 00:08:08,230
+Not really the user experience I want to have for my users.
+
+104
+00:08:08,240 --> 00:08:11,910
+You know I really like to redirect them over to the list of songs.
+
+105
+00:08:11,930 --> 00:08:17,000
+So let's take a quick break and then come back in the next section and make sure that we are able to
+
+106
+00:08:17,000 --> 00:08:22,420
+somehow navigate the user back to the list of songs after we have executed this mutation.
+
+107
+00:08:22,670 --> 00:08:24,530
+So let's take care of that in the next section.
+

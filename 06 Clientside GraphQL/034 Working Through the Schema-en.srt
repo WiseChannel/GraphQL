@@ -1,0 +1,528 @@
+1
+00:00:00,750 --> 00:00:07,030
+In the last section we finish setting up Mongul lab tabac our locally hosted graphical server.
+
+2
+00:00:07,440 --> 00:00:12,000
+I've now got a graphical open and we're going to spend a little bit of time to walk through all the
+
+3
+00:00:12,010 --> 00:00:18,150
+schema that has already been set up in the project that we're making use of in previous sort like kind
+
+4
+00:00:18,150 --> 00:00:22,410
+of different paradigms in the past where we've been using primarily rest interfaces.
+
+5
+00:00:22,620 --> 00:00:28,410
+The best way of doing that is usually to look at the code directly and say okay well what are all the
+
+6
+00:00:28,410 --> 00:00:34,020
+different lation ships between my all my types are all my pieces of data inside my application.
+
+7
+00:00:34,410 --> 00:00:40,740
+But one of the fantastic things about graft well is the automatic automatically generated documentation
+
+8
+00:00:40,740 --> 00:00:44,230
+system that is available to us from within graphical.
+
+9
+00:00:44,550 --> 00:00:46,690
+So I'm at localhost 4000 slash graph.
+
+10
+00:00:46,690 --> 00:00:52,590
+Q Well that brings up my graphical tool and we can make use of the automatically generated documentation
+
+11
+00:00:52,620 --> 00:00:57,960
+inside of this docs panel to learn a little bit more about all the data that is available to us inside
+
+12
+00:00:57,960 --> 00:00:59,780
+of our application.
+
+13
+00:00:59,970 --> 00:01:02,150
+This is really a fantastic tool.
+
+14
+00:01:02,280 --> 00:01:07,290
+Whenever you are a engineer who say you know maybe you're walking on to a project for the first time
+
+15
+00:01:07,650 --> 00:01:12,360
+and you want to get a better sense about all the data that you have access to you want to be looking
+
+16
+00:01:12,360 --> 00:01:17,940
+at this panel right here it's going to give you a really good idea of what data you have access to and
+
+17
+00:01:17,940 --> 00:01:20,070
+how it's all related together.
+
+18
+00:01:20,670 --> 00:01:26,620
+So inside the docs panel we have our two root types which is our root query and our root mutation.
+
+19
+00:01:26,850 --> 00:01:29,240
+Let's take a look at the root query type.
+
+20
+00:01:29,820 --> 00:01:35,600
+So on the root query type we can ask for a list of all the different songs in our application.
+
+21
+00:01:35,730 --> 00:01:43,520
+We can ask for a very specific song by id and we can also ask for a very specific lyric by ID as well.
+
+22
+00:01:45,110 --> 00:01:46,250
+Let's take a look at the song.
+
+23
+00:01:46,250 --> 00:01:48,270
+Type in the lyric type.
+
+24
+00:01:48,560 --> 00:01:53,570
+So every song has an ID a title and an array of lyrics.
+
+25
+00:01:53,570 --> 00:02:00,260
+So if I ask for one song I Will Get Back many lyrics attached to it because in theory a song has a lot
+
+26
+00:02:00,260 --> 00:02:04,630
+of different lines of words or singing to it.
+
+27
+00:02:04,640 --> 00:02:13,670
+I guess I want to say every single lyric in turn has an ID a number of likes assigned to it some amount
+
+28
+00:02:13,670 --> 00:02:14,440
+of content.
+
+29
+00:02:14,450 --> 00:02:16,340
+So that's the actual lyric itself.
+
+30
+00:02:16,430 --> 00:02:20,250
+And then a reference back to the song that it actually belongs to.
+
+31
+00:02:20,270 --> 00:02:22,210
+So it is definitely a two way relationship.
+
+32
+00:02:22,210 --> 00:02:27,100
+You can ask a song about or send me a lyric about which song it belongs to.
+
+33
+00:02:27,140 --> 00:02:30,630
+We can also ask for a song about all of the lyrics that it has.
+
+34
+00:02:30,640 --> 00:02:35,520
+You know we have already gotten the two way relationships set up together here.
+
+35
+00:02:36,900 --> 00:02:39,700
+Let's go back to our roots schema.
+
+36
+00:02:39,720 --> 00:02:43,160
+Here we go and let's take a look at the mutations that we have available as well.
+
+37
+00:02:43,200 --> 00:02:47,980
+So this is another very important area to look out whenever you're walking onto a new project.
+
+38
+00:02:48,030 --> 00:02:53,070
+It's great to know how all the data is really just together but you also want to have a good idea of
+
+39
+00:02:53,200 --> 00:02:54,830
+what mutations are actually available.
+
+40
+00:02:54,840 --> 00:02:57,930
+How can I change the data that I have access to.
+
+41
+00:02:58,470 --> 00:03:02,160
+So we have four different mutations already set up for us.
+
+42
+00:03:02,250 --> 00:03:08,760
+We can add a song we can add a lyric to an existing song we can like a single lyric and then we can
+
+43
+00:03:08,760 --> 00:03:10,290
+delete a song as well.
+
+44
+00:03:10,380 --> 00:03:15,040
+So you can kind of imagine where each of these come into play inside of our application.
+
+45
+00:03:15,150 --> 00:03:20,420
+We will probably start off by first adding a song we might then add a lyric to it.
+
+46
+00:03:20,490 --> 00:03:22,100
+We could then like that lyric.
+
+47
+00:03:22,110 --> 00:03:26,250
+And then at the end the day when we're all done if we don't like how the song turned out we can delete
+
+48
+00:03:26,250 --> 00:03:28,630
+the song altogether.
+
+49
+00:03:28,770 --> 00:03:34,830
+So to make sure that we've got some root data or some kind of play data to work around with once we
+
+50
+00:03:34,830 --> 00:03:39,180
+start working on the client side of our application I think would probably be a really good idea right
+
+51
+00:03:39,180 --> 00:03:43,720
+now to at least add one song and maybe one or two lyrics to it.
+
+52
+00:03:43,770 --> 00:03:50,640
+So we'll do that right now inside the graphical editor and the clothes the right hand Dachs panel and
+
+53
+00:03:50,640 --> 00:03:54,320
+then expand out the queries section on the left left hand side.
+
+54
+00:03:54,750 --> 00:04:00,870
+So my goal right now is to create at least one song and then add at least one lyric to it.
+
+55
+00:04:01,140 --> 00:04:06,660
+When we do so we will end up taking you we're going to need a id reference to the song that was created
+
+56
+00:04:06,720 --> 00:04:08,390
+when we want to create the actual lyric.
+
+57
+00:04:08,430 --> 00:04:12,180
+So we're going to make sure that we copy paste a little bit of the output that comes up on the right
+
+58
+00:04:12,180 --> 00:04:13,440
+hand side.
+
+59
+00:04:14,100 --> 00:04:15,160
+So let's get to it.
+
+60
+00:04:15,360 --> 00:04:18,180
+We'll first create a mutation to add a song.
+
+61
+00:04:18,360 --> 00:04:24,270
+So say nutation add song and we need to provide a title for this song.
+
+62
+00:04:24,280 --> 00:04:29,320
+So it's a title and we'll say about cold night.
+
+63
+00:04:29,790 --> 00:04:31,910
+Sounds like a romantic type song.
+
+64
+00:04:31,920 --> 00:04:33,080
+And no.
+
+65
+00:04:33,300 --> 00:04:38,510
+And then will ask for the idea of the song that was created Remember inside of the mutation.
+
+66
+00:04:38,520 --> 00:04:44,100
+We can ask for some amount or some amount of data from the record that was just created.
+
+67
+00:04:44,130 --> 00:04:49,800
+So I want to know specifically what is the idea of the song that I created immediately after I created
+
+68
+00:04:50,870 --> 00:04:56,560
+or run this mutation and we successfully get back the idea of a song that was just created.
+
+69
+00:04:56,610 --> 00:05:02,450
+You'll notice here that we've got this really long string for the ID these are this is a good hour and
+
+70
+00:05:02,460 --> 00:05:05,080
+expect to see coming back from Mongul lab.
+
+71
+00:05:05,250 --> 00:05:06,860
+They tend to be a really long strings.
+
+72
+00:05:06,870 --> 00:05:10,490
+But the good thing about that is that they're usually globally unique.
+
+73
+00:05:10,530 --> 00:05:16,860
+So even if I have multiple collections of data like say a collection of songs and a collection of lyrics
+
+74
+00:05:17,180 --> 00:05:23,580
+usually ends up that the ideas I get are unique between all these different collections which is especially
+
+75
+00:05:23,580 --> 00:05:26,140
+relevant later on in the client side of our application.
+
+76
+00:05:26,130 --> 00:05:31,550
+We're going to come back to that and talk about how nice it is to have globally unique IDs.
+
+77
+00:05:32,410 --> 00:05:36,000
+OK so we've got the idea of the song that was just created.
+
+78
+00:05:36,000 --> 00:05:42,600
+We now want to add at least one lyric to that song to make sure that I add a lyric to the correct song.
+
+79
+00:05:42,630 --> 00:05:48,270
+I need the idea right here so I'm going to copy it and we're going to make use of it in the next mutation
+
+80
+00:05:48,270 --> 00:05:49,950
+that we write.
+
+81
+00:05:49,980 --> 00:05:58,320
+So for the next mutation I'm going to delete the interior here and we'll add lyric to song the song
+
+82
+00:05:58,350 --> 00:06:05,670
+ID that I want to add to is the song that we just created so I'll paste the ID make sure it's the same
+
+83
+00:06:05,670 --> 00:06:06,320
+right there.
+
+84
+00:06:07,850 --> 00:06:11,390
+And then I need to give it some amount of content as well.
+
+85
+00:06:11,910 --> 00:06:16,570
+So the content right here is the actual like singing line is the thought process there.
+
+86
+00:06:16,570 --> 00:06:21,260
+This is what the singer would actually say for the actual content right here.
+
+87
+00:06:21,280 --> 00:06:28,560
+So let's take a second and think about some appropriate lyric here about oh my oh my.
+
+88
+00:06:28,560 --> 00:06:31,590
+It's a cold night.
+
+89
+00:06:31,590 --> 00:06:33,450
+I'm not I'm not a songwriter.
+
+90
+00:06:33,450 --> 00:06:36,950
+I'm going to tell you guys right now I'm not a songwriter but I think that'll do.
+
+91
+00:06:37,620 --> 00:06:44,520
+Then we'll ask for the ID of these lyrics that was created in return like so do make sure that you get
+
+92
+00:06:44,520 --> 00:06:46,380
+the opening curly brace over here as well.
+
+93
+00:06:46,380 --> 00:06:50,920
+I know that my screen is a little bit constrained right now in line length.
+
+94
+00:06:50,940 --> 00:06:54,500
+So we've got the opening curly brace and the closing one down the line for.
+
+95
+00:06:54,540 --> 00:06:56,790
+And we ask for the ID back as well.
+
+96
+00:06:59,430 --> 00:06:59,950
+OK.
+
+97
+00:07:00,010 --> 00:07:05,550
+We will now execute this mutation and we get back to the ID of the song.
+
+98
+00:07:05,590 --> 00:07:07,050
+That was just modified.
+
+99
+00:07:07,210 --> 00:07:09,330
+So this is a little bit unexpected right here.
+
+100
+00:07:09,330 --> 00:07:12,130
+I want to point this out as far as mutation goes.
+
+101
+00:07:12,130 --> 00:07:18,280
+This is the idea of this song that was modified not the idea of the lyrics that was just created and
+
+102
+00:07:18,280 --> 00:07:23,470
+we'll talk about exactly why we took that approach when we start working on the client side application
+
+103
+00:07:23,470 --> 00:07:24,660
+as well.
+
+104
+00:07:25,420 --> 00:07:31,240
+OK so we've got a lyric and we've got a song put together an application let's now write a query to
+
+105
+00:07:31,240 --> 00:07:34,140
+just fetch that data and see what it looks like.
+
+106
+00:07:34,690 --> 00:07:39,300
+So we're going to remove the mutation keyword so we're not working with mutation anymore.
+
+107
+00:07:39,420 --> 00:07:50,710
+The last four are a list of songs we'll ask for the ID the name or excuse me the title and the lyrics
+
+108
+00:07:50,800 --> 00:07:55,550
+within each song and then we'll get the content of each of those lyrics.
+
+109
+00:07:55,990 --> 00:08:03,850
+So we'll run this query and we get back a list of songs the title of each song and then the lyrics that
+
+110
+00:08:03,850 --> 00:08:05,540
+are contained within that song.
+
+111
+00:08:05,770 --> 00:08:10,750
+And here's the content of the lyric that we just added in Kosovo looks good.
+
+112
+00:08:10,750 --> 00:08:16,020
+We've got our first little piece of data put together inside of a remote lab database.
+
+113
+00:08:16,030 --> 00:08:22,000
+One thing that I want to point out to you I still have my lab connection open here so here's my lab
+
+114
+00:08:22,000 --> 00:08:26,890
+tab and I'm going to click over on the collections tab in the left hand side.
+
+115
+00:08:27,040 --> 00:08:31,870
+If you already closed in lab I would encourage you to open up your browser again and log back in and
+
+116
+00:08:31,900 --> 00:08:34,930
+open up the database that we've just created.
+
+117
+00:08:34,930 --> 00:08:40,740
+If I refreshed the page I should see the collection of data that we just created pop up in here.
+
+118
+00:08:41,050 --> 00:08:46,160
+So there we go I refresh the page and I see my collection of lyrics in my collection of songs.
+
+119
+00:08:46,450 --> 00:08:50,530
+So one thing that will probably end up doing throughout this course or at least a section we might end
+
+120
+00:08:50,530 --> 00:08:53,620
+up coming through here if we ever make a mistake on the data.
+
+121
+00:08:53,650 --> 00:09:00,460
+You know how inserted into the database we can always come back in here and either modify or delete
+
+122
+00:09:00,490 --> 00:09:01,990
+individual records.
+
+123
+00:09:02,290 --> 00:09:06,070
+And besides that you know it's sometimes it's really just nice to look at the data that's sitting inside
+
+124
+00:09:06,070 --> 00:09:10,190
+of our database and make sure that we are actually inserting the correct type of data.
+
+125
+00:09:10,240 --> 00:09:15,880
+And in the correct fashion so I can look directly at the lyric that was just added and say Okay looks
+
+126
+00:09:15,880 --> 00:09:17,860
+like I added the correct lyric here.
+
+127
+00:09:17,980 --> 00:09:22,110
+And of course if I want to I can always delete this record as well.
+
+128
+00:09:22,870 --> 00:09:23,330
+OK.
+
+129
+00:09:23,380 --> 00:09:28,720
+So I think we've got a better idea of how the data is working inside our application.
+
+130
+00:09:28,720 --> 00:09:34,250
+We know that we're going to have many songs and every song has many lyrics associated with it.
+
+131
+00:09:34,480 --> 00:09:39,790
+So now that we've got a really firm grasp on the schema side of our application let's continue in the
+
+132
+00:09:39,790 --> 00:09:44,280
+next section and start putting together the client side of our application.
+

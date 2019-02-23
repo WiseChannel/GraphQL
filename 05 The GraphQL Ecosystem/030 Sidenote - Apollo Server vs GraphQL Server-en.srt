@@ -1,0 +1,312 @@
+1
+00:00:00,710 --> 00:00:05,450
+There's one last quick thing that I want to mention about possible technology here.
+
+2
+00:00:05,450 --> 00:00:08,290
+This is something about the back end that we're using.
+
+3
+00:00:08,300 --> 00:00:11,750
+So in the last section we were discussing all the clients that we were making use of.
+
+4
+00:00:11,760 --> 00:00:18,110
+So when I say client I'm talking about something that runs in our users browser but we're also making
+
+5
+00:00:18,110 --> 00:00:22,790
+use of a graph tool technology on our back end as well.
+
+6
+00:00:22,820 --> 00:00:25,700
+So on the back end that we've been working on.
+
+7
+00:00:25,730 --> 00:00:26,810
+So here is our schema file.
+
+8
+00:00:26,810 --> 00:00:29,160
+This is our graph tool back end right here.
+
+9
+00:00:29,210 --> 00:00:35,870
+If I open up my package Scott JS on file which contains all the dependencies that our project has You'll
+
+10
+00:00:35,870 --> 00:00:38,990
+notice that we are using Express graphed well.
+
+11
+00:00:39,050 --> 00:00:41,780
+So this is not a part of the Apollo stack.
+
+12
+00:00:41,780 --> 00:00:43,390
+This is not a part of Apollo.
+
+13
+00:00:43,490 --> 00:00:47,040
+There is an Apollo server that we could be making use of.
+
+14
+00:00:47,270 --> 00:00:50,160
+But I made the decision to go with Express craft.
+
+15
+00:00:50,210 --> 00:00:57,010
+So I want to take a second to tell you why we're going this direction rather than using the Apollo client.
+
+16
+00:00:57,630 --> 00:01:04,890
+So this is a little snippet of code out of each of the out of the schema file from graphical express
+
+17
+00:01:04,950 --> 00:01:10,660
+and then the possible equivalent file from the Apollo server on the right hand side.
+
+18
+00:01:12,280 --> 00:01:18,500
+The server that we're using graphical Express is referred to as the reference implementation of graph.
+
+19
+00:01:18,500 --> 00:01:25,660
+Q Well because it is the official implementation that Facebook maintains and it's the sort of spec on
+
+20
+00:01:25,660 --> 00:01:28,600
+how a server can be implemented with graphics.
+
+21
+00:01:28,650 --> 00:01:36,100
+Well Apollo server on the other hand is a different interpretation of how to implement graft on the
+
+22
+00:01:36,100 --> 00:01:37,140
+server.
+
+23
+00:01:37,210 --> 00:01:40,200
+Neither of this is really part of this next statement is very important.
+
+24
+00:01:40,330 --> 00:01:43,770
+Neither of them is inherently better than the other.
+
+25
+00:01:43,810 --> 00:01:46,450
+Neither of them is inherently better than the other.
+
+26
+00:01:46,930 --> 00:01:54,580
+I made the executive decision to go with Graph CULE Express on the backend because it is significantly
+
+27
+00:01:54,760 --> 00:01:59,120
+far less likely to get big API changes in the future.
+
+28
+00:01:59,230 --> 00:02:05,590
+A Polish server is still in very active development and might get some very earth shattering very big
+
+29
+00:02:05,590 --> 00:02:07,390
+API changes in the future.
+
+30
+00:02:07,600 --> 00:02:12,880
+And even in the past couple of releases that they've done over the past couple of months opposer has
+
+31
+00:02:12,880 --> 00:02:14,580
+changed in a big way.
+
+32
+00:02:14,650 --> 00:02:21,190
+EXPRESS gruffed you will express however has been relatively stable in the last year or so and so personally
+
+33
+00:02:21,190 --> 00:02:26,350
+I think that you're getting more bang for your buck by going with grout to L'Express right now than
+
+34
+00:02:26,350 --> 00:02:29,320
+worrying about big API changes with the Polo's server.
+
+35
+00:02:30,720 --> 00:02:34,570
+I do want to take just a little bit of time to tell you about the differences between the two because
+
+36
+00:02:34,570 --> 00:02:38,290
+there is one part of the Apollos server that you might see in the wild.
+
+37
+00:02:38,290 --> 00:02:44,980
+If you look up documentation yourself on the graph well-expressed side we form up these really big objects
+
+38
+00:02:45,040 --> 00:02:50,380
+you know the graph tool object type things from these really big objects and inside of each then we
+
+39
+00:02:50,380 --> 00:02:55,690
+list all the different fields that each one has and then resolve functions to kind of travel between
+
+40
+00:02:55,690 --> 00:02:59,080
+each node on the graph of all of our data.
+
+41
+00:02:59,470 --> 00:03:03,100
+So that's what we've been doing so far with the Apollo server.
+
+42
+00:03:03,100 --> 00:03:09,820
+However they really break up all that information into two separate files or two separate locations
+
+43
+00:03:10,250 --> 00:03:11,750
+on the Apollo server world.
+
+44
+00:03:11,770 --> 00:03:18,250
+They require you to define a schema file that uses kind of a fancy markup language to describe what
+
+45
+00:03:18,280 --> 00:03:22,780
+each type of data looks like and the relationship between each of them.
+
+46
+00:03:22,870 --> 00:03:25,780
+So we can see inside of this possible types file.
+
+47
+00:03:25,870 --> 00:03:29,150
+Again this is some kind of fancy markup that we're looking at here.
+
+48
+00:03:29,260 --> 00:03:35,380
+We might have something called a type of user and the user would have an ID as a string a first name
+
+49
+00:03:35,440 --> 00:03:41,770
+and age and a company that was a company and then we would also have the type company that has a name
+
+50
+00:03:42,070 --> 00:03:50,890
+and a list of users represented by the array then in a separate file the Apollo server would define
+
+51
+00:03:50,920 --> 00:03:54,960
+a resolver file or a resolver set of resolver functions.
+
+52
+00:03:55,210 --> 00:04:01,670
+So the big difference between the Apollo server and graphical express is that graph tool express co-locate.
+
+53
+00:04:01,720 --> 00:04:07,990
+All of that type information with the resolve logic whereas the Apollo server says Give me just one
+
+54
+00:04:07,990 --> 00:04:14,740
+location to define almight types and then a location separate location to define how to relate all the
+
+55
+00:04:14,740 --> 00:04:15,980
+types together.
+
+56
+00:04:16,420 --> 00:04:22,360
+Personally I really like code locating my type properties with the result functions.
+
+57
+00:04:22,360 --> 00:04:27,850
+I think it just makes a lot of sense to me to look at this and I know it as you look at it right now
+
+58
+00:04:27,850 --> 00:04:33,040
+and this black and white it's really quite challenging to read it on the left hand side but it's just
+
+59
+00:04:33,040 --> 00:04:35,390
+the black and white kind of playing tricks on your eyes.
+
+60
+00:04:35,500 --> 00:04:41,620
+Inside of a code editor when you're able to look at like company type and say OK this thing has an ID
+
+61
+00:04:41,620 --> 00:04:43,560
+name description users.
+
+62
+00:04:43,600 --> 00:04:46,970
+And here is exactly where those users come from.
+
+63
+00:04:47,140 --> 00:04:52,690
+I think there is tremendous value in seeing the result functions next to all the different types.
+
+64
+00:04:52,690 --> 00:04:58,840
+So again personally I think there's two good reasons to make use of RFQ L'Express Apollo's server is
+
+65
+00:04:58,840 --> 00:05:00,510
+not a bad decision.
+
+66
+00:05:00,520 --> 00:05:05,120
+It is not a bad decision is just a different one.
+
+67
+00:05:05,300 --> 00:05:10,150
+Anyways I just wanted to mention the difference between these two approaches mostly because you will
+
+68
+00:05:10,150 --> 00:05:14,930
+sometimes see schemas defined with this compact syntax over here.
+
+69
+00:05:14,980 --> 00:05:21,940
+So if you go and look at blog posts or articles you might see this compact schema style floating around
+
+70
+00:05:22,330 --> 00:05:23,620
+that is where it's coming from.
+
+71
+00:05:23,620 --> 00:05:27,890
+It is a little bit more towards the standard spec of how to define types and graphs.
+
+72
+00:05:27,890 --> 00:05:33,370
+Q Well but again I just I really things that make it makes a lot of sense to put everything inside of
+
+73
+00:05:33,370 --> 00:05:34,710
+a single object.
+
+74
+00:05:35,200 --> 00:05:35,640
+OK.
+
+75
+00:05:35,680 --> 00:05:37,910
+Let's continue now in the next section.
+
+76
+00:05:37,930 --> 00:05:39,720
+And for real is time for real.
+
+77
+00:05:39,730 --> 00:05:43,470
+We're going to start hooking up in Appollo client to our application.
+
+78
+00:05:43,630 --> 00:05:45,390
+So I'll see in the next section.
+

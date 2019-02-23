@@ -1,0 +1,200 @@
+1
+00:00:00,810 --> 00:00:05,940
+We've got to redirect over to the dashboard route put together but we don't yet have a component that
+
+2
+00:00:05,940 --> 00:00:08,880
+is meant to display whenever we go to the dashboard route.
+
+3
+00:00:09,120 --> 00:00:14,700
+So let's make a new dashboard component and then hook it up inside of our router to change back over
+
+4
+00:00:14,700 --> 00:00:19,100
+to my code editor and inside the components directory will make a new file.
+
+5
+00:00:19,130 --> 00:00:21,550
+I will just call this one dashboard Don.
+
+6
+00:00:21,620 --> 00:00:22,680
+Yes.
+
+7
+00:00:22,710 --> 00:00:26,330
+We're not going to put a tremendous amount of logic into this dashboard component.
+
+8
+00:00:26,340 --> 00:00:30,600
+I really just want to have something that says hey you're at the dashboard you should only see this
+
+9
+00:00:30,600 --> 00:00:32,390
+if you're currently signed in.
+
+10
+00:00:32,430 --> 00:00:35,410
+So I don't think we need to make a class based component here.
+
+11
+00:00:35,430 --> 00:00:40,890
+I think we can just make a functional component and call it good at that at the top.
+
+12
+00:00:40,890 --> 00:00:50,100
+We'll import react from react and then will immediately make our component function and export it style
+
+13
+00:00:50,100 --> 00:00:53,560
+up the font size as well just a little bit and inside of it.
+
+14
+00:00:53,580 --> 00:01:00,960
+Hey let's just return a div that says you are logged in.
+
+15
+00:01:01,440 --> 00:01:02,210
+Looks good.
+
+16
+00:01:02,420 --> 00:01:03,360
+This is pretty much all we need.
+
+17
+00:01:03,360 --> 00:01:07,980
+Again I just want something to show hey you are considered to be logged in at this point in time so
+
+18
+00:01:07,980 --> 00:01:13,750
+we don't get that big error message after we sign in and get redirected over to the dashboard route.
+
+19
+00:01:13,800 --> 00:01:19,590
+So now we can hook this up inside of our router file inside of the index not just file in our client
+
+20
+00:01:19,590 --> 00:01:21,640
+directory.
+
+21
+00:01:21,830 --> 00:01:26,220
+Let's import the dashboard component that we just created.
+
+22
+00:01:29,330 --> 00:01:32,930
+Like so and then we can add another route to our router file.
+
+23
+00:01:32,940 --> 00:01:37,130
+Or excuse me our route definition just a little bit lower down side the file.
+
+24
+00:01:37,130 --> 00:01:40,050
+So here's the three different routes that we have right now.
+
+25
+00:01:40,370 --> 00:01:43,240
+I'll add on one more route inside of here.
+
+26
+00:01:43,940 --> 00:01:50,300
+So whenever someone goes to that route dashboard or that path dashboard will show that the dashboard
+
+27
+00:01:51,260 --> 00:01:56,370
+component at those Coosa test real quick.
+
+28
+00:01:56,380 --> 00:01:58,960
+I definitely expect this to just work right out of the box.
+
+29
+00:01:58,960 --> 00:02:01,290
+We're not doing anything too crazy here just yet.
+
+30
+00:02:01,510 --> 00:02:04,150
+So I'm going to refresh the page.
+
+31
+00:02:04,270 --> 00:02:07,480
+Notice that I am currently on the route slash dashboard.
+
+32
+00:02:07,510 --> 00:02:11,350
+And so after I refreshed I successfully see on the screen you are logged in.
+
+33
+00:02:11,350 --> 00:02:13,330
+Fantastic.
+
+34
+00:02:13,330 --> 00:02:18,980
+One quick thing however you'll notice that on the header right here I have the log out button.
+
+35
+00:02:18,990 --> 00:02:21,900
+So definitely means yes I'm currently logged in.
+
+36
+00:02:22,090 --> 00:02:23,610
+Let's try logging out real quick.
+
+37
+00:02:23,670 --> 00:02:25,100
+So get to log out.
+
+38
+00:02:25,130 --> 00:02:32,500
+You'll notice that I'm still on the dashboard route here and if I refresh I can still see the dashboard
+
+39
+00:02:32,500 --> 00:02:34,920
+route and it still says hey you're logged in.
+
+40
+00:02:35,020 --> 00:02:36,790
+But clearly the header is reflecting.
+
+41
+00:02:36,790 --> 00:02:40,360
+No that's not the case I'm not actually logged in at this point in time.
+
+42
+00:02:40,510 --> 00:02:46,600
+So we need to do something at least somewhere plus some amount of logic to say hey if the user is trying
+
+43
+00:02:46,600 --> 00:02:52,510
+to get to the dashboard page let's make sure that they actually are logged in and then we also need
+
+44
+00:02:52,510 --> 00:02:58,000
+to make sure that after the user signs out like when they click log out on the header.
+
+45
+00:02:58,270 --> 00:03:03,340
+If they're currently on the dashboard route we need to make sure that we dump them back to the log in
+
+46
+00:03:03,340 --> 00:03:06,940
+page or some something that says at least Hey you're not logged out.
+
+47
+00:03:06,940 --> 00:03:10,290
+We need to redirect you away from the dashboard.
+
+48
+00:03:10,510 --> 00:03:14,620
+So we clearly do not have that piece of logic yet inside of our application.
+
+49
+00:03:14,620 --> 00:03:19,090
+Let's take a quick break and we're going come back and discuss exactly how we're going to add this logic
+
+50
+00:03:19,300 --> 00:03:23,120
+to make sure that we redirect the user after they sign out of our application.
+

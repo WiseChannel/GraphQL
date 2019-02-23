@@ -1,0 +1,232 @@
+1
+00:00:00,870 --> 00:00:05,350
+Na ltima seo, juntamos nossa mutao para gostar de uma letra individual.
+
+2
+00:00:05,640 --> 00:00:10,650
+Agora precisamos certificar-se de que ns sandumos a mutao junto com o nosso componente e
+
+3
+00:00:10,650 --> 00:00:14,850
+tambm precisamos importar o GQ bem e graficar os ajudantes no topo.
+
+4
+00:00:14,900 --> 00:00:20,040
+Ento, primeiro faamos nossas declaraes de importao e, em seguida, volte para a parte inferior do arquivo ou percorra
+
+5
+00:00:20,040 --> 00:00:21,820
+o caminho at o topo desse componente.
+
+6
+00:00:25,070 --> 00:00:27,630
+E eu colocarei minhas duas declaraes no tribunal.
+
+7
+00:00:27,680 --> 00:00:38,330
+Ento, precisamos obter o grfico Cuil helper do re-agir Apollo e GQ L da etiqueta UL do enxerto.
+
+8
+00:00:38,900 --> 00:00:40,770
+posso colocar meu helador GRATHWOHL.
+
+9
+00:00:45,380 --> 00:00:48,000
+Ento, agora vamos voltar para o fundo e
+
+10
+00:00:48,530 --> 00:00:53,990
+Ns vamos pegar a mutao e, em seguida, o segundo conjunto de parnteses vai envolver
+
+11
+00:00:54,080 --> 00:00:55,040
+o componente assim.
+
+12
+00:00:55,520 --> 00:00:55,820
+EST BEM.
+
+13
+00:00:55,820 --> 00:00:57,180
+Ento, isso parece muito bom.
+
+14
+00:00:57,230 --> 00:01:00,350
+Eu acho que estamos prontos para fazer um teste dentro do navegador.
+
+15
+00:01:00,350 --> 00:01:05,360
+passo que temos a fazer  garantir que realmente chamemos a mutao dentro do nosso componente,
+
+16
+00:01:05,780 --> 00:01:12,290
+ento eu vou deslizar de novo um pouco para o nosso manipulador de eventos como o manipulador de eventos aqui.
+
+17
+00:01:12,290 --> 00:01:12,890
+O ltimo
+
+18
+00:01:12,960 --> 00:01:18,100
+Ns vamos nos certificar de que chamamos de mutao e quando chamamos de mutao,
+
+19
+00:01:18,110 --> 00:01:22,340
+precisamos passar no ID da letra que estamos tentando realmente gostar.
+
+20
+00:01:22,400 --> 00:01:25,090
+Ento, eu direi isso, no Propst no mutate.
+
+21
+00:01:25,100 --> 00:01:30,980
+Lembre-se que  exatamente a forma como invocamos ou chamamos uma das nossas mutaes que chamamos, no  um
+
+22
+00:01:32,500 --> 00:01:37,250
+suporte, no  mutativo e, ento, passamos um conjunto de variveis diferentes para a mutao.
+
+23
+00:01:37,370 --> 00:01:44,560
+Ento, as variveis sero a identificao que vir do argumento de ID.
+
+24
+00:01:44,690 --> 00:01:49,270
+Ento, estamos novamente numa situao em que temos uma chave e um valor idnticos.
+
+25
+00:01:49,520 --> 00:01:52,750
+Ns vamos condens-lo para apenas ser Id assim.
+
+26
+00:01:53,240 --> 00:01:54,850
+E essa  uma breve declarao.
+
+27
+00:01:54,860 --> 00:01:59,180
+Voc sabe o que posso fazer um pouco de limpeza aqui e basta colocar tudo em uma
+
+28
+00:01:59,180 --> 00:02:00,120
+nica linha de cdigo.
+
+29
+00:02:00,580 --> 00:02:00,940
+EST BEM.
+
+30
+00:02:00,980 --> 00:02:02,060
+Isso parece muito melhor.
+
+31
+00:02:03,960 --> 00:02:06,540
+Agora acho que estamos prontos para dar uma chance no navegador.
+
+32
+00:02:06,540 --> 00:02:08,960
+Ento vamos correr e ver como estamos fazendo.
+
+33
+00:02:10,950 --> 00:02:12,920
+Vou voltar atrs.
+
+34
+00:02:12,920 --> 00:02:14,260
+Aqui vamos ns.
+
+35
+00:02:14,340 --> 00:02:20,970
+Eu vou atualizar Agora voc notar que agora no mostramos o nmero total de gostos
+
+36
+00:02:20,970 --> 00:02:23,400
+dentro da linha de letras agora.
+
+37
+00:02:23,400 --> 00:02:28,170
+Ento, agora, vamos clicar no boto e garantir que a mutao seja realmente
+
+38
+00:02:28,500 --> 00:02:33,710
+executada, ento retornaremos muito rapidamente e mostraremos o nmero de gostos em cada letra.
+
+39
+00:02:33,930 --> 00:02:41,280
+Ento eu cliquei no boto para gostar e parece que estamos emitindo a mutao e recuperamos a letra atualizada, h
+
+40
+00:02:41,340 --> 00:02:45,200
+a ID e o nmero de gostos que ela tem.
+
+41
+00:02:45,420 --> 00:02:47,280
+Ento, definitivamente est bem.
+
+42
+00:02:47,280 --> 00:02:51,090
+Vamos ter certeza de que colocamos o nmero de gostos em cada letra.
+
+43
+00:02:52,320 --> 00:02:58,010
+Volte para o meu editor de cdigo e, em seguida, encontre o mtodo de renderizao de letras.
+
+44
+00:02:58,290 --> 00:03:03,210
+Ento,  aqui que estamos renderizando cada letra individual, o que, obviamente,
+
+45
+00:03:03,210 --> 00:03:12,450
+torna um timo lugar para adicionar o nmero de gostos que a coisa tem o argumento para esta funo  a prpria letra
+
+46
+00:03:12,690 --> 00:03:15,630
+e a letra possui uma propriedade de gostos.
+
+47
+00:03:15,630 --> 00:03:20,730
+Ns sabemos disso apenas porque olhamos para o nosso grfico para l documentao, que disse que sim
+
+48
+00:03:20,730 --> 00:03:27,970
+voc vai conseguir um nmero de curiosos sempre que voc buscar esse item, ento eu vou adicionar meus gostos da declarao de estrutura.
+
+49
+00:03:30,250 --> 00:03:41,290
+E, em seguida, dentro do prprio aliado logo aps o cone tocar o nmero de Wykes, acho que estamos prontos para fazer
+
+50
+00:03:41,290 --> 00:03:42,830
+um teste novamente.
+
+51
+00:03:42,880 --> 00:03:45,000
+Eu vou voltar para o meu navegador.
+
+52
+00:03:46,900 --> 00:03:49,040
+E isso  interessante.
+
+53
+00:03:49,060 --> 00:03:51,750
+Nada ainda est aparecendo na tela ainda.
+
+54
+00:03:51,850 --> 00:03:53,740
+Ento isso  interessante.
+
+55
+00:03:53,740 --> 00:03:55,600
+Vamos clicar em algo.
+
+56
+00:03:56,170 --> 00:03:57,610
+Sim, ainda no est fazendo nada aqui.
+
+57
+00:03:57,640 --> 00:03:59,920
+Ento, claramente, temos um pouco de problema.
+
+58
+00:04:00,100 --> 00:04:04,020
+Vamos descobrir exatamente o que est acontecendo dentro da prxima seo.
+

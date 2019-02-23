@@ -1,0 +1,492 @@
+1
+00:00:00,690 --> 00:00:06,180
+In the last section we put together our song list component and got it to render on the page.
+
+2
+00:00:06,210 --> 00:00:11,400
+Right now the songless component really does absolutely nothing special it just shows a div on the screen.
+
+3
+00:00:11,550 --> 00:00:14,120
+And that's something we're going to fix inside the section.
+
+4
+00:00:14,300 --> 00:00:19,500
+The songless component is supposed to show a list of all the different songs on an application to the
+
+5
+00:00:19,500 --> 00:00:20,200
+user.
+
+6
+00:00:20,250 --> 00:00:26,190
+So we need to make sure that we somehow get data from our graph CULE server into this component right
+
+7
+00:00:26,190 --> 00:00:26,910
+here.
+
+8
+00:00:26,910 --> 00:00:31,440
+So that's a we're going to take care of inside the section to help guide us through that process.
+
+9
+00:00:31,440 --> 00:00:33,590
+We're going to walk through a little checklist.
+
+10
+00:00:33,630 --> 00:00:38,790
+We're going to go through to help us get data from the graph to your server into this component.
+
+11
+00:00:38,790 --> 00:00:41,010
+So let's take a look at that checklist.
+
+12
+00:00:41,650 --> 00:00:42,120
+OK.
+
+13
+00:00:42,300 --> 00:00:42,680
+Here we go.
+
+14
+00:00:42,690 --> 00:00:45,520
+So this is our overall strategy for working with Graph.
+
+15
+00:00:45,520 --> 00:00:50,760
+Q Well in react together and this is a strategy that we're going to use throughout this first application
+
+16
+00:00:50,760 --> 00:00:51,650
+that we go through.
+
+17
+00:00:51,780 --> 00:00:55,920
+But over time it can be something that we just kind of take a little bit for granted and assume that
+
+18
+00:00:55,920 --> 00:01:00,930
+we can do really well without having to go through a formal checklist or anything like that.
+
+19
+00:01:00,930 --> 00:01:06,810
+So step number one is to identify the data required by our individual component.
+
+20
+00:01:06,840 --> 00:01:11,820
+We know that our song list component needs to show a list of all the different songs.
+
+21
+00:01:12,090 --> 00:01:17,970
+And when it shows that list of songs all we really care about is the title of each song right.
+
+22
+00:01:18,000 --> 00:01:24,360
+We don't want to fetch any other data about the song like when it was created or who created it or when
+
+23
+00:01:24,360 --> 00:01:26,040
+it was last modified.
+
+24
+00:01:26,370 --> 00:01:28,540
+So this is a big piece of the graft.
+
+25
+00:01:28,560 --> 00:01:35,190
+Well promise remember what graph you promised us it said you don't have to over fetch the data for each
+
+26
+00:01:35,190 --> 00:01:40,280
+of your queries you don't have to fetch a bunch of details about each song that you don't care about.
+
+27
+00:01:40,500 --> 00:01:48,780
+As was the case in the old type of restful routing world where we used to get our data from after we
+
+28
+00:01:48,780 --> 00:01:54,060
+identify the data that is required by our component will write a query inside of graphical and we're
+
+29
+00:01:54,060 --> 00:02:00,000
+just doing this for practice just to make sure that we've got a very fine tuned query that fetches only
+
+30
+00:02:00,000 --> 00:02:03,920
+the data we care about after we write that query and graphical.
+
+31
+00:02:03,930 --> 00:02:08,340
+We will then flip back over to the component file and write the query out there.
+
+32
+00:02:08,730 --> 00:02:13,130
+So we'll talk a little bit more about exactly how queries and components play together.
+
+33
+00:02:13,350 --> 00:02:18,690
+When we get to that step number two and Step number three which is where we're going to take our query
+
+34
+00:02:19,020 --> 00:02:24,810
+and our component and we're going to bond them together in some fashion after we bond them together
+
+35
+00:02:24,810 --> 00:02:25,560
+in some fashion.
+
+36
+00:02:25,590 --> 00:02:30,180
+We can then access the data from the query freely inside of our component.
+
+37
+00:02:30,480 --> 00:02:35,220
+So you'll notice that there's no step in here for saying like oh yeah make sure that the query gets
+
+38
+00:02:35,220 --> 00:02:41,340
+executed or make sure that an Ajax request is made or anything like that graft.
+
+39
+00:02:41,350 --> 00:02:46,110
+Well in Appollo behind the scenes are going to take care of everything for us.
+
+40
+00:02:46,110 --> 00:02:49,720
+We don't have to specifically say oh please go fetch some data.
+
+41
+00:02:49,920 --> 00:02:55,620
+All we have to do is define the query and boom the data is going to show up inside of our component
+
+42
+00:02:55,980 --> 00:02:57,180
+which is really nice.
+
+43
+00:02:57,180 --> 00:02:59,820
+From a development perspective.
+
+44
+00:02:59,820 --> 00:03:00,920
+So let's get to it.
+
+45
+00:03:00,930 --> 00:03:06,510
+We're going to go from step number one to three and 4 so we can start off first with Step number one
+
+46
+00:03:06,540 --> 00:03:12,120
+which is to identify the data that is required by our individual component.
+
+47
+00:03:12,630 --> 00:03:13,220
+OK.
+
+48
+00:03:13,530 --> 00:03:16,190
+So here is our component the song list right here.
+
+49
+00:03:16,380 --> 00:03:17,460
+And it looks like.
+
+50
+00:03:17,460 --> 00:03:17,920
+Yup.
+
+51
+00:03:18,000 --> 00:03:21,020
+All we really need is the title of each song.
+
+52
+00:03:21,120 --> 00:03:24,600
+We don't need the date at which that song was last modified.
+
+53
+00:03:24,600 --> 00:03:27,330
+We don't need the date at which the song was created.
+
+54
+00:03:27,360 --> 00:03:31,980
+We don't need to know which artist is associate with the song and we don't have artists in this application
+
+55
+00:03:31,980 --> 00:03:37,200
+we don't have the idea of them but you can kind of imagine that if it said vocalize classic by Jimmy
+
+56
+00:03:37,200 --> 00:03:40,280
+John or whatever artist we're not showing that here.
+
+57
+00:03:40,290 --> 00:03:43,960
+So we don't need to fetch anything about the artist who created this.
+
+58
+00:03:44,010 --> 00:03:48,730
+All I want to know is what is the title of each song.
+
+59
+00:03:48,730 --> 00:03:50,400
+So let's flip over to graphical now.
+
+60
+00:03:50,400 --> 00:03:55,200
+Step number two and we're going to write out the query in graphical just for practice just to make sure
+
+61
+00:03:55,200 --> 00:03:59,020
+that we are fetching the data that we expect to get back from the server.
+
+62
+00:03:59,580 --> 00:04:04,840
+So I'm going to go to my graphical client member that's localhost 4000 slash graph.
+
+63
+00:04:04,840 --> 00:04:10,170
+Q Well I'm going to take out the query that I already have here and we're going to write out the query
+
+64
+00:04:10,170 --> 00:04:13,890
+for fetching just the data that we care about.
+
+65
+00:04:14,550 --> 00:04:18,120
+So will place the Crilley braces for our query.
+
+66
+00:04:18,570 --> 00:04:24,600
+I want to get access to my list of songs and the only piece of data that I care about each song is the
+
+67
+00:04:24,600 --> 00:04:25,580
+title.
+
+68
+00:04:25,980 --> 00:04:32,530
+So if I run this query I get back a response of an array of songs where each song has just the title.
+
+69
+00:04:32,550 --> 00:04:34,980
+So again I don't care about the ID.
+
+70
+00:04:35,010 --> 00:04:37,430
+I don't care about the created out anything like that.
+
+71
+00:04:37,440 --> 00:04:42,440
+I just want the title of each song.
+
+72
+00:04:42,530 --> 00:04:43,220
+All right.
+
+73
+00:04:43,220 --> 00:04:48,190
+So that's step number one and number two I should say half of number two.
+
+74
+00:04:48,200 --> 00:04:53,400
+Our next step is going to be to write the query out inside of our component file.
+
+75
+00:04:53,510 --> 00:04:58,460
+So I'm going to open up my code editor Here's my component file right here and we're going to write
+
+76
+00:04:58,460 --> 00:05:00,910
+the query out inside of here.
+
+77
+00:05:00,920 --> 00:05:07,460
+Now you might be thinking Stephen didn't you tell us previously that queries are not actually valid
+
+78
+00:05:07,460 --> 00:05:08,990
+Javascript code.
+
+79
+00:05:09,020 --> 00:05:09,590
+That's correct.
+
+80
+00:05:09,590 --> 00:05:12,110
+That is something very important to keep in your mind.
+
+81
+00:05:12,320 --> 00:05:18,650
+A query is not valid javascript code so we cannot just write out like oh yeah give me the songs in the
+
+82
+00:05:18,650 --> 00:05:20,080
+title from each one in here.
+
+83
+00:05:20,090 --> 00:05:25,250
+This is not valid javascript per se so we can't just write it out and expect something nice to happen
+
+84
+00:05:26,180 --> 00:05:30,410
+to handle all the different queries that we're going to write inside of our component file.
+
+85
+00:05:30,440 --> 00:05:34,870
+We're going to make use of a library called graft UL tag.
+
+86
+00:05:35,140 --> 00:05:38,890
+So let's import that at the top and they will figure out how to make use of it.
+
+87
+00:05:39,370 --> 00:05:43,040
+I'll say import GQ L from Graff.
+
+88
+00:05:43,070 --> 00:05:49,970
+Q Well Tad you'll notice that we kind of violate naming convention here for import imported libraries
+
+89
+00:05:50,480 --> 00:05:51,760
+graph CULE tag.
+
+90
+00:05:51,800 --> 00:05:52,760
+But we're calling it.
+
+91
+00:05:52,770 --> 00:05:56,350
+GQ Well remember we can call the import variable right here.
+
+92
+00:05:56,360 --> 00:05:57,820
+Anything we want.
+
+93
+00:05:57,920 --> 00:06:03,200
+By convention we usually call it GQ Well this GQ l library right.
+
+94
+00:06:03,230 --> 00:06:09,650
+Right here are a graph you'll tag library is a helper to allow us to write queries inside of a component
+
+95
+00:06:09,650 --> 00:06:10,480
+file.
+
+96
+00:06:10,790 --> 00:06:12,140
+So let's figure out how to write it.
+
+97
+00:06:12,170 --> 00:06:19,220
+I'm going to go down to the bottom of the file right underneath the class declaration and down here
+
+98
+00:06:19,730 --> 00:06:23,510
+we're going to say Konst query equals GQ.
+
+99
+00:06:23,510 --> 00:06:24,570
+GQ owl.
+
+100
+00:06:24,850 --> 00:06:30,730
+And I'm going to place a tactic and then a closing back tick like so.
+
+101
+00:06:31,100 --> 00:06:31,590
+OK.
+
+102
+00:06:31,970 --> 00:06:33,350
+So really important.
+
+103
+00:06:33,350 --> 00:06:35,240
+Make sure you have a back tick right here.
+
+104
+00:06:35,240 --> 00:06:36,660
+This is not a single quote.
+
+105
+00:06:36,680 --> 00:06:40,360
+It is not a double quote so it's not a single quote like that.
+
+106
+00:06:40,520 --> 00:06:42,830
+There's not a double quote like that.
+
+107
+00:06:42,830 --> 00:06:44,420
+It is a back tick.
+
+108
+00:06:44,420 --> 00:06:49,880
+If you're on a US keyboard us English keyboard it is the character or the button to the left or the
+
+109
+00:06:49,880 --> 00:06:52,260
+one on your keyboard.
+
+110
+00:06:52,280 --> 00:06:55,160
+This is using template strings from six right here.
+
+111
+00:06:55,160 --> 00:07:00,020
+So this is even though it might look a little bit crazy it is valid Javascript code.
+
+112
+00:07:00,020 --> 00:07:07,460
+We are using a template string and using the helper from the GQ library to form up the query itself.
+
+113
+00:07:07,460 --> 00:07:14,660
+So inside of the back ticks we will write out our actual graph Cuil query so we can say songs and I
+
+114
+00:07:14,660 --> 00:07:17,070
+want the title of each song like so.
+
+115
+00:07:19,070 --> 00:07:19,610
+OK.
+
+116
+00:07:19,750 --> 00:07:22,650
+So that's pretty much for the queery right here.
+
+117
+00:07:22,780 --> 00:07:27,280
+The rule of thumb and we're going to be doing this just nonstop throughout the rest of this course we
+
+118
+00:07:27,280 --> 00:07:33,130
+say GQ Well we place the back tick and then we'd write our query out call.
+
+119
+00:07:33,820 --> 00:07:34,310
+OK.
+
+120
+00:07:34,330 --> 00:07:36,570
+To keep this section from going on too long.
+
+121
+00:07:36,580 --> 00:07:41,440
+Let's take a break right now and we're going to come back and we're going to go to Step number three
+
+122
+00:07:41,530 --> 00:07:45,210
+which is to bond the query and the component together.
+
+123
+00:07:45,520 --> 00:07:48,190
+So let's take care of Step number three in the next section.
+

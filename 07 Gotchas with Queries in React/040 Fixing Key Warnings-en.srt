@@ -1,0 +1,240 @@
+1
+00:00:00,750 --> 00:00:05,400
+In the last section we successfully got some of our data to really show up on the screen which is a
+
+2
+00:00:05,400 --> 00:00:06,860
+big win for us.
+
+3
+00:00:06,990 --> 00:00:11,220
+But we also saw a little bit of a warning on here that we're going to have to resolve before we move
+
+4
+00:00:11,220 --> 00:00:12,540
+any further.
+
+5
+00:00:12,600 --> 00:00:17,250
+The warning message that we saw is complaining that we are making an array of components which is true
+
+6
+00:00:17,260 --> 00:00:22,020
+we are we're making an array of songs for every song that we fetched from the server.
+
+7
+00:00:22,110 --> 00:00:27,100
+But we did not provide a key prop to each individual fly that we created.
+
+8
+00:00:27,300 --> 00:00:32,760
+So this is going back to basic stuff where we have to provide a key to every component that we render
+
+9
+00:00:32,760 --> 00:00:39,200
+in a list re-act uses these keys internally to make sure that it does its rendering of the list in an
+
+10
+00:00:39,240 --> 00:00:40,690
+efficient fashion.
+
+11
+00:00:42,130 --> 00:00:47,020
+So this is getting into something thats a little bit of a kind of a bummer.
+
+12
+00:00:47,080 --> 00:00:54,400
+I would say in the graph CULE world we need to be able to identify each ally here with a unique key.
+
+13
+00:00:54,430 --> 00:00:56,740
+Remember thats how keys inside of re-act work.
+
+14
+00:00:56,730 --> 00:00:59,010
+It has to be a unique key.
+
+15
+00:00:59,380 --> 00:01:04,920
+Traditionally we use a key that is the ID of the model that we are rendering.
+
+16
+00:01:05,170 --> 00:01:11,350
+So the reason I say this is a bummer is that while it's great that we only have to fetch the title of
+
+17
+00:01:11,350 --> 00:01:16,070
+each song in practice we usually end up fetching the ID as well.
+
+18
+00:01:16,090 --> 00:01:22,030
+So we usually kind of do a little bit of over fetching just a satisfied react whenever we are rendering
+
+19
+00:01:22,090 --> 00:01:23,680
+a list of data.
+
+20
+00:01:23,680 --> 00:01:26,330
+Now of course that's only true when we are actually rendering a list here.
+
+21
+00:01:26,350 --> 00:01:33,370
+If we were rendering an individual song just like a song by itself we wouldn't really need the ID because
+
+22
+00:01:33,370 --> 00:01:38,470
+we don't we are rendering a list and we don't need a key to identify each particular ally.
+
+23
+00:01:38,740 --> 00:01:44,890
+So to make sure that we get the ID of each individual song we're going to modify our queery just a little
+
+24
+00:01:44,890 --> 00:01:47,630
+bit to get access to the key.
+
+25
+00:01:48,100 --> 00:01:51,390
+So we'll go down toward Querrey you know find my query.
+
+26
+00:01:51,400 --> 00:01:56,800
+Right now we're just asking for the title of each song and we're going to modify it by also asking for
+
+27
+00:01:56,800 --> 00:01:59,940
+the ID of each song as well.
+
+28
+00:01:59,950 --> 00:02:05,830
+So now when this curry is issued We'll get back the title and the idea of every song and now backed
+
+29
+00:02:05,830 --> 00:02:07,910
+up inside of the map function.
+
+30
+00:02:07,990 --> 00:02:14,320
+We can adjust the key declaration and say it should be the idea of each individual song.
+
+31
+00:02:14,890 --> 00:02:19,900
+So again a little bit of a bummer to over fetch you might be able to make the case of using the title
+
+32
+00:02:19,960 --> 00:02:21,490
+of each song as the key.
+
+33
+00:02:21,490 --> 00:02:27,160
+If you had a guarantee that the title was always going to be unique but with the way that our application
+
+34
+00:02:27,160 --> 00:02:29,820
+is currently set up we really don't have that guarantee.
+
+35
+00:02:29,860 --> 00:02:34,020
+So it really should be the ID serving as the key here.
+
+36
+00:02:34,120 --> 00:02:36,110
+So let's refresh in the browser again.
+
+37
+00:02:36,640 --> 00:02:38,430
+And the warning message goes away.
+
+38
+00:02:38,440 --> 00:02:39,930
+Fantastic.
+
+39
+00:02:39,940 --> 00:02:44,590
+Now the last thing they want to do really quick is just to spruce up the styling of our application
+
+40
+00:02:44,590 --> 00:02:45,640
+just a little.
+
+41
+00:02:45,640 --> 00:02:47,770
+You know right now it's a little bit ugly.
+
+42
+00:02:47,980 --> 00:02:52,820
+And we're going to just improve the style a little bit as we go through piece by piece.
+
+43
+00:02:52,840 --> 00:02:58,630
+This project is already wired up to use the materialized CSSA library so we can out on a couple of class
+
+44
+00:02:58,630 --> 00:03:03,790
+names to the different elements inside of here and get a little bit better styling out of the gate for
+
+45
+00:03:03,790 --> 00:03:06,260
+free on the fly.
+
+46
+00:03:06,330 --> 00:03:17,500
+I need to add on a class name class name of collection item and on inside the render method I'm going
+
+47
+00:03:17,500 --> 00:03:23,930
+to replace the div that we're currently using with a UL instead which is much more semantically correct.
+
+48
+00:03:24,240 --> 00:03:28,100
+And we'll add in a class name of collection.
+
+49
+00:03:28,110 --> 00:03:34,320
+So again the class name of collection here and collection item that we're making use of are defined
+
+50
+00:03:34,350 --> 00:03:39,580
+inside of the materialized DSS file that I've already included inside this project.
+
+51
+00:03:39,600 --> 00:03:42,590
+So that's where all the styling is going to be coming from.
+
+52
+00:03:42,600 --> 00:03:47,910
+So let's refresh us again and we get a little bit better list appearing on the screen than what we had
+
+53
+00:03:47,910 --> 00:03:48,360
+before.
+
+54
+00:03:48,370 --> 00:03:49,900
+So this is looking a little bit better.
+
+55
+00:03:50,040 --> 00:03:54,300
+And again over time we'll improve it a little bit more to make sure that everything just pops a little
+
+56
+00:03:54,300 --> 00:03:57,020
+bit better than it is right now.
+
+57
+00:03:57,850 --> 00:03:58,510
+Okay.
+
+58
+00:03:58,590 --> 00:04:03,190
+So in this section we spoke a little bit about adding the key property on top of every ally.
+
+59
+00:04:03,300 --> 00:04:06,100
+And we also added in just a touch of styling in here.
+
+60
+00:04:06,300 --> 00:04:10,730
+Let's continue getting back to a little bit the hard stuff inside the next section.
+

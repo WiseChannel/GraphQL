@@ -1,0 +1,272 @@
+1
+00:00:00,870 --> 00:00:04,690
+Antes de comear qualquer coisa relacionada ao enxerto, voc conhece o Ellen relais.
+
+2
+00:00:04,830 --> 00:00:11,380
+Precisamos primeiro ter certeza de que temos uma base slida sobre o bsico do roteamento restante.
+
+3
+00:00:11,430 --> 00:00:16,950
+Uma coisa que eu vou lhe contar muito durante todo este curso  que o grfico para Ellen
+
+4
+00:00:16,950 --> 00:00:20,470
+relais foi construdo para resolver um conjunto muito especfico de problemas.
+
+5
+00:00:20,700 --> 00:00:23,200
+E a menos que voc entenda quais so esses problemas.
+
+6
+00:00:23,300 --> 00:00:27,660
+Grfico CULE realmente no pode ter muito sentido para voc como tal.
+
+7
+00:00:27,660 --> 00:00:33,180
+Vamos comear por escovar os fundamentos do roteamento repousante e, em seguida, falar imediatamente sobre
+
+8
+00:00:33,270 --> 00:00:38,480
+quais so os problemas e o que voc foi graficado para resolver esses problemas.
+
+9
+00:00:38,490 --> 00:00:40,130
+Ento vamos comear.
+
+10
+00:00:40,500 --> 00:00:44,770
+Primeiro, uma definio inglesa simples, rude.
+
+11
+00:00:45,150 --> 00:00:52,590
+Ento, quando digo um roteiro repousante, estou me referindo a algum conjunto de convenes usadas no desenvolvimento web para manipular uma
+
+12
+00:00:52,620 --> 00:00:55,310
+coleo de dados hospedados em um servidor.
+
+13
+00:00:55,500 --> 00:01:02,970
+Portanto, essas so regras comuns em torno do tipo de solicitao HTP e tambm so usadas para envi-las para que sejam
+
+14
+00:01:02,970 --> 00:01:09,320
+usadas para ler a criao de atualizaes ou excluso de dados que estejam sentados em um servidor.
+
+15
+00:01:09,660 --> 00:01:15,020
+Ento, vejamos um exemplo prtico, vamos ver um exemplo muito prtico disso.
+
+16
+00:01:15,150 --> 00:01:22,470
+blog e, depois de terem sido criadas, eles tenham a capacidade de ler a postagem do blog edit-la ou exclu-la.
+
+17
+00:01:22,890 --> 00:01:30,320
+Eu quero que voc imagine que voc est criando uma interface de usurio que permite que um usurio crie postagens de
+
+18
+00:01:30,690 --> 00:01:36,930
+Ento, quando falamos sobre o repouso para o roteamento aplicado a um aplicativo como este, estamos falando sobre
+
+19
+00:01:36,930 --> 00:01:44,220
+o tipo de AIDS TTP Reclast que usamos quando criamos um post que tipo de solicitaes usamos quando lemos o
+
+20
+00:01:44,220 --> 00:01:47,060
+tipo de solicitao e ns editamos ou deleta-lo.
+
+21
+00:01:47,100 --> 00:01:51,200
+E, alm disso, no apenas o tipo de solicitao, mas tambm o que voc  l.
+
+22
+00:01:51,210 --> 00:01:53,620
+Enviamos esse pedido para.
+
+23
+00:01:53,640 --> 00:01:58,710
+imaginamos que estamos trabalhando com uma coleo de postagens aqui, como se estivssemos
+
+24
+00:01:58,740 --> 00:02:08,460
+lendo posts ou criando postagens de atualizao, ns acabaramos com um conjunto de voc ou ento um tipo de solicitao HDP ou mtodos listados aqui.
+
+25
+00:02:08,460 --> 00:02:09,090
+Ento, ns
+
+26
+00:02:09,360 --> 00:02:15,570
+Portanto, a regra geral ou a conveno para o roteiro restante so essas cinco
+
+27
+00:02:15,570 --> 00:02:16,680
+aes separadas aqui.
+
+28
+00:02:16,710 --> 00:02:22,590
+Estes so, tecnicamente, ns um pouco de um subconjunto de todas as aes que
+
+29
+00:02:22,770 --> 00:02:28,430
+so socialmente com roteiro repousante, mas estes so, em geral, os cinco mais utilizados.
+
+30
+00:02:28,770 --> 00:02:36,690
+Ento, para criar uma nova postagem por conveno, enviaramos uma solicitao de tipo de publicao para suas postagens fora da barra para
+
+31
+00:02:36,690 --> 00:02:38,180
+buscar todas as postagens.
+
+32
+00:02:38,220 --> 00:02:44,670
+continuar a obter uma taxa especfica ou gravar a atualizao de um registro especfico ou excluir um registro particular.
+
+33
+00:02:44,670 --> 00:02:47,940
+Gostaramos de fazer uma barra de barras e, em seguida,
+
+34
+00:02:48,240 --> 00:02:55,740
+Ento, novamente, essas so convenes que usamos quando decidimos qual mtodo de idade TTP solicita e o que voc
+
+35
+00:02:55,740 --> 00:02:57,560
+pode apontar para isso.
+
+36
+00:02:59,200 --> 00:03:04,810
+No geral, podemos generalizar essas regras como sendo o nome do recurso com o qual estamos mexendo
+
+37
+00:03:05,020 --> 00:03:11,260
+ou, nos casos mais especficos, cortar o nome do recurso que estamos mexendo com o Slash e, em seguida,
+
+38
+00:03:11,290 --> 00:03:15,130
+a idia do registro que ns Estou tentando manipular de alguma forma.
+
+39
+00:03:15,130 --> 00:03:18,750
+Ento, novamente, estes so os conceitos bsicos de roteamento restante.
+
+40
+00:03:18,750 --> 00:03:21,020
+Agora, eu quero expandir esse exemplo um pouco.
+
+41
+00:03:21,130 --> 00:03:27,640
+Isto , estamos at agora, estamos a analisar a forma como manipulamos registos singulares, como apenas todas as postagens ou tudo
+
+42
+00:03:27,640 --> 00:03:30,960
+o que pode ser que estejam alojados no nosso servidor.
+
+43
+00:03:31,000 --> 00:03:35,950
+Quero mudar esse exemplo um pouco e eu quero pensar sobre o que voc
+
+44
+00:03:35,950 --> 00:03:43,790
+ou ele pode parecer se eu quisesse dizer obter uma lista de todas as postagens que esto associadas a um usurio muito particular.
+
+45
+00:03:44,050 --> 00:03:49,780
+Ento, eu quero mostrar a idia das relaes aqui e como lidar com eles com
+
+46
+00:03:49,780 --> 00:03:57,610
+nossas convenes repousantes nesse tipo de mundo onde talvez tenhamos uma lista de usurios e cada usurio pode ter um
+
+47
+00:03:57,610 --> 00:03:59,770
+nmero de postagens de blog .
+
+48
+00:03:59,800 --> 00:04:04,650
+Eu gostaria de atualizar minhas convenes repousantes para se parecer com o que eu tenho aqui.
+
+49
+00:04:04,660 --> 00:04:13,570
+Ento eu comearia a aninh-lo ou ento um pouco se eu fizesse uma solicitao de solicitao para os usurios 23 barras de mensagens que
+
+50
+00:04:13,570 --> 00:04:20,230
+eu esperaria obter uma lista de todas as postagens que so criadas pelo usurio 23 e, em seguida,
+
+51
+00:04:20,230 --> 00:04:26,680
+operaes semelhantes para buscar em postagens especficas para atualizando posts e excluindo postagens que todos teriam que
+
+52
+00:04:26,680 --> 00:04:28,840
+fazer com um usurio muito particular.
+
+53
+00:04:29,260 --> 00:04:35,650
+Ento,  assim que comea um estilo ou ento, quando estamos fazendo convenes repousantes, juntamente
+
+54
+00:04:35,650 --> 00:04:38,210
+com registros associados ou registros aninhados.
+
+55
+00:04:39,040 --> 00:04:44,960
+Ento, tudo o que olhamos at agora com um tipo de manipulao de registros singulares ou at registros aninhados.
+
+56
+00:04:44,980 --> 00:04:46,830
+Espero que isso no parea muito estranho aqui.
+
+57
+00:04:46,870 --> 00:04:50,080
+E quando vejo isso, isso parece um pouco razovel.
+
+58
+00:04:50,080 --> 00:04:52,570
+Voc sabe que  como o ingls.
+
+59
+00:04:52,690 --> 00:04:56,680
+Encontre um usurio com ID 23 e me de todas as suas postagens.
+
+60
+00:04:56,710 --> 00:04:57,700
+Sim, podemos.
+
+61
+00:04:57,700 --> 00:05:05,550
+Eu posso suportar isso, mas uma vez que comeamos a aniquilar dados, ainda mais as coisas comeam a ficar realmente estranhas.
+
+62
+00:05:05,890 --> 00:05:10,810
+Ento vamos dar uma pausa rpida e vamos voltar e ver um exemplo um pouco diferente.
+
+63
+00:05:11,020 --> 00:05:14,500
+E vamos ver como essas convenes repousantes comeam a quebrar.
+
+64
+00:05:14,620 --> 00:05:18,910
+Quando comeamos a manifestar nossos dados ainda mais do que o que temos aqui.
+
+65
+00:05:19,060 --> 00:05:20,700
+OK vamos dar uma pausa rpida.
+
+66
+00:05:20,700 --> 00:05:21,520
+Eles vo voltar.
+
+67
+00:05:21,560 --> 00:05:28,060
+E eles podem entender como o roteamento repousante comea a ficar um pouco estranho com mais tipos de
+
+68
+00:05:28,060 --> 00:05:28,900
+dados aninhados.
+

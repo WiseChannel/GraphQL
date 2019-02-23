@@ -1,0 +1,360 @@
+1
+00:00:00,810 --> 00:00:06,750
+Gless mutation that we're going to work on is the log in mutation the sluggish mutation is functionally
+
+2
+00:00:06,750 --> 00:00:10,270
+going to look just about identical to sign up.
+
+3
+00:00:10,410 --> 00:00:12,540
+We're still going to return the user type.
+
+4
+00:00:12,570 --> 00:00:15,330
+We're going to have arguments of email and password.
+
+5
+00:00:15,420 --> 00:00:19,100
+It's going to be the email and password that the user is attempting to sign in with.
+
+6
+00:00:19,320 --> 00:00:24,960
+And then we're going to still make use of our service members inside of the auth file.
+
+7
+00:00:24,960 --> 00:00:31,890
+So in services offcut J Yes one of the functions that's in here by scroll all the way to the bottom
+
+8
+00:00:32,910 --> 00:00:40,520
+is a function to log in our user this log in function takes the e-mail password and request object.
+
+9
+00:00:40,620 --> 00:00:43,440
+And then it tends to authenticate that user.
+
+10
+00:00:43,530 --> 00:00:48,510
+And again you can see that there's a little bit of glue code in here for making passport work nicely
+
+11
+00:00:49,020 --> 00:00:53,130
+with the graft Well expectation of returning a promise.
+
+12
+00:00:53,160 --> 00:00:54,280
+So let's give us a shot.
+
+13
+00:00:55,400 --> 00:00:59,790
+You know flip back over to my mutations file scrolling down to the bottom.
+
+14
+00:00:59,830 --> 00:01:05,620
+We're going to add this very last mutation of loggin.
+
+15
+00:01:05,640 --> 00:01:12,090
+So again we're going to have something that looks very similar to the sign up mutation the logging mutation
+
+16
+00:01:12,090 --> 00:01:21,360
+will return a user type We'll provided some arguments of an email which will be a graph Cuil string
+
+17
+00:01:23,370 --> 00:01:34,110
+and a password which will be a graphical string then for the result function will take our parent value.
+
+18
+00:01:34,360 --> 00:01:35,890
+Take the args object.
+
+19
+00:01:35,890 --> 00:01:41,380
+And of course I didn't know I really just hear about the email and password properties out of that args
+
+20
+00:01:41,440 --> 00:01:42,260
+object.
+
+21
+00:01:42,340 --> 00:01:48,250
+So I'm going to immediately restructure them out email and password and then I also want to get the
+
+22
+00:01:48,250 --> 00:01:54,510
+request object as well because that service helper expects to have access to the request.
+
+23
+00:01:54,530 --> 00:02:04,290
+So now we can call and return our service log in and pass along the e-mail password and request object
+
+24
+00:02:07,000 --> 00:02:11,860
+if this is feeling kind of repetitive in how we're putting this these mutations together.
+
+25
+00:02:11,860 --> 00:02:12,670
+That's a good thing.
+
+26
+00:02:12,670 --> 00:02:13,930
+That's very very good.
+
+27
+00:02:13,930 --> 00:02:19,120
+We want our mutations to feel repetitive because we want them to be as simple and straightforward as
+
+28
+00:02:19,120 --> 00:02:20,040
+possible.
+
+29
+00:02:20,290 --> 00:02:26,740
+I feel like this file right here is a fantastic example of how we are delegating to some outside helpers
+
+30
+00:02:26,950 --> 00:02:29,830
+for handling all of our complicated business logic.
+
+31
+00:02:30,250 --> 00:02:37,120
+As you very well know authentication in an express application is no simple thing but we're not involving
+
+32
+00:02:37,150 --> 00:02:43,660
+all that complicated code with our graphical schema we're abstracting all of it out to this Helper Object
+
+33
+00:02:44,020 --> 00:02:48,280
+where this function right year is going to take care of all that complexity.
+
+34
+00:02:48,280 --> 00:02:51,570
+But the graph CULE schema itself is just going to say well yeah.
+
+35
+00:02:51,730 --> 00:02:54,380
+Oh you're trying to log in and user you just go off and do this thing.
+
+36
+00:02:54,400 --> 00:02:56,710
+I've got no idea how complicated it is.
+
+37
+00:02:56,800 --> 00:02:58,430
+It probably is complicated by DON'T CARE.
+
+38
+00:02:58,450 --> 00:03:00,490
+I just got a call this one function.
+
+39
+00:03:00,730 --> 00:03:05,470
+And so any other engineer who looks at this mutation right here in the future will be able to glance
+
+40
+00:03:05,470 --> 00:03:11,810
+at this and very quickly understand OK here's what returns Here's what it expects to have.
+
+41
+00:03:11,950 --> 00:03:14,310
+And here's what the mutation itself does.
+
+42
+00:03:14,500 --> 00:03:16,160
+Or at least what it calls.
+
+43
+00:03:16,480 --> 00:03:21,340
+If I want to figure out what the mutation really truly does internally I need to go look at this external
+
+44
+00:03:21,340 --> 00:03:22,260
+service.
+
+45
+00:03:22,570 --> 00:03:27,760
+But if any engineer ever wants to change how logging in the user works they don't have to worry about
+
+46
+00:03:27,760 --> 00:03:31,370
+messing around with the graph to Elum schema in any fashion.
+
+47
+00:03:31,480 --> 00:03:34,730
+They just need to go and look at the log in function itself.
+
+48
+00:03:36,650 --> 00:03:39,620
+OK I think that we're about ready to give us a test.
+
+49
+00:03:39,770 --> 00:03:42,290
+We're going to flip back over to our browser again.
+
+50
+00:03:44,610 --> 00:03:47,300
+I'm going to change out my nutation.
+
+51
+00:03:47,760 --> 00:03:54,710
+So this time we're going to attempt to log in and user this is going to expect to take an e-mail and
+
+52
+00:03:54,710 --> 00:03:55,720
+a password.
+
+53
+00:03:55,730 --> 00:04:01,100
+Now I'm going to make sure that I use the same email and password as what I used previously to first
+
+54
+00:04:01,100 --> 00:04:02,470
+sign up a user.
+
+55
+00:04:02,480 --> 00:04:09,650
+So if you recall when I first signed up a user I used an email of test at test dot com and a password
+
+56
+00:04:09,650 --> 00:04:10,960
+of password.
+
+57
+00:04:11,240 --> 00:04:18,340
+So I'm going to provide that same logon information so a password password.
+
+58
+00:04:18,950 --> 00:04:20,780
+And then we get a user back from this.
+
+59
+00:04:20,780 --> 00:04:23,930
+Someone asked for the e-mail of that user.
+
+60
+00:04:24,500 --> 00:04:26,400
+OK we'll give it a shot.
+
+61
+00:04:26,840 --> 00:04:30,730
+And I successfully get back an e-mail of test at test dot com.
+
+62
+00:04:31,040 --> 00:04:37,970
+So not only am I getting back the e-mail of the user who I in theory now am but I am also authenticated
+
+63
+00:04:37,970 --> 00:04:40,670
+with our back end application.
+
+64
+00:04:40,670 --> 00:04:45,800
+One thing I want to point out to you in particular is how to deal with a little bit of error handling
+
+65
+00:04:45,800 --> 00:04:47,510
+inside of our application.
+
+66
+00:04:47,540 --> 00:04:53,690
+So what happens if we say put in an incorrect password in here or an incorrect e-mail maybe an e-mail
+
+67
+00:04:53,690 --> 00:04:55,600
+that does not yet exist.
+
+68
+00:04:55,670 --> 00:04:56,870
+Let's try that out really quick.
+
+69
+00:04:56,870 --> 00:05:00,550
+So I had put in test one two three at test dot com.
+
+70
+00:05:00,890 --> 00:05:05,860
+I get back this nice heir's object with a message of invalid credentials.
+
+71
+00:05:06,170 --> 00:05:10,850
+We're going to come back to error handling in a big way once we start working on our front end and we
+
+72
+00:05:10,850 --> 00:05:15,010
+start to worry about error handling and showing some feedback to our user.
+
+73
+00:05:15,080 --> 00:05:19,730
+But I just very quickly want to point out to you that whenever we put in some invalid logging information
+
+74
+00:05:20,030 --> 00:05:20,390
+we get it.
+
+75
+00:05:20,390 --> 00:05:25,160
+A We do in fact get a nice error message in here that says hey I understand you're trying to sign up
+
+76
+00:05:25,160 --> 00:05:28,880
+but I think you have probably put in some invalid credentials.
+
+77
+00:05:28,880 --> 00:05:34,420
+So he will make use of this error message right here later on right now.
+
+78
+00:05:34,480 --> 00:05:39,410
+I'm going to change this back to our valid credentials.
+
+79
+00:05:39,790 --> 00:05:43,970
+And just make sure I can sign in again and yet it looks like we're doing so correctly.
+
+80
+00:05:45,340 --> 00:05:45,790
+OK.
+
+81
+00:05:45,860 --> 00:05:50,840
+So that's pretty much it for our three mutations around authentication.
+
+82
+00:05:50,840 --> 00:05:56,660
+We have the ability to sign up a user log out a user and log one in as well.
+
+83
+00:05:56,750 --> 00:06:04,060
+Again we still don't really have the ability to verify that I am truly authenticated in any fashion.
+
+84
+00:06:04,070 --> 00:06:09,500
+You know even if I am authenticating myself it's not really doing anything for me like there's no idea
+
+85
+00:06:09,500 --> 00:06:12,600
+of any protected resources inside my application.
+
+86
+00:06:13,330 --> 00:06:15,510
+So let's turn to the next section.
+
+87
+00:06:15,550 --> 00:06:20,950
+We're going to start thinking about how we can now make use of this authenticated state to enforce some
+
+88
+00:06:21,010 --> 00:06:22,550
+interesting rules around graft.
+
+89
+00:06:22,610 --> 00:06:26,520
+Well and we're also going to start working on the front end of our application as well.
+
+90
+00:06:26,760 --> 00:06:29,420
+So to take a quick break and I'll catch you in the next section.
+

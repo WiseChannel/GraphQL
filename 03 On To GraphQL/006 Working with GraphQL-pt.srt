@@ -1,0 +1,324 @@
+1
+00:00:00,830 --> 00:00:07,550
+A menos que a seo tenha uma viso geral super ampla do grfico Q L, formamos um grfico de
+
+2
+00:00:07,550 --> 00:00:13,790
+tipos para modelar nossos dados e depois escrevemos consultas para fazer perguntas sobre os dados nesse grfico.
+
+3
+00:00:13,790 --> 00:00:18,410
+Agora, voc pode estar comeando a ter uma idia de como essa abordagem resolve alguns
+
+4
+00:00:18,410 --> 00:00:23,930
+dos problemas que recebemos com um roteiro repousante porque podemos caminhar livremente por todas essas relaes e no
+
+5
+00:00:23,930 --> 00:00:28,940
+ter que se preocupar em fazer separao ou coisa ou algo como que lidar com as relaes.
+
+6
+00:00:29,120 --> 00:00:32,700
+Pois agora, vamos comear a trabalhar com um exemplo muito prtico.
+
+7
+00:00:32,750 --> 00:00:38,810
+E ento, uma vez que terminarmos com isso, teremos uma boa discusso sobre exatamente como Graf Cuil se aproxima
+
+8
+00:00:38,870 --> 00:00:43,110
+e resolve alguns problemas sobre os quais falamos anteriormente em torno do roteiro restante.
+
+9
+00:00:43,610 --> 00:00:48,170
+Ento, deixe nossas mos sujas nesta seo e comece a escrever algum cdigo.
+
+10
+00:00:48,170 --> 00:00:54,200
+Nosso objetivo nesta seo  criar uma aplicao grfica que tenha uma estrutura de dados semelhante
+
+11
+00:00:54,200 --> 00:00:57,370
+ que temos observado onde temos alguns usurios.
+
+12
+00:00:57,440 --> 00:01:04,290
+Cada usurio tem alguns amigos e cada usurio tem uma empresa e um cargo que vai ser o primeiro aplicativo que
+
+13
+00:01:04,290 --> 00:01:07,640
+vamos direcionar, vamos fazer algo que tenha uma estrutura de
+
+14
+00:01:07,640 --> 00:01:09,620
+dados que se parea muito assim.
+
+15
+00:01:09,810 --> 00:01:14,760
+Ento, a primeira coisa que temos a fazer  ter uma sensao de exatamente quais peas de
+
+16
+00:01:14,760 --> 00:01:16,760
+tecnologia vamos precisar para fazer isso acontecer.
+
+17
+00:01:17,190 --> 00:01:21,830
+Ento, vamos descobrir exatamente como tudo isso vai se juntar.
+
+18
+00:01:21,900 --> 00:01:26,730
+Esta ser a arquitetura geral do aplicativo que vamos construir.
+
+19
+00:01:26,790 --> 00:01:33,480
+Primeiro vamos fazer um servidor expresso e, em seguida, conect-lo a uma loja de dados de algum tipo.
+
+20
+00:01:33,480 --> 00:01:41,330
+Ento vamos carregar um aplicativo pr-construdo chamado grfico que tem um olho extra l e grfico.
+
+21
+00:01:41,340 --> 00:01:42,000
+Aqui vamos ns.
+
+22
+00:01:43,160 --> 00:01:47,930
+Vamos carregar este aplicativo de pr-compilao chamado grfico em nosso navegador e us-lo
+
+23
+00:01:48,020 --> 00:01:50,330
+para fazer algumas consultas de teste.
+
+24
+00:01:50,330 --> 00:01:57,230
+ajudar a obter uma sensao melhor de como o enxerto funciona e como podemos executar consultas com ele.
+
+25
+00:01:57,230 --> 00:02:03,410
+Este aparelho grfico aqui  uma aplicao pr-construda criada pela equipe de grficos Kjeld e  feita
+
+26
+00:02:03,410 --> 00:02:05,860
+apenas para fins de desenvolvimento para nos
+
+27
+00:02:06,190 --> 00:02:06,550
+EST BEM.
+
+28
+00:02:06,580 --> 00:02:08,590
+Ento, este  o lugar onde nos dirigimos.
+
+29
+00:02:08,630 --> 00:02:12,230
+Vamos juntar o lado Express, vamos juntar um pouco de coisas
+
+30
+00:02:12,230 --> 00:02:17,320
+para o lado dos dados e ento vamos test-lo no navegador usando esta ferramenta grfica aqui.
+
+31
+00:02:17,330 --> 00:02:19,040
+Ento vamos comear.
+
+32
+00:02:19,510 --> 00:02:26,150
+terminal e em uma pasta de espao de trabalho, voc sabe o que quer que funciona para voc, eu chamo minha pasta de espao pasta Prod.
+
+33
+00:02:26,150 --> 00:02:29,000
+Eu preciso mudar para o meu onde voc quiser coloc-lo.
+
+34
+00:02:29,000 --> 00:02:34,650
+Vamos fazer um novo diretrio do projeto e ns vamos cham-lo de usurios.
+
+35
+00:02:34,650 --> 00:02:38,480
+Ento, vamos fazer os usurios da pasta e ento eu vou mudar para ele.
+
+36
+00:02:38,480 --> 00:02:45,620
+E ento, uma vez dentro, vamos inicializar um novo aplicativo NPM, executando o comando NPM naquilo depois
+
+37
+00:02:46,970 --> 00:02:50,480
+que ns executarmos que sero feitas algumas perguntas aqui.
+
+38
+00:02:50,930 --> 00:02:55,540
+Nenhuma das respostas  muito importante no momento,  s entrar algumas vezes.
+
+39
+00:02:55,550 --> 00:02:56,930
+Aqui vamos ns.
+
+40
+00:02:57,110 --> 00:03:03,170
+vamos instalar alguns pacotes que nos ajudaro a configurar o Express e a integrar expressar com grficos.
+
+41
+00:03:03,170 --> 00:03:03,710
+Agora
+
+42
+00:03:03,710 --> 00:03:09,650
+Q Bom para se encaixar naquela arquitetura que estvamos apenas olhando para ter esta combinao
+
+43
+00:03:09,650 --> 00:03:11,890
+expressar o servidor grfico slash.
+
+44
+00:03:12,070 --> 00:03:20,220
+Eu consegui, ento vou instalar essas coisas com e instalar as guias dash dash e depois ir instalar quatro itens
+
+45
+00:03:20,220 --> 00:03:21,020
+separados aqui.
+
+46
+00:03:21,030 --> 00:03:26,520
+Ento, o primeiro  expressar um grfico expressivo.
+
+47
+00:03:26,620 --> 00:03:31,880
+Bem graficou UL e carregue aplicativos.
+
+48
+00:03:31,950 --> 00:03:34,570
+Ento, quatro pacotes separados aqui.
+
+49
+00:03:36,910 --> 00:03:43,000
+Olga o pacote expresso com o qual voc pode estar familiarizado anteriormente.
+
+50
+00:03:43,000 --> 00:03:49,330
+O Express  responsvel por lidar com solicitaes de pares HEG recebidas e fazer com que as respostas sejam enviadas de
+
+51
+00:03:49,330 --> 00:03:50,470
+volta para um usurio.
+
+52
+00:03:50,860 --> 00:03:57,960
+Ns tambm instalamos express ligne traft Bem, isso  uma camada de compatibilidade entre Express e grficos.
+
+53
+00:03:57,960 --> 00:03:58,430
+Q L.
+
+54
+00:03:58,450 --> 00:04:04,220
+Ento, por padro, graficou que voc expressa que eles absolutamente no sabem como trabalhar um com o outro.
+
+55
+00:04:04,360 --> 00:04:10,000
+Ento, esse pacote est para fornecer essencialmente algum cdigo de cola para que os dois trabalhem juntos muito bem.
+
+56
+00:04:10,000 --> 00:04:15,430
+enxerto bem, que  o grfico real de uma biblioteca que  usada para rastrear todos os nossos dados.
+
+57
+00:04:15,430 --> 00:04:16,290
+Tambm instalamos o
+
+58
+00:04:16,480 --> 00:04:21,150
+E a ltima coisa que entramos tambm foi o cache de carga, que  uma biblioteca que
+
+59
+00:04:21,170 --> 00:04:24,530
+tem algumas funes de utilidade que nos sero teis para o nosso tempo.
+
+60
+00:04:25,740 --> 00:04:28,660
+Ento o processo de instalao foi muito rpido.
+
+61
+00:04:28,670 --> 00:04:30,640
+Estes so todos pacotes muito pequenos.
+
+62
+00:04:30,650 --> 00:04:37,220
+Ento, j feito agora dentro do meu diretrio do projeto, vou abrir o meu editor de
+
+63
+00:04:40,840 --> 00:04:46,670
+cdigo por enquanto, vamos nos concentrar apenas nos fundamentos bsicos de reunir um servidor expresso.
+
+64
+00:04:46,670 --> 00:04:50,220
+Vamos comear com um novo arquivo chamado Servidor Dot.
+
+65
+00:04:50,270 --> 00:04:53,360
+Sim dentro do nosso diretrio de projeto raiz.
+
+66
+00:04:53,450 --> 00:04:55,940
+Ento faa um novo arquivo e ligue para o servidor.
+
+67
+00:04:55,970 --> 00:04:57,270
+Assim como.
+
+68
+00:04:57,580 --> 00:05:03,840
+Ento,  aqui que toda a lgica relacionada ao lado Express do nosso aplicativo vai viver.
+
+69
+00:05:04,250 --> 00:05:09,590
+Ento, vamos adicionar apenas um pequeno nmero de codificaes aqui agora para iniciar um novo aplicativo Express e
+
+70
+00:05:09,590 --> 00:05:11,430
+dizer para ouvir uma porta externa.
+
+71
+00:05:11,450 --> 00:05:14,640
+Portanto, agora mesmo, nada disso ser relacionado a grficos.
+
+72
+00:05:14,710 --> 00:05:20,210
+ouvir a porta 4000, ento eu vou adicionar uma chamada de retorno.
+
+73
+00:05:22,890 --> 00:05:30,030
+Dissolva o cdigo solitrio expresso expresso primeiro puxa Express, vamos fazer um pouco maior e
+
+74
+00:05:30,030 --> 00:05:36,300
+vamos fazer um novo aplicativo Express e ento vou contar a esse aplicativo para
+
+75
+00:05:36,300 --> 00:05:44,130
+Ento, depois que comea a ouvir, vamos simplesmente cancelar o desconhecer, ouvindo assim, ok.
+
+76
+00:05:44,200 --> 00:05:48,440
+Parece bom, diz o bsico de um aplicativo expresso aqui.
+
+77
+00:05:48,580 --> 00:05:50,610
+No entanto, ainda no h meno de grficos.
+
+78
+00:05:50,680 --> 00:05:53,670
+Bem,  claro,  disso que nos interessamos.
+
+79
+00:05:53,860 --> 00:05:59,800
+Ento, vamos dar uma pausa rpida e depois voltar e descobrir como fazer com que este aplicativo expresso muito
+
+80
+00:06:00,130 --> 00:06:01,640
+simples funcione bem com Graph.
+
+81
+00:06:01,690 --> 00:06:01,970
+Bem.
+

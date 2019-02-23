@@ -1,0 +1,176 @@
+1
+00:00:00,690 --> 00:00:05,850
+Vamos comear com o formulrio de criao de letras que vamos colocar no componente de detalhes da msica,
+
+2
+00:00:06,300 --> 00:00:09,700
+o formulrio de criao de letras ser bastante simples apenas o rtulo.
+
+3
+00:00:09,780 --> 00:00:15,150
+E, em seguida, uma entrada de texto para receber uma nova letra para se associar com a msica dada que
+
+4
+00:00:15,150 --> 00:00:15,690
+estamos vendo.
+
+5
+00:00:15,960 --> 00:00:21,420
+E ali presumivelmente vamos chamar uma mutao para criar a letra e salv-la na msica.
+
+6
+00:00:21,540 --> 00:00:25,650
+Ento, vamos ao Saut, primeiro criamos o componente e apenas nos certificamos de que
+
+7
+00:00:25,710 --> 00:00:28,190
+podemos faz-lo aparecer na pgina de detalhes da msica.
+
+8
+00:00:28,190 --> 00:00:34,620
+meu componente e vou criar um novo arquivo para este componente de criao de letras assim dentro daqui.
+
+9
+00:00:34,770 --> 00:00:39,340
+Ento, de volta no meu editor de cdigo, voc encontra o diretrio do
+
+10
+00:00:39,350 --> 00:00:44,380
+Eu definitivamente espero ter que fazer uso de Estados de nvel de componente porque estamos trabalhando com uma
+
+11
+00:00:44,380 --> 00:00:47,590
+entrada de texto e quero que seja uma entrada de formulrio controlada.
+
+12
+00:00:47,590 --> 00:00:51,550
+Ento, definitivamente vou fazer deste um componente baseado em classe.
+
+13
+00:00:55,350 --> 00:00:59,640
+E vou colocar um pouco de boilerplate para o nosso
+
+14
+00:01:02,460 --> 00:01:12,650
+componente ir definir o mtodo de renderizao agora e todo o lugar provavelmente apenas um div e uma marca de formulrio dentro dele.
+
+15
+00:01:12,750 --> 00:01:16,680
+Mas voc sabe o que na verdade agora eu penso nisso. Eu no acho que estamos mostrando
+
+16
+00:01:16,680 --> 00:01:18,190
+nada alm do formulrio dentro deste componente.
+
+17
+00:01:18,360 --> 00:01:22,800
+Ento, vamos apenas com a forma O que o heck
+
+18
+00:01:25,620 --> 00:01:34,830
+jogar apenas a forma dentro desse objeto dar ao formulrio um rtulo de adicionar uma letra e um nmero de entrada
+
+19
+00:01:37,910 --> 00:01:38,980
+e mudar ainda.
+
+20
+00:01:38,990 --> 00:01:41,560
+Vamos apenas nos concentrar na entrada assim.
+
+21
+00:01:41,690 --> 00:01:43,150
+E acho que  um bom comeo.
+
+22
+00:01:43,370 --> 00:01:49,130
+Vamos tambm colocar a declarao padro de exportao na parte inferior assim.
+
+23
+00:01:49,430 --> 00:01:49,870
+EST BEM.
+
+24
+00:01:49,910 --> 00:01:53,810
+suficiente para, pelo menos, conseguir isso na tela e ter certeza de que tudo est funcionando muito bem.
+
+25
+00:01:53,810 --> 00:01:55,040
+Eu acho que ns temos o
+
+26
+00:01:55,040 --> 00:02:01,360
+Agora eu quero mostrar o formulrio de criao de letras apenas quando um usurio est olhando uma msica em particular.
+
+27
+00:02:01,580 --> 00:02:06,020
+Ento eu acho que o componente detalhado da msica  um timo lugar para ancorar isso.
+
+28
+00:02:06,020 --> 00:02:10,510
+Ento, dentro do detalhe da msica, vou importar o componente que acabamos de criar.
+
+29
+00:02:10,640 --> 00:02:20,000
+Ento, a letra cria da letra, crie Doo-Wops a ortografia na letra, por sinal, eu apenas quero jogar isso
+
+30
+00:02:20,000 --> 00:02:20,550
+l.
+
+31
+00:02:20,570 --> 00:02:21,920
+s vezes, palavra complicada.
+
+32
+00:02:21,930 --> 00:02:23,650
+Voc pode facilmente criar um erro de digitao rpido sobre isso.
+
+33
+00:02:23,640 --> 00:02:29,460
+Ento, veja a ortografia da letra agora colocar o componente de criao de letras no
+
+34
+00:02:29,540 --> 00:02:32,940
+interior da sua letra to criativa como to legal.
+
+35
+00:02:33,340 --> 00:02:38,050
+Vamos virar para o navegador e apenas certifique-se de que podemos usar esse formulrio para aparecer na tela
+
+36
+00:02:38,110 --> 00:02:39,440
+sem qualquer mensagem de erro.
+
+37
+00:02:39,840 --> 00:02:43,150
+OK, ento aqui est o formulrio para criar uma nova letra.
+
+38
+00:02:43,390 --> 00:02:47,950
+Se voc no v o formulrio aparecer na tela ou se voc vir alguma mensagem de erro dentro de seu console,
+
+39
+00:02:48,140 --> 00:02:52,570
+lembre-se do melhor lugar para verificar  olhar para o seu terminal e ver se voc possui erros de digitao.
+
+40
+00:02:54,400 --> 00:02:55,150
+Ento isso parece ser bom.
+
+41
+00:02:55,150 --> 00:02:56,980
+ definitivamente um bom comeo.
+
+42
+00:02:56,980 --> 00:03:01,030
+Vamos dar uma pausa rpida e depois voltar na prxima seo e pensar um pouco
+
+43
+00:03:01,030 --> 00:03:06,710
+sobre o trabalho que teremos que fazer dentro da Llyr criar para servir para associar uma letra com uma determinada msica.
+
+44
+00:03:06,930 --> 00:03:09,780
+Ento, vamos dar uma pausa rpida e depois abordar isso na prxima seo.
+

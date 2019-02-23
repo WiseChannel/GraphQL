@@ -1,0 +1,272 @@
+1
+00:00:00,870 --> 00:00:04,690
+Before we get started on anything related to graft you Ellen relais.
+
+2
+00:00:04,830 --> 00:00:11,380
+We need to first make sure that we have a super solid foundation on the basics of restful routing.
+
+3
+00:00:11,430 --> 00:00:16,950
+One thing I'm going to tell you a lot throughout this entire course is that graph to Ellen relais was
+
+4
+00:00:16,950 --> 00:00:20,470
+built to solve a very specific set of problems.
+
+5
+00:00:20,700 --> 00:00:23,200
+And unless you understand what those problems are.
+
+6
+00:00:23,300 --> 00:00:27,660
+Graph CULE really might not make a lot of sense to you as such.
+
+7
+00:00:27,660 --> 00:00:33,180
+We're going to start by brushing up on the fundamentals of restful routing and then immediately talk
+
+8
+00:00:33,270 --> 00:00:38,480
+about what the problems are with it and what graphed you do to solve those problems.
+
+9
+00:00:38,490 --> 00:00:40,130
+So let's get started.
+
+10
+00:00:40,500 --> 00:00:44,770
+First a plain English definition unrestful roudy.
+
+11
+00:00:45,150 --> 00:00:52,590
+So when I say restful routing I'm referring to some set of conventions used in web development for manipulating
+
+12
+00:00:52,620 --> 00:00:55,310
+a collection of data hosted on a server.
+
+13
+00:00:55,500 --> 00:01:02,970
+So these are common rules around the type of HTP request and they are also used to send them to that
+
+14
+00:01:02,970 --> 00:01:09,320
+are used for reading creating updating or deleting data that is sitting on a server.
+
+15
+00:01:09,660 --> 00:01:15,020
+So let's look at a practical example let's look at a very practical example of this.
+
+16
+00:01:15,150 --> 00:01:22,470
+I want you to imagine that you're building a user interface that allows a user to create blog posts
+
+17
+00:01:22,890 --> 00:01:30,320
+and then after post has been created they have the ability to read the blog post edit it or delete it.
+
+18
+00:01:30,690 --> 00:01:36,930
+So when we talk about rest for routing as applied to a application like this we're talking about what
+
+19
+00:01:36,930 --> 00:01:44,220
+type of AIDS TTP Reclast we use when we create a post what type of requests we use when we read it what
+
+20
+00:01:44,220 --> 00:01:47,060
+type of request and we edit it or delete it.
+
+21
+00:01:47,100 --> 00:01:51,200
+And in addition not only what type of request but also what you are l.
+
+22
+00:01:51,210 --> 00:01:53,620
+We send that request to.
+
+23
+00:01:53,640 --> 00:01:58,710
+So we imagine that we're working with a collection of posts here like we are reading posts or creating
+
+24
+00:01:58,740 --> 00:02:08,460
+updating posts we would end up with a set of you or else an HDP request types or methods as listed on
+
+25
+00:02:08,460 --> 00:02:09,090
+here.
+
+26
+00:02:09,360 --> 00:02:15,570
+So the general rule of thumb or the convention for restful routing are these five separate actions right
+
+27
+00:02:15,570 --> 00:02:16,680
+here.
+
+28
+00:02:16,710 --> 00:02:22,590
+These are technically us somewhat of a subset of all the actions that are socially with restful routing
+
+29
+00:02:22,770 --> 00:02:28,430
+but these are by and large the five most frequently used.
+
+30
+00:02:28,770 --> 00:02:36,690
+So to create a new post by convention we would send a post type request to your out of slash posts to
+
+31
+00:02:36,690 --> 00:02:38,180
+fetch all posts.
+
+32
+00:02:38,220 --> 00:02:44,670
+We would do a get to slash slash posts and then so on for fetching a particular rate or record updating
+
+33
+00:02:44,670 --> 00:02:47,940
+a particular record or deleting a particular record.
+
+34
+00:02:48,240 --> 00:02:55,740
+So again these are conventions that we use when we are deciding what method of age TTP request and what
+
+35
+00:02:55,740 --> 00:02:57,560
+you are able to point it to.
+
+36
+00:02:59,200 --> 00:03:04,810
+Overall we can kind of generalize these rules as being slash the name of the resource that we're messing
+
+37
+00:03:05,020 --> 00:03:11,260
+with or in the more particular cases slash the name of the resource we're messing around with Slash
+
+38
+00:03:11,290 --> 00:03:15,130
+and then the idea of the record that we're trying to manipulate in some fashion.
+
+39
+00:03:15,130 --> 00:03:18,750
+So again these are the basics of restful routing.
+
+40
+00:03:18,750 --> 00:03:21,020
+Now I want to expand this example a little bit.
+
+41
+00:03:21,130 --> 00:03:27,640
+This is we're so far we're looking at how we manipulate singular records like just all the posts or
+
+42
+00:03:27,640 --> 00:03:30,960
+all the whatever it might be that are hosted on our server.
+
+43
+00:03:31,000 --> 00:03:35,950
+I want to change up this example little bit and I want to think about what these you or els might look
+
+44
+00:03:35,950 --> 00:03:43,790
+like if I wanted to say get a list of all the posts that are associated with a very particular user.
+
+45
+00:03:44,050 --> 00:03:49,780
+So I want to kind of bring into account the idea of relations here and how we would deal with them with
+
+46
+00:03:49,780 --> 00:03:57,610
+our restful conventions in that sort of world where maybe we've got a list of users and every user can
+
+47
+00:03:57,610 --> 00:03:59,770
+have some number of blog posts.
+
+48
+00:03:59,800 --> 00:04:04,650
+I would update my restful conventions to look like what I have down here.
+
+49
+00:04:04,660 --> 00:04:13,570
+So I would start to nest you or else a little bit if I made a get request to users 23 slash posts I
+
+50
+00:04:13,570 --> 00:04:20,230
+would expect to get a list of all the posts that are created by user 23 and then similar operations
+
+51
+00:04:20,230 --> 00:04:26,680
+for fetching in particular posts for updating posts and deleting posts they would all have to do with
+
+52
+00:04:26,680 --> 00:04:28,840
+a very particular user.
+
+53
+00:04:29,260 --> 00:04:35,650
+So this is how it starts a style or else when we're doing restful conventions along with associated
+
+54
+00:04:35,650 --> 00:04:38,210
+records or nested records.
+
+55
+00:04:39,040 --> 00:04:44,960
+So everything we've looked at so far with kind of manipulating singular records or even nested records.
+
+56
+00:04:44,980 --> 00:04:46,830
+Hopefully this doesn't look too weird right here.
+
+57
+00:04:46,870 --> 00:04:50,080
+And when I look at this this looks somewhat reasonable.
+
+58
+00:04:50,080 --> 00:04:52,570
+You know it's kind of like English.
+
+59
+00:04:52,690 --> 00:04:56,680
+Find a user with ID 23 and give me all their posts.
+
+60
+00:04:56,710 --> 00:04:57,700
+Yeah OK we can.
+
+61
+00:04:57,700 --> 00:05:05,550
+I can stomach that but once we start to nest data even further things start to get really really weird.
+
+62
+00:05:05,890 --> 00:05:10,810
+So let's take a quick break and we're going to come back and look at a slightly different example.
+
+63
+00:05:11,020 --> 00:05:14,500
+And we're going to see how these restful conventions start to break down.
+
+64
+00:05:14,620 --> 00:05:18,910
+When we start to manifest our data even more than what we've got right here.
+
+65
+00:05:19,060 --> 00:05:20,700
+OK let's take a quick break.
+
+66
+00:05:20,700 --> 00:05:21,520
+They're going to come back.
+
+67
+00:05:21,560 --> 00:05:28,060
+And can they get our eyes on how restful routing starts to get a little bit weird with more nested data
+
+68
+00:05:28,060 --> 00:05:28,900
+types.
+

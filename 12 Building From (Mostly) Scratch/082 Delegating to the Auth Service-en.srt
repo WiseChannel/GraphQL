@@ -1,0 +1,372 @@
+1
+00:00:01,010 --> 00:00:05,130
+In the last section we started doing a little bit of work on our sign up mutation.
+
+2
+00:00:05,340 --> 00:00:10,410
+We defined the result function and we also spoke a little bit about the third argument that we've never
+
+3
+00:00:10,410 --> 00:00:15,810
+spoken about what the result function which is the incoming requests from our express server.
+
+4
+00:00:15,810 --> 00:00:20,700
+The authentication service that's already been included with the starter project relies heavily upon
+
+5
+00:00:20,700 --> 00:00:22,290
+this request object right here.
+
+6
+00:00:22,410 --> 00:00:26,760
+So it's definitely important that we maintain that request object and we pass it off to the service
+
+7
+00:00:26,760 --> 00:00:28,590
+and we try to sign up for an account.
+
+8
+00:00:28,890 --> 00:00:34,320
+Speaking of which let's go and look at the auto service really quick and figure out exactly how we sign
+
+9
+00:00:34,320 --> 00:00:38,380
+up for a new account given some email and password.
+
+10
+00:00:38,610 --> 00:00:45,660
+So I'm going to open up my services folder inside the server directory and find the off js file and
+
+11
+00:00:45,660 --> 00:00:47,510
+open it.
+
+12
+00:00:47,580 --> 00:00:52,730
+OK so we've looked at this file a couple of times now and I've just kind of done a little bit of waving
+
+13
+00:00:52,730 --> 00:00:58,220
+and said yeah there's some stuff in here for handling sign up or authentication in general and we're
+
+14
+00:00:58,220 --> 00:01:00,330
+going to make use of it again.
+
+15
+00:01:00,370 --> 00:01:04,610
+There's a lot of comments in here so if you want to pause the video and read over some of the comments
+
+16
+00:01:04,610 --> 00:01:07,170
+and get a better idea of what's happening inside of here.
+
+17
+00:01:07,370 --> 00:01:08,750
+Definitely feel free to do so.
+
+18
+00:01:08,750 --> 00:01:13,220
+It will help you understand exactly what's happening inside of each of these functions.
+
+19
+00:01:13,220 --> 00:01:21,120
+The big takeaway from here however is that there is a sign up and a log in function defined inside this
+
+20
+00:01:21,140 --> 00:01:27,800
+file right now as you might imagine we really care about the sign up function if we call the sign up
+
+21
+00:01:27,800 --> 00:01:32,120
+function with an email a password and a request object.
+
+22
+00:01:32,120 --> 00:01:37,340
+This being the request object from the Express side of our application it will automatically attempt
+
+23
+00:01:37,340 --> 00:01:44,500
+to sign up a new user for our application and then save them and log them into our application.
+
+24
+00:01:44,540 --> 00:01:51,380
+So if we import this function right here into our mutations file and we call the sign up function with
+
+25
+00:01:51,380 --> 00:01:57,140
+the e-mail password in requesting that result function then presumably that will create our new user
+
+26
+00:01:57,200 --> 00:01:59,740
+and automatically log the user in.
+
+27
+00:01:59,750 --> 00:02:01,610
+So let's give it a shot.
+
+28
+00:02:01,610 --> 00:02:04,900
+I do know you I've said mentioned this a couple of times the last couple of sections.
+
+29
+00:02:04,910 --> 00:02:10,070
+I know that it's a little bit painful to make use of this function without having built it ourselves.
+
+30
+00:02:10,220 --> 00:02:15,720
+Again there's some kind of nasty stuff in here around making passport work nicely with graft.
+
+31
+00:02:15,770 --> 00:02:21,920
+Well really what's happening is graft well expects to receive a promise for day for dealing with any
+
+32
+00:02:21,920 --> 00:02:26,490
+asynchronous code but passport has no built in support for promises.
+
+33
+00:02:26,510 --> 00:02:30,640
+And so that's kind of where there's a mismatch in the expected API here.
+
+34
+00:02:31,130 --> 00:02:37,790
+And that's why you see this kind of nasty looking promise statement inside of the sign of function.
+
+35
+00:02:37,910 --> 00:02:43,300
+OK so let's import the sign up function into our mutations file and then we're going to call the Sign-Up
+
+36
+00:02:43,300 --> 00:02:44,840
+function.
+
+37
+00:02:44,980 --> 00:02:51,490
+So I'm going to go back to my mutations file if we go in a it to the top and I'm going to import or
+
+38
+00:02:51,490 --> 00:02:56,730
+require the auth service so I'm going to import everything out of that file.
+
+39
+00:02:59,330 --> 00:03:03,110
+Right now I'm inside of the mutations file in the schema directory.
+
+40
+00:03:03,110 --> 00:03:10,400
+So I need to go up one level so up one level and then into services and then I'll get the auth file.
+
+41
+00:03:10,860 --> 00:03:14,340
+So now the service right here has two functions assigned to it.
+
+42
+00:03:14,420 --> 00:03:17,750
+The sign up and the log in functions.
+
+43
+00:03:17,840 --> 00:03:25,230
+So inside of my resolve function right here we'll call off service sign up.
+
+44
+00:03:25,610 --> 00:03:32,870
+I'm going to pass in the e-mail the password and the request object the email the password is going
+
+45
+00:03:32,870 --> 00:03:34,790
+to come from the args object right here.
+
+46
+00:03:34,790 --> 00:03:39,190
+The args argument and then the request object is as we've mentioned several times.
+
+47
+00:03:39,190 --> 00:03:46,190
+Now the third argument to the result function the args object right here has an email and password property
+
+48
+00:03:46,190 --> 00:03:50,260
+to it rather than saying args dot email and ARGs our password.
+
+49
+00:03:50,260 --> 00:03:55,630
+We'll use a little bit of 60 structuring in here to just pull off the email and password.
+
+50
+00:03:56,000 --> 00:04:01,340
+By doing that we can then just say pass an email and password.
+
+51
+00:04:01,340 --> 00:04:06,860
+Remember that because I'm only providing the variable name here it will get automatically expanded to
+
+52
+00:04:06,860 --> 00:04:13,350
+be the key value pair and then I'm also going to pass on the request as.
+
+53
+00:04:13,880 --> 00:04:18,680
+When you start looking at this however and maybe having requests like the full word request is little
+
+54
+00:04:18,680 --> 00:04:19,740
+bit redundant.
+
+55
+00:04:20,030 --> 00:04:24,350
+I think it might make a little more sense to just abbreviate this to wreck and then we could condense
+
+56
+00:04:24,350 --> 00:04:25,190
+it down to look like.
+
+57
+00:04:25,190 --> 00:04:32,660
+So inside of express it is definitely a convention rather than calling the request object the full word
+
+58
+00:04:32,680 --> 00:04:36,840
+request convention is to just call it Reyk which is short for request.
+
+59
+00:04:37,100 --> 00:04:42,770
+So in total we can shorten this entire call to just email password and Rec make sure we've got the curly
+
+60
+00:04:42,770 --> 00:04:45,730
+braces around the outside.
+
+61
+00:04:45,740 --> 00:04:51,720
+Now remember signing up a new user is going to have to interact with the database in some fashion.
+
+62
+00:04:51,770 --> 00:04:54,910
+Not only do we have to make sure that the email is not in use.
+
+63
+00:04:54,950 --> 00:04:59,570
+So we're going to have to look over our entire list of emails and our user collection but we're also
+
+64
+00:04:59,570 --> 00:05:02,480
+going to have to save a new user to the database as well.
+
+65
+00:05:02,510 --> 00:05:08,410
+So this is a lot of asynchronous calls which means that the auto service dot scient function right here
+
+66
+00:05:08,450 --> 00:05:14,180
+returns a promise and whenever we return a promise from our resolve function we need to make sure that
+
+67
+00:05:14,180 --> 00:05:15,170
+we return it.
+
+68
+00:05:15,230 --> 00:05:20,570
+So that graph CULE knows to look at the promise that gets returned right here and say okay I'm going
+
+69
+00:05:20,570 --> 00:05:25,790
+to hold up for a second and wait for this operation to resolve before I attempt to return any values
+
+70
+00:05:25,790 --> 00:05:28,270
+to my front end.
+
+71
+00:05:28,280 --> 00:05:35,150
+OK so this is looking pretty reasonable again I want to point out right here if we think back to one
+
+72
+00:05:35,150 --> 00:05:37,870
+of the diagrams you are just looking at this right here.
+
+73
+00:05:37,940 --> 00:05:42,560
+So our Sign-Up resolve function right now is incredibly small.
+
+74
+00:05:42,560 --> 00:05:48,440
+It's exactly one line of code and rather than putting all the logic in the resolve function for actually
+
+75
+00:05:48,440 --> 00:05:54,710
+signing up a user We're placing all that logic and all that kind of business logic is what I really
+
+76
+00:05:54,710 --> 00:05:58,580
+want to call it inside of a helper function or a helper object.
+
+77
+00:05:58,760 --> 00:06:04,210
+So the graft side of things doesn't really know a whole lot about the specific implementation of signing
+
+78
+00:06:04,210 --> 00:06:05,030
+up the user.
+
+79
+00:06:05,060 --> 00:06:10,650
+It just knows to call this kind of external service which is again really the idea behind graft.
+
+80
+00:06:10,680 --> 00:06:17,920
+Well we use it as a sort of very thin abstraction layer over the actual business logic of our application.
+
+81
+00:06:17,930 --> 00:06:21,730
+So this right here is a very nice looking mutation.
+
+82
+00:06:21,740 --> 00:06:24,360
+It just says hey I don't really know what's going on here.
+
+83
+00:06:24,380 --> 00:06:29,790
+I'm just going to completely delegate handling all this Sign-Up business to this outside piece of code.
+
+84
+00:06:31,600 --> 00:06:36,430
+So I think that we're about ready to give this a little test and see if we can just sign up a new user
+
+85
+00:06:36,430 --> 00:06:43,060
+inside of graphical and then check our lab database so we can go over to in lab and look at our collection
+
+86
+00:06:43,060 --> 00:06:46,450
+of users and make sure that a new user was created.
+
+87
+00:06:46,450 --> 00:06:51,850
+There is a little bit of set up that we have to do inside of our project first notably the mutations
+
+88
+00:06:51,850 --> 00:06:55,770
+file that we just created is not hooked up to our schema just yet.
+
+89
+00:06:56,020 --> 00:06:58,970
+So let's take a quick break come back in the next section.
+
+90
+00:06:58,990 --> 00:07:02,920
+We're going to do a little bit of wiring up of some of the different parts of this application and then
+
+91
+00:07:02,920 --> 00:07:05,500
+we'll be able to test this out inside of the browser.
+
+92
+00:07:05,560 --> 00:07:08,170
+So take a quick break and come back and take care of that.
+
+93
+00:07:08,170 --> 00:07:09,670
+I'll see you in just a second.
+

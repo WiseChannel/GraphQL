@@ -1,0 +1,340 @@
+1
+00:00:00,510 --> 00:00:06,720
+No que tenhamos um lugar onde podemos interceptar um usurio clicando no smbolo dos polegares, podemos comear a
+
+2
+00:00:06,720 --> 00:00:11,730
+pensar um pouco mais sobre a mutao a que chamaremos como uma letra individual.
+
+3
+00:00:11,940 --> 00:00:17,250
+Ento, vamos comear por primeiro escrevendo a mutao para dentro do grfico, ento moveremos a
+
+4
+00:00:17,250 --> 00:00:22,240
+mutao para o nosso componente de lista de letras e cham-lo da funo on-line.
+
+5
+00:00:22,680 --> 00:00:25,390
+Ento, vamos virar para grfico.
+
+6
+00:00:25,410 --> 00:00:26,150
+Aqui vamos ns.
+
+7
+00:00:26,520 --> 00:00:27,430
+E para comear.
+
+8
+00:00:27,510 --> 00:00:33,590
+Vejamos primeiro o nosso painel de documentao e verifique algumas das diferentes mutaes disponveis.
+
+9
+00:00:33,660 --> 00:00:36,540
+Ento clique na mutao e tudo bem.
+
+10
+00:00:36,540 --> 00:00:40,680
+Parece que h uma mutao muito apropriada aqui como a letra.
+
+11
+00:00:40,770 --> 00:00:45,240
+Espera-nos cham-lo com um ID e depois retorna a luz.
+
+12
+00:00:45,240 --> 00:00:51,300
+A letra atualizada lembra que cada letra que temos tem uma propriedade chamada gosta.
+
+13
+00:00:51,300 --> 00:00:54,720
+Ento, este  o nmero de gostos que cada letra tem.
+
+14
+00:00:55,320 --> 00:01:02,250
+Ento, presumivelmente depois que ns gostamos de letras, podemos pedir a letra para o nmero de novos gostos que tem
+
+15
+00:01:02,250 --> 00:01:06,490
+e recuperar a resposta e, de alguma forma, atualizar nossa aplicao com ela.
+
+16
+00:01:06,510 --> 00:01:08,820
+Ento, vamos dar uma chance a essa coisa.
+
+17
+00:01:09,030 --> 00:01:14,140
+A primeira coisa que precisamos fazer  certificar-se de que temos a identificao de uma letra dentro de nossa aplicao.
+
+18
+00:01:14,190 --> 00:01:17,640
+Ento eu preciso obter uma lista de todas as letras que eu tenho.
+
+19
+00:01:18,210 --> 00:01:20,520
+Eu vou verificar meus documentos novamente para isso muito rapidamente.
+
+20
+00:01:20,730 --> 00:01:27,060
+Vamos voltar para a documentao raiz, explore tudo, encontre meu tipo de consulta raiz e parece que
+
+21
+00:01:27,060 --> 00:01:29,530
+eu posso pedir uma letra por ID.
+
+22
+00:01:29,580 --> 00:01:35,100
+Eu acho que, uma vez que estamos tentando obter a idia de uma letra aqui, vamos receber nossa grande lista de
+
+23
+00:01:35,160 --> 00:01:38,620
+msicas e, em seguida, imprimir a identificao de cada letra dentro dessas msicas.
+
+24
+00:01:38,640 --> 00:01:42,210
+Ento vamos comear e depois vamos fazer a mutao.
+
+25
+00:01:42,210 --> 00:01:49,080
+Ento eu no pergunto por uma lista de todas as minhas msicas que eu quero ouvir sobre as letras associadas a
+
+26
+00:01:49,080 --> 00:01:55,920
+cada uma e me conta sobre a idia de cada um e voc me d esse contedo apenas para que possamos
+
+27
+00:01:55,920 --> 00:01:57,470
+identificar qual letra realmente .
+
+28
+00:01:58,260 --> 00:02:03,790
+Ento, aqui est a minha lista de msicas, parece que a primeira msica s tem uma nica letra aqui.
+
+29
+00:02:03,840 --> 00:02:08,790
+Eu tipo de querer trabalhar com uma msica que eu mostrei no navegador, que 
+
+30
+00:02:08,790 --> 00:02:13,830
+um pouco mais baixo na tela, ento eu vou escolher arbitrariamente uma das idias aqui.
+
+31
+00:02:14,070 --> 00:02:20,510
+Vou dizer que quero votar ou quero gostar da identificao ou me ver a letra no fundo.
+
+32
+00:02:20,520 --> 00:02:23,170
+Por isso, tem o contedo que era bom, acho.
+
+33
+00:02:23,280 --> 00:02:30,780
+E aqui est a idia de que eu quero que algum copie essa idia aqui e depois vou remover a consulta e
+
+34
+00:02:30,810 --> 00:02:33,660
+ns comearemos a pensar sobre a mutao novamente.
+
+35
+00:02:33,690 --> 00:02:36,030
+Ento, ns apenas olhamos para a documentao da nutao.
+
+36
+00:02:36,030 --> 00:02:42,510
+Sabemos que a mutao exige que passemos a identificao das letras que estamos tentando gostar.
+
+37
+00:02:42,510 --> 00:02:48,330
+Ento eu sei que vou precisar fornecer uma varivel de consulta porque eu quero especificar a idia
+
+38
+00:02:48,330 --> 00:02:56,100
+da letra que eu estou trabalhando em tempo de execuo ou eu quero especificar dinamicamente o ID que eu estou tentando gostar.
+
+39
+00:02:56,100 --> 00:03:02,940
+Ento, diga oi, voc deve esperar que haja uma varivel de consulta e que ele tenha
+
+40
+00:03:02,940 --> 00:03:05,330
+a identificao desta letra aqui.
+
+41
+00:03:05,330 --> 00:03:07,110
+Mais uma vez, pegamos este vermelho squiggly aqui.
+
+42
+00:03:07,140 --> 00:03:10,370
+S porque no fazemos varivel de consulta de uso, o que  totalmente bom.
+
+43
+00:03:10,380 --> 00:03:12,680
+Ns vamos em apenas um segundo.
+
+44
+00:03:12,780 --> 00:03:17,110
+Ento, agora podemos comear a escrever a mutao real ou lembrar a sintaxe para isso.
+
+45
+00:03:17,130 --> 00:03:20,670
+Usamos a palavra-chave de mutao que denominamos a mutao,
+
+46
+00:03:23,280 --> 00:03:28,800
+ento definimos a varivel de consulta que esperamos ser passada para essa mutao.
+
+47
+00:03:28,800 --> 00:03:35,730
+Ento, vamos dizer a identidade de sinal de dlar e eu vou indicar o grfico bastante bem que ser do tipo Id, assim
+
+48
+00:03:35,730 --> 00:03:39,650
+como ns temos uma string de tipo exatamente como ns temos um tipo.
+
+49
+00:03:39,690 --> 00:03:48,250
+E lembre-se que este  um daqueles locais em que usamos uma maiscula e d dentro da ID.
+
+50
+00:03:48,270 --> 00:03:50,280
+Ento, ns realmente executaremos a mutao.
+
+51
+00:03:50,280 --> 00:03:55,810
+Ento eu quero correr como a letra.
+
+52
+00:03:56,150 --> 00:03:58,530
+Preciso passar na ID de algum lugar.
+
+53
+00:03:58,580 --> 00:04:00,360
+Ento oua, aqui est o ID.
+
+54
+00:04:00,380 --> 00:04:04,160
+Quero que voc tire o valor da ID da varivel de consulta.
+
+55
+00:04:04,160 --> 00:04:05,700
+ID do sinal de dlar.
+
+56
+00:04:05,780 --> 00:04:07,520
+Ento, lembre-se novamente do pneumnico aqui.
+
+57
+00:04:07,560 --> 00:04:11,450
+ sinal de dlar tipo nome de sinal de dlar
+
+58
+00:04:15,110 --> 00:04:21,530
+depois de criar a letra Ns pediremos o ID da letra que foi criada e eu quero
+
+59
+00:04:21,530 --> 00:04:23,230
+saber quantos gosta agora.
+
+60
+00:04:23,270 --> 00:04:25,750
+Ento, apenas me diga que voc sabe, e ns simplesmente gostamos do assunto.
+
+61
+00:04:25,760 --> 00:04:29,570
+Quantos existem agora?
+
+62
+00:04:29,810 --> 00:04:35,470
+Vamos assumir que a letra que estamos atualizando aqui comea com zero gosta.
+
+63
+00:04:35,510 --> 00:04:40,190
+Ento, quando executamos essa letra pela primeira vez, entendo, quando executamos essa taxa de mutao
+
+64
+00:04:40,190 --> 00:04:45,060
+aqui, eu aceito, espero ver uma resposta, onde ns s temos uma como atribuda a ela.
+
+65
+00:04:45,590 --> 00:04:48,100
+Ento eu vou correr isso e ok.
+
+66
+00:04:48,140 --> 00:04:48,770
+Parece bom.
+
+67
+00:04:48,770 --> 00:04:54,380
+Eu tenho um como se eu execute uma mutao novamente, eu tenho dois e trs e assim por diante.
+
+68
+00:04:54,380 --> 00:04:59,570
+Ento, cada vez que executamos a mutao, estamos apenas incrementando o nmero de luzes
+
+69
+00:04:59,570 --> 00:05:01,140
+associadas  letra individual.
+
+70
+00:05:01,610 --> 00:05:02,570
+Ento, isso funciona perfeitamente.
+
+71
+00:05:02,570 --> 00:05:03,290
+Eu gosto disso.
+
+72
+00:05:03,470 --> 00:05:08,150
+a mutao inteira, uma cpia que vai virar para o editor de cdigo.
+
+73
+00:05:08,150 --> 00:05:14,210
+Eu acho que estamos prontos para mover esse assunto para o nosso componente, ento vou selecionar
+
+74
+00:05:14,210 --> 00:05:19,460
+Eu definitivamente quero colocar a mutao dentro do componente da lista de letras
+
+75
+00:05:19,460 --> 00:05:27,230
+porque eu quero chamar a mutao do interior do componente e rolar para baixo na parte inferior do arquivo
+
+76
+00:05:27,230 --> 00:05:30,250
+e abaixo da definio do componente colocamos nossa
+
+77
+00:05:34,680 --> 00:05:36,610
+mutao provavelmente pela dcima vez.
+
+78
+00:05:36,660 --> 00:05:41,600
+Eu vou lembr-lo de que queremos ter batiks back ticks aqui desculpe-me no citaes simples.
+
+79
+00:05:41,640 --> 00:05:44,150
+Ento, certifique-se de ter tiques de volta.
+
+80
+00:05:44,790 --> 00:05:45,510
+EST BEM.
+
+81
+00:05:45,720 --> 00:05:47,800
+Eu acho que este  provavelmente um bom lugar para fazer uma pausa.
+
+82
+00:05:47,850 --> 00:05:49,920
+Ento vamos parar por apenas um segundo.
+
+83
+00:05:49,920 --> 00:05:55,530
+Quando voltamos, precisamos certificar-se de que alinhamos a mutao para o componente e tambm temos que garantir
+
+84
+00:05:55,530 --> 00:06:00,560
+que obtenhamos algumas declaraes de importao para a biblioteca L e para a biblioteca grfica.
+
+85
+00:06:00,660 --> 00:06:03,900
+Ento, vamos cuidar dessas duas tarefas na prxima seo.
+

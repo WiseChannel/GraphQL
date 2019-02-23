@@ -1,0 +1,736 @@
+1
+00:00:00,810 --> 00:00:06,210
+Let's walk through one last mutation just to get a little bit more practice with the common steps around
+
+2
+00:00:06,210 --> 00:00:09,660
+setting up an execution of mutations.
+
+3
+00:00:09,660 --> 00:00:15,740
+So for this last mutation I would like you to give a shot at editing an existing user.
+
+4
+00:00:15,840 --> 00:00:23,040
+I want to take a user's ID and some properties to update make the update on js on server and then return
+
+5
+00:00:23,070 --> 00:00:25,060
+the updated user over to graft.
+
+6
+00:00:25,090 --> 00:00:31,680
+Well now before I cut you loose to work on the last mutation I want to remind you about one particular
+
+7
+00:00:31,680 --> 00:00:39,150
+little rough spot and that is the difference between a request and a patch request and the work that
+
+8
+00:00:39,150 --> 00:00:45,670
+we've been doing so far we've used x hoses get requests post request and delete requests.
+
+9
+00:00:46,080 --> 00:00:48,170
+So there's two more that I want to talk about very briefly.
+
+10
+00:00:48,170 --> 00:00:52,110
+That is the put in the patch type requests.
+
+11
+00:00:53,340 --> 00:00:59,920
+A put request is used when we want to completely replace the existing record saved on some other remote
+
+12
+00:00:59,920 --> 00:01:03,610
+database with the details inside of our request body.
+
+13
+00:01:03,610 --> 00:01:10,630
+So for example if we take this object over here an I.D. of 23 and a first name of Billy and we made
+
+14
+00:01:10,630 --> 00:01:13,470
+a put request to our Jason server.
+
+15
+00:01:13,660 --> 00:01:18,790
+It would completely replace the existing record with ID of 23.
+
+16
+00:01:18,820 --> 00:01:25,570
+So because our response or me because our requests body did not contain an age and company I.D. the
+
+17
+00:01:25,600 --> 00:01:30,950
+age and company I.D. of I.D. 23 or record 23 would be set to No.
+
+18
+00:01:31,280 --> 00:01:33,580
+Again this is an overriding step.
+
+19
+00:01:33,580 --> 00:01:37,950
+So if the record on inside the database previously had a.
+
+20
+00:01:37,980 --> 00:01:43,870
+Age and company I.D. they would be overridden by a request a patch request.
+
+21
+00:01:43,870 --> 00:01:49,140
+On the other hand only overwrites the properties that are contained within the request body.
+
+22
+00:01:49,150 --> 00:01:56,740
+So if our ID or a user with an ID of 23 previously had an age of 30 and a company idea of one if we
+
+23
+00:01:56,740 --> 00:02:03,250
+made a patch type request with this request a body over here we would preserve the value of the age
+
+24
+00:02:03,310 --> 00:02:05,850
+and the company ID.
+
+25
+00:02:05,890 --> 00:02:09,800
+So in my opinion you probably want to use a patch request here.
+
+26
+00:02:09,810 --> 00:02:15,910
+Now I would say probably definitely like I highly recommend going with the patch request making a patch
+
+27
+00:02:15,910 --> 00:02:20,060
+request with X you know is going to look very similar to all the ones that we've used previously.
+
+28
+00:02:20,260 --> 00:02:28,550
+So you'll have something like accedes dot patch and then the address localhost 3000 users.
+
+29
+00:02:28,630 --> 00:02:35,200
+And then the I.D. of the user that you want to delete and then is a second argument you'll pass the
+
+30
+00:02:35,230 --> 00:02:38,370
+parameters for however you want to update that user.
+
+31
+00:02:38,380 --> 00:02:46,000
+So second argument request body over here glassing I want to say about this user is that it will be
+
+32
+00:02:46,000 --> 00:02:48,640
+an additional field on our mutations object.
+
+33
+00:02:48,640 --> 00:02:52,780
+So here is the fields object we've got ADD and user delete user.
+
+34
+00:02:52,960 --> 00:02:57,940
+And yup it's going to be the last one at it user like so.
+
+35
+00:02:58,630 --> 00:03:00,690
+So again feel free to pause the video right now.
+
+36
+00:03:00,730 --> 00:03:01,690
+Give it a shot.
+
+37
+00:03:01,720 --> 00:03:04,840
+And when you're ready to go a solution just unpause.
+
+38
+00:03:04,840 --> 00:03:11,440
+And we're going to go to solution in just a second.
+
+39
+00:03:12,660 --> 00:03:13,110
+OK.
+
+40
+00:03:13,120 --> 00:03:15,360
+So presumably you've had a shot.
+
+41
+00:03:15,380 --> 00:03:18,630
+Maybe if things went well maybe they didn't go well either way.
+
+42
+00:03:18,630 --> 00:03:19,240
+Don't sweat it.
+
+43
+00:03:19,240 --> 00:03:24,310
+We're going to go through the solution right now and make sure it's crystal clear how to update an existing
+
+44
+00:03:24,310 --> 00:03:25,640
+record.
+
+45
+00:03:25,840 --> 00:03:30,490
+So we've got the added user feels defined on our mutation.
+
+46
+00:03:30,520 --> 00:03:35,080
+We're going to define the three other properties that we're going to see with nearly every mutation
+
+47
+00:03:35,080 --> 00:03:36,100
+we ever write.
+
+48
+00:03:36,130 --> 00:03:42,470
+And that is the type args and resolve function we'll start off by first defining the type.
+
+49
+00:03:42,520 --> 00:03:49,690
+So if I'm editing user I would really expect to get back to user or Again if I'm editing user I want
+
+50
+00:03:49,690 --> 00:03:51,890
+to reach out to the JS on server.
+
+51
+00:03:52,150 --> 00:03:56,810
+These new attributes and then return the updated model back to graft well.
+
+52
+00:03:57,010 --> 00:04:02,410
+So I'm going to expect that a user is going to come out of this mutation.
+
+53
+00:04:02,410 --> 00:04:04,650
+Next we'll define the args.
+
+54
+00:04:05,140 --> 00:04:07,230
+Now this one's a little bit more challenging.
+
+55
+00:04:07,240 --> 00:04:11,710
+Keep in mind that we might not be updating every single property on our user.
+
+56
+00:04:11,740 --> 00:04:16,540
+We might only be updating one property like maybe just the first name.
+
+57
+00:04:16,680 --> 00:04:21,790
+However I can guarantee you that there is one property that will always be provided and that's going
+
+58
+00:04:21,790 --> 00:04:27,710
+to be the id property.
+
+59
+00:04:28,180 --> 00:04:34,360
+So if you want to update a user you have to tell me which user you want to update and because you have
+
+60
+00:04:34,360 --> 00:04:40,870
+to tell me which one update I'm going to require you to provide an ID argument to edit user mutation
+
+61
+00:04:41,130 --> 00:04:44,020
+so remember graphed you and non-goal means.
+
+62
+00:04:44,230 --> 00:04:49,050
+This is a value you have to give me next.
+
+63
+00:04:49,180 --> 00:04:53,670
+We're going to say you can optionally provide a first name to update.
+
+64
+00:04:53,710 --> 00:05:06,700
+So grab a string an age with a type of graph graph Well int and a company ID with the type of graph
+
+65
+00:05:06,770 --> 00:05:10,350
+Well string.
+
+66
+00:05:10,510 --> 00:05:15,280
+So on these three properties we're saying you know what maybe you want to update the first name.
+
+67
+00:05:15,280 --> 00:05:16,110
+Maybe you don't.
+
+68
+00:05:16,240 --> 00:05:18,540
+Maybe you want to update the age maybe you don't.
+
+69
+00:05:18,590 --> 00:05:24,490
+And so I'm not going to require you to pass in a first name age or company ID but it would be really
+
+70
+00:05:24,490 --> 00:05:25,510
+nice if you did.
+
+71
+00:05:27,190 --> 00:05:34,230
+So now the moment of truth the resolve function so we're going to take the parent value which we don't
+
+72
+00:05:34,230 --> 00:05:35,270
+really care about here.
+
+73
+00:05:35,400 --> 00:05:37,720
+And the args object.
+
+74
+00:05:38,460 --> 00:05:45,930
+So with the args object because we're using a Patry Quest we can just take this ARV's object and throw
+
+75
+00:05:45,930 --> 00:05:49,700
+the entire object over to the Jae's on server.
+
+76
+00:05:49,770 --> 00:05:53,140
+So if the user when I say you mean when the developer.
+
+77
+00:05:53,160 --> 00:05:54,620
+That's probably a little bit more clear term.
+
+78
+00:05:54,630 --> 00:06:00,150
+When the developer calls this mutation if they pass along a first name great that will be inside the
+
+79
+00:06:00,150 --> 00:06:06,870
+args object if they pass along and age great it'll be inside there anything they pass into this mutation.
+
+80
+00:06:06,900 --> 00:06:15,650
+We're just going to shovel right on through to the patch request so we will say return x dot patch.
+
+81
+00:06:18,200 --> 00:06:21,950
+Local host three thousand users.
+
+82
+00:06:21,980 --> 00:06:28,330
+And then the idea of the user that we want to update which is present on the args ID property and then
+
+83
+00:06:28,340 --> 00:06:32,210
+I'll pass in args as the second argument.
+
+84
+00:06:32,210 --> 00:06:36,880
+So args is going to form the body of the request.
+
+85
+00:06:37,010 --> 00:06:41,080
+Then again we'll do our compatibility bit redstart data.
+
+86
+00:06:41,120 --> 00:06:45,860
+The last thing I want to mention here is you might be curious Steven if we're going to pass along the
+
+87
+00:06:45,860 --> 00:06:52,180
+entire args object to that patcher Quest what happens if there is an id property in there as well.
+
+88
+00:06:52,190 --> 00:06:54,640
+Couldn't we kind of like somehow.
+
+89
+00:06:54,800 --> 00:06:58,810
+I don't know maybe XLE update an idea that should be updated.
+
+90
+00:06:59,090 --> 00:07:06,130
+Fortunately the Sun server if you make a patch request to it and provide an ID it will ignore the ID.
+
+91
+00:07:06,140 --> 00:07:11,350
+So if a record already has an ID set it will not update the ID from the args object.
+
+92
+00:07:11,390 --> 00:07:13,720
+So if you're kind of worried about that don't sweat it.
+
+93
+00:07:13,880 --> 00:07:19,010
+There's no backwards way that we can be updating the idea of any record.
+
+94
+00:07:19,040 --> 00:07:19,360
+All right.
+
+95
+00:07:19,370 --> 00:07:24,830
+I think we're about ready for a little bit of a test inside of graphical again I'm going to go through
+
+96
+00:07:24,830 --> 00:07:28,590
+my usual flow by checking my terminal and look for any errors.
+
+97
+00:07:28,610 --> 00:07:31,840
+It looks like I had a typo but it looks like it got resolved.
+
+98
+00:07:32,060 --> 00:07:33,790
+So I've got my listening statement right here.
+
+99
+00:07:33,800 --> 00:07:34,790
+That's very good.
+
+100
+00:07:35,310 --> 00:07:38,290
+And all going over to graphical.
+
+101
+00:07:38,290 --> 00:07:45,810
+I'm going to refresh and I'm going to rewrite the entire mutation so I'm going to say I want to make
+
+102
+00:07:45,810 --> 00:07:46,790
+a mutation.
+
+103
+00:07:47,010 --> 00:07:54,060
+I want to call the added user mutation and I'm going to need to specify and do notice how as soon as
+
+104
+00:07:54,060 --> 00:07:58,750
+I put down those parens graphical kicks into gear and it says Aha.
+
+105
+00:07:58,760 --> 00:08:04,320
+Here are the possible arguments you can provide to the adult user mutation which is just so helpful
+
+106
+00:08:04,320 --> 00:08:05,930
+so handy.
+
+107
+00:08:06,900 --> 00:08:11,520
+Now I don't quite remember the idea of any of my users off the top of my head so I'm going to open up
+
+108
+00:08:11,550 --> 00:08:19,540
+my dbx JS on file inside my code editor and OK it looks like I still have an ID of 40 on one of my users.
+
+109
+00:08:19,590 --> 00:08:21,870
+So I'm going to edit the user with ID 40.
+
+110
+00:08:22,050 --> 00:08:26,640
+Again if you don't have a user id 40 of course you're going to have to update it to an IDS that you
+
+111
+00:08:26,640 --> 00:08:30,310
+do have present inside of your D-MI database on file.
+
+112
+00:08:31,910 --> 00:08:33,610
+So I'll give it an idea 40.
+
+113
+00:08:33,680 --> 00:08:45,350
+That's who I want to update and I will change the age of that user to 10 or to say yup you're really
+
+114
+00:08:45,350 --> 00:08:48,120
+young now all of a sudden for whatever reason.
+
+115
+00:08:48,470 --> 00:08:56,480
+And then when we get the user back let's print out their age their first name or see their ID their
+
+116
+00:08:56,480 --> 00:08:57,610
+first name and their age.
+
+117
+00:08:57,610 --> 00:08:59,150
+There we go.
+
+118
+00:08:59,420 --> 00:09:06,050
+Now when I am entering properties in here by the way notice how when I put down like a company I'm getting
+
+119
+00:09:06,050 --> 00:09:13,310
+all the auto completes inside of the body of this thing specifically because we annotated the type of
+
+120
+00:09:13,310 --> 00:09:15,750
+data that would be returned from the mutation.
+
+121
+00:09:15,920 --> 00:09:19,310
+So we had said that resolve was going return a user type.
+
+122
+00:09:19,310 --> 00:09:24,140
+That is how graphical nodes to populate all these auto complete fields inside of here.
+
+123
+00:09:24,140 --> 00:09:30,210
+So I started to do like Id first name all these properties that are getting put into this autocomplete
+
+124
+00:09:30,230 --> 00:09:33,730
+are coming because I define that user type.
+
+125
+00:09:33,750 --> 00:09:39,010
+Ways I only put these properties back on will do Id age and first name like so.
+
+126
+00:09:39,350 --> 00:09:41,550
+So now we can run that mutation.
+
+127
+00:09:41,720 --> 00:09:49,200
+We got idea of forty age to 10 first name of Alex noticed that I did not mutate the first name at all
+
+128
+00:09:49,430 --> 00:09:55,400
+but the first name did not get overwritten specifically because I used a patch request rather than a
+
+129
+00:09:55,400 --> 00:09:56,680
+put.
+
+130
+00:09:56,810 --> 00:10:03,200
+I can also go over to my DVD JS on file again and here is my user Alex with ID 40.
+
+131
+00:10:03,230 --> 00:10:04,700
+They've got an age of 10.
+
+132
+00:10:04,820 --> 00:10:06,440
+Let's change Alex's name.
+
+133
+00:10:06,440 --> 00:10:06,920
+How about that.
+
+134
+00:10:06,950 --> 00:10:14,030
+Let's change Alex's name out so let's say rather than printing out or updating his age I want to update
+
+135
+00:10:14,030 --> 00:10:19,530
+his first name and Alex can now be Samantha.
+
+136
+00:10:19,540 --> 00:10:24,440
+We're going to Samantha's Samantha to have a dad.
+
+137
+00:10:24,940 --> 00:10:32,510
+And so now Samantha two or I should say whoever he was before is now Samantha too as an age of 10 and
+
+138
+00:10:32,510 --> 00:10:33,580
+so on.
+
+139
+00:10:33,650 --> 00:10:37,260
+Now of course I can add as many properties to this update as I wish.
+
+140
+00:10:37,280 --> 00:10:40,410
+So I can update Samantha's age to now be 50 if I so chose.
+
+141
+00:10:40,430 --> 00:10:45,590
+And however many update properties I put inside of here will be automatically applied when the request
+
+142
+00:10:45,590 --> 00:10:47,920
+is sent on over to the DV server.
+
+143
+00:10:48,110 --> 00:10:51,770
+Simula based on server who.
+
+144
+00:10:51,960 --> 00:10:52,680
+OK.
+
+145
+00:10:53,050 --> 00:10:54,450
+So that is it.
+
+146
+00:10:54,460 --> 00:10:56,070
+Mutations in a nutshell.
+
+147
+00:10:56,260 --> 00:11:00,340
+I do want to mention Yes you can update the company ID in here as well.
+
+148
+00:11:00,430 --> 00:11:01,700
+I encourage you to give it a shot.
+
+149
+00:11:01,720 --> 00:11:07,180
+You definitely go for it after you make that change you can always add in company and get back the name
+
+150
+00:11:07,180 --> 00:11:07,900
+from it as well.
+
+151
+00:11:07,930 --> 00:11:10,390
+Just verify that change is actually made.
+
+152
+00:11:10,830 --> 00:11:11,390
+OK.
+
+153
+00:11:11,410 --> 00:11:12,670
+That's fantastic.
+
+154
+00:11:12,670 --> 00:11:17,500
+In the last couple of videos we have walkthrough of building mutations into our application.
+
+155
+00:11:17,530 --> 00:11:22,270
+Remember mutations are used to edit the data that we are working with.
+
+156
+00:11:22,360 --> 00:11:29,620
+They end up as being all separate fields that are added to a single nutation object.
+
+157
+00:11:29,620 --> 00:11:34,390
+One thing I do want to mention about our project right now and I mentioned this especially since I said
+
+158
+00:11:34,420 --> 00:11:37,570
+you know we add all these mutation as fields to the mutation object.
+
+159
+00:11:37,930 --> 00:11:43,150
+Everything that we've been working on in this project has been involved around this one single schema
+
+160
+00:11:43,340 --> 00:11:44,470
+J.S. file.
+
+161
+00:11:44,740 --> 00:11:45,340
+Yes.
+
+162
+00:11:45,370 --> 00:11:48,390
+In the future we will break this up into separate files.
+
+163
+00:11:48,430 --> 00:11:54,220
+So for the first project I want to keep everything nice and smashed together into a single file in the
+
+164
+00:11:54,220 --> 00:11:56,540
+future on different projects to work on.
+
+165
+00:11:56,570 --> 00:12:02,050
+We will be splitting up this mutation or this schema file into a collection of several smaller files
+
+166
+00:12:02,440 --> 00:12:05,950
+to make it a lot easier to work with.
+
+167
+00:12:05,950 --> 00:12:12,460
+Having said that I do want to mention that somewhat famously I would say Facebook actually has their
+
+168
+00:12:12,460 --> 00:12:15,820
+entire schema inside of a single file.
+
+169
+00:12:15,880 --> 00:12:20,110
+So like one file hundreds probably of different types.
+
+170
+00:12:20,110 --> 00:12:23,380
+Facebook has everything inside of one file.
+
+171
+00:12:23,380 --> 00:12:29,100
+Now they do use a slightly different syntax for defining their schema than we're using right here.
+
+172
+00:12:29,170 --> 00:12:34,000
+And I'm going to show you that different syntax in like the next section or the one after it.
+
+173
+00:12:34,000 --> 00:12:38,220
+So it is a little bit more compact syntax than what we're using right now.
+
+174
+00:12:38,320 --> 00:12:43,350
+But you know they do have everything in a single file so don't always feel afraid about letting this
+
+175
+00:12:43,350 --> 00:12:46,620
+schema file get a little bit larger.
+
+176
+00:12:46,730 --> 00:12:47,260
+OK.
+
+177
+00:12:47,380 --> 00:12:50,560
+So this is really it for our first application.
+
+178
+00:12:50,560 --> 00:12:55,840
+I know that we were working through this schema at the start we had said that a user has many friends
+
+179
+00:12:56,140 --> 00:13:00,730
+and those friends have companies and we all said positions in there but I think that we've got a generally
+
+180
+00:13:00,730 --> 00:13:04,280
+good idea of how to relate to different types together.
+
+181
+00:13:04,390 --> 00:13:11,590
+So I want to focus more on some of the more complex aspects of graft well and especially hit up the
+
+182
+00:13:11,620 --> 00:13:15,000
+front end in a big way which we're going to focus on in the next section.
+
+183
+00:13:15,190 --> 00:13:20,020
+So let's continue on in the next section we're going to start talking about how to integrate graft well
+
+184
+00:13:20,020 --> 00:13:22,880
+into a client side re-act application.
+

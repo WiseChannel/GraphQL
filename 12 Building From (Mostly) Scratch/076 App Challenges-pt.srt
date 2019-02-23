@@ -1,0 +1,380 @@
+1
+00:00:00,840 --> 00:00:04,810
+M. S. falamos um pouco sobre o prximo aplicativo em que vamos trabalhar.
+
+2
+00:00:05,010 --> 00:00:10,640
+Vamos agora girar apenas um pouco e falar sobre alguns dos grandes desafios desta aplicao.
+
+3
+00:00:10,710 --> 00:00:15,780
+Ento, tomei minha melhor facada ao pensar sobre o que alguns dos grandes problemas com
+
+4
+00:00:15,780 --> 00:00:18,040
+esta aplicao estaro no lado esquerdo.
+
+5
+00:00:18,040 --> 00:00:22,200
+Eu tenho uma lista de grandes problemas ou problemas que vamos precisar enfrentar.
+
+6
+00:00:22,230 --> 00:00:27,780
+E, no lado direito, algumas solues propostas e, em alguns casos, eu realmente no sei necessariamente qual
+
+7
+00:00:27,780 --> 00:00:32,670
+ a melhor soluo, ento fazemos um pouco de mergulho profundo para descobrir como abordar
+
+8
+00:00:32,670 --> 00:00:33,400
+cada um desses.
+
+9
+00:00:33,680 --> 00:00:35,550
+Ento vamos passar por cada um desses.
+
+10
+00:00:35,550 --> 00:00:40,440
+Primeiro, sabemos que precisamos mostrar vrias pginas para o usurio com base no que acabamos de ver
+
+11
+00:00:40,440 --> 00:00:41,500
+dentro de nossas maquetes.
+
+12
+00:00:41,550 --> 00:00:47,940
+Ns temos uma pgina de destino um log em uma pgina de inscrio e, em seguida, uma pgina de destino ou um painel de tipos
+
+13
+00:00:47,940 --> 00:00:54,180
+que um usurio deve ver uma vez que eles so autenticados com sucesso por tudo o que  que  o lado de reao das
+
+14
+00:00:54,180 --> 00:00:56,280
+coisas e sabemos como para lidar com reagir.
+
+15
+00:00:56,280 --> 00:01:01,600
+Podemos fazer reagir e reagir ao roteador para navegar em um usurio para todas essas pginas diferentes.
+
+16
+00:01:01,830 --> 00:01:08,520
+de reagir e reagir o roteador em seguida, pois precisamos armazenar uma quantidade de dados do usurio.
+
+17
+00:01:08,520 --> 00:01:14,250
+Ento, em termos de descobrir como mostrar informaes ao usurio que ainda  o trabalho
+
+18
+00:01:14,250 --> 00:01:19,680
+Ns usamos para armazenar contas ou endereos de e-mail de senhas, todo esse tipo de coisas que vale
+
+19
+00:01:19,680 --> 00:01:22,050
+tudo que ainda ser tratado pelo Mongo DVH.
+
+20
+00:01:22,290 --> 00:01:28,020
+Ento, vamos pegar os e-mails dos usurios, levar suas senhas e armazen-las de alguma forma
+
+21
+00:01:28,020 --> 00:01:30,560
+dentro do nosso banco de dados.
+
+22
+00:01:30,600 --> 00:01:34,700
+Agora, aqui  onde as coisas comeam a ser um pouco interessantes quando pensamos em gaffed.
+
+23
+00:01:34,710 --> 00:01:40,530
+Bem, ns estamos falando sobre como todos os nossos dados se enquadram dentro de um grfico de tipos e os usurios devem
+
+24
+00:01:40,530 --> 00:01:44,340
+poder me desculpar uma vez que tenhamos todos os nossos dados dentro de um grfico.
+
+25
+00:01:44,340 --> 00:01:49,770
+Devemos poder viajar de um n ou de um registro para todos os outros registros diferentes
+
+26
+00:01:49,770 --> 00:01:51,060
+dentro de nossa aplicao.
+
+27
+00:01:51,090 --> 00:01:56,960
+Agora, isso comea a ficar realmente interessante uma vez que comeamos a trazer a idia de autenticao.
+
+28
+00:01:57,030 --> 00:02:02,760
+Por exemplo, digamos que cada um de nossos usurios possui uma lista de mensagens privadas.
+
+29
+00:02:02,940 --> 00:02:05,580
+Mas a palavra-chave  privada.
+
+30
+00:02:05,850 --> 00:02:12,570
+Como efetivamente nos certificamos de que um usurio pode fazer login e no tem a capacidade de ver
+
+31
+00:02:12,570 --> 00:02:18,720
+mensagens privadas que pertenam a outros usurios dentro de uma aplicao tradicional, como usar pontos finais repousantes.
+
+32
+00:02:18,770 --> 00:02:22,260
+Comea a ter uma tima maneira de implementar esse tipo de restrio.
+
+33
+00:02:22,320 --> 00:02:27,900
+Mas no mundo do enxerto onde estamos dizendo que todos os nossos dados esto inerentemente conectados, como  que
+
+34
+00:02:27,900 --> 00:02:34,530
+nos certificamos de que os usurios no possam criar arbitrariamente consultas para se esgueirar para a nossa parte traseira e extrair informaes que
+
+35
+00:02:34,530 --> 00:02:36,160
+no queremos que elas Vejo.
+
+36
+00:02:36,420 --> 00:02:40,650
+Ento, vamos ter que descobrir uma soluo para isso e eu realmente no
+
+37
+00:02:40,650 --> 00:02:47,300
+tenho necessariamente uma tima idia agora, ento eu tenho que falar um pouco e descobrir exatamente como abordar isso em seguida.
+
+38
+00:02:47,340 --> 00:02:49,970
+Precisamos da capacidade de validar entradas.
+
+39
+00:02:49,990 --> 00:02:55,740
+E  algo que acabamos de falar quando um usurio entra um e-mail e uma senha sempre que eles esto
+
+40
+00:02:55,740 --> 00:02:56,740
+tentando se inscrever.
+
+41
+00:02:56,760 --> 00:03:01,920
+Precisamos validar o e-mail e garantir que algum ainda no tenha esse endereo de
+
+42
+00:03:02,010 --> 00:03:04,560
+e-mail em uso dentro do nosso aplicativo.
+
+43
+00:03:04,560 --> 00:03:09,760
+Do mesmo modo, quando um usurio tenta fazer login, precisamos ter certeza de que esse e-mail j existe.
+
+44
+00:03:09,840 --> 00:03:14,880
+Precisamos ter certeza de que o e-mail tenha a senha corretiva associada com ele.
+
+45
+00:03:14,880 --> 00:03:18,730
+Ento, h uma grande quantidade de validao dessas entradas que precisamos garantir que nos ocupemos.
+
+46
+00:03:18,810 --> 00:03:22,770
+E essa  outra coisa que ainda no abordamos no mundo real do enxerto ainda.
+
+47
+00:03:22,890 --> 00:03:27,930
+Ento, precisamos descobrir uma maneira de lidar com isso de uma forma elegante.
+
+48
+00:03:28,450 --> 00:03:33,690
+sobre autenticao de usurios e fazer com que eles se inscrevam para registrar todos esses tipos de coisas excelentes.
+
+49
+00:03:33,690 --> 00:03:34,710
+Em seguida, estamos falando
+
+50
+00:03:34,770 --> 00:03:38,740
+Precisamos de algum mtodo ou meio de autenticao de nossos usurios.
+
+51
+00:03:38,940 --> 00:03:44,280
+Ento, quando eles se inscreverem pela primeira vez para nossa aplicao, precisamos autentic-los e consumidos agora,
+
+52
+00:03:44,280 --> 00:03:50,640
+estar logados e quando eles retornarem ao nosso aplicativo e tentar se inscrever de alguma forma, precisamos ter
+
+53
+00:03:50,640 --> 00:03:56,500
+certeza de que eles realmente podem entrar com um e-mail e senha e ento ser considerado autenticado.
+
+54
+00:03:56,520 --> 00:04:04,050
+Agora, por tudo isso, vamos usar o passaporte do passaporte G-S. O G-S  uma biblioteca de ns que  freqentemente usada
+
+55
+00:04:04,050 --> 00:04:06,400
+para lidar com a autenticao do usurio.
+
+56
+00:04:06,690 --> 00:04:14,250
+disso  que esta biblioteca de passaportes, que no  a soluo absoluta de fato para a autenticao com o n.
+
+57
+00:04:14,280 --> 00:04:15,900
+Mas o outro lado
+
+58
+00:04:16,170 --> 00:04:19,090
+No foi concebido com o enxerto em mente.
+
+59
+00:04:19,320 --> 00:04:25,440
+Ento, o passaporte realmente no tem boa idia ou boa ligao para autenticar usurios quando estamos fazendo voc
+
+60
+00:04:25,440 --> 00:04:26,100
+o Siggraph.
+
+61
+00:04:26,200 --> 00:04:33,270
+Bem, ento vamos ter que pensar em alguma maneira de obter o passvel de enxertia para trabalhar juntos bem.
+
+62
+00:04:33,270 --> 00:04:37,650
+E novamente, este ser um grande ponto em que vamos fazer um pouco
+
+63
+00:04:37,680 --> 00:04:42,990
+de mergulho profundo l e tentar descobrir algumas das melhores prticas e como podemos abordar
+
+64
+00:04:42,990 --> 00:04:47,980
+isso com uma soluo um tanto elegante com os trs desses reas questionmark aqui.
+
+65
+00:04:48,330 --> 00:04:53,280
+H problemas em que talvez voc saiba que temos uma maneira razovel de descobrir como fazer
+
+66
+00:04:53,310 --> 00:04:59,490
+isso, mas eu no penso especificamente sobre como lidar com cada um deles no enxerto voc Elway ou em
+
+67
+00:04:59,690 --> 00:05:04,820
+um elegante com o Graph Cuil de algum jeito onde Parece que no somos realmente um
+
+68
+00:05:04,820 --> 00:05:08,230
+tipo de macaco que esconde as ferramentas que estamos fazendo uso.
+
+69
+00:05:08,240 --> 00:05:12,020
+Ento, esses so os grandes desafios que vamos cuidar durante a seo.
+
+70
+00:05:12,060 --> 00:05:17,240
+A ltima coisa que eu quero falar  apenas um pouco da abordagem da pilha
+
+71
+00:05:17,240 --> 00:05:21,480
+cheia que estamos levando aqui em todas as diferentes tecnologias que vamos usar.
+
+72
+00:05:21,500 --> 00:05:24,630
+Ento, continuar a parecer muito semelhante ao que fizemos no passado.
+
+73
+00:05:24,710 --> 00:05:27,350
+No h grandes mudanas aqui por si s.
+
+74
+00:05:27,410 --> 00:05:32,220
+Ns ainda vamos ter um banco de dados DB mongo hospedado pelo laboratrio Mago.
+
+75
+00:05:32,300 --> 00:05:37,730
+Recorde de novo que estamos usando o laboratrio Mago apenas para que no tenhamos que configurar um banco de dados local
+
+76
+00:05:37,730 --> 00:05:38,610
+do Mongo DB.
+
+77
+00:05:38,720 --> 00:05:42,200
+E isso tambm torna a vida um pouco mais fcil quando migrarmos para a produo.
+
+78
+00:05:42,350 --> 00:05:47,660
+Portanto, no precisamos nos preocupar com grandes diferenas na nossa soluo de banco de dados entre
+
+79
+00:05:47,660 --> 00:05:53,540
+a produo eo nosso ambiente local, o servidor que o servidor web que vamos fazer uso ainda ser
+
+80
+00:05:53,540 --> 00:05:59,450
+um expresso expresso que vai hospedar um Grfico da instncia de Cuil e ainda vamos fazer uso do
+
+81
+00:05:59,450 --> 00:06:06,620
+pacote da Web para o desenvolvimento de todos os nossos ativos do lado do cliente e da Web, o engraft PAC Cuil
+
+82
+00:06:06,620 --> 00:06:12,050
+sero os principais pontos de interface com nosso usurio dentro do navegador web para onde estamos indo
+
+83
+00:06:12,230 --> 00:06:13,580
+para que nossa aplicao reative.
+
+84
+00:06:14,160 --> 00:06:14,760
+OK.
+
+85
+00:06:14,960 --> 00:06:22,040
+Ento esse  o tipo de viso geral de 30000 ps das grandes questes, os grandes desafios e a arquitetura
+
+86
+00:06:22,040 --> 00:06:24,350
+geral da aplicao em que vamos trabalhar.
+
+87
+00:06:24,590 --> 00:06:30,830
+o real que eu quero comunicar aqui  como realmente detalhamos efetivamente a autenticao do usurio e
+
+88
+00:06:30,830 --> 00:06:36,590
+asseguramos que os usurios tenham algum nvel de autorizao e os dados que eles esto tentando acessar.
+
+89
+00:06:36,590 --> 00:06:37,810
+Mais uma vez,
+
+90
+00:06:37,880 --> 00:06:43,010
+Novamente tudo o que temos falado sobre o enxerto 2L, todos giramos em torno de todos os
+
+91
+00:06:43,010 --> 00:06:49,670
+nossos dados esto conectados e, a partir de qualquer ponto de dados, podemos acessar todos os outros pontos de dados em nosso aplicativo.
+
+92
+00:06:49,880 --> 00:06:55,130
+Ento eu realmente quero martelar isso e descobrir qual  a maneira efetiva de limitar o alcance
+
+93
+00:06:55,130 --> 00:06:58,720
+do que um usurio no pode acessar dentro do nosso aplicativo.
+
+94
+00:06:59,390 --> 00:07:00,450
+Ento, essa  uma grande viso geral.
+
+95
+00:07:00,530 --> 00:07:05,070
+Vamos continuar na prxima seo e comear com esta aplicao.
+

@@ -1,0 +1,464 @@
+1
+00:00:00,870 --> 00:00:05,730
+Ns j conseguimos alguns de nossos lderes para iniciar o nosso cliente Appollo, o que significa que
+
+2
+00:00:05,730 --> 00:00:09,780
+podemos comear a mudar para o lado do roteador de reao da nossa aplicao.
+
+3
+00:00:09,780 --> 00:00:14,680
+Ento, nesta seo, vamos importar a biblioteca do roteador re-agir e depois fazer um
+
+4
+00:00:14,680 --> 00:00:18,030
+pouco de configurao padro dentro do nosso componente raiz aqui.
+
+5
+00:00:18,030 --> 00:00:22,710
+Uma coisa que eu quero adicionar  nossa discusso sobre todos os diferentes componentes que
+
+6
+00:00:22,710 --> 00:00:29,400
+teremos  que apenas para fazer o roteador reativar o trabalho bem, teremos um componente de aplicativo de nvel superior que ser
+
+7
+00:00:29,460 --> 00:00:35,120
+responsvel por mostrar sempre o cabealho na tela todos A configurao do roteador de re-atuao que teremos ser
+
+8
+00:00:35,340 --> 00:00:39,460
+em torno de decidir o que mostrar no corpo do componente do aplicativo.
+
+9
+00:00:39,660 --> 00:00:41,240
+Ento  realmente o corpo aqui.
+
+10
+00:00:41,280 --> 00:00:44,280
+Tudo alm do cabealho que vamos ser lento.
+
+11
+00:00:44,760 --> 00:00:47,040
+Ele vai trocar com diferentes rotas.
+
+12
+00:00:47,090 --> 00:00:51,500
+Ento, vai do formulrio de pouso ao formulrio de inscrio e assim por diante.
+
+13
+00:00:51,540 --> 00:00:57,540
+Ento, vamos configurar primeiro o roteador de reao, criando o nosso componente de aplicativo e com fio para ser o
+
+14
+00:00:57,570 --> 00:01:03,030
+componente raiz do nosso aplicativo e ento criaremos o cabealho e garantiremos que ele sempre seja exibido dentro
+
+15
+00:01:03,030 --> 00:01:03,830
+do aplicativo.
+
+16
+00:01:04,050 --> 00:01:08,400
+que o cabealho tenha alguma lgica para descobrir o conjunto de botes que ele precisa para mostrar na tela.
+
+17
+00:01:08,400 --> 00:01:10,790
+Ento podemos comear a trabalhar no cabealho e certifique-se de
+
+18
+00:01:11,190 --> 00:01:12,450
+Ento vamos comear.
+
+19
+00:01:12,930 --> 00:01:20,250
+Eu vou virar para o meu ndice ponto J. S. arquivo e ns comearemos primeiro, importando
+
+20
+00:01:20,250 --> 00:01:24,060
+a biblioteca do roteador re-agir e algumas propriedades diferentes dele.
+
+21
+00:01:24,060 --> 00:01:34,500
+Ento, no topo, vamos pegar o nosso objeto do roteador na rota do objeto histrico do hash e
+
+22
+00:01:34,560 --> 00:01:40,740
+nas rotas de ndice, e tudo isso vem do roteador re-agir.
+
+23
+00:01:40,790 --> 00:01:44,740
+Agora, podemos nos livrar da div que est sendo processada aqui.
+
+24
+00:01:44,750 --> 00:01:47,390
+Ento, no precisamos sempre mostrar a div.
+
+25
+00:01:47,540 --> 00:01:55,130
+Em vez disso, vamos configurar nossa instncia de roteador de reao, primeiro criaremos nosso roteador e
+
+26
+00:01:55,130 --> 00:01:58,590
+diremos que queremos usar o histrico do cache.
+
+27
+00:01:59,120 --> 00:02:03,500
+Novamente, tivemos um pouco de discusso sobre o uso da histria hash aqui em oposio ao
+
+28
+00:02:03,500 --> 00:02:04,270
+histrico do navegador.
+
+29
+00:02:04,490 --> 00:02:09,200
+Estamos usando o histrico de hash em oposio ao histrico do navegador, s porque  muito mais
+
+30
+00:02:09,200 --> 00:02:13,700
+flexvel quando voc deseja mover o ambiente de hospedagem aqui ou fazer uso do histrico de hash.
+
+31
+00:02:13,700 --> 00:02:19,700
+Ns realmente no precisamos nos preocupar muito com o ajuste correto ou correto dentro do lado Express do
+
+32
+00:02:19,700 --> 00:02:24,140
+nosso aplicativo, nosso projeto inicial est configurado para usar o histrico do navegador.
+
+33
+00:02:24,140 --> 00:02:26,920
+Ento voc deve poder dizer sobre o histrico do navegador aqui.
+
+34
+00:02:27,020 --> 00:02:31,580
+Se voc realmente se preocupa com o que voc , parece ser novamente se voc no est
+
+35
+00:02:31,620 --> 00:02:37,020
+familiarizado com o roteador de re-atuao, no o sua, voc pode fazer uso do histrico de hash sem nenhum problema.
+
+36
+00:02:37,040 --> 00:02:37,970
+Agora est dentro daqui.
+
+37
+00:02:37,970 --> 00:02:44,690
+Quero que o meu componente raiz seja o que sempre ser exibido na tela em qualquer momento
+
+38
+00:02:44,690 --> 00:02:48,730
+para ser algo que vamos chamar o componente do aplicativo.
+
+39
+00:02:49,160 --> 00:02:54,710
+Ento, novamente, o componente do aplicativo sempre ir mostrar o cabealho e, em seguida, mostrar qualquer
+
+40
+00:02:54,740 --> 00:02:56,290
+componente aninhado dentro dele tambm.
+
+41
+00:02:56,510 --> 00:03:00,260
+Ento, vamos voltar aqui um pouco e adicionar algumas rotas diferentes.
+
+42
+00:03:00,260 --> 00:03:05,300
+Mas agora, vamos definir este componente do aplicativo e certifique-se de que ele sempre mostra
+
+43
+00:03:05,360 --> 00:03:08,230
+um componente de cabealho que tambm precisamos definir.
+
+44
+00:03:08,420 --> 00:03:11,240
+Ainda no fizemos o aplicativo, mas vamos muito em breve.
+
+45
+00:03:11,240 --> 00:03:17,040
+Ento, eu vou seguir em frente e assumir que existe e import-lo aqui tambm.
+
+46
+00:03:17,630 --> 00:03:22,040
+E eu vou assumir que vou coloc-lo dentro de um diretrio chamado OK
+
+47
+00:03:24,780 --> 00:03:25,590
+do componente.
+
+48
+00:03:25,680 --> 00:03:27,310
+Isso parece muito bom.
+
+49
+00:03:27,310 --> 00:03:32,420
+Ento agora podemos criar o diretrio de componentes e, em seguida, criar o componente do aplicativo.
+
+50
+00:03:32,420 --> 00:03:39,680
+Ento, dentro do diretrio do cliente, vou fazer a minha pasta de componentes e, em seguida, fazer o
+
+51
+00:03:39,750 --> 00:03:40,410
+meu componente
+
+52
+00:03:47,260 --> 00:03:52,920
+de aplicativo assim depois que Jesus assim termine aqui, comearemos importando re-act de reagir.
+
+53
+00:03:53,560 --> 00:03:57,080
+Ento, definiremos o nosso componente de aplicativo.
+
+54
+00:03:57,250 --> 00:04:05,020
+Eu vou fazer isso um componente funcional, j que realmente esperamos que ele mostre o cabealho e a viso
+
+55
+00:04:05,020 --> 00:04:07,000
+infantil e realmente nada mais.
+
+56
+00:04:07,000 --> 00:04:10,270
+Ento, eu me sinto muito confortvel apenas tornando-o um componente funcional.
+
+57
+00:04:10,270 --> 00:04:14,980
+Eu realmente no espero que ele tenha que usar qualquer nvel de nvel de componente, ento eu realmente no
+
+58
+00:04:14,980 --> 00:04:16,730
+preciso torn-lo um componente baseado em classe.
+
+59
+00:04:18,730 --> 00:04:24,970
+Insight se voc vai retornar um nvel superior Div eu espero voltar a isso e adicionar um
+
+60
+00:04:24,970 --> 00:04:26,530
+pouco de estilo talvez.
+
+61
+00:04:26,530 --> 00:04:31,300
+Mas agora vamos deix-lo como div diviso superior e, em seguida, dentro, se voc se
+
+62
+00:04:31,540 --> 00:04:38,470
+lembrar, queremos mostrar uma cabea ou um componente em todos os momentos e, em seguida, se o aplicativo tambm for aprovado, qualquer
+
+63
+00:04:38,470 --> 00:04:43,070
+componente infantil a ser exibido por um roteador reativado queremos garantir que tambm exibamos esses.
+
+64
+00:04:43,480 --> 00:04:49,690
+coisa, teremos certeza de cuidar disso e ns fazemos isso, colocando crianas Propst dentro do nosso GSX que ns retornamos.
+
+65
+00:04:49,690 --> 00:04:56,530
+Ento, primeiro, vamos olhar para o objeto de adereos e dizer se o roteador de reativao est tentando nos fazer mostrar qualquer
+
+66
+00:04:56,890 --> 00:05:01,760
+E tambm queremos garantir que sempre processamos algo chamado nossa cabea ou componente.
+
+67
+00:05:01,780 --> 00:05:06,820
+Mais uma vez, ainda no criamos esse assunto, mas vamos em apenas um segundo.
+
+68
+00:05:07,420 --> 00:05:13,150
+No fundo, tambm nos certificaremos de exportar o componente do aplicativo por padro, assim.
+
+69
+00:05:13,990 --> 00:05:15,780
+OK, ento isso parece muito bom.
+
+70
+00:05:15,780 --> 00:05:18,960
+A ltima coisa que temos a fazer  criar o componente de cabealho.
+
+71
+00:05:19,150 --> 00:05:21,600
+Certifique-se de import-lo dentro do aplicativo aqui.
+
+72
+00:05:21,610 --> 00:05:26,590
+cabealho tenha alguns botes para permitir que o usurio faa logon logar todo esse tipo de coisas boas.
+
+73
+00:05:26,590 --> 00:05:32,410
+Ento ele aparece corretamente e ento podemos voltar a nos preocuparmos com o lado de grficos de coisas em que
+
+74
+00:05:32,410 --> 00:05:34,270
+vamos nos certificar de que o
+
+75
+00:05:34,330 --> 00:05:39,560
+Ento, precisamos primeiro criar o componente de cabealho e importar para este APTA J. S. Arquivo.
+
+76
+00:05:39,940 --> 00:05:41,840
+Ento, apenas faamos o inport
+
+77
+00:05:45,040 --> 00:05:52,030
+primeiro e usemos maisculas para todos os nossos nomes de componentes, ento tambm criaremos o componente aqui.
+
+78
+00:05:52,100 --> 00:05:52,660
+V em frente ou no.
+
+79
+00:05:52,690 --> 00:05:53,240
+J. S.
+
+80
+00:05:56,360 --> 00:05:57,480
+dentro da cabea ou no.
+
+81
+00:05:57,570 --> 00:06:02,790
+Sim e sim, eu sei que isso  uma grande quantidade de digitao, mas  o que voc obtm quando voc tenta cobrir ambos os grficos.
+
+82
+00:06:02,790 --> 00:06:09,070
+Q Bem, e os usos do lado do cliente em um curso e ns temos que passar por uma grande quantidade de aplicativos de
+
+83
+00:06:09,070 --> 00:06:09,890
+reao atualizados tambm.
+
+84
+00:06:09,890 --> 00:06:15,980
+Ento eu me desculpo pela digitao, mas  uma boa prtica agora dentro da cabea ou componente.
+
+85
+00:06:15,980 --> 00:06:18,830
+Por agora, vamos fazer uma div e devolv-la.
+
+86
+00:06:18,830 --> 00:06:24,230
+No nos preocuparemos em nos preocupar com coisas de autenticidade extravagantes ou qualquer
+
+87
+00:06:24,230 --> 00:06:26,130
+dvida qualquer coisa assim agora.
+
+88
+00:06:26,210 --> 00:06:29,960
+de que ns importamos isso da biblioteca re-actriz tambm dentro daqui.
+
+89
+00:06:32,990 --> 00:06:37,610
+Ento, dentro, se voc for fazer um componente baseado em classe chamado Hatter e
+
+90
+00:06:37,610 --> 00:06:41,750
+ns vamos estender a classe base do componente, ento vamos ter certeza
+
+91
+00:06:42,300 --> 00:06:51,120
+Vamos colocar o nosso mtodo de renderizao com apenas um pouco de espao reservado GSX ajudar a faz-lo dizer
+
+92
+00:06:51,180 --> 00:06:52,190
+melhor agora.
+
+93
+00:06:52,820 --> 00:06:57,440
+E, no fundo, exportaremos o componente de cabealho assim.
+
+94
+00:06:58,110 --> 00:06:58,780
+EST BEM.
+
+95
+00:06:59,090 --> 00:07:03,120
+Ento, muita digitao na seo ns unimos nosso componente.
+
+96
+00:07:03,530 --> 00:07:09,140
+Ns nos certificamos de que sempre  exibido como o componente raiz da nossa aplicao de reator.
+
+97
+00:07:09,650 --> 00:07:16,310
+O componente, por sua vez, mostra o cabealho e quaisquer outros componentes infantis que esto sendo fornecidos
+
+98
+00:07:16,310 --> 00:07:17,600
+pelo roteador reativado.
+
+99
+00:07:17,870 --> 00:07:23,660
+Ento, enquanto navegamos por diferentes rotas, o cabealho sempre estar visvel, mas os escudos de estoque de propsitos
+
+100
+00:07:23,660 --> 00:07:28,070
+aqui estaro garantindo que o corpo da nossa pgina seja trocado enquanto visitamos todas
+
+101
+00:07:28,070 --> 00:07:29,060
+essas rotas diferentes.
+
+102
+00:07:29,300 --> 00:07:33,420
+E a cabea ou o componente agora apenas mostra o cabealho do texto.
+
+103
+00:07:33,470 --> 00:07:38,720
+de autenticao do nosso usurio e decidir se precisamos ou no de mostrar alguns botes aqui que permitem
+
+104
+00:07:38,720 --> 00:07:43,370
+ao usurio fazer login ou sair ou crie uma nova conta dentro de nossa aplicao.
+
+105
+00:07:43,370 --> 00:07:48,590
+Mas vamos voltar a isso e adicionar um pouco mais de lgica para torn-lo mais consciente do estado
+
+106
+00:07:48,590 --> 00:07:53,150
+Ento, eu acho muito rpido, vamos fazer um teste dentro do nosso navegador apenas para garantir que possamos
+
+107
+00:07:53,150 --> 00:07:56,560
+ver o cabealho aparecer na tela e ter certeza de que no temos erros.
+
+108
+00:07:56,600 --> 00:08:04,380
+Ento, voc sabe virar novamente para o navegador e atualizar a pgina agora parece que eu tenho um pouco de uma mensagem
+
+109
+00:08:04,380 --> 00:08:07,500
+de erro aqui em torno de importar roteador re-agir.
+
+110
+00:08:07,500 --> 00:08:11,910
+Eu suponho que provavelmente fiz um erro de digitao ou negligenciei instalar o mdulo.
+
+111
+00:08:11,940 --> 00:08:13,110
+Ento vamos fazer uma pausa rpida.
+
+112
+00:08:13,110 --> 00:08:14,460
+Eu vou arrumar isso.
+
+113
+00:08:14,520 --> 00:08:18,990
+Eu vou assumir que seu cdigo provavelmente est trabalhando da maneira esperada da maneira que esperamos.
+
+114
+00:08:18,990 --> 00:08:25,200
+E eu provavelmente negligenciei instalar o reator rodder-me, ento eu suspeito que seu cdigo provavelmente funciona, o meu
+
+115
+00:08:25,200 --> 00:08:26,070
+provavelmente no.
+
+116
+00:08:26,220 --> 00:08:29,450
+Vamos dar uma pausa rpida e arrumar isso e depois voltar na prxima seo.
+

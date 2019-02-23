@@ -1,0 +1,392 @@
+1
+00:00:00,740 --> 00:00:06,950
+Agora estamos prontos para implementar uma resposta otimista de nossa mutao, vamos fazer um pouco de reformatao
+
+2
+00:00:06,950 --> 00:00:11,870
+primeiro e colocar o termo das variveis em uma nova linha, porque precisamos de
+
+3
+00:00:11,870 --> 00:00:14,070
+uma grande quantidade de espao aqui.
+
+4
+00:00:14,240 --> 00:00:20,750
+Em seguida, vamos dizer que aqui est a resposta otimista quando esta mutao  executada, eu quero
+
+5
+00:00:20,750 --> 00:00:25,150
+que voc tente apenas usar esses dados o mais cedo possvel.
+
+6
+00:00:25,340 --> 00:00:32,690
+Ento, eu digo que aqui  a resposta otimista, ento faa triplicar sua ortografia do otimismo aqui.
+
+7
+00:00:32,690 --> 00:00:35,660
+Lugar muito fcil de criar um pequeno erro de digitao.
+
+8
+00:00:35,690 --> 00:00:41,100
+Agora, a prxima parte  algo que no  a melhor coisa do mundo porque  meio difcil de explicar.
+
+9
+00:00:41,120 --> 00:00:46,740
+Pode parecer, por um lado, muito bvio, mas, por outro lado, por que est aqui.
+
+10
+00:00:46,970 --> 00:00:55,210
+Ento, temos que dizer especificamente que estamos fazendo uma mutao assim que agora a prxima parte  a parte que
+
+11
+00:00:55,210 --> 00:00:56,880
+ muito mais direta.
+
+12
+00:00:56,890 --> 00:01:02,390
+Ns vamos fornecer a resposta que esperamos ver nas nossas costas e no servidor.
+
+13
+00:01:02,530 --> 00:01:07,870
+E quando digo que estou falando exatamente sobre o que vemos no nosso registro de respostas, aqui.
+
+14
+00:01:07,900 --> 00:01:14,110
+Ento, como Eric o nome do tipo, a identificao do registro que foi atualizado e o nmero de
+
+15
+00:01:14,110 --> 00:01:15,960
+gostos que agora deveria ter.
+
+16
+00:01:15,970 --> 00:01:20,900
+Ento, vamos dizer como uma letra, porque  exatamente isso que vimos no registro de respostas.
+
+17
+00:01:21,250 --> 00:01:24,700
+Ns forneceremos o ID do registro que foi alterado.
+
+18
+00:01:24,730 --> 00:01:31,510
+E lembre-se de que j recebemos o ID como argumento para o retorno de chamada online, forneceremos o
+
+19
+00:01:31,540 --> 00:01:39,160
+nome do tipo que  o tipo Lirot, assim como vimos no registro de solicitao e notamos que h dois
+
+20
+00:01:39,160 --> 00:01:39,720
+sublinhados aqui.
+
+21
+00:01:39,730 --> 00:01:41,320
+Certifique-se de que voc tenha dois.
+
+22
+00:01:41,530 --> 00:01:44,850
+E, finalmente, temos que fornecer o nmero de gostos.
+
+23
+00:01:45,280 --> 00:01:50,530
+Ento, ns realmente no temos acesso ao nmero de luzes dentro do callback aqui, mas lembre-se
+
+24
+00:01:50,530 --> 00:01:56,490
+de que estamos chamando essa chamada de volta como dentro da funo de mapa de letras de renderizao.
+
+25
+00:01:56,560 --> 00:02:01,900
+Ento, se nos deslocarmos um pouco,  aqui onde chamamos.
+
+26
+00:02:01,900 --> 00:02:06,170
+E j temos acesso ao nmero atual de gostos dentro dessa funo.
+
+27
+00:02:06,400 --> 00:02:14,380
+Ento, vamos fornecer as luzes como um segundo argumento para o retorno de chamada, ento, agora, faa uma conversa de backup
+
+28
+00:02:14,380 --> 00:02:21,090
+dentro do retorno de chamada, podemos receber o nmero de curiosos e, ento, essa  a chave real.
+
+29
+00:02:21,090 --> 00:02:26,060
+Esta  a parte super importante, que vamos levar esse nmero de gostos e vamos adicionar um.
+
+30
+00:02:26,100 --> 00:02:29,020
+Ento, essa  a parte otimista da resposta.
+
+31
+00:02:29,100 --> 00:02:34,320
+Estamos adivinendo que o pedido ir passar com sucesso e esperamos que, quando
+
+32
+00:02:34,320 --> 00:02:39,950
+a resposta voltar, haver um valor de incremento para o nmero de gostos ali mesmo.
+
+33
+00:02:40,470 --> 00:02:43,230
+Ento,  praticamente isso para uma resposta otimista.
+
+34
+00:02:43,240 --> 00:02:48,350
+Mais uma vez, definimos a resposta otimista como uma propriedade quando chamamos a mutao.
+
+35
+00:02:48,660 --> 00:02:54,810
+Ns temos que fornecer um nome de tipo de mutao e, em seguida, a parte realmente importante 
+
+36
+00:02:54,810 --> 00:03:00,360
+que basicamente duplicamos o cdigo ou o que quer que possamos ver  a resposta do back-end.
+
+37
+00:03:00,570 --> 00:03:07,050
+Na prtica, a abordagem que acabamos de tomar onde analisamos a mutao dentro do nosso log de solicitao  absolutamente
+
+38
+00:03:07,350 --> 00:03:11,100
+o que eu recomendo que voc faa em sua prpria aplicao.
+
+39
+00:03:11,100 --> 00:03:16,350
+executar a mutao, olhe a mutao dentro do registro de solicitaes aqui e,
+
+40
+00:03:16,350 --> 00:03:22,170
+literalmente, basta copiar colar esse pedao inteiro l e enfi-lo na resposta otimista assim.
+
+41
+00:03:22,170 --> 00:03:22,840
+Olhe para
+
+42
+00:03:23,130 --> 00:03:28,330
+E, em seguida, para cada varivel que voc espera ter, obviamente, uma cpula da cpula, desculpe-me sub-out.
+
+43
+00:03:28,500 --> 00:03:35,940
+Ento, como eu espero que a idia no seja codificada, espero que seja um valor dinmico, e  por isso que eu estou especificando
+
+44
+00:03:35,940 --> 00:03:37,210
+isso de imediato aqui.
+
+45
+00:03:38,090 --> 00:03:43,470
+Tenho que lidar com o que eu gostaria de salientar  sim podemos condensar isso usando um pouco
+
+46
+00:03:43,490 --> 00:03:50,080
+de sintaxe do ESX para ser apenas Id, ento ok, acho que estamos prontos para um pouco de teste sobre isso.
+
+47
+00:03:50,120 --> 00:03:55,810
+Eu vou virar para o meu editor de cdigo e vou atualizar a pgina e acho que tenho um
+
+48
+00:03:59,980 --> 00:04:02,700
+pouco de erro de digitao aqui em algum lugar.
+
+49
+00:04:03,160 --> 00:04:04,700
+Sim, tenho um erro de digitao em algum lugar.
+
+50
+00:04:04,840 --> 00:04:06,150
+Acho que perdi uma vrgula.
+
+51
+00:04:06,160 --> 00:04:07,400
+Deixe-me fazer um
+
+52
+00:04:10,280 --> 00:04:16,760
+duplo cheque rpido desculpe logo aps variveis Sr. Khama novamente ir atualizar novamente.
+
+53
+00:04:18,520 --> 00:04:19,960
+Tudo bem, muito melhor.
+
+54
+00:04:20,190 --> 00:04:26,490
+Ento, agora, enquanto testamos isso, a expectativa  que, no instante em que eu clicar no boto "polegares
+
+55
+00:04:26,490 --> 00:04:33,530
+para cima", eu deveria ver o incremento do nmero, mas a solicitao s deveria resolver uma pequena quantidade de tempo depois.
+
+56
+00:04:33,570 --> 00:04:35,900
+Lembre-se de que no estamos atrasando o pedido.
+
+57
+00:04:35,910 --> 00:04:38,460
+O pedido ainda est sendo emitido instantaneamente.
+
+58
+00:04:38,490 --> 00:04:40,350
+A nica mudana  neste momento.
+
+59
+00:04:40,380 --> 00:04:43,590
+Estamos adivinhando o que a atualizao deve ser para a IU.
+
+60
+00:04:43,860 --> 00:04:49,020
+Ento, eu vou clicar nisso e voc notar que o nmero aumenta automaticamente,
+
+61
+00:04:49,020 --> 00:04:56,340
+mas cerca de um quarto de segundo depois, a solicitao  realmente respondida como, ento agora sua pergunta imediata
+
+62
+00:04:56,340 --> 00:04:56,950
+pode ser.
+
+63
+00:04:57,000 --> 00:05:03,030
+Bem, Stephen, o que acontece se eu acho incorretamente o que acontece se eu pensasse que isso
+
+64
+00:05:03,030 --> 00:05:03,540
+aconteceria.
+
+65
+00:05:03,560 --> 00:05:08,910
+Mas verifica-se que o servidor o rejeita ou verifica-se que o nmero de gostos  realmente muito
+
+66
+00:05:08,910 --> 00:05:10,210
+maior do que espervamos.
+
+67
+00:05:10,230 --> 00:05:13,560
+Porque talvez muitas outras pessoas tenham votado neste post aqui.
+
+68
+00:05:13,560 --> 00:05:18,750
+Enquanto isso,  uma tima questo e podemos ver muito facilmente o que acontece.
+
+69
+00:05:18,780 --> 00:05:21,700
+Eu vou voltar para a atualizao otimista aqui.
+
+70
+00:05:21,780 --> 00:05:23,130
+Ento aqui est aqui.
+
+71
+00:05:23,130 --> 00:05:24,900
+E aqui est o nmero de curiosos.
+
+72
+00:05:25,260 --> 00:05:31,020
+do cliente, acreditamos que mudar 12, mas o servidor ainda ser incrementado em 1.
+
+73
+00:05:31,020 --> 00:05:38,910
+Ento, o que sabemos agora, voc e eu sabemos que, sempre que executarmos essa mutao, aumentar o nmero de
+
+74
+00:05:38,910 --> 00:05:45,330
+gostos em 1, mas digamos que voc sabe o que talvez cometira um grande erro e
+
+75
+00:05:45,330 --> 00:05:47,200
+talvez pensemos que, no lado
+
+76
+00:05:47,370 --> 00:05:48,900
+Ento, vamos ver o que acontece agora.
+
+77
+00:05:49,780 --> 00:05:54,020
+Eu vou atualizar novamente a pgina novamente.
+
+78
+00:05:54,230 --> 00:05:55,910
+Ento, agora, quando eu clicar no boto.
+
+79
+00:05:56,130 --> 00:05:56,440
+Ah.
+
+80
+00:05:56,450 --> 00:05:58,560
+Agora, esse  um comportamento interessante.
+
+81
+00:05:58,610 --> 00:06:02,420
+No instante em que eu clicar no boto, o nmero se ajusta em 12.
+
+82
+00:06:02,510 --> 00:06:04,370
+Essa  a atualizao otimista.
+
+83
+00:06:04,370 --> 00:06:10,040
+Mas assim que a resposta vem da parte de trs, obtemos a verdade real, que  que
+
+84
+00:06:10,040 --> 00:06:11,720
+s foi incrementada por uma.
+
+85
+00:06:12,020 --> 00:06:17,570
+Ento, voc pode ver que as atualizaes otimistas so uma estratgia bastante segura para realmente aumentar a
+
+86
+00:06:17,570 --> 00:06:18,970
+velocidade da sua IU.
+
+87
+00:06:18,980 --> 00:06:24,320
+O nico tipo de risco aqui  que, se voc comear a fazer as coisas incorretamente, seu usurio
+
+88
+00:06:24,320 --> 00:06:28,290
+ver esse tipo de salto de dados que  muito inesperado para eles.
+
+89
+00:06:28,430 --> 00:06:32,630
+Mas, em geral, no final do dia, no vai quebrar nada por si s.
+
+90
+00:06:32,690 --> 00:06:34,870
+Voc no vai sair completamente daqui.
+
+91
+00:06:35,090 --> 00:06:39,100
+A interface do usurio automaticamente ir eventualmente resolver a resposta correta.
+
+92
+00:06:39,960 --> 00:06:40,510
+EST BEM.
+
+93
+00:06:40,820 --> 00:06:43,130
+Ento, essas so respostas otimistas.
+
+94
+00:06:43,160 --> 00:06:47,870
+Vamos continuar na prxima seo e fazer um pouco de um encerramento nesta aplicao.
+
+95
+00:06:47,990 --> 00:06:48,250
+EST BEM.
+
+96
+00:06:48,290 --> 00:06:48,960
+Uma ltima coisa.
+
+97
+00:06:48,980 --> 00:06:52,120
+Certifique-se de que mudamos as luzes de volta para uma rea.
+
+98
+00:06:52,490 --> 00:06:55,920
+Tudo bem, vamos para a prxima seo e fizemos um pouco de concluso nesta aplicao.
+

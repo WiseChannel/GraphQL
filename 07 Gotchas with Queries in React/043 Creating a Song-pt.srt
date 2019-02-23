@@ -1,0 +1,544 @@
+1
+00:00:00,810 --> 00:00:05,320
+Na ltima seo, terminamos o roteio re-agir dentro da nossa aplicao.
+
+2
+00:00:05,520 --> 00:00:10,080
+Agora que temos o leme do reator no local, podemos comear a trabalhar em algumas das
+
+3
+00:00:10,080 --> 00:00:13,380
+diferentes pginas ou visualizaes diferentes que esperamos ter dentro de nossa aplicao.
+
+4
+00:00:13,410 --> 00:00:19,260
+E assim, o verdadeiro uso imediato disso ser criar uma nova pgina ou um novo componente que
+
+5
+00:00:19,260 --> 00:00:21,530
+usaremos para criar uma nova msica.
+
+6
+00:00:22,110 --> 00:00:28,530
+Sempre que comeo a mencionar as palavras, crie, edite ou destrua. Queremos entrar em nossas cabeas que
+
+7
+00:00:28,530 --> 00:00:30,860
+estamos falando de mutaes com enxerto.
+
+8
+00:00:30,900 --> 00:00:35,370
+Bem, porque essa  a nica maneira que modificamos os dados que esto sentados em nossas costas e servidor.
+
+9
+00:00:35,370 --> 00:00:38,790
+Usamos mutaes para mutao.
+
+10
+00:00:38,790 --> 00:00:42,460
+Vamos trat-los geralmente da mesma maneira que fazemos consultas.
+
+11
+00:00:42,720 --> 00:00:50,370
+Ento, apenas um momento atrs, eu estava conversando com voc sobre como sempre que criamos uma consulta aqui  sempre que
+
+12
+00:00:50,700 --> 00:00:56,360
+criamos uma consulta que desejamos co-localizada com o componente que faz uso dos dados dessa consulta.
+
+13
+00:00:56,580 --> 00:01:02,880
+Ento, no nosso caso, quando fazamos o componente da lista de msicas, escrevemos uma consulta para buscar uma lista
+
+14
+00:01:03,060 --> 00:01:08,930
+de msicas e, portanto, fazia muito sentido colocar essa consulta no mesmo local que a lista de msicas.
+
+15
+00:01:09,180 --> 00:01:12,740
+O mesmo se aplica para mutaes tambm.
+
+16
+00:01:12,780 --> 00:01:18,540
+fazer, eventualmente, deve chamar uma mutao para criar uma nova msica no nosso banco de dados de back-end.
+
+17
+00:01:18,600 --> 00:01:21,760
+Isso cria um componente de msica que estamos prestes a
+
+18
+00:01:21,930 --> 00:01:27,720
+E ento, minha expectativa ser que, depois de criarmos o componente, adicionaremos um conjunto de mutaes
+
+19
+00:01:27,760 --> 00:01:34,270
+dentro desse mesmo arquivo para realmente criar a nova msica nas nossas costas e banco de dados.
+
+20
+00:01:34,290 --> 00:01:35,150
+Ento vamos comear.
+
+21
+00:01:35,220 --> 00:01:35,840
+A outra coisa.
+
+22
+00:01:35,850 --> 00:01:40,230
+Apenas uma ltima coisa realmente real rpida que precisamos ter em mente  que precisamos
+
+23
+00:01:40,230 --> 00:01:42,930
+ter uma certa quantidade de navegao entre essas duas pginas.
+
+24
+00:01:42,960 --> 00:01:48,690
+Ento eu deveria poder grampear este boto de anncio vermelho aqui e v para a pgina Criar msica aqui.
+
+25
+00:01:48,840 --> 00:01:53,280
+Ento eu espero que tambm possamos fazer um pouco de uso do roteador re-agir
+
+26
+00:01:53,370 --> 00:01:55,450
+para conectar a navegao entre os dois.
+
+27
+00:01:55,750 --> 00:01:56,060
+EST BEM.
+
+28
+00:01:56,100 --> 00:01:57,030
+Agora vamos comear.
+
+29
+00:01:57,030 --> 00:01:58,090
+Vamos l.
+
+30
+00:01:58,150 --> 00:02:01,850
+Me d muita diverso dentro do meu editor de cdigo.
+
+31
+00:02:01,860 --> 00:02:05,420
+Primeiro criaremos o componente de criao de msicas.
+
+32
+00:02:05,610 --> 00:02:11,970
+Ento eu vou encontrar meu diretrio de componentes e vou criar um novo arquivo l chamado Song create.
+
+33
+00:02:12,240 --> 00:02:13,050
+Sim.
+
+34
+00:02:13,380 --> 00:02:18,240
+Ento, este componente que estamos prestes a fazer vai mostrar o formulrio para criar e enviar
+
+35
+00:02:18,240 --> 00:02:19,210
+uma nova msica.
+
+36
+00:02:19,620 --> 00:02:24,390
+Em primeiro lugar, juntaremos todo o formulrio em si e teremos certeza de que os usurios podem
+
+37
+00:02:24,390 --> 00:02:30,240
+edit-lo e todo esse tipo de coisas boas ir ligar a navegao com o roteador re-agir e depois voltaremos a
+
+38
+00:02:30,240 --> 00:02:31,140
+conectar a mutao.
+
+39
+00:02:31,200 --> 00:02:35,780
+Ento, ser um processo de trs passos que atravessa isso no topo.
+
+40
+00:02:35,820 --> 00:02:44,220
+e o componente reagir porque estamos criando um formulrio aqui onde um usurio pode inserir alguma quantidade de texto.
+
+41
+00:02:44,220 --> 00:02:45,360
+Vamos importar reagir
+
+42
+00:02:45,390 --> 00:02:46,320
+Eu serei.
+
+43
+00:02:46,380 --> 00:02:52,230
+Espero que faamos uso do nvel de nvel do componente para registrar a entrada dentro
+
+44
+00:02:52,230 --> 00:02:56,250
+dessa entrada de texto para fazer uso do nvel do componente.
+
+45
+00:02:56,250 --> 00:02:59,130
+Vamos usar um componente baseado em classe.
+
+46
+00:02:59,490 --> 00:03:05,730
+Ns no falamos muito sobre o uso do estado com o enxerto bem e tenho certeza de que uma das perguntas queimadas que
+
+47
+00:03:05,730 --> 00:03:08,820
+voc tem na sua cabea  como eu uso redux com enxerto.
+
+48
+00:03:08,830 --> 00:03:12,290
+Bem, isso  tudo o que certamente ir chegar ao tempo.
+
+49
+00:03:12,300 --> 00:03:15,240
+Por agora, novamente estamos um pouco focados no grfico.
+
+50
+00:03:15,240 --> 00:03:16,620
+Q L lado das coisas.
+
+51
+00:03:17,960 --> 00:03:21,100
+Ento, faamos nossa msica criar componentes.
+
+52
+00:03:21,200 --> 00:03:29,270
+Ele vai estender a classe base do componente e isso ir fazer um mtodo de renderizao dentro de aqui e vou
+
+53
+00:03:29,270 --> 00:03:35,560
+lembrar minha declarao de retorno desta vez diferente daquele tempo anterior e dentro do seu para um
+
+54
+00:03:35,570 --> 00:03:41,840
+pouco de caldeira agora eu acho que ns vai apenas adicionar um div colocar um formulrio dentro
+
+55
+00:03:41,840 --> 00:03:45,470
+dele e apenas tipo de deix-lo assim por agora.
+
+56
+00:03:46,460 --> 00:03:52,100
+Vou ento exportar a msica padro criar na parte inferior deste arquivo.
+
+57
+00:03:52,580 --> 00:03:56,420
+Ento lembre-se de ter mencionado que provavelmente localizaramos a mutao dentro daqui.
+
+58
+00:03:56,450 --> 00:04:01,070
+Ento, presumivelmente vamos escrever a mutao diretamente dentro do seu tambm.
+
+59
+00:04:01,070 --> 00:04:04,710
+Mas vamos voltar a isso muito mais tarde no processo.
+
+60
+00:04:06,770 --> 00:04:07,300
+EST BEM.
+
+61
+00:04:07,390 --> 00:04:11,950
+Ento eu acho que o prximo eu sei que eu disse que ns gostaramos de obter o formulrio
+
+62
+00:04:11,950 --> 00:04:16,750
+funcionando e, em seguida, voltar e ligar o roteador re-agir, mas talvez seja melhor garantir que possamos navegar para
+
+63
+00:04:16,750 --> 00:04:19,010
+isso e test-lo um pouco na tela primeiro.
+
+64
+00:04:19,270 --> 00:04:24,910
+em seguida, comece a preencher os detalhes do formulrio apenas para obter algo para aparecer na tela.
+
+65
+00:04:24,910 --> 00:04:28,760
+Ento, vamos ter algo no roteador do re-atuar da tela e,
+
+66
+00:04:28,810 --> 00:04:33,650
+Eu vou colocar uma terceira idade e dizer criar uma nova msica.
+
+67
+00:04:33,940 --> 00:04:40,100
+Basta olhar e ver um bom cabealho dar uma direo ao usurio sobre o que esperamos que eles faam.
+
+68
+00:04:40,750 --> 00:04:46,300
+Agora, para garantir que possamos navegar para este componente, precisamos import-lo para o nosso ndice e no
+
+69
+00:04:46,330 --> 00:04:48,700
+js arquivo e conect-lo para reagir roteador.
+
+70
+00:04:48,700 --> 00:04:51,510
+Ento, vamos voltar para indexar ponto J. S. Vou import-lo.
+
+71
+00:04:51,610 --> 00:04:52,960
+Eu vou colocar a declarao
+
+72
+00:04:53,060 --> 00:04:57,340
+de importao para isso ao lado de todas as outras importaes, nossos componentes que j criamos.
+
+73
+00:04:57,340 --> 00:04:58,450
+Ento, a msica de
+
+74
+00:04:58,810 --> 00:05:08,110
+importao cria a partir de componentes criar msicas assim e adicionaro uma nova rota dentro da configurao do nosso roteador para garantir que o usurio possa navegar para esse componente.
+
+75
+00:05:08,110 --> 00:05:12,580
+Ento, vou dizer que vou ter uma nova rota.
+
+76
+00:05:12,640 --> 00:05:14,950
+Quero que os usurios vejam quando eles vo para a msica do caminho.
+
+77
+00:05:15,310 --> 00:05:19,240
+Slash cria uma msica criadora de msicas para ns agora no estdio.
+
+78
+00:05:19,240 --> 00:05:27,440
+Vamos ficar com a conveno e sempre que um usurio vai l, mostraremos o componente de criao de msicas
+
+79
+00:05:27,490 --> 00:05:35,110
+como alguns Ok, acho que este  provavelmente um bom lugar para fazer um pouco de teste.
+
+80
+00:05:35,120 --> 00:05:41,220
+Eu vou verificar o meu terminal realmente rpido para me certificar de que no tenho erros de digitao.
+
+81
+00:05:41,310 --> 00:05:44,680
+Lembre-se de sempre querer estar atento a esses erros de digitao porque eles sempre se aproximam de voc.
+
+82
+00:05:44,710 --> 00:05:48,780
+E ento, voltaremos para nossa aplicao, tudo atualizado na pgina.
+
+83
+00:05:49,260 --> 00:05:53,620
+EST BEM.
+
+84
+00:05:54,150 --> 00:05:54,520
+Parece que este sem cano ainda funciona como eu esperava.
+
+85
+00:05:54,540 --> 00:05:57,200
+E agora v para a nova barra de msica.
+
+86
+00:05:57,270 --> 00:06:00,250
+Ento, o host local 4000 libras slash song slash new.
+
+87
+00:06:00,450 --> 00:06:05,590
+E eu tenho o meu timo h-3 gigantesco na tela que  tudo o que eu estou ampliando.
+
+88
+00:06:06,240 --> 00:06:12,340
+EST BEM.
+
+89
+00:06:12,420 --> 00:06:12,650
+Espero que o seu seja um tamanho um pouco mais razovel.
+
+90
+00:06:12,660 --> 00:06:15,150
+Isso  um pouco mais apropriado ali mesmo.
+
+91
+00:06:15,510 --> 00:06:19,270
+Ento, agora que temos esse componente aparecendo na tela, podemos
+
+92
+00:06:19,270 --> 00:06:23,970
+comear a nos preocupar um pouco sobre os detalhes do formulrio dentro daqui.
+
+93
+00:06:23,970 --> 00:06:27,000
+Ento, aqui est o formulrio que precisamos adicionar em uma entrada de texto e um rtulo.
+
+94
+00:06:27,000 --> 00:06:31,690
+Ento, o usurio sabe o que esperamos que eles faam com este formulrio aqui.
+
+95
+00:06:31,710 --> 00:06:36,490
+Vamos adicionar o rtulo e a entrada de texto primeiro.
+
+96
+00:06:37,260 --> 00:06:40,720
+Aqui est o meu rtulo vai dizer ao usurio e ao ttulo de sua msica.
+
+97
+00:06:41,070 --> 00:06:46,650
+E ento daremos uma entrada para adicionar a entrada para adicionar o texto ou o ttulo da msica.
+
+98
+00:06:46,650 --> 00:06:54,000
+Agora, novamente, para fazer uso dos dados que esto saindo deste
+
+99
+00:06:54,000 --> 00:06:59,130
+formulrio, vamos usar o nvel do componente.
+
+100
+00:06:59,130 --> 00:07:00,140
+Ento, isso est voltando para um pouco do bsico de reagir e como lidar com as entradas de texto.
+
+101
+00:07:00,300 --> 00:07:05,520
+Ns vamos fazer essa entrada aqui mesmo, uma entrada controlada ou um componente de formulrio controlado,
+
+102
+00:07:05,640 --> 00:07:12,120
+o que significa que vamos assistir a um evento de mudana na entrada sempre que um usurio digitar algo ali.
+
+103
+00:07:12,120 --> 00:07:17,550
+Vamos atualizar o nosso estado de nvel de componente e, em seguida, empurrar o novo valor atualizado de volta para a prpria entrada.
+
+104
+00:07:17,670 --> 00:07:25,600
+temos que inicializ-lo dentro da nossa funo de construo permitida no meu construtor que recebe alguns adereos.
+
+105
+00:07:25,650 --> 00:07:31,170
+Ento, sempre que estamos fazendo uso do nvel de nvel do componente,
+
+106
+00:07:31,170 --> 00:07:38,880
+Certifique-se de que chamemos de super com suporte, o que  um
+
+107
+00:07:38,880 --> 00:07:44,160
+pouco da configurao padro de componentes baseados em classe.
+
+108
+00:07:44,160 --> 00:07:45,630
+E ento vamos inicializar o nosso estado com este estado  ttulo e cadeia vazia.
+
+109
+00:07:45,630 --> 00:07:52,090
+Ento, vou assumir que vamos trabalhar com um pedao de estado denominado Ttulo e que
+
+110
+00:07:52,470 --> 00:07:56,550
+o inicializar na cadeia vazia porque espero que um usurio
+
+111
+00:07:56,550 --> 00:08:02,730
+digite e adicione novos dados a este ttulo pedao de estado ao longo do tempo.
+
+112
+00:08:02,730 --> 00:08:06,900
+Ento, o ltimo passo aqui  garantir que sempre que um usurio digitar dentro dessa coisa.
+
+113
+00:08:06,960 --> 00:08:12,750
+Ento, na mudana, vamos passar uma funo de retorno de chamada onde
+
+114
+00:08:12,840 --> 00:08:14,850
+tomamos o evento que
+
+115
+00:08:17,660 --> 00:08:22,580
+foi emitido pelo evento de mudana e atualizaremos nosso estado.
+
+116
+00:08:23,150 --> 00:08:25,250
+Ento, isso faz com que os estados
+
+117
+00:08:25,250 --> 00:08:33,710
+tomem o ttulo e atribua o valor do destino do evento e vou diminuir o zoom por apenas um segundo para que voc possa ver a linha inteira.
+
+118
+00:08:33,710 --> 00:08:36,370
+Ento, sempre que o usurio atualiza
+
+119
+00:08:36,530 --> 00:08:43,820
+o estado e chamamos o estado do set, ento, retornaremos esse valor para a entrada.
+
+120
+00:08:43,820 --> 00:08:44,300
+faz.
+
+121
+00:08:44,300 --> 00:08:54,250
+Com este ttulo de estado, estou to bem que eu sei que estamos acelerando o lado do reavivamento das coisas aqui, mas estou meio a assumir que o lado do re-atuao provavelmente no 
+
+122
+00:08:54,250 --> 00:08:59,770
+to interessante para voc No contexto deste curso, no que voc realmente se importa,  o grfico que voc
+
+123
+00:08:59,770 --> 00:09:05,040
+Ento,  por isso que estamos passando pelo re-acesso muito rpido aqui.
+
+124
+00:09:05,050 --> 00:09:07,770
+Principalmente apenas para que possamos dar de volta
+
+125
+00:09:07,960 --> 00:09:13,000
+ao material grfico realmente interessante que, na minha opinio,  muito divertido e muito divertido.
+
+126
+00:09:13,000 --> 00:09:15,040
+Espero que voc ache o mesmo.
+
+127
+00:09:15,040 --> 00:09:17,650
+Vamos fazer um ltimo teste rpido apenas para ter certeza
+
+128
+00:09:17,710 --> 00:09:22,990
+de que est funcionando da maneira que esperamos e recebo meu formulrio na tela com a entrada de texto.
+
+129
+00:09:22,990 --> 00:09:24,600
+Ento isso parece muito bom.
+
+130
+00:09:24,700 --> 00:09:26,480
+Definitivamente entra muito bem.
+
+131
+00:09:26,500 --> 00:09:28,450
+Ns tambm temos o rtulo ali como esperamos.
+
+132
+00:09:28,450 --> 00:09:31,710
+Ento vamos dar uma pausa rpida e ento vamos
+
+133
+00:09:32,140 --> 00:09:36,280
+voltar e comear a pensar sobre como vamos ligar o formulrio que
+
+134
+00:09:36,280 --> 00:09:42,640
+criamos para chamar de alguma forma uma mutao que ainda temos que adicionar a este arquivo de componente .
+
+135
+00:09:42,640 --> 00:09:44,140
+Ento, vamos cuidar dessa nutao dentro da prxima seo.
+
+136
+00:09:44,140 --> 00:09:46,710
+&nbsp;
+

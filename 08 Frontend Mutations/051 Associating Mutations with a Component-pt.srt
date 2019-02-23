@@ -1,0 +1,276 @@
+1
+00:00:00,670 --> 00:00:06,120
+Na ltima seo, quando voc terminar de experimentar a mutao da cano de excluso dentro do grfico.
+
+2
+00:00:06,220 --> 00:00:10,470
+Ento, agora tem medo de mov-lo para o componente da lista de msicas e conect-lo.
+
+3
+00:00:10,540 --> 00:00:16,480
+Eu vou copiar toda a mutao e vou abrir meu editor de cdigo e abrir o arquivo
+
+4
+00:00:16,570 --> 00:00:18,180
+da lista de msicas.
+
+5
+00:00:18,250 --> 00:00:24,430
+Ento, eu quero usar o arquivo da lista de msicas para hospedar minha mutao, porque espero que todas as msicas que eu
+
+6
+00:00:24,430 --> 00:00:29,830
+reproduzi dentro das msicas de renderizao ajudem ou aqui esto ficando como um grande X ao lado dele ou uma
+
+7
+00:00:29,830 --> 00:00:34,730
+grande lata de lixo ou algo assim Assim, um usurio pode clicar para excluir essa msica em particular.
+
+8
+00:00:34,930 --> 00:00:40,620
+msica no mesmo local onde vamos ter essa coisa para renderizar um boto para excluir a msica.
+
+9
+00:00:40,630 --> 00:00:43,810
+Ento, definitivamente  sensato localizar essa mutao para excluir uma
+
+10
+00:00:43,810 --> 00:00:44,900
+Definitivamente faz sentido.
+
+11
+00:00:45,740 --> 00:00:46,220
+EST BEM.
+
+12
+00:00:46,440 --> 00:00:51,030
+Ento, vamos colar a mutao aqui no fundo do arquivo.
+
+13
+00:00:51,030 --> 00:00:55,130
+Ns absolutamente poderamos criar um arquivo separado para colocar essa mutao.
+
+14
+00:00:55,170 --> 00:01:01,380
+Assim como fizemos com aquela msica fecche anteriormente essa msica Querrey anteriormente, mas porque eu realmente no espero usar
+
+15
+00:01:01,380 --> 00:01:06,840
+esta mutao em qualquer outro lugar na minha base de cdigo, eu realmente me sinto muito confortvel,
+
+16
+00:01:06,870 --> 00:01:09,380
+apenas coloque dentro desse arquivo de componente.
+
+17
+00:01:09,630 --> 00:01:15,690
+Se eu tivesse alguma expectativa de que eu chamaria essa consulta ou essa mutao de qualquer outro lado,
+
+18
+00:01:15,690 --> 00:01:20,310
+sim, eu certamente esperaria coloc-la dentro de um arquivo auxiliar ou algo assim.
+
+19
+00:01:20,310 --> 00:01:25,200
+Claro, se voc sentir vontade de manter tudo modularizado absolutamente sinta-se livre para fazer um
+
+20
+00:01:25,200 --> 00:01:27,500
+arquivo separado para as casas de Querrey.
+
+21
+00:01:28,090 --> 00:01:28,520
+EST BEM.
+
+22
+00:01:28,710 --> 00:01:34,780
+Ento, vamos descer abaixo deste componente e vamos definir a nutao aqui embaixo.
+
+23
+00:01:34,800 --> 00:01:37,320
+Ento, a mutao Konst ser representada graficamente.
+
+24
+00:01:37,380 --> 00:01:43,950
+usar nossos carrapatos de volta novamente e vamos colar na mutao, existe nossa mutao ali mesmo.
+
+25
+00:01:43,950 --> 00:01:45,280
+Bem, ns vamos
+
+26
+00:01:45,360 --> 00:01:52,380
+Ento, agora precisamos levar essa mutao e fazer um sanduche ou junt-la com um componente da lista de msicas.
+
+27
+00:01:52,380 --> 00:01:58,830
+Voc notar no entanto que j estamos fazendo uso do enxerto, ajudando-a com as nossas msicas de
+
+28
+00:01:58,830 --> 00:01:59,610
+busca existentes.
+
+29
+00:01:59,850 --> 00:02:02,520
+Ento ns temos dois pedaos separados de enxerto.
+
+30
+00:02:02,600 --> 00:02:08,460
+Bem marca ou enxerto de cdigo antigo que queremos integrar de alguma forma com o componente da lista de msicas.
+
+31
+00:02:08,460 --> 00:02:10,880
+E voc pode estar pensando bem, no h problema.
+
+32
+00:02:10,910 --> 00:02:11,640
+Graf kewl.
+
+33
+00:02:11,690 --> 00:02:11,910
+Sim.
+
+34
+00:02:11,940 --> 00:02:13,830
+GRATHWOHL pessoal j descobriu isso.
+
+35
+00:02:13,830 --> 00:02:18,020
+Certamente, podemos saber que passar a mutao  um segundo argumento.
+
+36
+00:02:18,390 --> 00:02:22,610
+Bem, infelizmente, esse no  o caso aqui.
+
+37
+00:02:22,620 --> 00:02:28,860
+A biblioteca grfica o grfico da funo aqui no est configurado para fazer vrias consultas
+
+38
+00:02:28,860 --> 00:02:30,000
+para mltiplas mutaes.
+
+39
+00:02:30,000 --> 00:02:31,770
+ estritamente uma consulta.
+
+40
+00:02:31,770 --> 00:02:33,460
+Uma mutao de cada vez.
+
+41
+00:02:33,870 --> 00:02:38,340
+Ns podemos resolver isso usando um pequeno truque em torno de mutaes
+
+42
+00:02:38,340 --> 00:02:43,970
+que provavelmente examinaremos em algum momento do futuro, mas com perguntas agora no podemos duplicar.
+
+43
+00:02:44,310 --> 00:02:50,630
+Ento, para obter uma grapa de Cuil para jogar bem, teremos que usar vrias instncias desse
+
+44
+00:02:50,670 --> 00:02:51,680
+grfico para ajudar.
+
+45
+00:02:51,960 --> 00:02:58,170
+Ento eu posso te dizer agora que isso no vai se parecer muito bonito, mas voc vai fazer funcionar.
+
+46
+00:02:58,680 --> 00:03:02,380
+Ento, o que vamos fazer  chamar esse auxiliar de ferramenta de grfico.
+
+47
+00:03:02,520 --> 00:03:04,850
+Duas vezes dois tempos separados.
+
+48
+00:03:05,130 --> 00:03:08,550
+Ento, aqui est o que vai parecer que essa sintaxe vai ficar um pouco estranha.
+
+49
+00:03:08,550 --> 00:03:12,110
+Primeiro e, em seguida, mova o grfico para uma linha para uma nova linha.
+
+50
+00:03:12,180 --> 00:03:17,050
+Voc no vai tentar o recuo em um passo, ento vou chamar grfico.
+
+51
+00:03:17,050 --> 00:03:24,330
+Q Tudo bem acima e passar na mutao e eu vou abrir um conjunto de pais e depois fech-lo
+
+52
+00:03:24,330 --> 00:03:28,090
+debaixo do grfico para uma linha com a consulta assim.
+
+53
+00:03:28,440 --> 00:03:32,930
+Ento, isso diz que faz um ajudante usando a funo da ferramenta de grfico.
+
+54
+00:03:32,940 --> 00:03:41,950
+E essa mutao e depois invoc-la imediatamente com o resultado desse outro auxiliar e da lista de msicas.
+
+55
+00:03:42,000 --> 00:03:46,980
+Ento, a sintaxe aqui, sim,  realmente bagunado, seria muito bom se o grfico de uma
+
+56
+00:03:46,980 --> 00:03:49,770
+biblioteca tivesse um ajudante embutido para simplificar esse pouco.
+
+57
+00:03:49,920 --> 00:03:52,830
+Mas agora no h nada desse tipo.
+
+58
+00:03:52,830 --> 00:03:58,380
+Existem algumas outras solues de terceiros para isso que poderiam bastante a sintaxe um pouco, mas, essencialmente,
+
+59
+00:03:58,380 --> 00:04:02,210
+ainda estamos presos com a realizao de chamadas de mltiplas funes assim.
+
+60
+00:04:02,210 --> 00:04:04,560
+Ento  um ponto difcil agora.
+
+61
+00:04:04,560 --> 00:04:09,990
+Mas, como vimos, o Apollo Data tem algumas reas onde espero que possamos obter
+
+62
+00:04:09,990 --> 00:04:11,490
+algumas melhorias no futuro.
+
+63
+00:04:11,490 --> 00:04:17,040
+Tenha em mente que estamos absolutamente na vanguarda da tecnologia web aqui para que voc saiba que peas difceis
+
+64
+00:04:17,040 --> 00:04:19,180
+como esta so apenas par para o curso.
+
+65
+00:04:19,230 --> 00:04:20,990
+ apenas algo com o qual temos que lidar.
+
+66
+00:04:21,920 --> 00:04:22,430
+EST BEM.
+
+67
+00:04:22,610 --> 00:04:24,420
+Nossa mutao est conectada.
+
+68
+00:04:24,420 --> 00:04:30,390
+Vamos dar uma rpida pausa, volte na prxima seo e alinhe um manipulador de eventos para um boto
+
+69
+00:04:30,390 --> 00:04:34,500
+dentro deste componente para garantir que um usurio possa excluir uma msica individual.
+

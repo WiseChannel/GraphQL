@@ -1,0 +1,180 @@
+1
+00:00:00,800 --> 00:00:06,630
+Na ltima seo, juntamos nossa empresa para o tipo de rota queery, de modo que,
+
+2
+00:00:06,630 --> 00:00:13,190
+em termos grficos, possamos solicitar com xito uma empresa muito particular sem ter que primeiro pedir usurio.
+
+3
+00:00:13,260 --> 00:00:19,830
+No entanto, se eu agora tomar essa consulta e pedir que voc saiba quem so todos os usurios que esto
+
+4
+00:00:19,830 --> 00:00:22,670
+associados a esta empresa, me diga seus nomes.
+
+5
+00:00:22,740 --> 00:00:23,510
+Ns fazemos isso.
+
+6
+00:00:23,520 --> 00:00:28,640
+Recebemos uma mensagem de erro que diz que no  possvel criar usurios de campo no tipo de empresa.
+
+7
+00:00:29,130 --> 00:00:30,480
+Ento, por que  isso.
+
+8
+00:00:30,480 --> 00:00:35,190
+verifica-se que na verdade no configuramos essa definio ainda ou essa relao.
+
+9
+00:00:35,190 --> 00:00:41,640
+Definitivamente, parece que devemos pedir uma empresa para todos os usurios que pertencem a essa empresa, mas
+
+10
+00:00:41,640 --> 00:00:45,880
+Este  um diagrama de todas as diferentes relaes que implementamos at agora.
+
+11
+00:00:46,140 --> 00:00:51,110
+Ns instruiu nossa consulta raiz sobre como retornar um usurio muito particular.
+
+12
+00:00:51,270 --> 00:00:57,230
+Conectamos nosso usurio a uma empresa para que possamos dizer o usurio de que tipo voc pertence.
+
+13
+00:00:57,390 --> 00:01:03,960
+Temos a capacidade de passar de um usurio para uma empresa, mas ainda no temos a capacidade de
+
+14
+00:01:03,960 --> 00:01:06,560
+passar de uma empresa para um usurio.
+
+15
+00:01:06,870 --> 00:01:12,720
+Ento, para cada um desses relacionamentos que vo de um tipo de dados para outro
+
+16
+00:01:12,720 --> 00:01:15,200
+tipo, temos que configurar o relacionamento manualmente.
+
+17
+00:01:15,540 --> 00:01:18,350
+Ento, agora, vamos da esquerda para a direita.
+
+18
+00:01:18,420 --> 00:01:25,500
+O que queremos ter  algo assim, onde podemos passar de um usurio para uma empresa ou de uma empresa para uma lista
+
+19
+00:01:25,530 --> 00:01:28,710
+de todos os usurios diferentes que pertencem a essa empresa.
+
+20
+00:01:30,230 --> 00:01:33,710
+Ento, vamos comear a implementar antes de ns.
+
+21
+00:01:33,740 --> 00:01:35,480
+Eu s quero lembrar mais uma coisa.
+
+22
+00:01:35,660 --> 00:01:42,410
+Toda empresa que temos  possui uma Associao de usurios mltiplos, muitos usurios pertencem a apenas uma empresa com
+
+23
+00:01:43,160 --> 00:01:48,470
+o relacionamento que configuramos at agora, podemos passar de um nico usurio para uma nica
+
+24
+00:01:48,560 --> 00:01:49,930
+empresa que faz sentido.
+
+25
+00:01:50,030 --> 00:01:58,180
+Mas, quando passamos de uma empresa para nossos usurios, eu espero obter uma lista de vrios usurios.
+
+26
+00:01:59,250 --> 00:02:00,760
+Bom momento para a implementao.
+
+27
+00:02:00,800 --> 00:02:03,780
+Ns vamos lidar com isso em duas etapas separadas.
+
+28
+00:02:03,800 --> 00:02:10,160
+Primeiro, precisamos verificar o nosso servidor Jason e descobrir como obter a nossa lista de usurios com uma
+
+29
+00:02:10,220 --> 00:02:11,170
+identificao da empresa.
+
+30
+00:02:11,630 --> 00:02:19,030
+Ento, no meu navegador, vou abrir uma nova guia e navegaremos para o nosso servidor Jason.
+
+31
+00:02:19,190 --> 00:02:23,410
+Eu vou procurar minha empresa com a identificao nmero um.
+
+32
+00:02:23,600 --> 00:02:29,260
+Ento, sua empresa gostaria que voc obtivesse uma lista de todos os usurios que esto associados  empresa I. D.
+
+33
+00:02:29,270 --> 00:02:32,810
+um que podemos adicionar em usurios de barras como assim.
+
+34
+00:02:32,870 --> 00:02:34,130
+Ento, ns olhamos isso anteriormente.
+
+35
+00:02:34,130 --> 00:02:39,950
+Eu s queria lembr-lo de como aprendemos um pouco sobre uma empresa para todos os usurios
+
+36
+00:02:39,950 --> 00:02:41,930
+que so sociais com essa empresa.
+
+37
+00:02:41,930 --> 00:02:46,620
+Ns tambm podemos olhar para a empresa com eu. T. e isso tambm nos dar todos
+
+38
+00:02:46,620 --> 00:02:48,120
+os usurios associados  empresa.
+
+39
+00:02:48,200 --> 00:02:51,730
+Mais uma vez, isso  uma lembrana que analisamos isso algumas sees atrs.
+
+40
+00:02:51,830 --> 00:02:57,050
+no servidor apenas porque ns o adicionamos na propriedade ID da empresa para cada um de nossos usurios.
+
+41
+00:02:57,050 --> 00:02:59,980
+Este  um relacionamento que est configurado para ns automaticamente
+
+42
+00:03:00,220 --> 00:03:00,720
+EST BEM.
+
+43
+00:03:00,860 --> 00:03:02,120
+Ento, este  o primeiro passo.
+
+44
+00:03:02,120 --> 00:03:06,120
+Descobrindo como ir de uma empresa para uma lista de usurios.
+
+45
+00:03:06,440 --> 00:03:12,280
+Continuemos trabalhando no resto da implementao dentro do nosso arquivo de esquema na prxima seo.
+

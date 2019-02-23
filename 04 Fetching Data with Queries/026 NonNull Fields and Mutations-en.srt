@@ -1,0 +1,492 @@
+1
+00:00:00,720 --> 00:00:04,350
+In the last section we start working on our first mutation.
+
+2
+00:00:04,350 --> 00:00:09,410
+Remember that mutations are used to change our underlying data in some fashion.
+
+3
+00:00:09,510 --> 00:00:12,990
+Every mutation that we create will have a very specific name.
+
+4
+00:00:13,200 --> 00:00:16,530
+The one that we've created so far is called AD user.
+
+5
+00:00:16,530 --> 00:00:20,020
+The name should at least somewhat indicate what the purpose of the mutation is.
+
+6
+00:00:20,040 --> 00:00:21,580
+And so in the case of AD user.
+
+7
+00:00:21,720 --> 00:00:25,710
+Yeah I think it's pretty reasonable to assume that that means that we're going to add a user to our
+
+8
+00:00:25,710 --> 00:00:27,140
+database.
+
+9
+00:00:27,570 --> 00:00:32,490
+We specify the type that the result function would return which is a user type.
+
+10
+00:00:32,580 --> 00:00:34,990
+And we also specified the args object.
+
+11
+00:00:35,010 --> 00:00:38,130
+Now I want to talk a little bit more about these args for just a moment.
+
+12
+00:00:38,550 --> 00:00:44,510
+Thinking about our application right now it probably makes sense to always require that anyone who calls
+
+13
+00:00:44,510 --> 00:00:51,820
+this mutation at user will pass in a first name and an age for the user that they're trying to create.
+
+14
+00:00:52,020 --> 00:00:56,360
+So it doesn't make any sense to try to make a user without a first name right.
+
+15
+00:00:56,380 --> 00:01:02,860
+Like we always want to make sure that a user has a first name declared something with the age.
+
+16
+00:01:02,980 --> 00:01:08,910
+I think that in the case of the company Id maybe it's OK if we don't pass in a company ID when we attempt
+
+17
+00:01:08,910 --> 00:01:15,480
+to create a user like you know maybe an employee is just not or a user it does not have a job at a certain
+
+18
+00:01:15,480 --> 00:01:16,380
+point in time.
+
+19
+00:01:16,470 --> 00:01:18,910
+Maybe they don't belong to any company.
+
+20
+00:01:18,990 --> 00:01:22,240
+So to add some level of validation for graft.
+
+21
+00:01:22,320 --> 00:01:28,230
+Well mutation here we're going to wrap the type for our first name and our age with a little helper
+
+22
+00:01:28,260 --> 00:01:31,330
+called graph Cuil non No.
+
+23
+00:01:31,620 --> 00:01:35,050
+So we're going to wrap this thing with new graph.
+
+24
+00:01:35,080 --> 00:01:36,970
+Q non.
+
+25
+00:01:37,050 --> 00:01:38,510
+No.
+
+26
+00:01:38,890 --> 00:01:44,400
+Like so and I'm going to do the exact same thing with the age as well.
+
+27
+00:01:44,420 --> 00:01:52,690
+New graphic Well non-nil this tells our schema that whenever someone calls this mutation they must provide
+
+28
+00:01:52,720 --> 00:01:54,930
+a first name and age.
+
+29
+00:01:54,970 --> 00:01:59,280
+Otherwise an error would be thrown the nomenclature or the name.
+
+30
+00:01:59,280 --> 00:02:02,350
+This help right here is kind of I think it's kind of cleared.
+
+31
+00:02:02,440 --> 00:02:06,530
+Non-nil means you have to provide a value for this thing.
+
+32
+00:02:06,580 --> 00:02:09,820
+It has to be graphed you all string and it cannot be M..
+
+33
+00:02:09,850 --> 00:02:16,590
+So graphic non-nil this helper right here is kind of a very low level piece of validation we have.
+
+34
+00:02:16,660 --> 00:02:22,050
+So all it's doing the only validation it's doing is asserting that there is a value being passed in.
+
+35
+00:02:22,180 --> 00:02:28,780
+It doesn't give us any ability to assert that the thing being passed in is a string of say seven characters
+
+36
+00:02:28,780 --> 00:02:34,510
+or two characters and it doesn't have the ability to say that the age must be below like a hundred twenty
+
+37
+00:02:34,510 --> 00:02:35,440
+years old.
+
+38
+00:02:35,440 --> 00:02:41,650
+All it does is it asserts that a value was actually passed in the scruff CULE non-null thing right here
+
+39
+00:02:41,680 --> 00:02:43,930
+is a helper from the graph to a library.
+
+40
+00:02:43,930 --> 00:02:47,830
+So we will be sure to add in a require statement at the top.
+
+41
+00:02:48,120 --> 00:02:54,410
+It's in the scroll all the way back to the top of the document and we'll make sure that we do structure
+
+42
+00:02:54,860 --> 00:03:00,660
+graft Well non-nil off of the you object.
+
+43
+00:03:01,010 --> 00:03:04,800
+Now as far as where to use the graph Kule non-nil help right here.
+
+44
+00:03:04,880 --> 00:03:06,470
+Really it's up to you as the developer.
+
+45
+00:03:06,530 --> 00:03:12,190
+When you're writing mutation if you want to make sure that someone always passes in first name or age
+
+46
+00:03:12,430 --> 00:03:16,900
+all you've got to do is wrap the type with this graphic you are non-nil help right here.
+
+47
+00:03:17,000 --> 00:03:21,980
+And the real effect of that is going to be that whenever a user looks at our documentation the documentation
+
+48
+00:03:21,980 --> 00:03:26,330
+is going to say hey you must provide a value for this property right here.
+
+49
+00:03:27,030 --> 00:03:27,630
+OK.
+
+50
+00:03:27,860 --> 00:03:32,950
+So we've now told graph Well what the type of record will be that we're going need to return.
+
+51
+00:03:32,980 --> 00:03:38,120
+We've specified these three different args and we've also specified that to the args must be provided
+
+52
+00:03:38,120 --> 00:03:40,190
+for the mutation to run successfully.
+
+53
+00:03:40,520 --> 00:03:45,060
+The last thing we have to do here is fill in the implementation for a resolve function.
+
+54
+00:03:45,200 --> 00:03:50,780
+Remember that in a mutation the result function is where we actually undergo the operation to create
+
+55
+00:03:50,780 --> 00:03:54,960
+this new record or this new piece of data inside of our database.
+
+56
+00:03:56,940 --> 00:03:58,880
+OK so let's fill in a couple of the arguments here.
+
+57
+00:03:58,890 --> 00:04:03,000
+The result function is going to have the same list of arguments that we've seen inside of the queries
+
+58
+00:04:03,000 --> 00:04:07,530
+before we've got the parent value and the args object.
+
+59
+00:04:09,090 --> 00:04:15,670
+Now for the result function we'll put in a post request over to our Jason server.
+
+60
+00:04:15,720 --> 00:04:18,120
+We've looked at how to add in records previously.
+
+61
+00:04:18,130 --> 00:04:24,840
+Remember we make a post request to slash users and we add in the name and age of the person that we're
+
+62
+00:04:24,840 --> 00:04:26,980
+trying to add in there.
+
+63
+00:04:27,120 --> 00:04:29,390
+So we'll say return Acciona.
+
+64
+00:04:29,450 --> 00:04:31,540
+So we're going to make a post request this time.
+
+65
+00:04:31,560 --> 00:04:34,430
+So we'll say Dot post as opposed to dot get.
+
+66
+00:04:34,790 --> 00:04:37,440
+We're going to reach out to h t t t.
+
+67
+00:04:37,710 --> 00:04:38,230
+Excuse me.
+
+68
+00:04:38,230 --> 00:04:43,560
+HTP localhost 3000 slash users.
+
+69
+00:04:44,130 --> 00:04:49,110
+And then I want to provide for it now let's just focus on putting in the correct first name and age
+
+70
+00:04:49,110 --> 00:04:53,180
+in here and we'll figure out the company in just a moment.
+
+71
+00:04:53,310 --> 00:04:57,220
+So I'm going to say take the args object right here.
+
+72
+00:04:57,240 --> 00:05:01,970
+Remember there is going to be our first name in our study age assigned to it.
+
+73
+00:05:02,310 --> 00:05:07,460
+I want to pull out just the first name of the age so I'm going to do a little bit of destructuring so
+
+74
+00:05:07,580 --> 00:05:12,600
+I'll take the first name and the age and now for the body of the post request.
+
+75
+00:05:12,630 --> 00:05:20,160
+I want to send along the first name the age from mutation arguments so I'll say first name and age like
+
+76
+00:05:20,160 --> 00:05:23,210
+so OK.
+
+77
+00:05:23,760 --> 00:05:27,270
+The last thing we do is that little bit of compatibility layer on the response.
+
+78
+00:05:27,270 --> 00:05:31,500
+So we'll say rez is Rezwan data.
+
+79
+00:05:31,830 --> 00:05:34,530
+I think that we're ready for a test here.
+
+80
+00:05:34,590 --> 00:05:36,430
+There is one less thing we have to do.
+
+81
+00:05:36,480 --> 00:05:42,750
+We have created this mutation object right here but we have not actually associated it with our graft
+
+82
+00:05:42,970 --> 00:05:44,280
+schema just yet.
+
+83
+00:05:44,280 --> 00:05:48,360
+So we're going to go down to the graft all scheme out at the very bottom of the file and we're going
+
+84
+00:05:48,360 --> 00:05:51,410
+to inform it that hey here's the root Querrey.
+
+85
+00:05:51,420 --> 00:05:55,830
+We've also got a root root mutation for you to use as well.
+
+86
+00:05:56,340 --> 00:06:03,510
+And because it's mutation mutation will just shorten it down to the mutation like so.
+
+87
+00:06:03,520 --> 00:06:03,940
+All right.
+
+88
+00:06:03,940 --> 00:06:04,800
+Test time.
+
+89
+00:06:05,080 --> 00:06:12,280
+Let's flip back over to the browser refresh the page to make sure that our schema updates if we open
+
+90
+00:06:12,280 --> 00:06:13,880
+up the docs panel now.
+
+91
+00:06:13,930 --> 00:06:20,180
+You'll see that our group types has a mutation type if we click on it we see hey here's the user mutation
+
+92
+00:06:20,830 --> 00:06:28,210
+and we've got string x exclamation mark in inte exclamation mark the exclamation marks on here indicate
+
+93
+00:06:28,330 --> 00:06:30,920
+that we are requiring that value.
+
+94
+00:06:30,970 --> 00:06:36,080
+So you must provide in a value for the first name and it must be of type string.
+
+95
+00:06:38,030 --> 00:06:43,970
+So let's call our mutation clayey mutation has a slightly different syntax from the from the queries
+
+96
+00:06:43,970 --> 00:06:48,290
+that we've been writing so far to indicate that we're going to write a mutation.
+
+97
+00:06:48,290 --> 00:06:53,650
+We first write the key word mutation like so and then we open up our curly braces.
+
+98
+00:06:53,690 --> 00:06:56,700
+So really yeah it does look somewhat similar to writing a query.
+
+99
+00:06:56,720 --> 00:06:59,350
+The only thing we're doing here is we're adding mutation key word.
+
+100
+00:06:59,360 --> 00:07:07,040
+I had a time when we can call our add user mutation we place the name of the mutation that we want to
+
+101
+00:07:07,040 --> 00:07:10,890
+call and then the list of arguments that we want to provide into it.
+
+102
+00:07:11,210 --> 00:07:16,770
+So first will be the first name I'll say here's the value for the first name.
+
+103
+00:07:16,940 --> 00:07:22,700
+I want it to be Stephen and let's give him an age of 26.
+
+104
+00:07:22,700 --> 00:07:26,620
+Now here's the one thing that's a little bit awkward about mutations.
+
+105
+00:07:26,750 --> 00:07:32,730
+Whenever we call it mutation we must then ask for some properties coming back off of it.
+
+106
+00:07:32,780 --> 00:07:41,490
+So notice I had the opening curly braces here and I'm going to ask for the ID the first name and the
+
+107
+00:07:41,490 --> 00:07:49,020
+age that comes back when I say it comes back I'm talking about what got resolved from the resolve function.
+
+108
+00:07:49,260 --> 00:07:53,830
+So back inside of our schema we made the post request to create a new user.
+
+109
+00:07:53,940 --> 00:07:59,870
+When this post request succeeds it will resolve with the record that was just created over on the base
+
+110
+00:07:59,870 --> 00:08:01,190
+on server side.
+
+111
+00:08:01,530 --> 00:08:07,070
+And so we're asking about some details about the record that was just created over on the server.
+
+112
+00:08:07,110 --> 00:08:12,720
+So I want to know the id the first name and the age of the user that was just created on the Geass on
+
+113
+00:08:12,720 --> 00:08:14,150
+server side.
+
+114
+00:08:14,220 --> 00:08:19,560
+Notice that because the record has been saved on the Giese on server it will automatically be assigned
+
+115
+00:08:19,560 --> 00:08:20,510
+an ID.
+
+116
+00:08:20,520 --> 00:08:24,920
+So we're just going to kind of assume that an I.D. will be present on the object.
+
+117
+00:08:25,100 --> 00:08:26,210
+So let's give this thing a shot.
+
+118
+00:08:26,220 --> 00:08:27,310
+I'm going to run the query.
+
+119
+00:08:27,690 --> 00:08:28,750
+And all right.
+
+120
+00:08:28,770 --> 00:08:30,170
+Looks like it worked pretty well.
+
+121
+00:08:30,390 --> 00:08:35,820
+So we've got the ID the first name and the age of the user are coming back to us.
+
+122
+00:08:35,850 --> 00:08:37,070
+So this is looking pretty good.
+
+123
+00:08:37,110 --> 00:08:40,230
+Let's continue on with our next mutation in the next section.
+

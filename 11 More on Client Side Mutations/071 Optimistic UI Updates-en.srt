@@ -1,0 +1,264 @@
+1
+00:00:00,730 --> 00:00:06,890
+In the last section we finished up the functionality for allowing a user to like an individual lyric.
+
+2
+00:00:06,890 --> 00:00:12,780
+However we notice that whenever you click on the Like button there's like a quarter or a half of a second
+
+3
+00:00:12,850 --> 00:00:17,400
+delay which is which is just a little bit irritating to see.
+
+4
+00:00:17,410 --> 00:00:22,960
+You'll also note that this is a delay that is kind of minimized when we're running it on our local machine.
+
+5
+00:00:22,960 --> 00:00:28,480
+And I suspect that if we deploy this to an actual production style app you might see even more latency
+
+6
+00:00:28,510 --> 00:00:32,230
+or even more lag as we wait for that number to get updated.
+
+7
+00:00:32,230 --> 00:00:38,860
+So I want to propose that maybe if we figure out a solution for making it appear that the update is
+
+8
+00:00:38,950 --> 00:00:42,170
+instant as far as our user is concerned.
+
+9
+00:00:42,490 --> 00:00:48,610
+Luckily Apollo has fantastic support for this directly out of the box through a system that it calls
+
+10
+00:00:48,880 --> 00:00:52,850
+optimistic updates or optimistic responses.
+
+11
+00:00:53,190 --> 00:00:57,160
+So let's take a look at the diagram and try to understand a little bit about how it works.
+
+12
+00:00:58,500 --> 00:00:59,310
+OK.
+
+13
+00:00:59,770 --> 00:01:02,010
+So we are going down in time here.
+
+14
+00:01:02,020 --> 00:01:07,810
+So in the vertical direction or vertical axis we are starting at the very beginning at the top and then
+
+15
+00:01:07,810 --> 00:01:10,030
+time is passing as we go down.
+
+16
+00:01:10,030 --> 00:01:16,240
+So here's the order of operations whenever we want to use an optimistic response.
+
+17
+00:01:16,240 --> 00:01:23,050
+We're going to call mutation and when we color mutation we're going to pass along a little object that's
+
+18
+00:01:23,050 --> 00:01:30,550
+going to say hey when you call this nutation I bet you anything that we're going to get a response that
+
+19
+00:01:30,550 --> 00:01:36,270
+looks like something we're going to guess at what the response is when it comes back.
+
+20
+00:01:36,550 --> 00:01:42,220
+Apollo is going to take that guess of what we think the response is going to be and it's going to apply
+
+21
+00:01:42,220 --> 00:01:45,060
+it to the data inside of its internal store.
+
+22
+00:01:45,310 --> 00:01:52,230
+It's going to instantly render our re-act application with this new guess at what our data should be.
+
+23
+00:01:52,240 --> 00:01:58,360
+So as far as our user is concerned the UI is going to instantly appear to update.
+
+24
+00:01:58,570 --> 00:02:03,850
+Now simultaneously the mutation is going to be issued to our back and as a network request.
+
+25
+00:02:04,060 --> 00:02:10,600
+And so that request has been pending for that quarter or half of a second that we are already waiting.
+
+26
+00:02:10,750 --> 00:02:17,620
+When the nutation resolves and the response comes back Appollo we'll take that response and then update
+
+27
+00:02:17,650 --> 00:02:22,980
+its local copy of data to match whatever the response actually is said.
+
+28
+00:02:23,110 --> 00:02:29,200
+And then it will update our UI with whatever the real data is from the backend server.
+
+29
+00:02:29,200 --> 00:02:35,050
+So again the idea here is that we are going to guess at the response that we expect to see if a mutation
+
+30
+00:02:35,470 --> 00:02:37,600
+the UI will instantly update.
+
+31
+00:02:37,750 --> 00:02:42,730
+And then when we actually get the response from the server do you guys going to update again with whatever
+
+32
+00:02:42,730 --> 00:02:45,120
+data actually came back.
+
+33
+00:02:45,130 --> 00:02:51,340
+Now of course we usually are going to really hope that the guess of our response is the same as the
+
+34
+00:02:51,370 --> 00:02:57,130
+actual response because otherwise the user is going to see kind of this like rapidly changing little
+
+35
+00:02:57,130 --> 00:03:03,220
+flip of data and will definitely kind of a Wolfen angle around with our response or our guests response
+
+36
+00:03:03,220 --> 00:03:03,850
+right here.
+
+37
+00:03:03,910 --> 00:03:08,650
+So you can see that in action you need to get a better sense of where it kind of might seem a little
+
+38
+00:03:08,650 --> 00:03:12,650
+bit funny to the user if things don't go quite as we as we expect.
+
+39
+00:03:13,630 --> 00:03:15,420
+So let's give this a shot.
+
+40
+00:03:15,460 --> 00:03:21,670
+I'm going to open up my saw or some of my lyrics list component and I'm going to find a mutation that
+
+41
+00:03:21,670 --> 00:03:23,190
+we define inside of there.
+
+42
+00:03:23,470 --> 00:03:31,800
+So here's the mutation where we'd like an individual lyric now telling Appollo to use an optimistic
+
+43
+00:03:31,800 --> 00:03:35,730
+response is actually kind of straightforward in some regards.
+
+44
+00:03:35,760 --> 00:03:40,030
+The real challenge is deciding what the response should be.
+
+45
+00:03:40,080 --> 00:03:46,650
+So let's start off by first looking at the typical response that we get whenever this mutation is executed.
+
+46
+00:03:46,740 --> 00:03:48,820
+So we have flip back over to my browser.
+
+47
+00:03:49,260 --> 00:03:55,050
+I'm going to expand the network request tab inside of my console and I'm going to look at just any of
+
+48
+00:03:55,050 --> 00:03:56,330
+these mutations.
+
+49
+00:03:56,370 --> 00:04:00,050
+You'll notice that as I click the buttons I get more requests in here.
+
+50
+00:04:00,270 --> 00:04:02,800
+I'm going to pick one at random and take a look at it.
+
+51
+00:04:04,580 --> 00:04:05,260
+OK.
+
+52
+00:04:05,630 --> 00:04:07,320
+So here it is right here.
+
+53
+00:04:07,400 --> 00:04:12,320
+You'll notice that we get back like lyric.
+
+54
+00:04:12,320 --> 00:04:18,500
+We have the type name of the lyric and then we have the ID and the number of likes that are associated
+
+55
+00:04:18,500 --> 00:04:19,570
+with it.
+
+56
+00:04:19,580 --> 00:04:25,880
+So what we're going to do is we're going to tell Appollo that it should expect to get back some type
+
+57
+00:04:25,880 --> 00:04:29,370
+of mutation called like lyric.
+
+58
+00:04:29,630 --> 00:04:32,210
+It will have this ID right here.
+
+59
+00:04:32,210 --> 00:04:39,420
+It will have a type name of lyric type and then the number of Wykes will be however many we really expect
+
+60
+00:04:39,420 --> 00:04:39,980
+it to be.
+
+61
+00:04:39,980 --> 00:04:45,080
+So we're going to have to do a little bit of footwork on guessing what the current number of likes should
+
+62
+00:04:45,080 --> 00:04:45,430
+be.
+
+63
+00:04:45,470 --> 00:04:47,780
+After we run the mutation.
+
+64
+00:04:47,810 --> 00:04:48,110
+OK.
+
+65
+00:04:48,140 --> 00:04:49,100
+So that's our plan.
+
+66
+00:04:49,100 --> 00:04:54,450
+Let's take a quick break and then come back in the next section and implement this optimistic update.
+

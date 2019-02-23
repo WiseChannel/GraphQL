@@ -1,0 +1,356 @@
+1
+00:00:00,830 --> 00:00:06,240
+Na ltima seo e juntamos nossa forma de arte na sua totalidade, agora precisamos ter certeza de que,
+
+2
+00:00:06,240 --> 00:00:11,250
+sempre que o usurio envie esse formulrio, aqui ns coramos a mutao para registrar o usurio.
+
+3
+00:00:11,520 --> 00:00:16,910
+Ento, como lembrete, isso  logar o usurio e no estamos tentando assinar o usurio ainda.
+
+4
+00:00:17,190 --> 00:00:19,740
+Agora, h algumas coisas que precisamos estar cientes.
+
+5
+00:00:19,740 --> 00:00:25,440
+Primeiro, precisamos estar cientes de que, sempre que enviarmos nossa mutao, podem haver alguns erros
+
+6
+00:00:25,440 --> 00:00:26,590
+que nos retornam.
+
+7
+00:00:26,640 --> 00:00:32,730
+Ento, talvez o usurio entre na senha incorreta talvez eles entrem em um email que no existe.
+
+8
+00:00:32,730 --> 00:00:38,130
+que o usurio saiba que eles precisam fazer uma pequena alterao em suas informaes de login.
+
+9
+00:00:38,130 --> 00:00:45,230
+Temos que descobrir alguma forma de comunicar esses erros de volta no formulrio para que eles apaream na tela para
+
+10
+00:00:45,690 --> 00:00:50,320
+Mas primeiro vamos nos preocupar em colocar a mutao em conjunto e depois voltaremos com
+
+11
+00:00:50,320 --> 00:00:54,620
+o componente em si e depois nos preocuparemos com o tratamento de erros.
+
+12
+00:00:54,990 --> 00:00:58,780
+Ento, como de costume, vamos comear dentro do grfico.
+
+13
+00:00:58,800 --> 00:01:05,470
+Vamos colocar nossa mutao juntos por aqui e depois vamos copi-lo para o nosso componente.
+
+14
+00:01:05,620 --> 00:01:10,270
+Ento, estamos lidando com a mutao de logging em algumas vezes, mas sempre codificamos
+
+15
+00:01:10,270 --> 00:01:11,930
+o e-mail e a senha.
+
+16
+00:01:12,070 --> 00:01:14,310
+No quero codificar o e-mail e a senha.
+
+17
+00:01:14,380 --> 00:01:21,100
+S sabemos o que o valor deve ser no tempo de execuo, ento precisamos mudar isso em uma mutao chamada
+
+18
+00:01:21,400 --> 00:01:25,460
+onde podemos receber o e-mail e a senha como variveis de consulta.
+
+19
+00:01:25,720 --> 00:01:29,350
+Ento vou limpar todo o cetceo que entro aqui agora.
+
+20
+00:01:29,530 --> 00:01:32,200
+E, na verdade, vou atualizar toda a ferramenta.
+
+21
+00:01:32,400 --> 00:01:37,630
+E vamos comear do zero e certifique-se de que o log de mutao seja nomeado para que
+
+22
+00:01:37,860 --> 00:01:42,030
+ele volte ou me desculpe para que ele possa aceitar algumas variveis de consulta.
+
+23
+00:01:42,030 --> 00:01:44,260
+Ento, vamos primeiro.
+
+24
+00:01:44,370 --> 00:01:51,080
+Assim como um lembrete rpido, a prpria mutao requer o email como uma string e uma senha como uma string.
+
+25
+00:01:51,130 --> 00:01:59,620
+Ento, eu primeiro definirei algumas variveis de consulta para que possamos testar contra todos, definir um e-mail de
+
+26
+00:01:59,620 --> 00:02:04,630
+teste no ponto de teste e uma senha de senha.
+
+27
+00:02:04,630 --> 00:02:08,910
+Ento, novamente, para mim, esta  uma informao de conta vlida para a conta que eu criei.
+
+28
+00:02:09,100 --> 00:02:12,530
+Se voc fez alguma conta com um e-mail e uma senha diferentes.
+
+29
+00:02:12,580 --> 00:02:19,060
+Certifique-se de inserir aqueles aqui porque queremos testar essa mutao e garantir que ela seja executada com sucesso.
+
+30
+00:02:19,060 --> 00:02:25,030
+Agora, podemos escrever nossa mutao que ser uma mutao nomeada para que possamos aceitar as variveis de consulta.
+
+31
+00:02:25,030 --> 00:02:27,870
+Ento, declararemos uma mutao.
+
+32
+00:02:28,030 --> 00:02:34,170
+Diga que eu quero declarar a mutao chamada log in e vai aceitar duas variveis separadas.
+
+33
+00:02:34,600 --> 00:02:42,220
+Primeiro, vamos ter um campo de e-mail que seria uma seqncia de caracteres e um campo de senha
+
+34
+00:02:42,220 --> 00:02:50,650
+que tambm ser uma string, ento iremos nomear a mutao real que queremos executar, que  logar nesta mutao, aceita
+
+35
+00:02:50,680 --> 00:02:56,860
+tanto um e-mail que vir da string de consulta de e-mail que aceitamos como argumento.
+
+36
+00:02:57,340 --> 00:02:59,200
+No somos uma string de consulta, mas uma varivel de consulta.
+
+37
+00:02:59,200 --> 00:03:00,200
+Desculpe.
+
+38
+00:03:00,460 --> 00:03:06,520
+E a senha que tambm vir das variveis de consulta e, em seguida, na resposta
+
+39
+00:03:06,520 --> 00:03:10,450
+que receberemos, obteremos o ID e o email assim.
+
+40
+00:03:10,890 --> 00:03:11,210
+EST BEM.
+
+41
+00:03:11,260 --> 00:03:13,580
+Ento eu acho que isso parece muito bom.
+
+42
+00:03:13,600 --> 00:03:16,030
+Eu acho que estamos preparados para dar uma pequena prova.
+
+43
+00:03:16,030 --> 00:03:22,350
+Ento eu vou tentar registrar o usurio e eu apareo para recuperar uma ID vlida e um e-mail vlido.
+
+44
+00:03:22,360 --> 00:03:26,830
+Ento, eu definitivamente suspeito que sinto que posso assumir com segurana  o que devo dizer.
+
+45
+00:03:26,830 --> 00:03:31,770
+Eu sinto que posso assumir com segurana que nossa mutao est trabalhando da maneira que esperamos.
+
+46
+00:03:31,810 --> 00:03:37,870
+Ento, vamos copiar tudo isso vai fazer um novo arquivo de mutao e colocar esta mutao diretamente nela.
+
+47
+00:03:39,780 --> 00:03:45,330
+Ento, dentro do meu diretrio de mutaes vou criar um novo arquivo que vai abrigar essa
+
+48
+00:03:45,590 --> 00:03:46,540
+mutao chamada loggin.
+
+49
+00:03:46,820 --> 00:03:50,700
+J. S. Ns passamos por esse processo muitas vezes.
+
+50
+00:03:50,700 --> 00:03:54,990
+Agora vamos primeiro importar o GQ El helper.
+
+51
+00:03:55,240 --> 00:04:01,140
+Vamos chamar a pasta GQ helper na consulta e, em seguida, certifique-se de export-la como a exportao
+
+52
+00:04:01,140 --> 00:04:02,170
+padro desse arquivo.
+
+53
+00:04:02,490 --> 00:04:09,080
+Ento, importe o GQ L do grfico Q Todos os etiquetados exportaro padres.
+
+54
+00:04:09,150 --> 00:04:12,950
+GQ bem colocar a seqncia de consulta.
+
+55
+00:04:12,960 --> 00:04:16,820
+Me tire as tticas e depois cole a consulta real.
+
+56
+00:04:16,840 --> 00:04:19,430
+Isso  duas vezes que mencionei a linha direta de Cleary, que est totalmente fora.
+
+57
+00:04:19,470 --> 00:04:22,780
+Meu crebro est claramente em um ponto diferente agora.
+
+58
+00:04:23,300 --> 00:04:24,950
+OK, isso parece muito bom.
+
+59
+00:04:24,960 --> 00:04:26,160
+Eu gosto disso.
+
+60
+00:04:26,490 --> 00:04:28,170
+Ns colocamos a nossa mutao.
+
+61
+00:04:28,370 --> 00:04:33,840
+Ento, a ltima coisa que temos que fazer  conectada ao nosso formulrio de log e ento podemos nos preocupar em pass-lo para baixo
+
+62
+00:04:33,840 --> 00:04:39,600
+como algum tipo de retorno de chamada ou algo assim no Auth real. Formato.
+
+63
+00:04:39,600 --> 00:04:48,080
+Ento, dentro do meu formulrio de registro em formulrio, vamos importar a mutao e a mutao de log e o grfico voc
+
+64
+00:04:48,110 --> 00:04:49,430
+como um ajudante.
+
+65
+00:04:49,560 --> 00:05:02,920
+Ento importar nutao de mutaes logar e importar grfico Cuil de reagir Appollo.
+
+66
+00:05:03,030 --> 00:05:09,600
+Agora eu sinto que no fui totalmente consistente com o nome de consultas e mutaes importadas.
+
+67
+00:05:09,600 --> 00:05:13,590
+Mais uma vez sinta-se  vontade para chamar exatamente o que a mutao  chamada.
+
+68
+00:05:13,590 --> 00:05:17,960
+Ento, neste caso, talvez acesse ou apenas ligue para a palavra nutao.
+
+69
+00:05:18,060 --> 00:05:24,240
+Muitas vezes, quando voc faz uso da mutao, voc pode estar passando para um objeto em que a
+
+70
+00:05:24,240 --> 00:05:30,460
+chave e o valor acabaro sendo uma nutao. E, assim, apenas importando essas coisas como uma queixa ou mutao.
+
+71
+00:05:30,480 --> 00:05:36,180
+Eu sou apenas um tipo de pensamento sobre o futuro sobre fazer uso dessas variveis com sim 6 sintaxe
+
+72
+00:05:36,420 --> 00:05:39,130
+onde eu posso condensar para ser apenas a chave.
+
+73
+00:05:39,140 --> 00:05:42,900
+Ou  apenas um nome de varivel e permite que ele seja expandido automaticamente.
+
+74
+00:05:42,900 --> 00:05:49,050
+Para mim, a chave e o valor e voc pode ver isso na prtica dentro do cabealho J. S. arquivo onde eu importai isso
+
+75
+00:05:49,050 --> 00:05:54,240
+como queery porque eu sabia que mais tarde eu estaria fazendo uso de consultas
+
+76
+00:05:54,480 --> 00:05:57,440
+de pr-busca que esperavam uma varivel chamada consulta.
+
+77
+00:05:57,450 --> 00:06:01,670
+Agora, novamente, se voc estiver importando vrias consultas ou mltiplas mutaes.
+
+78
+00:06:01,840 --> 00:06:06,960
+Bem, ento, isso  definitivamente quando voc vai querer comear a pensar em nome-lo corretamente
+
+79
+00:06:06,960 --> 00:06:10,430
+para que algo como log in mutation seja muito mais apropriado.
+
+80
+00:06:10,440 --> 00:06:14,190
+Se eu tivesse mltiplas mutaes dentro de um nico arquivo.
+
+81
+00:06:15,090 --> 00:06:20,610
+Ok, ento, agora, nosso ltimo passo ser tomar a vista grfica de todos os helper, levar a mutao
+
+82
+00:06:20,610 --> 00:06:22,870
+e empurr-la junto com o formulrio de login.
+
+83
+00:06:23,010 --> 00:06:30,390
+Ento, no fundo, pegue o enxerto, voc passar a mutao e depois o segundo conjunto de parnteses para o
+
+84
+00:06:30,390 --> 00:06:32,400
+log e o prprio formulrio.
+
+85
+00:06:33,070 --> 00:06:35,060
+OK, ento isso parece estar bem.
+
+86
+00:06:35,070 --> 00:06:36,530
+A ltima coisa que temos a fazer.
+
+87
+00:06:36,720 --> 00:06:42,450
+Certifique-se de que sempre que o formulrio  enviado dentro do formulrio off, chamamos a mutao que
+
+88
+00:06:42,450 --> 00:06:44,630
+agora est disponvel dentro deste componente.
+
+89
+00:06:44,670 --> 00:06:49,790
+Ento vamos fazer uma pausa rpida e depois voltaremos e adicionaremos um pouco de retorno para o formulrio off.
+

@@ -1,0 +1,240 @@
+1
+00:00:00,750 --> 00:00:05,400
+Na ltima seo, obtivemos alguns dos nossos dados para realmente aparecer na tela, o que 
+
+2
+00:00:05,400 --> 00:00:06,860
+uma grande vitria para ns.
+
+3
+00:00:06,990 --> 00:00:11,220
+Mas tambm vimos um pouco de advertncia aqui que vamos ter que
+
+4
+00:00:11,220 --> 00:00:12,540
+resolver antes de avanarmos.
+
+5
+00:00:12,600 --> 00:00:17,250
+A mensagem de aviso que vimos  queixar-se de que estamos criando uma srie de componentes
+
+6
+00:00:17,260 --> 00:00:22,020
+que  verdade que estamos fazendo uma srie de msicas para cada msica que buscamos no servidor.
+
+7
+00:00:22,110 --> 00:00:27,100
+Mas ns no fornecemos um suporte chave para cada mosca individual que criamos.
+
+8
+00:00:27,300 --> 00:00:32,760
+usa essas chaves internamente para garantir que ela faa a renderizao da lista de forma eficiente.
+
+9
+00:00:32,760 --> 00:00:39,200
+Ento, isso est voltando para coisas bsicas, onde devemos fornecer uma chave para cada componente que representamos em
+
+10
+00:00:39,240 --> 00:00:40,690
+uma reagem de lista,
+
+11
+00:00:42,130 --> 00:00:47,020
+Ento, isso est entrando em algo que  um pouco um tipo de bummer.
+
+12
+00:00:47,080 --> 00:00:54,400
+Eu diria no grfico CULE mundo que precisamos para identificar cada aliado aqui com uma chave nica.
+
+13
+00:00:54,430 --> 00:00:56,740
+Lembre-se disso  como as chaves dentro do re-agir funcionam.
+
+14
+00:00:56,730 --> 00:00:59,010
+Tem que ser uma chave nica.
+
+15
+00:00:59,380 --> 00:01:04,920
+Tradicionalmente, usamos uma chave que  a ID do modelo que estamos processando.
+
+16
+00:01:05,170 --> 00:01:11,350
+seja timo, s temos que buscar o ttulo de cada msica na prtica, geralmente acabamos por buscar o ID tambm.
+
+17
+00:01:11,350 --> 00:01:16,070
+Ento, a razo pela qual eu digo que isso  uma pena  que, embora
+
+18
+00:01:16,090 --> 00:01:22,030
+Ento, normalmente, geralmente fazemos um pouco mais de uma recuperao satisfatria sempre que estamos apresentando
+
+19
+00:01:22,090 --> 00:01:23,680
+uma lista de dados.
+
+20
+00:01:23,680 --> 00:01:26,330
+Agora,  claro, isso s  verdade quando realmente estamos apresentando uma lista aqui.
+
+21
+00:01:26,350 --> 00:01:33,370
+Se estivssemos a renderizar uma msica individual, tal como uma cano por si s, no precisvamos realmente da ID porque no
+
+22
+00:01:33,370 --> 00:01:38,470
+estamos a renderizar uma lista e no precisamos de uma chave para identificar cada aliado particular.
+
+23
+00:01:38,740 --> 00:01:44,890
+Ento, para garantir que obtenhamos a identificao de cada msica individual, vamos modificar o que 
+
+24
+00:01:44,890 --> 00:01:47,630
+apenas um pouco para acessar a chave.
+
+25
+00:01:48,100 --> 00:01:51,390
+Ento, vamos em direo a Querrey, voc sabe encontrar minha consulta.
+
+26
+00:01:51,400 --> 00:01:56,800
+Neste momento, estamos apenas pedindo o ttulo de cada msica e ns vamos modific-lo
+
+27
+00:01:56,800 --> 00:01:59,940
+tambm pedindo o ID de cada msica tambm.
+
+28
+00:01:59,950 --> 00:02:05,830
+Ento, agora, quando este curry for emitido Retornaremos o ttulo e a idia de cada msica e agora
+
+29
+00:02:05,830 --> 00:02:07,910
+backup dentro da funo do mapa.
+
+30
+00:02:07,990 --> 00:02:14,320
+Podemos ajustar a declarao da chave e dizer que deve ser a idia de cada msica individual.
+
+31
+00:02:14,890 --> 00:02:19,900
+Ento, novamente, um pouco mais difcil de atrapalhar voc pode fazer o caso de usar o ttulo de
+
+32
+00:02:19,960 --> 00:02:21,490
+cada msica como a chave.
+
+33
+00:02:21,490 --> 00:02:27,160
+Se voc tivesse a garantia de que o ttulo sempre seria exclusivo, mas com a forma como nosso
+
+34
+00:02:27,160 --> 00:02:29,820
+aplicativo est configurado atualmente, realmente no temos essa garantia.
+
+35
+00:02:29,860 --> 00:02:34,020
+Ento, realmente deveria ser o documento de identificao como a chave aqui.
+
+36
+00:02:34,120 --> 00:02:36,110
+Ento, vamos atualizar novamente no navegador.
+
+37
+00:02:36,640 --> 00:02:38,430
+E a mensagem de aviso desaparece.
+
+38
+00:02:38,440 --> 00:02:39,930
+Fantstico.
+
+39
+00:02:39,940 --> 00:02:44,590
+Agora, a ltima coisa que eles querem fazer  muito rpida,  apenas para reforar o estilo de nossa
+
+40
+00:02:44,590 --> 00:02:45,640
+aplicao apenas um pouco.
+
+41
+00:02:45,640 --> 00:02:47,770
+Voc sabe que agora  um pouco feio.
+
+42
+00:02:47,980 --> 00:02:52,820
+E vamos apenas melhorar o estilo um pouco enquanto passamos por pea.
+
+43
+00:02:52,840 --> 00:02:58,630
+Este projeto j est conectado para usar a biblioteca CSSA materializada para que possamos sair em
+
+44
+00:02:58,630 --> 00:03:03,790
+alguns nomes de classes para os diferentes elementos dentro daqui e obter um pouco melhor
+
+45
+00:03:03,790 --> 00:03:06,260
+para sair do porto gratuitamente na hora.
+
+46
+00:03:06,330 --> 00:03:17,500
+Eu preciso adicionar um nome de classe de nome de classe do item de coleo e, dentro do mtodo de renderizao, vou substituir a
+
+47
+00:03:17,500 --> 00:03:23,930
+div que estamos usando atualmente com uma UL, que  muito mais semanticamente correta.
+
+48
+00:03:24,240 --> 00:03:28,100
+E adicionaremos um nome de classe da coleo.
+
+49
+00:03:28,110 --> 00:03:34,320
+Ento, novamente, o nome da classe da coleo aqui e o item de coleo que estamos
+
+50
+00:03:34,350 --> 00:03:39,580
+fazendo uso so definidos dentro do arquivo DSS materializado que j inclu neste projeto.
+
+51
+00:03:39,600 --> 00:03:42,590
+Ento  da que todo o estilo vir.
+
+52
+00:03:42,600 --> 00:03:47,910
+Ento, vamos nos atualizar novamente e ns ficamos uma lista um pouco melhor, aparecendo na tela do que o que
+
+53
+00:03:47,910 --> 00:03:48,360
+tnhamos antes.
+
+54
+00:03:48,370 --> 00:03:49,900
+Ento, isso parece um pouco melhor.
+
+55
+00:03:50,040 --> 00:03:54,300
+E novamente ao longo do tempo, vamos melhorar um pouco mais para garantir que tudo
+
+56
+00:03:54,300 --> 00:03:57,020
+simplesmente seja um pouco melhor do que  agora.
+
+57
+00:03:57,850 --> 00:03:58,510
+OK.
+
+58
+00:03:58,590 --> 00:04:03,190
+Ento, nesta seo, falamos um pouco sobre a adio da propriedade chave em cima de todos os aliados.
+
+59
+00:04:03,300 --> 00:04:06,100
+E tambm adicionamos apenas um toque de estilo aqui.
+
+60
+00:04:06,300 --> 00:04:10,730
+Vamos continuar voltando para um pouco as coisas difceis dentro da prxima seo.
+

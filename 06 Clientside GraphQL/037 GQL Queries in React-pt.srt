@@ -1,0 +1,492 @@
+1
+00:00:00,690 --> 00:00:06,180
+Na ltima seo, reunimos nosso componente de lista de msicas e conseguimos renderizar na pgina.
+
+2
+00:00:06,210 --> 00:00:11,400
+Agora, o componente sem msicas realmente no faz absolutamente nada especial, ele apenas mostra uma div na tela.
+
+3
+00:00:11,550 --> 00:00:14,120
+E isso  algo que vamos consertar dentro da seo.
+
+4
+00:00:14,300 --> 00:00:19,500
+O componente sem msicas deve mostrar uma lista de todas as msicas diferentes em uma aplicao para
+
+5
+00:00:19,500 --> 00:00:20,200
+o usurio.
+
+6
+00:00:20,250 --> 00:00:26,190
+Portanto, precisamos nos certificar de que, de alguma forma, possamos obter dados do nosso servidor grfico CULE neste
+
+7
+00:00:26,190 --> 00:00:26,910
+componente aqui.
+
+8
+00:00:26,910 --> 00:00:31,440
+Ento,  isso que vamos cuidar dentro da seo para ajudar a nos guiar atravs desse processo.
+
+9
+00:00:31,440 --> 00:00:33,590
+Vamos percorrer uma pequena lista de verificao.
+
+10
+00:00:33,630 --> 00:00:38,790
+Ns vamos passar para nos ajudar a obter dados do grfico para o servidor para este componente.
+
+11
+00:00:38,790 --> 00:00:41,010
+Ento vamos dar uma olhada nessa lista de verificao.
+
+12
+00:00:41,650 --> 00:00:42,120
+EST BEM.
+
+13
+00:00:42,300 --> 00:00:42,680
+Aqui vamos ns.
+
+14
+00:00:42,690 --> 00:00:45,520
+Ento, esta  a nossa estratgia geral para trabalhar com Graph.
+
+15
+00:00:45,520 --> 00:00:50,760
+Q Bem em reagir juntos e esta  uma estratgia que vamos usar ao longo desta primeira
+
+16
+00:00:50,760 --> 00:00:51,650
+aplicao que passamos.
+
+17
+00:00:51,780 --> 00:00:55,920
+Mas, ao longo do tempo, pode ser algo que acabamos de dar um pouco por certo
+
+18
+00:00:55,920 --> 00:01:00,930
+e assumir que podemos fazer muito bem sem ter que passar por uma lista de verificao formal ou algo assim.
+
+19
+00:01:00,930 --> 00:01:06,810
+Ento, o passo nmero um  identificar os dados exigidos pelo nosso componente individual.
+
+20
+00:01:06,840 --> 00:01:11,820
+Sabemos que nosso componente de lista de msicas precisa mostrar uma lista de todas as msicas diferentes.
+
+21
+00:01:12,090 --> 00:01:17,970
+E quando mostra essa lista de msicas, tudo o que realmente nos importa  o ttulo de cada msica.
+
+22
+00:01:18,000 --> 00:01:24,360
+No queremos obter outros dados sobre a msica como quando foi criado ou quem a criou ou quando
+
+23
+00:01:24,360 --> 00:01:26,040
+foi modificado pela ltima vez.
+
+24
+00:01:26,370 --> 00:01:28,540
+Ento, este  um grande pedao do enxerto.
+
+25
+00:01:28,560 --> 00:01:35,190
+Bem promessa, lembre-se do grfico que voc nos prometeu, disse que voc no precisa mais obter os dados para cada uma
+
+26
+00:01:35,190 --> 00:01:40,280
+de suas consultas, voc no precisa buscar muitos detalhes sobre cada msica que voc no se preocupa.
+
+27
+00:01:40,500 --> 00:01:48,780
+Como foi o caso do antigo tipo de mundo de roteiro repousante, onde usamos os nossos dados depois de identificarmos os dados exigidos
+
+28
+00:01:48,780 --> 00:01:54,060
+pelo nosso componente, escreveremos uma consulta dentro da grfica e estamos apenas fazendo isso para
+
+29
+00:01:54,060 --> 00:02:00,000
+praticar apenas para fazer Certifique-se de que temos uma consulta sintonizada muito fina que busca apenas os
+
+30
+00:02:00,000 --> 00:02:03,920
+dados que nos preocupam depois de escrevermos essa consulta e grfica.
+
+31
+00:02:03,930 --> 00:02:08,340
+Em seguida, voltaremos para o arquivo do componente e escreveremos a consulta l fora.
+
+32
+00:02:08,730 --> 00:02:13,130
+Ento, vamos falar um pouco mais sobre exatamente como as consultas e os componentes funcionam juntos.
+
+33
+00:02:13,350 --> 00:02:18,690
+Quando chegarmos a esse passo, nmero dois, e a Etapa nmero trs, onde  onde vamos levar
+
+34
+00:02:19,020 --> 00:02:24,810
+a nossa consulta e nosso componente, e ns os uniremos de alguma forma depois de os uniremos de
+
+35
+00:02:24,810 --> 00:02:25,560
+alguma forma.
+
+36
+00:02:25,590 --> 00:02:30,180
+Podemos ento acessar os dados da consulta livremente dentro de nosso componente.
+
+37
+00:02:30,480 --> 00:02:35,220
+Ento, voc notar que no h nenhum passo aqui para dizer como oh, sim, certifique-se de
+
+38
+00:02:35,220 --> 00:02:41,340
+que a consulta seja executada ou certifique-se de que uma solicitao do Ajax seja feita ou algo como esse enxerto.
+
+39
+00:02:41,350 --> 00:02:46,110
+Bem, no Appollo, as cenas vo cuidar de tudo para ns.
+
+40
+00:02:46,110 --> 00:02:49,720
+Ns no temos que dizer especificamente, por favor, v buscar alguns dados.
+
+41
+00:02:49,920 --> 00:02:55,620
+Tudo o que temos a fazer  definir a consulta e o crescimento dos dados que sero exibidos dentro do nosso
+
+42
+00:02:55,980 --> 00:02:57,180
+componente, que  realmente bom.
+
+43
+00:02:57,180 --> 00:02:59,820
+Do ponto de vista do desenvolvimento.
+
+44
+00:02:59,820 --> 00:03:00,920
+Ento vamos fazer isso.
+
+45
+00:03:00,930 --> 00:03:06,510
+Ns iremos da etapa nmero um a trs e 4 para que possamos comear primeiro
+
+46
+00:03:06,540 --> 00:03:12,120
+com a Etapa nmero um, que  identificar os dados exigidos pelo nosso componente individual.
+
+47
+00:03:12,630 --> 00:03:13,220
+EST BEM.
+
+48
+00:03:13,530 --> 00:03:16,190
+Ento aqui est nosso componente, a lista de msicas aqui.
+
+49
+00:03:16,380 --> 00:03:17,460
+E parece.
+
+50
+00:03:17,460 --> 00:03:17,920
+Sim.
+
+51
+00:03:18,000 --> 00:03:21,020
+Tudo o que realmente precisamos  o ttulo de cada msica.
+
+52
+00:03:21,120 --> 00:03:24,600
+No precisamos da data em que essa msica foi modificada pela ltima vez.
+
+53
+00:03:24,600 --> 00:03:27,330
+No precisamos da data em que a msica foi criada.
+
+54
+00:03:27,360 --> 00:03:31,980
+Ns no precisamos saber qual artista  associado com a msica e no temos artistas nesta
+
+55
+00:03:31,980 --> 00:03:37,200
+aplicao, ns no temos a idia deles, mas voc pode imaginar que, se dissesse vocalize classic por Jimmy John
+
+56
+00:03:37,200 --> 00:03:40,280
+ou o que quer que seja Artista, no mostramos isso aqui.
+
+57
+00:03:40,290 --> 00:03:43,960
+Portanto, no precisamos buscar nada sobre o artista que criou isso.
+
+58
+00:03:44,010 --> 00:03:48,730
+Tudo o que eu quero saber  qual  o ttulo de cada msica.
+
+59
+00:03:48,730 --> 00:03:50,400
+Ento vamos virar para grfico agora.
+
+60
+00:03:50,400 --> 00:03:55,200
+Etapa nmero dois e vamos escrever a consulta em grficos apenas para a prtica apenas
+
+61
+00:03:55,200 --> 00:03:59,020
+para garantir que estamos buscando os dados que esperamos voltar do servidor.
+
+62
+00:03:59,580 --> 00:04:04,840
+Ento eu vou para o meu cliente grfico que  o grfico barra barra local 4000.
+
+63
+00:04:04,840 --> 00:04:10,170
+Q Bem, eu vou tirar a consulta que eu j tenho aqui e vamos escrever
+
+64
+00:04:10,170 --> 00:04:13,890
+a consulta para obter apenas os dados que nos preocupam.
+
+65
+00:04:14,550 --> 00:04:18,120
+Ento, colocar as chaves Crilley para nossa consulta.
+
+66
+00:04:18,570 --> 00:04:24,600
+Eu quero acessar a minha lista de msicas e o nico dado que eu me importo com cada msica
+
+67
+00:04:24,600 --> 00:04:25,580
+ o ttulo.
+
+68
+00:04:25,980 --> 00:04:32,530
+Ento, se eu executar esta consulta, volto uma resposta de uma srie de msicas onde cada msica tem apenas o ttulo.
+
+69
+00:04:32,550 --> 00:04:34,980
+Ento, novamente, eu no me importo com o ID.
+
+70
+00:04:35,010 --> 00:04:37,430
+Eu no me importo com o criado de algo assim.
+
+71
+00:04:37,440 --> 00:04:42,440
+Eu s quero o ttulo de cada msica.
+
+72
+00:04:42,530 --> 00:04:43,220
+Tudo bem.
+
+73
+00:04:43,220 --> 00:04:48,190
+Ento, esse  o passo nmero um e o nmero dois, devo dizer metade do nmero dois.
+
+74
+00:04:48,200 --> 00:04:53,400
+Nosso prximo passo ser escrever a consulta dentro do nosso arquivo de componente.
+
+75
+00:04:53,510 --> 00:04:58,460
+Ento eu vou abrir meu editor de cdigo. Aqui est o meu arquivo de componente
+
+76
+00:04:58,460 --> 00:05:00,910
+aqui e vamos escrever a consulta dentro daqui.
+
+77
+00:05:00,920 --> 00:05:07,460
+Agora voc pode estar pensando que Stephen no nos disse anteriormente que as consultas no so
+
+78
+00:05:07,460 --> 00:05:08,990
+realmente cdigo Javascript vlido.
+
+79
+00:05:09,020 --> 00:05:09,590
+Est correto.
+
+80
+00:05:09,590 --> 00:05:12,110
+Isso  algo muito importante para se manter em mente.
+
+81
+00:05:12,320 --> 00:05:18,650
+Uma consulta no  um cdigo javascript vlido, ento no podemos simplesmente escrever como oh, sim, me d as msicas no
+
+82
+00:05:18,650 --> 00:05:20,080
+ttulo de cada um aqui.
+
+83
+00:05:20,090 --> 00:05:25,250
+Este no  um javascript vlido per se para que no possamos apenas escrever e esperar algo que seja bom
+
+84
+00:05:26,180 --> 00:05:30,410
+para lidar com todas as diferentes consultas que vamos escrever dentro do nosso arquivo de componente.
+
+85
+00:05:30,440 --> 00:05:34,870
+Vamos fazer uso de uma biblioteca chamada etiqueta UL de enxerto.
+
+86
+00:05:35,140 --> 00:05:38,890
+Ento, vamos importar isso no topo e eles descobriro como fazer uso dele.
+
+87
+00:05:39,370 --> 00:05:43,040
+Vou dizer importar GQ L da Graff.
+
+88
+00:05:43,070 --> 00:05:49,970
+notar que ns violamos a conveno de nomenclatura aqui para importar bibliotecas importadas, grfico CULE.
+
+89
+00:05:50,480 --> 00:05:51,760
+Q Bem, voc
+
+90
+00:05:51,800 --> 00:05:52,760
+Mas estamos chamando isso.
+
+91
+00:05:52,770 --> 00:05:56,350
+GQ Recorde que podemos chamar a varivel de importao aqui.
+
+92
+00:05:56,360 --> 00:05:57,820
+Qualquer coisa que desejemos.
+
+93
+00:05:57,920 --> 00:06:03,200
+Por conveno, costumamos cham-lo de GQ, bem, esta biblioteca GQ l.
+
+94
+00:06:03,230 --> 00:06:09,650
+Aqui est um grfico que voc marcar biblioteca  um auxiliar para nos permitir escrever consultas dentro de um
+
+95
+00:06:09,650 --> 00:06:10,480
+arquivo de componente.
+
+96
+00:06:10,790 --> 00:06:12,140
+Ento vamos descobrir como escrev-lo.
+
+97
+00:06:12,170 --> 00:06:19,220
+Eu vou para o fundo do arquivo logo abaixo da declarao da classe e aqui embaixo vamos
+
+98
+00:06:19,730 --> 00:06:23,510
+dizer que a consulta Konst  igual a GQ.
+
+99
+00:06:23,510 --> 00:06:24,570
+Coruja GQ.
+
+100
+00:06:24,850 --> 00:06:30,730
+E eu vou colocar uma ttica e, em seguida, um tiquetaque de fechamento como esse.
+
+101
+00:06:31,100 --> 00:06:31,590
+EST BEM.
+
+102
+00:06:31,970 --> 00:06:33,350
+To importante.
+
+103
+00:06:33,350 --> 00:06:35,240
+Certifique-se de ter um back tick aqui.
+
+104
+00:06:35,240 --> 00:06:36,660
+Esta no  uma nica citao.
+
+105
+00:06:36,680 --> 00:06:40,360
+No  uma dupla cotao, ento no  uma citao como essa.
+
+106
+00:06:40,520 --> 00:06:42,830
+No h uma dupla cotao como essa.
+
+107
+00:06:42,830 --> 00:06:44,420
+ um carrapato de volta.
+
+108
+00:06:44,420 --> 00:06:49,880
+Se voc estiver em um teclado nos EUA teclado ingls  o personagem ou o boto
+
+109
+00:06:49,880 --> 00:06:52,260
+para a esquerda ou o do teclado.
+
+110
+00:06:52,280 --> 00:06:55,160
+Isso est usando cordas de modelo de seis aqui.
+
+111
+00:06:55,160 --> 00:07:00,020
+Ento, isso  mesmo que pode parecer um pouco louco  um cdigo Javascript vlido.
+
+112
+00:07:00,020 --> 00:07:07,460
+Estamos usando uma string de modelo e usando o helper da biblioteca GQ para formar a prpria consulta.
+
+113
+00:07:07,460 --> 00:07:14,660
+Ento, dentro dos tiques de volta, escreveremos o nosso grfico atual Cuil consulta para que possamos dizer msicas e eu quero
+
+114
+00:07:14,660 --> 00:07:17,070
+o ttulo de cada msica como assim.
+
+115
+00:07:19,070 --> 00:07:19,610
+EST BEM.
+
+116
+00:07:19,750 --> 00:07:22,650
+Ento  praticamente o queery aqui.
+
+117
+00:07:22,780 --> 00:07:27,280
+A regra de ouro e ns vamos fazer isso apenas sem parar durante
+
+118
+00:07:27,280 --> 00:07:33,130
+o resto deste curso, dizemos GQ Bem, ns colocamos o tiquete para trs e depois escreveramos nossa consulta.
+
+119
+00:07:33,820 --> 00:07:34,310
+EST BEM.
+
+120
+00:07:34,330 --> 00:07:36,570
+Para evitar que esta seo dure muito tempo.
+
+121
+00:07:36,580 --> 00:07:41,440
+Vamos dar uma pausa no momento e vamos voltar e ns vamos para a Etapa
+
+122
+00:07:41,530 --> 00:07:45,210
+nmero trs, que  vincular a consulta e o componente juntos.
+
+123
+00:07:45,520 --> 00:07:48,190
+Ento vamos cuidar da Etapa nmero trs na prxima seo.
+

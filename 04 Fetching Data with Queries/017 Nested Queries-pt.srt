@@ -1,0 +1,200 @@
+1
+00:00:00,730 --> 00:00:03,620
+O servidor Jay Sun agora tem a idia de empresas.
+
+2
+00:00:03,630 --> 00:00:10,790
+Ento, vamos voltar a redigir o esquema grfico de Cuil e adicionar a idia de um tipo de empresa dentro do
+
+3
+00:00:10,800 --> 00:00:11,590
+meu esquema.
+
+4
+00:00:11,730 --> 00:00:12,480
+Sim arquivo.
+
+5
+00:00:12,480 --> 00:00:14,130
+Eu vou encontrar o meu tipo de usurio.
+
+6
+00:00:14,130 --> 00:00:17,220
+Aqui est aqui e logo logo acima.
+
+7
+00:00:17,220 --> 00:00:21,820
+Vamos adicionar algumas linhas aqui, definiremos o tipo de empresa.
+
+8
+00:00:22,140 --> 00:00:27,180
+Portanto,  realmente importante agora que voc se certifica de que define seu tipo de empresa acima do tipo de usurio.
+
+9
+00:00:27,230 --> 00:00:27,700
+EST BEM.
+
+10
+00:00:27,740 --> 00:00:28,370
+E essa sou eu.
+
+11
+00:00:28,410 --> 00:00:33,720
+Portanto,  realmente importante que circule novamente em cerca de cinco partes ou mais e falaremos
+
+12
+00:00:33,720 --> 00:00:38,840
+exatamente sobre o porqu  realmente importante tomar a ordem da definio em jogo aqui.
+
+13
+00:00:38,950 --> 00:00:43,530
+Ento, eu prometo que irei voltar para o porqu estamos colocando isso acima.
+
+14
+00:00:43,530 --> 00:00:48,820
+Definiremos o tipo de empresa na mesma forma exata que a forma como fazemos o tipo de usurio anteriormente.
+
+15
+00:00:48,840 --> 00:00:50,940
+Ento diga que este ser um novo grfico.
+
+16
+00:00:50,940 --> 00:01:02,930
+Tipo de objeto bem, ento, depois, colocaremos as duas propriedades necessrias no nome e nas propriedades do campo aqui.
+
+17
+00:01:02,930 --> 00:01:03,830
+Q
+
+18
+00:01:03,830 --> 00:01:10,970
+Ento, vamos dizer que vai ter um nome de empresa e tambm ter campos.
+
+19
+00:01:11,060 --> 00:01:15,860
+Os campos da empresa sero o ID do nome e da descrio tambm.
+
+20
+00:01:15,860 --> 00:01:21,560
+Eu acho que, para os trs desses, um enxerto ser a tenso ser o tipo apropriado, assim como j tnhamos
+
+21
+00:01:21,560 --> 00:01:23,720
+utilizado anteriormente no tipo de usurio tambm.
+
+22
+00:01:24,170 --> 00:01:31,110
+Ento, use um ID Grath Well string.
+
+23
+00:01:31,410 --> 00:01:32,600
+Temos
+
+24
+00:01:36,500 --> 00:01:44,300
+um nome e uma descrio.
+
+25
+00:01:44,330 --> 00:01:44,610
+Tudo bem.
+
+26
+00:01:44,610 --> 00:01:50,660
+Ento, at agora, parece muito semelhante ao nosso tipo de usurio que j montamos anteriormente.
+
+27
+00:01:50,660 --> 00:01:56,150
+Lembre-se, como eu disse anteriormente, da primeira vez que voc comea a trabalhar com o esquema, parece um pouco engraado.
+
+28
+00:01:56,180 --> 00:02:01,310
+Voc sabe que ele tem todas essas variveis grficas flutuando em torno de todos esses tipos flutuando.
+
+29
+00:02:01,310 --> 00:02:06,650
+Mas com cada vez mais voc trabalha com isso, voc comea a perceber que voc est apenas escrevendo o mesmo cdigo
+
+30
+00:02:06,680 --> 00:02:10,460
+uma e outra vez, o que, de certa forma,  uma boa coisa muito boa.
+
+31
+00:02:10,910 --> 00:02:13,090
+Ento, agora voc tem o tipo de empresa no lugar.
+
+32
+00:02:13,100 --> 00:02:16,490
+Precisamos associ-lo a um usurio.
+
+33
+00:02:16,520 --> 00:02:19,920
+Agora, no quero associaes complicadas demais aqui.
+
+34
+00:02:19,970 --> 00:02:21,410
+Ento deixe me ser claro.
+
+35
+00:02:21,590 --> 00:02:29,510
+Tratamos associaes entre os tipos de obter uma associao entre o tipo de empresa e o tipo de usurio
+
+36
+00:02:29,510 --> 00:02:31,900
+exatamente como se fosse outro campo.
+
+37
+00:02:32,210 --> 00:02:38,840
+Ento, se um usurio tem uma propriedade da empresa, como eu quero que me digam para caminhar do meu
+
+38
+00:02:38,840 --> 00:02:45,320
+usurio para a empresa no meu grfico de todos os meus dados, eu adicionarei na empresa de campo assim.
+
+39
+00:02:45,320 --> 00:02:50,840
+Ento, estamos tratando isso como outro campo em que vamos definir o tipo e a funo
+
+40
+00:02:50,840 --> 00:02:52,240
+de resoluo ns mesmos.
+
+41
+00:02:52,790 --> 00:02:59,630
+Ento, para a empresa, diremos que tudo bem, quando tivermos esse dado, ele ser um tipo de empresa, voc pode
+
+42
+00:03:01,910 --> 00:03:08,780
+comear a imaginar que talvez esses ofcios induzam e troquem e voc, independentemente de outros tipos, possam vir para a
+
+43
+00:03:08,780 --> 00:03:14,510
+caixa para ns com o enxerto bem, pode ter exatamente a mesma definio nos bastidores, como a
+
+44
+00:03:14,510 --> 00:03:21,230
+forma como agrupamos o nosso tipo de empresa realmente se estamos definindo o nosso prprio tipo, como no caso
+
+45
+00:03:21,230 --> 00:03:27,520
+do tipo de empresa ou usando um dos integrados, eles so realmente tratados de forma idntica pelo enxerto.
+
+46
+00:03:27,620 --> 00:03:34,800
+Bem, ento vamos dar uma pausa rpida e voltaremos e continuaremos trabalhando no campo da Empresa
+
+47
+00:03:34,800 --> 00:03:35,370
+aqui.
+
+48
+00:03:35,370 --> 00:03:39,270
+vamos ter muito tempo para trabalhar exatamente como ns conseguimos a empresa associada ao usurio.
+
+49
+00:03:39,270 --> 00:03:45,260
+E esta  uma seo rpida, mas a prxima  para mim um pouco mais, ento eu quero ter certeza de que
+
+50
+00:03:45,270 --> 00:03:47,860
+Ento, vamos dar uma pausa rpida para voltar e acabar com isso.
+

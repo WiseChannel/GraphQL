@@ -1,0 +1,356 @@
+1
+00:00:01,110 --> 00:00:03,570
+Vamos comear a trabalhar em nossa funo de resultado.
+
+2
+00:00:03,570 --> 00:00:11,250
+Ento, a partir desta funo, queremos retornar um usurio muito particular ao usurio com alguma ID dada para esta primeira iterao
+
+3
+00:00:11,250 --> 00:00:12,770
+atravs do nosso aplicativo.
+
+4
+00:00:12,780 --> 00:00:16,050
+Ns vamos ignorar o uso de qualquer banco de dados elegante ou algo assim.
+
+5
+00:00:16,140 --> 00:00:19,860
+E, em vez disso, vamos trabalhar com alguns dados codificados.
+
+6
+00:00:19,860 --> 00:00:25,740
+Ento, estamos indo ao cdigo rgido em uma lista de usurios e, em seguida, percorremos essa lista de usurios e
+
+7
+00:00:26,010 --> 00:00:28,680
+devolvemos alguns dos usurios dessa funo de resoluo aqui.
+
+8
+00:00:28,770 --> 00:00:34,890
+Ele vai subir ao topo do meu arquivo de esquema e criaremos uma lista de usurios com cdigos rgidos.
+
+9
+00:00:35,010 --> 00:00:37,970
+Ento, diga aos usurios do Konst que sero uma matriz.
+
+10
+00:00:38,160 --> 00:00:43,100
+E vamos apenas adicionar dois usurios rpidos aqui veremos que cada usurio possui um ID.
+
+11
+00:00:43,350 --> 00:00:51,440
+Eu obtendo meu primeiro ID de 23 o primeiro nome de Bill com uma idade de 20 anos.
+
+12
+00:00:51,600 --> 00:01:03,850
+Eu tambm farei outro usurio com uma idia de 47 um primeiro nome de Samantha e uma idade de 21 anos legal.
+
+13
+00:01:04,140 --> 00:01:07,380
+Eu tambm vou exigir em Dasch baixo enquanto estamos aqui.
+
+14
+00:01:07,380 --> 00:01:13,010
+Ento, diga que os veculos de sublinhado de Konst exigem que o carregamento de baixa carga atue como uma biblioteca auxiliar.
+
+15
+00:01:13,020 --> 00:01:19,110
+Isso nos ajuda a caminhar atravs de colees de dados e trabalhar atravs de colees de dados para ns em particular.
+
+16
+00:01:19,120 --> 00:01:24,430
+Ns vamos us-lo para percorrer a lista de usurios e encontrar um usurio com um ID muito particular.
+
+17
+00:01:24,450 --> 00:01:27,590
+Ento, apenas uma pequena ajuda na biblioteca para que usemos.
+
+18
+00:01:27,960 --> 00:01:31,080
+Ento, agora vamos voltar para nossa funo resolvida.
+
+19
+00:01:31,080 --> 00:01:37,560
+Lembre-se de que a consulta de root aqui  o que nos indica um registro muito particular em nosso grfico de
+
+20
+00:01:37,560 --> 00:01:40,060
+todos os registros de dados diferentes que temos.
+
+21
+00:01:40,500 --> 00:01:48,930
+Ns dissemos que a consulta de raiz tem a expectativa de receber uma identificao como argumento quando a identificao
+
+22
+00:01:48,930 --> 00:01:53,080
+for passada nela estar disponvel neste objeto args aqui.
+
+23
+00:01:53,430 --> 00:02:00,380
+Ento, para encontrar o usurio com a ID dada dentro da matriz de usurios que acabamos de
+
+24
+00:02:00,660 --> 00:02:09,160
+criar, podemos escrever os usurios de pontuao de pontuao de retorno e, em seguida, um objeto com identificao ID e ARGs.
+
+25
+00:02:09,160 --> 00:02:13,820
+Ento, se voc no est familiarizado com a carga ASH, no h problema.
+
+26
+00:02:14,100 --> 00:02:16,520
+Estamos passando pela nossa lista de usurios.
+
+27
+00:02:16,740 --> 00:02:25,130
+Ento, percorrer todos os usurios e encontrar e retornar o primeiro usurio que tenha uma identificao igual a arge start ID.
+
+28
+00:02:25,230 --> 00:02:32,550
+E lembre-se que este ArcSight ID logo ser fornecido  consulta quando a consulta for feita.
+
+29
+00:02:32,940 --> 00:02:35,230
+Ento, essa  a nossa funo de resoluo agora.
+
+30
+00:02:35,250 --> 00:02:40,560
+Ns vamos voltar e melhor-lo, tornar um pouco mais robusto, certifique-se de que no estamos usando uma
+
+31
+00:02:40,590 --> 00:02:43,940
+lista de dados codificados, o que seria muito mais interessante.
+
+32
+00:02:43,950 --> 00:02:47,810
+Mas agora queremos apenas colocar algo na tela.
+
+33
+00:02:48,000 --> 00:02:53,490
+Ento, neste momento, se eu estivesse em seus sapatos, aprendendo o grfico Cuil pela primeira vez neste momento,
+
+34
+00:02:53,490 --> 00:02:57,760
+provavelmente estaria dizendo o que diabos  esse que o root Querrey est fazendo.
+
+35
+00:02:58,080 --> 00:03:00,180
+O que  essa coisa de Arkes.
+
+36
+00:03:00,180 --> 00:03:01,680
+O que  esse problema resolvido.
+
+37
+00:03:01,680 --> 00:03:03,650
+Isso  loucura, isso  loucura.
+
+38
+00:03:03,780 --> 00:03:05,210
+Sim, eu concordo completamente.
+
+39
+00:03:05,220 --> 00:03:06,600
+Bem, talvez voc pense que ainda  normal.
+
+40
+00:03:06,600 --> 00:03:10,740
+no sei a primeira vez que eu olhei tudo isso. Eu disse que sim, isso  um material muito pesado e realmente .
+
+41
+00:03:10,740 --> 00:03:10,890
+Eu
+
+42
+00:03:10,890 --> 00:03:12,700
+ um trabalho pesado.
+
+43
+00:03:12,810 --> 00:03:17,990
+Ento, eu acho que agora vamos dar uma linha para que nosso exemplo funcione no navegador.
+
+44
+00:03:18,000 --> 00:03:22,200
+Eu acho que, uma vez que jogamos com isso no navegador, teremos uma idia
+
+45
+00:03:22,200 --> 00:03:24,450
+muito mais razovel do que est acontecendo.
+
+46
+00:03:24,960 --> 00:03:31,260
+Ento vamos levar os dois tipos que fizemos nosso tipo de usurio em nossa rota Querrey aqui.
+
+47
+00:03:31,350 --> 00:03:35,620
+Vamos junt-los em um objeto de esquema Q.
+
+48
+00:03:35,790 --> 00:03:38,070
+E ento vamos entregar isso de volta ao enxerto.
+
+49
+00:03:38,220 --> 00:03:40,150
+Middleware dentro do nosso servidor.
+
+50
+00:03:40,180 --> 00:03:41,320
+Arquivo JS.
+
+51
+00:03:41,500 --> 00:03:46,320
+Ento, um ltimo pequeno passo aqui e ento poderemos testar isso em nosso navegador.
+
+52
+00:03:46,320 --> 00:03:52,320
+A primeira coisa que vamos fazer  importar um helper do grfico uma biblioteca chamada grfico.
+
+53
+00:03:52,330 --> 00:04:01,120
+O esquema de ferramentas de grfico de esquema Q Well leva uma consulta de raiz e retorna uma instncia de esquema de grfico.
+
+54
+00:04:01,260 --> 00:04:03,620
+Ento, vamos voltar ao fundo deste arquivo.
+
+55
+00:04:06,540 --> 00:04:14,140
+esquema grfico Cuil que  a ajuda que acabamos de importar ou passar para um objeto que tem uma propriedade que 
+
+56
+00:04:14,140 --> 00:04:21,340
+estranha e um passado que minhas razes Querrey se lembre da consulta de raiz  o que acabamos de definir aqui.
+
+57
+00:04:21,340 --> 00:04:22,580
+E vou dizer novo
+
+58
+00:04:22,600 --> 00:04:24,050
+Ento, aqui est a consulta de raiz.
+
+59
+00:04:24,240 --> 00:04:26,800
+Passe diretamente para Rick Querrey.
+
+60
+00:04:26,800 --> 00:04:31,480
+Agora eu quero exportar o esquema que acabamos de criar a partir do arquivo js do esquema.
+
+61
+00:04:31,480 --> 00:04:36,790
+Eu quero torn-lo disponvel para outras partes do meu aplicativo para que eu
+
+62
+00:04:36,790 --> 00:04:41,460
+possa atribuir os resultados deste para o mdulo datt exportaes to OK.
+
+63
+00:04:41,680 --> 00:04:45,890
+Ento, agora, a ltima etapa ir importar isso para o arquivo doc js do servidor.
+
+64
+00:04:46,270 --> 00:04:47,900
+Ento, mais e sirva o servidor.
+
+65
+00:04:48,070 --> 00:04:51,490
+Sim, j tenho a linha aqui.
+
+66
+00:04:51,760 --> 00:04:53,880
+Vamos passar por isso.
+
+67
+00:04:54,370 --> 00:05:03,160
+Ento, vou dizer que um esquema conciso  exigido da pasta de esquema, encontre o arquivo de esquema e ele passar esse
+
+68
+00:05:03,160 --> 00:05:06,910
+esquema como uma opo para o nosso expresso expresso.
+
+69
+00:05:06,910 --> 00:05:07,910
+Middleware Q Well.
+
+70
+00:05:07,950 --> 00:05:11,290
+Ento, dir um esquema com uma vrgula assim.
+
+71
+00:05:11,290 --> 00:05:18,940
+Observe que vamos usar o E-6 aqui porque nossa chave e nosso valor tm o mesmo nome
+
+72
+00:05:18,940 --> 00:05:19,830
+de varivel.
+
+73
+00:05:19,870 --> 00:05:25,260
+Podemos passar e s voc sabe por si s e isso ser expandido automaticamente para o
+
+74
+00:05:25,290 --> 00:05:27,010
+esquema de Kolins como assim.
+
+75
+00:05:27,630 --> 00:05:28,230
+OK.
+
+76
+00:05:28,600 --> 00:05:33,400
+Ento, um ltimo passo, precisamos reiniciar o nosso servidor porque fizemos algumas alteraes em nossa base de cdigo.
+
+77
+00:05:33,430 --> 00:05:35,390
+Ento eu preciso voltar para o meu terminal.
+
+78
+00:05:35,510 --> 00:05:41,160
+Vou acertar o controle-C para parar o servidor e vamos inici-lo de volta com o servidor de n.
+
+79
+00:05:41,170 --> 00:05:45,510
+Dot Jay Sim e legal, eu escuto aqui.
+
+80
+00:05:45,850 --> 00:05:51,250
+Se voc tiver algum erro de digitao em seu cdigo neste momento, voc ver alguma mensagem de erro aparecer aqui.
+
+81
+00:05:51,250 --> 00:05:56,410
+Eu quase posso garantir que, se voc vir a mensagem de erro neste momento, quase posso garantir que
+
+82
+00:05:56,650 --> 00:05:59,630
+eles provavelmente cometeram um erro com a maiscula em algum lugar.
+
+83
+00:05:59,740 --> 00:06:04,310
+Ento, voc vai querer verificar novamente para ter certeza de ter uma boa capitalizao em todos os lugares.
+
+84
+00:06:04,370 --> 00:06:06,800
+Ento, agora podemos mudar de volta para o nosso navegador.
+
+85
+00:06:07,300 --> 00:06:10,960
+Eu ainda estou no grfico local de Kulin 4000 da localhost.
+
+86
+00:06:10,950 --> 00:06:15,210
+Bem, vou atualizar a pgina e.
+
+87
+00:06:15,370 --> 00:06:20,400
+Agora eu exibo minha interface grfica na tela que  exatamente o que queremos.
+
+88
+00:06:20,740 --> 00:06:26,470
+investigar um pouco mais sobre o que  esta coisa grfica e como a usamos na prxima seo.
+
+89
+00:06:26,470 --> 00:06:28,850
+Ento, vamos dar uma rpida pausa, voltar e
+
